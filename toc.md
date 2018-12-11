@@ -2,8 +2,6 @@
 
 # Data for Development Impact: Table of Contents
 
-### Four thematic sections in the DIME Wiki
-
 ![](./img/dime-wiki.png)
 
 ### Introduction: Data for Development Impact
@@ -11,6 +9,10 @@
 This section motivates the guide. Drawing from sources like [Best Practices for Scientific Computing](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745), [How To Make A Pie: Reproducible Research for Empirical Economics & Econometrics](https://www.tse-fr.eu/sites/default/files/TSE/documents/doc/wp/2018/wp_tse_933.pdf), and [Code and Data for the Social Sciences](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf), the introduction describes why [data science](https://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram) in now a core skill for development economics researchers.
 
 The introduction emphasizes that these are "hard problems" – they are not solved simply by using the right software. They require at least a functional understanding of the problem that is being solved and, in some cases, *coordinating* on a solution with other people. The codes that follow are generalized examples, designed to show a clear way to accomplish each task while avoiding common pitfalls. They are also designed to showcase the effort that has been put into finding these solutions by many people already, so that new researchers can avoid reinventing the wheel for their most common tasks.
+
+### Before you begin: Research ethics
+
+This section covers introductory ethical requirements for conducting research with human subjects, handling personally-identifying information, and transparency in research design. It includes links to [pre-analysis plans](https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan), the [NIH's Protecting Human Research Partipants](http://phrptraining.com) course ([old version](https://humansubjects.nih.gov/sites/hs/phrp/PHRP_Archived_Course_Materials.pdf)) and the [CITI program](https://about.citiprogram.org/en/series/human-subjects-research-hsr/), and [trial registration](https://www.socialscienceregistry.org). It also includes recommendations to protect personal accounts using [two-factor authenication](https://lastpass.com/auth/) and [password management](https://www.lastpass.com).
 
 ### Research Design
 #### Counterfactuals and treatment effects
@@ -91,7 +93,3 @@ This section provides tools and guides to commenting code, setting up public-rel
 #### Collaboration tools for academic writing
 
 This section is a guide to using LaTeX for preparing research papers, with collaboration either via GitHub or Overleaf. It provides a guide to bibliography management with BibTeX; sources for document templates; checklists for outputs (page numbering, author affiliations, etc), and methods for converting TeX files into formats like .docx if needed.
-
-#### Research ethics and requirements
-
-This section covers ethical requirements for conducting research with human subjects, handling personally-identifying information, and transparency in research design. It includes links to [pre-analysis plans](https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan), the [NIH's Protecting Human Research Partipants](http://phrptraining.com) course ([old version](https://humansubjects.nih.gov/sites/hs/phrp/PHRP_Archived_Course_Materials.pdf)) and the [CITI program](https://about.citiprogram.org/en/series/human-subjects-research-hsr/), and information about encryption and transfer of sensitive data.
