@@ -32,14 +32,14 @@ Building off the twin ideas of "sampling noise" and "randomization noise", this 
 Power calculations are introduced by simulation. First, based on sampling error ([code](https://gist.github.com/bbdaniels/774d5e5e31f32b74ec91bcb914453ae1)), we provide code templates for power, minimum detectable effects, and sample size calculations. Then, [`ritest`](http://hesss.org/ritest.pdf) is introduced with the concept of "randomization inference". The problem of parameterization and the sharp null are briefly discussed as motivation here, and the empirical distribution of counterfactuals as hypothesis testing closes the chapter.
 
 
-### Data Collection with `iefieldkit`
+### Data Collection
 #### Primary data collection with SurveyCTO
 
 This section details the various ways in which a CAPI product – in this case, SurveyCTO  can be used for data entry, including both field use of tablets as well as web-based entry of paper forms. It details encryption of surveys and use of the Sync application to download data.
 
 #### Questionnaire design with SurveyCTO
 
-A basic overview of key SurveyCTO form options and conventions is given. It emphasizes conventions for section and variable naming, use of language labels to improve data readability, and quality controls such as bounds and logic checks that can be embedded directly into forms. The `iefieldkit` command `ietestform` is introduced here and used to check and correct a form.
+A basic overview of key SurveyCTO form options and conventions is given. It emphasizes conventions for section and variable naming, use of language labels (and `label:stata`) to improve data readability and importation, and quality controls such as bounds and logic checks that can be embedded directly into forms. The `iefieldkit` command `ietestform` is introduced here and used to check and correct a form.
 
 Technical considerations about variable naming are introduced. For example, "section shortcodes" are suggested instead of section numbers, so that questionnaire sections are easily transferrable between instruments. Explicit numbering anywhere in the questionnaire is discouraged.
 
@@ -49,25 +49,31 @@ This section details the data quality checks which are commonly used throughout 
 
 #### Managing primary and secondary data sources
 
-This section focuses on data storage, including cloud storage, sharing, and backup. Every dataset recieved must be retained in an "uneditable master" location. This data must be backed up according to the rule of three: (3) copies of the data; (2) different media; (1) offsite backup. Dropbox does not count. We recommend a secure cloud storage service with AWS or Azure, which have sufficiently-sized free tiers for small datasets; a locally mounted copy; and system backups using a software such as Backblaze or Time Machine.
+This section focuses on data storage, including cloud storage, sharing, and backup. Every dataset recieved must be retained in an "uneditable master" location. All raw data must be backed up according to the rule of three: (3) copies of the data; (2) different media; (1) offsite backup. Dropbox does not count. We recommend a secure cloud storage service with AWS or Azure, which have sufficiently-sized free tiers for small datasets; a locally mounted copy; and system backups using a software such as Backblaze or Time Machine.
 
-Next, "raw deidentified" copies of these datasets can be created and moved into unsecure storage, such as Dropbox. These will typically become the base files for analysis. They should retain the unique IDs that are needed for merging onto resources like the randomization list and any secondary data sources that are collected.
+Next, "raw deidentified" copies of these datasets can be created and moved into unsecure storage, such as Dropbox. These will typically become the base files for analysis. They should retain the unique IDs that are needed for merging onto resources like the randomization list and any secondary data sources that are collected. At this stage, the data is ready for cleaning and analysis.
 
-### Data Analysis with `ietoolkit`
+### Data Analysis
 
 #### Data and code management
 
-This section outlines the function of the `iefolder` command and the folder structure that it creates. It describes what each folder should be used for and outlines the overall workflow in terms of this folder structure, from raw PII data to final outputs. This section outlines core principles from computer science for impact evaluation practitioners. It focuses on the ideas of modularity, generalizability, and anti-repetition. It suggests adopting a flexible and extensible text editor, using descriptive naming conventions for data and code work, and planning to routinize repetitive tasks.
+This section outlines the function of the `iefolder` command and the folder structure that it creates. It describes what each folder should be used for and outlines the overall workflow in terms of this folder structure, from raw deidentified data to final outputs. This section outlines core principles from computer science for impact evaluation practitioners. It focuses on the ideas of modularity, generalizability, and anti-repetition. It suggests adopting a flexible and extensible text editor, using descriptive naming conventions for data and code work, and planning to routinize repetitive tasks.
 
 This also section emphasizes that modern coding is typically collaborative, with multiple people usually needing to simultaneous work on or access code, and be sure of its functionality and location. This section first outlines some basic ideas for code organization and readability, then provides a short technical guide to setting up and working on a project in Git/GitHub using the Git Flow workflow model and emphasizing that, like `iefolder`, a good organization model is an mental tool rather than a technical solution.
 
-#### Data cleaning
+#### Data cleaning and construction
 
-This section takes the reader through the process of cleaning and deidentifying raw survey data, beginning with a spreadsheet download from a source such as SurveyCTO. It emphasizes creation of a Raw-Deidentified dataset, followed by Intermediate and Constructed datasets, which can be kept in a shared folder for collaborative use. It focuses on conventions for variable naming at each stage and provides syntax and examples for common commands such as `reshape` and `merge`, and suggests that Constructed data should regularly have as many purpose-built datasets as needed.
+This section moves through the process of cleaning "raw deidentified" survey data, beginning with a spreadsheet download from a source such as SurveyCTO. It emphasizes creation of Intermediate and then Constructed datasets, which can be kept in a shared folder for collaborative use.
+
+For cleaning, tools from `iefieldkit`, namely `iecodebook`, are used here to automate and document the process of cleaning. For intermediate data, variable names corresponding to the questionnaire are encouraged. For panel data, variable names corresponding the to the most recent questionnaire are encouraged. Using the sample questionnaires from the previous section, data is imported from two rounds of survey collection from a hypothetical differences-in-differences IE.
+
+For construction, each dataset recieves its own construction file. Constructed data should regularly have as many purpose-built datasets as needed. New (non-questionnaire) variables can now be created, and secondary data sources merged in. It focuses on conventions for variable naming at each stage and provides syntax and examples for common commands such as `reshape` and `merge`. Using an example list of villages, households, individuals, and a sampling roster created earlier, datasets are created for different units of observation.
 
 #### Data analysis
 
 This section reviews the common estimators for each of the methods outlined in the Experimenal Design section, with references to code packages that are provided in `ietoolkit` and elsewhere for implementing them. It emphasizes that data cleaning and construction should not be done in analysis dofiles, and suggests a modular approach to outputs that strengthens the link between the creation code and the product. It provides conventions and checklists for exporting results as tables, and for organizing and naming dofiles and outputs.
+
+Using the final data, a simple analysis is constructed: summary statistics using [`sumstats`](http://bbdaniels.github.io/stata-code/sumstats); balance tables using `iebaltab`; diff-in-diff results using `ieddtab`.
 
 #### Data visualization
 
