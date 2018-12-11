@@ -8,38 +8,50 @@
 
 ### Introduction: Data for Development Impact
 
-This section motivates the guide. Drawing from sources like [Best Practices for Scientific Computing](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745) and [Code and Data for the Social Sciences](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf), the introduction describes what [Data Science](https://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram) has to bring to development economics. Broadly, it is our idea that technical computing skills and paradigms are underinvested in, compared to mathematics and topical expertise in economics research. This means that RAs who want to do their job efficiently currently have very little in the way of mentorship or guides to their work and the conventions, standards, and best practices that are fast becoming a necessity for impact evaluation projects.
+This section motivates the guide. Drawing from sources like [Best Practices for Scientific Computing](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745), [How To Make A Pie: Reproducible Research for Empirical Economics & Econometrics](https://www.tse-fr.eu/sites/default/files/TSE/documents/doc/wp/2018/wp_tse_933.pdf), and [Code and Data for the Social Sciences](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf), the introduction describes why [data science](https://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram) in now a core skill for development economics researchers.
+
+The introduction emphasizes that these are "hard problems" – they are not solved simply by using the right software. They require at least a functional understanding of the problem that is being solved and, in some cases, *coordinating* on a solution with other people. The codes that follow are generalized examples, designed to show a clear way to accomplish each task while avoiding common pitfalls. They are also designed to showcase the effort that has been put into finding these solutions by many people already, so that new researchers can avoid reinventing the wheel for their most common tasks.
 
 ### Research Design
-#### Experimental methods for impact evaluation
+#### Counterfactuals and treatment effects
 
-This section reviews the most common experimental methods for impact evaluations, drawing on [Impact Evaluation in Practice](http://www.worldbank.org/en/programs/sief-trust-fund/publication/impact-evaluation-in-practice), [Causal Inference: The Mixtape](http://scunning.com/cunningham_mixtape.pdf), and [The Econometrics of Randomized Experiments](https://www.povertyactionlab.org/sites/default/files/publications/athey_imbens_june19.pdf). It covers the design of RCTs for difference-in-difference and regression discontinuity designs, and points to [randomization code](https://dimewiki.worldbank.org/wiki/Randomization_in_Stata) for treatment assignments.
+This introductory section briefly reviews the core econometric concepts of [treatment effects](https://dimewiki.worldbank.org/wiki/Treatment_Effect) and [counterfactuals](https://dimewiki.worldbank.org/wiki/Counterfactual).
+
+#### Experimental methods
+
+This section reviews the most common experimental methods for impact evaluations, drawing on [Impact Evaluation in Practice](http://www.worldbank.org/en/programs/sief-trust-fund/publication/impact-evaluation-in-practice), [Causal Inference: The Mixtape](http://scunning.com/cunningham_mixtape.pdf), and [The Econometrics of Randomized Experiments](https://www.povertyactionlab.org/sites/default/files/publications/athey_imbens_june19.pdf). It covers the design of [RCTs](https://dimewiki.worldbank.org/wiki/Randomized_Control_Trials) for [cross-sectional](https://dimewiki.worldbank.org/wiki/Cross-sectional_Data),  [difference-in-difference](https://dimewiki.worldbank.org/wiki/Difference-in-Differences), and [regression discontinuity](https://dimewiki.worldbank.org/wiki/Regression_Discontinuity) designs.
 
 #### Quasi-experimental methods
 
-This section covers instrumental variables, matching estimators, and synthetic control models.
+This section covers [instrumental variables](https://dimewiki.worldbank.org/wiki/Instrumental_Variables), [matching estimators](https://dimewiki.worldbank.org/wiki/Matching), and [synthetic control](https://dimewiki.worldbank.org/wiki/Synthetic_Controls) models.
 
-#### Sampling and power calculations
+#### Sampling, randomization, and power calculations
 
-Building off the twin ideas that "a regression is a random variable" and that "a randomization is a random variable", this section introduces the ideas of sampling noise and randomization noise as justifications for standard errors on effect size estimates. It suggests simulations based on both, providing templates for power, minimum detectable effects, and sample size calculations based on asymptotic inference and on randomization inference. It provides guides to reproducibly sampling and randomizing using `sample`.
+Building off the twin ideas of "sampling noise" and "randomization noise", this section introduces uses sampling and randomization as justifications for standard errors on effect size estimates – and, therefore, power calculations. The concept of [reproducible randomization](https://dimewiki.worldbank.org/wiki/Randomization_in_Stata) is introduced. Reproducibility using `version`, `set seed` and `isid, sort` is detailed. Basic (global) sampling is demonstrated using `xtile sample = rnormal() , n(.)` and `recode` ([code](https://github.com/bbdaniels/dime-msie-track2-solutions/blob/master/DataWork/Lab5/Dofiles/Analysis/lab5-randomization1.do)). The problems of clusters, strata, and misfits are introduced and solved using [`randtreat`](https://www.researchgate.net/publication/292091060_Dealing_with_misfits_in_random_treatment_assignment).
+
+Power calculations are introduced by simulation. First, based on sampling error ([code](https://gist.github.com/bbdaniels/774d5e5e31f32b74ec91bcb914453ae1)), we provide code templates for power, minimum detectable effects, and sample size calculations. Then, [`ritest`](http://hesss.org/ritest.pdf) is introduced with the concept of "randomization inference". The problem of parameterization and the sharp null are briefly discussed as motivation here, and the empirical distribution of counterfactuals as hypothesis testing closes the chapter.
 
 
 ### Data Collection with `iefieldkit`
 #### Primary data collection with SurveyCTO
 
-This section details the various ways in which a product like SurveyCTO can be used for data entry, including both field use of tablets as well as Web-based entry of paper forms. It details encryption of surveys and use of the Sync application to download data.
+This section details the various ways in which a CAPI product – in this case, SurveyCTO  can be used for data entry, including both field use of tablets as well as web-based entry of paper forms. It details encryption of surveys and use of the Sync application to download data.
 
 #### Questionnaire design with SurveyCTO
 
-This section provides a basic overview of key SurveyCTO form options and conventions. It emphasizes conventions for section and variable naming, use of language labels to improve data readability, and quality controls such as bounds and logic checks that can be embedded directly into forms.
+A basic overview of key SurveyCTO form options and conventions is given. It emphasizes conventions for section and variable naming, use of language labels to improve data readability, and quality controls such as bounds and logic checks that can be embedded directly into forms. The `iefieldkit` command `ietestform` is introduced here and used to check and correct a form.
+
+Technical considerations about variable naming are introduced. For example, "section shortcodes" are suggested instead of section numbers, so that questionnaire sections are easily transferrable between instruments. Explicit numbering anywhere in the questionnaire is discouraged.
 
 #### Field management and quality assurance
 
-This section details the data quality checks which are commonly used throughout fieldwork. This includes enumerator checks, high-frequency checks, tests for outliers, and schedule/sample completion reports. It emphasizes the RA's responsibility to spot, rather than solve, problems at this stage, and provides methods for organizing paper trails for issues and corrections in data.
+This section details the data quality checks which are commonly used throughout fieldwork. This includes enumerator checks, high-frequency checks, tests for outliers, and schedule/sample completion reports. Code for each of these is provided (using IPA's public [software](https://github.com/PovertyAction/high-frequency-checks/wiki/Background)). It emphasizes the RA's responsibility to spot, rather than solve, problems at this stage, and provides methods for organizing paper trails for issues and corrections in data.
 
 #### Managing primary and secondary data sources
 
-This section focuses on data storage, including cloud storage, sharing, and backup.
+This section focuses on data storage, including cloud storage, sharing, and backup. Every dataset recieved must be retained in an "uneditable master" location. This data must be backed up according to the rule of three: (3) copies of the data; (2) different media; (1) offsite backup. Dropbox does not count. We recommend a secure cloud storage service with AWS or Azure, which have sufficiently-sized free tiers for small datasets; a locally mounted copy; and system backups using a software such as Backblaze or Time Machine.
+
+Next, "raw deidentified" copies of these datasets can be created and moved into unsecure storage, such as Dropbox. These will typically become the base files for analysis. They should retain the unique IDs that are needed for merging onto resources like the randomization list and any secondary data sources that are collected.
 
 ### Data Analysis with `ietoolkit`
 
