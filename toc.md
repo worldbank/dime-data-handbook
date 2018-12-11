@@ -1,10 +1,10 @@
-![](./images/dime.png)
+![](./img/dime.png)
 
 # Data for Development Impact: Table of Contents
 
 ### Four thematic sections in the DIME Wiki
 
-![](./images/dime-wiki.png)
+![](./img/dime-wiki.png)
 
 ### Introduction: Data for Development Impact
 
