@@ -53,42 +53,40 @@ This section details the data quality checks which are commonly used throughout 
 
 This section focuses on data storage, including cloud storage, sharing, and backup. Every dataset recieved must be retained in an "uneditable master" location. All raw data must be backed up according to the rule of three: (3) copies of the data; (2) different media; (1) offsite backup. Dropbox does not count. We recommend a secure cloud storage service with AWS or Azure, which have sufficiently-sized free tiers for small datasets; a locally mounted copy; and system backups using a software such as Backblaze or Time Machine.
 
-Next, "raw deidentified" copies of these datasets can be created and moved into unsecure storage, such as Dropbox. These will typically become the base files for analysis. They should retain the unique IDs that are needed for merging onto resources like the randomization list and any secondary data sources that are collected. At this stage, the data is ready for cleaning and analysis.
+Next, "raw deidentified" copies of these datasets can be created and moved into unsecure storage, such as Dropbox, using an importer (such as SurveyCTO's import dofiles). These will typically become the base files for analysis. They should retain the unique IDs that are needed for merging onto resources like the randomization list and any secondary data sources that are collected. At this stage, the data is ready for cleaning and analysis.
 
 ### Data Analysis
 
-#### Data and code management
+#### Data management
 
 This section outlines the function of the `iefolder` command and the folder structure that it creates. It describes what each folder should be used for and outlines the overall workflow in terms of this folder structure, from raw deidentified data to final outputs. This section outlines core principles from computer science for impact evaluation practitioners. It focuses on the ideas of modularity, generalizability, and anti-repetition. It suggests adopting a flexible and extensible text editor, using descriptive naming conventions for data and code work, and planning to routinize repetitive tasks.
 
-This also section emphasizes that modern coding is typically collaborative, with multiple people usually needing to simultaneous work on or access code, and be sure of its functionality and location. This section first outlines some basic ideas for code organization and readability, then provides a short technical guide to setting up and working on a project in Git/GitHub using the Git Flow workflow model and emphasizing that, like `iefolder`, a good organization model is an mental tool rather than a technical solution.
-
 #### Data cleaning and construction
 
-This section moves through the process of cleaning "raw deidentified" survey data, beginning with a spreadsheet download from a source such as SurveyCTO. It emphasizes creation of Intermediate and then Constructed datasets, which can be kept in a shared folder for collaborative use.
+This section moves through the process of cleaning "raw deidentified" survey data. It emphasizes creation of Intermediate and then Constructed datasets, which can be kept in a shared folder for collaborative use. For cleaning, tools from `iefieldkit`, namely `iecodebook`, are used here to automate and document the process of cleaning. For intermediate data, variable names corresponding to the questionnaire are encouraged. For panel data, variable names corresponding the to the most recent questionnaire are encouraged. Using the sample questionnaires from the previous section, data is imported from two rounds of survey collection from a hypothetical differences-in-differences IE.
 
-For cleaning, tools from `iefieldkit`, namely `iecodebook`, are used here to automate and document the process of cleaning. For intermediate data, variable names corresponding to the questionnaire are encouraged. For panel data, variable names corresponding the to the most recent questionnaire are encouraged. Using the sample questionnaires from the previous section, data is imported from two rounds of survey collection from a hypothetical differences-in-differences IE.
-
-For construction, each dataset recieves its own construction file. Constructed data should regularly have as many purpose-built datasets as needed. New (non-questionnaire) variables can now be created, and secondary data sources merged in. It focuses on conventions for variable naming at each stage and provides syntax and examples for common commands such as `reshape` and `merge`. Using an example list of villages, households, individuals, and a sampling roster created earlier, datasets are created for different units of observation.
+For construction, each dataset recieves its own construction file. Constructed data should regularly have as many purpose-built datasets as needed and names should be sensible. New (non-questionnaire) variables can now be created, and secondary data sources merged in. Syntax and examples are provided for common commands such as `reshape` and `merge`. Using an example list of villages, households, individuals, and a sampling roster created earlier, datasets are created for different units of observation.
 
 #### Data analysis
 
-This section reviews the common estimators for each of the methods outlined in the Experimenal Design section, with references to code packages that are provided in `ietoolkit` and elsewhere for implementing them. It emphasizes that data cleaning and construction should not be done in analysis dofiles, and suggests a modular approach to outputs that strengthens the link between the creation code and the product. It provides conventions and checklists for exporting results as tables, and for organizing and naming dofiles and outputs.
+This section reviews how to write an analysis dofile. It emphasizes that data cleaning and construction should not be done in analysis dofiles, and suggests a modular approach to outputs that strengthens the link between the code and the product. It provides conventions and checklists for exporting results as tables, and for organizing and naming dofiles and outputs. For example, outputs should be unordered at first and there should be a dofile for each output; once a working paper is structured for submission, code can be combined into a single `analysis.do` file and outputs named things like `table_1.tex`.
 
 Using the final data, a simple analysis is constructed: summary statistics using [`sumstats`](http://bbdaniels.github.io/stata-code/sumstats); balance tables using `iebaltab`; diff-in-diff results using `ieddtab`.
 
 #### Data visualization
 
-This section presents some common styles of data visualization, key design elements, and a short guide to editing key graph elements in Stata.
+This section presents some common styles of data visualization, key design elements, and a very short guide to editing key graph elements in Stata with reader references to useful manual sections for more specific needs.
 
 ### Publication
 #### Doing research reproducibly
 
 This section emphasizes that analysis code should be written with the idea that it is an output of the research as much as the completed paper is. Analysis code should be written primarily for others to read and run, and as a methodological investment for re-use in the future. This section suggests routinization of analysis tasks that are done repeatedly, with the goal of producing extremely short core dofiles.
 
+This section also emphasizes that modern coding is typically collaborative, with multiple people usually needing to simultaneous work on or access code, and be sure of its functionality and location. This section first outlines some basic ideas for code organization and readability, then provides a short technical guide to setting up and working on a project in Git/GitHub using the Git Flow workflow model and emphasizing that, like `iefolder`, a good organization model is an mental tool rather than a technical solution.
+
 #### Publishing data and code for replication
 
-This section provides tools and guides to commenting code, setting up public-release repositories on OSF or GitHub.
+This section provides tools and guides to documenting code and setting up public-release repositories on OSF or GitHub.
 
 #### Collaboration tools for academic writing
 

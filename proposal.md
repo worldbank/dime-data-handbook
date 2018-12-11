@@ -31,6 +31,8 @@ The most comprehensive and structured materials are available from the [DIME ann
 
 The guide's original content therefore primarily comes from the addition of task-specific *workflows*. These are how-tos that illustrate specific tasks with specific software and operational code examples. Where the Wiki seeks to explain *why* things are done in a manner that improves the readers' understanding of topics, the Guide explains *what* is being done and *how*, leading readers through specific tasks. In further contrast to a *theoretical* toolkit like [Using Randomization in Development Economics Research](http://economics.mit.edu/files/806), it is envisioned as a *practical* toolkit – each short section should allow the reader to implement the most basic version of the task using code snippets and purpose-built or simulated data.
 
+The goal would be to have a working draft that could potentially be debuted at the 2019 Manage Successful Impact Evaluations training. Many of the code materials would be very similar and would therefore also be used for the Stata Track 2 sessions in that training. 
+
 <img src="./img/experimental-econ.png" alt="" style="width: 500px; float: right;"/>
 
 ## How will we do this?
