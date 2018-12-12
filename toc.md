@@ -37,7 +37,7 @@ Power calculations are introduced by simulation. First, based on sampling error 
 ### Data Collection
 #### Primary data collection with SurveyCTO
 
-This section details the various ways in which a CAPI product – in this case, SurveyCTO  can be used for data entry, including both field use of tablets as well as web-based entry of paper forms. It details encryption of surveys and use of the Sync application to download data.
+This section details the various ways in which a CAPI product – in this case, SurveyCTO  can be used for data entry, including both field use of tablets as well as web-based entry of paper forms. It details encryption of surveys containing PII data and use of the Sync application to download data.
 
 #### Questionnaire design with SurveyCTO
 
@@ -51,7 +51,7 @@ This section details the data quality checks which are commonly used throughout 
 
 #### Managing primary and secondary data sources
 
-This section focuses on data storage, including cloud storage, sharing, and backup. Every dataset recieved must be retained in an "uneditable master" location. All raw data must be backed up according to the rule of three: (3) copies of the data; (2) different media; (1) offsite backup. Dropbox does not count. We recommend a secure cloud storage service with AWS or Azure, which have sufficiently-sized free tiers for small datasets; a locally mounted copy; and system backups using a software such as Backblaze or Time Machine.
+This section focuses on data storage, including cloud storage, sharing, and backup. Every dataset recieved must be retained in an "uneditable master" location. All raw data must be backed up according to the rule of three: (3) copies of the data; (2) different media; (1) offsite backup. Dropbox does not count. We recommend a secure cloud storage service with AWS or Azure, which have sufficiently-sized free tiers for small datasets; a locally mounted copy; and system backups using a software such as Backblaze and/or Time Machine.
 
 Next, "raw deidentified" copies of these datasets can be created and moved into unsecure storage, such as Dropbox, using an importer (such as SurveyCTO's import dofiles). These will typically become the base files for analysis. They should retain the unique IDs that are needed for merging onto resources like the randomization list and any secondary data sources that are collected. At this stage, the data is ready for cleaning and analysis.
 
