@@ -31,11 +31,17 @@ The most comprehensive and structured materials are available from the [DIME ann
 
 The guide's original content therefore primarily comes from the addition of task-specific *workflows*. These are how-tos that illustrate specific tasks with specific software and operational code examples. Where the Wiki seeks to explain *why* things are done in a manner that improves the readers' understanding of topics, the Guide explains *what* is being done and *how*, leading readers through specific tasks. In further contrast to a *theoretical* toolkit like [Using Randomization in Development Economics Research](http://economics.mit.edu/files/806), it is envisioned as a *practical* toolkit – each short section should allow the reader to implement the most basic version of the task using code snippets and purpose-built or simulated data.
 
-The goal would be to have a working draft that could potentially be debuted at the 2019 Manage Successful Impact Evaluations training. Many of the code materials would be very similar and would therefore also be used for the Stata Track 2 sessions in that training. 
+The goal would be to have a working draft that could potentially be debuted at the 2019 Manage Successful Impact Evaluations training. Many of the code materials would be very similar and would therefore also be used for the Stata Track 2 sessions in that training.
 
-<img src="./img/experimental-econ.png" alt="" style="width: 500px; float: right;"/>
+![](/img/experimental-econ.png)
 
-## How will we do this?
+## Resources Required
+
+It is unlikely that an external person will be able to successfully pull together the resources needed to create this, or to understand the best practices sufficiently well to write them out. Therefore we plan to primarily devote staff time to the creation of the guide. Over six months we estimate 1.5 days per week devoted to writing, as well as intern effort for reviewing as required.
+
+The timeline goal will be to be able to use code, exercises, and text as a basis for the 2019 Manage Successful Impact Evaluations training in June. Some of the key sections already exist for that training in draft form (https://osf.io/cyekq/), particularly in the Labs, and need to be cleaned up and edited for length, content, and clarity. Others need significant new investment in terms of agreeing on and coding up best practices and explanatory language.
+
+## Structure
 
 The guide will be structured according to the four thematic sections of the DIME Wiki: Research Design, Data Collection, Analysis, and Publication. However, the content will be distinct: the guide should serve as a readable and practical guide to core tasks of each of these project steps. Research Design includes tools like sampling and power calculations. Data Collection includes basic SurveyCTO programming and principles of questionnaire design. Analysis, the largest section, includes principles of data management, code management, data cleaning, and analysis and visualization. Finally, the Publication section contains basic information on preparing a finished project for code review and public release, including sample tools and workflows for writing and revising, and a discussion of ethical handling of data at project completion. Each section will include concrete guides to tools and processes used at DIME, and will also incorporate `code snippets` as a handy reference where applicable. It will also have an online version, similar to the structure of Kieran Healy's [Data Visualization](http://socviz.co).
 
