@@ -10,14 +10,14 @@ This section motivates the guide. Drawing from sources like [Best Practices for 
 
 The introduction emphasizes that these are "hard problems" – they are not solved simply by using the right software. They require at least a functional understanding of the problem that is being solved and, in some cases, *coordinating* on a solution with other people. The codes that follow are generalized examples, designed to show a clear way to accomplish each task while avoiding common pitfalls. They are also designed to showcase the effort that has been put into finding these solutions by many people already, so that new researchers can avoid reinventing the wheel for their most common tasks.
 
-### Before you begin: Research ethics
+### Before you begin: Research ethics, security, and certification
 
 This section covers introductory ethical requirements for conducting research with human subjects, handling personally-identifying information, and transparency in research design. It includes links to [pre-analysis plans](https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan), the [NIH's Protecting Human Research Partipants](http://phrptraining.com) course ([old version](https://humansubjects.nih.gov/sites/hs/phrp/PHRP_Archived_Course_Materials.pdf)) and the [CITI program](https://about.citiprogram.org/en/series/human-subjects-research-hsr/), and [trial registration](https://www.socialscienceregistry.org). It also includes recommendations to protect personal accounts using [two-factor authenication](https://lastpass.com/auth/) and [password management](https://www.lastpass.com).
 
 ### Research Design
 #### Counterfactuals and treatment effects
 
-This introductory section briefly reviews the core econometric concepts of [treatment effects](https://dimewiki.worldbank.org/wiki/Treatment_Effect) and [counterfactuals](https://dimewiki.worldbank.org/wiki/Counterfactual).
+This introductory section briefly reviews the core Impact Evaluation econometric concepts of [treatment effects](https://dimewiki.worldbank.org/wiki/Treatment_Effect) and [counterfactuals](https://dimewiki.worldbank.org/wiki/Counterfactual). This is used to motivate a non-technical discussion of the bias and variance of estimators and therefore hypothesis testing in impact evaluations.
 
 #### Experimental methods
 
@@ -25,7 +25,7 @@ This section reviews the most common experimental methods for impact evaluations
 
 #### Quasi-experimental methods
 
-This section covers [instrumental variables](https://dimewiki.worldbank.org/wiki/Instrumental_Variables), [matching estimators](https://dimewiki.worldbank.org/wiki/Matching), and [synthetic control](https://dimewiki.worldbank.org/wiki/Synthetic_Controls) models.
+This section covers [instrumental variables](https://dimewiki.worldbank.org/wiki/Instrumental_Variables), [matching estimators](https://dimewiki.worldbank.org/wiki/Matching), and [synthetic control](https://dimewiki.worldbank.org/wiki/Synthetic_Controls) models. These are very descriptive sections without code: they mainly point to "practical resources" after giving a short "plain-English" description of how the method accomplishes a treatment-effect estimate.
 
 #### Sampling, randomization, and power calculations
 
@@ -37,7 +37,7 @@ Power calculations are introduced by simulation. First, based on sampling error 
 ### Data Collection
 #### Primary data collection with SurveyCTO
 
-This section details the various ways in which a CAPI product – in this case, SurveyCTO  can be used for data entry, including both field use of tablets as well as web-based entry of paper forms. It details encryption of surveys containing PII data and use of the Sync application to download data.
+This section details the various ways in which a CAPI product – in this case, SurveyCTO – can be used for data entry, including both field use of tablets as well as web-based entry of paper forms. It details encryption of surveys containing PII data and use of the Sync application to download data.
 
 #### Questionnaire design with SurveyCTO
 
@@ -47,19 +47,19 @@ Technical considerations about variable naming are introduced. For example, "sec
 
 #### Field management and quality assurance
 
-This section details the data quality checks which are commonly used throughout fieldwork. This includes enumerator checks, high-frequency checks, tests for outliers, and schedule/sample completion reports. Code for each of these is provided (using IPA's public [software](https://github.com/PovertyAction/high-frequency-checks/wiki/Background)). It emphasizes the RA's responsibility to spot, rather than solve, problems at this stage, and provides methods for organizing paper trails for issues and corrections in data.
+This section details the data quality checks which are commonly used throughout fieldwork. This includes enumerator checks, high-frequency checks, tests for outliers, and schedule/sample completion reports. Code for each of these is provided (using [IPA's public software](https://github.com/PovertyAction/high-frequency-checks/wiki/Background)). It emphasizes the RA's responsibility to spot, rather than solve, problems at this stage, and provides suggestions for organizing paper trails for issues and corrections in data.
 
-#### Managing primary and secondary data sources
+#### Managing primary data
 
-This section focuses on data storage, including cloud storage, sharing, and backup. Every dataset recieved must be retained in an "uneditable master" location. All raw data must be backed up according to the rule of three: (3) copies of the data; (2) different media; (1) offsite backup. Dropbox does not count. We recommend a secure cloud storage service with AWS or Azure, which have sufficiently-sized free tiers for small datasets; a locally mounted copy; and system backups using a software such as Backblaze and/or Time Machine.
+This section focuses on data storage, including cloud storage, sharing, and backup. Every dataset recieved must be retained in an "uneditable master" location. All raw data must be backed up according to the rule of three: (3) copies of the data; (2) different media; (1) offsite backup. Dropbox does not count. We recommend a secure cloud storage service with AWS or Azure, which have sufficiently-sized free tiers for small datasets; a locally mounted copy (not in a cloud folder); and system backups using a software such as Backblaze and/or Time Machine.
 
-Next, "raw deidentified" copies of these datasets can be created and moved into unsecure storage, such as Dropbox, using an importer (such as SurveyCTO's import dofiles). These will typically become the base files for analysis. They should retain the unique IDs that are needed for merging onto resources like the randomization list and any secondary data sources that are collected. At this stage, the data is ready for cleaning and analysis.
+Then, "deidentified" copies of these datasets can be created and moved into unsecure storage, such as Dropbox, using an importer (such as SurveyCTO's import dofiles). These will typically become the base datafiles for analysis. They should retain the unique IDs that are needed for merging onto resources like the randomization list and any secondary data sources that are available. At this stage, data is ready for cleaning and analysis.
 
 ### Data Analysis
 
 #### Data management
 
-This section outlines the function of the `iefolder` command and the folder structure that it creates. It describes what each folder should be used for and outlines the overall workflow in terms of this folder structure, from raw deidentified data to final outputs. This section outlines core principles from computer science for impact evaluation practitioners. It focuses on the ideas of modularity, generalizability, and anti-repetition. It suggests adopting a flexible and extensible text editor, using descriptive naming conventions for data and code work, and planning to routinize repetitive tasks.
+This section outlines the function of the `iefolder` command and the folder structure that it creates. It describes what each folder should be used for and outlines the overall workflow in terms of this folder structure, from deidentified data to final outputs. This section outlines core principles from computer science for impact evaluation practitioners. It focuses on the ideas of modularity, generalizability, and anti-repetition. It suggests adopting a flexible and extensible text editor, using descriptive naming conventions for data and code work, and planning to routinize repetitive tasks.
 
 #### Data cleaning and construction
 
@@ -82,7 +82,7 @@ This section presents some common styles of data visualization, key design eleme
 
 This section emphasizes that analysis code should be written with the idea that it is an output of the research as much as the completed paper is. Analysis code should be written primarily for others to read and run, and as a methodological investment for re-use in the future. This section suggests routinization of analysis tasks that are done repeatedly, with the goal of producing extremely short core dofiles.
 
-This section also emphasizes that modern coding is typically collaborative, with multiple people usually needing to simultaneous work on or access code, and be sure of its functionality and location. This section first outlines some basic ideas for code organization and readability, then provides a short technical guide to setting up and working on a project in Git/GitHub using the Git Flow workflow model and emphasizing that, like `iefolder`, a good organization model is an mental tool rather than a technical solution.
+This section also emphasizes that modern coding is typically collaborative, with multiple people usually needing to simultaneous work on or access code, and be sure of its functionality and location. This section first outlines some basic ideas for code organization and readability, then provides a short technical guide to setting up and working on a project in Git/GitHub using the [Git Flow workflow model](https://nvie.com/posts/a-successful-git-branching-model/) and emphasizing that, like `iefolder`, a good organization model is an mental tool rather than a technical solution.
 
 #### Publishing data and code for replication
 
