@@ -14,24 +14,47 @@ The introduction emphasizes that these are "hard problems" – they are not sol
 
 This section covers introductory ethical requirements for conducting research with human subjects, handling personally-identifying information, and transparency in research design. It includes links to [pre-analysis plans](https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan), the [NIH's Protecting Human Research Partipants](http://phrptraining.com) course ([old version](https://humansubjects.nih.gov/sites/hs/phrp/PHRP_Archived_Course_Materials.pdf)) and the [CITI program](https://about.citiprogram.org/en/series/human-subjects-research-hsr/), and [trial registration](https://www.socialscienceregistry.org). It also includes recommendations to protect personal accounts using [two-factor authenication](https://lastpass.com/auth/) and [password management](https://www.lastpass.com).
 
-### Research Design
-#### Counterfactuals and treatment effects
+### Planning Data Work
+
+* KB comment:
+    * The target audience of this book are RAs (although I can think of PIs that needs to read this), so this book does not need to discuss research design in this much detail. This was already said by Maria in meeting, but here I am suggesting how to change it
+    * This chapter should describe the planning work that should be done before any data activities are launched in the field.
+
+#### Create a data map of your project
+
+* Plan which data sets that you need
+* Plan what you need in order to get those data sets
+* Plan what you need in order to correctly merge observations across data sections
+* Plan how to make IDs for your observations
+* It is ok to update this data map as you go, but this will help FCs and RAs that are coming and going to understand what bigger picture they are contributing to.
+* This is like pseudocode for the whole project.
+
+#### How different research design affects what data you need
+
+KB comment: I think this really have a place here, but should be written from another perspective. I think this section should discus that the RD effects what data you need and what planning you need to do, and then different designs should be brought up only to give examples of that. If needed to explain how it affects the data work I think it is ok to describe what the topics below are, but I don't think anything in the topic of research design should be explained in this book just for the sake of it. There are other books for that.
+
+##### Counterfactuals and treatment effects
 
 This introductory section briefly reviews the core Impact Evaluation econometric concepts of [treatment effects](https://dimewiki.worldbank.org/wiki/Treatment_Effect) and [counterfactuals](https://dimewiki.worldbank.org/wiki/Counterfactual). This is used to motivate a non-technical discussion of the bias and variance of estimators and therefore hypothesis testing in impact evaluations.
 
-#### Experimental methods
+##### Experimental methods
 
 This section reviews the most common experimental methods for impact evaluations, drawing on [Impact Evaluation in Practice](http://www.worldbank.org/en/programs/sief-trust-fund/publication/impact-evaluation-in-practice), [Causal Inference: The Mixtape](http://scunning.com/cunningham_mixtape.pdf), and [The Econometrics of Randomized Experiments](https://www.povertyactionlab.org/sites/default/files/publications/athey_imbens_june19.pdf). It covers the design of [RCTs](https://dimewiki.worldbank.org/wiki/Randomized_Control_Trials) for [cross-sectional](https://dimewiki.worldbank.org/wiki/Cross-sectional_Data),  [difference-in-difference](https://dimewiki.worldbank.org/wiki/Difference-in-Differences), and [regression discontinuity](https://dimewiki.worldbank.org/wiki/Regression_Discontinuity) designs.
 
-#### Quasi-experimental methods
+##### Quasi-experimental methods
 
 This section covers [instrumental variables](https://dimewiki.worldbank.org/wiki/Instrumental_Variables), [matching estimators](https://dimewiki.worldbank.org/wiki/Matching), and [synthetic control](https://dimewiki.worldbank.org/wiki/Synthetic_Controls) models. These are very descriptive sections without code: they mainly point to "practical resources" after giving a short "plain-English" description of how the method accomplishes a treatment-effect estimate.
 
 #### Sampling, randomization, and power calculations
 
+KB comment: this might require some primary data collection already, but i still think this is the best place to put it.
+
 Building off the twin ideas of "sampling noise" and "randomization noise", this section introduces uses sampling and randomization as justifications for standard errors on effect size estimates – and, therefore, power calculations. The concept of [reproducible randomization](https://dimewiki.worldbank.org/wiki/Randomization_in_Stata) is introduced. Reproducibility using `version`, `set seed` and `isid, sort` is detailed. Basic (global) sampling is demonstrated using `xtile sample = rnormal() , n(.)` and `recode` ([code](https://github.com/bbdaniels/dime-msie-track2-solutions/blob/master/DataWork/Lab5/Dofiles/Analysis/lab5-randomization1.do)). The problems of clusters, strata, and misfits are introduced and solved using [`randtreat`](https://www.researchgate.net/publication/292091060_Dealing_with_misfits_in_random_treatment_assignment).
 
 Power calculations are introduced by simulation. First, based on sampling error ([code](https://gist.github.com/bbdaniels/774d5e5e31f32b74ec91bcb914453ae1)), we provide code templates for power, minimum detectable effects, and sample size calculations. Then, [`ritest`](http://hesss.org/ritest.pdf) is introduced with the concept of "randomization inference". The problem of parameterization and the sharp null are briefly discussed as motivation here, and the empirical distribution of counterfactuals as hypothesis testing closes the chapter.
+
+#### How to prepare for collaboration and replication
+KB comment: Should we mention Data management here? Or at least how to set up a good folder structure? Talking about `iefolder` after primary data collection might not be the right order as data folders will already have been set up then, but only with primary data collection in mind.
 
 
 ### Data Collection
