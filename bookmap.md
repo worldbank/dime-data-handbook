@@ -40,6 +40,8 @@
 	* What else needs to be version controlled: outputs
 	* Code organization: master scripts, modularity, generalizability, and anti-repetition
 1. Data Management 
+	* Unit of observation and unique ID
+	* Master data sets
 	* Naming conventions
 	* Folder structure and iefolder
 1. Overview of workflow
