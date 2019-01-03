@@ -30,7 +30,7 @@
 	* Plan how to make IDs for your observations
 	* It is ok to update this data map as you go, but this will help FCs and RAs that are coming and going to understand what bigger picture they are contributing to.
 	* This is like pseudocode for the whole project.
-1. How different research design affect the data you need
+1. How different research designs affect the data you need
 	* Data format
 	* Planning for different designs: examples using DIME project
 1. How to prepare for collaboration and replication
