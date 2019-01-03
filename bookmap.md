@@ -1,11 +1,11 @@
-﻿# Data for Development Impact: Chapter map
+# Data for Development Impact: Chapter map
 
 ## Introduction: Data for Development Impact
 
+1. Disclaimer at the beginning of who we are, where these recommendations are coming from (DIME experience), but keep content broad/general
 1. The public of this book are...
 	  * RAs
 	  * Graduate students working on applied econ
-1 Disclaimer at the beginning of who we are, where these recommendations are coming from (DIME experience), but keep content broad/general
 1. Why data science in now a core skill for development economics researchers
 1. Why reproducibility is important
 
