@@ -9,18 +9,36 @@
 1. Why data science in now a core skill for development economics researchers
 1. Why reproducibility is important
 
-	
+
 ## Before you begin: Research ethics, security, and certification
 1. Research with human subjects
 	* [NIH's Protecting Human Research Participants](https://phrptraining.com/)
 	* [CITI program](https://about.citiprogram.org/en/series/human-subjects-research-hsr/)
+	* [Research ethics on the Wiki](https://dimewiki.worldbank.org/wiki/Research_Ethics)
+	* [Summer School Presentation](https://www.dropbox.com/home/wb/analytics/RwandaKnowsIE_materials/RwandaknowsIE%20-%20Public%20material/Aug%2020?preview=Research_ethics.pptx#)
 1. PII
 	* What is PII
+		* [Wiki](https://dimewiki.worldbank.org/wiki/De-identification)
+		* [Data confidentiality: A review of methods for statistical disclosure limitation and methods for assessing privacy](https://projecteuclid.org/download/pdfview_1/euclid.ssu/1296828958)
 	* Data Encryption
 	* Password Management
 1. Transparency in Research Design
-	* [Pre-Analysis Plans](https://dimewiki.worldbank.org/wiki/Pre*Analysis_Plan)
-	* [RCT registration](https://www.socialscienceregistry.org)
+	* Pre-Analysis Plan
+		* [Pre-Analysis Plans on the wiki](https://dimewiki.worldbank.org/wiki/Pre*Analysis_Plan)
+		* [Promises and Perils of Pre-analysis Plans](https://www.aeaweb.org/articles?id=10.1257/jep.29.3.61)
+		* [Presentation version](http://cega.berkeley.edu/assets/cega_events/45/Olken__PAP.pdf)
+		* [DeclareDesign R package](https://declaredesign.org/)
+		* [Development Impact post](https://blogs.worldbank.org/impactevaluations/a-pre-analysis-plan-checklist)
+		* [Pre-Analysis Plan template](https://www.bitss.org/wp-content/uploads/2015/12/Pre-Analysis-Plan-Template.pdf)
+		* [Pre-Analysis Plan example](http://perseus.iies.su.se/~ialm/assets/papers/cutthroat_pre.pdf)
+		* [Running Randomized Evaluations](https://www.dropbox.com/s/ejsolpqahudjwp2/Module%2B8.3.pptx?dl=0)
+		* [IPA's material](https://www.dropbox.com/s/ejsolpqahudjwp2/Module%2B8.3.pptx?dl=0)
+	* RCT registration
+		* [Social Science Registry](https://www.socialscienceregistry.org)
+		* [RIDIE/3ie](http://ridie.3ieimpact.org/)
+		* [AEA](https://www.socialscienceregistry.org/)
+		* [OSF](https://osf.io/registries)
+
 
 ## Planning Data Work: what should be done before any data activities are launched in the field
 1. Create a data map of your project
@@ -39,14 +57,14 @@
 	* GitHub and [gitflow](https://nvie.com/posts/a-successful-git-branching-model/)
 	* What else needs to be version controlled: outputs
 	* Code organization: master scripts, modularity, generalizability, and anti-repetition
-1. Data Management 
+1. Data Management
 	* Unit of observation and unique ID
 	* Master data sets
 	* Naming conventions
 	* Folder structure and iefolder
 1. Overview of workflow
 	* Use folder structure, master scripts and reproducibility to discuss why the following sections are divided as they are
-	
+
 ## Sampling, randomization and power calculations
 1. Sampling
 1. Reproducible randomization in Stata
@@ -57,7 +75,7 @@
 	* Why it should be done by simulation
 	* [Based on sampling error](https://gist.github.com/bbdaniels/774d5e5e31f32b74ec91bcb914453ae1)
 	* [`ritest`](http://hesss.org/ritest.pdf): randomization inference
-	
+
 ## Data Collection
 1. Real-time Data Quality Checks
 	* RAs need to spot, rather than solve, problems at this stage
