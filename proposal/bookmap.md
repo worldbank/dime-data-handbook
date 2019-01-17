@@ -54,14 +54,26 @@
 1. How to prepare for collaboration and replication
 	* Why it is important to think about reproducibility from day 1
 	* Text editor
-	* GitHub and [gitflow](https://nvie.com/posts/a-successful-git-branching-model/)
+		* [Roshni's presentation](https://www.dropbox.com/s/g0upj8g9thjwoib/Text%20editors.pptx?dl=0)
+	* GitHub and gitflow
+		* [gitflow](https://nvie.com/posts/a-successful-git-branching-model/)
+		* [Onboarding material](https://www.dropbox.com/preview/WB/Analytics/DIME%20Analytics/Data%20Coordinator/Workflow%20Guide/GitHub%20workflow%20guide.pdf?role=personal)
 	* What else needs to be version controlled: outputs
 	* Code organization: master scripts, modularity, generalizability, and anti-repetition
 1. Data Management
-	* Unit of observation and unique ID
-	* Master data sets
-	* Naming conventions
-	* Folder structure and iefolder
+	* [Unit of observation](https://dimewiki.worldbank.org/wiki/Unit_of_Observation) and [unique ID](https://dimewiki.worldbank.org/wiki/ID_Variable_Properties)
+	* [Master data sets](https://dimewiki.worldbank.org/wiki/Master_Data_Set)
+	* [Naming conventions](https://dimewiki.worldbank.org/wiki/Naming_Conventions)
+	* Folder structure
+		* [Continuing education](https://showcase.dropbox.com/s/DIME-Research-Assistant-Training-Materials-VKuivyxUNY812HXofgr5t)
+		* [Onboarding material](https://www.dropbox.com/home/WB/Analytics/DIME%20Analytics/onboarding?preview=DIME+Data+Management+Guide.pdf)
+		* [Other version of onboarding material](https://www.dropbox.com/preview/WB/Analytics/DIME%20Analytics/Data%20Coordinator/Workflow%20Guide/Data%20Management.pdf?role=personal)
+		* [IPA's best practices](https://www.poverty-action.org/publication/ipas-best-practices-data-and-code-management)
+		* [Wiki page](https://dimewiki.worldbank.org/wiki/Data_Management#Organitzation_of_Project_folder)
+	* iefolder
+		* [DataWork folder](https://dimewiki.worldbank.org/wiki/DataWork_Folder)
+		* [Wiki](https://dimewiki.worldbank.org/wiki/Iefolder)
+		* [Helpfile](https://github.com/worldbank/ietoolkit/blob/master/src/help_files/iefolder.sthlp)
 1. Overview of workflow
 	* Use folder structure, master scripts and reproducibility to discuss why the following sections are divided as they are
 
@@ -98,6 +110,8 @@
 	* use deidentified data
 	* iecodebook
 	* create variable names corresponding to survey names
+	* Wiki package
+	* [Onboarding material](https://www.dropbox.com/preview/WB/Analytics/DIME%20Analytics/Data%20Coordinator/Workflow%20Guide/Data%20Cleaning.pdf?role=personal)
 1. Data construction
 	* goal: create a data set of final variables to be used in analysis
 	* creating new variables
