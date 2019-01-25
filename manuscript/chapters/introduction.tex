@@ -1,27 +1,104 @@
 
-Citation example \cite{Tufte2001}, notice how the citation is in the margin. This is an example of how to add something to the index at the end of the document.\index{citation}
+Welcome to Data for Development Impact.
+This book is intended to serve as a resource guide
+for people who collect or use primary data for development research.
+In particular, the book is intended to guide the reader
+through the process of research using primary survey data,
+from survey design to fieldwork to data management to analysis.
 
-\newthought{Example of} the \texttt{newthought} command for starting new sections. Typography examples: \allcaps{all caps} and \smallcaps{small caps}.
+This book will not teach you econometrics or epidemiology or agribusiness.
+This book will not teach you how to design an impact evaluation.
+This book will not teach you how to do data analysis, or how to code.
+There are lots of really good resources out there for all of these things,
+and they are much better than what we would be able to squeeze into this book.
 
-\newthought{Example of} the \texttt{Verbatim} command for inserting code blocks. Note that spaces must be used to indent lines, not tabs. Two spaces is ideal for the available width.
+What this book will teach you is how to think about data,
+keeping in mind that you are not going to be the only person
+collecting it, using it, or looking back on it.
+We hope to provide you two key tools by the time you finish this book.
+First, we want you to form a mental model of data collection as a ``social process'',
+in which many people need to have the same idea about what is done, and when and where it is done,
+so that they can collaborate effectively on large, long-term projects.
+Secondly, we want you to gain a sense of best practices for coding these processes in Stata.
+As research teams and timespans have grown dramatically over the last decade,
+it has no longer become efficient for everyone to have their own personal style
+dictating how they use different functions, how they store data, and how they write code.
 
-\marginnote[2\baselineskip]{This is a test.
-How well do margin notes fit in line with code?
-Is it possible to sucessfully place these down a bit?
-\linebreak \linebreak
-Does adding another paragraph work in margin notes?}
+The team responsible for this book is known as DIME Analytics. \cite{dimeanalytics}
+DIME Analytics works within the Development Impact Evaluation unit (DIME) \cite{dime}
+at the World Bank's Development Economics Research group (DEC). \cite{dec}
+DIME Analytics supports all of the research projects operated under the DIME umbrella,
+and each of its members also works on their own development research and data science projects.
+This book was conceived as a complement to the DIME Wiki, \cite{dimewiki}
+which is a free online collection of resources and best practices.
+DIME Analytics has built up these ideas, best practices, and software tools
+over the course of almost ten years of supporting hundreds of projects and staff in total.
+
+In the time that we have been working in this field,
+the proportion of projects that rely on primary empirical data has soared. \cite{angrist2017economic}
+Today, the scope and scale of those projects are expanding rapidly,
+meaning that more and more people are working on the same data over longer and longer timeframes.
+The main lesson that we have learned working in the field over this period is that
+the most important part of primary data work is collaboration.
+You will be working with people who have very different skillsets and mindsets than you,
+from and in a variety of cultures and contexts, and you will have to agree on workflows
+that work for everyone and save time and hassle on every project.
+
+This is not easy. But for some reason, the people who agreed to write this book enjoy doing it.
+(In part this is because it has saved us ourselves a lot of time and effort.)
+As we have worked with more and more DIME recruits -- economists, field managers, and research assistants --
+we have realized that we barely have the time to give everyone the attention they deserve.
+This book itself is therefore intended to be a labor-saving process for us:
+we hope one day we can hand new people a copy of our accumulated knowledge,
+doing a better job teaching them the ropes than any one of us could (and saving us all some time).
+
+This book complements the detailed-but-unstructured DIME Wiki
+with a guided tour of the major tasks that accompany primary data collection.
+We will not give a lot of specific details in this text;
+but we will point you to where they can be found.
+Instead, each chapter will focus on one task, and give a primarily narrative account of:
+
+* What you will be doing
+* Where in the workflow this task falls
+* When it should be done
+* Who you will be working with
+* Why this task is important
+* How to implement the most basic form of the task
+
+For the implementation portion, we will provide ``minimal'' code examples, like the following:
+
+\marginnote[2\baselineskip]{This is a Stata code block.
+Throughout this book, you will find examples like this,
+which illustrate how to perform basic versions
+of each task in Stata.}
 
 \begin{Verbatim}[frame=lines,numbers=left,label=code.do]
-test
-  new line
-recode 1 2 (2=3)
-forv i = 1/7 {
-  do some code.
-  here is a 93-char long line of code that I am afraid is going to overflow the block easily
-  62 characters will be the maximum line width including  ///
-}
+// Load the auto dataset
+sysuse auto.dta , clear
+
+// Run a simple regression
+reg price mpg
+
+// Store the output
+matrix results = r(table)'
+
+// Load the results into memory
+clear
+  svmat results , n(col)
 \end{Verbatim}
 
+We have tried really hard to make sure that all the Stata code runs,
+and that each block should be well-formatted and use built-in functions.
+If it does not, we will make sure to install the necessary user-written packages,
+but we will use these only where absolutely essential.
+Providing some standardization to Stata code style is also a goal of this book,
+since groups are collaborating on code in Stata more than ever before.
+
+However, we will not explain Stata commands unless the behavior we are exploiting
+is outside the usual expectation of its functionality;
+we will comment the code generously (as you should),
+but you should reference Stata help-files \texttt{h -command-}
+whenever you do not understand the functionality that is being used.
 
 %------------------------------------------------
 
