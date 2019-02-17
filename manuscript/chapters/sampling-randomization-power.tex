@@ -1,0 +1,117 @@
+%------------------------------------------------
+
+\begin{fullwidth}
+Sampling, randomization, and power calculations are the core elements of experimental design.
+Sampling and randomization determine which units are observed and in which states.
+Each of these processes introduces ``noise'' into the final estimates of effect sizes:
+sampling noise produces some probability of chance selection of units that will produce wrong estimates;
+randomization noise produces some probabilty of chance placement of units into treatment arms that does the same.
+Power calculation is the method by which these probabilities of error are meaningfully assessed.
+Good experimental design has high power -- a low likelihood that these noise parameters meaningfully affected estimates of treatment effects.
+
+Not all studies are capable of achieving traditionally high power:
+the sampling or treatment universe may simply be fundamentally too noisy.
+This may be especially true for novel or small-scale studies --
+things that have never been tried before may be hard to fund or execute at scale.
+What is important is that every study includes reasonable estimates of its power,
+so that the evidentiary value of the result can be honestly assessed.
+Demonstrating that sampling and randomization were taken seriously into consideration
+before going to field lends credibility to any research study.
+Using these tools to execute the most highly-powered experiments possible
+is a responsible and ethical use of donor and client resources,
+and maximizes the likelihood that reported effect sizes are accurate.
+\end{fullwidth}
+
+%------------------------------------------------
+\section{Reproducibility}
+
+Reproducibility in statistical programming is absolutely essential.
+This section is a short introduction to ensuring that code
+which generates randomized outputs is reproducible.
+There are three key inputs to assuring reproducibility:
+versioning, sorting, and seeding.
+Without these, other people running your code may get very different results in the future.
+
+Versioning means using the same version of the software.
+\marginnote{All versions of Stata above version 13 currently operate identically on all platforms.
+In the past, differences between operating systems could also cause replicability issues,
+but PCs and Macs currently use the same chip architecture.}
+If anything is different, the underlying randomization algorithm may have changed,
+and it will be impossible to recover the original result.
+In Stata, the \texttt{version} command ensures that the software algorithm is fixed.
+The \texttt{ieboilstart} command has built-in functionality to support this requirement.
+
+Sorting means that the actual data that the random process is run on is fixed.
+Most random outcomes have as their basis an algorithmic sequence of pseudorandom numbers.
+This means that if the start point is set, the full sequence of numbers will not change.
+\marginnote{A corollary of this is that the underlying data must be unchanged between runs:
+to ensure that the dataset is fixed, you must make a \texttt{LOCKED} copy of it at runtime.}
+However, if you re-run the process with the dataset in a different order,
+the same numbers will get assigned to different units, and the randomization will turn out different.
+In Stata, \texttt{isid [id\_variable], sort} will ensure that order is fixed over repeat runs.
+
+Seeding means manually setting the start-point of the randomization algorithm.
+If the randomization seed is not set, then the pseudorandom algorithm will pick up where it left off.
+By setting the seed, you force it to restart from a set point.
+In Stata, \texttt{set seed [seed]} will accomplish this.
+
+\marginnote[2\baselineskip]{This code loads and sets up the \texttt{auto.dta} dataset
+for any random process. Note the three components: versioning, sorting, and seeding.
+Why are \texttt{check1} and \texttt{check3} the same? Why is \texttt{check2} different?}
+
+\begin{Verbatim}[frame=lines,numbers=left,label=replicability.do]
+// Set the version
+ieboilstart , v(13.1)
+`r(version)'
+
+// Load the auto dataset and sort uniquely
+sysuse auto.dta , clear
+  isid make, sort
+
+// Set the seed (range: 100000 - 999999)
+set seed 287608 // By random.org at 2019-02-17 23:06:36 UTC
+
+// Prove it
+  gen check1 = rnormal()
+  gen check2 = rnormal()
+
+  set seed 287608
+  gen check3 = rnormal()
+
+  graph matrix ///
+    check1 check2 check3 ///
+  , half
+\end{Verbatim}
+
+%------------------------------------------------
+\section{Sampling}
+
+
+
+\marginnote[2\baselineskip]{This is a Stata code block.
+Throughout this book, you will find examples like this,
+which illustrate how to perform basic versions
+of each task in Stata.}
+
+\begin{Verbatim}[frame=lines,numbers=left,label=simple-sample.do]
+// Load the auto dataset
+sysuse auto.dta , clear
+
+// Run a simple regression
+reg price mpg rep78 headroom , coefl
+
+// Transpose and store the output
+matrix results = r(table)'
+
+// Load the results into memory
+clear
+  svmat results , n(col)
+\end{Verbatim}
+
+%------------------------------------------------
+\section{Randomization}
+
+%------------------------------------------------
+\section{Power}
+
+%------------------------------------------------
