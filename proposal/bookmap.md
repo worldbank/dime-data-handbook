@@ -7,7 +7,7 @@
 	  * RAs
 	  * Graduate students working on applied econ
 1. Why data science in now a core skill for development economics researchers
-1. Why reproducibility is important
+1. Why reproducibility is important ([refs](https://www.dropbox.com/s/p5gkkt6dyg1l0ub/AAE_737_2017.pdf?dl=0))
 
 
 ## Before you begin: Research ethics, security, and certification
@@ -22,7 +22,11 @@
 		* [Data confidentiality: A review of methods for statistical disclosure limitation and methods for assessing privacy](https://projecteuclid.org/download/pdfview_1/euclid.ssu/1296828958)
 	* Data Encryption
 	* Password Management
+	* [Responsible Data](https://paper.dropbox.com/doc/Responsible-Data-Hackpad--AXCzZ3VRA4RzSFD5TGk~StU0Ag-SA6kouQ4PL3SOVa8GnMEY)
 1. Transparency in Research Design
+  * designs
+    * [Running Randomized Evaluations](http://runningres.com)
+    * [Impact Evaluation in Practice](http://www.worldbank.org/en/programs/sief-trust-fund/publication/impact-evaluation-in-practice)
 	* Pre-Analysis Plan
 		* [Pre-Analysis Plans on the wiki](https://dimewiki.worldbank.org/wiki/Pre*Analysis_Plan)
 		* [Promises and Perils of Pre-analysis Plans](https://www.aeaweb.org/articles?id=10.1257/jep.29.3.61)
@@ -54,14 +58,27 @@
 1. How to prepare for collaboration and replication
 	* Why it is important to think about reproducibility from day 1
 	* Text editor
-	* GitHub and [gitflow](https://nvie.com/posts/a-successful-git-branching-model/)
+		* [Roshni's presentation](https://www.dropbox.com/s/g0upj8g9thjwoib/Text%20editors.pptx?dl=0)
+	* GitHub and gitflow
+		* [gitflow](https://nvie.com/posts/a-successful-git-branching-model/)
+		* [Onboarding material](https://www.dropbox.com/preview/WB/Analytics/DIME%20Analytics/Data%20Coordinator/Workflow%20Guide/GitHub%20workflow%20guide.pdf?role=personal)
 	* What else needs to be version controlled: outputs
+	* [Git](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668)
 	* Code organization: master scripts, modularity, generalizability, and anti-repetition
 1. Data Management
-	* Unit of observation and unique ID
-	* Master data sets
-	* Naming conventions
-	* Folder structure and iefolder
+	* [Unit of observation](https://dimewiki.worldbank.org/wiki/Unit_of_Observation) and [unique ID](https://dimewiki.worldbank.org/wiki/ID_Variable_Properties)
+	* [Master data sets](https://dimewiki.worldbank.org/wiki/Master_Data_Set)
+	* [Naming conventions](https://dimewiki.worldbank.org/wiki/Naming_Conventions)
+	* Folder structure
+		* [Continuing education](https://showcase.dropbox.com/s/DIME-Research-Assistant-Training-Materials-VKuivyxUNY812HXofgr5t)
+		* [Onboarding material](https://www.dropbox.com/home/WB/Analytics/DIME%20Analytics/onboarding?preview=DIME+Data+Management+Guide.pdf)
+		* [Other version of onboarding material](https://www.dropbox.com/preview/WB/Analytics/DIME%20Analytics/Data%20Coordinator/Workflow%20Guide/Data%20Management.pdf?role=personal)
+		* [IPA's best practices](https://www.poverty-action.org/publication/ipas-best-practices-data-and-code-management)
+		* [Wiki page](https://dimewiki.worldbank.org/wiki/Data_Management#Organitzation_of_Project_folder)
+	* iefolder
+		* [DataWork folder](https://dimewiki.worldbank.org/wiki/DataWork_Folder)
+		* [Wiki](https://dimewiki.worldbank.org/wiki/Iefolder)
+		* [Helpfile](https://github.com/worldbank/ietoolkit/blob/master/src/help_files/iefolder.sthlp)
 1. Overview of workflow
 	* Use folder structure, master scripts and reproducibility to discuss why the following sections are divided as they are
 
@@ -98,6 +115,8 @@
 	* use deidentified data
 	* iecodebook
 	* create variable names corresponding to survey names
+	* Wiki package
+	* [Onboarding material](https://www.dropbox.com/preview/WB/Analytics/DIME%20Analytics/Data%20Coordinator/Workflow%20Guide/Data%20Cleaning.pdf?role=personal)
 1. Data construction
 	* goal: create a data set of final variables to be used in analysis
 	* creating new variables
@@ -110,27 +129,49 @@
 	* modularity
 	* linkage to outputs
 	* documenting different analyses that were tried
+	* [Style](https://style.tidyverse.org/_main.pdf)
+1. What to do?
+  * [R for Data Science](https://r4ds.had.co.nz/)
+  * [A Practical Introduction to Stata](https://scholar.harvard.edu/files/mcgovern/files/practical_introduction_to_stata.pdf)
+  * [Mostly Harmless Econometrics](https://www.researchgate.net/publication/51992844_Mostly_Harmless_Econometrics_An_Empiricist's_Companion)
+  * [The Econometrics of Randomized Experiments ](https://www.povertyactionlab.org/sites/default/files/publications/athey_imbens_june19.pdf)
+  * [Causal Inference: The Mixtape](http://scunning.com/mixtape.html)
+  * [Data Analysis For Politics And Policy](https://www.edwardtufte.com/tufte/ebooks)
+  * Econometric Methods for Program Evaluation
+
 1. Output organization
 	* documenting results
 	* organizing folders
+	* basic syntax
+  	- [presentation](https://www.dropbox.com/s/hcwfsm95rnighxd/slides.pdf?dl=0)
 1. Analyzing data and exporting outputs
 	* [`sumstats`](https://bbdaniels.github.io/stata-code/sumstats/): summary statistics
 	* `iebaltab`
 	* `ieddtab`
 	* `estout`
+	* [causal inference 1](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/)
+	* [program evaluation](https://www.annualreviews.org/doi/pdf/10.1146/annurev-economics-080217-053402)
 	* checklist for tables
+  	- [logs](http://marcfbellemare.com/wordpress/12856)
+	* [stats review](https://seeing-theory.brown.edu)
 1. Data visualization
-	* guidelines
+  * [Uncluttered graphs](https://graykimbrough.github.io/uncluttered-stata-graphs/)
+	* [guidelines](https://serialmentor.com/dataviz/)
+  	- [cheatsheets](https://policyviz.com/2018/08/07/dataviz-cheatsheet/)
+  	- [colors](https://blog.datawrapper.de/colorguide/)
 	* exporting to different formats
 	* visual library
+	* [tapestry](https://www.youtube.com/playlist?list=PLb0GkPPcZCVE9EAm9qhlg5eXMgLrrfMRq)
 
 ## Publication
 1. Publishing primary data
 1. Publishing replication packages
+2. [Writing](http://trophiccascades.forestry.oregonstate.edu/sites/trophic/files/Lafferty_WritingScientificPaper.pdf)
 1. Using LaTeX
 	* Working on GitHub
-	* Working on Overleaf
+	* [Working on Overleaf](https://www.overleaf.com/learn/latex/Free_online_introduction_to_LaTeX_(part_1))
 	* BibTeX
 	* Templates
 	* Checklists for outputs
+  	- [Submission](https://docs.google.com/document/d/1JwwmOgRhd2p-Bl_RFEMnp04P0I2nNhOHW7JHdaLcyGs/edit)
 	* Converting TeX files to .docs
