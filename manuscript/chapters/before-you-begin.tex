@@ -1,0 +1,189 @@
+%------------------------------------------------
+
+\begin{fullwidth}
+Most of the field research done in development involves human subjects -- real people.
+As a researcher, you are asking people to trust you with personal information about themselves:
+where they live, how rich they are, whether they have committed or been victims of crimes,
+their names, their national identity numbers, and all sorts of other data.
+Development research does not just involve real people -- it also affects real people.
+Policy decisions are made every day using the results of briefs and studies,
+and these can have wide-reaching consequences on the lives of millions.
+As the range and importance of policy-relevant questions being asked by development researchers grow,
+so too does the (rightful) scrutiny that methods and results are placed under.
+
+Standards and transparency are important so that the quality of research can be judged on its merits.
+Without a transparent measure of credibility, reputation is a primary signal, and two failures may occur:
+low-quality studies from reputable sources may be used as evidence when in fact they don't warrant it,
+and high-quality studies from sources without an international reputation may be ignored.
+Both these outcomes reduce the quality of evidence overall,
+but even more importantly they usually shift the balance of power in development research
+away from the people and places who are most directly affected by it.
+Simple transparency standards mean that high-quality research is more common, and more impactful.
+This section will provide some basic guidelines and resources
+for collecting, handling, and using field data ethically and responsibly to publish research findings.
+\end{fullwidth}
+
+\section{Personally-identifying information}
+
+Anytime you are collecting primary data in a development research project,
+you are almost certainly handling data that include \textbf{personally-identifying information} (PII).
+\index{Personally-identifying information}
+PII data carries strict expectations about storage and handling,
+and it is the responsibility of the research team to satisfy these expectations.
+Your funder or employer will most likely require you to hold a certification from a source
+such as Protecting Human Research Participants\sidenote{\url{https://phrptraining.com/}}
+or the CITI Program\sidenote{\url{https://about.citiprogram.org/en/series/human-subjects-research-hsr/}}.
+
+PII data contains information that can, without any transformation, be used to identify
+individual people, households, villages, or firms that were included in data collection.
+This includes names, addresses, and geolocations, and extends to personal information
+such as email addresses, phone numbers, and financial information.\sidenote{\url{https://dimewiki.worldbank.org/wiki/De-identification}}
+In many contexts this list may be more extensive --
+for example, if you are working in a small environment,
+someone's age and gender may be sufficient to identify them
+even though these would not be considered PII in a larger context.
+Therefore you will have to use your judgment in each case
+to decide which pieces of information fall into this category.
+This is \textit{usually} pretty straightforward outside of extremely specialized contexts.
+
+\subsection{Handling personally-identifying information}
+
+Raw data which contains PII \textit{must} be \textbf{encrypted}
+during collection, storage, and transfer.
+Most modern data collection software makes the first part straightforward.\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Form_Settings}}
+However, secure storage and transfer are your responsibility.
+One method for doing this is to keep raw data in a secure cloud location such as Amazon Web Services S3.
+Another is to use an enterprise-grade solution such as Microsoft OneDrive; but these can be expensive.
+\marginnote{Dropbox is not a secure storage location by default, and neither is GitHub.}
+Depending on your specific security requirements,
+it may be acceptable to create an encrypted version of the dataset
+using software like VeraCrypt\sidenote{\url{https://www.veracrypt.fr/}}, and store that in Dropbox.
+To securely transfer information,\marginnote{Email is \textit{never} a secure data transfer method.}
+you can use the combination of Dropbox with encrypted data only,
+or you can use another service such as WeTransfer\sidenote{\url{https://wetransfer.com}}.
+
+In general, though, you shouldn't need to handle PII data very often.
+Once data is securely collected and stored, the first thing you will generally do is \textbf{de-identify} it.
+\index{De-identified data}
+\marginnote{De-identified data should avoid, for example, you being sent back to every household to alert them that someone dropped all their personal information on a public bus and we don't know who has it.}
+This simply means creating a copy of the data that contains no personally-identifiable information.
+This data should be an exact copy of the raw data,
+except it would be okay for it to be publicly released.\cite{matthews2011data}
+Personally-identifiable information is most commonly used in field work, such as sampling and tracking,
+and is rarely very useful in analysis. (The exception is geodata and this is an evolving field.)
+This is very convenient for you, as you can simply leave the PII copy encrypted on disk as a backup,
+and work primarily from the de-identifed dataset for almost all analytical tasks.
+
+\subsection{Security and password management}
+
+If you are handling data properly, it is going to end up password-protected in one way or another.
+In a collaborative, long-term project, you need to be able to store and share these passwords.
+\marginnote{You will also notice that your personal accounts contain an awful lot of sensitive information.}
+Therefore you are going to have to get smart about password management and account security.
+We recommend a service like LastPass.\sidenote{\url{https://www.lastpass.com}}
+LastPass is free for personal features and cheap for sharing features.
+It allows you to store an unlimited number of passwords, and you will have many.
+You will have one (or more) for every website, for every project, for every encrypted dataset, and so on.
+A service like LastPass allows you to store and share these passwords inside its own ecosystem,
+since emailing passwords is just as vulnerable to theft or loss as writing them down.
+
+LastPass also provides an app-based implementation for \textbf{two-factor authentication}
+both for its own service and for other services you use (Gmail, Dropbox, Facebook, Amazon, etc.),
+and we recommend you enable this feature for both your business and personal accounts.
+Two-factor authentication (2FA) means you have to enter a second confirmation using your mobile device
+to log into any of your password-protected services from new locations.
+This is important not because anyone is up to anything nefarious,
+but because random hacking is everywhere these days
+and can arbitrarily damage, delete, or lock you out of your files in the worst case.
+
+%------------------------------------------------
+
+\section{Transparency in development research}
+
+The empirical revolution in development research has not quite caused a crisis,
+but it has certainly led to increased public scrutiny of the reliability of research.\cite{rogers_2017}
+Three major components make up this scrutiny: credibility,\cite{ioannidis2017power} transparency,\cite{christensen2018transparency} and replicability.\cite{duvendack2017meant}
+Development researchers take these concerns seriously.
+This is because many development research projects are now purpose-built --
+they cover specific topical questions, utilize unique data, and may use small samples.
+On the one hand, this opens the door to working with the broader development community
+to answer both specific programmatic questions as well as general research inquiries.
+On the other, because the program and data researchers utilize today has never been seen by anyone else,
+it is hard to verify that it was collected, handled, and analyzed appropriately.
+Transparency is the most important way that researchers can avoid serious error,
+and therefore is not a by-product but a core component of research output.
+
+\subsection{Research credibility}
+
+The credibility of research is primarily a function of design choices.\cite{ioannidis2005most}
+Is the research design sufficiently powered through its sampling and randomization?
+Were the key research outcomes pre-specified or chosen ex-post?
+How sensitive are the results to changes in specifications or definitions?
+Tools such as \textbf{pre-analysis plans}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan}} are important to assuage these concerns for experimental evaluations,
+\index{Pre-analysis plan}
+but they may feel like ``golden handcuffs'' for other types of research.\cite{olken2015promises}
+Regardless of whether or not a formal pre-analysis plan is utilized,
+all experimental and observational studies should be pre-registered using the AEA database,\sidenote{\url{https://www.socialscienceregistry.org/}} the 3ie database,\sidenote{\url{http://ridie.3ieimpact.org/}}, or the OSF registry\sidenote{\url{https://osf.io/registries}} as appropriate.
+
+Highly specific documentation is always helpful to establish credibility,
+and will be expected in the supplemental materials to any publication.
+The registries mentioned here will contribute to producing documentation,
+but project documentation should always be an active and ongoing process,
+not a one-time requirement or retrospective task.
+New decisions are always being made as the plan begins contact with reality,
+and there is nothing wrong with sensible adaptation so long as it is recorded and disclosed.
+There are various software solutions for building these documentations over time.
+The Open Science Framework\sidenote{\url{https://osf.io/}} provides one such solution,
+with integrated file storage, version histories, and collaborative Wikipages.
+GitHub\sidenote{\url{https://github.com}} provides a transparent task management platform
+in addition to version histories and Wikipages, but is less effective for file storage.
+The exact shape of this process should be agreed on by team members prior to project launch.
+
+\subsection{Research transparency}
+
+Transparent research will expose all of the processes involved in establishing credibility to the public.
+This means that not only will readers be able to verify for themselves that the research was done well,
+but they will be able to test assumptions and results that the researchers may not even have considered.
+Well-structured research should make this as easy as possible for the reader to do.
+\marginnote{We also hope to convince you that transparent research is easier for the researcher,
+because it requires you to be organized in a labor-saving way.}
+Etiquette is important here: nobody should go around trying to tear down the findings of others,
+and neither should researchers guard or obfuscate their materials from public view.
+
+Registered Reports\sidenote{\url{https://blogs.worldbank.org/impactevaluations/registered-reports-piloting-pre-results-review-process-journal-development-economics}} can help with this process where they are available.
+By setting up a large portion of the research design in advance,
+a great deal of work has already been completed,
+and at least some research questions are pre-committed for publication regardless of the outcome.
+This is meant to combat the ``file-drawer problem'',\cite{simonsohn2014p}
+and ensure that researchers are transparent in the additional sense that
+all the results obtained from registered studies are actually published.
+
+\subsection{Research replicability}
+
+Replicable research, first and foremost, means that the actual analytical processes you used
+are executable by others. All your code files involving data construction and analysis
+should be public -- nobody should have to guess what exactly comprises a given index,
+or what controls are included in your main regression,
+or whether or not you clustered standard errors correctly.
+That is, as a purely technical matter, nobody should have to ``just trust you''.
+Neither should they have to bother you to find out what happens
+if any or all of these things were to be done slightly differently.\cite{simmons2011false,wicherts2016degrees}
+Letting people play around with your data and code is a great way to have new questions asked and answered
+based on the valuable work you have already done.
+Services like GitHub that expose your code \textit{history}
+are also valuable resources -- for one, they can show things like modifications
+made in response to referee comments; for another, they can show
+the research paths and questions you may have tried to answer (but excluded from this publication)
+as a resource to others who have similar questions of their own data.
+
+Secondly, replicable research enables other researchers to re-utilize your code and processes
+to do their own work more easily in the future.
+This may mean applying your techniques to their data;
+or it may mean implementing a similar structure in a different context.
+As a pure public good, this should be nearly costless,
+and useful tools and standards you create will have high value to others.
+If you are personally or professionally motivated by citations,
+producing these kinds of resources will almost certainly lead to that as well.
+Therefore, your code should be written neatly and published openly.
+It should be easy to read and understand in terms of stucture, style, and syntax,
+and the corresponding dataset should be openly accessible unless for legal or ethical reasons it cannot.
