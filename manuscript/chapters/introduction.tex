@@ -17,9 +17,9 @@ keeping in mind that you are not going to be the only person
 collecting it, using it, or looking back on it.
 We hope to provide you two key tools by the time you finish this book.
 First, we want you to form a mental model of data collection as a ``social process'',
-in which many people need to have the same idea about what is done, and when and where it is done,
+in which many people need to have the same idea about what is to be done, and when and where and by whom,
 so that they can collaborate effectively on large, long-term projects.
-Secondly, we want you to gain a sense of best practices for coding these processes in Stata.
+Second, we want you to gain a sense of good practices for supporting these processes with Stata code.
 As research teams and timespans have grown dramatically over the last decade,
 it has no longer become efficient for everyone to have their own personal style
 dictating how they use different functions, how they store data, and how they write code.
@@ -31,32 +31,39 @@ DIME Analytics supports all of the research projects operated under the DIME umb
 and each of its members also works on their own development research and data science projects.
 This book was conceived as a complement to the DIME Wiki, \cite{dimewiki}
 which is a free online collection of resources and best practices.
-DIME Analytics has built up these ideas, best practices, and software tools
+DIME Analytics has built up these ideas, practices, and software tools
 over the course of almost ten years of supporting hundreds of projects and staff in total.
 
 In the time that we have been working in this field,
 the proportion of projects that rely on primary empirical data has soared. \cite{angrist2017economic}
-Today, the scope and scale of those projects are expanding rapidly,
+Today, the scope and scale of those projects continue to expand rapidly,
 meaning that more and more people are working on the same data over longer and longer timeframes.
-The main lesson that we have learned working in the field over this period is that
-the most important part of primary data work is collaboration.
-You will be working with people who have very different skillsets and mindsets than you,
-from and in a variety of cultures and contexts, and you will have to agree on workflows
-that work for everyone and save time and hassle on every project.
+This is because, while administrative datasets and ``big data'' have important uses,
+\textit{primary} data are critical for answering specific research questions.
+As the ambition of development researchers grows, so too has the complexity of the data
+that they rely on to make policy-relevant research conclusions from field experiments.
+Unfortunately, this seems to have happened (so far) without the creation of
+universal guidelines for practitioners to handle these data efficiently and transparently,
+which would also provide quality markers beyond reputation for research consumers.
 
+The main lesson we have learned working in the field over this time is that
+the most important parts of primary data work are reproducibility and collaboration.
+You will be working with people who have very different skillsets and mindsets than you,
+from and in a variety of cultures and contexts, and you will have to adopt workflows
+that everyone can agree upon, and that save time and hassle on every project.
 This is not easy. But for some reason, the people who agreed to write this book enjoy doing it.
 (In part this is because it has saved us ourselves a lot of time and effort.)
 As we have worked with more and more DIME recruits -- economists, field managers, and research assistants --
 we have realized that we barely have the time to give everyone the attention they deserve.
 This book itself is therefore intended to be a labor-saving process for us:
-we hope one day we can hand new people a copy of our accumulated knowledge,
-doing a better job teaching them the ropes than any one of us could (and saving us all some time).
+we hope one day we can hand new people a copy of our accumulated knowledge in print,
+and that it will do a better job teaching them than any one of us could alone.
 
 This book complements the detailed-but-unstructured DIME Wiki
-with a guided tour of the major tasks that accompany primary data collection.
-We will not give a lot of specific details in this text;
-but we will point you to where they can be found.
-Instead, each chapter will focus on one task, and give a primarily narrative account of:
+with a guided tour of the major tasks that make up primary data collection.
+We will not give a lot of highly specific details in this text,
+but we will point you to where they can be found, and give you a sense of what you need to find next.
+Each chapter will focus on one task, and give a primarily narrative account of:
 
 \begin{enumerate}
   \item What you will be doing
@@ -66,7 +73,6 @@ Instead, each chapter will focus on one task, and give a primarily narrative acc
   \item Why this task is important
   \item How to implement the most basic form of the task
 \end{enumerate}
-
 
 For the implementation portion, we will provide ``minimal'' code examples, like the following:
 
@@ -80,9 +86,9 @@ of each task in Stata.}
 sysuse auto.dta , clear
 
 // Run a simple regression
-reg price mpg
+reg price mpg rep78 headroom
 
-// Store the output
+// Transpose and store the output
 matrix results = r(table)'
 
 // Load the results into memory
@@ -92,68 +98,16 @@ clear
 
 We have tried really hard to make sure that all the Stata code runs,
 and that each block should be well-formatted and use built-in functions.
-If it does not, we will make sure to install the necessary user-written packages,
-but we will use these only where absolutely essential.
+If it does not, we will make sure to install the necessary user-written packages.
 Providing some standardization to Stata code style is also a goal of this book,
 since groups are collaborating on code in Stata more than ever before.
 
 However, we will not explain Stata commands unless the behavior we are exploiting
 is outside the usual expectation of its functionality;
 we will comment the code generously (as you should),
-but you should reference Stata help-files \texttt{h -command-}
+but you should reference Stata help-files \texttt{h [command]}
 whenever you do not understand the functionality that is being used.
 
-%------------------------------------------------
 
-\section{Figures}
-
-\lipsum[1]
-
-\begin{marginfigure}
-\includegraphics[width=\linewidth]{helix}
-\caption{This is a margin figure. The helix is defined by $x = \cos(2\pi z)$, $y = \sin(2\pi z)$, and $z = [0, 2.7]$. The figure was drawn using Asymptote (\url{http://asymptote.sf.net/}).}
-\label{fig:marginfig}
-\end{marginfigure}
-
-\lipsum[2]
-
-\begin{figure*}[h]
-\includegraphics[width=\linewidth]{sine.pdf}
-\caption{This graph shows $y = \sin x$ from about $x = [-10, 10]$.
-\emph{Notice that this figure takes up the full page width.}}
-\label{fig:fullfig}
-\end{figure*}
-
-\lipsum[3]
-
-%------------------------------------------------
-
-\section{Tables} \marginnote{This is a random margin note. Notice that there isn't a number preceding the note, and there is no number in the main text where this note was written. Use \texttt{sidenote} to use a number.}
-
-\lipsum[4]
-
-\begin{table} % Add the following just after the closing bracket on this line to specify a position for the table on the page: [h], [t], [b] or [p] - these mean: here, top, bottom and on a separate page, respectively
-\centering % Centers the table on the page, comment out to left-justify
-\begin{tabular}{l c c c c c} % The final bracket specifies the number of columns in the table along with left and right borders which are specified using vertical bars (|); each column can be left, right or center-justified using l, r or c. To specify a precise width, use p{width}, e.g. p{5cm}
-\toprule % Top horizontal line
-& \multicolumn{5}{c}{Growth Media} \\ % Amalgamating several columns into one cell is done using the \multicolumn command as seen on this line
-\cmidrule(l){2-6} % Horizontal line spanning less than the full width of the table - you can add (r) or (l) just before the opening curly bracket to shorten the rule on the left or right side
-Strain & 1 & 2 & 3 & 4 & 5\\ % Column names row
-\midrule % In-table horizontal line
-GDS1002 & 0.962 & 0.821 & 0.356 & 0.682 & 0.801\\ % Content row 1
-NWN652 & 0.981 & 0.891 & 0.527 & 0.574 & 0.984\\ % Content row 2
-PPD234 & 0.915 & 0.936 & 0.491 & 0.276 & 0.965\\ % Content row 3
-JSB126 & 0.828 & 0.827 & 0.528 & 0.518 & 0.926\\ % Content row 4
-JSB724 & 0.916 & 0.933 & 0.482 & 0.644 & 0.937\\ % Content row 5
-\midrule % In-table horizontal line
-\midrule % In-table horizontal line
-Average Rate & 0.920 & 0.882 & 0.477 & 0.539 & 0.923\\ % Summary/total row
-\bottomrule % Bottom horizontal line
-\end{tabular}
-\caption{Table caption text} % Table caption, can be commented out if no caption is required
-\label{tab:template} % A label for referencing this table elsewhere, references are used in text as \ref{label}
-\end{table}
-
-%----------------------------------------------------------------------------------------
 
 \mainmatter
