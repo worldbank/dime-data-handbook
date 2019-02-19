@@ -59,54 +59,68 @@ In Stata, \texttt{set seed [seed]} will accomplish this.
 for any random process. Note the three components: versioning, sorting, and seeding.
 Why are \texttt{check1} and \texttt{check3} the same? Why is \texttt{check2} different?}
 
-\begin{Verbatim}[frame=lines,numbers=left,label=replicability.do]
-// Set the version
-ieboilstart , v(13.1)
-`r(version)'
+\VerbatimInput[frame=lines,numbers=left,label=replicability.do]{./code/replicability.do}
 
-// Load the auto dataset and sort uniquely
-sysuse auto.dta , clear
-  isid make, sort
-
-// Set the seed (range: 100000 - 999999)
-set seed 287608 // By random.org at 2019-02-17 23:06:36 UTC
-
-// Prove it
-  gen check1 = rnormal()
-  gen check2 = rnormal()
-
-  set seed 287608
-  gen check3 = rnormal()
-
-  graph matrix ///
-    check1 check2 check3 ///
-  , half
-\end{Verbatim}
+Commands like \texttt{bys:} and \texttt{merge} will re-sort your data as part of their execution,
+and other commands may alter the randomization seed without you realizing it.
+Any of these things will cause the output to fail to replicate.
+Therefore, each randomization process should be independently executed
+to ensure that these three rules are followed.
+Before shipping the results of a randomization,
+save the outputs of the randomization in a temporary location,
+re-run the file, and use \texttt{cf \_all using [dataset]} targeting the saved file.
+If there are any differences, the process has not reproduced,
+and \texttt{cf} will return an error.
 
 %------------------------------------------------
 \section{Sampling}
 
+Sampling is the process of selecting units of observation from a master list for survey data collection.
+This list may be called a ``sampling universe'', a ``listing frame'', or something similar.
+We refer to it as a \textbf{master data set} because it is the authoritative source
+for the existence and fixed characteristics of each of the units that may be surveyed.
+If data collected in the field contradicts the master data,
+the master data always dominates (unless the field data is so inconsistent that a master update is necessary).
+Most importantly, the master data set indicates how many individuals are eligible for sampling and surveying,
+and therefore contains statistical information about the likelihood that each will be chosen.
 
+The fundamental contribution of sampling to the power of a research design is this:
+if you randomly sample a set number of observations from a set frame,
+there are a large -- but fixed -- number of sample sets which you may draw.
+From any large group, you can find some possible sample sets
+that have higher-than-average values of some measure;
+similarly, you can find some sets that have lower-than-average values.
+The variation of these values across the range of all possible sample sets is what creates
+\textbf{sampling noise}, the uncertainty in statistical estimates caused by sampling.
 
-\marginnote[2\baselineskip]{This is a Stata code block.
-Throughout this book, you will find examples like this,
-which illustrate how to perform basic versions
-of each task in Stata.}
+Portions of this noise can be reduced through design.
+\marginnote{In general, all sampling requires \textbf{inverse probability weights}.
+These are conceptually simple in that the weights for each individual must be precisely the inverse of the probability
+with which that individual is included in the sample, but may be practically difficult to calculate for complex methods.
+When the sampling probability is uniform, all the weights are equal to one.}
+Sampling can be structured such that subgroups are guaranteed to appear in a sample:
+that is, you can pick ``half the level one facilities and half the level two facilities'' instead of
+``half of all facilities''. The key here is that, \textit{for each facility},
+the probability of being chosen remains the same -- 0.5.
+By contrast, a sampling design that chooses unbalanced proportions of subgroups
+has changed the probability that a given individual is included in the sample,
+and needs to be reweighted in case you want to calculate overall average statistics.
 
-\begin{Verbatim}[frame=lines,numbers=left,label=simple-sample.do]
-// Load the auto dataset
-sysuse auto.dta , clear
+In general, for any underlying distribution, the Central Limit Theorem implies that
+the distribution of variation across the possible samples is exactly normal.
+Therefore, we can use what are called ``asymptotic'' standard errors
+to express how far away from the true population parameters our estimates are likely to be.
+These standard errors can be calculated with only two datapoints:
+the sample size and the standard deviation of the value in the chosen sample.
 
-// Run a simple regression
-reg price mpg rep78 headroom , coefl
+\marginnote[2\baselineskip]{This Stata code executes a very simple illustration of sampling noise.
+It also demonstrates how to take a uniform-probability random sample from a population using the \texttt{sample} command.
+\linebreak \linebreak
+More advanced sampling techniques, such as clustering and stratification,
+are in practice identical in implementation to the randomization section that follows --
+instead of creating a \texttt{treatment} variable, create a \texttt{sample} variable.}
 
-// Transpose and store the output
-matrix results = r(table)'
-
-// Load the results into memory
-clear
-  svmat results , n(col)
-\end{Verbatim}
+\VerbatimInput[frame=lines,numbers=left,label=simple-sample.do]{./code/simple-sample.do}
 
 %------------------------------------------------
 \section{Randomization}
