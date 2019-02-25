@@ -35,11 +35,11 @@ Without these, other people running your code may get very different results in 
 Versioning means using the same version of the software.
 \marginnote{All versions of Stata above version 13 currently operate identically on all platforms.
 In the past, differences between operating systems could also cause replicability issues,
-but PCs and Macs currently use the same chip architecture.}
+but PCs and Macs now do not differ.}
 If anything is different, the underlying randomization algorithm may have changed,
 and it will be impossible to recover the original result.
 In Stata, the \texttt{version} command ensures that the software algorithm is fixed.
-The \texttt{ieboilstart} command has built-in functionality to support this requirement.
+The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieboilstart}}
 
 Sorting means that the actual data that the random process is run on is fixed.
 Most random outcomes have as their basis an algorithmic sequence of pseudorandom numbers.
@@ -105,6 +105,7 @@ the probability of being chosen remains the same -- 0.5.
 By contrast, a sampling design that chooses unbalanced proportions of subgroups
 has changed the probability that a given individual is included in the sample,
 and needs to be reweighted in case you want to calculate overall average statistics.
+\sidenote{\url{http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-when-to-use-those-sample-weights}}
 
 In general, for any underlying distribution, the Central Limit Theorem implies that
 the distribution of variation across the possible samples is exactly normal.
@@ -122,8 +123,71 @@ instead of creating a \texttt{treatment} variable, create a \texttt{sample} vari
 
 \VerbatimInput[frame=lines,numbers=left,label=simple-sample.do]{./code/simple-sample.do}
 
+The output of the code is a distribution of means in sub-populations of the overall data.
+This distribution is centered around the true population mean,
+but its dispersion depends on the exact structure of the population.
+We use an estimate of the population variation taken from the sample
+to assess how far away from that true mean any given sample draw is:
+essentially, we estimate the properties of the distribution you see now.
+With that estimate, we can quantify the uncertainty in estimates due to sampling noise,
+and report that as the standard error of our point estimates.
+
 %------------------------------------------------
 \section{Randomization}
+
+Randomization is the process of assigning units to some kind of treatment program.
+Many of the Stata techniques shown here can also be used for sampling,
+by understanding ``being included in the sample'' as a treatment in itself.
+Randomization is used to assign treatment programs in development research
+because it guarantees that \textit{on average},
+the treatment will not be correlated with anything it did not cause.
+However, as you have just seen, any random draw induces noise: so does randomization.
+You may get very unlucky and create correlations by chance -
+in fact you can almost always find some treatment assignment that does.
+This section will show you how to assess and control this \textbf{randomization noise},
+using reproducible methods to conduct randomization inference.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomization\_Inference}}
+
+To assess randomization noise correctly,
+you will need to re-run the randomization method many times.
+Do do that, we create a randomization program.
+A simple randomization program is shown below.
+
+\marginnote[2\baselineskip]{This code randomizes into two groups,
+and demonstrates a method using \texttt{xtile} and \texttt{recode}
+to create treatment indicators easilty, which can be extended
+to any proportions for any number of treatment arms.
+\linebreak \linebreak
+The \texttt{syntax} command setup allows the \texttt{ritest}
+program to later be used for randomization inference.
+In this case it could be written as:
+\texttt{ritest treatment \_b[treatment] , samplingprogram(my\_randomization): reg price treatment}}
+
+\VerbatimInput[frame=lines,numbers=left,label=simple-sample.do]{./code/randomization-program.do}
+
+To control randomization noise, we often use techniques that reduce the liklihood of a ``bad draw''.
+We mean this in a specific way: we want to exclude randomizations with certain correlations,
+or we want to improve the \textbf{balance} of the average randomization draw.
+The most common is \textbf{stratification},
+which splits the sampling frame into ``similar'' groups – strata –
+and randomizes within each of these groups.
+As in the sampling discussion, it is important to preserve the likelihood for each unit to be included,
+otherwise complex statistical corrections become necessary.
+For simple a stratified randomization design,
+it is only necessary to include strata fixed effects,
+or an indicator variable for each strata, in any final regression.
+This accounts for the fact that randomizations were conducted within the strata,
+by compares each unit to the others within its own strata.
+
+Many development studies collect data at a different level of observation than the randomization unit.
+For example, a policy may only be able to affect an entire village,
+but you are interested in household behavior.
+This type of structure is called \textbf{clustering},
+because the units are assigned to treatment in clusters.
+Because the treatments are assigned in clusters, however,
+there are in reality fewer randomized groups than the number of units in the data.
+Therefore, standard errors for clustered designs must also be clustered,
+at the level at which the treatment was assigned.
+
 
 %------------------------------------------------
 \section{Power}

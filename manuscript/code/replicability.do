@@ -6,8 +6,8 @@ ieboilstart , v(13.1)
 sysuse auto.dta , clear
   isid make, sort
 
-// Set the seed (range: 100000 - 999999)
-set seed 287608 // By random.org at 2019-02-17 23:06:36 UTC
+// Set the seed using random.org (range: 100000 - 999999)
+set seed 287608 // Timestamp: 2019-02-17 23:06:36 UTC
 
 // Demonstrate stability under the three rules
   gen check1 = rnormal()

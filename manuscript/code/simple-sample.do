@@ -3,6 +3,12 @@ sysuse auto.dta , clear
 su price
   local theMean = `r(mean)'       // True population mean
 
+// Reproducibility
+set seed 556292 // Timestamp: 2019-02-25 23:30:39 UTC 
+isid make, sort
+ieboilstart , v(13.1)
+`r(version)'
+
 // Sample 20 units 1000 times and store the mean of [price]
 cap mat drop results              // Make matrix free
 qui forvalues i = 1/1000 {
