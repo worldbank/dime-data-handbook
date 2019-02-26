@@ -144,8 +144,7 @@ the treatment will not be correlated with anything it did not cause.
 However, as you have just seen, any random draw induces noise: so does randomization.
 You may get very unlucky and create correlations by chance -
 in fact you can almost always find some treatment assignment that does.
-This section will show you how to assess and control this \textbf{randomization noise},
-using reproducible methods to conduct randomization inference.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomization\_Inference}}
+This section will show you how to assess and control this \textbf{randomization noise}.
 
 To assess randomization noise correctly,
 you will need to re-run the randomization method many times.
@@ -156,13 +155,28 @@ A simple randomization program is shown below.
 and demonstrates a method using \texttt{xtile} and \texttt{recode}
 to create treatment indicators easilty, which can be extended
 to any proportions for any number of treatment arms.
-\linebreak \linebreak
-The \texttt{syntax} command setup allows the \texttt{ritest}
-program to later be used for randomization inference.
-In this case it could be written as:
-\texttt{ritest treatment \_b[treatment] , samplingprogram(my\_randomization): reg price treatment}}
+The \texttt{syntax, [*]} programming command allows the \texttt{ritest}
+program to later be used for randomization inference.}
 
-\VerbatimInput[frame=lines,numbers=left,label=simple-sample.do]{./code/randomization-program.do}
+\VerbatimInput[frame=lines,numbers=left,label=randomization-program.do]{./code/randomization-program-1.do}
+
+In the second part of the code, we set up for reproducibility,
+then call the randomization program by name,
+which applies precisely the randomization we programmed earlier.
+The user-written \texttt{ritest} command\sidenote{\url{http://hesss.org/ritest.pdf}}
+allows us to call our randomization program repeatedly,
+visualize how the randomization might have gone differently,
+and calculate alternative p-values against null hypotheses.
+These \textbf{randomization inference}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomization\_Inference}} significance levels may be very different
+than those given by asymptotic confidence intervals,
+particularly in small samples (up to several hundred clusters).
+
+\marginnote[2\baselineskip]{After generating the ``true'' treatment assignment,
+\texttt{ritest} illustrates the distribution of correlations
+that randomization can spuriously produce
+between \texttt{price} and \texttt{treatment}.}
+
+\VerbatimInput[frame=lines,numbers=left,label=simple-randomization.do]{./code/randomization-program-2.do}
 
 To control randomization noise, we often use techniques that reduce the liklihood of a ``bad draw''.
 We mean this in a specific way: we want to exclude randomizations with certain correlations,
