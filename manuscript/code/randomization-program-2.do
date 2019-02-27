@@ -1,17 +1,12 @@
-// Setup
-ieboilstart , v(13.1)
-`r(version)'
-
-// Load the auto dataset for analysis
+// Reproducible setup: data, isid, version, seed
 sysuse auto.dta , clear
-
-// Reproducibility
-set seed 107738 // Timestamp: 2019-02-25 23:34:33 UTC
-isid make, sort
+  isid make, sort
+  version 13.1
+  set seed 107738 // Timestamp: 2019-02-25 23:34:33 UTC
 
 // Call the program
 my_randomization
-ta treatment
+  ta treatment
 
 // Show randomization variation with [ritest]
 ritest treatment _b[treatment]        ///
