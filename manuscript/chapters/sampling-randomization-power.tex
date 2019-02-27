@@ -25,7 +25,7 @@ and maximizes the likelihood that reported effect sizes are accurate.
 %------------------------------------------------
 \section{Reproducibility}
 
-Reproducibility in statistical programming is absolutely essential.
+Reproducibility in statistical programming is absolutely essential.\cite{orozco2018make}
 This section is a short introduction to ensuring that code
 which generates randomized outputs is reproducible.
 There are three key inputs to assuring reproducibility:
@@ -84,10 +84,10 @@ and \texttt{cf} will return an error, as shown here.
 %------------------------------------------------
 \section{Sampling}
 
-Sampling is the process of selecting units of observation from a master list for survey data collection.
+Sampling is the process of selecting units of observation from a master list for survey data collection.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Sampling_\%26_Power_Calculations}}
 This list may be called a ``sampling universe'', a ``listing frame'', or something similar.
 We refer to it as a \textbf{master data set} because it is the authoritative source
-for the existence and fixed characteristics of each of the units that may be surveyed.
+for the existence and fixed characteristics of each of the units that may be surveyed.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master_Data_Set}}
 If data collected in the field contradicts the master data,
 the master data always dominates (unless the field data is so inconsistent that a master update is necessary).
 Most importantly, the master data set indicates how many individuals are eligible for sampling and surveying,
@@ -151,7 +151,7 @@ Many of the Stata techniques shown here can also be used for sampling,
 by understanding ``being included in the sample'' as a treatment in itself.
 Randomization is used to assign treatment programs in development research
 because it guarantees that \textit{on average},
-the treatment will not be correlated with anything it did not cause.
+the treatment will not be correlated with anything it did not cause.\cite{duflo2007using}
 However, as you have just seen, any random draw induces noise: so does randomization.
 You may get very unlucky and create correlations by chance -
 in fact you can almost always find some treatment assignment that does.
@@ -209,7 +209,7 @@ We mean this in a specific way: we want to exclude
 randomizations with certain correlations,
 or we want to improve the \textbf{balance}
 of the average randomization draw.\cite{bruhn2009pursuit}
-The most common is \textbf{stratification},
+The most common is \textbf{stratification},\sidenote{\url{https://dimewiki.worldbank.org/wiki/Stratified_Random_Sample}}
 which splits the sampling frame into ``similar'' groups – strata –
 and randomizes within each of these groups.
 As in the sampling discussion, it is important to
@@ -235,10 +235,10 @@ We demonstrate the use of this command here.
 \VerbatimInput[frame=lines,numbers=left,label=randtreat-strata.do]
 {./code/randtreat-strata.do}}
 
-Many studies collect data at a different level of observation than the randomization unit.
+Many studies collect data at a different level of observation than the randomization unit.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
 For example, a policy may only be able to affect an entire village,
 but you are interested in household behavior.
-This type of structure is called \textbf{clustering},
+This type of structure is called \textbf{clustering},\sidenote{\url{https://dimewiki.worldbank.org/wiki/Multi-stage_(Cluster)_Sampling}}
 because the units are assigned to treatment in clusters.
 Because the treatments are assigned in clusters, however,
 there are in reality fewer randomized groups than the number of units in the data.
@@ -263,7 +263,7 @@ we next assess its \textbf{power}.
 Statistical power can be described in a few ways,
 each of which has different uses.
 The purpose of power calculations is not to
-demonstrate that a study is ``super-strong'',
+demonstrate that a study is ``strong'',
 but to know where the strengths and weaknesses
 of your design are located, so that readers
 can correctly assess the evidentiary value of
@@ -277,16 +277,18 @@ of that definition, and show what results can be obtained.
 We suggest doing all power calculations by simulation;
 you are very unlikely to be able to determine analytically
 the power of your study unless you have a very simple design.
-Therefore the \texttt{power} command is not going to be helpful,
-and you will need to do some looping in Stata.
+Therefore the \texttt{power} command is not going to be the most helpful,
+and you will need to do some iterative simulation in Stata.
 
 \subsection{Minimum detectable effect}
 
 To determine the smallest true effect that your design can detect,
-you conduct a simulation for your actual design.
+you conduct a simulation for your actual design.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Minimum_Detectable_Effect}}
 The structure below uses fake data,
 but you should use real data whenever it is available,
 or you will have to make assumptions about the distribution of outcomes.
+If you are willing to make even more assumptions,
+you can use one of the built-in functions.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Power_Calculations_in_Stata}}
 
 Here, we use an outer loop to vary the size of the assumed treatment effect,
 which is later used to simulate outcomes in a ``true''
