@@ -1,13 +1,12 @@
-// Load the auto dataset
+// Reproducible setup: data, isid, version, seed
 sysuse auto.dta , clear
-su price
-  local theMean = `r(mean)'       // True population mean
+  isid make, sort
+  version 13.1
+  set seed 556292 // Timestamp: 2019-02-25 23:30:39 UTC
 
-// Reproducibility
-set seed 556292 // Timestamp: 2019-02-25 23:30:39 UTC 
-isid make, sort
-ieboilstart , v(13.1)
-`r(version)'
+// Get true population parameter for price mean
+su price
+  local theMean = `r(mean)'
 
 // Sample 20 units 1000 times and store the mean of [price]
 cap mat drop results              // Make matrix free
