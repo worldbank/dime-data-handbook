@@ -40,6 +40,9 @@ If anything is different, the underlying randomization algorithm may have change
 and it will be impossible to recover the original result.
 In Stata, the \texttt{version} command ensures that the software algorithm is fixed.
 The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieboilstart}}
+In general, you will use \texttt{ieboilstart} at the beginning of your master file
+to set the version once; in this guide, we will use
+\texttt{version 13.1} in examples where we expect this to already be done.
 
 Sorting means that the actual data that the random process is run on is fixed.
 Most random outcomes have as their basis an algorithmic sequence of pseudorandom numbers.
@@ -59,7 +62,9 @@ In Stata, \texttt{set seed [seed]} will accomplish this.
 for any random process. Note the three components: versioning, sorting, and seeding.
 Why are \texttt{check1} and \texttt{check3} the same? Why is \texttt{check2} different?}
 
-\VerbatimInput[frame=lines,numbers=left,label=replicability.do]{./code/replicability.do}
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=replicability.do]
+{./code/replicability.do}}
 
 Commands like \texttt{bys:} and \texttt{merge} will re-sort your data as part of their execution,
 and other commands may alter the randomization seed without you realizing it.
@@ -70,7 +75,11 @@ Before shipping the results of a randomization,
 save the outputs of the randomization in a temporary location,
 re-run the file, and use \texttt{cf \_all using [dataset]} targeting the saved file.
 If there are any differences, the process has not reproduced,
-and \texttt{cf} will return an error.
+and \texttt{cf} will return an error, as shown here.
+
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=randomization-cf.do]
+{./code/randomization-cf.do}}
 
 %------------------------------------------------
 \section{Sampling}
@@ -121,7 +130,9 @@ More advanced sampling techniques, such as clustering and stratification,
 are in practice identical in implementation to the randomization section that follows --
 instead of creating a \texttt{treatment} variable, create a \texttt{sample} variable.}
 
-\VerbatimInput[frame=lines,numbers=left,label=simple-sample.do]{./code/simple-sample.do}
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=simple-sample.do]
+{./code/simple-sample.do}}
 
 The output of the code is a distribution of means in sub-populations of the overall data.
 This distribution is centered around the true population mean,
@@ -148,7 +159,12 @@ This section will show you how to assess and control this \textbf{randomization 
 
 To assess randomization noise correctly,
 you will need to re-run the randomization method many times.
-Do do that, we create a randomization program.
+Do do that, we create a randomization \textbf{program}.
+Storing the randomization code as a program allows us to access the whole code block
+with a single line of code, so we can see separately
+how the randomization is set up, and the implementation flow.
+This takes a few lines of code that may be new to you,
+but getting used to this structure is very useful.
 A simple randomization program is shown below.
 
 \marginnote[2\baselineskip]{This code randomizes into two groups,
@@ -158,13 +174,18 @@ to any proportions for any number of treatment arms.
 The \texttt{syntax, [*]} programming command allows the \texttt{ritest}
 program to later be used for randomization inference.}
 
-\VerbatimInput[frame=lines,numbers=left,label=randomization-program.do]{./code/randomization-program-1.do}
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=randomization-program.do]
+{./code/randomization-program-1.do}}
 
-In the second part of the code, we set up for reproducibility,
+In the second part of the code, we would set up for reproducibility,
 then call the randomization program by name,
 which applies precisely the randomization we programmed earlier.
-The user-written \texttt{ritest} command\sidenote{\url{http://hesss.org/ritest.pdf}}
-allows us to call our randomization program repeatedly,
+Having pre-programmed the exact randomization does two things:
+first, it lets us write this section much more simply,
+and it allows us to re-use that precise randomization as needed.
+Specifically, the user-written \texttt{ritest} command\sidenote{\url{http://hesss.org/ritest.pdf}}
+allows us to call a randomization program repeatedly,
 visualize how the randomization might have gone differently,
 and calculate alternative p-values against null hypotheses.
 These \textbf{randomization inference}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomization\_Inference}} significance levels may be very different
@@ -176,23 +197,45 @@ particularly in small samples (up to several hundred clusters).
 that randomization can spuriously produce
 between \texttt{price} and \texttt{treatment}.}
 
-\VerbatimInput[frame=lines,numbers=left,label=simple-randomization.do]{./code/randomization-program-2.do}
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=simple-randomization.do]
+{./code/randomization-program-2.do}}
 
-To control randomization noise, we often use techniques that reduce the liklihood of a ``bad draw''.
-We mean this in a specific way: we want to exclude randomizations with certain correlations,
-or we want to improve the \textbf{balance} of the average randomization draw.
+\subsection{Clustering and Stratification}
+
+To control randomization noise, we often use techniques
+that reduce the liklihood of a ``bad draw''.\cite{athey2017econometrics}
+We mean this in a specific way: we want to exclude
+randomizations with certain correlations,
+or we want to improve the \textbf{balance}
+of the average randomization draw.\cite{bruhn2009pursuit}
 The most common is \textbf{stratification},
 which splits the sampling frame into ``similar'' groups – strata –
 and randomizes within each of these groups.
-As in the sampling discussion, it is important to preserve the likelihood for each unit to be included,
+As in the sampling discussion, it is important to
+preserve the likelihood for each unit to be included,
 otherwise complex statistical corrections become necessary.
-For simple a stratified randomization design,
-it is only necessary to include strata fixed effects,
+For a simple stratified randomization design,
+it is necessary to include strata fixed effects,
 or an indicator variable for each strata, in any final regression.
 This accounts for the fact that randomizations were conducted within the strata,
-by compares each unit to the others within its own strata.
+by comparing each unit to the others within its own strata.
 
-Many development studies collect data at a different level of observation than the randomization unit.
+However, manually implementing stratified randomization
+is prone to error: in particular, it is difficult to precisely account
+for the interaction of group sizes and multiple treatment arms,
+particularly when a given strata can contain a small number of clusters,
+and when there are a large number of treatment arms.\cite{carril2017dealing}
+The user-written \texttt{randtreat} command
+properly implements stratification,
+with navigable options for handling common pitfalls.
+We demonstrate the use of this command here.
+
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=randtreat-strata.do]
+{./code/randtreat-strata.do}}
+
+Many studies collect data at a different level of observation than the randomization unit.
 For example, a policy may only be able to affect an entire village,
 but you are interested in household behavior.
 This type of structure is called \textbf{clustering},
@@ -202,8 +245,86 @@ there are in reality fewer randomized groups than the number of units in the dat
 Therefore, standard errors for clustered designs must also be clustered,
 at the level at which the treatment was assigned.
 
+Clustered randomization must typically be implemented manually;
+it typically relies on subsetting the data intelligently
+to the desired assignment levels.
+We demonstrate here.
+
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=randtreat-clusters.do]
+{./code/randtreat-clusters.do}}
+
 
 %------------------------------------------------
 \section{Power}
+
+When we believe we have decided on a practical randomization design,
+we next assess its \textbf{power}.
+Statistical power can be described in a few ways,
+each of which has different uses.
+The purpose of power calculations is not to
+demonstrate that a study is ``super-strong'',
+but to know where the strengths and weaknesses
+of your design are located, so that readers
+can correctly assess the evidentiary value of
+any results (or null results) in the analysis.
+
+The classic definition of ``power'' is
+``the likelihood that your design detects a significant treatment effect,
+given there an assumed non-zero true effect''.
+Here we will look at two useful practical interpretations
+of that definition, and show what results can be obtained.
+We suggest doing all power calculations by simulation;
+you are very unlikely to be able to determine analytically
+the power of your study unless you have a very simple design.
+Therefore the \texttt{power} command is not going to be helpful,
+and you will need to do some looping in Stata.
+
+\subsection{Minimum detectable effect}
+
+To determine the smallest true effect that your design can detect,
+you conduct a simulation for your actual design.
+The structure below uses fake data,
+but you should use real data whenever it is available,
+or you will have to make assumptions about the distribution of outcomes.
+
+Here, we use an outer loop to vary the size of the assumed treatment effect,
+which is later used to simulate outcomes in a ``true''
+data-generating process (DGP).
+For each of 100 runs (indexed by \texttt{i}, which is never used in the code)
+We ask the simple question: If this DGP were true,
+would our design have detected it in this draw?
+We run our actual regression model and store the result,
+along with an indicator of the effect size we assumed.
+
+When we have done this 100 times for every effect size we are interested in,
+we have built a large matrix of regression results.
+That can be loaded into data and manipulated directly,
+where each observation represents one possible randomization result.
+We flag all the runs where the p-value is significant,
+then visualize the proportion of significant results
+from each assumed treatment effect size.
+
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=minimum-detectable-effect.do]
+{./code/minimum-detectable-effect.do}}
+
+\subsection{Minimum sample size}
+
+Another way to think about the power of a design
+is to figure out how many observations you need to include
+to test various hypotheses.
+This may be an important practical consideration
+if you are negotiating funding or submitting proposals,
+as it may also determing the number of treatment arms
+and types of hypotheses you can test.
+The basic structure of the simulation is the same.
+Here, we use the outer loop to vary the sample size,
+and report significance across those groups
+instead of across variation in the size of the effect.
+
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=minimum-sample-size.do]
+{./code/minimum-sample-size.do}}
 
 %------------------------------------------------
