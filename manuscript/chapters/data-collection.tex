@@ -1,0 +1,100 @@
+%------------------------------------------------
+
+\begin{fullwidth}
+Most data collection is now done using digital data entry
+using tools that are specially designed for surveys.
+These tools, called ``computer-assisted personal interviewing'' (CAPI) softwares,
+provide a wide range of features designed to make
+implementing even highly complex surveys easy, scalable, and secure.
+However, these are not fully automatic:
+you still need to actively design and manage the survey.
+Each software has specific practices that you need to follow
+to enable features such as Stata-compatibility and data encryption.
+
+While you can work in any software you like,
+this guide will present tools and best practices
+for working with SurveyCTO, a proprietary implementation of Open Data Kit (ODK).
+Most of the processes below will also replicate in ODK
+with minimal adjustment for the exact setup you have.
+The important parts, of course, are primarily conceptual:
+this chapter should provide a motivation for
+planning data structure during survey design,
+developing surveys that are easy to control for quality and security,
+and having proper file storage ready for sensitive PII data.
+\end{fullwidth}
+
+%------------------------------------------------
+
+\section{Primary data collection with SurveyCTO}
+
+\subsection{Questionnaire design}
+
+SurveyCTO surveys are primarily created in Excel or Google Sheets,
+making them one of the few outputs for which no coding is required.
+However, since they make extensive use of logical structure and
+relate directly to the data that will be used later,
+both the field team and the data people should
+collaborate to make sure that the survey suits all needs.
+
+\subsection{Secure data collection}
+
+Any established data collection service will always encrypt
+all data submitted from the field automatically while in transit
+(ie, upload or download), so if you use servers hosted by SurveyCTO
+this is nothing you need to worry about.
+Your data will be encrypted from the time it leaves the device
+(in tablet-assisted data collation) or your browser (in web data collection)
+until it reaches the server.
+
+\marginnote{Encryption at rest is the only way to ensure
+that PII data remains private when it is stored
+on someone else’s server on the open internet.
+The World Bank’s and many of our donors’ security requirements
+for data storage can only be fulfilled by this method.
+We recommend keeping your data encrypted whenever PII data is collected --
+therefore, we recommend it for all field data collection.}
+
+Encryption in cloud storage, by contrast, is not enabled by default.
+This is because the service will not encrypt user data unless you confirm
+you know how to operate the encryption system and assume its risks.
+Encryption at rest is different from password-protection:
+encryption at rest makes the underlying data itself unreadable,
+even if accessed, except to users who have a specific private key file.
+Encryption at rest requires active participation from you, the user,
+and you should be fully aware that if your private key is lost,
+there is absolutely no way to recover your data.
+
+To enable data encryption, you simply select the encryption option
+when you create a new form on a SurveyCTO server.
+At that time, the service will allow you to download -- once --
+the keyfile pair needed to decrypt the data.
+You must download and store this in a secure location.
+Again, we recommend LastPass, a software whose free option
+allows you to store passwords as well as small keyfiles like this.
+You should make sure the ``secure note'' which you put the keyfile in
+is descriptively named to match the survey to which it corresponds.
+The Sync app will ask you for the location of this file
+when you download and set up data for use,
+and all you will need to do is copy that file to your desktop,
+point Sync to it, and the rest is automatic.
+
+Finally, you should ensure that all teams take basic precautions
+to ensure the security of data, as most problems are due to human error.
+Most importantly, all computers, tablets, and accounts used
+\textit{must} have a logon password associated with them.
+This policy should also be applied to physical data storage
+such as flash drives and hard drives;
+similarly, files sent to the field containing PII data
+such as the sampling list should at least be password-protected.
+This step significantly mitigates the risk in case there is
+a security breach such as loss, theft, hacking, or a virus,
+and adds very little hassle to utilization.
+
+
+%------------------------------------------------
+
+\section{Field management and quality assurance}
+
+%------------------------------------------------
+
+\section{Managing primary data}
