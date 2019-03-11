@@ -113,8 +113,7 @@ that is, you can pick ``half the level one facilities and half the level two fac
 the probability of being chosen remains the same -- 0.5.
 By contrast, a sampling design that chooses unbalanced proportions of subgroups
 has changed the probability that a given individual is included in the sample,
-and needs to be reweighted in case you want to calculate overall average statistics.
-\sidenote{\url{http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-when-to-use-those-sample-weights}}
+and needs to be reweighted in case you want to calculate overall average statistics.\sidenote{\url{http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-when-to-use-those-sample-weights}}
 
 In general, for any underlying distribution, the Central Limit Theorem implies that
 the distribution of variation across the possible samples is exactly normal.
@@ -122,6 +121,7 @@ Therefore, we can use what are called ``asymptotic'' standard errors
 to express how far away from the true population parameters our estimates are likely to be.
 These standard errors can be calculated with only two datapoints:
 the sample size and the standard deviation of the value in the chosen sample.
+The code below illustrates the fact that the distribution
 
 \marginnote[2\baselineskip]{This Stata code executes a very simple illustration of sampling noise.
 It also demonstrates how to take a uniform-probability random sample from a population using the \texttt{sample} command.
@@ -258,10 +258,10 @@ We demonstrate here.
 %------------------------------------------------
 \section{Power}
 
-When we believe we have decided on a practical randomization design,
-we next assess its \textbf{power}.
+When we have decided on a practical sampling and randomization design,
+we next assess their \textbf{power}.
 Statistical power can be described in a few ways,
-each of which has different uses.
+each of which has different uses.\sidenote{\url{http://www.stat.columbia.edu/~gelman/stuff_for_blog/chap20.pdf}}
 The purpose of power calculations is not to
 demonstrate that a study is ``strong'',
 but to know where the strengths and weaknesses
@@ -271,14 +271,16 @@ any results (or null results) in the analysis.
 
 The classic definition of ``power'' is
 ``the likelihood that your design detects a significant treatment effect,
-given there an assumed non-zero true effect''.
-Here we will look at two useful practical interpretations
+given there is a non-zero true effect in reality''.
+Here we will look at two useful practical applications
 of that definition, and show what results can be obtained.
 We suggest doing all power calculations by simulation;
 you are very unlikely to be able to determine analytically
 the power of your study unless you have a very simple design.
-Therefore the \texttt{power} command is not going to be the most helpful,
-and you will need to do some iterative simulation in Stata.
+Stata has some commands that can calculate power for
+very simple designs -- \texttt{power} and \texttt{clustersampsi} --
+but they will not answer most of the practical questions
+that complex experimental designs require.
 
 \subsection{Minimum detectable effect}
 
@@ -293,13 +295,19 @@ you can use one of the built-in functions.\sidenote{\url{https://dimewiki.worldb
 Here, we use an outer loop to vary the size of the assumed treatment effect,
 which is later used to simulate outcomes in a ``true''
 data-generating process (DGP).
+\marginnote{The data generating process is written similarly to a
+regression model, but it is a separate step.
+A data generating process is the ``truth''
+that the regression model is trying to estimate.
+If our regression results are close to the DGP,
+then the regression is ``good'' in the sense we care about.}
 For each of 100 runs (indexed by \texttt{i}, which is never used in the code)
 We ask the simple question: If this DGP were true,
 would our design have detected it in this draw?
 We run our actual regression model and store the result,
 along with an indicator of the effect size we assumed.
 
-When we have done this 100 times for every effect size we are interested in,
+When we have done this 100 times for each effect size we are interested in,
 we have built a large matrix of regression results.
 That can be loaded into data and manipulated directly,
 where each observation represents one possible randomization result.
@@ -328,5 +336,24 @@ instead of across variation in the size of the effect.
 {\setstretch{0.7}
 \VerbatimInput[frame=lines,numbers=left,label=minimum-sample-size.do]
 {./code/minimum-sample-size.do}}
+
+Using the two definition in tandem can help answer a key question
+that typical approaches to power often do not.
+Namely, they can help you determine what tradeoffs to make
+in the design of your experiment.
+Can you support another treatment arm?
+Is it better to add another cluster,
+or to sample more units per cluster?
+simultaneously, planning out the regression structure
+in advance saves a lot of work once the data is in hand,
+and helps you think critically about what you are really testing.
+It also helps you to untangle design issues before they occur.
+Therefore, simulation-based power analysis is often more of a design aid
+than an output for reporting requirements.
+At the end of the day, you will probably have reduced
+the complexity of your experiment significantly.
+For reporting purposes, such as grantwriting and registered reports,
+simulation ensures you will have understood the key questions well enough
+to report standard measures of power once your design is decided.
 
 %------------------------------------------------
