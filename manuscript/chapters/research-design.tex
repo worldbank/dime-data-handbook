@@ -1,0 +1,175 @@
+%------------------------------------------------
+
+\begin{fullwidth}
+Research design is the process of designing field work
+that will answer a specific research question.
+You don't need to be an expert in this,
+and there are lots of good resources out there
+that focus on designing interventions and evaluations.
+This section will present a very brief overview
+of the most common methods that are used,
+so that you can have an understanding of
+how to construct appropriate counterfactuals
+when you write analysis code later.
+
+You can break most research questions into two main types.
+There are cross-sectional or observational analyses,
+which seek only to describe something for the first time,
+such as the structure or variation of a population.
+Then there are causal analyses,
+which typically rely on establishing exogenous variation
+to draw a conclusion about the impact of some event
+on specific outcomes of interest.
+We'll focus on the latter, since these are primarily
+a standardized set of approaches, with publications
+and code tools broadly available to support your work.
+\end{fullwidth}
+
+%------------------------------------------------
+
+\section{Counterfactuals and treatment effects}
+
+In causal analysis, a typical goal is to obtain an estimate
+of a \textbf{treatment effect}, or the change in outcome
+caused by a change in exposure to some intervention or circumstance.
+However, in the potential outcomes framework,
+we can never observe this directly:
+we never see the same person in both their treated and untreated state.
+Instead, we make inferences from samples:
+we try to devise a comparison group that evidence suggests
+would be identical to the treated group had they not been treated.
+
+This control group serves as a counterfactual to the treatment group,
+and we compare the distributions of outcomes within each
+to make a computation of ``how different'' the groups are from each other.
+\marginnote{\textit{Causal Inference: The Mixtape}
+provides a detailed introduction to and history of
+each of these methods, so we will only introduce you to
+them very abstractly in this chapter. \url{http://scunning.com/cunningham_mixtape.pdf}}
+Each of the methods described in this chapter
+relies on some variant of this basic strategy.
+In counterfactual causal analysis,
+the role of the econometric model and estimating equations
+is not to create a predictive or realistic model
+of how the outcome of interest is actually generated --
+typically we do not care about measures of fit or predictive accuracy
+like R-squareds or root mean square errors.
+What matters is whether the estimating equation
+correctly describes the experimental design being used,
+so that the correct estimate of the difference
+between the treatment and control groups is captured.
+
+This means capturing design choices
+such as stratification and clustering and
+ensuring that time trends are handled sensibly.
+It means thinking carefully about how to transform and scale your data,
+using fixed effects to extract ``within-group'' comparisons as needed,
+and choosing estimators appropriate to your design.
+As the saying goes, all models are wrong, but some are useful.
+The models you will construct and estimate are intended to do two things:
+to express the intention of your research design,
+and to help you group the potentially endless concepts of field reality
+into intellectually tractable categories.
+In other words, these models tell the story of your research.
+
+%------------------------------------------------
+
+\section{Experimental reseach designs}
+
+Experimental research designs explicitly allow the research team
+to change the condition of the populations being studies.
+This can be in the form of NGO programs, government regulations,
+information campaigns, and many more types of interventions.
+The ``classic'' method is the randomized control trial:
+treatment groups are drawn from the same underlying population
+so that the strong condition of statistical equality
+in the absense of the experiment can be assumed.
+Three methods are discussed here:
+cross-sectional randomization (``endline-only'' studies),
+differences-in-differences (``panel data'' studies),
+and regression discontinuity (``cutoff'' studies).
+
+\subsection{Cross-sectional RCTs}
+
+Cross-sectional RCTs are the simplest possible study design:
+a program is implemented, surveys are conducted, and data is analyzed.
+The randomization process, like all RCTs,
+draws the treatment groups from the same underlying population,
+so that it is assumed the groups would be identical
+before the intervention, and would have been identical at measurement
+except for the effects of the intervention.
+Cross-sectional data is simple because there is no need
+for research teams to engage in tracking over time,
+or analyzing attrition and follow-up.
+Cross-sectional designs can have a time dimension;
+they are then called ``repeated cross-sections'',
+but do not imply a panel structure for individual observations.
+
+Typically, the cross-sectional model is developed
+only with controls for the research design.
+Balance checks can be utilized, but an effective experiment
+can use stratification aggressively to ensure balance
+before data is collected.\cite{athey2017econometrics}
+Since the experiment is fully randomized,
+controls for imbalance that are not part of the design
+only increase the precision of estimates,
+but mechanically induce some bias away from the true effect.
+
+\subsection{Differences-in-differences}
+
+Differences-in-differences deals with imbalance differently:
+it uses a panel data structure to additionally use each
+unit in the pre-treatment phase as a control for itself post-treatment.
+Therefore, rather than relying on balance design for credibility,
+DD-type designs therefore only need to test whether \textit{changes}
+in outcomes over time were different in the treatment group than the control group.
+Therefore, the identifying assumption is \textbf{parallel trends},
+the idea that the change in these groups would have been identical
+in the absense of the treatment.
+
+Diff-in-diff experiments therefore require substantially more effort
+in the field work portion, so that the panel is well-constructed.
+Since baseline and endline data collection may be far apart,
+it is important to create careful records during the first round
+so that follow-ups can be conducted with the same subjects,
+and attrition across rounds can be properly taken into account.
+Depending on the distribution of results,
+estimates may become completely uninformative
+with relatively little loss to follow-up.\sidenote{\url{http://blogs.worldbank.org/impactevaluations/dealing-attrition-field-experiments}}
+
+The diff-in-diff model is a ``four-way'' comparison:
+the experimental design wants to compare treatment to control,
+after taking out the pre-levels for both.
+Therefore the model includes a time period indicator,
+a treatment group indicator (the pre-treatment control is the base level),
+and it is the \textit{interaction} of treatment and time indicators
+that we interpret as the differential effect of the treatment assignment.
+
+\subsection{Regression discontinuity}
+
+Regression discontinuity designs differ from RCTs
+in that the treatment group is not randomly assigned.
+(In fact, many RDs are not experimental at all.)
+Instead, there is a \textbf{running variable}
+which gives eligible people access to some program,
+and a strict cutoff for who is included.
+This is ususally justified by budget limitations.
+The running variable should not be the outcome of interest,
+and while it can be time, that may require additional modeling assumptions.
+Those who qualify are given the intervention and those who don't are not,
+and this process substitutes for explicit randomization.
+
+For example, imagine that there is a strict income cutoff created
+for a program that subsidizes some educational resources.
+The intuition is that the people who are ``barely eligible''
+should not in reality be very different from those who are ``barely ineligible'',
+and that resulting differences between them at measurement
+are therefore due to the intervention or program.
+For the modeling component, the \textbf{bandwidth},
+or the size of the window around the cutoff to use,
+has to be decided and tested against various options for robustness.
+The rest of the model depends largely on the design and execution of the experiment.
+
+%------------------------------------------------
+
+\section{Quasi-experimental reseach designs}
