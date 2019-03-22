@@ -31,10 +31,72 @@ and having proper file storage ready for sensitive PII data.
 
 SurveyCTO surveys are primarily created in Excel or Google Sheets,
 making them one of the few outputs for which no coding is required.
+\marginnote{The \texttt{ietestform} command, part of
+\texttt{iefieldkit}, implements form-checking routines
+for some SurveyCTO best practices. You can find a summary
+of those practices at \url{https://dimewiki.worldbank.org/wiki/ietestform}.}
 However, since they make extensive use of logical structure and
 relate directly to the data that will be used later,
-both the field team and the data people should
-collaborate to make sure that the survey suits all needs.
+both the field team and the data team should
+collaborate to make sure that the survey suits all needs.\cite{krosnick2018questionnaire}
+
+Generally, this collaboration means building the experimental design
+fundamentally into the structure of the survey.
+When ID matching and tracking is essential,
+the survey should be prepared to verify against preloads
+of data from master records or from other rounds,
+and ``extensive tracking'' sections --
+in which reasons for attrition, treatment contamination, and
+loss to follow-up can be documented --
+are essential data components for completing CONSORT records.\cite{begg1996improving}
+
+The survey design is the first part where the data team
+and the field team must collaborate on data structure.
+The field-oriented staff and the PIs will likely prefer
+to capture a large amount of detailed \texttt{information}
+in the field, some of which will serve very poorly as \texttt{data}.\sidenote{\url{
+https://iriss.stanford.edu/sites/g/files/sbiybj6196/f/questionnaire\_design\_1.pdf}}
+In particular, open-ended responses and questions which will have
+many null or missing responses by design will not be very useful
+in statistical analyses unless pre-planned.
+You must work with the field team to determine the appropriate amount
+of abstraction inherent in linking concepts to responses.\sidenote{\url{
+https://www.povertyactionlab.org/sites/default/files/documents/Instrument\%20Design\_Diva\_final.pdf}}
+It is always possible to ask for specific responses to questions,
+but it is far more useful to ask for things like Likert responses.
+
+Coded responses are always more useful than open-ended responses,
+because they reduce the time necessary for post-processing by
+expensive specialized staff.
+For example, if collecting data on medication use or supplies,
+you could collect: the brand name of the product;
+the generic name of the product;
+the ATC-coded compound of the product;
+or the broad category to which each product belongs (antibiotic, etc.).
+All four may be useful for different reasons,
+but the latter two are likely to be the most useful for the analyst.
+The ATC-coded compound requires providing a translation dictionary
+to field staff, but enables automated rapid recoding for analysis
+with no loss of information.
+The generic class requires agreement on the broad categories of interest,
+but allow for much more comprehensible top-line statistics and data quality checks.
+
+Broadly, the questionnaire should be designed as follows.
+The workflow will feel much like writing an essay:
+we begin from broad concepts and slowly flesh them out to specifics.
+\marginnote{Modules should not be numbered --
+they should use a short prefix so they can be easily reordered.
+There is not yet a full consensus over how individual questions should be identified:
+formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder,
+but formats like \texttt{hq\_asked\_about\_loans} quickly become too long.}
+The theory of change, experimental design, and pre-analysis plans should be discussed
+and the structure of required data conceptualized.
+All the conceptual outcomes of interest, as well as the covariates, classifications,
+and other variables needed for the experimental design should be listed out.
+The questionnaire \textit{modules} should be outlined based on this list.
+Each module should then be expanded into specific indicators to observe in the field.
+Finally, the questionnaire can be piloted in a non-experimental sample.
+Revisions are made, and the survey is then translated into the appropriate language and programmed electronically.
 
 \subsection{Secure data collection}
 
@@ -85,7 +147,10 @@ Most importantly, all computers, tablets, and accounts used
 This policy should also be applied to physical data storage
 such as flash drives and hard drives;
 similarly, files sent to the field containing PII data
-such as the sampling list should at least be password-protected.
+such as the sampling list should at least be password-protected.\sidenote{
+This can be done using a zip-file creator.
+LastPass can also be used to share passwords securely,
+and you cannot share passwords across email.}
 This step significantly mitigates the risk in case there is
 a security breach such as loss, theft, hacking, or a virus,
 and adds very little hassle to utilization.
