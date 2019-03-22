@@ -31,7 +31,7 @@ and code tools broadly available to support your work.
 
 In causal analysis, a typical goal is to obtain an estimate
 of a \textbf{treatment effect}, or the change in outcome
-caused by a change in exposure to some intervention or circumstance.
+caused by a change in exposure to some intervention or circumstance.\cite{abadie2018econometric}
 However, in the potential outcomes framework,
 we can never observe this directly:
 we never see the same person in both their treated and untreated state.
@@ -43,7 +43,7 @@ This control group serves as a counterfactual to the treatment group,
 and we compare the distributions of outcomes within each
 to make a computation of ``how different'' the groups are from each other.
 \marginnote{\textit{Causal Inference: The Mixtape}
-provides a detailed introduction to and history of
+provides a detailed practical introduction to and history of
 each of these methods, so we will only introduce you to
 them very abstractly in this chapter. \url{http://scunning.com/cunningham_mixtape.pdf}}
 Each of the methods described in this chapter
@@ -172,4 +172,77 @@ The rest of the model depends largely on the design and execution of the experim
 
 %------------------------------------------------
 
-\section{Quasi-experimental reseach designs}
+\section{Quasi-experimental research designs}
+
+``Quasi-''experimental research designs,
+also called observational or non-experimental designs,
+are inference methods not based on explicit experimentation.
+Instead, they rely on ``experiments of nature'',
+in which natural variation can be argued to approximate
+the type of exogenous variations in circumstances
+that a researcher would attempt to create with an experiment.
+
+Unlike with planned experimental designs,
+quasi-experimental designs typically require the extra luck
+of having data collected at the right times and places
+to exploit events that occurred in the past.
+Therefore, these methods often use either secondary data,
+or use primary data in a cross-sectional retrospective method,
+applying additional corrections as needed to make
+the treatment and comparison groups plausibly identical.
+
+\subsection{Instrumental variables}
+
+Instrumental variables designs utilize variation in an
+otherwise-unrelated predictor of exposure to a treatment condition
+as an ``instrument'' for the treatment condition itself.\sidenote{\url{https://dimewiki.worldbank.org/wiki/instrumental_variables}}
+The simplest example is actually experimental --
+in a randomization design, we can use instrumental variables
+based on an \textit{offer} to join some program,
+rather than on the actual inclusion in the program.
+The reason for doing this is that the ``second stage''
+of actual program takeup may be severely self-selected,
+making the group of program participants in fact
+wildly different from the group of non-participants.
+The corresponding two-stage-least-squares (2SLS) estimator
+solves this by conditioning on only the random portion of takeup --
+in this case, the randomized offer of enrollment in the program.
+
+\subsection{Matching estimators}
+
+Matching estimators rely on the assumption that,
+conditional on some observable characteristics,
+untreated units can be compared to treated units,
+as if the treatment had been fully randomized.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Matching}}
+In other words, they assert that differential takeup
+is sufficiently predictable by observed characteristics.
+These assertions are somewhat testable,
+and there are a large number of ``treatment effect''
+packages devoted to standardizing reporting of various tests.\sidenote{\url{http://fmwww.bc.edu/repec/usug2016/drukker_uksug16.pdf}}
+
+However, since most matching models rely on a specific linear model,
+such as the typical propensity score matching estimator,
+they are open to the criticism of ``specification searching'',
+meaning that researchers can try different models of matching
+until one, by chance, leads to the final result that was desired.
+Newer methods, such as coarsened exact matching\cite{iacus2012causal},
+are designed to remove some of the modelling,
+such that simple differences between matched observations
+are sufficient to estimate treatment effects
+given somewhat weaker assumptions on the structure of that effect.
+One solution, as with the experimental variant of 2SLS proposed above,
+is to incorporate matching models into explicitly experimental designs.
+
+\subsection{Synthetic controls}
+
+Synthetic controls methods\cite{abadie2015comparative}
+are designed for a particularly interesting situation:
+one where useful controls for an intervention simply do not exist.
+Canonical examples are policy changes at state or national levels,
+since at that scope there are no other units quite like
+the one that was affected by the policy change
+(much less sufficient \textit{N} for a regression estimation).\cite{gobillon2016regional}
+In this method, time series data is almost always required,
+and the control comparison is contructed by creating
+a linear combination of other units such that pre-treatment outcomes
+for the treated unit are best approximated by that specific combination.
