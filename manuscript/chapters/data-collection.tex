@@ -163,3 +163,65 @@ and adds very little hassle to utilization.
 %------------------------------------------------
 
 \section{Managing primary data}
+
+In this section, you finally get your hands on some data!
+What do we do with it? Data handling is one of the biggest
+``black boxes'' in primary research -- it always gets done,
+but teams have wildly different approaches for actually doing it.
+This section breaks the process into key conceptual steps
+and provides at least one practical solution for each.
+Initial receipt of data will proceed as follows:
+the data will be downloaded, and a ``gold master'' copy
+of the raw data should be permanently stored in a secure location.
+Then, a ``master'' copy of the data is placed into an encrypted location
+that will remain accessible on disk and backed up.
+This handling satisfies the rule of three:
+there are two on-site copies of the data and one off-site copy,
+so the data can never be lost in case of hardware failure.
+
+For this step, the remote location can be a variety of forms:
+the cheapest is a long-term cloud storage service
+such as Amazon Web Services or Microsoft Azure.
+Equally sufficient is a physical hard drive
+stored somewhere other than the primary work location.
+Enterprise cloud solutions like Microsoft OneDrive
+can also work, although because you do not control them
+we typically do not recommend this for the gold master copy.
+If the service satisfies your security needs,
+the raw data can be stored unencrypted here.
+If you remain lucky, you will never have to access this copy --
+you just want to know it is out there, safe, if you need it.
+
+The copy of the raw data you are going to use
+should be handled with care.
+Since you will probably need to share it among the team,
+it should be placed in an encrypted storage location.
+The combination of Dropbox and VeraCrypt
+can satisfy this requirement for some teams,
+since this will never make the data visible to someone
+who gets access to the Dropbox,
+without the key to the file that is generated on encryption.
+\marginnote{LastPass or equivalent should be used to store and share keys.
+Note also that this data copy can never be considered the gold master,
+because other users or the service can accidentally delete it.}
+\textit{The file must never be placed in Dropbox unencrypted, however.}
+The way VeraCrypt works is that it creates a virtual copy
+of the unencrypted file outside of Dropbox, and lets you access that copy.
+Since you should never edit the raw data, this will not be very cumbersome,
+but the unencryption and usage of the raw data is a manual process.
+
+You should only interact with the raw master data a couple of times.
+The first task is therefore to create a derived copy --
+a \textbf{de-identified} copy --
+which you can freely share to team members on Dropbox unencrypted.
+This dataset is produced by removing personally-identifying fields
+from the raw master dataset. Nothing else is altered.
+This step is as easy as dropping variables,
+and since it only affects survey fields,
+the variables to be kept can be indicated at the time the survey is written.
+There is no harm in being overly conservative at this stage,
+since if you find that another field is required,
+you can re-access the encrypted master data and add it to the dataset.
+With the unencrypted, de-identified data in a shared location
+and the raw data securely stored and backed up,
+you are ready to move to data cleaning and analysis.
