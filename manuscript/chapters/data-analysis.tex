@@ -32,3 +32,132 @@ rather than trying to understand what you did in the past.
 \end{fullwidth}
 
 %------------------------------------------------
+
+\section{Organizing primary survey data}
+
+There are many schemes to organize primary survey data.
+We provide the \texttt{iefolder}\sidenote{\url{https://dimewiki.worldbank.org/iefolder}}
+package (part of \texttt{ietoolkit}) so that
+a large number of teams will have identical folder structures.
+This means that PIs and RAs face very small costs
+when switching between projects, becuase all the materials
+will be organized in exactly the same basic way.
+Namely, there will be dedicated folders for raw data;
+for de-identified data; for cleaned data; and for final (constructed) data.
+There will be a folder for raw results, as well as for final outputs.
+The folders that hold code will be organized in parallel to these,
+so that the progression through the whole project can be followed
+by anyone new to the team. Additionally, \texttt{iefolder}
+provides \textbf{master do-files} so that the entire order
+of the project is maintained in a top-level dofile,
+ensuring that no complex instructions are needed
+to exactly replicate the project.
+
+Raw data should contain only materials that are recieved directly from the field.
+These datasets will invariably come in a host of file formats
+and nearly always contain personally-identifying information.
+These should be retained in the raw data folder
+\textit{exactly as they were recieved},
+including the precise filename that was submitted,
+along with detailed documentation about the source and contents
+of each of the files. This data must be encrypted
+if it is shared in an insecure fashion,
+and it must be backed up in a secure offsite location.
+Everything else can be replaced, but raw data cannot.
+Therefore, raw data should never be interacted with directly.
+
+Instead, the first step upon receipt of data is de-identification.
+There will be a code folder and a corresponding data folder
+so that it is clear how de-identification is done and where it lives.
+Typically, this process only involves stripping fields from raw data,
+naming, formatting, and optimizing the file for storage,
+and placing it as a \texttt{.dta} or other data-format file
+into the de-identified data folder.
+The underlying data structure is unchanged:
+it should contain only fields that were collected in the field,
+without any modifications to the responses collected there.
+This creates a survey-based version of the file that is able
+to be shared among the team without fear of data corruption or exposure.
+Only a core set of team members will have access to the underlying
+raw data necessary to re-generate these datasets,
+since the encrypted raw data will be password-protected.
+The de-identified data will therefore be the underlying source
+for all cleaned and constructed data.
+It will also become the template dataset for final public release.
+
+%------------------------------------------------
+
+\section{Cleaning and constructing derivative datasets}
+
+Once the de-identified dataset is created, data must be cleaned.
+This process does not involve the creation of any new data fields.
+Cleaning can be a long process: this is the phase at which
+you obtain an extensive understanding of the contents and structure
+of the data you collected in the field.
+You should use this time to understand the types of responses collected,
+both within each survey question and across repsondents.
+Understanding this structure will make it possible to do analysis.
+
+There are a number of tasks involved in cleaning data.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Cleaning}}
+\marginnote{The \texttt{iecodebook} command suite, part of \texttt{iefieldkit},
+is designed to make some of the most tedious components of this process,
+such as renaming, relabeling, and value labeling,
+much easier (including in data appending). \url{https://dimewiki.worldbank.org/iecodebook}}
+A data cleaning do-file will load the de-identified data,
+make sure all the fields are named and labelled concisely and descriptively,
+apply corrections to all values in the dataset,
+make sure value labels on responses are accurate and concise,
+and attach any experimental-design data (sampling and randomization)
+back to the clean dataset before saving.
+It will ensure that ID variables are correctly structured and matching,
+ensure that data storage types are correctly set up
+(including tasks like dropping open-ended responses and encoding strings),
+and make sure that data missingness is appropriately documented
+using other primary inputs from the field.
+
+Clean data then becomes the basis for constructed (final) datasets.
+While data cleaning typically takes one survey dataset
+and mixes it with other data inputs to create a corresponding
+cleaned version of that survey data (a one-to-one process),
+data construction is a much more open-ended process.
+Data construction files mix-and-match clean datasets
+to create a large number of potential analysis datasets.
+Data construction is the time to create derived variables
+(binaries, indices, and interactions, to name a few);
+it is the time to reshape data as necessary;
+it is the time to create functionally-named variables;
+and it is the time to sensibly subset data for analysis.
+
+Data construction is never a finished process.
+It comes ``before'' data analysis only in a limited sense:
+the construction code must be run before the analysis code.
+Typically, however it is the case that the construction and analysis code
+are written concurrently -- both do-files will be open at the same time.
+This is because it is only in the process of writing the analysis
+that you will come to know which constructed variables are necessary,
+and which subsets and alterations of the data are desired.
+
+You should never attempt to create a ``canonical'' analysis dataset.
+Each analysis dataset should be purpose-built to answer an analysis question.
+It is typical to have many purpose-built analysis datasets:
+there may be a \texttt{data-wide.dta},
+\texttt{data-wide-children-only.dta}, \texttt{data-long.dta},
+\texttt{data-long-counterfactual.dta}, and many more as needed.
+Data construction should never be done in analysis files,
+and since much data construction is specific to the planned analysis,
+organizing analysis files by this method allows that level of specificity
+to be introduced at the correct part of the process.
+Then, when it comes time to finalize analysis files,
+it is substantially easier to organize and prune that code
+since there is no risk of losing construction code it depends on.
+
+
+%------------------------------------------------
+
+\section{Writing data analysis code}
+
+%------------------------------------------------
+
+\section{Visualizing data}
+
+%------------------------------------------------
