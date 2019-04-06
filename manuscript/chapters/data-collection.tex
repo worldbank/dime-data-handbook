@@ -25,9 +25,7 @@ and having proper file storage ready for sensitive PII data.
 
 %------------------------------------------------
 
-\section{Primary data collection with SurveyCTO}
-
-\subsection{Questionnaire design}
+\section{Designing questionnaires with SurveyCTO}
 
 SurveyCTO surveys are primarily created in Excel or Google Sheets,
 making them one of the few outputs for which no coding is required.
@@ -98,7 +96,9 @@ Each module should then be expanded into specific indicators to observe in the f
 Finally, the questionnaire can be piloted in a non-experimental sample.
 Revisions are made, and the survey is then translated into the appropriate language and programmed electronically.
 
-\subsection{Secure data collection}
+%------------------------------------------------
+
+\section{Collecting data securely}
 
 Any established data collection service will always encrypt
 all data submitted from the field automatically while in transit
@@ -158,13 +158,120 @@ and adds very little hassle to utilization.
 
 %------------------------------------------------
 
-\section{Field management and quality assurance}
+\section{Overseeing fieldwork and quality assurance}
+
+While the team is in the field, you will be responsible
+for making sure that the survey is progressing correctly,
+that the collected data matches the survey sample,
+and that errors and duplicate observations are resolved
+quickly so that the field team can make corrections.
+Modern survey software makes it relatively easy
+to control for issues in individual surveys,
+using a combination of in-built features
+such as hard constraints on answer ranges
+and soft confirmations or validation questions.
+
+These features mean you can spend more time
+looking for issues that the software cannot check.
+Namely, these will be outliers from the overall distribution
+or a group of surveys rather than errors in any one survey:
+enumerators who are taking too long to complete their work,
+``difficult'' groups of respondents who are systematically incomplete,
+and checks for systematic response errors and outliers.
+These are typically done in two main forms:
+high-frequency checks (HFCs) and back-checks.
+
+High-frequency checks are carried out on the data
+side.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
+First, observations must be validated against the sample list:
+this is as straightforward as conducting a \texttt{merge}
+of the survey data and checking for mismatches.
+Next, observations need to be checked for duplicate entries:
+\texttt{ieduplicates}\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieduplicates}}
+provides a workflow for collaborating on the resolution of
+duplicate entries between you and the field team
+Finally, data quality checks\sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
+should be run on the data every time it is downloaded
+to flag irregularities in observations, sample groups, or enumerators.
+
+Unfortunately, it is very hard to specify in general
+what kinds of quality checks should be utilized,
+since the content of surveys varies so widely.
+Fortunately, you will know your survey very well
+by the time it is programmed, and should have a good sense
+of the types of things that would raise concerns
+that you were unable to program directly into the survey.
+Thankfully it is also easy to prepare high-frequency checking code in advance.
+Once you have built and piloted the survey form,
+you will have some bits of mock data to play with.
+Using this data, you should prepare code that outputs
+a list of flags from any given dataset.
+This HFC code is then ready to run every time you download the data,
+and should allow you to rapidly identify issues
+that are occuring in fieldwork.
+
+Back-checks\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}}
+involve more extensive collaboration with the field team,
+and are best thought of as direct data audits.
+In back-checks, a random subset of the field sample is chosen
+and basic information from the full survey is verified
+using a small survey re-done with the same respondent.
+Back-checks should be done with a substantial portion
+of the full sample early in the survey,
+so that the enumerators and field team
+get used to the idea of quality assurance.
+Checks should continue throughout fieldwork,
+and their content and targeting can be refined if particular
+questionnaire items are flagged as error-prone
+or specific enumerators or observations appear unusual.
+
+Back-checks cover three main types of questions.
+First, they validate basic information that should not change.
+This ensures the basic quality control that the right respondent
+was interviewed or observed in a given survey,
+and flags cases of outright quality failure that need action.
+Second, they check the quality of enumeration,
+particularly in cases that involve measurement or calculation
+on the part of the enumerator.
+This can be anything such as correctly calcuting plot sizes,
+family rosters, or income measurements.
+These questions should be carefully validated
+to determine whether they are reliable measures
+and how much they may vary as a result of the difficulty in measurement.
+Finally, back-checks confirm that questions are being asked and answered
+in a consistent fashion. Some questions, if poorly phrased,
+can be hard for the eumerator to express or for all respondents
+to understand in an identical fashion,
+and changes in these questions between two surveys of the same respondent
+can alert you and the team that changes need to be made
+to the execution of portions of the survey.
+
+When all data collection is complete,
+the survey team should have a final field report
+ready for validation against the sample frame and the dataset.
+This should contain all the observations that were completed;
+it should merge perfectly with the received dataset;
+and it should report reasons for any observations not collected.
+Reporting of missingness and attrition is critical
+to the interpretation of any survey dataset,
+so it is important to structure this reporting
+such that broad rationales can be grouped into categories
+but also that the field team can provide detailed, open-ended responses
+for any observations they were unable to complete.
+This reporting should be validated and saved
+alongside the final raw data, and treated the same way.
+
 
 %------------------------------------------------
 
-\section{Managing primary data}
+\section{Receiving primary data}
 
 In this section, you finally get your hands on some data!
+\marginnote{The \texttt{iefolder} command from \texttt{ietoolkit}
+will be your best friend here. This command will set up
+the folder structure for all data processing tasks
+across all data collection rounds.
+\url{https://dimewiki.worldbank.org/iefolder}}
 What do we do with it? Data handling is one of the biggest
 ``black boxes'' in primary research -- it always gets done,
 but teams have wildly different approaches for actually doing it.
