@@ -36,7 +36,8 @@ rather than trying to understand what you did in the past.
 \section{Organizing primary survey data}
 
 There are many schemes to organize primary survey data.
-We provide the \texttt{iefolder}\sidenote{\url{https://dimewiki.worldbank.org/iefolder}}
+We provide the \texttt{iefolder}\sidenote{
+\url{https://dimewiki.worldbank.org/iefolder}}
 package (part of \texttt{ietoolkit}) so that
 a large number of teams will have identical folder structures.
 This means that PIs and RAs face very small costs
@@ -98,11 +99,13 @@ You should use this time to understand the types of responses collected,
 both within each survey question and across repsondents.
 Understanding this structure will make it possible to do analysis.
 
-There are a number of tasks involved in cleaning data.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Cleaning}}
+There are a number of tasks involved in cleaning data.\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Data_Cleaning}}
 \marginnote{The \texttt{iecodebook} command suite, part of \texttt{iefieldkit},
 is designed to make some of the most tedious components of this process,
 such as renaming, relabeling, and value labeling,
-much easier (including in data appending). \url{https://dimewiki.worldbank.org/iecodebook}}
+much easier (including in data appending).
+\url{https://dimewiki.worldbank.org/iecodebook}}
 A data cleaning do-file will load the de-identified data,
 make sure all the fields are named and labelled concisely and descriptively,
 apply corrections to all values in the dataset,
@@ -158,7 +161,12 @@ since there is no risk of losing construction code it depends on.
 
 Data analysis is the stage of the process to create research outputs.
 This section will not include instructions on how to conduct specific analyses,
-as these are highly specialized and require field and statistical expertise.
+as these are highly specialized and require field and statistical expertise.\sidenote{
+Some introductions to common code skills and analytical frameworks are:
+\textit{R for Data Science} \url{https://r4ds.had.co.nz/};
+\textit{A Practical Introduction to Stata} \url{https://scholar.harvard.edu/files/mcgovern/files/practical_introduction_to_stata.pdf};
+\textit{Mostly Harmless Econometrics} \url{https://www.researchgate.net/publication/51992844_Mostly_Harmless_Econometrics_An_Empiricist's_Companion}; and
+\textit{Causal Inference: The Mixtape} \url{http://scunning.com/mixtape.html}.}
 Instead, we will outline the structure of writing analysis code,
 assuming you have completed the process of data cleaning and construction.
 (As mentioned above, typically you will continue to keep
@@ -226,5 +234,43 @@ you should have each result stored with the code that created it.
 %------------------------------------------------
 
 \section{Visualizing data}
+
+Data visualization is increasingly popular,
+but a great deal of it is very low quality.\cite{healy2018data,wilke2019fundamentals}
+The default graphics settings in Stata, for example,
+are pretty bad.\sidenote{Gray Kimbrough's
+\textit{Uncluttered Stata Graphs} code is an excellent
+default replacement that is easy to install.
+\url{https://graykimbrough.github.io/uncluttered-stata-graphs/}}
+Thankfully, graphics tools like Stata are highly customizable;
+there is a fair amount of learning curve associated with
+extremely-fine-grained adjustment,
+but basic colors, alignments, and labelling tools
+are well worth reading the graphics manual for.\sidenote{
+\url{https://www.stata.com/manuals/g.pdf}}
+The manual is worth skimming through in full, as it provides
+many visual examples of what is possible and basic code examples
+detailing how to accomplish it.
+
+Graphics are hard to get right because you, as the analyst,
+will already have a pretty good idea of what you are trying to convey.
+Someone seeing the illustration for the first time,
+by contrast, will have no idea what they are looking at.
+Therefore a visual image has to be compelling in the sense
+that it shows, first, that there is something interesting going on,
+and compels the reader to figure out exactly what it is.
+There are a variety of resources to help you
+figure out how best to structure a given visual:
+The Stata Visual Library has many examples of figures that communicate effectively.\sidenote{
+\url{https://worldbank.github.io/Stata-IE-Visual-Library/}}
+The Tapestry conference focuses on ``storytelling with data''.\sidenote{
+\url{https://www.youtube.com/playlist?list=PLb0GkPPcZCVE9EAm9qhlg5eXMgLrrfMRq}}
+\textit{Fundamentals of Data Visualization} provides extensive details on practical application;\sidenote{
+\url{https://serialmentor.com/dataviz}}
+as does \textit{Data Visualization: A Practical Introduction}.\sidenote{
+\url{http://socvis.co}}
+
+
+
 
 %------------------------------------------------
