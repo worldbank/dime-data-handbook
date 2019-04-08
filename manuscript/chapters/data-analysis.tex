@@ -156,6 +156,73 @@ since there is no risk of losing construction code it depends on.
 
 \section{Writing data analysis code}
 
+Data analysis is the stage of the process to create research outputs.
+This section will not include instructions on how to conduct specific analyses,
+as these are highly specialized and require field and statistical expertise.
+Instead, we will outline the structure of writing analysis code,
+assuming you have completed the process of data cleaning and construction.
+(As mentioned above, typically you will continue to keep
+the data-construction files open, and add to them as needed,
+while writing analysis code.)
+
+It is important to ignore the temptation to write lots of analysis
+into one big, impressive, start-to-finish analysis file.
+This is counterproductive because it subtly encourages poor practices,
+such as not clearing the workspace or loading fresh data.
+Every output -- every table or figure -- should have
+a completely fresh workspace and load its data directly.
+This encourages data manipulation to be done upstream (in construction),
+and prevents you from accidentally writing pieces of code
+that depend on each other, leading to the too-familiar
+``run this part, then that part, then this part'' process.
+Each output should be able to run completely independently
+of all other code sections.
+You can go as far as coding every output in a separate file.
+There is nothing wrong with code files being short and simple.
+
+To accomplish this, you will need to make sure that you
+have an effective system of naming, organization, and version control.
+Version control allows you to effectively manage the history of your code,
+including tracking the addition and deletion of files.
+This lets you get rid of code you no longer need
+simply by deleting it in the working directory,
+and allows you to recover those chunk easily
+if you ever need to get back previous work.
+Therefore, version control supports a tidy workspace.
+(It also allows effective collaboration in this space,
+but that is a more advanced tool not covered here.)
+
+Organizing your workspace effectively is now essential.
+\texttt{iefolder} will have created a \texttt{/Dofiles/Analysis/} folder;
+you should feel free to add additional subfolders as needed.
+It is completely acceptable to have folders for each task,
+and compartmentalize each analysis as much as needed.
+It is always better to have more code files open
+than to have to scroll around repeatedly inside a given file.
+Just like you named each of the analysis datasets,
+each of the individual analysis files should be descriptively named.
+Code such as \texttt{spatial-diff-in-diff.do},
+\texttt{matching-villages.do}, and \texttt{summary-statistics.do}
+are clear indicators of what each file is doing
+and allow code to be found very quickly.
+Eventually, you will need to compile a ``release package''
+that links the outputs more structurally to exhibits,
+but at this stage function is more important than structure.
+
+Outputs should, whenever possible, be created in lightweight formats.
+For graphics, \texttt{.eps} or \texttt{.tif} files are acceptable;
+for tables, \texttt{.tex} is preferred (don't worry about making it
+really nicely formatted until you are ready to publish).
+Excel \texttt{.xlsx} files are also acceptable,
+although if you are working on a large report
+they will become cumbersome to update after revisions.
+If you are writing your code in Git/GitHub,
+you should output results into that directory,
+not the directory where data is stored (ie, Dropbox).
+This is because results will differ across different branches
+and will constantly be re-writing each other:
+you should have each result stored with the code that created it.
+
 %------------------------------------------------
 
 \section{Visualizing data}
