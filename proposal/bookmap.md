@@ -61,6 +61,7 @@
 	* Text editor
 		* [Roshni's presentation](https://www.dropbox.com/s/g0upj8g9thjwoib/Text%20editors.pptx?dl=0)
 	* GitHub and gitflow
+		*[Getting started with GitHub] (https://dimewiki.worldbank.org/wiki/Getting_started_with_GitHub)
 		* [gitflow](https://nvie.com/posts/a-successful-git-branching-model/)
 		* [Onboarding material](https://www.dropbox.com/preview/WB/Analytics/DIME%20Analytics/Data%20Coordinator/Workflow%20Guide/GitHub%20workflow%20guide.pdf?role=personal)
 	* What else needs to be version controlled: outputs
