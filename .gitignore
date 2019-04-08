@@ -1,36 +1,93 @@
 
-*.DS_Store
 
-*.aux
+########################################################################
+#
+# .gitignore DIME template
+# https://github.com/worldbank/DIMEwiki/tree/master/Topics/GitHub
+#
+# We recommend that you create a .gitignore file using GitHub's tools and
+# replace the content of that file with the content of this file. Otherwise
+# you have to rename this file .gitignore. But if you rename the fine in a
+# regular folder window PCs and Macs are likely to keep the file extension
+# so that the file ends up being names .gitignore.txt. Code editors like, Atom,
+# can edit the file extension, but if you are not familiar with how to do that,
+# we recommend that you generate an ignore file using GitHub and simply replace
+# the content of that file.
+#
+# Note that if you are using GitKraken you need to use version 5.x or more
+# recent for this template to work properly
+#
+########################################################################
 
-*.fdb_latexmk
+#######################
+# Start by ignoring everything, and below we are explicitly saying
+# what to not ignore
+*
 
-*.fls
+#######################
+# List of files with GitHub functionality anywhere in the repo
+# that we do not want to ignore
 
-*.ilg
+# These files include GitHub settings
+!.gitignore
+!.gitattributes
 
-*.ind
+# Keep markdown files used for documentation on GitHub
+!README.md
+!CONTRIBUTING.md
 
-*.idx
+#######################
+# For performance reasons, if a folder is already ignored, then
+# GitHub does not check the content for that folder for matches
+# with additional rules. The line below includes folder in the
+# top folder (but not their content), so that anything matching
+# the rules below will still not be ignored.
+!*/
 
-*.lof
+#######################
+# The following file types are code that should always be
+# included no matter where in the repository folder they are
+# located unless you explicitly ignore that folder
 
-*.log
+# Stata
+!/**/*.do
+!/**/*.ado
 
-*.lot
+# R
+!/**/*.R
 
-*.out
+# LaTeX
+!/**/*.tex
+!/**/*.cls
+!/**/*.def
 
-*.pyg
+# Python
+!/**/*.py
 
-*\.synctex\.gz
+# Matlab
+!/**/*.m
 
-*.toc
+# Markdown
+!/**/*.md
 
-*.bbl
+#######################
+# Include some additional file formats in any output folder. You might have
+# to change the name of the Output folder to whatever it is called in your
+# project, but we strongly recommend that you only include these files in
+# a subset of the folders where you are certain no private data is ever stored.
+!/**/Output/**/*.txt
+!/**/Output/**/*.csv
+!/**/Output/**/*.xml
+!/**/Output/**/*.eps
+!/**/Output/**/*.svg
 
-*.blg
-
-*.fdb_latexmk
-
-manuscript/manuscript\.pdf
+#######################
+# Include all the files with passwords or tokens here. All files named
+# password or passwords are with this template ignored no matter which
+# format you are using. Additionally, all content in any folder called
+password or passwords are also ignored. NOTE that your project might be
+using different names and then you must edit the lines below accordingly.
+password.*
+passwords.*
+password/
+passwords/
