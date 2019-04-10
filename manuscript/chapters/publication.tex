@@ -106,3 +106,66 @@ and use Word's compare feature to generate a single integrated tracked version.
 %------------------------------------------------
 
 \section{Publishing data and code for replication}
+
+Data and code should always be released with any publication.
+Many journals and funders have strict open data policies,
+and providing these materials to other researchers
+allows them to evaluate the credibility of your work
+as well as to re-use your materials for further research.
+If you have followed the steps in this book carefully, however,
+you will find that this is a very easy requirement to fulfill.
+You will already have a publishable (either de-identified or constructed)
+version of your research dataset.
+You will already have your analysis code well-ordered,
+and you won't have any junk lying around for cleanup.
+You will have written your code so that others can read it,
+and you will have documentation for all your work,
+as well as a well-structured directory containing the code and data.
+
+If you are at this stage,
+all you need to do is find a place to publish your work!
+GitHub provides one of the easiest solutions here,
+since it is completely free for static, public projects
+and it is straightforward to simply upload a fixed directory
+and obtain a permanent URL for it.
+The Open Science Framework also provides a good resource,
+as does ResearchGate (which can also assign a DOI to your work).
+Any of these locations is acceptable --
+the main requirement is that the system can handle
+the structured directory that you are submitting,
+and that it can provide a stable, structured URL for your project.
+
+You should release a structured directory that allows a user
+to immediately run your code after changing the project directory.
+See \url{https://github.com/worldbank/Water-When-It-Counts}
+for an example of an organized directory structure. The folders should include:
+All necessary de-identified data for the analysis;
+All code necessary for the analysis;
+The raw outputs you have used for the paper.
+Using \texttt{[iefolder]} from our \texttt{[ietoolkit]} can help standardize this in Stata.
+In either the \texttt{/dofiles/} folder or in the root directory,
+include a master script (\texttt{.do} or \texttt{.r} for example).
+The master script should allow the reviewer to change
+one line of code setting the directory path.
+Then, running the master script should run the entire project
+and re-create all the raw outputs exactly as supplied.
+Check that all your code will run completely on a new computer.
+This means installing any required user-written commands in the master script
+(for example, in Stata using \texttt{[ssc install]} or \texttt{[net install]}
+and in R include code for installing packages,
+including installing the appropriate version of the package if necessary).
+Make sure settings like \texttt{[version]}, \texttt{[matsize]}, and \texttt{[varabbrev]} are set.
+All outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
+
+Finally, you may also want to release an author's copy or preprint.
+(Check with your publisher before doing so;
+not all journals will accept material that has been released.
+Therefore you may need to wait until acceptance is confirmed.)
+This can be done on a number of pre-print websites,
+many of which are topically-specific.
+You can also use GitHub and link the file directly
+on your personal website or whatever medium you are
+sharing the preprint through.
+Do not use Dropbox or Google Drive for this purpose:
+many organizations do not allow access to these tools,
+and that includes blocking staff from accessing your material.
