@@ -1,11 +1,10 @@
-
+\begin{fullwidth}
 Welcome to Data for Development Impact.
 This book is intended to serve as a resource guide
 for people who collect or use primary data for development research.
 In particular, the book is intended to guide the reader
 through the process of research using primary survey data,
 from survey design to fieldwork to data management to analysis.
-
 This book will not teach you econometrics or epidemiology or agribusiness.
 This book will not teach you how to design an impact evaluation.
 This book will not teach you how to do data analysis, or how to code.
@@ -23,6 +22,11 @@ Second, we want you to gain a sense of good practices for supporting these proce
 As research teams and timespans have grown dramatically over the last decade,
 it has no longer become efficient for everyone to have their own personal style
 dictating how they use different functions, how they store data, and how they write code.
+\end{fullwidth}
+
+%------------------------------------------------
+
+\section{Doing credible research at scale}
 
 The team responsible for this book is known as DIME Analytics.\sidenote{\url{http://www.worldbank.org/en/research/dime/data-and-analytics}}
 DIME Analytics works within the Development Impact Evaluation unit (DIME)\sidenote{\url{http://www.worldbank.org/en/research/dime}}
@@ -59,61 +63,22 @@ This book itself is therefore intended to be a labor-saving process for us:
 we hope one day we can hand new people a copy of our accumulated knowledge in print,
 and that it will do a better job teaching them than any one of us could alone.
 
+Reproducible research follows naturally from high-quality data, process standardization, and good code.
+High-quality data means that there will be substantially less noise
+that is due to sampling, randomization, and cleaning error.
+Process standardization means that there is little ambiguity about how something ought to be done,
+and therefore the tools that are used to do it are set in advance.
+Finally, good code enables easier pre-publication review,
+as well as an easier replication process post-publication.
+
 This book complements the detailed-but-unstructured DIME Wiki
 with a guided tour of the major tasks that make up primary data collection.
 We will not give a lot of highly specific details in this text,
 but we will point you to where they can be found, and give you a sense of what you need to find next.
-Each chapter will focus on one task, and give a primarily narrative account of:
+Each chapter will focus on one task, and give a primarily narrative account of: what you will be doing; where in the workflow this task falls; when it should be done; who you will be working with; why this task is important; and how to implement the most basic form of the task.
 
-\begin{enumerate}
-  \item What you will be doing
-  \item Where in the workflow this task falls
-  \item When it should be done
-  \item Who you will be working with
-  \item Why this task is important
-  \item How to implement the most basic form of the task
-\end{enumerate}
 
-For the implementation portion, we will provide ``minimal'' code examples, like the following:
-
-\marginnote[2\baselineskip]{This is a Stata code block.
-Throughout this book, you will find examples like this,
-which illustrate how to perform basic versions
-of each task in Stata.}
-
-\begin{Verbatim}[frame=lines,numbers=left,label=code.do]
-// Load the auto dataset
-sysuse auto.dta , clear
-
-// Run a simple regression
-reg price mpg rep78 headroom , coefl
-
-// Transpose and store the output
-matrix results = r(table)'
-
-// Load the results into memory
-clear
-  svmat results , n(col)
-\end{Verbatim}
-
-We have tried really hard to make sure that all the Stata code runs,
-and that each block should be well-formatted and use built-in functions.
-If it does not, we will make sure to install the necessary user-written packages.
-Providing some standardization to Stata code style is also a goal of this book,
-since groups are collaborating on code in Stata more than ever before.
-
-However, we will not explain Stata commands unless the behavior we are exploiting
-is outside the usual expectation of its functionality;
-we will comment the code generously (as you should),
-but you should reference Stata help-files \texttt{h [command]}
-whenever you do not understand the functionality that is being used.
-
-We hope that these snippets will provide a strong foundation for your code style.
-Alongside the collaborative view of data that we outlined above,
-good code practices are a core part of the new data science of development research.
-Code today is no longer a means to an end (such as a paper),
-but it is part of the output itself: it is a means for communicating how something was done,
-in a world where the credibility and transparency of data cleaning and analysis is increasingly important.
+\section{Writing code in a collaborative environment}
 
 Just as data collection and management processes have become more social and collaborative,
 code processes have as well. This means other people need to be able to read your code.
@@ -135,14 +100,35 @@ Style, finally, is the way that the non-functional elements of your code convey 
 Elements like spacing, indentation, and naming can make your code much more (or much less)
 accessible to someone who is reading it for the first time and needs to understand it quickly and correctly.
 
-Reproducible research follows naturally from high-quality data, process standardization, and good code.
-High-quality data means that there will be substantially less noise
-that is due to sampling, randomization, and cleaning error.
-Process standardization means that there is little ambiguity about how something ought to be done,
-and therefore the tools that are used to do it are set in advance.
-Finally, good code enables easier pre-publication review,
-as well as an easier replication process post-publication.
+For the implementation portion, we will provide ``minimal'' code examples, like the following:
 
+\marginnote[2\baselineskip]{This is a Stata code block.
+Throughout this book, you will find examples like this,
+which illustrate how to perform basic versions
+of each task in Stata.}
+
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=code.do]
+{./code/code.do}}
+
+We have tried really hard to make sure that all the Stata code runs,
+and that each block should be well-formatted and use built-in functions.
+If it does not, we will make sure to install the necessary user-written packages.
+Providing some standardization to Stata code style is also a goal of this book,
+since groups are collaborating on code in Stata more than ever before.
+
+However, we will not explain Stata commands unless the behavior we are exploiting
+is outside the usual expectation of its functionality;
+we will comment the code generously (as you should),
+but you should reference Stata help-files \texttt{h [command]}
+whenever you do not understand the functionality that is being used.
+
+We hope that these snippets will provide a strong foundation for your code style.
+Alongside the collaborative view of data that we outlined above,
+good code practices are a core part of the new data science of development research.
+Code today is no longer a means to an end (such as a paper),
+but it is part of the output itself: it is a means for communicating how something was done,
+in a world where the credibility and transparency of data cleaning and analysis is increasingly important.
 
 This is all to say -- while there is some upfront cost to learning to work the way we describe here,
 you should start to save yourself and others a lot of time and hassle very quickly.
@@ -152,6 +138,6 @@ and in part this is because you will have the mindset to doing everything else i
 We hope you will find this book helpful for accomplishing all of the above,
 and that you will find that mastery of data helps you make an impact!
 
-- The DIME Analytics Team
+\textbf{-- The DIME Analytics Team}
 
 \mainmatter
