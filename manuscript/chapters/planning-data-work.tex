@@ -31,7 +31,7 @@ only by using it in real-world work.
 Being comfortable using your computer and having the tools you need in reach is key.
 This section provides a brief introduction to key concepts and toolkits
 that can help you take on the work that you will be primarily responsible for.
-Some of these items skills may seem elementary,
+Some of these skills may seem elementary,
 but thinking about simple things from a workflow perspective
 can help you make marginal improvements every day you work.
 
@@ -65,32 +65,55 @@ Purchase authorized copies of software like Microsoft Office 365,
 and pay for the individual tier of critical services like Dropbox,\sidenote{\url{https://www.dropbox.com}} Backblaze,\sidenote{\url{https://www.backblaze.com}} and LastPass.\sidenote{\url{https://www.lastpass.com}}
 Get a decent email client (like Spark\sidenote{\url{https://sparkmailapp.com}} or Outlook),
 a calendar that you like, the communication and note-taking tools you need,
-a good music streaming service, and solid headphones with a mic.
+a good music streaming service, and solid headphones with a microphone.
 None of these are essential to the work,
 but they will make you a lot more comfortable doing it,
 and being comfortable at your computer helps you stay happy and healthy.
 
-The first thing you need to have when working on your computer is a sense of where you are.
+When using a computer for research,
+you should keep in mind a structure of work
+known as \textbf{scientific computing}.\cite{wilson2014best,wilson2017good}
+\index{scientific computing}
+Scientific computing is a set of practices developed to help you
+ensure that the computer is being used to improve your efficiency,
+so that you can focus on the real-world problems instead of technical ones.\sidenote{
+\url{https://www.dropbox.com/s/wqefknwfb91kop8/Coding_For_Econs_20190221.pdf?raw=1}}
+This means getting to know your computer a little better than most people do,
+and thinking critically about tasks like file structures,
+code and process reusability,\sidenote{
+\url{http://blogs.worldbank.org/opendata/making-analytics-reusable}}
+and software choice. Most importantly,
+it means detecting early warning signs of process bloat.
+As a general rule, if the work required to maintain a process
+grows as fast (or faster) than the number of objects controlled by that process,
+you need to stop work immediately and rethink processes.
+You should work to design processes that are
+close to infinitely scalable by the number of objects under control --
+whether they be field samples, data files, surveys, or other real or digital objects.
+
+The first thing you need to have for scientific computing
+is a sense of where you are on your filesystem.
+\marginnote{You should \textit{always} use forward slashes (\texttt{/}) in filepaths,
+just like an internet address, and no matter how your computer writes them,
+because the other type will cause your work to break many systems.}
 Find your \textbf{home folder}. On MacOS, this will be a folder with your username.
 On Windows, this will be something like ``This PC''. (It is never your desktop.)
 Nearly everything we talk about will assume you are starting from here.
 Ensure you know how to get the \textbf{absolute file path} for any given file.
 On MacOS this will be something like \path{/users/username/dropbox/project/...},
 and on Windows, \path{C:/users/username/github/project/...}.
-\marginnote{You should \textit{always} use forward slashes (\texttt{/}) in filepaths,
-just like an internet address, and no matter how your computer writes them,
-because the other type will cause your work to break many systems.}
 We will write filepaths such as \path{/Dropbox/project-title/DataWork/EncryptedData/}
 using forward slashes, and mostly use only A-Z, dash, and underscore.
-You can use spaces in names of non-technical files, but not technical ones.
+You can use spaces in names of non-technical files, but not technical ones.\sidenote{
+\url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf}}
 Making the structure of your files part of your workflow is really important,
-as is naming them correctly so you know what is where.\sidenote{\url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf}}
+as is naming them correctly so you know what is where.
 
 \subsection{Preparing for collaboration and replication}
 
 Next, you will need a personal working environment and a team working environment.
 If you are working in R, RStudio is great.\sidenote{\url{https://www.rstudio.com}}
-For Stata, we recommend the text editor Atom,\sidenote{\url{https://atom.io}}
+For Stata, we recommend the text and code editor Atom,\sidenote{\url{https://atom.io}}
 which can open an entire targeted directory by writing \path{atom /path/to/directory/}
 in the command line (Terminal or PowerShell), after copying it from the browser.
 Opening the entire directory loads the whole tree view in the sidebar,
@@ -104,11 +127,16 @@ there are lots of stylistic and functional options in extension packages
 that you can use to make your work easier and more enjoyable.
 
 You will also need collaboration software.
-The two most common softwares in use are Dropbox and GitHub.\sidenote{\url{https://michaelstepner.com/blog/git-vs-dropbox/}}
-Many organizations have an institutional subscription to one or both.
-Dropbox will be preferred by most non-technical staff,
+The two most common softwares in use are Dropbox and GitHub.\sidenote{
+\url{https://michaelstepner.com/blog/git-vs-dropbox/}}
+Dropbox and GitHub fall at the same level of the organizational hierarcy:
+they should both have a top-level folder inside your home folder,
+and neither one should ever be placed inside the other.
+Many organizations have an institutional subscription to one or both services;
+although some organizations have banned Dropbox outright due to its security issues.
+Dropbox (or equivalent such as OneDrive) will be preferred by most non-technical staff,
 including project PIs and field staff.
-It is preferable for sharing documents that are non-technical (like .docx),
+It is preferable for sharing documents that are non-technical (like \texttt{.docx}),
 and data that is non-sensitive (no personal information).
 GitHub will be preferred for code,
 and therefore most of what you are doing can be managed with Git.
@@ -116,6 +144,18 @@ Code is written in its native language,
 and increasingly, outputs like reports\sidenote{\url{https://www.latex-project.org}}
 and presentations\sidenote{\url{https://www.overleaf.com/learn/latex/Beamer}}
 are being written in languages like \LaTeX.
+
+You should feel comfortable having both a project folder and a code folder.
+The project folder can be maintained in a synced location like Dropbox,
+and the code folder can be maintained in a version-controlled location like GitHub.
+While both are used for sharing and collaborating,
+there is a sharp difference between the functionality of sync and version control.
+(Namely, sync forces everyone to have the same version of every file at all times
+and does not support simultaneous editing well; version control does the opposite.)
+Keeping code in a version-controlled folder will allow you
+to maintain better control of its history and functionality,
+and because of the specificity with which code depends on file structure,
+you will be able to enforce better practices there than in the project folder.
 
 %------------------------------------------------
 
@@ -125,6 +165,7 @@ Before you begin any work, you will need to settle in to working with others.
 \marginnote{\texttt{ietoolkit} and \texttt{iefieldkit} provide Stata tools
 for the workflows we recommend. They can save you a lot of time and hassle,
 in data collection, data cleaning, and data analysis. Both are available on SSC.}
+\index{ietoolkit}\index{iefieldkit}
 DIME Analytics has put a lot of time into making this process painless,
 in a couple of key ways.
 First, we provide guidelines to standardize work across teams;
@@ -133,11 +174,14 @@ third, we provide training so people understand these tools and guidelines.
 Your team doesn't have to work exactly as we describe here,
 but know that a lot of work has gone into getting this all figured out.
 
-This book and the DIME Wiki are a guide and a manual to our workflow.
+This book and the DIME Wiki\sidenote{url{https://dimewiki.worldbank.org}}
+are a guide and a manual to our workflow.
 This book will give you a narrative account of the things you'll need to do,
 and some basic tools to do them.
+It will leave you with a good understanding of what to search for
+as you learn the basic framework of the project cycle.
 The DIME Wiki will stay up to date with more extensive details and resources,
-and will be very useful once you know what to search for.
+and will be very useful once you know what you need to know.
 However, these resources cannot predict everything that will happen on your project.
 Most importantly, talk to others in your team.
 Figure out what datasets and code inputs are going to be created,
@@ -163,7 +207,18 @@ structure as a baseline guide for teams.
 you will need for the entire data portion of a project, from start to finish.
 Our training materials for how to use the \texttt{iefolder} structure
 are the first introduction DIME staff get to team work.
-
-For data files, agree on a \textbf{version control}\cite{blischak2016quick} workflow such as
+For code files, agree on a \textbf{version control}\cite{blischak2016quick} workflow such as
 Git Flow,\sidenote{\url{https://nvie.com/posts/a-successful-git-branching-model/}}
 and a naming structure for files and folders.
+
+Then, set up task management. GitHub issues are a great tool for this,
+and Dropbox Paper also provides a good interface with notifications.
+Neither of these tools require much technical knowledge;
+they merely require an agreement and workflow design
+so that the people assigning the tasks
+are sure to set them up in the system.
+GitHub is useful because tasks can clearly be tied to file versions;
+therefore it is useful for managing technical tasks.
+Dropbox Paper is useful because tasks can be easily linked to other documents;
+therefore it is useful for managing non-technical tasks.
+Our team uses both.
