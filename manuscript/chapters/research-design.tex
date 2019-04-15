@@ -31,6 +31,7 @@ and code tools broadly available to support your work.
 
 In causal analysis, a typical goal is to obtain an estimate
 of a \textbf{treatment effect}, or the change in outcome
+\index{treatment effect}
 caused by a change in exposure to some intervention or circumstance.\cite{abadie2018econometric}
 However, in the potential outcomes framework,
 we can never observe this directly:
@@ -40,12 +41,15 @@ we try to devise a comparison group that evidence suggests
 would be identical to the treated group had they not been treated.
 
 This control group serves as a counterfactual to the treatment group,
+\index{control group}\index{treatment group}
 and we compare the distributions of outcomes within each
 to make a computation of ``how different'' the groups are from each other.
-\marginnote{\textit{Causal Inference: The Mixtape}
+\marginnote{\textit{Causal Inference} and \textit{Causal Inference: The Mixtape}
 provides a detailed practical introduction to and history of
 each of these methods, so we will only introduce you to
-them very abstractly in this chapter. \url{http://scunning.com/cunningham_mixtape.pdf}}
+them very abstractly in this chapter.
+\\ \noindent \url{https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/}
+\\ \noindent \url{http://scunning.com/cunningham_mixtape.pdf}}
 Each of the methods described in this chapter
 relies on some variant of this basic strategy.
 In counterfactual causal analysis,
@@ -62,7 +66,14 @@ between the treatment and control groups is captured.
 This means capturing design choices
 such as stratification and clustering and
 ensuring that time trends are handled sensibly.
-It means thinking carefully about how to transform and scale your data,
+\marginnote{We aren't even going to get into regression models here.
+Almost all experimental designs can be accurately described
+as a series of between-group comparisons.
+\\ \noindent \url{http://nickchk.com/econ305.html}}
+It means thinking carefully about how to transform and scale your data,\sidenote{
+This includes the ongoing debate over the best logarithmic transformation
+for data that includes many zeroes.
+\\ \noindent \url{http://marcfbellemare.com/wordpress/12856}}
 using fixed effects to extract ``within-group'' comparisons as needed,
 and choosing estimators appropriate to your design.
 As the saying goes, all models are wrong, but some are useful.
@@ -70,23 +81,24 @@ The models you will construct and estimate are intended to do two things:
 to express the intention of your research design,
 and to help you group the potentially endless concepts of field reality
 into intellectually tractable categories.
-In other words, these models tell the story of your research.
+In other words, these models tell the story of your research design.
 
 %------------------------------------------------
 
-\section{Experimental reseach designs}
+\section{Experimental research designs}
 
 Experimental research designs explicitly allow the research team
 to change the condition of the populations being studies.
 This can be in the form of NGO programs, government regulations,
 information campaigns, and many more types of interventions.
-The ``classic'' method is the randomized control trial:
-treatment groups are drawn from the same underlying population
+The ``classic'' method is the \textbf{randomized control trial (RCT)}:
+\index{randomized control trial}
+treatment and control groups are drawn from the same underlying population
 so that the strong condition of statistical equality
 in the absense of the experiment can be assumed.
 Three methods are discussed here:
 cross-sectional randomization (``endline-only'' studies),
-differences-in-differences (``panel data'' studies),
+differences-in-differences (``panel-data'' studies),
 and regression discontinuity (``cutoff'' studies).
 
 \subsection{Cross-sectional RCTs}
@@ -108,18 +120,28 @@ but do not imply a panel structure for individual observations.
 Typically, the cross-sectional model is developed
 only with controls for the research design.
 Balance checks can be utilized, but an effective experiment
-can use stratification aggressively to ensure balance
+can use stratification (sometimes called blocking) aggressively to ensure balance
 before data is collected.\cite{athey2017econometrics}
+\index{balance}
+Stratification disaggregates a single experiment to a collection
+of smaller experiments by conducting randomization within
+``sufficiently similar'' strata groups.
+Adjustments for balance variables are never necessary in RCTs,
+because it is certain that the true data-generating process
+has no corrlation between the treatment and the balance factors.
 Since the experiment is fully randomized,
 controls for imbalance that are not part of the design
-only increase the precision of estimates,
-but mechanically induce some bias away from the true effect.
+may reduce the variance of estimates,
+but mechanically induce bias away from the true effect.
 
 \subsection{Differences-in-differences}
 
-Differences-in-differences deals with imbalance differently:
+Differences-in-differences\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Difference-in-Differences}}
+\index{differences-in-differences}
+deals with the construction of controls differently:
 it uses a panel data structure to additionally use each
-unit in the pre-treatment phase as a control for itself post-treatment.
+unit in the pre-treatment phase as a control for itself post-treatment.\cite{mckenzie2012beyond}
 Therefore, rather than relying on balance design for credibility,
 DD-type designs therefore only need to test whether \textit{changes}
 in outcomes over time were different in the treatment group than the control group.
@@ -147,8 +169,10 @@ that we interpret as the differential effect of the treatment assignment.
 
 \subsection{Regression discontinuity}
 
-Regression discontinuity designs differ from RCTs
-in that the treatment group is not randomly assigned.
+\textbf{Regression discontinuity} designs differ from RCTs
+\index{regression discontinuity}
+in that the treatment group is not randomly assigned.\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Regression_Discontinuity}}
 (In fact, many RDs are not experimental at all.)
 Instead, there is a \textbf{running variable}
 which gives eligible people access to some program,
@@ -174,7 +198,8 @@ The rest of the model depends largely on the design and execution of the experim
 
 \section{Quasi-experimental research designs}
 
-``Quasi-''experimental research designs,
+``Quasi-''experimental research designs,\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Quasi-Experimental_Methods}}
 also called observational or non-experimental designs,
 are inference methods not based on explicit experimentation.
 Instead, they rely on ``experiments of nature'',
@@ -196,6 +221,7 @@ the treatment and comparison groups plausibly identical.
 Instrumental variables designs utilize variation in an
 otherwise-unrelated predictor of exposure to a treatment condition
 as an ``instrument'' for the treatment condition itself.\sidenote{\url{https://dimewiki.worldbank.org/wiki/instrumental_variables}}
+\index{instrumental variables}
 The simplest example is actually experimental --
 in a randomization design, we can use instrumental variables
 based on an \textit{offer} to join some program,
@@ -208,9 +234,19 @@ The corresponding two-stage-least-squares (2SLS) estimator
 solves this by conditioning on only the random portion of takeup --
 in this case, the randomized offer of enrollment in the program.
 
+Unfortunately, instrumental variables designs are known
+to have very high variances relative to ordinary least squares.\cite{young2017consistency}
+IV designs furthermore rely on strong but untestable assumptions
+about the relationship between the instrument and the outcome.\cite{bound1995problems}
+Therefore IV designs face special scrutiny,
+and only the most believable designs,
+usually those backed by extensive qualitative analysis,
+are acceptable as high-quality evidence.
+
 \subsection{Matching estimators}
 
 Matching estimators rely on the assumption that,
+\index{matching}
 conditional on some observable characteristics,
 untreated units can be compared to treated units,
 as if the treatment had been fully randomized.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Matching}}
@@ -235,7 +271,8 @@ is to incorporate matching models into explicitly experimental designs.
 
 \subsection{Synthetic controls}
 
-Synthetic controls methods\cite{abadie2015comparative}
+\textbf{Synthetic controls} methods\cite{abadie2015comparative}
+\index{synthetic controls}
 are designed for a particularly interesting situation:
 one where useful controls for an intervention simply do not exist.
 Canonical examples are policy changes at state or national levels,
