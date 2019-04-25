@@ -28,79 +28,100 @@ dictating how they use different functions, how they store data, and how they wr
 
 \section{Doing credible research at scale}
 
-The team responsible for this book is known as DIME Analytics.\sidenote{\url{http://www.worldbank.org/en/research/dime/data-and-analytics}}
-DIME Analytics works within the Development Impact Evaluation unit (DIME)\sidenote{\url{http://www.worldbank.org/en/research/dime}}
-at the World Bank's Development Economics Research group (DEC).\sidenote{\url{http://www.worldbank.org/en/research/}}
-DIME Analytics supports all of the research projects operated under the DIME umbrella,
-and each of its members also works on their own development research and data science projects.
-This book was conceived as a complement to the DIME Wiki,\sidenote{\url{http://dimewiki.worldbank.org/}}
-which is a free online collection of resources and best practices.
-DIME Analytics has built up these ideas, practices, and software tools
-over the course of almost ten years of supporting hundreds of projects and staff in total.
+The team responsible for this book is known as \textbf{DIME Analytics}.\sidenote{
+\url{http://www.worldbank.org/en/research/dime/data-and-analytics}}
+The DIME Analytics team works within the \textbf{Development Impact Evaluation unit (DIME)}\sidenote{
+\url{http://www.worldbank.org/en/research/dime}}
+at the World Bank's \textbf{Development Economics group (DEC)}.\sidenote{
+\url{http://www.worldbank.org/en/research/}}
+Over the course of almost ten years of supporting hundreds of projects and staff in total,
+DIME Analytics has built up a set of ideas, practices, and software tools
+that support all of the research projects operated at DIME.
 
-In the time that we have been working in this field,
-the proportion of projects that rely on primary empirical data has soared.\cite{angrist2017economic}
+In the time that we have been working in the development field,
+the proportion of projects that rely on \textbf{primary empirical data} has soared.\cite{angrist2017economic}
 Today, the scope and scale of those projects continue to expand rapidly,
 meaning that more and more people are working on the same data over longer and longer timeframes.
-This is because, while administrative datasets and ``big data'' have important uses,
-\textit{primary} data are critical for answering specific research questions.
+This is because, while administrative datasets
+and \textbf{big data} have important uses,
+primary data -- data collected by a researcher for a research purpose --
+is critical for answering specific research questions.
 As the ambition of development researchers grows, so too has the complexity of the data
-that they rely on to make policy-relevant research conclusions from field experiments.
+on which they rely to make policy-relevant research conclusions from field experiments.
 Unfortunately, this seems to have happened (so far) without the creation of
 universal guidelines for practitioners to handle these data efficiently and transparently,
 which would also provide quality markers beyond reputation for research consumers.
 
 The main lesson we have learned working in the field over this time is that
 the most important parts of primary data work are reproducibility and collaboration.
+\marginnote{The \textbf{DIME Wiki} is one of our flagship resources for project teams,
+as a free online collection of our resources and best practices.
+\newline \noindent \url{http://dimewiki.worldbank.org/}}
 You will be working with people who have very different skillsets and mindsets than you,
 from and in a variety of cultures and contexts, and you will have to adopt workflows
 that everyone can agree upon, and that save time and hassle on every project.
 This is not easy. But for some reason, the people who agreed to write this book enjoy doing it.
 (In part this is because it has saved us ourselves a lot of time and effort.)
-As we have worked with more and more DIME recruits -- economists, field managers, and research assistants --
+\marginnote{You can download or contribute to this book at: \url{http://worldbank.github.com/data4devimpact}}
+As we have worked with more and more DIME recruits
+-- economists, field managers, and research assistants --
 we have realized that we barely have the time to give everyone the attention they deserve.
 This book itself is therefore intended to be a labor-saving process for us:
-we hope one day we can hand new people a copy of our accumulated knowledge in print,
+we hope one day we can hand new staff a copy of our accumulated knowledge in print,
 and that it will do a better job teaching them than any one of us could alone.
 
-Reproducible research follows naturally from high-quality data, process standardization, and good code.
+This book therefore complements the detailed-but-unstructured DIME Wiki
+with a guided tour of the major tasks that make up primary data collection.\marginnote{Like this:}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Primary_Data_Collection}}
+We will not give a lot of highly specific details in this text,
+but we will point you to where they can be found,
+and give you a sense of what you need to find next.
+Each chapter will focus on one task,
+and give a primarily narrative account of:
+what you will be doing; where in the workflow this task falls;
+when it should be done; who you will be working with;
+why this task is important; and how to implement the most basic form of the task.
+
+
+\section{Writing reproducible code in a collaborative environment}
+
+Reproducible research follows naturally from
+high-quality data, process standardization, and good code.
 High-quality data means that there will be substantially less noise
 that is due to sampling, randomization, and cleaning error.
-Process standardization means that there is little ambiguity about how something ought to be done,
+Process standardization means that there is
+little ambiguity about how something ought to be done,
 and therefore the tools that are used to do it are set in advance.
 Finally, good code enables easier pre-publication review,
-as well as an easier replication process post-publication.
-
-This book complements the detailed-but-unstructured DIME Wiki
-with a guided tour of the major tasks that make up primary data collection.
-We will not give a lot of highly specific details in this text,
-but we will point you to where they can be found, and give you a sense of what you need to find next.
-Each chapter will focus on one task, and give a primarily narrative account of: what you will be doing; where in the workflow this task falls; when it should be done; who you will be working with; why this task is important; and how to implement the most basic form of the task.
-
-
-\section{Writing code in a collaborative environment}
+as well as easier replication processes post-publication.
 
 Just as data collection and management processes have become more social and collaborative,
-code processes have as well. This means other people need to be able to read your code.
+code processes have as well.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Stata_Coding_Practices}} This means other people need to be able to read your code.
 Not only are things like documentation and commenting important,
-but code should be ``readable'' in the sense that others can:
+but code should be readable in the sense that others can:
 (1) quickly understand what a portion of code is supposed to be doing;
 (2) evaluate whether or not it does that thing correctly; and
 (3) modify it efficiently either to test alternative hypotheses or to adapt into their own work.
 
-To accomplish that, you should think of code in terms of three major elements: structure, syntax, and style.
-The structure is the environment your code lives in:
+To accomplish that, you should think of code in terms of three major elements:
+\textbf{structure}, \textbf{syntax}, and \textbf{style}.
+\marginnote{We always tell people to ``code as if a stranger would read it''.
+The reason? Tomorrow, that stranger will be you.}
+The \textbf{structure} is the environment your code lives in:
 good structure means that it is easy to find individual pieces of code that correspond to tasks.
 Good structure also means that functional blocks are sufficiently independent from each other
 that they can be shuffled around, repurposed, and even deleted without damaging other portions.
-The syntax is the literal language of of your code.
-Good syntax means that your code is readable in terms of how its mechanics implement ideas --
-it should not require arcane reverse-engineering to figure out what a code chunk is trying to do.
-Style, finally, is the way that the non-functional elements of your code convey their purpose.
+The \textbf{syntax} is the literal language of of your code.
+Good syntax means that your code is readable
+in terms of how its mechanics implement ideas --
+it should not require arcane reverse-engineering
+to figure out what a code chunk is trying to do.
+\textbf{Style}, finally, is the way that the non-functional elements of your code convey its purpose.
 Elements like spacing, indentation, and naming can make your code much more (or much less)
 accessible to someone who is reading it for the first time and needs to understand it quickly and correctly.
 
-For the implementation portion, we will provide ``minimal'' code examples, like the following:
+For some implementation portions where precise code is particularly important,
+we will provide minimal code examples either in the book on on the Wiki.
+In the book, they will be presented like the following:
 
 \marginnote[2\baselineskip]{This is a Stata code block.
 Throughout this book, you will find examples like this,
@@ -112,25 +133,27 @@ of each task in Stata.}
 {./code/code.do}}
 
 We have tried really hard to make sure that all the Stata code runs,
-and that each block should be well-formatted and use built-in functions.
-If it does not, we will make sure to install the necessary user-written packages.
-Providing some standardization to Stata code style is also a goal of this book,
+and that each block is well-formatted and uses built-in functions.
+We will also point to user-written functions when they provide important tools.
+In particular, we have written two suites of Stata commands,
+\texttt{ietoolkit}\sidenote{\url{https://dimewiki.worldbank.org/wiki/ietoolkit}} and \texttt{iefieldkit}\sidenote{\url{https://dimewiki.worldbank.org/wiki/iefieldkit}},
+that standardize some of our core data collection workflows.
+Providing some standardization to Stata code style is also a goal of this team,
 since groups are collaborating on code in Stata more than ever before.
-
-However, we will not explain Stata commands unless the behavior we are exploiting
+\marginnote{We will not explain Stata commands unless the behavior we are exploiting
 is outside the usual expectation of its functionality;
 we will comment the code generously (as you should),
 but you should reference Stata help-files \texttt{h [command]}
-whenever you do not understand the functionality that is being used.
-
-We hope that these snippets will provide a strong foundation for your code style.
+whenever you do not understand the functionality that is being used.}
+We hope that these snippets will provide a foundation for your code style.
 Alongside the collaborative view of data that we outlined above,
 good code practices are a core part of the new data science of development research.
 Code today is no longer a means to an end (such as a paper),
 but it is part of the output itself: it is a means for communicating how something was done,
 in a world where the credibility and transparency of data cleaning and analysis is increasingly important.
 
-This is all to say -- while there is some upfront cost to learning to work the way we describe here,
+While adopting the workflows and mindsets described in this book
+requires an up-front cost, 
 you should start to save yourself and others a lot of time and hassle very quickly.
 In part this is because you will learn how to do the essential things directly;
 in part this is because you will find tools for the more advanced things;
