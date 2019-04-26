@@ -3,7 +3,7 @@
 \begin{fullwidth}
 Most data collection is now done using digital data entry
 using tools that are specially designed for surveys.
-These tools, called ``computer-assisted personal interviewing'' (CAPI) softwares,
+These tools, called \textbf{computer-assisted personal interviewing (CAPI)} software,
 provide a wide range of features designed to make
 implementing even highly complex surveys easy, scalable, and secure.
 However, these are not fully automatic:
@@ -11,12 +11,9 @@ you still need to actively design and manage the survey.
 Each software has specific practices that you need to follow
 to enable features such as Stata-compatibility and data encryption.
 
-While you can work in any software you like,
-this guide will present tools and best practices
-for working with SurveyCTO, a proprietary implementation of Open Data Kit (ODK).
-Most of the processes below will also replicate in ODK
-with minimal adjustment for the exact setup you have.
-The important parts, of course, are primarily conceptual:
+You can work in any software you like,
+and this guide will present tools and workflows
+that are primarily conceptual:
 this chapter should provide a motivation for
 planning data structure during survey design,
 developing surveys that are easy to control for quality and security,
@@ -25,14 +22,17 @@ and having proper file storage ready for sensitive PII data.
 
 %------------------------------------------------
 
-\section{Designing questionnaires with SurveyCTO}
+\section{Designing CAPI questionnaires}
 
-SurveyCTO surveys are primarily created in Excel or Google Sheets,
-making them one of the few outputs for which no coding is required.
+CAPI surveys\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted_Personal_Interviews_(CAPI)}}
+are primarily created in Excel, Google Sheets,
+or software-specific form builders
+making them one of the few outputs for which little coding is required.\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
 \marginnote{The \texttt{ietestform} command, part of
 \texttt{iefieldkit}, implements form-checking routines
-for some SurveyCTO best practices. You can find a summary
-of those practices at \url{https://dimewiki.worldbank.org/wiki/ietestform}.}
+for \textbf{SurveyCTO}, a proprietary implementation of \textbf{Open Data Kit (ODK)}.
+You can find a summary
+of those practices at \url{https://dimewiki.worldbank.org/wiki/ietestform}}
 However, since they make extensive use of logical structure and
 relate directly to the data that will be used later,
 both the field team and the data team should
@@ -41,20 +41,23 @@ collaborate to make sure that the survey suits all needs.\cite{krosnick2018quest
 Generally, this collaboration means building the experimental design
 fundamentally into the structure of the survey.
 When ID matching and tracking is essential,
-the survey should be prepared to verify against preloads
-of data from master records or from other rounds,
-and ``extensive tracking'' sections --
+the survey should be prepared to verify new data
+against preloaded data from master records or from other rounds.
+Extensive tracking sections --
 in which reasons for attrition, treatment contamination, and
 loss to follow-up can be documented --
+\index{attrition}\index{contamination}
 are essential data components for completing CONSORT records.\cite{begg1996improving}
 
-The survey design is the first part where the data team
+Questionnaire design\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
+\index{questionnaire design}
+is the first task where the data team
 and the field team must collaborate on data structure.
 The field-oriented staff and the PIs will likely prefer
-to capture a large amount of detailed \texttt{information}
-in the field, some of which will serve very poorly as \texttt{data}.\sidenote{\url{
+to capture a large amount of detailed \textit{information}
+in the field, some of which will serve very poorly as \textit{data}.\sidenote{\url{
 https://iriss.stanford.edu/sites/g/files/sbiybj6196/f/questionnaire\_design\_1.pdf}}
-In particular, open-ended responses and questions which will have
+In particular, \textbf{open-ended responses} and questions which will have
 many null or missing responses by design will not be very useful
 in statistical analyses unless pre-planned.
 You must work with the field team to determine the appropriate amount
@@ -69,15 +72,15 @@ expensive specialized staff.
 For example, if collecting data on medication use or supplies,
 you could collect: the brand name of the product;
 the generic name of the product;
-the ATC-coded compound of the product;
+the coded compound of the product;
 or the broad category to which each product belongs (antibiotic, etc.).
 All four may be useful for different reasons,
 but the latter two are likely to be the most useful for the analyst.
-The ATC-coded compound requires providing a translation dictionary
+The coded compound requires providing a translation dictionary
 to field staff, but enables automated rapid recoding for analysis
 with no loss of information.
 The generic class requires agreement on the broad categories of interest,
-but allow for much more comprehensible top-line statistics and data quality checks.
+but allows for much more comprehensible top-line statistics and data quality checks.
 
 Broadly, the questionnaire should be designed as follows.
 The workflow will feel much like writing an essay:
