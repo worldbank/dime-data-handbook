@@ -26,7 +26,7 @@ and experimental analyses can be tried without a complex workflow.
 Finally, the outputs need to be organized,
 so that it is clear what results go with what analyses,
 and that each individual output is a readable element in its own right.
-This chapter will teach you how to stay organized,
+This chapter outlines how to stay organized
 so that you and the team can focus on getting the work right
 rather than trying to understand what you did in the past.
 \end{fullwidth}
@@ -36,20 +36,23 @@ rather than trying to understand what you did in the past.
 \section{Organizing primary survey data}
 
 There are many schemes to organize primary survey data.
+\index{data organization}
 We provide the \texttt{iefolder}\sidenote{
-\url{https://dimewiki.worldbank.org/iefolder}}
-package (part of \texttt{ietoolkit}) so that
+\url{https://dimewiki.worldbank.org/wiki/iefolder}}
+package (part of \texttt{ietoolkit}\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/ietoolkit}}) so that
 a large number of teams will have identical folder structures.
 This means that PIs and RAs face very small costs
-when switching between projects, becuase all the materials
-will be organized in exactly the same basic way.
-Namely, there will be dedicated folders for raw data;
+when switching between projects, because all the materials
+will be organized in exactly the same basic way.\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork_Folder}}
+Namely, within each survey round folder,\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork_Survey_Round}}
+there will be dedicated folders for raw (encrypted) data;
 for de-identified data; for cleaned data; and for final (constructed) data.
 There will be a folder for raw results, as well as for final outputs.
 The folders that hold code will be organized in parallel to these,
 so that the progression through the whole project can be followed
 by anyone new to the team. Additionally, \texttt{iefolder}
-provides \textbf{master do-files} so that the entire order
+provides \textbf{master do-files}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master_Do-files}} so that the entire order
 of the project is maintained in a top-level dofile,
 ensuring that no complex instructions are needed
 to exactly replicate the project.
@@ -67,7 +70,8 @@ and it must be backed up in a secure offsite location.
 Everything else can be replaced, but raw data cannot.
 Therefore, raw data should never be interacted with directly.
 
-Instead, the first step upon receipt of data is de-identification.
+Instead, the first step upon receipt of data is \textbf{de-identification}.\sidenote{\url{https://dimewiki.worldbank.org/wiki/De-identification}}
+\index{de-identification}
 There will be a code folder and a corresponding data folder
 so that it is clear how de-identification is done and where it lives.
 Typically, this process only involves stripping fields from raw data,
@@ -90,7 +94,9 @@ It will also become the template dataset for final public release.
 
 \section{Cleaning and constructing derivative datasets}
 
-Once the de-identified dataset is created, data must be cleaned.
+Once the de-identified dataset is created, data must be \textbf{cleaned}.\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Data_Cleaning}}
+\index{data cleaning}
 This process does not involve the creation of any new data fields.
 Cleaning can be a long process: this is the phase at which
 you obtain an extensive understanding of the contents and structure
@@ -99,44 +105,45 @@ You should use this time to understand the types of responses collected,
 both within each survey question and across repsondents.
 Understanding this structure will make it possible to do analysis.
 
-There are a number of tasks involved in cleaning data.\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Data_Cleaning}}
+There are a number of tasks involved in cleaning data.
 \marginnote{The \texttt{iecodebook} command suite, part of \texttt{iefieldkit},
 is designed to make some of the most tedious components of this process,
 such as renaming, relabeling, and value labeling,
 much easier (including in data appending).
 \url{https://dimewiki.worldbank.org/iecodebook}}
+\index{iecodebook}
 A data cleaning do-file will load the de-identified data,
 make sure all the fields are named and labelled concisely and descriptively,
 apply corrections to all values in the dataset,
 make sure value labels on responses are accurate and concise,
 and attach any experimental-design data (sampling and randomization)
 back to the clean dataset before saving.
-It will ensure that ID variables are correctly structured and matching,
+It will ensure that ID variables\sidenote{\url{https://dimewiki.worldbank.org/wiki/ID_Variable_Properties}} are correctly structured and matching,
 ensure that data storage types are correctly set up
 (including tasks like dropping open-ended responses and encoding strings),
 and make sure that data missingness is appropriately documented
-using other primary inputs from the field.
+using other primary inputs from the field.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Documentation}}
 
 Clean data then becomes the basis for constructed (final) datasets.
 While data cleaning typically takes one survey dataset
 and mixes it with other data inputs to create a corresponding
 cleaned version of that survey data (a one-to-one process),
-data construction is a much more open-ended process.
+\textbf{data construction} is a much more open-ended process.
+\index{data construction}
 Data construction files mix-and-match clean datasets
 to create a large number of potential analysis datasets.
 Data construction is the time to create derived variables
-(binaries, indices, and interactions, to name a few);
-it is the time to reshape data as necessary;
-it is the time to create functionally-named variables;
-and it is the time to sensibly subset data for analysis.
+(binaries, indices, and interactions, to name a few),
+to reshape data as necessary;
+to create functionally-named variables,
+and to sensibly subset data for analysis.
 
 Data construction is never a finished process.
 It comes ``before'' data analysis only in a limited sense:
 the construction code must be run before the analysis code.
 Typically, however it is the case that the construction and analysis code
 are written concurrently -- both do-files will be open at the same time.
-This is because it is only in the process of writing the analysis
+It is only in the process of writing the analysis
 that you will come to know which constructed variables are necessary,
 and which subsets and alterations of the data are desired.
 
@@ -148,37 +155,38 @@ there may be a \texttt{data-wide.dta},
 \texttt{data-long-counterfactual.dta}, and many more as needed.
 Data construction should never be done in analysis files,
 and since much data construction is specific to the planned analysis,
-organizing analysis files by this method allows that level of specificity
-to be introduced at the correct part of the process.
+organizing analysis code into many small files allows that level of specificity
+to be introduced at the correct part of the code process.
 Then, when it comes time to finalize analysis files,
 it is substantially easier to organize and prune that code
 since there is no risk of losing construction code it depends on.
-
 
 %------------------------------------------------
 
 \section{Writing data analysis code}
 
 Data analysis is the stage of the process to create research outputs.
+\index{data analysis}
+\marginnote{Some introductions to common code skills and analytical frameworks are:
+\textit{R for Data Science} (\url{https://r4ds.had.co.nz/});
+\textit{A Practical Introduction to Stata} (\url{https://scholar.harvard.edu/files/mcgovern/files/practical_introduction_to_stata.pdf});
+\textit{Mostly Harmless Econometrics} (\url{https://www.researchgate.net/publication/51992844_Mostly_Harmless_Econometrics_An_Empiricist's_Companion}); and
+\textit{Causal Inference: The Mixtape} (\url{http://scunning.com/mixtape.html}).}
 This section will not include instructions on how to conduct specific analyses,
-as these are highly specialized and require field and statistical expertise.\sidenote{
-Some introductions to common code skills and analytical frameworks are:
-\textit{R for Data Science} \url{https://r4ds.had.co.nz/};
-\textit{A Practical Introduction to Stata} \url{https://scholar.harvard.edu/files/mcgovern/files/practical_introduction_to_stata.pdf};
-\textit{Mostly Harmless Econometrics} \url{https://www.researchgate.net/publication/51992844_Mostly_Harmless_Econometrics_An_Empiricist's_Companion}; and
-\textit{Causal Inference: The Mixtape} \url{http://scunning.com/mixtape.html}.}
+as these are highly specialized and require field and statistical expertise.
 Instead, we will outline the structure of writing analysis code,
 assuming you have completed the process of data cleaning and construction.
-(As mentioned above, typically you will continue to keep
+As mentioned above, typically you will continue to keep
 the data-construction files open, and add to them as needed,
-while writing analysis code.)
+while writing analysis code.
 
 It is important to ignore the temptation to write lots of analysis
 into one big, impressive, start-to-finish analysis file.
-This is counterproductive because it subtly encourages poor practices,
+This is counterproductive because it subtly encourages poor practices
 such as not clearing the workspace or loading fresh data.
-Every output -- every table or figure -- should have
-a completely fresh workspace and load its data directly.
+Every output table or figure should have
+a completely fresh workspace and load its data directly
+prior to running that specific analysis.
 This encourages data manipulation to be done upstream (in construction),
 and prevents you from accidentally writing pieces of code
 that depend on each other, leading to the too-familiar
@@ -209,8 +217,8 @@ It is always better to have more code files open
 than to have to scroll around repeatedly inside a given file.
 Just like you named each of the analysis datasets,
 each of the individual analysis files should be descriptively named.
-Code such as \texttt{spatial-diff-in-diff.do},
-\texttt{matching-villages.do}, and \texttt{summary-statistics.do}
+Code files such as \path{spatial-diff-in-diff.do},
+\path{matching-villages.do}, and \path{summary-statistics.do}
 are clear indicators of what each file is doing
 and allow code to be found very quickly.
 Eventually, you will need to compile a ``release package''
@@ -218,8 +226,8 @@ that links the outputs more structurally to exhibits,
 but at this stage function is more important than structure.
 
 Outputs should, whenever possible, be created in lightweight formats.
-For graphics, \texttt{.eps} or \texttt{.tif} files are acceptable;
-for tables, \texttt{.tex} is preferred (don't worry about making it
+For graphics,\sidenote{\url{https://dimewiki.worldbank.org/wiki/Checklist:_Reviewing_Graphs}} \texttt{.eps} or \texttt{.tif} files are acceptable;
+for tables,\sidenote{\url{https://dimewiki.worldbank.org/wiki/Checklist:_Submit_Table}} \texttt{.tex} is preferred (don't worry about making it
 really nicely formatted until you are ready to publish).
 Excel \texttt{.xlsx} files are also acceptable,
 although if you are working on a large report
@@ -227,7 +235,7 @@ they will become cumbersome to update after revisions.
 If you are writing your code in Git/GitHub,
 you should output results into that directory,
 not the directory where data is stored (ie, Dropbox).
-This is because results will differ across different branches
+Results will differ across different branches
 and will constantly be re-writing each other:
 you should have each result stored with the code that created it.
 
@@ -235,34 +243,36 @@ you should have each result stored with the code that created it.
 
 \section{Visualizing data}
 
-Data visualization is increasingly popular,
+\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_visualization}} is increasingly popular,
+\index{data visualization}
 but a great deal of it is very low quality.\cite{healy2018data,wilke2019fundamentals}
 The default graphics settings in Stata, for example,
 are pretty bad.\sidenote{Gray Kimbrough's
 \textit{Uncluttered Stata Graphs} code is an excellent
 default replacement that is easy to install.
 \url{https://graykimbrough.github.io/uncluttered-stata-graphs/}}
-Thankfully, graphics tools like Stata are highly customizable;
-there is a fair amount of learning curve associated with
+Thankfully, graphics tools like Stata are highly customizable.
+There is a fair amount of learning curve associated with
 extremely-fine-grained adjustment,
-but basic colors, alignments, and labelling tools
-are well worth reading the graphics manual for.\sidenote{
+but it is well sorth reviewing the graphics manual
+to understand how to apply basic colors, alignments, and labelling tools\sidenote{
 \url{https://www.stata.com/manuals/g.pdf}}
-The manual is worth skimming through in full, as it provides
-many visual examples of what is possible and basic code examples
-detailing how to accomplish it.
+The manual is worth skimming in full, as it provides
+many visual examples and corresponding code examples
+that detail how to produce them.
 
 Graphics are hard to get right because you, as the analyst,
 will already have a pretty good idea of what you are trying to convey.
 Someone seeing the illustration for the first time,
 by contrast, will have no idea what they are looking at.
-Therefore a visual image has to be compelling in the sense
-that it shows, first, that there is something interesting going on,
+Therefore, a visual image has to be compelling in the sense
+that it shows that there is something interesting going on
 and compels the reader to figure out exactly what it is.
-There are a variety of resources to help you
-figure out how best to structure a given visual:
-The Stata Visual Library has many examples of figures that communicate effectively.\sidenote{
+A variety of resources can help you
+figure out how best to structure a given visual.
+The \textbf{Stata Visual Library}\sidenote{
 \url{https://worldbank.github.io/Stata-IE-Visual-Library/}}
+ has many examples of figures that communicate effectively.
 The Tapestry conference focuses on ``storytelling with data''.\sidenote{
 \url{https://www.youtube.com/playlist?list=PLb0GkPPcZCVE9EAm9qhlg5eXMgLrrfMRq}}
 \textit{Fundamentals of Data Visualization} provides extensive details on practical application;\sidenote{
