@@ -16,4 +16,5 @@ cap prog drop my_randomization
 
   // Cleanup
   lab var treatment "Treatment Arm"
+  
 end

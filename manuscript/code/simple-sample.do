@@ -1,26 +1,27 @@
-// Reproducible setup: data, isid, version, seed
-sysuse auto.dta , clear
-  isid make, sort
-  version 13.1
-  set seed 556292 // Timestamp: 2019-02-25 23:30:39 UTC
+// Simple reproducible sampling
 
-// Get true population parameter for price mean
-su price
-  local theMean = `r(mean)'
+// Set up reproducbilitiy
+ieboilstart , v(12)       // Version
+  `r(version)'            // Version
+  sysuse auto.dta, clear  // Load data
+  isid make, sort         // Sort
+  set seed 215597 // Timestamp: 2019-04-26 17:51:02 UTC
 
-// Sample 20 units 1000 times and store the mean of [price]
-cap mat drop results              // Make matrix free
-qui forvalues i = 1/1000 {
+// Take a sample of 20%
 preserve
-  sample 20 , count               // Remove count for 20%
-  su price                        // Calculate sample mean
-  mat results = nullmat(results) /// Allow first run
-    \ [`r(mean)']                 // Append each estimate
+  sample 20
+  tempfile sample
+    save `sample' , replace
 restore
-}
 
-// Load the results into memory and graph the distribution
-clear
-  mat colnames results = "price_mean"
-  svmat results , n(col)
-  kdensity price_mean , norm xline(`theMean')
+// Merge and complete
+merge 1:1 make using `sample'
+  recode _merge             ///
+    (3 = 1 "Sampled")       ///
+    (* = 0 "Not Sampled")   ///
+  , gen(sample)
+    label var sample "Sampled"
+  drop _merge
+
+// Check
+tab sample
