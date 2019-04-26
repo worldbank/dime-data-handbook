@@ -1,7 +1,8 @@
 %------------------------------------------------
 
 \begin{fullwidth}
-Research design is the process of designing field work
+Research design is the process of structuring field work
+-- both experimental design and data collection --
 that will answer a specific research question.
 You don't need to be an expert in this,
 and there are lots of good resources out there
@@ -9,41 +10,47 @@ that focus on designing interventions and evaluations.
 This section will present a very brief overview
 of the most common methods that are used,
 so that you can have an understanding of
-how to construct appropriate counterfactuals
-when you write analysis code later.
+how to construct appropriate counterfactuals,
+data structures, and the corresponding code tools
+as you are setting up your data structure
+before going to the field to collect data.
 
-You can break most research questions into two main types.
-There are cross-sectional or observational analyses,
+You can categorize most research questions into one of two main types.
+There are /textbf{cross-sectional}, descriptive, and observational analyses,
 which seek only to describe something for the first time,
 such as the structure or variation of a population.
-Then there are causal analyses,
-which typically rely on establishing exogenous variation
-to draw a conclusion about the impact of some event
-on specific outcomes of interest.
-We'll focus on the latter, since these are primarily
-a standardized set of approaches, with publications
-and code tools broadly available to support your work.
+We will not describe these here,
+because there are endless possibilities
+and they tend to be sector-specific.
+For all sectors, however, there are also causal research questions,
+both experimental and quasi-experimental,
+which rely on establishing /textbf{exogenous variation} in some input
+to draw a conclusion about the impact of its effect
+on various outcomes of interest.
+We'll focus on these /textbf{causal designs}, since the literature
+offers a standardized set of approaches, with publications
+and code tools available to support your work.
 \end{fullwidth}
 
 %------------------------------------------------
 
 \section{Counterfactuals and treatment effects}
 
-In causal analysis, a typical goal is to obtain an estimate
-of a \textbf{treatment effect}, or the change in outcome
+In causal analysis, a researcher is attempting to obtain estimates
+of a specific \textbf{treatment effect}, or the change in outcomes
 \index{treatment effect}
 caused by a change in exposure to some intervention or circumstance.\cite{abadie2018econometric}
-However, in the potential outcomes framework,
+In the potential outcomes framework,
 we can never observe this directly:
-we never see the same person in both their treated and untreated state.
+we never see the same person in both their treated and untreated state.\sidenote{\url{http://www.stat.columbia.edu/~cook/qr33.pdf}}
 Instead, we make inferences from samples:
 we try to devise a comparison group that evidence suggests
 would be identical to the treated group had they not been treated.
 
-This control group serves as a counterfactual to the treatment group,
+This \textbf{control group} serves as a counterfactual to the treatment group,
 \index{control group}\index{treatment group}
 and we compare the distributions of outcomes within each
-to make a computation of ``how different'' the groups are from each other.
+to make a computation of how different the groups are from each other.
 \marginnote{\textit{Causal Inference} and \textit{Causal Inference: The Mixtape}
 provides a detailed practical introduction to and history of
 each of these methods, so we will only introduce you to
@@ -53,18 +60,19 @@ them very abstractly in this chapter.
 Each of the methods described in this chapter
 relies on some variant of this basic strategy.
 In counterfactual causal analysis,
-the role of the econometric model and estimating equations
-is not to create a predictive or realistic model
-of how the outcome of interest is actually generated --
+the econometric models and estimating equations
+do not attempt to create a predictive or comprehensive model
+of how the outcome of interest is generated --
 typically we do not care about measures of fit or predictive accuracy
 like R-squareds or root mean square errors.
-What matters is whether the estimating equation
-correctly describes the experimental design being used,
+Instead, the econometric models desribed here aim to
+correctly describe the experimental design being used,
 so that the correct estimate of the difference
-between the treatment and control groups is captured.
+between the treatment and control groups is obtained
+and can be interpreted as the effect of the treatment on outcomes.
 
-This means capturing design choices
-such as stratification and clustering and
+Correctly describing the experiment means accounting for design factors
+such as stratification and clustering, and
 ensuring that time trends are handled sensibly.
 \marginnote{We aren't even going to get into regression models here.
 Almost all experimental designs can be accurately described
@@ -88,39 +96,43 @@ In other words, these models tell the story of your research design.
 \section{Experimental research designs}
 
 Experimental research designs explicitly allow the research team
-to change the condition of the populations being studies.
-This can be in the form of NGO programs, government regulations,
-information campaigns, and many more types of interventions.
-The ``classic'' method is the \textbf{randomized control trial (RCT)}:
+to change the condition of the populations being studied,\sidenote{\url{https://dimewiki.worldbank.org/wiki/Experimental_Methods}}
+in the form of NGO programs, government regulations,
+information campaigns, and many more types of interventions.\cite{banerjee2009experimental}
+The classic method is the \textbf{randomized control trial (RCT)}.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomized_Control_Trials}}
+\marginnote{Not everyone agrees this is the best way to do research.
+For a discussion of the strengths and limitations of
+experimental research in development, see:
+\url{https://www.nber.org/papers/w14690.pdf}}
 \index{randomized control trial}
-treatment and control groups are drawn from the same underlying population
+There treatment and control groups are drawn from the same underlying population
 so that the strong condition of statistical equality
 in the absense of the experiment can be assumed.
-Three methods are discussed here:
-cross-sectional randomization (``endline-only'' studies),
-differences-in-differences (``panel-data'' studies),
-and regression discontinuity (``cutoff'' studies).
+Three RCT-based methods are discussed here:
+\textbf{cross-sectional randomization} (``endline-only'' studies),
+\textbf{difference-in-difference} (``panel-data'' studies),
+and \textbf{regression discontinuity} (``cutoff'' studies).
 
 \subsection{Cross-sectional RCTs}
 
-Cross-sectional RCTs are the simplest possible study design:
+\textbf{Cross-sectional RCTs} are the simplest possible study design:
 a program is implemented, surveys are conducted, and data is analyzed.
-The randomization process, like all RCTs,
-draws the treatment groups from the same underlying population,
-so that it is assumed the groups would be identical
-before the intervention, and would have been identical at measurement
-except for the effects of the intervention.
-Cross-sectional data is simple because there is no need
-for research teams to engage in tracking over time,
-or analyzing attrition and follow-up.
+The randomization process, as in all RCTs,
+draws the treatment and control groups from the same underlying population.
+This implies the groups' outcome means would be identical in expectation
+before intervention, and would have been identical at measurement --
+therefore, differences are due to the effect of the intervention.
+Cross-sectional data is simple because
+for research teams do not need track individuals over time,
+or analyze attrition and follow-up other than non-response.
 Cross-sectional designs can have a time dimension;
 they are then called ``repeated cross-sections'',
 but do not imply a panel structure for individual observations.
 
 Typically, the cross-sectional model is developed
 only with controls for the research design.
-Balance checks can be utilized, but an effective experiment
-can use stratification (sometimes called blocking) aggressively to ensure balance
+\textbf{Balance checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/iebaltab}} can be utilized, but an effective experiment
+can use \textbf{stratification} (sometimes called blocking) aggressively\sidenote{\url{https://blogs.worldbank.org/impactevaluations/impactevaluations/how-randomize-using-many-baseline-variables-guest-post-thomas-barrios}} to ensure balance
 before data is collected.\cite{athey2017econometrics}
 \index{balance}
 Stratification disaggregates a single experiment to a collection
@@ -128,40 +140,41 @@ of smaller experiments by conducting randomization within
 ``sufficiently similar'' strata groups.
 Adjustments for balance variables are never necessary in RCTs,
 because it is certain that the true data-generating process
-has no corrlation between the treatment and the balance factors.
-Since the experiment is fully randomized,
-controls for imbalance that are not part of the design
-may reduce the variance of estimates,
-but mechanically induce bias away from the true effect.
+has no correlation between the treatment and the balance factors.\sidenote{\url{https://blogs.worldbank.org/impactevaluations/should-we-require-balance-t-tests-baseline-observables-randomized-experiments}}
+However, controls for imbalance that are not part of the design
+may reduce the variance of estimates, but there is debate on
+the importance of these tests and corrections.
 
 \subsection{Differences-in-differences}
 
-Differences-in-differences\sidenote{
+\textbf{Differences-in-differences}\sidenote{
 \url{https://dimewiki.worldbank.org/wiki/Difference-in-Differences}}
 \index{differences-in-differences}
+(abbreviated as DD, DiD, diff-in-diff, and other variants)
 deals with the construction of controls differently:
 it uses a panel data structure to additionally use each
-unit in the pre-treatment phase as a control for itself post-treatment.\cite{mckenzie2012beyond}
-Therefore, rather than relying on balance design for credibility,
-DD-type designs therefore only need to test whether \textit{changes}
-in outcomes over time were different in the treatment group than the control group.
-Therefore, the identifying assumption is \textbf{parallel trends},
-the idea that the change in these groups would have been identical
+unit in the pre-treatment phase as an additional control for itself post-treatment (the first difference),
+then comparing that mean change with the control group (the second difference).\cite{mckenzie2012beyond}
+Therefore, rather than relying entirely on treatment-control balance for identification,
+this class of designs intends to test whether \textit{changes}
+in outcomes over time were different in the treatment group than the control group.\sidenote{\url{https://blogs.worldbank.org/impactevaluations/often-unspoken-assumptions-behind-difference-difference-estimator-practice}}
+The primary identifying assumption for diff-in-diff is \textbf{parallel trends},
+the idea that the change in all groups over time would have been identical
 in the absense of the treatment.
 
 Diff-in-diff experiments therefore require substantially more effort
-in the field work portion, so that the panel is well-constructed.
+in the field work portion, so that the \textbf{panel} of observations is well-constructed.\sidenote{\url{https://www.princeton.edu/~otorres/Panel101.pdf}}
 Since baseline and endline data collection may be far apart,
 it is important to create careful records during the first round
 so that follow-ups can be conducted with the same subjects,
-and attrition across rounds can be properly taken into account.
+and \textbf{attrition} across rounds can be properly taken into account.\sidenote{\url{http://blogs.worldbank.org/impactevaluations/dealing-attrition-field-experiments}}
 Depending on the distribution of results,
 estimates may become completely uninformative
-with relatively little loss to follow-up.\sidenote{\url{http://blogs.worldbank.org/impactevaluations/dealing-attrition-field-experiments}}
+with relatively little loss to follow-up.
 
-The diff-in-diff model is a ``four-way'' comparison:
-the experimental design wants to compare treatment to control,
-after taking out the pre-levels for both.
+The diff-in-diff model is a four-way comparison.\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieddtab}}
+The experimental design intends to compare treatment to control,
+after taking out the pre-levels for both.\sidenote{\url{https://www.princeton.edu/~otorres/DID101.pdf}}
 Therefore the model includes a time period indicator,
 a treatment group indicator (the pre-treatment control is the base level),
 and it is the \textit{interaction} of treatment and time indicators
@@ -169,26 +182,29 @@ that we interpret as the differential effect of the treatment assignment.
 
 \subsection{Regression discontinuity}
 
-\textbf{Regression discontinuity} designs differ from RCTs
+\textbf{Regression discontinuity (RD)} designs differ from other RCTs
 \index{regression discontinuity}
-in that the treatment group is not randomly assigned.\sidenote{
+in that the treatment group is not directly randomly assigned,
+even though it is often applied in the context of a specific experiment.\sidenote{
 \url{https://dimewiki.worldbank.org/wiki/Regression_Discontinuity}}
-(In fact, many RDs are not experimental at all.)
-Instead, there is a \textbf{running variable}
+(In practice, many RDs are quasi-experimental, but this section
+will treat them as though they are designed by the researcher.)
+In an RD design, there is a \textbf{running variable}
 which gives eligible people access to some program,
-and a strict cutoff for who is included.
+and a strict cutoff determines who is included.\cite{lee2010regression}
 This is ususally justified by budget limitations.
 The running variable should not be the outcome of interest,
 and while it can be time, that may require additional modeling assumptions.
-Those who qualify are given the intervention and those who don't are not,
-and this process substitutes for explicit randomization.
+Those who qualify are given the intervention and those who don't are not;
+this process substitutes for explicit randomization.\sidenote{\url{http://blogs.worldbank.org/impactevaluations/regression-discontinuity-porn}}
 
 For example, imagine that there is a strict income cutoff created
 for a program that subsidizes some educational resources.
+Here, income is the running variable.
 The intuition is that the people who are ``barely eligible''
 should not in reality be very different from those who are ``barely ineligible'',
 and that resulting differences between them at measurement
-are therefore due to the intervention or program.
+are therefore due to the intervention or program.\cite{imbens2008regression}
 For the modeling component, the \textbf{bandwidth},
 or the size of the window around the cutoff to use,
 has to be decided and tested against various options for robustness.
@@ -196,16 +212,15 @@ The rest of the model depends largely on the design and execution of the experim
 
 %------------------------------------------------
 
-\section{Quasi-experimental research designs}
+\section{Quasi-experimental designs}
 
-``Quasi-''experimental research designs,\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Quasi-Experimental_Methods}}
-also called observational or non-experimental designs,
-are inference methods not based on explicit experimentation.
+\textbf{Quasi-experimental} research designs,\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Quasi-Experimental_Methods}},
+are inference methods based on methods other than explicit experimentation.
 Instead, they rely on ``experiments of nature'',
 in which natural variation can be argued to approximate
 the type of exogenous variations in circumstances
-that a researcher would attempt to create with an experiment.
+that a researcher would attempt to create with an experiment.\cite{dinardo2016natural}
 
 Unlike with planned experimental designs,
 quasi-experimental designs typically require the extra luck
@@ -225,17 +240,17 @@ as an ``instrument'' for the treatment condition itself.\sidenote{\url{https://d
 The simplest example is actually experimental --
 in a randomization design, we can use instrumental variables
 based on an \textit{offer} to join some program,
-rather than on the actual inclusion in the program.
-The reason for doing this is that the ``second stage''
+rather than on the actual inclusion in the program.\cite{angrist2001instrumental}
+The reason for doing this is that the \textbf{second stage}
 of actual program takeup may be severely self-selected,
 making the group of program participants in fact
 wildly different from the group of non-participants.
-The corresponding two-stage-least-squares (2SLS) estimator
+The corresponding \textbf{two-stage-least-squares (2SLS)} estimator\\\sidenote{\url{http://www.nuff.ox.ac.uk/teaching/economics/bond/IV%20Estimation%20Using%20Stata.pdf}}
 solves this by conditioning on only the random portion of takeup --
 in this case, the randomized offer of enrollment in the program.
 
 Unfortunately, instrumental variables designs are known
-to have very high variances relative to ordinary least squares.\cite{young2017consistency}
+to have very high variances relative to \textbf{ordinary least squares}.\cite{young2017consistency}
 IV designs furthermore rely on strong but untestable assumptions
 about the relationship between the instrument and the outcome.\cite{bound1995problems}
 Therefore IV designs face special scrutiny,
@@ -245,23 +260,23 @@ are acceptable as high-quality evidence.
 
 \subsection{Matching estimators}
 
-Matching estimators rely on the assumption that,
+\textbf{Matching} estimators rely on the assumption that,
 \index{matching}
 conditional on some observable characteristics,
 untreated units can be compared to treated units,
 as if the treatment had been fully randomized.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Matching}}
 In other words, they assert that differential takeup
 is sufficiently predictable by observed characteristics.
-These assertions are somewhat testable,
+These assertions are somewhat testable,\sidenote{\url{https://dimewiki.worldbank.org/wiki/iematch}}
 and there are a large number of ``treatment effect''
 packages devoted to standardizing reporting of various tests.\sidenote{\url{http://fmwww.bc.edu/repec/usug2016/drukker_uksug16.pdf}}
 
 However, since most matching models rely on a specific linear model,
-such as the typical propensity score matching estimator,
+such as the typical \textbf{propensity score matching} estimator,
 they are open to the criticism of ``specification searching'',
 meaning that researchers can try different models of matching
 until one, by chance, leads to the final result that was desired.
-Newer methods, such as coarsened exact matching\cite{iacus2012causal},
+Newer methods, such as \textbf{coarsened exact matching}\cite{iacus2012causal},
 are designed to remove some of the modelling,
 such that simple differences between matched observations
 are sufficient to estimate treatment effects
@@ -279,7 +294,7 @@ Canonical examples are policy changes at state or national levels,
 since at that scope there are no other units quite like
 the one that was affected by the policy change
 (much less sufficient \textit{N} for a regression estimation).\cite{gobillon2016regional}
-In this method, time series data is almost always required,
+In this method, \textbf{time series data} is almost always required,
 and the control comparison is contructed by creating
 a linear combination of other units such that pre-treatment outcomes
 for the treated unit are best approximated by that specific combination.
