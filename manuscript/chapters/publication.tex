@@ -1,49 +1,49 @@
 %------------------------------------------------
 
 \begin{fullwidth}
-Increasingly, research assistants are relied to manage some or all
+Increasingly, research assistants are relied on to manage some or all
 of the publication process. This can include
 managing the choice of software,
 coordinating referencing and bibliography,
 tracking changes across various authors and versions,
 and preparing final reports or papers for release or submission.
-Fortunately, modern software tools can make a lot of these processes easier,
-but naturally there is some learning curve,
+Modern software tools can make a lot of these processes easier.
+Unfortunately there is some learning curve,
 particularly for lead authors who have been publishing for a long time.
-This chapter is intended to suggest some tools and processes
-that can make writing and publishing in a team
-a significantly easier process.
-It should also give you the resources you need
+This chapter suggests some tools and processes
+that can make writing and publishing in a team significantly easier.
+It will provide resources
 to judge how best to adapt your team to the tools you agree upon,
 since all teams vary in composition and technical experience.
 
-Ideally, your team will be able to spend as little time as possible
+Ideally, your team will spend as little time as possible
 fussing with the technical requirements of publication.
 It is in nobody's interest for a skilled and busy RA
 to spend days re-numbering references (and it can take days)
 if a small amount of up-front effort could automate the task.
 However, experienced academics will likely have a workflow
-that they are already comfortable with,
+with which they are already comfortable,
 and since they have worked with many others in the past,
 that workflow is likely to be the least-common-denominator:
 Microsoft Word with tracked changes.
 This chapter will show you how you can avoid at least some
 of the pain of Microsoft Word,
 while still providing materials in the format
-that co-authors need to feel comfortable and journals request.
+that co-authors prefer and journals request.
 \end{fullwidth}
 
 %------------------------------------------------
 
 \section{Collaborating on academic writing}
 
-The gold standard for academic writing is \LaTeX.
+The gold standard for academic writing is \LaTeX.\sidenote{\url{https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/GSWLaTeX.pdf}}
+\index{\LaTeX}
 \LaTeX\ allows automatically-organized sections like titles and bibliographies,
 imports tables and figures in a dynamic fashion,
 and can be version controlled using Git.
-Unfortunately, \LaTeX\ can be a real pain to set up and use,
+Unfortunately, \LaTeX\ can be a challenge to set up and use at first,
 particularly for people who are unfamiliar with plaintext, code, or file management.
-\LaTeX\ requires that all formatting be done in a special code language,
+\LaTeX\ requires that all formatting be done in its special code language,
 and it is not particularly informative when you do something wrong.
 This can be off-putting very quickly for people
 who simply want to get to writing, like lead authors.
@@ -53,8 +53,8 @@ we will need to adopt a few tools and tricks to make it effective.
 
 The first is choice of software. The easiest way
 for someone new to \LaTeX\ to be able to ``just write''
-is typically the web-based Overleaf suite.\sidenote{\url{https://www.overleaf.com}}
-This is because Overleaf offers a ``rich text'' editor
+is often the web-based Overleaf suite.\sidenote{\url{https://www.overleaf.com}}
+Overleaf offers a \textbf{rich text editor}
 that behaves pretty similarly to familiar tools like Word.
 \marginnote{TeXstudio and atom-latex are the most popular
 desktop-based tools for writing \LaTeX;
@@ -63,41 +63,60 @@ among other advantages, but the entire team needs to be comfortable
 with \LaTeX\ before adopting one of these tools.
 \newline\noindent \url{https://www.texstudio.org}
 \newline\noindent \url{https://atom.io/packages/atom-latex}}
-With minimal workflow adjustments, you should be able
+With minimal workflow adjustments, you can
 to show coauthors how to write and edit in Overleaf,
 so long as you make sure you are always available to troubleshoot
-the inevitable \LaTeX\ crashes and errors.
-(The most common will be special characters, namely
+\LaTeX\ crashes and errors.
+The most common will be special characters, namely
 \texttt{\&}, \texttt{\%}, and \texttt{\_},
-which need to be ``escaped'' or ``interpreted literally''
+which need to be \textbf{escaped} (instructed to interpret literally)
 by writing a backslash (\texttt{\textbackslash}) before them,
-such as  \texttt{40\textbackslash\%}.)
-Overleaf offers a convenient selection of templates,
-so it is very easy to start up a project
+such as  \texttt{40\textbackslash\%} for the percent sign to function.
+Overleaf offers a convenient selection of templates
+so it is easy to start up a project
 and replicate a lot of the underlying setup code.
 
-The most important tool available is the BibTeX bibliography manager.
-This tool allows for the storage of unformatted references
-in an accompanying \texttt{.bib} file, and insertion in text
+One of the important tools available in \LaTeX\ is the BibTeX bibliography manager.\sidenote{\url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.365.3194&rep=rep1&type=pdf}}
+This tool stores unformatted references
+in an accompanying \texttt{.bib} file,
+and \LaTeX\ then inserts them in text
 using the \texttt{\textbackslash cite\{\}} command.
-With this structure, \LaTeX\ will automatically pull
-all the citations into text; it will allow you to specify
+With this structure, \LaTeX\ automatically pulls
+all the citations into text. \LaTeX\ allows you to specify
 how they should be displayed in text
 (ie, as superscripts, inline references, etc.)
 and how the bibliography should be styled and in what order.
+A reference in the \texttt{.bib} file
+can be copied directly from Google Scholar
+by clicking "BibTeX" at the bottom of the Cite window.
+When pasted into the \texttt{.bib} file they look like the following:
+
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=sample.bib]
+{./code/sample.bib}}
+
+\noindent BibTeX citations are then used as follows:
+
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=citation.tex]
+{./code/citation.tex}}
 
 With these tools, you can ensure that co-authors are writing
-in a format you can manage and control.
+in a format you can manage and control.\cite{flom2005latex}
 The purpose of this setup, just like with other synced folders,
 is to avoid there ever being more than one master copy of the document.
 This means that people can edit simultaneously without fear of conflicts,
-and it is never necessary to ``resolve'' differences in the document.
+and it is never necessary to manually resolve differences in the document.
 Finally, \LaTeX\ has one more useful trick:
-if you download the Citation Styles Library\sidenote{
+if you download a journal styler from the \textbf{Citation Styles Library}\sidenote{
 \url{https://github.com/citation-style-language/styles}}
-and use pandoc\sidenote{\url{http://pandoc.org/}},
+and use \textbf{\texttt{pandoc}}\sidenote{\url{http://pandoc.org/}},
 you can translate the raw document into Word by running:
-\texttt{[pandoc -s -o main.docx main.tex --bibliography sample.bib --csl=/.../styles/the-lancet.csl]}.
+
+{\setstretch{0.7}
+\VerbatimInput[frame=lines,numbers=left,label=pandoc.sh]
+{./code/pandoc.sh}}
+
 Therefore, even in the case where you are requested to provide
 \texttt{.docx} versions of materials to others, or tracked-changes versions,
 you can create them effortlessly,
@@ -107,13 +126,15 @@ and use Word's compare feature to generate a single integrated tracked version.
 
 \section{Publishing data and code for replication}
 
-Data and code should always be released with any publication.
+Data and code should always be released with any publication.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Publishing_Data}}
+\index{data publication}
 Many journals and funders have strict open data policies,
 and providing these materials to other researchers
 allows them to evaluate the credibility of your work
-as well as to re-use your materials for further research.
-If you have followed the steps in this book carefully, however,
-you will find that this is a very easy requirement to fulfill.
+as well as to re-use your materials for further research.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Exporting_Analysis}}
+If you have followed the steps in this book carefully,
+you will find that this is a very easy requirement to fulfill.\sidenote{
+\url{https://www.bitss.org/2016/05/23/out-of-the-file-drawer-tips-on-prepping-data-for-publication/}}
 You will already have a publishable (either de-identified or constructed)
 version of your research dataset.
 You will already have your analysis code well-ordered,
@@ -137,12 +158,13 @@ and that it can provide a stable, structured URL for your project.
 
 You should release a structured directory that allows a user
 to immediately run your code after changing the project directory.
-See \url{https://github.com/worldbank/Water-When-It-Counts}
-for an example of an organized directory structure. The folders should include:
+\marginnote{See \url{https://github.com/worldbank/Water-When-It-Counts}
+for an example of an organized directory structure.}
+The folders should include:
 All necessary de-identified data for the analysis;
 All code necessary for the analysis;
 The raw outputs you have used for the paper.
-Using \texttt{[iefolder]} from our \texttt{[ietoolkit]} can help standardize this in Stata.
+Using \texttt{iefolder} from our \texttt{ietoolkit} can help standardize this in Stata.
 In either the \texttt{/dofiles/} folder or in the root directory,
 include a master script (\texttt{.do} or \texttt{.r} for example).
 The master script should allow the reviewer to change
@@ -151,16 +173,16 @@ Then, running the master script should run the entire project
 and re-create all the raw outputs exactly as supplied.
 Check that all your code will run completely on a new computer.
 This means installing any required user-written commands in the master script
-(for example, in Stata using \texttt{[ssc install]} or \texttt{[net install]}
+(for example, in Stata using \texttt{ssc install} or \texttt{net install}
 and in R include code for installing packages,
 including installing the appropriate version of the package if necessary).
-Make sure settings like \texttt{[version]}, \texttt{[matsize]}, and \texttt{[varabbrev]} are set.
+Make sure settings like \texttt{version}, \texttt{matsize}, and \texttt{varabbrev} are set.
 All outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
 
 Finally, you may also want to release an author's copy or preprint.
-(Check with your publisher before doing so;
+Check with your publisher before doing so;
 not all journals will accept material that has been released.
-Therefore you may need to wait until acceptance is confirmed.)
+Therefore you may need to wait until acceptance is confirmed.
 This can be done on a number of pre-print websites,
 many of which are topically-specific.
 You can also use GitHub and link the file directly
