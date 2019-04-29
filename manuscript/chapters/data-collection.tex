@@ -42,17 +42,17 @@ Generally, this collaboration means building the experimental design
 fundamentally into the structure of the survey.
 When ID matching and tracking is essential,
 the survey should be prepared to verify new data
-against preloaded data from master records or from other rounds.
-Extensive tracking sections --
-in which reasons for attrition, treatment contamination, and
-loss to follow-up can be documented --
+against \textbf{preloaded data} from master records or from other rounds.
+\textbf{Extensive tracking} sections --
+in which reasons for \textbf{attrition}, treatment \textbf{contamination}, and
+\textbf{loss to follow-up} can be documented --
 \index{attrition}\index{contamination}
 are essential data components for completing CONSORT records.\cite{begg1996improving}
 
-Questionnaire design\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
+\textbf{Questionnaire design}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
 \index{questionnaire design}
 is the first task where the data team
-and the field team must collaborate on data structure.
+and the field team must collaborate on data structure.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Preparing_for_Field_Data_Collection}}
 The field-oriented staff and the PIs will likely prefer
 to capture a large amount of detailed \textit{information}
 in the field, some of which will serve very poorly as \textit{data}.\sidenote{\url{
@@ -84,26 +84,28 @@ but allows for much more comprehensible top-line statistics and data quality che
 
 Broadly, the questionnaire should be designed as follows.
 The workflow will feel much like writing an essay:
-we begin from broad concepts and slowly flesh them out to specifics.
+begin from broad concepts and slowly flesh out the specifics.
 \marginnote{Modules should not be numbered --
 they should use a short prefix so they can be easily reordered.
 There is not yet a full consensus over how individual questions should be identified:
 formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder,
-but formats like \texttt{hq\_asked\_about\_loans} quickly become too long.}
-The theory of change, experimental design, and pre-analysis plans should be discussed
-and the structure of required data conceptualized.
-All the conceptual outcomes of interest, as well as the covariates, classifications,
+but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.}
+The \textbf{theory of change}, \textbf{experimental design},
+and any \textbf{pre-analysis plans} should be discussed
+and the structure of required data for those conceptualized first.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
+Next, the conceptual outcomes of interest, as well as the main covariates, classifications,
 and other variables needed for the experimental design should be listed out.
 The questionnaire \textit{modules} should be outlined based on this list.
 Each module should then be expanded into specific indicators to observe in the field.
-Finally, the questionnaire can be piloted in a non-experimental sample.
-Revisions are made, and the survey is then translated into the appropriate language and programmed electronically.
+Finally, the questionnaire can be \textbf{piloted}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}}
+in a non-experimental sample.
+Revisions are made, and the survey is then translated into the appropriate language and programmed electronically.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
 
 %------------------------------------------------
 
 \section{Collecting data securely}
 
-Any established data collection service will always encrypt
+Any established data collection platform will always \textbf{encrypt}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}
 all data submitted from the field automatically while in transit
 (ie, upload or download), so if you use servers hosted by SurveyCTO
 this is nothing you need to worry about.
@@ -124,24 +126,30 @@ This is because the service will not encrypt user data unless you confirm
 you know how to operate the encryption system and assume its risks.
 Encryption at rest is different from password-protection:
 encryption at rest makes the underlying data itself unreadable,
-even if accessed, except to users who have a specific private key file.
+even if accessed, except to users who have a specific private \textbf{keyfile}.
 Encryption at rest requires active participation from you, the user,
 and you should be fully aware that if your private key is lost,
 there is absolutely no way to recover your data.
 
-To enable data encryption, you simply select the encryption option
+To enable data encryption in SurveyCTO, for example,
+simply select the encryption option
 when you create a new form on a SurveyCTO server.
+\marginnote{Other data collection services should work similarly,
+but the exact implementation of encryption at rest
+will vary slightly from service to service.}
 At that time, the service will allow you to download -- once --
 the keyfile pair needed to decrypt the data.
 You must download and store this in a secure location.
-Again, we recommend LastPass, a software whose free option
+Again, we recommend \textbf{LastPass}, a software whose free option
 allows you to store passwords as well as small keyfiles like this.
-You should make sure the ``secure note'' which you put the keyfile in
+You should make sure the LastPass \textbf{secure note} in which you store the keyfile
 is descriptively named to match the survey to which it corresponds.
-The Sync app will ask you for the location of this file
-when you download and set up data for use,
-and all you will need to do is copy that file to your desktop,
+The Sync data download applications will ask you for the location of this keyfile
+when you download and set up data for use.
+All you need to do is copy that keyfile to your desktop,
 point Sync to it, and the rest is automatic.
+Delete the keyfile from your desktop, but not from LastPass,
+when you are done accessing the encrypted data.
 
 Finally, you should ensure that all teams take basic precautions
 to ensure the security of data, as most problems are due to human error.
@@ -164,28 +172,28 @@ and adds very little hassle to utilization.
 \section{Overseeing fieldwork and quality assurance}
 
 While the team is in the field, you will be responsible
-for making sure that the survey is progressing correctly,
+for making sure that the survey is progressing correctly,\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}
 that the collected data matches the survey sample,
 and that errors and duplicate observations are resolved
-quickly so that the field team can make corrections.
+quickly so that the field team can make corrections.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Duplicates_and_Survey_Logs}}
 Modern survey software makes it relatively easy
 to control for issues in individual surveys,
 using a combination of in-built features
 such as hard constraints on answer ranges
 and soft confirmations or validation questions.
 
-These features mean you can spend more time
-looking for issues that the software cannot check.
+These featuresallow you to spend more time
+looking for issues that the software cannot check auotmatically.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
 Namely, these will be outliers from the overall distribution
-or a group of surveys rather than errors in any one survey:
+or a group of surveys rather than errors in any one response field
+(those can often be flagged by the questionnaire sfotware);
 enumerators who are taking too long to complete their work,
-``difficult'' groups of respondents who are systematically incomplete,
-and checks for systematic response errors and outliers.
+``difficult'' groups of respondents who are systematically incomplete;
+systematic response errors and outliers.
 These are typically done in two main forms:
 high-frequency checks (HFCs) and back-checks.
 
-High-frequency checks are carried out on the data
-side.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
+High-frequency checks are carried out on the data side.\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
 First, observations must be validated against the sample list:
 this is as straightforward as conducting a \texttt{merge}
 of the survey data and checking for mismatches.
@@ -193,7 +201,7 @@ Next, observations need to be checked for duplicate entries:
 \texttt{ieduplicates}\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieduplicates}}
 provides a workflow for collaborating on the resolution of
 duplicate entries between you and the field team
-Finally, data quality checks\sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
+Finally, data quality checks
 should be run on the data every time it is downloaded
 to flag irregularities in observations, sample groups, or enumerators.
 
@@ -220,9 +228,9 @@ In back-checks, a random subset of the field sample is chosen
 and basic information from the full survey is verified
 using a small survey re-done with the same respondent.
 Back-checks should be done with a substantial portion
-of the full sample early in the survey,
+of the full sample early in the survey
 so that the enumerators and field team
-get used to the idea of quality assurance.
+get used to the idea of \textbf{quality assurance}.
 Checks should continue throughout fieldwork,
 and their content and targeting can be refined if particular
 questionnaire items are flagged as error-prone
@@ -240,14 +248,15 @@ This can be anything such as correctly calcuting plot sizes,
 family rosters, or income measurements.
 These questions should be carefully validated
 to determine whether they are reliable measures
-and how much they may vary as a result of the difficulty in measurement.
+and how much they may vary as a result of difficulty in measurement.
 Finally, back-checks confirm that questions are being asked and answered
 in a consistent fashion. Some questions, if poorly phrased,
 can be hard for the eumerator to express or for all respondents
-to understand in an identical fashion,
-and changes in these questions between two surveys of the same respondent
+to understand in an identical fashion.
+Changes in responses between original and back-check surveys
+of the same respondent
 can alert you and the team that changes need to be made
-to the execution of portions of the survey.
+to portions of the survey.
 
 When all data collection is complete,
 the survey team should have a final field report
@@ -255,7 +264,7 @@ ready for validation against the sample frame and the dataset.
 This should contain all the observations that were completed;
 it should merge perfectly with the received dataset;
 and it should report reasons for any observations not collected.
-Reporting of missingness and attrition is critical
+Reporting of \textbf{missingness} and \textbf{attrition} is critical
 to the interpretation of any survey dataset,
 so it is important to structure this reporting
 such that broad rationales can be grouped into categories
