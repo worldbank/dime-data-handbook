@@ -40,7 +40,10 @@ collaborate to make sure that the survey suits all needs.\cite{krosnick2018quest
 
 Generally, this collaboration means building the experimental design
 fundamentally into the structure of the survey.
-When ID matching and tracking is essential,
+In addition to having prepared a unique anonymous ID variable
+using the master data,
+that ID should be built into confirmation checks in the survey form.
+When ID matching and tracking across rounds is essential,
 the survey should be prepared to verify new data
 against \textbf{preloaded data} from master records or from other rounds.
 \textbf{Extensive tracking} sections --
@@ -53,10 +56,10 @@ are essential data components for completing CONSORT\marginnote{\textbf{CONSORT:
 \index{questionnaire design}
 is the first task where the data team
 and the field team must collaborate on data structure.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Preparing_for_Field_Data_Collection}}
-Questionnaire design should always be a separated task from questionnaire programming, meaning 
-that the team should have designed and agreed on a questionnaire before that questionnaire is 
-programmed in the CAPI software used. Otherwise teams tend to spend more time discussing technical 
-programming details, rather than the content in the questionnaire.The field-oriented staff and the 
+Questionnaire design should always be a separated task from questionnaire programming, meaning
+that the team should have designed and agreed on a questionnaire before that questionnaire is
+programmed in the CAPI software used. Otherwise teams tend to spend more time discussing technical
+programming details, rather than the content in the questionnaire.The field-oriented staff and the
 PIs will likely prefer to capture a large amount of detailed \textit{information}
 in the field, some of which will serve very poorly as \textit{data}.\sidenote{\url{
 https://iriss.stanford.edu/sites/g/files/sbiybj6196/f/questionnaire\_design\_1.pdf}}
@@ -108,6 +111,11 @@ Revisions are made, and the survey is then translated into the appropriate langu
 
 \section{Collecting data securely}
 
+At all points in the data collection and handling process,
+access to personally-identifying information (PII)
+must always be restricted to the members of the team
+who have been granted that permission by the appropriate agreement
+(typically an IRB approving data collection or partner agency providing it).
 Any established data collection platform will always \textbf{encrypt}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}
 all data submitted from the field automatically while in transit
 (i.e., upload or download), so if you use servers hosted by SurveyCTO
@@ -144,7 +152,7 @@ At that time, the service will allow you to download -- once --
 the keyfile pair needed to decrypt the data.
 You must download and store this in a secure location.\marginnote{
 \textbf{LastPass} is a password manager whose free option
-allows you to store passwords as well as small keyfiles like this.} 
+allows you to store passwords as well as small keyfiles like this.}
 Make sure you store keyfiles with descriptive names to match the survey to which it corresponds.
 Any time you access the data - either when viewing it in browser or syncing it to your
 computer - you will be asked to provide this keyfile. It could differ between the software,
@@ -156,7 +164,7 @@ but not from your password manager.
 Finally, you should ensure that all teams take basic precautions
 to ensure the security of data, as most problems are due to human error.
 Most importantly, all computers, tablets, and accounts used
-\textit{must} have a logon password associated with them. 
+\textit{must} have a logon password associated with them.
 Ideally, the machine hard drives themselves should also be encrypted.
 This policy should also be applied to physical data storage
 such as flash drives and hard drives;
@@ -200,10 +208,14 @@ High-frequency checks are carried out on the data side.\sidenote{\url{https://gi
 First, observations need to be checked for duplicate entries:
 \texttt{ieduplicates}\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieduplicates}}
 provides a workflow for collaborating on the resolution of
-duplicate entries between you and the field team. 
+duplicate entries between you and the field team.
 Next, observations must be validated against the sample list:
 this is as straightforward as \texttt{merging} the sample list with
 the survey data and checking for mismatches.
+High-frequency checks should carefully inspect
+key treatment and outcome variables
+so that the data quality of core experimental variables is uniformly high,
+and that additional field effort is centered where it is most important.
 Finally, data quality checks
 should be run on the data every time it is downloaded
 to flag irregularities in observations, sample groups, or enumerators.
@@ -226,8 +238,8 @@ and should allow you to rapidly identify issues
 that are occurring in fieldwork.
 You should also have a plan to address issues found with the field team.
 Discuss in advance which inconsistencies will require a revisit,
-and how you will communicate to the field teams what were the problems found. 
-Some issues will need immediate follow-up, 
+and how you will communicate to the field teams what were the problems found.
+Some issues will need immediate follow-up,
 and it will be harder to solve them once the enumeration team leaves the area.
 
 Back-checks\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}}
@@ -281,7 +293,11 @@ but also that the field team can provide detailed, open-ended responses
 for any observations they were unable to complete.
 This reporting should be validated and saved
 alongside the final raw data, and treated the same way.
-
+This information should be stored as a dataset in its own right
+-- a \textbf{tracking dataset} --
+that records all events in which survey substitutions
+and loss to follow-up occurred in the field
+and how they were implemented and resolved.
 
 %------------------------------------------------
 
@@ -306,26 +322,28 @@ that will remain accessible on disk and backed up.
 This handling satisfies the rule of three:
 there are two on-site copies of the data and one off-site copy,
 so the data can never be lost in case of hardware failure.
-
 For this step, the remote location can be a variety of forms:
 the cheapest is a long-term cloud storage service
 such as Amazon Web Services or Microsoft Azure.
 Equally sufficient is a physical hard drive
-stored somewhere other than the primary work location.
-Enterprise cloud solutions like Microsoft OneDrive
-can also work, although because you do not control them
-we typically do not recommend this for the gold master copy.
-If the service satisfies your security needs,
-the raw data can be stored unencrypted here.
+stored somewhere other than the primary work location
+(and encrypted with a service like BitLocker To Go).
 If you remain lucky, you will never have to access this copy --
 you just want to know it is out there, safe, if you need it.
 
 The copy of the raw data you are going to use
 should be handled with care.
 Since you will probably need to share it among the team,
-it should be placed in an encrypted storage location.
-The combination of Dropbox and VeraCrypt
-can satisfy this requirement for some teams,
+it should be placed in an encrypted storage location,
+although the data file itself may or may not need to be encrypted.
+Enterprise cloud solutions like Microsoft OneDrive
+can work, although because you do not control them directly
+we typically do not recommend this for the gold master copy.
+If the service satisfies your security needs,
+the raw data can be stored unencrypted here.
+Placing encrypted data (such as with VeraCrypt)
+into an unencrypted cloud storage location (such as Dropbox)
+may also satisfy this requirement for some teams,
 since this will never make the data visible to someone
 who gets access to the Dropbox,
 without the key to the file that is generated on encryption.
