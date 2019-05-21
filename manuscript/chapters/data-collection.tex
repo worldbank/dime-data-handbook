@@ -27,7 +27,7 @@ and having proper file storage ready for sensitive PII data.
 CAPI surveys\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted_Personal_Interviews_(CAPI)}}
 are primarily created in Excel, Google Sheets,
 or software-specific form builders
-making them one of the few outputs for which little coding is required.\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
+making them one of the few research outputs for which little coding is required.\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
 \marginnote{The \texttt{ietestform} command, part of
 \texttt{iefieldkit}, implements form-checking routines
 for \textbf{SurveyCTO}, a proprietary implementation of \textbf{Open Data Kit (ODK)}.
@@ -47,7 +47,7 @@ against \textbf{preloaded data} from master records or from other rounds.
 in which reasons for \textbf{attrition}, treatment \textbf{contamination}, and
 \textbf{loss to follow-up} can be documented --
 \index{attrition}\index{contamination}
-are essential data components for completing CONSORT records.\cite{begg1996improving}
+are essential data components for completing CONSORT\marginnote{\textbf{CONSORT:} a standardized system for reporting enrollment, intervention allocation, follow-up, and data analysis through the phases of a randomized trial of two groups.} records.\cite{begg1996improving}
 
 \textbf{Questionnaire design}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
 \index{questionnaire design}
@@ -110,7 +110,7 @@ Revisions are made, and the survey is then translated into the appropriate langu
 
 Any established data collection platform will always \textbf{encrypt}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}
 all data submitted from the field automatically while in transit
-(ie, upload or download), so if you use servers hosted by SurveyCTO
+(i.e., upload or download), so if you use servers hosted by SurveyCTO
 or SurveySolutions this is nothing you need to worry about.
 Your data will be encrypted from the time it leaves the device
 (in tablet-assisted data collation) or your browser (in web data collection)
@@ -142,22 +142,22 @@ but the exact implementation of encryption at rest
 will vary slightly from service to service.}
 At that time, the service will allow you to download -- once --
 the keyfile pair needed to decrypt the data.
-You must download and store this in a secure location.
-Again, we recommend \textbf{LastPass}, a software whose free option
-allows you to store passwords as well as small keyfiles like this.
-You should make sure the LastPass \textbf{secure note} in which you store the keyfile
-is descriptively named to match the survey to which it corresponds.
+You must download and store this in a secure location.\marginnote{
+\textbf{LastPass} is a password manager whose free option
+allows you to store passwords as well as small keyfiles like this.} 
+Make sure you store keyfiles with descriptive names to match the survey to which it corresponds.
 Any time you access the data - either when viewing it in browser or syncing it to your
 computer - you will be asked to provide this keyfile. It could differ between the software,
 but typically you would copy that keyfile from where it is stored (for example LastPass)
 to your desktop, point to it, and the rest is automatic.
-After each time you use the keyfile, delete it from your desktop, but not from LastPass,
-when you are done accessing the encrypted data.
+After each time you use the keyfile, delete it from your desktop,
+but not from your password manager.
 
 Finally, you should ensure that all teams take basic precautions
 to ensure the security of data, as most problems are due to human error.
 Most importantly, all computers, tablets, and accounts used
-\textit{must} have a logon password associated with them.
+\textit{must} have a logon password associated with them. 
+Ideally, the machine hard drives themselves should also be encrypted.
 This policy should also be applied to physical data storage
 such as flash drives and hard drives;
 similarly, files sent to the field containing PII data
@@ -190,23 +190,24 @@ looking for issues that the software cannot check automatically.\sidenote{\url{h
 Namely, these will be outliers from the overall distribution
 or a group of surveys rather than errors in any one response field
 (those can often be flagged by the questionnaire software);
-enumerators who are taking too long to complete their work,
-``difficult'' groups of respondents who are systematically incomplete;
-systematic response errors and outliers.
+enumerators who are taking either too long or not long enough to complete their work,
+``difficult'' groups of respondents who are systematically incomplete; and
+systematic response errors.
 These are typically done in two main forms:
 high-frequency checks (HFCs) and back-checks.
 
 High-frequency checks are carried out on the data side.\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
-First, observations must be validated against the sample list:
-this is as straightforward as \texttt{merging} the sample list with
-the survey data and checking for mismatches.
-Next, observations need to be checked for duplicate entries:
+First, observations need to be checked for duplicate entries:
 \texttt{ieduplicates}\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieduplicates}}
 provides a workflow for collaborating on the resolution of
-duplicate entries between you and the field team.
+duplicate entries between you and the field team. 
+Next, observations must be validated against the sample list:
+this is as straightforward as \texttt{merging} the sample list with
+the survey data and checking for mismatches.
 Finally, data quality checks
 should be run on the data every time it is downloaded
 to flag irregularities in observations, sample groups, or enumerators.
+\texttt{ipacheck}\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks}} is a very useful command that automates some of these tasks.
 
 Unfortunately, it is very hard to specify in general
 what kinds of quality checks should be utilized,
@@ -223,6 +224,11 @@ a list of flags from any given dataset.
 This HFC code is then ready to run every time you download the data,
 and should allow you to rapidly identify issues
 that are occurring in fieldwork.
+You should also have a plan to address issues found with the field team.
+Discuss in advance which inconsistencies will require a revisit,
+and how you will communicate to the field teams what were the problems found. 
+Some issues will need immediate follow-up, 
+and it will be harder to solve them once the enumeration team leaves the area.
 
 Back-checks\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}}
 involve more extensive collaboration with the field team,
@@ -239,7 +245,7 @@ and their content and targeting can be refined if particular
 questionnaire items are flagged as error-prone
 or specific enumerators or observations appear unusual.
 
-Back-checks cover three main types of questions.
+Back-checks cover three main types of questions.\marginnote{\texttt{bcstats} is a Stata command for back checks that takes the different question types into account when comparing surveys.}
 First, they validate basic information that should not change.
 This ensures the basic quality control that the right respondent
 was interviewed or observed in a given survey,
@@ -326,7 +332,7 @@ without the key to the file that is generated on encryption.
 \marginnote{LastPass or equivalent should be used to store and share keys.
 Note also that this data copy can never be considered the gold master,
 because other users or the service can accidentally delete it.}
-\textit{The file must never be placed in Dropbox unencrypted, however.}
+\textit{The raw data file must never be placed in Dropbox unencrypted, however.}
 The way VeraCrypt works is that it creates a virtual copy
 of the unencrypted file outside of Dropbox, and lets you access that copy.
 Since you should never edit the raw data, this will not be very cumbersome,
