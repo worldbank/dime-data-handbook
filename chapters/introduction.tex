@@ -128,18 +128,25 @@ to figure out what a code chunk is trying to do.
 Elements like spacing, indentation, and naming can make your code much more (or much less)
 accessible to someone who is reading it for the first time and needs to understand it quickly and correctly.
 
+\marginnote[2\baselineskip]{This is a Stata code block.
+	Throughout this book, you will find examples like this,
+	which illustrate how to perform basic versions
+	of each task in Stata.}
+
 For some implementation portions where precise code is particularly important,
 we will provide minimal code examples either in the book or on the Wiki.
 In the book, they will be presented like the following:
 
-\marginnote[2\baselineskip]{This is a Stata code block.
-Throughout this book, you will find examples like this,
-which illustrate how to perform basic versions
-of each task in Stata.}
-
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=code.do]
-{./code/code.do}}
+\begin{minipage}{1.5\textwidth}
+	\vspace{.5cm}
+	\VerbatimInput[frame=lines, % line above and below code section
+	numbers=left, %Line number
+	label=code.do, %name of code section
+	samepage=true, %Do not allow the code to be broken across pages
+	baselinestretch=0.75 %Use line space more similat to line space in code editors
+	]{./code/code.do} %Write the relative file path and the name of the file to be included
+	\vspace{.3cm}
+\end{minipage}
 
 We have tried really hard to make sure that all the Stata code runs,
 and that each block is well-formatted and uses built-in functions.
