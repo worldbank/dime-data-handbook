@@ -37,5 +37,5 @@
 // Analyze all the regressions we ran against power 80%
     gen sig = (pvalue <= 0.05) // Flag significant runs
 
-//Proprtion of significant results in each effect size group (80% power)
+// Proportion of significant results in each effect size group (80% power)
     graph bar sig , over(c10) yline(0.8)
