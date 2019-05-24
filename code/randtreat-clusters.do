@@ -11,22 +11,19 @@ cap prog drop my_randomization
     egen cluster = group(sex agegrp) , label
     label var cluster "Cluster Group"
 
-  // Keep only one from each cluster for randomization
-  preserve
-  egen ctag = tag(cluster)
-    keep if ctag == 1
-    drop ctag
-
-    // Group 1/2 in control and treatment
-    randtreat,            ///
-      generate(treatment) /// New variable name
-      multiple(2)          // Two arms
-
-  // Apply assignment to entire cluster
-  tempfile ctreat
+// Save data set with all observations
+    tempfile ctreat
     save  `ctreat' , replace
-    restore
-  merge m:1 cluster using `ctreat' , nogen
+
+// Keep only one from each cluster for randomization
+    bysort cluster : keep if _n == 1
+
+// Group 1/2 in control and treatment in new variable treatment
+    randtreat, generate(treatment) multiple(2)
+
+// Keep only treatment assignment and merge back to all observations
+	keep cluster treatment
+    merge 1:m cluster using `ctreat' , nogen
 
 // Cleanup
     lab var treatment "Treatment Arm"
