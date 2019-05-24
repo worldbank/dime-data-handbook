@@ -74,20 +74,11 @@ then its pseudorandom algorithm will pick up where it left off.
 By setting the seed, you force it to restart from the same point.
 In Stata, \texttt{set seed [seed]} will accomplish this.
 
-\marginnote[2\baselineskip]{This code loads and sets up the \texttt{auto.dta} dataset
+\marginnote{This code loads and sets up the \texttt{auto.dta} dataset
 for any random process. Note the three components: versioning, sorting, and seeding.
 Why are \texttt{check1} and \texttt{check3} the same? Why is \texttt{check2} different?}
 
-\begin{minipage}{1.5\textwidth}
-	\vspace{.5cm}
-	\VerbatimInput[frame=lines, % line above and below code section
-	numbers=left, %Line number
-	label=replicability.do, %name of code section
-	samepage=true, %Do not allow the code to be broken across pages
-	baselinestretch=0.75 %Use line space more similat to line space in code editors
-	]{./code/replicability.do} %Write the relative file path and the name of the file to be included
-	\vspace{.3cm}
-\end{minipage}
+\codeexample{replicability.do}{./code/replicability.do}
 
 Commands like \texttt{bys:} and \texttt{merge} will re-sort your data as part of their execution,
 \marginnote{To reiterate: any process that includes a random component
@@ -103,16 +94,7 @@ re-run the file, and use \texttt{cf \_all using [dataset]} targeting the saved f
 If there are any differences, the process has not reproduced,
 and \texttt{cf} will return an error, as shown here.
 
-\begin{minipage}{1.5\textwidth}
-	\vspace{.5cm}
-	\VerbatimInput[frame=lines, % line above and below code section
-	numbers=left, %Line number
-	label=randomization-cf.do, %name of code section
-	samepage=true, %Do not allow the code to be broken across pages
-	baselinestretch=0.75 %Use line space more similat to line space in code editors
-	]{./code/randomization-cf.do} %Write the relative file path and the name of the file to be included
-	\vspace{.3cm}
-\end{minipage}
+\codeexample{randomization-cf.do}{./code/randomization-cf.do}
 
 %------------------------------------------------
 \section{Sampling}
@@ -142,16 +124,7 @@ to the randomization section that follows --
 instead of creating a \texttt{treatment} variable,
 create a \texttt{sample} variable.
 
-\begin{minipage}{1.5\textwidth}
-	\vspace{.5cm}
-	\VerbatimInput[frame=lines, % line above and below code section
-	numbers=left, %Line number
-	label=simple-sample.do, %name of code section
-	samepage=true, %Do not allow the code to be broken across pages
-	baselinestretch=0.75 %Use line space more similat to line space in code editors
-	]{./code/simple-sample.do} %Write the relative file path and the name of the file to be included
-	\vspace{.3cm}
-\end{minipage}
+\codeexample{simple-sample.do}{./code/simple-sample.do}
 
 The fundamental contribution of sampling to the power of a research design is this:
 if you randomly sample a set number of observations from a set frame,
@@ -192,16 +165,7 @@ has a distribution in the sense that some actual executions of the sample
 give estimation results far from the true value,
 and others give results close to it.
 
-\begin{minipage}{1.5\textwidth}
-	\vspace{.5cm}
-	\VerbatimInput[frame=lines, % line above and below code section
-	numbers=left, %Line number
-	label=sample-noise.do, %name of code section
-	samepage=true, %Do not allow the code to be broken across pages
-	baselinestretch=0.75 %Use line space more similat to line space in code editors
-	]{./code/sample-noise.do} %Write the relative file path and the name of the file to be included
-	\vspace{.3cm}
-\end{minipage}
+\codeexample{sample-noise.do}{./code/sample-noise.do}
 
 The output of the code is a distribution of means in sub-populations of the overall data.
 This distribution is centered around the true population mean,
@@ -256,16 +220,7 @@ Note that we don't include the reproducibility code here,
 precisely because we want the results of this code
 to be able to vary.}
 
-\begin{minipage}{1.5\textwidth}
-	\vspace{.5cm}
-	\VerbatimInput[frame=lines, % line above and below code section
-	numbers=left, %Line number
-	label=randomization-program-1.do, %name of code section
-	samepage=true, %Do not allow the code to be broken across pages
-	baselinestretch=0.75 %Use line space more similat to line space in code editors
-	]{./code/randomization-program-1.do} %Write the relative file path and the name of the file to be included
-	\vspace{.3cm}
-\end{minipage}
+\codeexample{randomization-program-1.do}{./code/randomization-program-1.do}
 
 With this program created and executed,
 the next part of the code, shown below,
@@ -292,17 +247,7 @@ particularly in small samples (up to several hundred clusters).
 that randomization can spuriously produce
 between \texttt{price} and \texttt{treatment}.}
 
-\begin{minipage}{1.5\textwidth}
-	\vspace{.5cm}
-	\VerbatimInput[frame=lines, % line above and below code section
-	numbers=left, %Line number
-	label=randomization-program-2.do, %name of code section
-	samepage=true, %Do not allow the code to be broken across pages
-	baselinestretch=0.75 %Use line space more similat to line space in code editors
-	]{./code/randomization-program-2.do} %Write the relative file path and the name of the file to be included
-	\vspace{.3cm}
-\end{minipage}
-
+\codeexample{randomization-program-2.do}{./code/randomization-program-2.do}
 
 \subsection{Clustering and Stratification}
 
@@ -336,16 +281,7 @@ properly implements stratification,
 with navigable options for handling common pitfalls.
 We demonstrate the use of this command here.
 
-\begin{minipage}{1.5\textwidth}
-	\vspace{.5cm}
-	\VerbatimInput[frame=lines, % line above and below code section
-	numbers=left, %Line number
-	label=randtreat-strata.do, %name of code section
-	samepage=true, %Do not allow the code to be broken across pages
-	baselinestretch=0.75 %Use line space more similat to line space in code editors
-	]{./code/randtreat-strata.do} %Write the relative file path and the name of the file to be included
-	\vspace{.3cm}
-\end{minipage}
+\codeexample{randtreat-strata.do}{./code/randtreat-strata.do}
 
 Many studies collect data at a different level of observation than the randomization unit.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
 For example, a policy may only be able to affect an entire village,
@@ -362,16 +298,7 @@ it typically relies on subsetting the data intelligently
 to the desired assignment levels.
 We demonstrate here.
 
-\begin{minipage}{1.5\textwidth}
-	\vspace{.5cm}
-	\VerbatimInput[frame=lines, % line above and below code section
-	numbers=left, %Line number
-	label=randtreat-clusters.do, %name of code section
-	samepage=true, %Do not allow the code to be broken across pages
-	baselinestretch=0.75 %Use line space more similat to line space in code editors
-	]{./code/randtreat-clusters.do} %Write the relative file path and the name of the file to be included
-	\vspace{.3cm}
-\end{minipage}
+\codeexample{randtreat-clusters.do}{./code/randtreat-clusters.do}
 
 %------------------------------------------------
 \section{Power}
@@ -445,16 +372,7 @@ Knowing the design's sensitivity to a variety of effect sizes
 lets us calibrate whether the experiment we propose
 is realistic given the constraints of the amount of data we can collect.
 
-\begin{minipage}{1.5\textwidth}
-	\vspace{.5cm}
-	\VerbatimInput[frame=lines, % line above and below code section
-	numbers=left, %Line number
-	label=minimum-detectable-effect.do, %name of code section
-	samepage=true, %Do not allow the code to be broken across pages
-	baselinestretch=0.75 %Use line space more similat to line space in code editors
-	]{./code/minimum-detectable-effect.do} %Write the relative file path and the name of the file to be included
-	\vspace{.3cm}
-\end{minipage}
+\codeexample{minimum-detectable-effect.do}{./code/minimum-detectable-effect.do}
 
 
 \subsection{Minimum sample size}
@@ -471,16 +389,7 @@ Here, we use the outer loop to vary the sample size,
 and report significance across those groups
 instead of across variation in the size of the effect.
 
-\begin{minipage}{1.5\textwidth}
-	\vspace{.5cm}
-	\VerbatimInput[frame=lines, % line above and below code section
-	numbers=left, %Line number
-	label=minimum-sample-size.do, %name of code section
-	samepage=true, %Do not allow the code to be broken across pages
-	baselinestretch=0.75 %Use line space more similat to line space in code editors
-	]{./code/minimum-sample-size.do} %Write the relative file path and the name of the file to be included
-	\vspace{.3cm}
-\end{minipage}
+\codeexample{minimum-sample-size.do}{./code/minimum-sample-size.do}
 
 
 Using the concepts of minimum detectable effect
