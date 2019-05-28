@@ -129,6 +129,22 @@ so that makes your code more readable. It is also less error prone and easier to
 
 \codeexample{stata-conditional-expressions2.do}{./code/stata-conditional-expressions2.do}
 
+\subsection{Macros}
+
+Stata has several types of macros where numbers or text can be stored temporarily, but the two most common
+macros are \textit{locals} and \textit{globals}. Locals should always be the default and globals should only 
+be used when the information stored is needed in a different do-file. Globals are error prone since they are 
+active as long as Stata is open, which creates a risk that a global from one project is incorrectly used in 
+another, so only use globals where they are necessary.
+
+There are several naming conventions you can use for macros. Which one you use is not as important that you 
+and your team is consistent in my you name then. You can use all lower case, \textit{mymacro}, you can use 
+underscores \textit{my\_macro} or camel case \textit{myMacro}.
+
+All globals should be referenced using both the the dollar sign and the curly brackets.
+
+\codeexample{stata-macros.do}{./code/stata-macros.do}
+
 \subsection{File Paths}
 
 All file paths should be absolute and dynamic, should always be enclosed in double quotes and should
