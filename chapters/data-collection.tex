@@ -28,11 +28,9 @@ CAPI surveys\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted
 are primarily created in Excel, Google Sheets,
 or software-specific form builders
 making them one of the few research outputs for which little coding is required.\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
-\marginnote{The \texttt{ietestform} command, part of
+The \texttt{ietestform} command,\sidenote{\url{https://dimewiki.worldbank.org/wiki/ietestform}} part of
 \texttt{iefieldkit}, implements form-checking routines
 for \textbf{SurveyCTO}, a proprietary implementation of \textbf{Open Data Kit (ODK)}.
-You can find a summary
-of those practices at \url{https://dimewiki.worldbank.org/wiki/ietestform}}
 However, since they make extensive use of logical structure and
 relate directly to the data that will be used later,
 both the field team and the data team should
@@ -50,7 +48,7 @@ against \textbf{preloaded data} from master records or from other rounds.
 in which reasons for \textbf{attrition}, treatment \textbf{contamination}, and
 \textbf{loss to follow-up} can be documented --
 \index{attrition}\index{contamination}
-are essential data components for completing CONSORT\marginnote{\textbf{CONSORT:} a standardized system for reporting enrollment, intervention allocation, follow-up, and data analysis through the phases of a randomized trial of two groups.} records.\cite{begg1996improving}
+are essential data components for completing CONSORT\sidenote{\textbf{CONSORT:} a standardized system for reporting enrollment, intervention allocation, follow-up, and data analysis through the phases of a randomized trial of two groups.} records.\cite{begg1996improving}
 
 \textbf{Questionnaire design}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
 \index{questionnaire design}
@@ -69,7 +67,7 @@ in statistical analyses unless pre-planned.
 You must work with the field team to determine the appropriate amount
 of abstraction inherent in linking concepts to responses.\sidenote{\url{
 https://www.povertyactionlab.org/sites/default/files/documents/Instrument\%20Design\_Diva\_final.pdf}}
-\marginnote{\textbf{Likert scale:} an ordered selection of choices
+\sidenote{\textbf{Likert scale:} an ordered selection of choices
 indicating the respondent's level of agreement or disagreement
 with a proposed statement.}
 It is always possible to ask for open-ended responses to questions,
@@ -96,18 +94,18 @@ but allows for much more comprehensible top-line statistics and data quality che
 Broadly, the questionnaire should be designed as follows.
 The workflow will feel much like writing an essay:
 begin from broad concepts and slowly flesh out the specifics.
-\marginnote{Modules should not be numbered --
-they should use a short prefix so they can be easily reordered.
-There is not yet a full consensus over how individual questions should be identified:
-formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder,
-but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.}
 The \textbf{theory of change}, \textbf{experimental design},
 and any \textbf{pre-analysis plans} should be discussed
 and the structure of required data for those conceptualized first.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
 Next, the conceptual outcomes of interest, as well as the main covariates, classifications,
 and other variables needed for the experimental design should be listed out.
 The questionnaire \textit{modules} should be outlined based on this list.
+At this stage, modules should not be numbered --
+they should use a short prefix so they can be easily reordered.
 Each module should then be expanded into specific indicators to observe in the field.
+There is not yet a full consensus over how individual questions should be identified:
+formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder,
+but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
 Finally, the questionnaire can be \textbf{piloted}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}}
 in a non-experimental sample.
 Revisions are made, and the survey is then translated into the appropriate language and programmed electronically.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
@@ -121,7 +119,7 @@ access to personally-identifying information (PII)
 must always be restricted to the members of the team
 who have been granted that permission by the appropriate agreement
 (typically an IRB approving data collection or partner agency providing it).
-\marginnote{\textbf{Encryption:} the process of making information unreadable
+\sidenote{\textbf{Encryption:} the process of making information unreadable
 to anyone without access to a specific deciphering key.}
 Any established data collection platform will always \textbf{encrypt}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}
 all data submitted from the field automatically while in transit
@@ -131,7 +129,7 @@ Your data will be encrypted from the time it leaves the device
 (in tablet-assisted data collation) or your browser (in web data collection)
 until it reaches the server.
 
-\marginnote{Encryption at rest is the only way to ensure
+Encryption at rest is the only way to ensure
 that PII data remains private when it is stored
 on someone else’s server on the open internet.
 Encryption makes data files completely unusable
@@ -140,7 +138,7 @@ a higher level of security than password-protection.
 The World Bank’s and many of our donors’ security requirements
 for data storage can only be fulfilled by this method.
 We recommend keeping your data encrypted whenever PII data is collected --
-therefore, we recommend it for all field data collection.}
+therefore, we recommend it for all field data collection.
 
 Encryption in cloud storage, by contrast, is not enabled by default.
 This is because the service will not encrypt user data unless you confirm
@@ -155,14 +153,12 @@ there is absolutely no way to recover your data.
 To enable data encryption in SurveyCTO, for example,
 simply select the encryption option
 when you create a new form on a SurveyCTO server.
-\marginnote{Other data collection services should work similarly,
+Other data collection services should work similarly,
 but the exact implementation of encryption at rest
-will vary slightly from service to service.}
+will vary slightly from service to service.
 At that time, the service will allow you to download -- once --
 the keyfile pair needed to decrypt the data.
-You must download and store this in a secure location.\marginnote{
-\textbf{LastPass} is a password manager whose free option
-allows you to store passwords as well as small keyfiles like this.}
+You must download and store this in a secure location.
 Make sure you store keyfiles with descriptive names to match the survey to which it corresponds.
 Any time you access the data - either when viewing it in browser or syncing it to your
 computer - the user will be asked to provide this keyfile. It could differ between the software,
@@ -179,10 +175,10 @@ Ideally, the machine hard drives themselves should also be encrypted.
 This policy should also be applied to physical data storage
 such as flash drives and hard drives;
 similarly, files sent to the field containing PII data
-such as the sampling list should at least be password-protected.\sidenote{
+such as the sampling list should at least be password-protected.
 This can be done using a zip-file creator.
 LastPass can also be used to share passwords securely,
-and you cannot share passwords across email.}
+and you cannot share passwords across email.
 This step significantly mitigates the risk in case there is
 a security breach such as loss, theft, hacking, or a virus,
 and adds very little hassle to utilization.
@@ -268,7 +264,7 @@ and their content and targeting can be refined if particular
 questionnaire items are flagged as error-prone
 or specific enumerators or observations appear unusual.
 
-Back-checks cover three main types of questions.\marginnote{\texttt{bcstats} is a Stata command for back checks that takes the different question types into account when comparing surveys.}
+Back-checks cover three main types of questions.
 First, they validate basic information that should not change.
 This ensures the basic quality control that the right respondent
 was interviewed or observed in a given survey,
@@ -289,6 +285,8 @@ Changes in responses between original and back-check surveys
 of the same respondent
 can alert you and the team that changes need to be made
 to portions of the survey.
+\texttt{bcstats} is a Stata command for back checks
+that takes the different question types into account when comparing surveys.
 
 When all data collection is complete,
 the survey team should have a final field report
@@ -315,11 +313,6 @@ and how they were implemented and resolved.
 \section{Receiving primary data}
 
 In this section, you finally get your hands on some data!
-\marginnote{The \texttt{iefolder} command from \texttt{ietoolkit}
-will be your best friend here. This command will set up
-the folder structure for all data processing tasks
-across all data collection rounds.
-\url{https://dimewiki.worldbank.org/iefolder}}
 What do we do with it? Data handling is one of the biggest
 ``black boxes'' in primary research -- it always gets done,
 but teams have wildly different approaches for actually doing it.
@@ -356,9 +349,6 @@ may also satisfy this requirement for some teams,
 since this will never make the data visible to someone
 who gets access to the Dropbox,
 without the key to the file that is generated on encryption.
-\marginnote{LastPass or equivalent should be used to store and share keys.
-Note also that this data copy can never be considered the gold master,
-because other users or the service can accidentally delete it.}
 \textit{The raw data file must never be placed in Dropbox unencrypted, however.}
 The way VeraCrypt works is that it creates a virtual copy
 of the unencrypted file outside of Dropbox, and lets you access that copy.

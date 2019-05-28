@@ -42,9 +42,7 @@ There are three key inputs to assuring reproducibility in these processes:
 Without these, other people running your code may get very different results in the future.
 
 \textbf{Versioning} means using the same version of the software.
-\marginnote{All versions of Stata above version 13 currently operate identically on all platforms.
-In the past, differences between operating systems could also cause replicability issues,
-but PCs and Macs now do not differ.}
+(All software versions of Stata above version 13 currently operate identically on all platforms.)
 If anything is different, the underlying randomization algorithms may have changed,
 and it will be impossible to recover the original result.
 In Stata, the \texttt{version} command ensures that the software algorithm is fixed.
@@ -56,15 +54,15 @@ to set the version once; in this guide, we will use
 \textbf{Sorting} means that the actual data that the random process is run on is fixed.
 Most random outcomes have as their basis an algorithmic sequence of pseudorandom numbers.
 This means that if the start point is set, the full sequence of numbers will not change.
-\marginnote{A corollary of this is that the underlying data must be unchanged between runs:
-to ensure that the dataset is fixed, you must make a \texttt{LOCKED} copy of it at runtime.}
+A corollary of this is that the underlying data must be unchanged between runs:
+to ensure that the dataset is fixed, you must make a \texttt{LOCKED} copy of it at runtime.
 However, if you re-run the process with the dataset in a different order,
 the same numbers will get assigned to different units, and the randomization will turn out different.
 In Stata, \texttt{isid [id\_variable], sort} will ensure that order is fixed over repeat runs.
 
 \textbf{Seeding} means manually setting the start-point of the underlying randomization algorithm.
-\marginnote{You can draw a standard seed randomly by visiting \url{http://bit.ly/stata-random}.
-You will see in the code below that we include the timestamp for verification.}
+You can draw a standard seed randomly by visiting \url{http://bit.ly/stata-random}.
+You will see in the code below that we include the timestamp for verification.
 Note that there are two distinct concepts referred to here by ``randomization'':
 the conceptual process of assigning units to treatment arms,
 and the technical process of assigning random numbers in statistical software,
@@ -74,18 +72,16 @@ then its pseudorandom algorithm will pick up where it left off.
 By setting the seed, you force it to restart from the same point.
 In Stata, \texttt{set seed [seed]} will accomplish this.
 
-\marginnote[2\baselineskip]{This code loads and sets up the \texttt{auto.dta} dataset
+The code below code loads and sets up the \texttt{auto.dta} dataset
 for any random process. Note the three components: versioning, sorting, and seeding.
-Why are \texttt{check1} and \texttt{check3} the same? Why is \texttt{check2} different?}
+Why are \texttt{check1} and \texttt{check3} the same? Why is \texttt{check2} different?
 
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=replicability.do]
-{./code/replicability.do}}
+\codeexample{replicability.do}{./code/replicability.do}
 
 Commands like \texttt{bys:} and \texttt{merge} will re-sort your data as part of their execution,
-\marginnote{To reiterate: any process that includes a random component
+To reiterate: any process that includes a random component
 is a random process, including sampling, randomization, power calculation,
-and many algorithms like bootstrapping.}
+and many algorithms like bootstrapping.
 and other commands may alter the seed without you realizing it.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomization_in_Stata}}
 Any of these things will cause the output to fail to replicate.
 Therefore, each random process should be independently executed
@@ -96,9 +92,7 @@ re-run the file, and use \texttt{cf \_all using [dataset]} targeting the saved f
 If there are any differences, the process has not reproduced,
 and \texttt{cf} will return an error, as shown here.
 
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=randomization-cf.do]
-{./code/randomization-cf.do}}
+\codeexample{randomization-cf.do}{./code/randomization-cf.do}
 
 %------------------------------------------------
 \section{Sampling}
@@ -128,9 +122,7 @@ to the randomization section that follows --
 instead of creating a \texttt{treatment} variable,
 create a \texttt{sample} variable.
 
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=simple-sample.do]
-{./code/simple-sample.do}}
+\codeexample{simple-sample.do}{./code/simple-sample.do}
 
 The fundamental contribution of sampling to the power of a research design is this:
 if you randomly sample a set number of observations from a set frame,
@@ -144,10 +136,10 @@ The variation of these values across the range of all possible sample sets is wh
 
 Portions of this noise can be reduced through design choices
 such as clustering and stratification.
-\marginnote{In general, all sampling requires \textbf{inverse probability weights}.
+In general, all sampling requires \textbf{inverse probability weights}.
 These are conceptually simple in that the weights for each individual must be precisely the inverse of the probability
 with which that individual is included in the sample, but may be practically difficult to calculate for complex methods.
-When the sampling probability is uniform, all the weights are equal to one.}
+When the sampling probability is uniform, all the weights are equal to one.
 Sampling can be structured such that subgroups are guaranteed to appear in a sample:
 that is, you can pick ``half the level one facilities and half the level two facilities'' instead of
 ``half of all facilities''. The key here is that, \textit{for each facility},
@@ -171,9 +163,7 @@ has a distribution in the sense that some actual executions of the sample
 give estimation results far from the true value,
 and others give results close to it.
 
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=sample-noise.do]
-{./code/sample-noise.do}}
+\codeexample{sample-noise.do}{./code/sample-noise.do}
 
 The output of the code is a distribution of means in sub-populations of the overall data.
 This distribution is centered around the true population mean,
@@ -211,26 +201,18 @@ This section will show you how to assess and control this \textbf{randomization 
 To do that, we create a randomization \textbf{program}, which
 \index{programming}
 allows us to re-run the randomization method many times
-\marginnote{Programming takes a few lines of code that may be new to you,
-but getting used to this structure is very useful.}
 and assess the amount of randomization noise correctly.\sidenote{\url{https://data.princeton.edu/stata/programming}}
 Storing the randomization code as a program allows us to access the whole code block
 with a single line of code, so we can tinker with the randomization process
 separately from its application to the data.
+Programming takes a few lines of code that may be new to you,
+but getting used to this structure is very useful.
 A simple randomization program is shown below.
 This code randomizes observations into two groups by combining
 \texttt{xtile} and \texttt{recode},
 which can be extended to any proportions for any number of arms.
 
-\marginnote[2\baselineskip]{The \texttt{syntax, [*]} programming command allows the \texttt{ritest}
-program to later be used for randomization inference.
-Note that we don't include the reproducibility code here,
-precisely because we want the results of this code
-to be able to vary.}
-
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=randomization-program.do]
-{./code/randomization-program-1.do}}
+\codeexample{randomization-program-1.do}{./code/randomization-program-1.do}
 
 With this program created and executed,
 the next part of the code, shown below,
@@ -238,8 +220,6 @@ can set up for reproducibility.
 Then it will call the randomization program by name,
 which executes the exact randomization process we programmed
 to the data currently loaded in memory.
-\marginnote{The reason we cannot use \texttt{ieboilstart} here
-is that it will remove these types of programs from memory.}
 Having pre-programmed the exact randomization does two things:
 it lets us write this next code chunk much more simply,
 and it allows us to reuse that precise randomization as needed.
@@ -252,22 +232,20 @@ These \textbf{randomization inference}\sidenote{\url{https://dimewiki.worldbank.
 than those given by asymptotic confidence intervals,
 particularly in small samples (up to several hundred clusters).
 
-\marginnote[2\baselineskip]{After generating the ``true'' treatment assignment,
+After generating the ``true'' treatment assignment,
 \texttt{ritest} illustrates the distribution of correlations
 that randomization can spuriously produce
-between \texttt{price} and \texttt{treatment}.}
+between \texttt{price} and \texttt{treatment}.
 
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=simple-randomization.do]
-{./code/randomization-program-2.do}}
+\codeexample{randomization-program-2.do}{./code/randomization-program-2.do}
 
 \subsection{Clustering and Stratification}
 
-To control randomization noise, we often use techniques\marginnote{
-These techniques can be used in any random process,
-including sampling; their implementation is nearly identical in code.}
-\index{clustering}\index(stratification)
+To control randomization noise, we often use techniques
+\index{clustering}\index{stratification}
 that reduce the likelihood of a ``bad draw''.\cite{athey2017econometrics}
+These techniques can be used in any random process,
+including sampling; their implementation is nearly identical in code.
 We mean this in a specific way: we want to exclude
 randomizations with certain correlations,
 or we want to improve the \textbf{balance}
@@ -293,9 +271,7 @@ properly implements stratification,
 with navigable options for handling common pitfalls.
 We demonstrate the use of this command here.
 
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=randtreat-strata.do]
-{./code/randtreat-strata.do}}
+\codeexample{randtreat-strata.do}{./code/randtreat-strata.do}
 
 Many studies collect data at a different level of observation than the randomization unit.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
 For example, a policy may only be able to affect an entire village,
@@ -312,10 +288,7 @@ it typically relies on subsetting the data intelligently
 to the desired assignment levels.
 We demonstrate here.
 
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=randtreat-clusters.do]
-{./code/randtreat-clusters.do}}
-
+\codeexample{randtreat-clusters.do}{./code/randtreat-clusters.do}
 
 %------------------------------------------------
 \section{Power}
@@ -366,12 +339,12 @@ you can use one of the built-in functions.\sidenote{\url{https://dimewiki.worldb
 Here, we use an outer loop to vary the size of the assumed treatment effect,
 which is later used to simulate outcomes in a ``true''
 data-generating process (DGP).
-\marginnote{The data generating process is written similarly to a
+The data generating process is written similarly to a
 regression model, but it is a separate step.
 A data generating process is the ``truth''
 that the regression model is trying to estimate.
 If our regression results are close to the DGP,
-then the regression is ``good'' in the sense we care about.}
+then the regression is ``good'' in the sense we care about.
 For each of 100 runs indexed by \texttt{i},
 we ask the question: If this DGP were true,
 would our design have detected it in this draw?
@@ -389,9 +362,8 @@ Knowing the design's sensitivity to a variety of effect sizes
 lets us calibrate whether the experiment we propose
 is realistic given the constraints of the amount of data we can collect.
 
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=minimum-detectable-effect.do]
-{./code/minimum-detectable-effect.do}}
+\codeexample{minimum-detectable-effect.do}{./code/minimum-detectable-effect.do}
+
 
 \subsection{Minimum sample size}
 
@@ -407,9 +379,8 @@ Here, we use the outer loop to vary the sample size,
 and report significance across those groups
 instead of across variation in the size of the effect.
 
-{\setstretch{0.7}
-\VerbatimInput[frame=lines,numbers=left,label=minimum-sample-size.do]
-{./code/minimum-sample-size.do}}
+\codeexample{minimum-sample-size.do}{./code/minimum-sample-size.do}
+
 
 Using the concepts of minimum detectable effect
 and minimum sample size in tandem can help answer a key question
