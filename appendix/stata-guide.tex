@@ -1,26 +1,25 @@
 %------------------------------------------------
 
 \begin{fullwidth}
-	
-Most academic programs that prepare student for a career in the type of work discussed in this book 
-spend a disproportionate time teaching their students coding skills in relation to the share of 
-their professional time they will spend writing code their first years after graduating. Recent 
-Masters' program graduates that join our team tend to have very good knowledge in the theory of our
-trade, but tend to require a lot of training in its practical skills. To us it is like an architect 
-that can draw, describe and discuss a concept or requirement of a new building very well, but do 
-not have the skill set to contribute to a blue print using professional standards and can be used 
-and understood by other professionals during construction. The reasons for this is probably a topic
-for another book, but in today's data driven world, people working in quantitative economics research 
-must be proficient programmers, and that includes more than being able to compute the correct number.
 
-This appendix first has a short section with instructions on how to access and use the code shared in 
-this book. The second section contains a style guide to Stata. Widely accepted and used style guides 
-are common in most programming languages, and we think that it the end it introduces a quality risk 
-for research projects coded in Stata that there is so little emphasize in the Stata community on using, 
-improving, sharing and standardizing style guides. Style guides are the most important tool in how 
-you like an architect draw a blue print that can be understood and used by everyone in your trade, 
+Most academic programs that prepare students for a career in the type of work discussed in this book
+spend a disproportionately small amount of time teaching their students coding skills, in relation to the share of
+their professional time they will spend writing code their first years after graduating. Recent
+Masters' program graduates that have joined our team tended to have very good knowledge in the theory of our
+trade, but tended to require a lot of training in its practical skills. To us, it is like hiring architects
+that can sketch, describe, and discuss the concepts and requirements of a new building very well, but do
+not have the technical skill set to actually contribute to a blueprint using professional standards that can be used
+and understood by other professionals during construction. The reasons for this are probably a topic
+for another book, but in today's data-driven world, people working in quantitative economics research
+must be proficient programmers, and that includes more than being able to compute the correct numbers.
+
+This appendix first has a short section with instructions on how to access and use the code shared in
+this book. The second section contains a style guide to Stata. Widely accepted and used style guides
+are common in most programming languages, and we think that using such a style guide greatly improves the quality
+of research projects coded in Stata. We hope that this guide can  help to increase the emphasis in the Stata community on using,
+improving, sharing and standardizing code style. Style guides are the most important tool in how
+you, like an architect, draw a blueprint that can be understood and used by everyone in your trade,
 and not just by you.
-
 
 \end{fullwidth}
 
@@ -28,90 +27,91 @@ and not just by you.
 
 \section{How to use the Stata code examples in this book}
 
-You can access the code in the code examples used in this book in many ways. We only use Stata's built
-in data sets in our code examples, so you do not need to download any data from anywhere. If you have 
-Stata installed on your computer, then you will have the data files used in the code. 
+You can access the code in the code examples in this book in many ways. We only use Stata's built-in
+datasets in our code examples, so you do not need to download any data from anywhere. If you have
+Stata installed on your computer, then you will have the data files used in the code.
 
-We use GitHub to version control everything in this book, the code included. To see the code on GitHub go to
+We use GitHub to version control everything in this book, the code included. To see the code on GitHub, go to
 \url{https://github.com/worldbank/d4di/tree/master/code}. If you are familiar with GitHub you can
-fork the repository and clone your fork. 
+fork the repository and clone your fork.
 
-A less technical way to access the code is to click the individual file in the URL below, then click
-the button that says \textbf{RAW}. You will then get to a page that looks like this
+A less technical way to access the code is to click the individual file in the URL above, then click
+the button that says \textbf{Raw}. You will then get to a page that looks like this
 \url{https://raw.githubusercontent.com/worldbank/d4di/master/code/code.do} where you can copy the code
-from your browser window to your do-file editor with the formating intact and without other things from
-the website. If you want another code file you can modify the URL. This method is only practical for a 
+from your browser window to your do-file editor with the formatting intact.
+If you want another code file you can modify the URL. This method is only practical for a
 single file at the time. If you want to download all code used in this book then you can do that at
 \url{https://github.com/worldbank/d4di/archive/master.zip}. That link offers you to download a .zip-file
-with all the content used in writing this book, including the \LaTeX{} code used for the book itself. After 
-extracting the .zip-file you will find all the code in a folder called \textit{code}. 
+with all the content used in writing this book, including the \LaTeX{} code used for the book itself. After
+extracting the .zip-file you will find all the code in a folder called \texttt{/code/}.
 
 \subsection{Understanding Stata code}
 
-Regardless if you are new to Stata or have used it for decades, you will always run in to commands that 
-you have not seen before or do not remember what they do. Every time that happens you should always look 
-that command up in the help file. For some reason we often encounter the conception that the help files 
-are only for beginner. We could not disagree with that conception as the only way to get better at Stata 
-is to constantly read help files. So if there is a command that you do not understand in any of our code 
-examples, for example \textit{isid}, then write \verb+help isid+ and the help file for the 
-command \textit{isid} is opened.
+Regardless if you are new to Stata or have used it for decades, you will always run into commands that
+you have not seen before or do not remember what they do. Every time that happens you should always look
+that command up in the helpfile. For some reason, we often encounter the conception that the helpfiles
+are only for beginners. We could not disagree with that conception more, as the only way to get better at Stata
+is to constantly read helpfiles. So if there is a command that you do not understand in any of our code
+examples, for example \texttt{isid}, then write \verb+help isid+ and the helpfile for the
+command \texttt{isid} is opened.
 
-We cannot emphasize too much how important we think it is that you get into the habit of reading help files.
+We cannot emphasize too much how important we think it is that you get into the habit of reading helpfiles.
 
-Sometimes you will see user written commands and you will not be able to read the help file until you have
-installed them. One example of that in our code if \textit{reandtreat} or \textit{ieboilstart}. The by far
-most common place to distribute user written commands are Boston College Statistical Software Components
-(SSC) archive. In our code examples we only use either Stata's built in commands or commands from the 
-SSC archive. So if your installation of Stata does not recognize a command in our code, for example 
-\textit{randtreat}, then type \verb+ssc install randtreat+ in Stata. 
+Sometimes you will see user-written commands and you will not be able to read the helpfile until you have
+installed them. One example of that in our code if \texttt{reandtreat} or \texttt{ieboilstart}. The
+most common place to distribute user-written commands for Stata is Boston College Statistical Software Components
+(SSC) archive. In our code examples, we only use either Stata's built-in commands or commands available from the
+SSC archive. So, if your installation of Stata does not recognize a command in our code, for example
+\texttt{randtreat}, then type \verb+ssc install randtreat+ in Stata.
 
-Some commands on SSC are distributed in packages, for example \textit{ieboilstart}, meaning that you will 
-not be able to install it using \verb+ssc install ieboilstart+. If you do Stata will suggest that you 
-instead use \verb+findit ieboilstart+ which will search SSC (among other places) and see if there is a 
-package that has a command called \textit{ieboilstart}. Stata will find \textit{ieboilstart} in the package 
-\textit{ietoolkit}, so then you will type \verb+ssc install ietoolkit+ instead in Stata.
+Some commands on SSC are distributed in packages, for example \texttt{ieboilstart}, meaning that you will
+not be able to install it using \verb+ssc install ieboilstart+. If you do, Stata will suggest that you
+instead use \verb+findit ieboilstart+ which will search SSC (among other places) and see if there is a
+package that has a command called \texttt{ieboilstart}. Stata will find \texttt{ieboilstart} in the package
+\texttt{ietoolkit}, so then you will type \verb+ssc install ietoolkit+ instead in Stata.
 
-We understand that this seems confusing the first time you work with this, but this is the best way to set 
-up your Stata installation to benefit on other people' work that they have made publicly available, and 
+We understand that this seems confusing the first time you work with this, but this is the best way to set
+up your Stata installation to benefit from other people's work that they have made publicly available, and
 once used to installing commands like this it will not be confusing at all.
 
-\section{Why Using Style Guides?}
+\section{Why we use a style guide}
 
-Programming languages used in computer science always have style guides associated with them. Sometimes 
-they are official guides that are universally agreed upon as PEP8 for 
-Python\sidenote{https://www.python.org/dev/peps/pep-0008/}. But more common are well-recognized but 
-unofficial style guides like JavaScript Standard Style\sidenote{https://standardjs.com/\#the-rules} for 
+Programming languages used in computer science always have style guides associated with them. Sometimes
+they are official guides that are universally agreed upon, such as PEP8 for
+Python\sidenote{https://www.python.org/dev/peps/pep-0008/}. But more commonly, there are well-recognized but
+non-official style guides like JavaScript Standard Style\sidenote{https://standardjs.com/\#the-rules} for
 JavaScript or Hadley Wickham's\sidenote{http://adv-r.had.co.nz/Style.html} style guide for R.
 
-Aesthetics is an important part of style guides but \textbf{if you are thinking that the only purpose of a 
-style guide is aesthetics, then you are completely missing the main point}. The existence of style guides 
-lifts the quality of the code produced by all programmers in the community of the language of that style 
-guide. It is through a style guide that unexperienced programmers learn from more experienced programmers 
-how certain coding practices are more or less error prone. Broadly accepted style guides makes it easier to 
-borrow solutions from each other and from examples online without causing bugs that might only be found too 
-late. Furthermore, if we in the Stata community would code better it would be easier to solve each others 
-problem and move from project to project, or employer to employer.
+Aesthetics is an important part of style guides but they are not the main point. The existence of style guides
+lifts the quality of the code in that language produced by all programmers in the community.
+It is through a style guide that unexperienced programmers learn from more experienced programmers
+how certain coding practices are more or less error-prone. Broadly accepted style guides make it easier to
+borrow solutions from each other and from examples online without causing bugs that might only be found too
+late. Similarly, globally standardized style guides make it easier to solve each others'
+problems and to collaborate or move from project to project, and from team to team.
 
-There is room for personal preference in style guides, but \textbf{style guides are first and foremost 
-about quality} - especially when collaborating on code - and if style guides were commonly used in the 
-Stata community, then all our coding products would be better. You do not necessarily need to follow our 
-style guide. We encourage you to write your own style guide if you disagree with us. The best style guide 
-will be used the most and eventually the Stata community will have the best style guide possible which will 
-benefit us all. What is important though, is that you adopt a style guide and follow it consistently in 
-your project.
+There is room for personal preference in style guides, but style guides are first and foremost
+about quality and standardization -- especially when collaborating on code. We believe that a commonly used Stata style guide
+would improve the quality of all code written in Stata, which is why we have begun one here. You do not necessarily need to follow our
+style guide precisely. We encourage you to write your own style guide if you disagree with us. The best style guide
+woud be the one adopted the most widely. What is most important is that you adopt a style guide and follow it consistently across your projects.
 
-\section{DIME Analytics Style Guides}
+\section{DIME Analytics style guide}
 
-While this section is called \textit{Stata} Style Guide many of these practices are agnostic to which 
-programming language you are using, as best practices often relate to concepts that are common across many 
-languages. If you are coding in a different language, then you might still use many of the guidelines 
+While this section is called \textit{Stata} Style Guide, many of these practices are agnostic to which
+programming language you are using, as best practices often relate to concepts that are common across many
+languages. If you are coding in a different language, then you might still use many of the guidelines
 listed in this section, but you should use your judgment when doing so.
 
 \subsection{Comments}
 
-Comments does nothing for the result you get, but without them your code will not be accessible to your colleagues. It will also take you much longer time to edit code you wrote in the past if you did not comment it well. So comment a lot, but do not only write \textit{what} your code is doing but also \textit{why} you wrote it like that.
+Comments do nothing to the output of your code, but without them your code will not be accessible to your colleagues.
+It will also take you a much longer time to edit code you wrote in the past if you did not comment it well.
+So, comment a lot: do not only write \textit{what} your code is doing but also \textit{why} you wrote it like that.
 
-There are three types of comments in Stata and we use them for different purposes. We encourage everyone to use them the way we do, but the most important thing is that the way you comment your code is consistent.
+There are three types of comments in Stata and we use them for different purposes.
+ We encourage everyone to use them the way we do,
+ but the most important thing is that the way you comment your code is consistent.
 
 \codeexample{stata-comments.do}{./code/stata-comments.do}
 
