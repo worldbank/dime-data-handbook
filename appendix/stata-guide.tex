@@ -137,6 +137,18 @@ widely accepted abbreviation exists. Here are a non-exhaustive list if widely ac
 
 A widely accepted two letter abbreviation is \verb|tw| for the command \verb|twoway|.
 
+\subsection{Loops}
+
+It is very common in code examples that the name of the local generated in \verb|foreach| or \verb|forvalues| 
+is called something simple as \textit{i} or \textit{j}. This is great for general examples and great when you 
+loop over indexes in an array in other programming languages. But since Stata does not have arrays this should 
+not be used in Stata code.
+
+Instead, use a local name that describe what you are looping over, for example household members, crops, or 
+medicines. This makes your code much more readable, especially as you are starting to nest loops.
+
+\codeexample{stata-loops.do}{./code/stata-loops.do}
+
 
 All conditional expressions should be within a parenthesis. And when negating using logical negations,
 then \verb|!| should be used and not \verb|~|.
