@@ -3,6 +3,7 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass{tufte-book} % Use the tufte-book class which in turn uses the tufte-common class
+%Tufte docs: http://ftp.math.purdue.edu/mirrors/ctan.org/macros/latex/contrib/tufte-latex/sample-book.pdf
 \usepackage{geometry}
 
   \geometry{
@@ -36,7 +37,9 @@
 
 \usepackage{upquote}
 \usepackage{fancyvrb} % Allows customization of verbatim environments
-\fvset{fontsize=\normalsize} % The font size of all verbatim text can be changed here
+%Fancyvrb docs: http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/fancyvrb/doc/fancyvrb-doc.pdf
+\fvset{fontsize=\small} % The font size of all verbatim text can be changed here
+
 \renewcommand{\FancyVerbFormatLine}{\color{violet}}
 
 \newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}} % New command to create parentheses around text in tables which take up no horizontal space - this improves column spacing
@@ -60,6 +63,24 @@
 
 \usepackage{makeidx} % Used to generate the index
 \makeindex % Generate the index which is printed at the end of the document
+
+%So we can use option FloatBarrier, which is similar to [H] but is an
+%alternative solition when the algorithm can't solce [H] as too many
+%settings are going on. [H] seems to get stuck in infinite loop
+%https://tex.stackexchange.com/questions/2275/keeping-tables-figures-close-to-where-they-are-mentioned
+\usepackage{placeins}
+\newcommand{\codeexample}[2]{
+	\begin{figure*}[h]
+		\VerbatimInput[
+			framesep=3mm,
+			frame=lines, % line above and below code section
+			numbers=left, %Line number
+			label= #1, %name of code section
+			baselinestretch=0.75, %Use line space more similat to line space in code editors
+		]{#2} %Write the relative file path and the name of the file to be included
+	\end{figure*}
+	\FloatBarrier
+}
 
 %----------------------------------------------------------------------------------------
 %	BOOK META-INFORMATION
@@ -100,12 +121,32 @@ Copyright \copyright\ \the\year\ \thanklessauthor
 
 \par\smallcaps{Published by \thanklesspublisher}
 
-\par\smallcaps{\url{http://worldbank.github.com/dimeanalytics}}
+\par\smallcaps{\url{http://worldbank.github.com/d4di}}
 
-\par License information.\index{license}
+\par Released under a Creative Commons CC BY 2.0 license.
+
+\url{https://creativecommons.org/licenses/by/2.0/}
 
 \par\textit{First printing, \monthyear}
 \end{fullwidth}
+
+%----------------------------------------------------------------------------------------
+%	Edition notes
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage
+\chapter*{Notes on this edition} % The asterisk leaves out this chapter from the table of contents
+
+\input{chapters/notes.tex}
+
+%----------------------------------------------------------------------------------------
+%	Abbreviations
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage
+\chapter*{Abbreviations} % The asterisk leaves out this chapter from the table of contents
+
+\input{chapters/abbreviations.tex}
 
 %----------------------------------------------------------------------------------------
 
