@@ -131,14 +131,15 @@ so that makes your code more readable. It is also less error prone and easier to
 
 \subsection{File Paths}
 
-All file paths should be absolute and dynamic and should always be enclosed in double quotes. Absolute
-file paths means that the file paths starts at the very root folder of the computer. This makes sure that
+All file paths should be absolute and dynamic, should always be enclosed in double quotes and should
+always use forward slashes as Mac and Linux computers cannot read file paths with back slashes.
+\textbf{Absolute file paths} means that the file paths starts at the very root folder of the computer. This makes sure that
 you always get the correct file in the correct folder. We have seen many cases when using \verb|cd| where
 a file has been overwritten from in another project folder where \verb|cd| was currently pointing to.
 Relative file paths are common in many other programming languages, but there they are relative to the
 file location, and then there is no risk that a file is saved in a completely different folder.
 
-Dynamic file paths use globals that are set in a central master do-file to dynamically build your file
+\textbf{Dynamic file paths} use globals that are set in a central master do-file to dynamically build your file
 paths. This have the same function as setting \verb|cd| as all new users should only have to change these
 file paths globals in one location. But dynamic absolute file paths are a better practice since if the
 global names are set uniquely there is no risk that files are saved in the incorrect project folder, and
