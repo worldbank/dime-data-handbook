@@ -13,7 +13,7 @@ It's okay to update this map once the project is underway --
 the point is that everyone knows what the plan is.
 
 Then, you must identify and prepare your tools and workflow.
-All the tools we discuss you here are designed to prepare you for collaboration and replication,
+All the tools we discuss here are designed to prepare you for collaboration and replication,
 so that you can confidently manage tools and tasks on your computer.
 We will try to provide free, open-source, and platform-agnostic tools wherever possible,
 and provide more detailed instructions for those with which we are familiar.
@@ -45,9 +45,9 @@ These include organizing folders,
 collaborating on code,
 controlling different versions of a file,
 and reviewing each other's work.
-Thinking about the best way to do them ahead of time,
-instead of just doing it as quickly as you can when they are needed,
-will save your team a lot of re-work.
+Thinking about the best way to do these tasks ahead of time,
+instead of just doing it as quickly as you can when needed,
+will save your team a lot of re-working.
 This chapter will outline the main points to discuss within the team,
 and point to some possible solutions. 
 
@@ -56,7 +56,9 @@ and point to some possible solutions.
 First things first: turn on your computer.
 Make sure you have fully updated the operating system,
 that it is in good working order,
-and that you have a \textbf{password-protected} login. Additionally, machines that will handle personally-identifiable information should be encrypted.
+and that you have a \textbf{password-protected} login. 
+All machines that will handle personally-identifiable information should be encrypted;
+this should be available built-in to most modern operating systems (BitLocker on PCs or FileVault on Macs).
 Then, make sure your computer is backed up.
 Follow the \textbf{3-2-1 rule}:
 (3) copies of everything;
@@ -91,9 +93,9 @@ as is naming them correctly so you know what is where.
 
 \subsection{Folder management}
 
-The first thing your team will need to create is a shared folder.\marginnote{Common tools for folder sharing are Dropbox, Box, OneDrive.}
+The first thing your team will need to create is a shared folder.\sidenote{Common tools for folder sharing are Dropbox, Box, and OneDrive.}
 If every team member is working on their local computers, 
-there will be a lot of crossed-wires when collaborating on any single file,
+there will be a lot of crossed wires when collaborating on any single file,
 and e-mailing one document back and forth is not efficient.
 Your folder will contain all your project's documents.
 It will be the living memory of your work.
@@ -107,19 +109,19 @@ For the purpose of this book,
 we're mainly interested in the folder that will store the project's data work.
 Agree with your team on a specific folder structure, and
 set it up at the beginning of the research project,
-to prevent folder re-organization that may slowdown your workflow and,
-more importantly, crash your codes.
+to prevent folder re-organization that may slow down your workflow and,
+more importantly, prevent your code files from running.
 DIME Analytics created and maintains 
 \texttt{iefolder}\sidenote{\url{https://dimewiki.worldbank.org/wiki/iefolder}} 
 as a part of our \texttt{ietoolkit} suite.
-This command sets up a standardized folder structure for what we call the \textbf{DataWork} folder.
+This command sets up a standardized folder structure for what we call the \texttt{/DataWork/} folder.
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork_Folder}}
 It includes folders for all the steps of a typical DIME project.
-However, since each project will always have its specific needs,
-so we tried to make it as easy as possible to adapt when that is the case.
-The main advantage of having a standardized folder structure 
+However, since each project will always have project-specific needs,
+we tried to make it as easy as possible to adapt when that is the case.
+The main advantage of having a universally standardized folder structure 
 is that changing from one project to another requires less 
-time to get acquainted with a new organization.
+time to get acquainted with a new organization scheme.
 
 \texttt{iefolder} also creates master do-files.
 \sidenote{https://dimewiki.worldbank.org/wiki/Master\_Do-files} 
@@ -127,22 +129,22 @@ Master scripts are a key element of code organization and collaboration,
 and we will discuss some important features soon.
 With regard to folder structure, it's important to keep in mind
 that the master script should mimic the structure of the DataWork folder.
-This is done through the creation of globals (in Stata) or string scalars (in R) 
-that refer to subfolders, 
-so they can be referrenced without writing their complete paths.
-Because the DataWork folder is shared by the whole team,
+This is done through the creation of globals (in Stata) or string scalars (in R).
+These are ``variables'' -- coding shortcuts that refer to subfolders, 
+so that those folders can be referenced without repeatedly writing out their complete filepaths.
+Because the \texttt{/DataWork/} folder is shared by the whole team,
 its structure is the same in each team member's computer.
-What may differ is the path to the parent folder (the highest-level folder).
+What may differ is the path to the project folder (the highest-level shared folder).
 This is reflected in the master script in such a way that 
-all the changes necessary to run the code from a new computer 
-is to change the path to the parent folder. 
+the only change necessary to run the entire code from a new computer 
+is to change the path to the project folder. 
 The code below shows how folder structure is reflected in a master do-file.
 
 
 \subsection{Code management}
 
 Once you start a project's data work, 
-the number of scripts, data sets and outputs that you have to manage will grow very quickly. 
+the number of scripts, datasets and outputs that you have to manage will grow very quickly. 
 This can get out of hand just as quickly, 
 so it's important to organize your data work and follow best practices from the beginning. 
 Adjustments will always be needed along the way, 
@@ -159,7 +161,7 @@ The first one describes what is being done.
 This should be easy to understand from the code itself if you know the language well enough and the code is clear. 
 But writing plain English (or whichever language you communicate with your team on) 
 will make it easier for everyone to read. 
-The second type of comment is differentiates commented code from well commented code:
+The second type of comment is what differentiates commented code from well-commented code:
 it explains why the code is performing a task in a particular way. 
 As you are writing code, you are making a series of decisions that 
 (hopefully) make perfect sense to you at the time. 
@@ -167,7 +169,7 @@ However, you will probably not remember how they were made in a couple of weeks.
 So write them down in your code. 
 There are other ways to document decisions 
 (GitHub offers a lot of different documentation options, for example), 
-but information that is relevant to understand the code should always be written on the code itself.
+but information that is relevant to understand the code should always be written in the code itself.
 
 Code organization is the next level. 
 Start by adding a code header. 
@@ -194,11 +196,11 @@ One reasonable rule of thumb is to not write files that have more than 200 lines
 This is also true for other statistical software, 
 though not following it will not cause such a hassle.
 
-To bring all these smaller codes together, maintain a master script.
+To bring all these smaller code files together, maintain a master script.
 A master script is the map of all your project's data work, 
-the table of content for the instructions that you code.
+a table of contents for the instructions that you code.
 Anyone should be able to follow and reproduce all your work from
-raw data to all outputs by simply running this script.
+raw data to all outputs by simply running this single script.
 By follow, we mean someone external to the project who has the master script can 
 (i) run all the code and recreate all outputs, 
 (ii) have a general understanding of what is being done at every step, and
@@ -225,13 +227,13 @@ and that other people can understand the code is also the easiest way to ensure 
 A \textbf{version control system} is the way you manage the changes to any computer file.
 This is important, for example, for your team to be able to find the version of a presentation that you delivered to your donor,
 but also to understand why the significance of your estimates has changed.
-Everyone who has ever encountered a file named something like  \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
+Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
 can appreciate how useful such a system can be.
 Most file sharing solutions offer some level of version control.
 These are usually enough to manage changes to binary files (such as Word and PowerPoint documents) without needing to appeal to these dreaded file names.
 For code files, however, a more complex version control system is usually desirable.
-We recommend using \texttt{Git}\marginnote{\textbf{Git}} for all plain text files. 
-\texttt{Git} tracks all the changes you make to your code, 
+We recommend using \texttt{Git}\sidenote{\textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.} for all plain text files. 
+Git tracks all the changes you make to your code, 
 and allows you to go back to previous versions without losing the information on changes made. 
 It also makes it possible to work on two parallel versions of the code, 
 so you don't risk breaking the code for other team members as you try something new,
@@ -266,11 +268,11 @@ what software to use, and how to keep track of them.
 
 % Where to store outputs
 Decisions about storage of final outputs are made easier by technical constraints. 
-As discussed above, \texttt{Git} is a great way to control for different versions of 
+As discussed above, Git is a great way to control for different versions of 
 plain text files, and sync software such as Dropbox are better for binary files.
-So storing raw outputs in formats like \texttt{.tex} and \texttt{.eps} in \texttt{Git} and 
+So storing raw outputs in formats like \texttt{.tex} and \texttt{.eps} in Git and 
 final outputs in PDF, PowerPoint or Word, makes sense.
-Storing plain text outputs on \texttt{Git} makes it easier to identify changes that affect results.
+Storing plain text outputs on Git makes it easier to identify changes that affect results.
 If you are re-running all of your code from the master when significant changes to the code are made,
 the outputs will be overwritten, and changes in coefficients and number of observations, for example, 
 will be highlighted.
@@ -285,7 +287,7 @@ and it's necessary to learn its markup convention to use it.
 The main advantage of using {\LaTeX} is that you can write dynamic documents, 
 that import inputs every time they are compiled. 
 This means you can skip the copying and pasting whenever an output is updated. 
-Because it's written in plain text, it's also easier to control and document changes using \texttt{Git}. 
+Because it's written in plain text, it's also easier to control and document changes using Git. 
 Creating documents in {\LaTeX} using an integrated writing environment such as TeXstudio 
 is great for outputs that focus mainly on text,
 but include small chunks of code and static code outputs.
@@ -304,8 +306,8 @@ RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com/}} is the most widely adop
 There are also different options for Markdown in Stata,
 such as German Rodriguez' Markstat\sidenote{\url{https://data.princeton.edu/stata/markdown}},
 Stata15 dynamic documents\sidenote{\url{https://www.stata.com/new-in-stata/markdown/}},
-and Ben Jann's webdoc\sidenote{\url{http://repec.sowi.unibe.ch/stata/webdoc/index.html}} and 
-texdoc\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc/index.html}}. 
+and Ben Jann's \texttt{webdoc}\sidenote{\url{http://repec.sowi.unibe.ch/stata/webdoc/index.html}} and 
+\texttt{texdoc}\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc/index.html}}. 
 
 Whichever options you decide to use, 
 agree with your team on what tools will be used for what outputs, and
@@ -334,7 +336,7 @@ This means you may have a long script with ``exploratory analysis'',
 just to document everything you have tried. 
 But as you start to export tables and graphs, 
 you'll want to save separate scripts, where 
-\texttt{descriptive\_statistics.do} create \texttt{descriptive\_statistics.tex}. 
+\texttt{descriptive\_statistics.do} creates \texttt{descriptive\_statistics.tex}. 
 
 \subsection{Preparing for collaboration and replication}
 
@@ -345,7 +347,7 @@ For Stata, the built-in do-file editor is the most widely adopted code editor,
 but \textbf{Atom}\sidenote{\url{https://atom.io}} and \textbf{Sublime}\sidenote{\url{https://www.sublimetext.com/}} can also be configured to run Stata code.
 Opening an entire directory and loading the whole tree view in the sidebar,
 which gives you access to directory management actions, is a really useful feature.
-This can be done using RStudio projects in RStudio, Stata projects is Stata, and directory managers in Atom and Sublime.
+This can be done using RStudio projects in RStudio, Stata projects in Stata, and directory managers in Atom and Sublime.
 
 %\textbf{Atom},\sidenote{\url{https://atom.io}}, which can open an entire targeted directory by writing \path{atom /path/to/directory/} in the command line (\textbf{Terminal} or \textbf{PowerShell}), after copying it from the browser. Opening the entire directory loads the whole tree view in the sidebar, and gives you access to directory management actions. You can start to manage your projects as a whole -- Atom is capable of sending code to Stata,\sidenote{\url{https://atom.io/packages/stata-exec}} writing and building \LaTeX,\sidenote{\url{https://atom.io/packages/latex}} and connecting directly with others to team code.\sidenote{\url{https://atom.io/packages/teletype}} It is highly customizable, and since it is your personal environment, there are lots of stylistic and functional options in extension packages that you can use to make your work easier and more enjoyable.
 
