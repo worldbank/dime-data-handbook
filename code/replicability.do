@@ -1,15 +1,15 @@
-// Set the version
+* Set the version
     ieboilstart , v(13.1)
     `r(version)'
 
-// Load the auto dataset and sort uniquely
+* Load the auto dataset and sort uniquely
     sysuse auto.dta , clear
     isid make, sort
 
-// Set the seed using random.org (range: 100000 - 999999)
+* Set the seed using random.org (range: 100000 - 999999)
     set seed 287608 // Timestamp: 2019-02-17 23:06:36 UTC
 
-// Demonstrate stability under the three rules
+* Demonstrate stability under the three rules
     gen check1 = rnormal()
     gen check2 = rnormal()
 
