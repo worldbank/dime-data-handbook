@@ -1,4 +1,4 @@
-* Dynamic and absolute file paths
+* Dynamic, absolute file paths
 
     * Dynamic (and absolute) - GOOD
     global myDocs    "C:/Users/username/Documents"
