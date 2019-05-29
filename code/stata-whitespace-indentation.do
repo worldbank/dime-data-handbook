@@ -8,12 +8,12 @@
     }
 
     * or
-    local sampleSize
+    local sampleSize = `c(N)'
     if (`sampleSize' <= 100) {
         gen use_sample = 0
     }
     else {
-        gen use_sample = 0
+        gen use_sample = 1
     }
 
 * This is BAD
@@ -26,10 +26,10 @@
     }
 
     * or
-    local sampleSize
+    local sampleSize = `c(N)'
     if (`sampleSize' <= 100) {
     gen use_sample = 0
     }
     else {
-    gen use_sample = 0
+    gen use_sample = 1
     }

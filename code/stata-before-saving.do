@@ -1,17 +1,18 @@
-* If the data set has ID varibles create a local and test
-* if they are fully and uniquely identifying the variables.
-local idvars household_ID houeshold_member year
+* If the data set has ID variables, create a local and test
+* if they are fully and uniquely identifying the observations.
+local idvars household_ID household_member year
 isid `idvars'
 
-* Sort and order on the idvars (or any oder variables if
-* there are no ID variables)
+* Sort and order on the idvars (or any other variables if there are no ID variables)
 sort  `idvars'
-order `idvars' // Make sure the idvars are the leftmost vars when browsing
+order * , seq // Place all variables in alphanumeric order (optional but useful)
+order `idvars' , first // Make sure the idvars are the leftmost vars when browsing
 
-* Drop intermediate varaibles no longer needed
+* Drop intermediate variables no longer needed
 
-* Optimize disk sspace
+* Optimize disk space
 compress
 
 * Save data settings
-save "${myProject}/myDataFile.dta" // The folder global is typically set in master do-file
+save "${myProject}/myDataFile.dta" , replace // The folder global is set in master do-file
+ use "${myProject}/myDataFile.dta" , clear // It is useful to be able to recall the data quickly

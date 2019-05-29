@@ -2,7 +2,7 @@
     local  myLocal  "A string local"
     global myGlobal "A string global"
 
-* Reference the local and the myGlobal
+* Reference the local and the global macros
     display "`myLocal'"
     display "${myGlobal}"
 

@@ -1,18 +1,15 @@
-* Absolute vs. relative file paths
-
-    * Absolute - GOOD
-    use "C:\Users/username/Docuemnts/MyProject/MyDataset.dta"
-
-    * Relative - BAD
-    cd "C:\Users/username/Docuemnts/MyProject"
-    use MyDataset.dta
-
-* Dynamic vs. static file paths
+* Dynamic and absolute file paths
 
     * Dynamic (and absolute) - GOOD
-    global myDocs    "C:\Users\username\Docuemnts" // Backslash ok since the root folder is personal
+    global myDocs    "C:/Users/username/Documents"
     global myProject "${myDocs}/MyProject"
     use "${myProject}/MyDataset.dta"
 
-    * Static (and absolute) - BAD
-    use "C:\Users/username/Docuemnts/MyProject/MyDataset.dta"
+* Relative and absolute file paths
+
+    * Relative - BAD
+    cd "C:/Users/username/Documents/MyProject"
+    use MyDataset.dta
+
+    * Absolute but not dynamic - BAD
+    use "C:/Users/username/Documents/MyProject/MyDataset.dta"
