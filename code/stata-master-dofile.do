@@ -26,9 +26,9 @@
 
     * Research Assistant folder paths
     if "`c(username)'" == "ResearchAssistant" {
-        global github     "C:/Users/RA/Documents/GitHub/d4di/DataWork"
-        global dropbox    "C:/Users/RA/Dropbox/d4di/DataWork"
-        global encrypted  "A:/DataWork/EncryptedData"  // Always mount to A disk!
+        global github      "C:/Users/RA/Documents/GitHub/d4di/DataWork"
+        global dropbox     "C:/Users/RA/Dropbox/d4di/DataWork"
+        global encrypted   "A:/DataWork/EncryptedData"  // Always mount to A disk!
     }
 
 
