@@ -9,5 +9,5 @@
     ieboilstart, version(13.1)
     `r(version)'
 
-* Open up the data set
+* Open the dataset
     sysuse auto.dta // Built in dataset (This comment is used to document a single line)
