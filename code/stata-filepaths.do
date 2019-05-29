@@ -10,7 +10,7 @@
 * Dynamic vs. static file paths
 
     * Dynamic (and absolute) - GOOD
-    global myDocs    "C:\Users\username\Docuemnts" // Back slash ok since the root folder is personal
+    global myDocs    "C:\Users\username\Docuemnts" // Backslash ok since the root folder is personal
     global myProject "${myDocs}/MyProject"
     use "${myProject}/MyDataset.dta"
 

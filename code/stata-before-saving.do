@@ -1,5 +1,5 @@
 * If the data set has ID varibles create a local and test
-* if they are fully and uniqually identifying the variables.
+* if they are fully and uniquely identifying the variables.
 local idvars household_ID houeshold_member year
 isid `idvars'
 

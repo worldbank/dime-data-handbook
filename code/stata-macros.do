@@ -6,7 +6,7 @@
     display "`myLocal'"
     display "${myGlobal}"
 
-* Escape character. If back slashes are used just before a local
+* Escape character. If backslashes are used just before a local
 * or a global then two backslashes must be used
     local myFolderLocal  "Documents"
     local myFolderGlobal "Documents"

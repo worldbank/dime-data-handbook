@@ -1,6 +1,6 @@
    local sampleSize = _N // Get the number of observations in dataset
 
-* These example are GOOD
+* This example is GOOD
     if (`sampleSize' <= 100) {
     }
     else {
