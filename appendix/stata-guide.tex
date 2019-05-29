@@ -248,4 +248,22 @@ Stata. It requires two lines to do the setting that mitigates difference in resu
 of Stata. 
 
 \codeexample{stata-boilerplate.do}{./code/stata-boilerplate.do}
+
+\subsection{Before Saving}
+
+Similarly to boiler plate code there are good practices that should be followed before saving the data set.	
+These are sorting and ordering the data set, dropping intermediate variables that are not needed and 
+compressing the data set to save disk space and network bandwidth.
+
+If there is an ID variable or a set of ID variables, then the code should test that they are uniqueally and 
+fully identifying the data set.\sidenote{https://dimewiki.worldbank.org/wiki/ID\_Variable\_Properties} ID 
+variables are also perfect variables to sort on, and to order leftmost in the data set.
+
+The command \verb|compress| makes the data set smaller in terms of megabytes without ever loosing any 
+information. It optimizes the storage types for all variables and therefore makes it smaller on your computer 
+and faster to send over a network or the internet.
+
+\codeexample{stata-before-saving.do}{./code/stata-before-saving.do}
+
+
 \mainmatter
