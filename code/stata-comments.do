@@ -1,5 +1,5 @@
 /*
-    This is an do-file with examples of comments in Stata. This
+    This is a do-file with examples of comments in Stata. This
     type of comment is used to document all of the do-file or a large
     section of it
 */
@@ -10,4 +10,4 @@
     `r(version)'
 
 * Open up the data set
-    sysuse auto.dta // Built in data set (This comment is used to document a single line)
+    sysuse auto.dta // Built in dataset (This comment is used to document a single line)
