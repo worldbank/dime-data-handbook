@@ -9,5 +9,6 @@
     tab treatment
 
 * Show randomization variation with [ritest]
-    ritest treatment _b[treatment] , samplingprogram(my_randomization) ///
-        kdensityplot : reg price treatment
+    ritest treatment _b[treatment] ///
+      , samplingprogram(my_randomization) kdensityplot ///
+      : reg price treatment
