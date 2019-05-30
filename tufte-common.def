@@ -618,7 +618,7 @@
 %%
 % Improved letterspacing of small caps and all-caps text.
 %
-% First, try to use the `microtype' package, if it's available. 
+% First, try to use the `microtype' package, if it's available.
 % Failing that, try to use the `soul' package, if it's available.
 % Failing that, well, I give up.
 
@@ -630,7 +630,7 @@
 \newcommand{\allcaps}[1]{\allcapsspacing{\MakeTextUppercase{#1}}}
 \newcommand{\smallcaps}[1]{\smallcapsspacing{\MakeTextLowercase{#1}}}
 
-% If we're using pdfLaTeX v1.40+, use the letterspace package. 
+% If we're using pdfLaTeX v1.40+, use the letterspace package.
 % If we're using pdfLaTex < v1.40, use the soul package.
 % If we're using XeLaTeX, use XeLaTeX letterspacing options.
 % Otherwise fall back on the soul package.
@@ -797,7 +797,7 @@
   % Use grouping to emulate a multi-token afterassignment queue
   \begingroup%
   % Put `\toks 0 {' into the afterassignment queue
-  \aftergroup\toks\aftergroup0\aftergroup{% 
+  \aftergroup\toks\aftergroup0\aftergroup{%
   % Apply \trimb to the replacement text of #1, adding a leading
   % \noexpand to prevent brace stripping and to serve another purpose
   % later.
@@ -1072,7 +1072,7 @@
 }
 
 %%
-% Forces the outer edge of the caption to be set ragged.  
+% Forces the outer edge of the caption to be set ragged.
 % Therefore, on verso pages it's ragged left, and on recto pages it's ragged right.
 
 \newcommand*{\@tufte@justification@caption@outer}{%
@@ -1558,26 +1558,26 @@
 \titlespacing*{\chapter}{0pt}{50pt}{40pt}
 \titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 \titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus.2ex}
-  
+
 % Subsubsection and following section headings shouldn't be used.
 % See Bringhurst's _The Elements of Typography_, section 4.2.2.
 \renewcommand\subsubsection{%
   \TufteError{\noexpand\subsubsection is undefined by this class.%
-    \MessageBreak See Robert Bringhurst's _The Elements of 
+    \MessageBreak See Robert Bringhurst's _The Elements of
     \MessageBreak Typographic Style_, section 4.2.2.
     \MessageBreak \noexpand\subsubsection was used}
-    {From Bringhurst's _The Elements of Typographic Style_, section 4.2.2: Use as 
-    \MessageBreak many levels of headings as you need, no more and no fewer.  Also see the many 
+    {From Bringhurst's _The Elements of Typographic Style_, section 4.2.2: Use as
+    \MessageBreak many levels of headings as you need, no more and no fewer.  Also see the many
     \MessageBreak related threads on Ask E.T. at http://www.edwardtufte.com/.}
 }
 
 \renewcommand\subparagraph{%
   \TufteError{\noexpand\subparagraph is undefined by this class.%
-    \MessageBreak See Robert Bringhurst's _The Elements of 
+    \MessageBreak See Robert Bringhurst's _The Elements of
     \MessageBreak Typographic Style_, section 4.2.2.
     \MessageBreak \noexpand\subparagraph was used}
-    {From Bringhurst's _The Elements of Typographic Style_, section 4.2.2: Use as 
-    \MessageBreak many levels of headings as you need, no more and no fewer.  Also see the many 
+    {From Bringhurst's _The Elements of Typographic Style_, section 4.2.2: Use as
+    \MessageBreak many levels of headings as you need, no more and no fewer.  Also see the many
     \MessageBreak related threads on Ask E.T. at http://www.edwardtufte.com/.}
 }
 
@@ -1595,10 +1595,10 @@
   \titlecontents{chapter}%
     [0em] % distance from left margin
     {\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
-    {\hspace*{0em}\contentslabel{2em}} % before w/label (label = ``2'')
     {\hspace*{0em}} % before w/o label
-    {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-    [\end{fullwidth}] % after
+    {\thecontentspage\rmfamily\upshape\qquad} % filler + page (leaders and page num)
+    {\hspace*{0em}\contentslabel{2em}} % before w/label (label = ``2'')
+[\end{fullwidth}] % after
   \titlecontents{section}% FIXME
     [0em] % distance from left margin
     {\vspace{0\baselineskip}\begin{fullwidth}\Large\rmfamily\itshape} % above (global formatting of entry)
@@ -1869,4 +1869,3 @@
 %%
 % End of file
 \endinput
-
