@@ -21,7 +21,7 @@ cap prog drop my_randomization
     * Cleanup
     lab var treatment "Treatment Arm"
     lab def treatment 0 "Control" 1 "Treatment 1" 2 "Treatment 2" ///
-         3 "Treatment 3" 4 "Treatment 4" 5 "Treatment 5" , replace
+        3 "Treatment 3" 4 "Treatment 4" 5 "Treatment 5" , replace
     lab val treatment treatment
 end // ----------------------------------------------------
 

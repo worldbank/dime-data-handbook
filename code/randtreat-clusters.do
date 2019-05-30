@@ -22,7 +22,7 @@ cap prog drop my_randomization
     randtreat, generate(treatment) multiple(2)
 
     * Keep only treatment assignment and merge back to all observations
-	  keep cluster treatment
+    keep cluster treatment
         merge 1:m cluster using `ctreat' , nogen
 
     * Cleanup
