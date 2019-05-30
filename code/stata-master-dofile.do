@@ -66,7 +66,7 @@
  PART 3.3:  Construct income indicators
 --------------------------------------------------------------------------------
   REQUIRES:   ${bl_dt}/Final/D4DI_baseline_clean.dta
-  CREATES:    ${bl_out}/Raw/baseline_income_distribution.png
+  CREATES:    ${bl_out}/Raw/D4DI_baseline_income_distribution.png
               ${bl_dt}/Intermediate/D4DI_baseline_constructed_income.dta
   IDS VAR:    hhid
 ----------------------------------------------------------------------------- */
