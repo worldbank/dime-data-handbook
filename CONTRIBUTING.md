@@ -4,7 +4,7 @@ Any and all feedback to refine this book further or to make this text as compreh
 guidelines helps communicate any errors we may have overlooked, any concepts that may seem little vague or difficult to comprehend or any topics that we have missed to inlcude.
 
 If you are familiar with how GitHub works, please feel free to submit issues for any section you don't understand or
-submit a pull request for any additions you want to make.
+submit a pull request with any additions you want to make.
 
 ## Feedback through Email
 While our preference is to receive feedback through GitHub you are always welcome to submit your feedback via our email [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org)
