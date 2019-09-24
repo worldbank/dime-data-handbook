@@ -1,7 +1,7 @@
 # How to give feedback
-First off, thank you for considering contributing to d4di (Data for Development Impact book). 
-Any and all feedback to refine this book further or to make this text as comprehensive as possible is appreciated. Following these 
-guidelines helps communicate any errors we may have overlooked or any concepts that may seem little vague or difficult to comprehend.
+First off, thank you for considering giving feedback or  contributing to **Data for Development Impact**.
+Any and all feedback to refine this book further or to make this text as comprehensive as possible is appreciated. Following these
+guidelines helps communicate any errors we may have overlooked, any concepts that may seem little vague or difficult to comprehend or any topics that we have missed to inlcude.
 
 If you are familiar with how GitHub works, please feel free to submit issues for any section you don't understand or
 submit a pull request for any additions you want to make.
