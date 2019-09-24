@@ -6,11 +6,8 @@ guidelines helps communicate any errors we may have overlooked, any concepts tha
 If you are familiar with how GitHub works, please feel free to submit issues for any section you don't understand or
 submit a pull request for any additions you want to make.
 
-## Email
-Are you new to Github and unsure where to begin contributing to d4di? Just use this helpful starter guide: 
-[Github Guides](https://guides.github.com/activities/hello-world/).
-This will give you a fair idea of how to submit issues and pull requests on our repository. We will also accept issues you may 
-want us to address in the book via our email dimeanalytics@worldbank.org.
+## Feedback through Email
+While our preference is to receive feedback through GitHub you are always welcome to submit your feedback via our email [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org)
 
 ## Issue submission/review process
 If you notice any errors in text or if you need futher clarification for any sentence/concept/section that you think is not 
