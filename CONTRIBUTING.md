@@ -9,8 +9,8 @@ submit a pull request for any additions you want to make.
 ## Feedback through Email
 While our preference is to receive feedback through GitHub you are always welcome to submit your feedback via our email [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org)
 
-## Issue submission/review process
-If you notice any errors in text or if you need futher clarification for any sentence/concept/section that you think is not 
+## Feedback through GitHub
+If you notice any errors in text or if you need further clarification for any sentence/concept/section that you think is not
 exhaustively dealt within the book, you can do so by creating an *issue*. You can read issues submitted by other users or 
 create a new issue [here](https://github.com/worldbank/d4di/issues). 
 
