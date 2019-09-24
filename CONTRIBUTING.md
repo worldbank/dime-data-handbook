@@ -19,17 +19,16 @@ creating an issue is useful for you to provide us the feedback that we should us
 Please read already existing issues to check whether someone else has made the same suggestion or reported the same error 
 before creating a new issue.
 
-### Github Issue Submission Format
-1. Go to our repository [d4di](https://github.com/worldbank/d4di).
-2. Select the issues tab which is situated at the top of the repository folders. In the issues section you can review previously posted 
-issues or select the green tab called *New Issue* to post a new comment.
-3. Write a very precise title for your issue. Then provide a description containing your suggested corrections 
-or additions you want us to see and submit it. We have created labels for every chapter in the book. Please select a label corresponding to
-the chapter you are giving the feedback before submitting the issue.
-4. In case you are referring to a specific line in the text, go to the .tex file you want to suggest changes to, left-click next to the 
-line you wish to attribute the change to and select, *reference in new issue* and follow the same instructions as in point 3.
+### GitHub Issue Submission Format
+For us to be able to search through the feedback we will organize all issues in a specific format. If you do not know how to follow all steps in the bullet point below, then please feel free to post the issue anyways, but we will edit the issue so that it follows our format.
+
+1. Go to [the issued tab](https://github.com/worldbank/d4di/issues) on the d4di repository.
+1. Search the already posted issues to see if the feedback you are about to give is already posted,
+1. If your feedback has not already been brought up, please press the green *New Issue* button to post a new issue.
+1. Write your title on the format **Ch _#_: _description_** where _#_ is the chapter number and _description_ is a short description
+1. Please link in the issue to the file in the repo you are commenting on. If you are referencing a specific line please either link to the specific line in the repo or just link to the file and specify the row number your are referencing
 
 ### Pull Request Process
-1. You can fork this repository (i.e. Create a new branch).
-2. Create a pull request to add edits to the master branch with a clear description of changes or additions
-3. ADMIN will then merge your pull request with the master.
+1. Fork this repository if you want to make your contributions directly in the files.
+2. Make your edits in the `develop` branch in your fork and then create your pull request towards the `worldbank/d4di`:`develop` branch. We do not accept pull requests towards the `master` branch
+3. The Repo Maintainer for `worldbank/d4di` will review the pull request and provide comments if necessary.
