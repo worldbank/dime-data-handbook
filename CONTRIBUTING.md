@@ -22,7 +22,7 @@ before creating a new issue.
 ### GitHub Issue Submission Format
 For us to be able to search through the feedback we will organize all issues in a specific format. If you do not know how to follow all steps in the bullet point below, then please feel free to post the issue anyways, but we will edit the issue so that it follows our format.
 
-1. Go to [the issued tab](https://github.com/worldbank/d4di/issues) on the d4di repository.
+1. Go to [the issued tab](https://github.com/worldbank/d4di/issues) on the D4DI repository.
 1. Search the already posted issues to see if the feedback you are about to give is already posted,
 1. If your feedback has not already been brought up, please press the green *New Issue* button to post a new issue.
 1. Write your title on the format **Ch _#_: _description_** where _#_ is the chapter number and _description_ is a short description
