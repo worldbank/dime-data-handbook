@@ -93,6 +93,23 @@ It should be easy to read and understand in terms of structure, style, and synta
 Finally, the corresponding dataset should be openly accessible
 unless for legal or ethical reasons it cannot be.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Publishing_Data}}
 
+Reproducibility and transparency are not binary concepts:
+there’s a spectrum, starting with simple materials release.
+But even getting that first stage right is a challenge.
+An analysis of 203 empirical papers published in top economics journals in 2016
+showed that less than 1 in 7 provided all the data and code
+needed to assess computational reproducibility.\cite{galiani2017incentives}
+A scan of the 90,000 datasets on the Harvard Dataverse
+found that only 10% have the necessary files and documentation
+for computational reproducibility
+(and a check of 3,000 of those that met requirements
+found that 85% did not replicate).
+Longer-term goals to meet reproducibility and transparency standards
+include making tools for research transparency part and parcel
+of the quest for efficiency gains in the research production function.
+People seem to systematically underestimate the benefits
+and overestimate the costs to adopting modern research practices.
+
 \subsection{Research transparency}
 
 Transparent research will expose not only the code,
@@ -248,3 +265,16 @@ Ideally, all machines used to store and process PII data are not only password p
 (most modern operating systems provide such a tool).
 This means that even if you lose your computer with identifying data in it,
 anyone who gets hold of it still cannot access the information.
+
+Complete data publication, unlike reproducibility checks,
+brings along with it a set of serious privacy concerns,
+particularly when sensitive data is used in key analyses.
+There are a number of tools developed to help researchers de-identify data
+(\texttt{PII_detection}\sidenote{\url{https://github.com/PovertyAction/PII_detection}} from IPA,
+\texttt{PII_scan}\sidenote{\url{https://github.com/J-PAL/PII-Scan}} from JPAL,
+and \texttt{sdcMicro}\sidenote{\url{https://sdcpractice.readthedocs.io/en/latest/sdcMicro.html}} from the World Bank).
+But is it ever possible to fully protect privacy in an era of big data?
+One option is to add noise to data, as the US Census has proposed,
+as it makes the trade-off between data accuracy and privacy explicit.
+But there are no established norms for such “differential privacy” approaches:
+most approaches fundamentally rely on judging “how harmful” disclosure would be.
