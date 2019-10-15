@@ -32,10 +32,9 @@ Get to know them well early on,
 so that you do not spend a lot of time later figuring out basic functions.
 \end{fullwidth}
 
-
 %------------------------------------------------
 
-\section{Preparing a collaborative environment}
+\section{Preparing a collaborative work environment}
 
 Being comfortable using your computer and having the tools you need in reach is key.
 This section provides a brief introduction to key concepts and toolkits
@@ -59,41 +58,27 @@ and point to some possible solutions.
 
 \subsection{Setting up your computer}
 
-\subsection{Documenting decisions and tasks}
-
-\subsection{Choosing software}
-
-\section{Organizing code and data}
-
-\subsection{Version control}
-
-\subsection{Folder management}
-
-\subsection{Code management}
-
-\subsection{Output management}
-
-\subsection{Setting up your computer}
-
 First things first: turn on your computer.
 Make sure you have fully updated the operating system,
 that it is in good working order,
 and that you have a \textbf{password-protected} login.
-All machines that will handle personally-identifiable information should be encrypted;
-this should be built-in to most modern operating systems (BitLocker on PCs or FileVault on Macs).
-Then, make sure your computer is backed up.
+All machines should have their hard disks encrypted;
+this should be built-in to most modern operating systems
+(the service is currently called BitLocker on Windows or FileVault on MacOS).
+Encryption prevents your contents from ever being accessed without the password.
+Then, make sure your computer is backed up to prevent information loss.
 Follow the \textbf{3-2-1 rule}:
-(3) copies of everything;
-(2) different physical media;
-(1) offsite storage.\sidenote{\url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
+have 3 copies of everything, on at least
+2 different hardware devices you have access to,
+with 1 offsite storage.\sidenote{
+  \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
 
-One reasonable setup is having your primary disk,
-a local hard drive managed with a tool like Time Machine,
-and a remote copy managed by a tool like Backblaze.
-Dropbox files count only as local copies and never backups,
-because others can alter it.
-
-% When using a computer for research, you should keep in mind a structure of work known as \textbf{scientific computing}.\cite{wilson2014best,wilson2017good} \index{scientific computing} Scientific computing is a set of practices developed to help you ensure that the computer is being used to improve your efficiency, so that you can focus on the real-world problems instead of technical ones.\sidenote{ \url{https://www.dropbox.com/s/wqefknwfb91kop8/Coding_For_Econs_20190221.pdf?raw=1}} This means getting to know your computer a little better than most people do, and thinking critically about tasks like file structures, code and \textbf{process reusability},\sidenote{ \url{http://blogs.worldbank.org/opendata/making-analytics-reusable}} and software choice. Most importantly, it means detecting early warning signs of \textbf{process bloat}. As a general rule, if the work required to maintain a process grows as fast (or faster) than the number of objects controlled by that process, you need to stop work immediately and rethink processes. You should work to design processes that are close to infinitely scalable by the number of objects being handled -- whether they be field samples, data files, surveys, or other real or digital objects.  The first thing you need to figure to use your computer efficiently is where you are on your file system. \marginnote{You should \textit{always} use forward slashes (\texttt{/}) in file paths. Backslashes will break folder paths in many systems.}
+One reasonable setup is having your primary computer,
+a local hard drive managed with a tool like Time Machine
+(or a secondary computer),
+and a remote copy managed by a cloud backup service.
+Dropbox and other synced files count only as local copies and never as remote backups,
+because other users can alter them.
 
 Find your \textbf{home folder}. On MacOS, this will be a folder with your username.
 On Windows, this will be something like ``This PC''. (It is never your desktop.)
@@ -102,14 +87,57 @@ Ensure you know how to get the \textbf{absolute file path} for any given file.
 On MacOS this will be something like \path{/users/username/dropbox/project/...},
 and on Windows, \path{C:/users/username/github/project/...}.
 We will write file paths such as \path{/Dropbox/project-title/DataWork/EncryptedData/}
-using forward slashes, and mostly use only A-Z, dash, and underscore.
+using forward slashes, and mostly use only A-Z, dash (\texttt{-}), and underscore (\texttt{_}).
 You should \textit{always} use forward slashes (\texttt{/}) in file paths,
 just like an internet address, and no matter how your computer writes them,
 because the other type will cause your work to break many systems.
 You can use spaces in names of non-technical files, but not technical ones.\sidenote{
-\url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf}}
+  \url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf}}
 Making the structure of your files part of your workflow is really important,
 as is naming them correctly so you know what is where.
+
+\subsection{Documenting decisions and tasks}
+
+\subsection{Choosing software}
+
+\section{Organizing code and data}
+
+\subsection{Version control}
+
+A \textbf{version control system} is the way you manage the changes to any computer file.
+This is important, for example, for your team to be able to find the version of a presentation that you delivered to your donor,
+but also to understand why the significance level of your estimates has changed.
+Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
+can appreciate how useful such a system can be.
+Most file sharing solutions offer some level of version control.
+These are usually enough to manage changes to binary files (such as Word and PowerPoint documents) without needing to appeal to these dreaded file names.
+For code files, however, a more complex version control system is usually desirable.
+We recommend using Git\sidenote{\textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.} for all plain text files.
+Git tracks all the changes you make to your code,
+and allows you to go back to previous versions without losing the information on changes made.
+It also makes it possible to work on two parallel versions of the code,
+so you don't risk breaking the code for other team members as you try something new,
+
+Increasingly, we recommend the entire data work folder
+to be created and stored separately in GitHub.
+Nearly all code and outputs (except datasets) are better managed this way.
+Code is written in its native language,
+and it's becoming more and more common for written outputs such as reports,
+presentations and documentations to be written using different \textbf{literate programming}
+tools such as {\LaTeX} and dynamic documents.
+You should therefore feel comfortable having both a project folder and a code folder.
+Their structures can be managed in parallel by using \texttt{iefolder} twice.
+The project folder can be maintained in a synced location like Dropbox,
+and the code folder can be maintained in a version-controlled location like GitHub.
+While both are used for sharing and collaborating,
+there is a sharp difference between the functionality of sync and version control.
+Namely, sync forces everyone to have the same version of every file at all times
+and does not support simultaneous editing well; version control does the opposite.
+Keeping code in a version-controlled folder will allow you
+to maintain better control of its history and functionality,
+and because of the specificity with which code depends on file structure,
+you will be able to enforce better practices there than in the project folder.
+
 
 \subsection{Folder management}
 
@@ -157,6 +185,7 @@ This is reflected in the master script in such a way that
 the only change necessary to run the entire code from a new computer
 is to change the path to the project folder.
 The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
+
 
 
 \subsection{Code management}
@@ -239,42 +268,6 @@ preparing it for code review and reviewing them will require more time and work,
 and that is usually the reason why this step is skipped.
 Making sure that the code is running,
 and that other people can understand the code is also the easiest way to ensure a smooth project handover.
-
-\subsection{Version control}
-
-A \textbf{version control system} is the way you manage the changes to any computer file.
-This is important, for example, for your team to be able to find the version of a presentation that you delivered to your donor,
-but also to understand why the significance level of your estimates has changed.
-Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
-can appreciate how useful such a system can be.
-Most file sharing solutions offer some level of version control.
-These are usually enough to manage changes to binary files (such as Word and PowerPoint documents) without needing to appeal to these dreaded file names.
-For code files, however, a more complex version control system is usually desirable.
-We recommend using Git\sidenote{\textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.} for all plain text files.
-Git tracks all the changes you make to your code,
-and allows you to go back to previous versions without losing the information on changes made.
-It also makes it possible to work on two parallel versions of the code,
-so you don't risk breaking the code for other team members as you try something new,
-
-Increasingly, we recommend the entire data work folder
-to be created and stored separately in GitHub.
-Nearly all code and outputs (except datasets) are better managed this way.
-Code is written in its native language,
-and it's becoming more and more common for written outputs such as reports,
-presentations and documentations to be written using different \textbf{literate programming}
-tools such as {\LaTeX} and dynamic documents.
-You should therefore feel comfortable having both a project folder and a code folder.
-Their structures can be managed in parallel by using \texttt{iefolder} twice.
-The project folder can be maintained in a synced location like Dropbox,
-and the code folder can be maintained in a version-controlled location like GitHub.
-While both are used for sharing and collaborating,
-there is a sharp difference between the functionality of sync and version control.
-Namely, sync forces everyone to have the same version of every file at all times
-and does not support simultaneous editing well; version control does the opposite.
-Keeping code in a version-controlled folder will allow you
-to maintain better control of its history and functionality,
-and because of the specificity with which code depends on file structure,
-you will be able to enforce better practices there than in the project folder.
 
 \subsection{Output management}
 
