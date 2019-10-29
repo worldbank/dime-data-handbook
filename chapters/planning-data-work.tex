@@ -252,15 +252,88 @@ we hope will be an asset to all its users.
 
 \section{Organizing code and data}
 
+Organizing files and folders is not a trivial task.
+What is intuitive to one person rarely comes naturally to another,
+and searching for files and folders is everybody's least favorite task.
+As often as not, you come up with the wrong one,
+and then it becomes very easy to create problems that require complex resolutions later.
+This section will provide basic tips on managing the folder
+that will store your project's data work.
+
+We assume you will be working with code and data throughout your project.
+We further assume you will want all your processes to be recorded
+and easily findable at any point in time.
+Maintaining an organized file structure for data work is the best way
+to ensure that you, your teammates, and others
+are able to easily work on, edit, and replicate your work in the future.
+It also ensures that core automation processes like script tools
+are able to interact well will your work,
+whether they are yours or those of others.
+File organization makes your own work easier as well as more transparent,
+and plays well with tools like version control systems
+that aim to cut down on the amount of repeated tasks you have to perform.
+It is worth thinking in advance about how to store, name, and organize
+the different types of files you will be working with,
+so that there is no confusion down the line
+and everyone has interoperable expectations.
+
+\subsection{File and folder management}
+
+Agree with your team on a specific folder structure, and
+set it up at the beginning of the research project
+to prevent folder re-organization that may slow down your workflow and,
+more importantly, prevent your code files from running.
+DIME Analytics created and maintains
+\texttt{iefolder}\sidenote{\url{https://dimewiki.worldbank.org/wiki/iefolder}}
+as a part of our \texttt{ietoolkit} suite.
+This command sets up a standardized folder structure for what we call the \texttt{/DataWork/} folder.\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork_Folder}}
+It includes folders for all the steps of a typical DIME project.
+However, since each project will always have its own needs,
+we tried to make it as easy as possible to adapt when that is the case.
+The main advantage of having a universally standardized folder structure
+is that changing from one project to another requires less
+time to get acquainted with a new organization scheme.
+
+The first thing your team will need to create is a shared folder.
+If every team member is working on their local computers,
+there will be a lot of crossed wires when collaborating on any single file,
+and e-mailing one document back and forth is not efficient.
+Your folder will contain all your project's documents.
+It will be the living memory of your work.
+The most important thing about this folder is for everyone in the team to know how to navigate it.
+Creating folders with self-explanatory names will make this a lot easier.
+Naming conventions may seem trivial,
+but often times they only make sense to whoever created them.
+It will often make sense for the person in the team who uses a folder the most to create it.
+
+\texttt{iefolder} also creates master do-files.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
+Master scripts are a key element of code organization and collaboration,
+and we will discuss some important features soon.
+With regard to folder structure, it's important to keep in mind
+that the master script should mimic the structure of the \texttt{/DataWork/} folder.
+This is done through the creation of globals (in Stata) or string scalars (in R).
+These are ``variables'' -- coding shortcuts that refer to subfolders,
+so that those folders can be referenced without repeatedly writing out their complete filepaths.
+Because the \texttt{/DataWork/} folder is shared by the whole team,
+its structure is the same in each team member's computer.
+What may differ is the path to the project folder (the highest-level shared folder).
+This is reflected in the master script in such a way that
+the only change necessary to run the entire code from a new computer
+is to change the path to the project folder.
+The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
+
+
 \subsection{Version control}
 
-A \textbf{version control system} is the way you manage the changes to any computer file.
-This is important, for example, for your team to be able to find the version of a presentation that you delivered to your donor,
-but also to understand why the significance level of your estimates has changed.
+A \textbf{version control system} is required to manage changes to any computer file.
+A good version control system tracks who edited each file and when,
+and additionally providers a protocol for ensuring that conflicting versions are avoided.
+This is important, for example, for your team to be able to find the version of a presentation that you delivered to a donor,
+and also to understand why the significance level of your estimates has changed.
 Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
 can appreciate how useful such a system can be.
-Most file sharing solutions offer some level of version control.
-These are usually enough to manage changes to binary files (such as Word and PowerPoint documents) without needing to appeal to these dreaded file names.
+Most file sharing solutions offer some kind of version control.
+These are usually enough to manage changes to binary files (such as Word and PowerPoint documents) without needing to appeal to these dreaded filename-based versioning conventions.
 For code files, however, a more complex version control system is usually desirable.
 We recommend using Git\sidenote{\textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.} for all plain text files.
 Git tracks all the changes you make to your code,
@@ -284,53 +357,6 @@ to maintain better control of its history and functionality,
 and because of the specificity with which code depends on file structure,
 you will be able to enforce better practices there than in the project folder.
 
-
-\subsection{Folder management}
-
-The first thing your team will need to create is a shared folder.\sidenote{Common tools for folder sharing are Dropbox, Box, and OneDrive.}
-If every team member is working on their local computers,
-there will be a lot of crossed wires when collaborating on any single file,
-and e-mailing one document back and forth is not efficient.
-Your folder will contain all your project's documents.
-It will be the living memory of your work.
-The most important thing about this folder is for everyone in the team to know how to navigate it.
-Creating folders with self-explanatory names will make this a lot easier.
-Naming conventions may seem trivial,
-but often times they only make sense to whoever created them.
-It will often make sense for the person in the team who uses a folder the most to create it.
-
-For the purpose of this book,
-we're mainly interested in the folder that will store the project's data work.
-Agree with your team on a specific folder structure, and
-set it up at the beginning of the research project
-to prevent folder re-organization that may slow down your workflow and,
-more importantly, prevent your code files from running.
-DIME Analytics created and maintains
-\texttt{iefolder}\sidenote{\url{https://dimewiki.worldbank.org/wiki/iefolder}}
-as a part of our \texttt{ietoolkit} suite.
-This command sets up a standardized folder structure for what we call the \texttt{/DataWork/} folder.\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork_Folder}}
-It includes folders for all the steps of a typical DIME project.
-However, since each project will always have its own needs,
-we tried to make it as easy as possible to adapt when that is the case.
-The main advantage of having a universally standardized folder structure
-is that changing from one project to another requires less
-time to get acquainted with a new organization scheme.
-
-\texttt{iefolder} also creates master do-files.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
-Master scripts are a key element of code organization and collaboration,
-and we will discuss some important features soon.
-With regard to folder structure, it's important to keep in mind
-that the master script should mimic the structure of the \texttt{/DataWork/} folder.
-This is done through the creation of globals (in Stata) or string scalars (in R).
-These are ``variables'' -- coding shortcuts that refer to subfolders,
-so that those folders can be referenced without repeatedly writing out their complete filepaths.
-Because the \texttt{/DataWork/} folder is shared by the whole team,
-its structure is the same in each team member's computer.
-What may differ is the path to the project folder (the highest-level shared folder).
-This is reflected in the master script in such a way that
-the only change necessary to run the entire code from a new computer
-is to change the path to the project folder.
-The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
 
 
 
