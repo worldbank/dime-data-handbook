@@ -129,18 +129,22 @@ will live in which types of locations.
 
 \subsection{Documenting decisions and tasks}
 
-The first habit that many teams need to break is using e-mail for task management.
+Once your technical workspace is set up,
+you need to decide how you are going to communicate with your team.
+The first habit that many teams need to break is using e-mail for management tasks.
 E-mail is, simply put, not a system. It is not a system for anything.
+E-mail was developed for communicating ``now'' and this is what it does well.
 It is not structured to manage group membership or to present the same information
 across a group of people, or to remind you when old information becomes relevant.
 It is not structured to allow people to collaborate over a long time or to review old discussions.
-It is easy to miss or lose communications when they have relevance in the future.
-E-mail is for communicating ``now'' and this is what it was designed to do.
+It is therefore easy to miss or lose communications from the past when they have relevance in the present.
 Everything that is communicated over e-mail or any other medium should
 immediately be transferred into a system that is designed to keep records.
-We call these systems collaboration tools, and there are several that are very useful.
+We call these systems collaboration tools, and there are several that are very useful.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Collaboration_Tools}}
 
-First of all, you will find a wide variety of task management tools online.
+Many task management tools are online or web-based,
+so that everyone on your team can access them simultaneously.
 Many of them are based on an underlying system known as ``Kanban boards''.\sidenote{
   \url{https://en.wikipedia.org/wiki/Kanban_board}}
 This task-oriented system allows the team to create and assign tasks,
@@ -148,38 +152,69 @@ to track progress across time, and to quickly see the project state.
 These systems also link communications to specific tasks so that
 the records related to decision making on those tasks is permanently recorded.
 A common and free implementation of this system is the one found in GitHub project boards.
-You may also use a system like GitHub Issues or task-assignment on Dropbox Paper,
-which have a more chronological structure, if this is appropriate to your project.
+You may also use a system like GitHub Issues or task assignment on Dropbox Paper,
+which has a more chronological structure, if this is appropriate to your project.
 What is important is that you have a system and you stick to it,
-so that decisions and tasks are easily reviewable long after they are completed.
+so that decisions, discussions, and tasks are easily reviewable long after they are completed.
 
-When it comes to collaboration software,\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Collaboration_Tools}}
-our team uses GitHub for code-related tasks,
-and Dropbox Paper for more managerial and office tasks.
-GitHub has the following features that are useful for efficient workflows:
-- The Issues tab is a great tool for task management.
-- It creates incentives for writing down why changes were made as they are saved, creating naturally documented code.
-- It is useful also because tasks can clearly be tied to file versions.
-Thus, it serves as a great tool for managing code-related tasks.
+Just like we use different file sharing tools for different types of files,
+we use different collaboration tools for different types of tasks.
+Our team, for example, uses GitHub Issues for code-related tasks,
+and Dropbox Paper for more managerial and office-related tasks.
+GitHub creates incentives for writing down why changes were made
+as they are saved, creating naturally documented code.
+It is useful also because tasks in Issues can clearly be tied to file versions.
+Thus, GitHub serves as a great tool for managing code-related tasks.
 On the other hand, Dropbox Paper provides a good interface with notifications,
 and is very intuitive for people with non-technical backgrounds.
 It is useful because tasks can be easily linked to other documents saved in Dropbox.
 Thus, it is a great tool for managing non-code-related tasks.
 Neither of these tools require much technical knowledge;
 they merely require an agreement and workflow design
-so that the people assigning the tasks are sure to set them up in the system.
+so that the people assigning the tasks are sure to set them up in the appropriate system.
 
 \subsection{Choosing software}
 
 Choosing the right personal and team working environment can also make your work easier.
 Let's start looking at where you write code.
-If you are working in R, \textbf{RStudio} is great.\sidenote{\url{https://www.rstudio.com}}
+This book focuses mainly on primary survey data,
+so we are going to broadly assume that you are using ``small'' data
+in one of the two popular desktop-based packages for that kind of work: R or Stata.
+(If you are using another language, like Python,
+or working with big data projects on a server installation,
+you can skip this section.)
+The most important part of working with code is a code editor.
+This does not need to be the same program as the code runs in.
+This can be preferable since your editor will not crash if your code does,
+and may offer additional features aimed at writing code well.
+If you are working in R, \textbf{RStudio} is the typical choice.\sidenote{
+  \url{https://www.rstudio.com}}
 For Stata, the built-in do-file editor is the most widely adopted code editor,
-but \textbf{Atom}\sidenote{\url{https://atom.io}} and \textbf{Sublime}\sidenote{\url{https://www.sublimetext.com/}} can also be configured to run Stata code.
-Opening an entire directory and loading the whole tree view in the sidebar,
-which gives you access to directory management actions, is a really useful feature.
-This can be done using RStudio projects in RStudio, Stata projects in Stata, and directory managers in Atom and Sublime.
+and \textbf{Atom}\sidenote{\url{https://atom.io}} and \textbf{Sublime}\sidenote{\url{https://www.sublimetext.com/}} can also be configured to run Stata code externally, while offering great accessibility features.
+For example, these tools can work on an entire directory -- rather than a single file --
+which gives you access to directory views and file management actions,
+such as folder management, Git integration, and simultaneous work with other types of files without leaving the editor.
+
+In our field of development economics,
+Stata is by far the most commonly used programming language,
+and the Stata do-file editor the most common editor.
+We focus on Stata-specific tools and instructions in this book.
+This is only in part due to its popularity.
+Stata is primarily a scripting language for statistics and data,
+meaning that its users often come from economics and statistics backgrounds
+and understand Stata to be encoding a set of tasks as a record for the future.
+We believe that this must change somewhat:
+in particular, we think that practitioners of Stata
+must begin to think about their workflows more as programmers do,
+and that people who adopt this approach will be dramatically
+more capable in their analytical ability.
+This means that they will be more productive when managing teams,
+and more able to focus on the challenges of experimental design
+and econometric analysis, rather than spending excessive time
+re-solving problems on the computer.
+Stata also has relatively few resources of this type available,
+and the ones that we have created and shared here
+we hope will be an asset to all its users.
 
 \section{Organizing code and data}
 
