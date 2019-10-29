@@ -42,19 +42,25 @@ that can help you take on the work you will be primarily responsible for.
 Some of these skills may seem elementary,
 but thinking about simple things from a workflow perspective
 can help you make marginal improvements every day you work.
+These add up, and together form a collaborative workflow
+that will greatly accelerate your team's ability to get tasks done
+on every project you take on together.
 
 Teams often develop their workflows as they go,
-solving new challenges when they appear.
-However, there are a number of tasks that will always have to be completed during any project.
-These include organizing folders,
-collaborating on code,
-controlling different versions of a file,
-and reviewing each other's work.
-Thinking about the best way to do these tasks ahead of time,
-instead of just doing it as quickly as you can when needed,
-will save your team a lot of re-working.
+solving new challenges as they arise.
+This is broadly okay -- but it is important to recognize
+that there are a number of tasks that will always have to be completed during any project,
+and that the corresponding workflows can be agreed on in advance.
+These include documentation methods, software choices,
+naming schema, organizing folders and outputs, collaborating on code,
+managing revisions to files, and reviewing each other's work.
+These tasks appear in almost every project,
+and also translate well between projects.
+Therefore, there are large efficiency gains to
+thinking about the best way to do these tasks ahead of time,
+instead of just doing it quickly as needed.
 This chapter will outline the main points to discuss within the team,
-and point to some possible solutions.
+and suggest some common solutions.
 
 \subsection{Setting up your computer}
 
@@ -62,32 +68,34 @@ First things first: turn on your computer.
 Make sure you have fully updated the operating system,
 that it is in good working order,
 and that you have a \textbf{password-protected} login.
-All machines should have their hard disks encrypted;
-this should be built-in to most modern operating systems
-(the service is currently called BitLocker on Windows or FileVault on MacOS).
-Encryption prevents your contents from ever being accessed without the password.
-Then, make sure your computer is backed up to prevent information loss.
-Follow the \textbf{3-2-1 rule}:
-have 3 copies of everything, on at least
-2 different hardware devices you have access to,
-with 1 offsite storage.\sidenote{
-  \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
+All machines should have hard disk encryption enabled.
+Disk encryption is built in to most modern operating systems;
+the service is currently called BitLocker on Windows or FileVault on MacOS.
+Disk encryption prevents your files from ever being accessed without the system password.
+As with all critical passwords, your system password should be strong,
+memorable, and backed up in a separate secure location.
 
+Make sure your computer is backed up to prevent information loss.
+Follow the \textbf{3-2-1 rule}: maintain 3 copies of everything,
+on at least 2 different hardware devices you have access to,
+with 1 offsite storage method.\sidenote{
+  \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
 One reasonable setup is having your primary computer,
-a local hard drive managed with a tool like Time Machine
-(or a secondary computer),
-and a remote copy managed by a cloud backup service.
+then a local hard drive managed with a tool like Time Machine
+(alternatively, a fully synced secondary computer),
+and a remote copy maintained by a cloud backup service.
 Dropbox and other synced files count only as local copies and never as remote backups,
 because other users can alter them.
 
-Find your \textbf{home folder}. On MacOS, this will be a folder with your username.
-On Windows, this will be something like ``This PC''. (It is never your desktop.)
+Find your \textbf{home folder}. It is never your desktop.
+On MacOS, this will be a folder with your username.
+On Windows, this will be something like ``This PC''.
 Nearly everything we talk about will assume you are starting from here.
 Ensure you know how to get the \textbf{absolute file path} for any given file.
 On MacOS this will be something like \path{/users/username/dropbox/project/...},
 and on Windows, \path{C:/users/username/github/project/...}.
 We will write file paths such as \path{/Dropbox/project-title/DataWork/EncryptedData/}
-using forward slashes, and mostly use only A-Z, dash (\texttt{-}), and underscore (\texttt{\_}).
+using forward slashes (\texttt{/}), and mostly use only A-Z, dash (\texttt{-}), and underscore (\texttt{\_}).
 You should \textit{always} use forward slashes (\texttt{/}) in file paths,
 just like an internet address, and no matter how your computer writes them,
 because the other type will cause your work to break many systems.
@@ -95,6 +103,29 @@ You can use spaces in names of non-technical files, but not technical ones.\side
   \url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf}}
 Making the structure of your files part of your workflow is really important,
 as is naming them correctly so you know what is where.
+
+If you are working with others, you will most likely be using some kind
+of file collaboration method.
+The exact method you use will depend on your tasks,
+but three methods are the most common.
+\textbf{File syncing} is the most familiar method,
+and is implemented by software like Dropbox and OneDrive.
+Sync forces everyone to have the same version of every file at the same time,
+which makes simultaneous editing difficult but other tasks easier.
+\textbf{Version control} is another method,
+and is implemented by tools like GitHub.
+Version control allows everyone to have different versions at the same time,
+making simultaneous editing easier but other tasks harder.
+Finally, \textbf{server storage} is the least-used method,
+because there is only one version of the materials,
+and simultaneous access must be carefully regulated.
+However, server storage ensures that everyone has access
+to exactly the same files, and also enables
+high-powered computing processes for large and complex data.
+All three methods are used for sharing and collaborating,
+and you should review the types of data work
+that you are going to be doing, and plan which processes
+will live in which types of locations.
 
 \subsection{Documenting decisions and tasks}
 
@@ -179,10 +210,6 @@ You should therefore feel comfortable having both a project folder and a code fo
 Their structures can be managed in parallel by using \texttt{iefolder} twice.
 The project folder can be maintained in a synced location like Dropbox,
 and the code folder can be maintained in a version-controlled location like GitHub.
-While both are used for sharing and collaborating,
-there is a sharp difference between the functionality of sync and version control.
-Namely, sync forces everyone to have the same version of every file at all times
-and does not support simultaneous editing well; version control does the opposite.
 Keeping code in a version-controlled folder will allow you
 to maintain better control of its history and functionality,
 and because of the specificity with which code depends on file structure,
