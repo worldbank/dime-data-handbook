@@ -1,4 +1,4 @@
-%------------------------------------------------
+% ----------------------------------------------------------------------------------------------
 
 \begin{fullwidth}
 Preparation for data work begins long before you collect any data,
@@ -32,7 +32,8 @@ Get to know them well early on,
 so that you do not spend a lot of time later figuring out basic functions.
 \end{fullwidth}
 
-%------------------------------------------------
+% ----------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------
 
 \section{Preparing a collaborative work environment}
 
@@ -62,6 +63,7 @@ instead of just doing it quickly as needed.
 This chapter will outline the main points to discuss within the team,
 and suggest some common solutions.
 
+% ----------------------------------------------------------------------------------------------
 \subsection{Setting up your computer}
 
 First things first: turn on your computer.
@@ -133,6 +135,7 @@ and you should review the types of data work
 that you are going to be doing, and plan which processes
 will live in which types of locations.
 
+% ----------------------------------------------------------------------------------------------
 \subsection{Documenting decisions and tasks}
 
 Once your technical workspace is set up,
@@ -179,6 +182,7 @@ Neither of these tools require much technical knowledge;
 they merely require an agreement and workflow design
 so that the people assigning the tasks are sure to set them up in the appropriate system.
 
+% ----------------------------------------------------------------------------------------------
 \subsection{Choosing software}
 
 Choosing the right personal and team working environment can also make your work easier.
@@ -253,6 +257,8 @@ Stata also has relatively few resources of this type available,
 and the ones that we have created and shared here
 we hope will be an asset to all its users.
 
+% ----------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------
 \section{Organizing code and data}
 
 Organizing files and folders is not a trivial task.
@@ -280,52 +286,51 @@ the different types of files you will be working with,
 so that there is no confusion down the line
 and everyone has interoperable expectations.
 
+% ----------------------------------------------------------------------------------------------
 \subsection{File and folder management}
 
-Agree with your team on a specific folder structure, and
+Agree with your team on a specific directory structure, and
 set it up at the beginning of the research project
-to prevent folder re-organization that may slow down your workflow and,
-more importantly, prevent your code files from running.
-DIME Analytics created and maintains
-\texttt{iefolder}\sidenote{\url{https://dimewiki.worldbank.org/wiki/iefolder}}
-as a part of our \texttt{ietoolkit} suite.
-This command sets up a standardized folder structure for what we call the \texttt{/DataWork/} folder.\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork_Folder}}
-It includes folders for all the steps of a typical DIME project.
-However, since each project will always have its own needs,
-we tried to make it as easy as possible to adapt when that is the case.
+in your synced or shared top-level folder.
+This will prevent folder re-organization that may slow down your workflow and,
+more importantly, ensure your code files are always able to run on any machine.
+To support this, DIME Analytics created and maintains \texttt{iefolder}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/iefolder}}
+as a part of our \texttt{ietoolkit} package.
+This command sets up a pre-standardized folder structure for what we call the \texttt{/DataWork/} folder.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/DataWork_Folder}}
+The \texttt{/DataWork/} folder includes folders for all the steps of a typical project.
+Since each project will always have its own needs,
+we have tried to make it as easy as possible to adapt when that is the case.
 The main advantage of having a universally standardized folder structure
 is that changing from one project to another requires less
 time to get acquainted with a new organization scheme.
+For our group, maintaining a single unified directory structure
+across the entire portfolio of projects means that everyone
+can easily move between projects without having to re-orient
+themselves to how files and folders are organized.
 
-The first thing your team will need to create is a shared folder.
-If every team member is working on their local computers,
-there will be a lot of crossed wires when collaborating on any single file,
-and e-mailing one document back and forth is not efficient.
-Your folder will contain all your project's documents.
-It will be the living memory of your work.
-The most important thing about this folder is for everyone in the team to know how to navigate it.
-Creating folders with self-explanatory names will make this a lot easier.
-Naming conventions may seem trivial,
-but often times they only make sense to whoever created them.
-It will often make sense for the person in the team who uses a folder the most to create it.
-
-\texttt{iefolder} also creates master do-files.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
-Master scripts are a key element of code organization and collaboration,
-and we will discuss some important features soon.
-With regard to folder structure, it's important to keep in mind
-that the master script should mimic the structure of the \texttt{/DataWork/} folder.
-This is done through the creation of globals (in Stata) or string scalars (in R).
-These are ``variables'' -- coding shortcuts that refer to subfolders,
-so that those folders can be referenced without repeatedly writing out their complete filepaths.
-Because the \texttt{/DataWork/} folder is shared by the whole team,
-its structure is the same in each team member's computer.
-What may differ is the path to the project folder (the highest-level shared folder).
-This is reflected in the master script in such a way that
-the only change necessary to run the entire code from a new computer
-is to change the path to the project folder.
-The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
+The DIME \texttt{iefolder} structure is not for everyone.
+However, if you do not already have a standard file structure across projects,
+it is intended to be an easy template to start from.
+This structure operates by creating a \texttt{/DataWork/} folder at the project level,
+and within that folder, it provides standardized directory structures
+for each data source (in the primary data context, ``rounds'' of data collection).
+For each, \texttt{iefolder} creates folders for raw encrypted data,
+raw deidentified data, cleaned data, final data, outputs, and documentation.
+In parallel, it creates folders for the code files
+that move the data through this progression,
+and for the files that manage final analytical work.
+The command also has some flexibility for the addition of
+folders for non-primary data sources, although this is less well developed.
+The package also includes the \texttt{iegitaddmd} command,
+which can place a \texttt{README.md} file in each of these folders.
+These \textbf{Markdown} files provide an easy and GitHub-compatible way
+to document the contents of every folder in the structure.
 
 
+
+% ----------------------------------------------------------------------------------------------
 \subsection{Version control}
 
 A \textbf{version control system} is required to manage changes to any computer file.
@@ -360,9 +365,7 @@ to maintain better control of its history and functionality,
 and because of the specificity with which code depends on file structure,
 you will be able to enforce better practices there than in the project folder.
 
-
-
-
+% ----------------------------------------------------------------------------------------------
 \subsection{Code management}
 
 Once you start a project's data work,
@@ -432,6 +435,22 @@ By follow, we mean someone external to the project who has the master script can
 The master script is also where all the settings are established,
 such as folder paths, functions and constants used throughout the project.
 
+\texttt{iefolder} also creates master do-files.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
+Master scripts are a key element of code organization and collaboration,
+and we will discuss some important features soon.
+With regard to folder structure, it's important to keep in mind
+that the master script should mimic the structure of the \texttt{/DataWork/} folder.
+This is done through the creation of globals (in Stata) or string scalars (in R).
+These are ``variables'' -- coding shortcuts that refer to subfolders,
+so that those folders can be referenced without repeatedly writing out their complete filepaths.
+Because the \texttt{/DataWork/} folder is shared by the whole team,
+its structure is the same in each team member's computer.
+What may differ is the path to the project folder (the highest-level shared folder).
+This is reflected in the master script in such a way that
+the only change necessary to run the entire code from a new computer
+is to change the path to the project folder.
+The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
+
 Agree with your team on a plan to review code as it is written.
 Reading other people's code is the best way to improve your coding skills.
 And having another set of eyes on your code will make you more comfortable with the results you find.
@@ -444,6 +463,7 @@ and that is usually the reason why this step is skipped.
 Making sure that the code is running,
 and that other people can understand the code is also the easiest way to ensure a smooth project handover.
 
+% ----------------------------------------------------------------------------------------------
 \subsection{Output management}
 
 Another task that needs to be discussed with your team is the best way to manage outputs.
