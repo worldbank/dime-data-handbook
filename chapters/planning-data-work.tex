@@ -1,7 +1,7 @@
 % ----------------------------------------------------------------------------------------------
 
 \begin{fullwidth}
-Preparation for data work begins long before you collect any data,
+Preparation for collaborative data work begins long before you collect any data,
 and involves planning both the software tools you will use yourself
 as well as the collaboration platforms and processes for your team.
 In order to be prepared to work on the data you receive with a group,
@@ -14,10 +14,10 @@ giving you and your team a sense of how information resources should be organize
 It's okay to update this map once the project is underway --
 the point is that everyone knows what the plan is.
 
-To build this plan, you will need to prepare collaborative tools and workflows.
-Changing software or protocols half-way through a project can be costly and time-consuming,
+To implement this plan, you will need to prepare collaborative tools and workflows.
+Changing software or protocols halfway through a project can be costly and time-consuming,
 so it's important to think ahead about decisions that may seem of little consequence.
-For example, things as simple as sharing services, folder structures, and file names
+For example, things as simple as sharing services, folder structures, and filenames
 can be extremely painful to alter down the line in any project.
 Similarly, making sure to set up a self-documenting discussion platform
 and version control processes
@@ -26,7 +26,7 @@ This chapter will discuss some tools and processes that
 will help prepare you for collaboration and replication.
 We will try to provide free, open-source, and platform-agnostic tools wherever possible,
 and point to more detailed instructions when relevant.
-However, most have a learning and adaptation process,
+Most have a learning and adaptation process,
 meaning you will become most comfortable with each tool
 only by using it in real-world work.
 Get to know them well early on,
@@ -39,30 +39,31 @@ so that you do not spend a lot of time learning through trial and error.
 \section{Preparing a collaborative work environment}
 
 Being comfortable using your computer and having the tools you need in reach is key.
-This section provides a brief introduction to key concepts and toolkits
-that can help you take on the work you will be primarily responsible for.
+This section provides a brief introduction to core concepts and tools
+that can help you handle the work you will be primarily responsible for.
 Some of these skills may seem elementary,
 but thinking about simple things from a workflow perspective
-can help you make marginal improvements every day you work.
-These add up, and together form a collaborative workflow
+can help you make marginal improvements every day you work
+that add up to substantial gains over the course of many projects.
+Together, these processes should form a collaborative workflow
 that will greatly accelerate your team's ability to get tasks done
 on every project you take on together.
 
-Teams often develop their workflows as they go,
+Teams often develop their workflows over time,
 solving new challenges as they arise.
-This is broadly okay -- but it is important to recognize
-that there are a number of tasks that will always have to be completed during any project,
-and that the corresponding workflows can be agreed on in advance.
+This is good. But it is important to recognize
+that there are a number of tasks that will exist for every project,
+and that their corresponding workflows can be agreed on in advance.
 These include documentation methods, software choices,
 naming schema, organizing folders and outputs, collaborating on code,
 managing revisions to files, and reviewing each other's work.
 These tasks appear in almost every project,
-and also translate well between projects.
-Therefore, there are large efficiency gains to
-thinking about the best way to do these tasks ahead of time,
-instead of just doing it quickly as needed.
+and their solutions translate well between projects.
+Therefore, there are large efficiency gains over time to
+thinking in advance about the best way to do these tasks,
+instead of throwing together a solution when the task arises.
 This chapter will outline the main points to discuss within the team,
-and suggest some common solutions.
+and suggest some common solutions for these tasks.
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Setting up your computer}
@@ -71,115 +72,138 @@ First things first: turn on your computer.
 Make sure you have fully updated the operating system,
 that it is in good working order,
 and that you have a \textbf{password-protected} login.
-All machines should have hard disk encryption enabled.
-Disk encryption is built in to most modern operating systems;
+  \index{password protection}
+All machines should have \textbf{hard disk encryption} enabled.
+  \index{encryption}
+Disk encryption is built-in on most modern operating systems;
 the service is currently called BitLocker on Windows or FileVault on MacOS.
 Disk encryption prevents your files from ever being accessed
 without first entering the system password.
 This is different from file-level encryption,
 which makes individual files unreadable without a specific key.
-We will address that in more detail later.
+(We will address that in more detail later.)
 As with all critical passwords, your system password should be strong,
 memorable, and backed up in a separate secure location.
 
 Make sure your computer is backed up to prevent information loss.
-Follow the \textbf{3-2-1 rule}: maintain 3 copies of everything,
+  \index{backup}
+Follow the \textbf{3-2-1 rule}: maintain 3 copies of all critical data,
 on at least 2 different hardware devices you have access to,
 with 1 offsite storage method.\sidenote{
   \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
 One reasonable setup is having your primary computer,
-then a local hard drive managed with a tool like Time Machine
+a local hard drive managed with a tool like Time Machine
 (alternatively, a fully synced secondary computer),
 and either a remote copy maintained by a cloud backup service
 or all original files stored on a remote server.
 Dropbox and other synced files count only as local copies and never as remote backups,
-because other users can alter them.
+because other users can alter or delete them.
+  \index{Dropbox}
 
 Find your \textbf{home folder}. It is never your desktop.
 On MacOS, this will be a folder with your username.
 On Windows, this will be something like ``This PC''.
-Nearly everything we talk about will assume you are starting from here.
-Ensure you know how to get the \textbf{absolute file path} for any given file.
-Using the absolute file path, starting from the filesystem root,
+Ensure you know how to get the \textbf{absolute filepath} for any given file.
+Using the absolute filepath, starting from the filesystem root,
 means that the computer will never accidentally load the wrong file.
+  \index{filepaths}
 On MacOS this will be something like \path{/users/username/dropbox/project/...},
 and on Windows, \path{C:/users/username/github/project/...}.
-We will write file paths such as \path{/Dropbox/project-titleDataWorkEncryptedData/}
-using forward slashes (\texttt{/}), and mostly use only A-Z, dash (\texttt{-}), and underscore (\texttt{\_}).
-You should \textit{always} use forward slashes (\texttt{/}) in file paths,
-just like an internet address, and no matter how your computer writes them,
-because the other type will cause your work to break many systems.
-Making the structure of your files part of your workflow is really important,
-as is naming them correctly so you know what is where.
+We will write filepaths such as \path{/Dropbox/project-titleDataWorkEncryptedData/},
+assuming the ``Dropbox'' folder lives inside your home folder.
+Filepaths will use forward slashes (\texttt{/}) to indicate folders,
+and typically use only A-Z (the 26 English characters),
+dashes (\texttt{-}), and underscores (\texttt{\_}) in folder names and filenames.
+You should \textit{always} use forward slashes (\texttt{/}) in filepaths in code,
+just like an internet address, and no matter how your computer provides them,
+because the other type will cause your code to break on many systems.
+Making the structure of your directories a core part of your workflow is very important,
+since otherwise you will not be able to reliably transfer the instructions
+for replicating or carrying out your analytical work.
 
-If you are working with others, you will most likely be using
-some kind of active file sharing software.
-The exact providers and combinations you use will depend on your tasks,
+When you are working with others, you will most likely be using
+some kind of \textbf{file sharing} software.
+  \index{file sharing}
+The exact services you use will depend on your tasks,
 but in general, there are three file sharing paradigms that are the most common.
 \textbf{File syncing} is the most familiar method,
 and is implemented by software like Dropbox and OneDrive.
+  \index{file syncing}
 Sync forces everyone to have the same version of every file at the same time,
 which makes simultaneous editing difficult but other tasks easier.
 They also have some security concerns which we will address later.
 \textbf{Version control} is another method,
-and is implemented by tools like Git and GitHub.
-Version control allows everyone to access different versions at the same time,
+commonly implemented by tools like Git and GitHub.
+  \index{version control}
+Version control allows everyone to access different versions of files at the same time,
 making simultaneous editing easier but some other tasks harder.
 It is also only optimized for specific types of files.
-Finally, \textbf{server storage} is the least-used method,
+Finally, \textbf{server storage} is the least-common method,
 because there is only one version of the materials,
 and simultaneous access must be carefully regulated.
+  \index{server storage}
 Server storage ensures that everyone has access
 to exactly the same files and environment, and it also enables
 high-powered computing processes for large and complex data.
-All three methods are used for sharing and collaborating,
+All three file sharing methods are used for collaborative workflows,
 and you should review the types of data work
-that you are going to be doing, and plan which processes
-will live in which types of locations.
+that you are going to be doing, and plan which types of files
+will live in which types of sharing services.
+It is important to note that they are, in general, not interoperable:
+you cannot have version-controlled files inside a syncing service,
+or vice versa, without setting up complex workarounds,
+and you cannot shift files between them without losing historical information.
+Therefore, choosing the correct sharing service at the outset is essential.
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Documenting decisions and tasks}
 
-Once your technical workspace is set up,
+Once your technical and sharing workspace is set up,
 you need to decide how you are going to communicate with your team.
-The first habit that many teams need to break is using e-mail for management tasks.
-E-mail is, simply put, not a system. It is not a system for anything.
-E-mail was developed for communicating ``now'' and this is what it does well.
-It is not structured to manage group membership or to present the same information
+The first habit that many teams need to break
+is using instant communication for management and documentation.
+Email is, simply put, not a system. It is not a system for anything. Neither is WhatsApp.
+  \index{email} \index{WhatsApp}
+These tools are developed for communicating ``now'' and this is what they does well.
+These tools are not structured to manage group membership or to present the same information
 across a group of people, or to remind you when old information becomes relevant.
-It is not structured to allow people to collaborate over a long time or to review old discussions.
+They are not structured to allow people to collaborate over a long time or to review old discussions.
 It is therefore easy to miss or lose communications from the past when they have relevance in the present.
-Everything that is communicated over e-mail or any other medium should
+Everything that is communicated over e-mail or any other instant medium should
 immediately be transferred into a system that is designed to keep records.
 We call these systems collaboration tools, and there are several that are very useful.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Collaboration_Tools}}
+  \index{collaboration tools}
 
-Many task management tools are online or web-based,
-so that everyone on your team can access them simultaneously.
-Many of them are based on an underlying system known as ``Kanban boards''.\sidenote{
+Many collaboration tools are web-based
+so that everyone on your team can access them simultaneously
+and have live discussions about tasks and processes.
+Many are based on an underlying system known as ``Kanban''.\sidenote{
   \url{https://en.wikipedia.org/wiki/Kanban_board}}
 This task-oriented system allows the team to create and assign tasks,
-to track progress across time, and to quickly see the project state.
-These systems also link communications to specific tasks so that
-the records related to decision making on those tasks is permanently recorded.
-A common and free implementation of this system is the one found in GitHub project boards.
-You may also use a system like GitHub Issues or task assignment on Dropbox Paper,
-which has a more chronological structure, if this is appropriate to your project.
-What is important is that you have a system and you stick to it,
+carry out discussions related to single tasks,
+track task progress across time, and quickly see the overall project state.
+These systems therefore link communication to specific tasks so that
+the records related to decision making on those tasks is permanently recorded
+and easy to find in the future when questions about that task come up.
+One popular and free implementation of this system is the one found in GitHub project boards.
+Other systems which offer similar features (but are not explicitly Kanban-based)
+are GitHub Issues and Dropbox Paper, which has a more chronological structure.
+What is important is that your team chooses its system and sticks to it,
 so that decisions, discussions, and tasks are easily reviewable long after they are completed.
 
 Just like we use different file sharing tools for different types of files,
-we use different collaboration tools for different types of tasks.
+we can use different collaboration tools for different types of tasks.
 Our team, for example, uses GitHub Issues for code-related tasks,
 and Dropbox Paper for more managerial and office-related tasks.
 GitHub creates incentives for writing down why changes were made
-as they are saved, creating naturally documented code.
+in response to specific discussions
+as they are completed, creating naturally documented code.
 It is useful also because tasks in Issues can clearly be tied to file versions.
-Thus, GitHub serves as a great tool for managing code-related tasks.
-On the other hand, Dropbox Paper provides a good interface with notifications,
+On the other hand, Dropbox Paper provides a clean interface with task notifications,
 and is very intuitive for people with non-technical backgrounds.
 It is useful because tasks can be easily linked to other documents saved in Dropbox.
-Thus, it is a great tool for managing non-code-related tasks.
+Therefore, it is a better tool for managing non-code-related tasks.
 Neither of these tools require much technical knowledge;
 they merely require an agreement and workflow design
 so that the people assigning the tasks are sure to set them up in the appropriate system.
@@ -187,7 +211,8 @@ so that the people assigning the tasks are sure to set them up in the appropriat
 % ----------------------------------------------------------------------------------------------
 \subsection{Choosing software}
 
-Choosing the right personal and team working environment can also make your work easier.
+Choosing the right working environments can make your work significantly easier.
+  \index{software environments}
 It may be difficult or costly to switch halfway through a project, so
 think ahead about the different software to be used.
 Take into account the different levels of techiness of team members,
@@ -198,43 +223,51 @@ the traditional tools used for small datasets,
 particularly if you are trying to sync or collaborate on them.
 Also consider the cost of licenses, the time to learn new tools,
 and the stability of the tools.
-There are few strictly right or wrong answers,
+There are few strictly right or wrong choices for software,
 but what is important is that you have a plan in advance
-and understand how your tools with interact with your work.
+and understand how your tools will interact with your work.
 
 Ultimately, the goal is to ensure that you will be able to hold
-your code environment constant over the life cycle of a single project.
+your code environment constant over the lifecycle of a single project.
 While this means you will inevitably have different projects
 with different code environments, each one will be better than the last,
 and you will avoid the extremely costly process of migrating a project
-into a new code enviroment.
+into a new code enviroment while it is still ongoing.
 This can be set up down to the software level:
-you need to ensure that even specific versions of software
+you should ensure that even specific versions of software
 and the individual packages you use
 are referenced or maintained so that they can be reproduced going forward
-even if their most recent version contains changes that would break your code.
+even if their most recent releases contain changes that would break your code.
+  \index{software versions}
 (For example, our command \texttt{ieboilstart} in the \texttt{ietoolkit} package
 provides functionality to support Stata version stability.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/ieboilstart}})
 
-Next, think about how and where you write code.
-The rest of this book focuses mainly on primary survey data,
-so we are going to broadly assume that you are using ``small'' data
-in one of the two popular desktop-based packages for that kind of work: R or Stata.
+Next, think about how and where you write and execute code.
+This book focuses mainly on primary survey data,
+so we are going to broadly assume that you are using ``small'' datasets
+in one of the two most popular desktop-based packages: R or Stata.
 (If you are using another language, like Python,
 or working with big data projects on a server installation,
-you can skip this section.)
-The most important part of working with code is a code editor.
-This does not need to be the same program as the code runs in.
-This can be preferable since your editor will not crash if your code does,
+many of the same principles apply but the specifics will be different.)
+The most visible part of working with code is a code editor,
+since most of your time will be spent writing and re-writing your code.
+This does not need to be the same program as the code runs in,
+and the various members of your team do not need to use the same editor.
+Using an external editor can be preferable since your editor will not crash if your code does,
 and may offer additional features aimed at writing code well.
 If you are working in R, \textbf{RStudio} is the typical choice.\sidenote{
   \url{https://www.rstudio.com}}
 For Stata, the built-in do-file editor is the most widely adopted code editor,
-and \textbf{Atom}\sidenote{\url{https://atom.io}} and \textbf{Sublime}\sidenote{\url{https://www.sublimetext.com/}} can also be configured to run Stata code externally, while offering great accessibility features.
-For example, these tools can work on an entire directory -- rather than a single file --
+but \textbf{Atom}\sidenote{\url{https://atom.io}} and
+\textbf{Sublime}\sidenote{\url{https://www.sublimetext.com/}}
+can also be configured to run Stata code externally,
+while offering great code accessibility and quality features.
+(We recommend setting up and becoming comfortable with one of these.)
+For example, these editors can access an entire directory -- rather than a single file --
 which gives you access to directory views and file management actions,
-such as folder management, Git integration, and simultaneous work with other types of files without leaving the editor.
+such as folder management, Git integration,
+and simultaneous work with other types of files, without leaving the editor.
 
 In our field of development economics,
 Stata is by far the most commonly used programming language,
@@ -281,12 +314,12 @@ We further assume you will want all your processes to be recorded
 and easily findable at any point in time.
 Maintaining an organized file structure for data work is the best way
 to ensure that you, your teammates, and others
-are able to easily work on, edit, and replicate your work in the future.
-It also ensures that core automation processes like script tools
-are able to interact well will your work,
+are able to easily advance, edit, and replicate your work in the future.
+It also ensures that automated processes from code and scripting tools
+are able to interact well with your work,
 whether they are yours or those of others.
 File organization makes your own work easier as well as more transparent,
-and plays well with tools like version control systems
+and interacts well with tools like version control systems
 that aim to cut down on the amount of repeated tasks you have to perform.
 It is worth thinking in advance about how to store, name, and organize
 the different types of files you will be working with,
@@ -296,17 +329,20 @@ and everyone has interoperable expectations.
 % ----------------------------------------------------------------------------------------------
 \subsection{File and folder management}
 
-Agree with your team on a specific directory structure, and
-set it up at the beginning of the research project
-in your synced or shared top-level folder.
-This will prevent folder re-organization that may slow down your workflow and,
-more importantly, ensure your code files are always able to run on any machine.
-To support this, DIME Analytics created and maintains \texttt{iefolder}\sidenote{
+Agree with your team on a specific directory structure,
+and set it up at the beginning of the research project
+in your top-level shared folder (the one over which you can control access permissions).
+This will prevent future folder reorganizations that may slow down your workflow and,
+more importantly, ensure that your code files are always able to run on any machine.
+To support consistent folder organization, DIME Analytics maintains \texttt{iefolder}\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/iefolder}}
 as a part of our \texttt{ietoolkit} package.
-This command sets up a pre-standardized folder structure for what we call the \texttt{DataWork} folder.\sidenote{
+  \index{\texttt{iefolder}} \index{\texttt{ietoolkit}}
+This Stata command sets up a pre-standardized folder structure
+for what we call the \texttt{DataWork} folder.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/DataWork_Folder}}
 The \texttt{DataWork} folder includes folders for all the steps of a typical project.
+  \index{\texttt{DataWork} folder}
 Since each project will always have its own needs,
 we have tried to make it as easy as possible to adapt when that is the case.
 The main advantage of having a universally standardized folder structure
@@ -314,88 +350,13 @@ is that changing from one project to another requires less
 time to get acquainted with a new organization scheme.
 For our group, maintaining a single unified directory structure
 across the entire portfolio of projects means that everyone
-can easily move between projects without having to re-orient
+can easily move between projects without having to reorient
 themselves to how files and folders are organized.
 
-The \texttt{DataWork} folder may be created either inside
-an existing project-based folder structure, or it may be created separately.
-It should always be created by the leading RA by agreement with the PI.
-Increasingly, we recommend that you create entire data work folder
-separately in a git-managed folder, and reserve the project folder
-for tasks related to data collection and other project management work.
-The project folder can be maintained in a synced location like Dropbox,
-and the code folder can be maintained in a version-controlled location like GitHub.
-(A version-controlled folder can \textit{never} be stored inside a synced folder,
-because the versioning features are extremely disruptive to others
-when the syncing utility operates on them.)
-Nearly all code and raw outputs (not datasets) are better managed this way.
-This is because code files are usually \textbf{plaintext} files,
-and non-technical files are usually \textbf{binary} files.
-It's also becoming more and more common for written outputs such as reports,
-presentations and documentations to be written using plaintext
-tools such as {\LaTeX} and dynamic documents.
-Keeping such plaintext files in a version-controlled folder allows you
-to maintain better control of their history and functionality.
-Because of the specificity with which code files depends on file structure,
-you will be able to enforce better practices there than in the project folder,
-which will usually be managed by a PI, FC, or field team members.
-
-Once the directory structure is set up,
-you should adopt a file naming convention.
-You will be working with two types of files:
-``technical'' files, which are those that are accessed by code processes,
-and ``non-technical'' files, which will not be accessed by code processes.
-The former takes precedent: an Excel file is a technical file
-even if it is a field log, because at some point it will be used by code.
-We will not give much emphasis to non-technical files here;
-but you should make sure to name them
-in an orderly fashion that works for your team.
-You can use spaces and datestamps in names of non-technical files, but not technical ones:
-the former might have a name like \texttt{2019-10-30 Sampling Procedure Description.docx}
-while the latter might have a name like \texttt{endline-sampling.do}.
-This will ensure you can find files within folders
-and reduce the amount of time others will spend opening files
-to find out what is inside them.
-Technical files, however, have stricter requirements.\sidenote{
-  \url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf}}
-For example, you should never use spaces in technical names;
-this can cause problems in code. (This includes all folder names.)
-One practice that takes some getting used to
-is the fact that the best names from a coding perspective
-are usually the opposite of those from an English perspective.
-For example, for a deidentified household dataset from the baseline round,
-you should prefer a name like \texttt{baseline-household-deidentified.dta},
-rather than the opposite way around as occurs in natural language.
-This ensures that all \texttt{baseline} data stays together,
-then all \texttt{baseline-household} data,
-and then provides unique information about this one.
-
-Setting up the \texttt{DataWork} folder folder in a git-managed directory
-also enabled you to use Git and GitHub for version control on your code files.
-A \textbf{version control system} is required to manage changes to any technical file.
-A good version control system tracks who edited each file and when,
-and additionally providers a protocol for ensuring that conflicting versions are avoided.
-This is important, for example, for your team to be able to find the version of a presentation that you delivered to a donor,
-and also to understand why the significance level of your estimates has changed.
-Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
-can appreciate how useful such a system can be.
-Most file-syncing solutions offer some kind of version control;
-These are usually enough to manage changes to binary files (such as Word and PowerPoint documents)
-without needing to rely on these dreaded filename-based versioning conventions.
-For technical files, however, a more complex version control system is usually desirable.
-We recommend using Git\sidenote{
-  \textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.}
-for all plaintext files.
-Git tracks all the changes you make to your code,
-and allows you to go back to previous versions without losing the information on changes made.
-It also makes it possible to work on two parallel versions of the code,
-so you don't risk breaking the code for other team members as you try something new.
-The DIME approach is designed with this in mind.
-
-However, the DIME structure is not for everyone.
-If you do not already have a standard file structure across projects,
+The DIME file structure is not for everyone.
+But if you do not already have a standard file structure across projects,
 it is intended to be an easy template to start from.
-This structure operates by creating a \texttt{DataWork} folder at the project level,
+This system operates by creating a \texttt{DataWork} folder at the project level,
 and within that folder, it provides standardized directory structures
 for each data source (in the primary data context, ``rounds'' of data collection).
 For each, \texttt{iefolder} creates folders for raw encrypted data,
@@ -407,8 +368,89 @@ The command also has some flexibility for the addition of
 folders for non-primary data sources, although this is less well developed.
 The package also includes the \texttt{iegitaddmd} command,
 which can place a \texttt{README.md} file in each of these folders.
-These \textbf{Markdown} files provide an easy and GitHub-compatible way
+These \textbf{Markdown} files provide an easy and git-compatible way
 to document the contents of every folder in the structure.
+  \index{Markdown}
+
+The \texttt{DataWork} folder may be created either inside
+an existing project-based folder structure, or it may be created separately.
+It should always be created by the leading RA by agreement with the PI.
+Increasingly, our recommendation is to create the \texttt{DataWork} folder
+separately from the project management materials,
+reserving the ``project folder'' for data collection and other management work.
+  \index{project folder}
+This is so the project folder can be maintained in a synced location like Dropbox,
+while the code folder can be maintained in a version-controlled location like GitHub.
+(Remember, a version-controlled folder can \textit{never} be stored inside a synced folder,
+because the versioning features are extremely disruptive to others
+when the syncing utility operates on them, and vice versa.)
+Nearly all code files and raw outputs (not datasets) are best managed this way.
+This is because code files are usually \textbf{plaintext} files,
+and non-technical files are usually \textbf{binary} files.
+  \index{plaintext} \index{binary files}
+It's also becoming more and more common for written outputs such as reports,
+presentations and documentations to be written using plaintext
+tools such as {\LaTeX} and dynamic documents.
+  \index{{\LaTeX}} \index{dynamic documents}
+Keeping such plaintext files in a version-controlled folder allows you
+to maintain better control of their history and functionality.
+Because of the high degree with which code files depend on file structure,
+you will be able to enforce better practices in a separate folder than in the project folder,
+which will usually be managed by a PI, FC, or field team members.
+
+Setting up the \texttt{DataWork} folder folder in a version-controlled directory
+also enables you to use Git and GitHub for version control on your code files.
+A \textbf{version control system} is required to manage changes to any technical file.
+A good version control system tracks who edited each file and when,
+and additionally provides a protocol for ensuring that conflicting versions are avoided.
+This is important, for example, for your team
+to be able to find the version of a presentation that you delivered to a donor,
+or to understand why the significance level of your estimates has changed.
+Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
+can appreciate how useful such a system can be.
+Most syncing services offer some kind of rudimentary version control;
+These are usually enough to manage changes to binary files (such as Word and PowerPoint documents)
+without needing to rely on dreaded filename-based versioning conventions.
+For technical files, however, a more detailed version control system is usually desirable.
+We recommend using Git\sidenote{
+  \textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.}
+for all plaintext files.
+Git tracks all the changes you make to your code,
+and allows you to go back to previous versions without losing the information on changes made.
+It also makes it possible to work on multiple parallel versions of the code,
+so you don't risk breaking the code for other team members as you try something new.
+The DIME file management and organization approach is designed with this in mind.
+
+Once the \texttt{DataWork} folder's directory structure is set up,
+you should adopt a file naming convention.
+You will generally be working with two types of files:
+``technical'' files, which are those that are accessed by code processes,
+and ``non-technical'' files, which will not be accessed by code processes.
+The former takes precedent: an Excel file is a technical file
+even if it is a field log, because at some point it will be used by code.
+We will not give much emphasis to non-technical files here;
+but you should make sure to name them in an orderly fashion that works for your team.
+These rules will ensure you can find files within folders
+and reduce the amount of time others will spend opening files
+to find out what is inside them.
+Some of the differences between the two file types are major and may be new to you. For example,
+you can use spaces and datestamps in names of non-technical files, but not technical ones:
+the former might have a name like \texttt{2019-10-30 Sampling Procedure Description.docx}
+while the latter might have a name like \texttt{endline-sampling.do}.
+Technical files have stricter requirements than non-technical ones.\sidenote{
+  \url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf}}
+For example, you should never use spaces in technical names;
+this can cause problems in code. (This includes all folder names.)
+Similarly, technical files should never include capital letters.
+One organizational practice that takes some getting used to
+is the fact that the best names from a coding perspective
+are usually the opposite of those from an English perspective.
+For example, for a deidentified household dataset from the baseline round,
+you should prefer a name like \texttt{baseline-household-deidentified.dta},
+rather than the opposite way around as occurs in natural language.
+This ensures that all \texttt{baseline} data stays together,
+then all \texttt{baseline-household} data,
+and finally provides unique information about this specific file.
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Code management}
