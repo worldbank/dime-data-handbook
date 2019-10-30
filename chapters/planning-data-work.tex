@@ -99,6 +99,8 @@ On MacOS, this will be a folder with your username.
 On Windows, this will be something like ``This PC''.
 Nearly everything we talk about will assume you are starting from here.
 Ensure you know how to get the \textbf{absolute file path} for any given file.
+Using the absolute file path, starting from the filesystem root,
+means that the computer will never accidentally load the wrong file.
 On MacOS this will be something like \path{/users/username/dropbox/project/...},
 and on Windows, \path{C:/users/username/github/project/...}.
 We will write file paths such as \path{/Dropbox/project-title/DataWork/EncryptedData/}
@@ -466,8 +468,8 @@ This is an arbitrary limit, just like the standard restriction of each line to 8
 it seems to be ``enough but not too much'' for most purposes.
 
 To bring all these smaller code files together, maintain a master script.
-A master script is the map of all your project's data work,
-a table of contents for the instructions that you code.
+A master script is the map of all your project's data work
+which serves as a table of contents for the instructions that you code.
 Anyone should be able to follow and reproduce all your work from
 raw data to all outputs by simply running this single script.
 By follow, we mean someone external to the project who has the master script can
@@ -475,17 +477,17 @@ By follow, we mean someone external to the project who has the master script can
 (ii) have a general understanding of what is being done at every step, and
 (iii) see how codes and outputs are related.
 The master script is also where all the settings are established,
-such as folder paths, functions and constants used throughout the project.
+such as versions, folder paths, functions, and constants used throughout the project.
 
-\texttt{iefolder} also creates master do-files.\sidenote{
+\texttt{iefolder} creates these as master do-files.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
 Master scripts are a key element of code organization and collaboration,
 and we will discuss some important features soon.
 With regard to folder structure, it's important to keep in mind
 that the master script should mimic the structure of the \texttt{/DataWork/} folder.
 This is done through the creation of globals (in Stata) or string scalars (in R).
-These are ``variables'' -- coding shortcuts that refer to subfolders,
-so that those folders can be referenced without repeatedly writing out their complete filepaths.
+These coding shortcuts can refer to subfolders,
+so that those folders can be referenced without repeatedly writing out their absolute filepaths.
 Because the \texttt{/DataWork/} folder is shared by the whole team,
 its structure is the same in each team member's computer.
 What may differ is the path to the project folder (the highest-level shared folder).
