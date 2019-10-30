@@ -108,7 +108,7 @@ Using the absolute filepath, starting from the filesystem root,
 means that the computer will never accidentally load the wrong file.
   \index{filepaths}
 On MacOS this will be something like \path{/users/username/dropbox/project/...},
-and on Windows, \path{C:/users/username/github/project/...}.
+and on Windows, \path{C:/users/username/Github/project/...}.
 We will write filepaths such as \path{/Dropbox/project-titleDataWorkEncryptedData/},
 assuming the ``Dropbox'' folder lives inside your home folder.
 Filepaths will use forward slashes (\texttt{/}) to indicate folders,
@@ -327,7 +327,7 @@ so that there is no confusion down the line
 and everyone has interoperable expectations.
 
 % ----------------------------------------------------------------------------------------------
-\subsection{File and folder management}
+\subsection{Organizing files and folder structures}
 
 Agree with your team on a specific directory structure,
 and set it up at the beginning of the research project
@@ -366,9 +366,9 @@ that move the data through this progression,
 and for the files that manage final analytical work.
 The command also has some flexibility for the addition of
 folders for non-primary data sources, although this is less well developed.
-The package also includes the \texttt{iegitaddmd} command,
+The package also includes the \texttt{ieGitaddmd} command,
 which can place a \texttt{README.md} file in each of these folders.
-These \textbf{Markdown} files provide an easy and git-compatible way
+These \textbf{Markdown} files provide an easy and Git-compatible way
 to document the contents of every folder in the structure.
   \index{Markdown}
 
@@ -438,7 +438,7 @@ you can use spaces and datestamps in names of non-technical files, but not techn
 the former might have a name like \texttt{2019-10-30 Sampling Procedure Description.docx}
 while the latter might have a name like \texttt{endline-sampling.do}.
 Technical files have stricter requirements than non-technical ones.\sidenote{
-  \url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf}}
+  \url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-Git/slides/naming-slides/naming-slides.pdf}}
 For example, you should never use spaces in technical names;
 this can cause problems in code. (This includes all folder names.)
 Similarly, technical files should never include capital letters.
@@ -453,7 +453,7 @@ then all \texttt{baseline-household} data,
 and finally provides unique information about this specific file.
 
 % ----------------------------------------------------------------------------------------------
-\subsection{Code management}
+\subsection{Documenting and organizing code}
 
 Once you start a project's data work,
 the number of scripts, datasets, and outputs that you have to manage will grow very quickly.
@@ -466,42 +466,48 @@ They all come from the principle that code is an output by itself,
 not just a means to an end,
 and code should be written thinking of how easy it will be for someone to read it later.
 
-Code documentation is one of the main factors that contribute to readability,
-if not the main one.
-There are two types of comments that should be included in code.
-The first one describes what is being done.
-This should be easy to understand from the code itself if you know the language well enough and the code is clear.
-But writing plain English (or whichever language you communicate with your team on)
-will make it easier for everyone to read.
-The second type of comment is what differentiates commented code from well-commented code:
-it explains why the code is performing a task in a particular way.
-As you are writing code, you are making a series of decisions that
-(hopefully) make perfect sense to you at the time.
-However, you will probably not remember how they were made in a couple of weeks.
-So write them down in your code.
-There are other ways to document decisions
-(GitHub offers a lot of different documentation options, for example),
-but information that is relevant to understand the code should always be written in the code itself.
-
-Code organization is the next level.
-Start by adding a code header.
-This should include simple things such as stating the purpose of the script and the name of the person who wrote it.
+Code documentation is one of the main factors that contribute to readability.
+Start by adding a code header to every file.
+This should include simple things such as the purpose of the script and the name of the person who wrote it.
 If you are using a version control software,
 the last time a modification was made and the person who made it will be recorded by that software.
 Otherwise, you should include it in the header.
-Finally, and more importantly, use it to track the inputs and outputs of the script.
-When you are trying to track down which code creates a data set, this will be very helpful.
+Finally, use the header to track the inputs and outputs of the script.
+When you are trying to track down which code creates which data set, this will be very helpful.
+While there are other ways to document decisions related to creating code
+(GitHub offers a lot of different documentation options, for example),
+the information that is relevant to understand the code should always be written in the code file.
 
-Breaking your code into readable steps is also good practice on code organization.
+Mixed among the code itself, are two types of comments that should be included.
+The first type of comment describes what is being done.
+This might be easy to understand from the code itself
+if you know the language well enough and the code is clear,
+but often it is still a great deal of work to reverse-engineer the code's intent.
+Writing the task in plain English (or whichever language you communicate with your team on)
+will make it easier for everyone to read and understand the code's purpose.
+The second type of comment explains why the code is performing a task in a particular way.
+As you are writing code, you are making a series of decisions that
+(hopefully) make perfect sense to you at the time.
+These are often highly specialized and may exploit functionality
+that is not obvious or has not been seen by others before.
+Even you will probably not remember the exact choices that were made in a couple of weeks.
+Therefore, you must document your precise processes in your code.
+
+Code organization means keeping each piece of code in an easily findable location.
+  \index{code organization}
+Breaking your code into independently readable ``chunks'' is one good practice on code organization,
+because it ensures each component does not depend on a complex program state
+created by other chunks that are not obvious from the immediate context.
 One way to do this is to create sections where a specific task is completed.
 So, for example, if you want to find the line in your code where a variable was created,
 you can go straight to \texttt{PART 2: Create new variables},
-instead of reading line by line of the code.
-RStudio makes it very easy to create sections, and compiles them into an interactive script index.
+instead of reading line by line through the entire code.
+RStudio, for example makes it very easy to create sections,
+and it compiles them into an interactive script index for you.
 In Stata, you can use comments to create section headers,
-though they're just there to make the reading easier.
-Adding a code index to the header by copying and pasting section titles is the easiest way to create a code map.
-You can then add and navigate through them using the find command.
+though they're just there to make the reading easier and don't have functionality.
+Adding an index to the header by copying and pasting section titles is the easiest way to create a code map.
+You can then add and navigate through them using the \texttt{find} command.
 Since Stata code is harder to navigate, as you will need to scroll through the document,
 it's particularly important to avoid writing very long scripts.
 Therefore, in Stata at least, you should also consider breaking code tasks down
@@ -511,7 +517,8 @@ One reasonable rule of thumb is to not write do-files that have more than 200 li
 This is an arbitrary limit, just like the standard restriction of each line to 80 characters:
 it seems to be ``enough but not too much'' for most purposes.
 
-To bring all these smaller code files together, maintain a master script.
+To bring all these smaller code files together, you must maintain a master script.
+  \index{master do-file}
 A master script is the map of all your project's data work
 which serves as a table of contents for the instructions that you code.
 Anyone should be able to follow and reproduce all your work from
@@ -540,54 +547,81 @@ the only change necessary to run the entire code from a new computer
 is to change the path to the project folder to reflect the filesystem and username.
 The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
 
-Finally, agree with your team on a plan to review code as it is written.
+In order to maintain these practices and ensure they are functioning well,
+you should agree with your team on a plan to review code as it is written.
+  \index{code review}
 Reading other people's code is the best way to improve your coding skills.
 And having another set of eyes on your code will make you more comfortable with the results you find.
-It's normal (and common) to make mistakes as you write your code quickly.
+It's normal (and common) to make mistakes as you write your code.
 Reading it again to organize and comment it as you prepare it to be reviewed will help you identify them.
-Try to have code review scheduled frequently, as you finish writing a piece of code, or complete a small task.
-If you wait for a long time to have your code review, and it gets too long,
+Try to have a code review scheduled frequently,
+every time you finish writing a piece of code, or complete a small task.
+If you wait for a long time to have your code review, and it gets too complex,
 preparation and code review will require more time and work,
 and that is usually the reason why this step is skipped.
 Making sure that the code is running properly on other machines,
 and that other people can read and understand the code easily,
-is also the easiest way to ensure a smooth project handover.
+is also the easiest way to be prepared in advance for a smooth project handover.
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Output management}
 
-The final task that needs to be discussed with your team is the best way to manage outputs.
+The final task that needs to be discussed with your team is the best way to manage output files.
 A great number of outputs will be created during the course of a project,
-from raw outputs such as tables and graphs to final products such as presentations, papers and reports.
+and these will include both raw outputs such as tables and graphs
+and final products such as presentations, papers and reports.
 When the first outputs are being created, agree on where to store them,
-what software to use, and how to keep track of them.
+what softwares and formats to use, and how to keep track of them.
 
 % Where to store outputs
-Decisions about storage of final outputs are made easier by technical constraints.
-As discussed above, Git is a great way to control for different versions of
-plain text files, and sync software such as Dropbox are better for binary files.
-Raw outputs in formats like \texttt{.tex} and \texttt{.eps} can be managed with Git,
-while final outputs like PDF, PowerPoint, or Word, can be kept in a synced folder.
+Decisions about storage of outputs are made easier by technical constraints.
+As discussed above, version control systems like Git are a great way to manage
+plaintext files, and sync softwares such as Dropbox are better for binary files.
+Outputs will similarly come in these two formats, depending on your software.
+Binary outputs like Excel files, PDFs, PowerPoints, or Word documents can be kept in a synced folder.
+Raw outputs in plaintext formats like \texttt{.tex} and \texttt{.eps}
+can be created from most analytical software and managed with Git.
 Storing plaintext outputs on Git makes it easier to identify changes that affect results.
 If you are re-running all of your code from the master when significant changes to the code are made,
 the outputs will be overwritten, and changes in coefficients and number of observations, for example,
 will be highlighted for you to review.
 In fact, one of the most effective ways to check code quickly
-is simply to commit all your code and outputs,
+is simply to commit all your code and outputs using Git,
 then re-run the entire thing and examine any flagged changes in the directory.
 
+No matter what choices you make,
+you will need to make updates to your outputs quite frequently.
+And anyone who has tried to recreate a graph after a few months probably knows
+that it can be hard to remember where you saved the code that created it.
+Here, naming conventions and code organization play a key role
+in not re-writing scripts again and again.
+It is common for teams to maintain one analyisis file or folder with ``exploratory analysis'',
+which are pieces of code that are stored only to be found again in the future,
+but not cleaned up to be included in any outputs yet.
+Once you are happy with a partiular result or output,
+it should be named and moved to a dedicated location.
+It's typically desirable to have the names of outputs and scripts linked,
+so, for example, \texttt{factor-analysis.do} creates \texttt{factor-analysis-f1.eps} and so on.
+Document output creation in the Master script that runs these files,
+so that before the line that runs a particular analysis script
+there are a few lines of comments listing
+data sets and functions that are necessary for it to run,
+as well as all outputs created by that script.
+
 % What software to use
+Compiling the raw outputs from your statistical software into useful formats
+is the final step in producing research outputs for public consumption.
 Though formatted text software such as Word and PowerPoint are still prevalent,
-researchers are increasinly choosing to prepare even final outputs
+researchers are increasingly choosing to prepare final outputs
 like documents and presentations using {\LaTeX}.\sidenote{
-  \url{https://www.latex-project.org}}
+  \url{https://www.latex-project.org}} \index{{\LaTeX}.}
 {\LaTeX} is a document preparation system that can create both text documents and presentations.
 The main advantage is that {\LaTeX} uses plaintext for all formatting,
 and it is necessary to learn its specific markup convention to use it.
 The main advantage of using {\LaTeX} is that you can write dynamic documents,
 that import inputs every time they are compiled.
 This means you can skip the copying and pasting whenever an output is updated.
-Because it's written in plain text, it's also easier to control and document changes using Git.
+Because it's written in plaintext, it's also easier to control and document changes using Git.
 Creating documents in {\LaTeX} using an integrated writing environment such as TeXstudio
 is great for outputs that focus mainly on text,
 but include small chunks of code and static code outputs.
@@ -615,23 +649,6 @@ Take into account ease of use for different team members, but
 keep in mind that learning how to use a new tool may require some
 time investment upfront that will be paid off as your project advances.
 
-% Keeping track of outputs
-Finally, no matter what choices you make regarding software and folder organization,
-you will need to make changes to your outputs quite frequently.
-And anyone who has tried to recreate a graph after a few months probably knows
-that it can be hard to remember where you saved the code that created it.
-Here, naming conventions and code organization play a key role in not re-writing scripts again and again.
-It is common for teams to maintain an analyisis file or folder with ``exploratory analysis'',
-which are pieces of code that are commented and written only to be found again in the future,
-but not cleaned up to be included in any outputs yet.
-Once you are happy with a partiular result or output, however,
-it should be named and moved to a dedicated location.
-It's typically desirable to have the names of outputs and scripts linked,
-so, for example, \texttt{factor-analysis.do} creates \texttt{factor-analysis-f1.eps} and so on.
-Document output creation in the Master script that runs these files,
-so that before the line that runs a particular analysis script there are a few lines of comments listing
-data sets and functions that are necessary for it to run,
-as well as all outputs created by that script.
 
 % ----------------------------------------------------------------------------------------------
 
