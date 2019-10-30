@@ -103,7 +103,7 @@ Using the absolute file path, starting from the filesystem root,
 means that the computer will never accidentally load the wrong file.
 On MacOS this will be something like \path{/users/username/dropbox/project/...},
 and on Windows, \path{C:/users/username/github/project/...}.
-We will write file paths such as \path{/Dropbox/project-title/DataWork/EncryptedData/}
+We will write file paths such as \path{/Dropbox/project-titleDataWorkEncryptedData/}
 using forward slashes (\texttt{/}), and mostly use only A-Z, dash (\texttt{-}), and underscore (\texttt{\_}).
 You should \textit{always} use forward slashes (\texttt{/}) in file paths,
 just like an internet address, and no matter how your computer writes them,
@@ -302,9 +302,9 @@ more importantly, ensure your code files are always able to run on any machine.
 To support this, DIME Analytics created and maintains \texttt{iefolder}\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/iefolder}}
 as a part of our \texttt{ietoolkit} package.
-This command sets up a pre-standardized folder structure for what we call the \texttt{/DataWork/} folder.\sidenote{
+This command sets up a pre-standardized folder structure for what we call the \texttt{DataWork} folder.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/DataWork_Folder}}
-The \texttt{/DataWork/} folder includes folders for all the steps of a typical project.
+The \texttt{DataWork} folder includes folders for all the steps of a typical project.
 Since each project will always have its own needs,
 we have tried to make it as easy as possible to adapt when that is the case.
 The main advantage of having a universally standardized folder structure
@@ -315,7 +315,7 @@ across the entire portfolio of projects means that everyone
 can easily move between projects without having to re-orient
 themselves to how files and folders are organized.
 
-The \texttt{/DataWork/} folder may be created either inside
+The \texttt{DataWork} folder may be created either inside
 an existing project-based folder structure, or it may be created separately.
 It should always be created by the leading RA by agreement with the PI.
 Increasingly, we recommend that you create entire data work folder
@@ -368,7 +368,7 @@ This ensures that all \texttt{baseline} data stays together,
 then all \texttt{baseline-household} data,
 and then provides unique information about this one.
 
-Setting up the \texttt{/DataWork/} folder folder in a git-managed directory
+Setting up the \texttt{DataWork} folder folder in a git-managed directory
 also enabled you to use Git and GitHub for version control on your code files.
 A \textbf{version control system} is required to manage changes to any technical file.
 A good version control system tracks who edited each file and when,
@@ -393,7 +393,7 @@ The DIME approach is designed with this in mind.
 However, the DIME structure is not for everyone.
 If you do not already have a standard file structure across projects,
 it is intended to be an easy template to start from.
-This structure operates by creating a \texttt{/DataWork/} folder at the project level,
+This structure operates by creating a \texttt{DataWork} folder at the project level,
 and within that folder, it provides standardized directory structures
 for each data source (in the primary data context, ``rounds'' of data collection).
 For each, \texttt{iefolder} creates folders for raw encrypted data,
@@ -483,36 +483,37 @@ such as versions, folder paths, functions, and constants used throughout the pro
   \url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
 Master scripts are a key element of code organization and collaboration,
 and we will discuss some important features soon.
-With regard to folder structure, it's important to keep in mind
-that the master script should mimic the structure of the \texttt{/DataWork/} folder.
+The master script should mimic the structure of the \texttt{DataWork} folder.
 This is done through the creation of globals (in Stata) or string scalars (in R).
 These coding shortcuts can refer to subfolders,
 so that those folders can be referenced without repeatedly writing out their absolute filepaths.
-Because the \texttt{/DataWork/} folder is shared by the whole team,
+Because the \texttt{DataWork} folder is shared by the whole team,
 its structure is the same in each team member's computer.
-What may differ is the path to the project folder (the highest-level shared folder).
+The only difference between machines should be
+the path to the project or \texttt{DataWork} folder (the highest-level shared folder).
 This is reflected in the master script in such a way that
 the only change necessary to run the entire code from a new computer
-is to change the path to the project folder.
+is to change the path to the project folder to reflect the filesystem and username.
 The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
 
-Agree with your team on a plan to review code as it is written.
+Finally, agree with your team on a plan to review code as it is written.
 Reading other people's code is the best way to improve your coding skills.
 And having another set of eyes on your code will make you more comfortable with the results you find.
 It's normal (and common) to make mistakes as you write your code quickly.
 Reading it again to organize and comment it as you prepare it to be reviewed will help you identify them.
 Try to have code review scheduled frequently, as you finish writing a piece of code, or complete a small task.
 If you wait for a long time to have your code review, and it gets too long,
-preparing it for code review and reviewing them will require more time and work,
+preparation and code review will require more time and work,
 and that is usually the reason why this step is skipped.
-Making sure that the code is running,
-and that other people can understand the code is also the easiest way to ensure a smooth project handover.
+Making sure that the code is running properly on other machines,
+and that other people can read and understand the code easily,
+is also the easiest way to ensure a smooth project handover.
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Output management}
 
-Another task that needs to be discussed with your team is the best way to manage outputs.
-A great number of them will be created during the course of a project,
+The final task that needs to be discussed with your team is the best way to manage outputs.
+A great number of outputs will be created during the course of a project,
 from raw outputs such as tables and graphs to final products such as presentations, papers and reports.
 When the first outputs are being created, agree on where to store them,
 what software to use, and how to keep track of them.
@@ -521,20 +522,24 @@ what software to use, and how to keep track of them.
 Decisions about storage of final outputs are made easier by technical constraints.
 As discussed above, Git is a great way to control for different versions of
 plain text files, and sync software such as Dropbox are better for binary files.
-So storing raw outputs in formats like \texttt{.tex} and \texttt{.eps} in Git and
-final outputs in PDF, PowerPoint or Word, makes sense.
-Storing plain text outputs on Git makes it easier to identify changes that affect results.
+Raw outputs in formats like \texttt{.tex} and \texttt{.eps} can be managed with Git,
+while final outputs like PDF, PowerPoint, or Word, can be kept in a synced folder.
+Storing plaintext outputs on Git makes it easier to identify changes that affect results.
 If you are re-running all of your code from the master when significant changes to the code are made,
 the outputs will be overwritten, and changes in coefficients and number of observations, for example,
-will be highlighted.
+will be highlighted for you to review.
+In fact, one of the most effective ways to check code quickly
+is simply to commit all your code and outputs,
+then re-run the entire thing and examine any flagged changes in the directory.
 
 % What software to use
 Though formatted text software such as Word and PowerPoint are still prevalent,
-more and more researchers are choosing to write final outputs using
-\LaTeX.\sidenote{\url{https://www.latex-project.org}}
+researchers are increasinly choosing to prepare even final outputs
+like documents and presentations using {\LaTeX}.\sidenote{
+  \url{https://www.latex-project.org}}
 {\LaTeX} is a document preparation system that can create both text documents and presentations.
-The main difference between them is that {\LaTeX} uses plain text,
-and it's necessary to learn its markup convention to use it.
+The main advantage is that {\LaTeX} uses plaintext for all formatting,
+and it is necessary to learn its specific markup convention to use it.
 The main advantage of using {\LaTeX} is that you can write dynamic documents,
 that import inputs every time they are compiled.
 This means you can skip the copying and pasting whenever an output is updated.
@@ -542,22 +547,21 @@ Because it's written in plain text, it's also easier to control and document cha
 Creating documents in {\LaTeX} using an integrated writing environment such as TeXstudio
 is great for outputs that focus mainly on text,
 but include small chunks of code and static code outputs.
-This book, for example, was written in \LaTeX.
+This book, for example, was written in {\LaTeX} and managed on GitHub.
 
 Another option is to use the statistical software's dynamic document engines.
 This means you can write both text (in Markdown) and code in the script,
-and the result will usually be a PDF or html file including code,
-text and code outputs.
+and the result will usually be a PDF or \texttt{html} file including code, text, and outputs.
 Dynamic document tools are better for including large chunks of code and dynamically created graphs and tables,
-but formatting can be trickier.
-So it's great for creating appendices,
-or quick document with results as you work on them,
-but not for final papers and reports.
+but formatting these can be much trickier and less full-featured than other editors.
+So dynamic documents can be great for creating appendices
+or quick documents with results as you work on them,
+but are not usuall considered for final papers and reports.
 RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com/}} is the most widely adopted solution in R.
 There are also different options for Markdown in Stata,
-such as German Rodriguez' \texttt{markstat},\sidenote{\url{https://data.princeton.edu/stata/markdown}}
+such as \texttt{markstat},\sidenote{\url{https://data.princeton.edu/stata/markdown}}
 Stata 15 dynamic documents,\sidenote{\url{https://www.stata.com/new-in-stata/markdown/}}
-and Ben Jann's \texttt{webdoc}\sidenote{\url{http://repec.sowi.unibe.ch/stata/webdoc/index.html}} and
+\texttt{webdoc},\sidenote{\url{http://repec.sowi.unibe.ch/stata/webdoc/index.html}} and
 \texttt{texdoc}.\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc/index.html}}
 
 Whichever options you choose,
@@ -573,21 +577,17 @@ you will need to make changes to your outputs quite frequently.
 And anyone who has tried to recreate a graph after a few months probably knows
 that it can be hard to remember where you saved the code that created it.
 Here, naming conventions and code organization play a key role in not re-writing scripts again and again.
-Use intuitive and descriptive names when you save your code.
-It's often desirable to have the names of your outputs and scripts linked,
-so, for example, \texttt{merge.do} creates \texttt{merged.dta}.
-Document output creation in the Master script,
-meaning before the line that runs a script there are a few lines of comments listing
+It is common for teams to maintain an analyisis file or folder with ``exploratory analysis'',
+which are pieces of code that are commented and written only to be found again in the future,
+but not cleaned up to be included in any outputs yet.
+Once you are happy with a partiular result or output, however,
+it should be named and moved to a dedicated location.
+It's typically desirable to have the names of outputs and scripts linked,
+so, for example, \texttt{factor-analysis.do} creates \texttt{factor-analysis-f1.eps} and so on.
+Document output creation in the Master script that runs these files,
+so that before the line that runs a particular analysis script there are a few lines of comments listing
 data sets and functions that are necessary for it to run,
 as well as all outputs created by that script.
-When performing data analysis,
-it's ideal to write one script for each output,
-as well as linking them through name.
-This means you may have a long script with ``exploratory analysis'',
-just to document everything you have tried.
-But as you start to export tables and graphs,
-you'll want to save separate scripts, where
-\texttt{descriptive\_statistics.do} creates \texttt{descriptive\_statistics.tex}.
 
 % ----------------------------------------------------------------------------------------------
 
