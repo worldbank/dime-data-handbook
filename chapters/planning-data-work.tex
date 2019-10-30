@@ -336,8 +336,30 @@ Because of the specificity with which code files depends on file structure,
 you will be able to enforce better practices there than in the project folder,
 which will usually be managed by a PI, FC, or field team members.
 
-The DIME \texttt{iefolder} structure is not for everyone.
-However, if you do not already have a standard file structure across projects,
+Setting up the \texttt{/DataWork/} folder folder in a git-managed directory
+also enabled you to use Git and GitHub for version control on your code files.
+A \textbf{version control system} is required to manage changes to any technical file.
+A good version control system tracks who edited each file and when,
+and additionally providers a protocol for ensuring that conflicting versions are avoided.
+This is important, for example, for your team to be able to find the version of a presentation that you delivered to a donor,
+and also to understand why the significance level of your estimates has changed.
+Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
+can appreciate how useful such a system can be.
+Most file-syncing solutions offer some kind of version control;
+These are usually enough to manage changes to binary files (such as Word and PowerPoint documents)
+without needing to rely on these dreaded filename-based versioning conventions.
+For technical files, however, a more complex version control system is usually desirable.
+We recommend using Git\sidenote{
+  \textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.}
+for all plaintext files.
+Git tracks all the changes you make to your code,
+and allows you to go back to previous versions without losing the information on changes made.
+It also makes it possible to work on two parallel versions of the code,
+so you don't risk breaking the code for other team members as you try something new.
+The DIME \texttt{iefolder} approach is designed with this in mind.
+
+However, the DIME structure is not for everyone.
+If you do not already have a standard file structure across projects,
 it is intended to be an easy template to start from.
 This structure operates by creating a \texttt{/DataWork/} folder at the project level,
 and within that folder, it provides standardized directory structures
@@ -383,25 +405,6 @@ rather than the opposite way around as occurs in natural language.
 This ensures that all \texttt{baseline} data stays together,
 then all \texttt{baseline-household} data,
 and then provides unique information about this one.
-
-% ----------------------------------------------------------------------------------------------
-\subsection{Version control}
-
-A \textbf{version control system} is required to manage changes to any computer file.
-A good version control system tracks who edited each file and when,
-and additionally providers a protocol for ensuring that conflicting versions are avoided.
-This is important, for example, for your team to be able to find the version of a presentation that you delivered to a donor,
-and also to understand why the significance level of your estimates has changed.
-Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
-can appreciate how useful such a system can be.
-Most file sharing solutions offer some kind of version control.
-These are usually enough to manage changes to binary files (such as Word and PowerPoint documents) without needing to appeal to these dreaded filename-based versioning conventions.
-For code files, however, a more complex version control system is usually desirable.
-We recommend using Git\sidenote{\textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.} for all plain text files.
-Git tracks all the changes you make to your code,
-and allows you to go back to previous versions without losing the information on changes made.
-It also makes it possible to work on two parallel versions of the code,
-so you don't risk breaking the code for other team members as you try something new,
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Code management}
