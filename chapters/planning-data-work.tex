@@ -417,8 +417,8 @@ Adjustments will always be needed along the way,
 but if the code is well-organized, they will be much easier to make.
 Below we discuss a few crucial steps to code organization.
 They all come from the principle that code is an output by itself,
-not just a means to an end.
-So code should be written thinking of how easy it will be for someone to read it later.
+not just a means to an end,
+and code should be written thinking of how easy it will be for someone to read it later.
 
 Code documentation is one of the main factors that contribute to readability,
 if not the main one.
@@ -458,11 +458,12 @@ Adding a code index to the header by copying and pasting section titles is the e
 You can then add and navigate through them using the find command.
 Since Stata code is harder to navigate, as you will need to scroll through the document,
 it's particularly important to avoid writing very long scripts.
-One reasonable rule of thumb is to not write files that have more than 200 lines.
-This is also true for other statistical software,
-though not following it will not cause such a hassle.
-
-\codeexample{stata-master-dofile.do}{./code/stata-master-dofile.do}
+Therefore, in Stata at least, you should also consider breaking code tasks down
+into separate do-files, since there is no limit on how many you can have,
+how detailed their names can be, and no advantage to writing longer files.
+One reasonable rule of thumb is to not write do-files that have more than 200 lines.
+This is an arbitrary limit, just like the standard restriction of each line to 80 characters:
+it seems to be ``enough but not too much'' for most purposes.
 
 To bring all these smaller code files together, maintain a master script.
 A master script is the map of all your project's data work,
@@ -476,7 +477,8 @@ By follow, we mean someone external to the project who has the master script can
 The master script is also where all the settings are established,
 such as folder paths, functions and constants used throughout the project.
 
-\texttt{iefolder} also creates master do-files.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
+\texttt{iefolder} also creates master do-files.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
 Master scripts are a key element of code organization and collaboration,
 and we will discuss some important features soon.
 With regard to folder structure, it's important to keep in mind
@@ -584,3 +586,7 @@ just to document everything you have tried.
 But as you start to export tables and graphs,
 you'll want to save separate scripts, where
 \texttt{descriptive\_statistics.do} creates \texttt{descriptive\_statistics.tex}.
+
+% ----------------------------------------------------------------------------------------------
+
+\codeexample{stata-master-dofile.do}{./code/stata-master-dofile.do}
