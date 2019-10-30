@@ -309,6 +309,28 @@ across the entire portfolio of projects means that everyone
 can easily move between projects without having to re-orient
 themselves to how files and folders are organized.
 
+The \texttt{/DataWork/} folder may be created either inside
+an existing project-based folder structure, or it may be created separately.
+Increasingly, we recommend that you create entire data work folder
+separately in a git-managed folder, and reserve the project folder
+for tasks related to data collection and other project management work.
+The project folder can be maintained in a synced location like Dropbox,
+and the code folder can be maintained in a version-controlled location like GitHub.
+(A version-controlled folder can \textit{never} be stored inside a synced folder,
+because the versioning features are extremely disruptive to others
+when the syncing utility operates on them.)
+Nearly all code and raw outputs (not datasets) are better managed this way.
+This is because code files are usually \textbf{plaintext} files,
+and non-technical files are usually \textbf{binary} files.
+It's also becoming more and more common for written outputs such as reports,
+presentations and documentations to be written using plaintext
+tools such as {\LaTeX} and dynamic documents.
+Keeping such plaintext files in a version-controlled folder allows you
+to maintain better control of their history and functionality.
+Because of the specificity with which code files depends on file structure,
+you will be able to enforce better practices there than in the project folder,
+which will usually be managed by a PI, FC, or field team members.
+
 The DIME \texttt{iefolder} structure is not for everyone.
 However, if you do not already have a standard file structure across projects,
 it is intended to be an easy template to start from.
@@ -353,8 +375,6 @@ This ensures that all \texttt{baseline} data stays together,
 then all \texttt{baseline-household} data,
 and then provides unique information about this one.
 
-
-
 % ----------------------------------------------------------------------------------------------
 \subsection{Version control}
 
@@ -373,22 +393,6 @@ Git tracks all the changes you make to your code,
 and allows you to go back to previous versions without losing the information on changes made.
 It also makes it possible to work on two parallel versions of the code,
 so you don't risk breaking the code for other team members as you try something new,
-
-Increasingly, we recommend the entire data work folder
-to be created and stored separately in GitHub.
-Nearly all code and outputs (except datasets) are better managed this way.
-Code is written in its native language,
-and it's becoming more and more common for written outputs such as reports,
-presentations and documentations to be written using different \textbf{literate programming}
-tools such as {\LaTeX} and dynamic documents.
-You should therefore feel comfortable having both a project folder and a code folder.
-Their structures can be managed in parallel by using \texttt{iefolder} twice.
-The project folder can be maintained in a synced location like Dropbox,
-and the code folder can be maintained in a version-controlled location like GitHub.
-Keeping code in a version-controlled folder will allow you
-to maintain better control of its history and functionality,
-and because of the specificity with which code depends on file structure,
-you will be able to enforce better practices there than in the project folder.
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Code management}
