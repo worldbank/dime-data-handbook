@@ -1,4 +1,4 @@
-%------------------------------------------------
+%-----------------------------------------------------------------------------------------------
 
 \begin{fullwidth}
 Research design is the process of structuring field work
@@ -6,49 +6,89 @@ Research design is the process of structuring field work
 that will answer a specific research question.
 You don't need to be an expert in this,
 and there are lots of good resources out there
-that focus on designing interventions and evaluations.
-This section will present a very brief overview
-of the most common methods that are used,
-so that you can have an understanding of
-how to construct appropriate counterfactuals,
-data structures, and the corresponding code tools
-as you are setting up your data structure
-before going to the field to collect data.
+that focus on designing interventions and evaluations
+as well as on econometric approaches.
+This section will present a brief overview
+of the most common methods that are used in development research.
+Specifically, we will introduce you to several ``causal inference'' methods
+that are frequently used to understand the impact of real development programs.
+The intent is for you to obtain an understanding of
+the way in which each method constructs treatment and control groups,
+the data structures needed to estimate the corresponding effects,
+and any available code tools that will assist you in this process.
 
-You can categorize most research questions into one of two main types.
-There are \textbf{cross-sectional}, descriptive, and observational analyses,
-which seek only to describe something for the first time,
-such as the structure or variation of a population.
-We will not describe these here,
-because there are endless possibilities
-and they tend to be sector-specific.
-For all sectors, however, there are also causal research questions,
-both experimental and quasi-experimental,
-which rely on establishing \textbf{exogenous variation} in some input
-to draw a conclusion about the impact of its effect
-on various outcomes of interest.
-We'll focus on these \textbf{causal designs}, since the literature
-offers a standardized set of approaches, with publications
-and code tools available to support your work.
+This is important to understand before going into the field for several reasons.
+If you do not understand how to calculate the correct estimator for your study,
+you will not be able to assess the power of your research design.
+You will also be unable to make tradeoffs in the field
+when you inevitable have to allocate scarce resources
+between tasks like maximizing sample size
+and ensuring follow-up with specific individuals.
+You will save a lot of time by understanding the way
+your data needs to be organized and set up as it comes in
+before you will be able to calculate meaningful results.
+Just as importantly, understanding each of these approaches
+will allow you to keep your eyes open for research opportunities:
+many of the most interesting projects occur because people in the field
+recognize the opportunity to implement one of these methods on the fly
+in response to an unexpected event in the field.
+While somewhat more conceptual than practical,
+a basic understanding of your project's chosen approach will make you
+much more effective at the analytical part of your work.
 \end{fullwidth}
 
-%------------------------------------------------
+%-----------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
 
-\section{Counterfactuals and treatment effects}
+\section{Causality, inference, and identification}
 
-In causal analysis, a researcher is attempting to obtain estimates
-of a specific \textbf{treatment effect}, or the change in outcomes
-\index{treatment effect}
-caused by a change in exposure to some intervention or circumstance.\cite{abadie2018econometric}
-In the potential outcomes framework,
-we can never observe this directly:
-we never see the same person in both their treated and untreated state.\sidenote{\url{http://www.stat.columbia.edu/~cook/qr33.pdf}}
-Instead, we make inferences from samples:
-we try to devise a comparison group that evidence suggests
-would be identical to the treated group had they not been treated.
+The primary goal of research design is to establish \textbf{identification}
+for a parameter of interest -- that is, to demonstrate
+a source of variation in a particular input that has no other possible channel
+to alter a particular outcome, in order to assert that some change in that outcome
+was caused by that change in the input.
+  \index{identification}
+When we are discussing the types of inputs commonly referred to as
+``programs'' or ``interventions'', we are typically attempting to obtain estimates
+of a program-specific \textbf{treatment effect}, or the change in outcomes
+directly attributable to exposure to what we call the \textbf{treatment}.\cite{abadie2018econometric}
+  \index{treatment effect}
+You can categorize most research designs into one of two main types:
+\textbf{experimental} designs, in which the research team
+is directly responsible for creating the variation in treatment,
+and \textbf{quasi-experimental} designs, in which the team
+identifies a ``natural'' source of variation and uses it for identification.
+Nearly all methods can fall into either category.
+
+
+%-----------------------------------------------------------------------------------------------
+\subsection{Defining treatment and control groups}
+
+The key assumption behind estimating treatment effects is that every
+person, facility, village, or whatever the unit of intervention is
+has two possible states: their outcome if they do not recieve the treatment
+and their outcome if they do recieve the treatment.
+Each unit's treatment effect is the difference between these two states,
+and the true \textbf{average treatment effect} is the average of all of
+these differences across the potentially treated population.
+  \index{average treatment effect}
+
+In reality, we never see the same unit in both their treated and untreated state simultaneously,
+so measuring and averaging these effects directly is impossible.\sidenote{
+  \url{http://www.stat.columbia.edu/~cook/qr33.pdf}}
+Instead, we typically make inferences from samples.
+\textbf{Causal inference} methods are those in which we are able to estimate the
+average treatment effect without observing individual-level effects,
+but can obtain it from some comparison of averages with a \textbf{control} group.
+  \index{causal inference}\index{control group}
+Each method is based around a way of comparing another set of observations --
+the ``control'' observations -- with the treatment group,
+which would have identical to the treated group in the absence of the treatment.
+Therefore, almost all of these designs can be accurately described
+as a series of between-group comparisons.\sidenote{
+  \url{http://nickchk.com/econ305.html}}
 
 This \textbf{control group} serves as a counterfactual to the treatment group,
-\index{control group}\index{treatment group}
 and we compare the distributions of outcomes within each
 to make a computation of how different the groups are from each other.
 \textit{Causal Inference} and \textit{Causal Inference: The Mixtape}
@@ -74,17 +114,14 @@ Correctly describing the experiment means accounting for design factors
 such as stratification and clustering, and
 ensuring that time trends are handled sensibly.
 We aren't even going to get into regression models here.
-Almost all experimental designs can be accurately described
-as a series of between-group comparisons.\sidenote{\url{http://nickchk.com/econ305.html}}
 The models you will construct and estimate are intended to do two things:
 to express the intention of your research design,
 and to help you group the potentially endless concepts of field reality
 into intellectually tractable categories.
 In other words, these models tell the story of your research design.
 
-%------------------------------------------------
-
-\section{Experimental research designs}
+%-----------------------------------------------------------------------------------------------
+\subsection{Experimental research designs}
 
 Experimental research designs explicitly allow the research team
 to change the condition of the populations being studied,\sidenote{\url{https://dimewiki.worldbank.org/wiki/Experimental_Methods}}
@@ -101,6 +138,32 @@ Three RCT-based methods are discussed here:
 \textbf{difference-in-difference} (``panel-data'' studies),
 and \textbf{regression discontinuity} (``cutoff'' studies).
 
+%-----------------------------------------------------------------------------------------------
+\subsection{Quasi-experimental research designs}
+
+\textbf{Quasi-experimental} research designs,\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Quasi-Experimental_Methods}}
+are inference methods based on methods other than explicit experimentation.
+Instead, they rely on ``experiments of nature'',
+in which natural variation can be argued to approximate
+the type of exogenous variations in circumstances
+that a researcher would attempt to create with an experiment.\cite{dinardo2016natural}
+
+Unlike with planned experimental designs,
+quasi-experimental designs typically require the extra luck
+of having data collected at the right times and places
+to exploit events that occurred in the past.
+Therefore, these methods often use either secondary data,
+or use primary data in a cross-sectional retrospective method,
+applying additional corrections as needed to make
+the treatment and comparison groups plausibly identical.
+
+%-----------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
+\section{Working with specific research designs}
+
+
+%-----------------------------------------------------------------------------------------------
 \subsection{Cross-sectional RCTs}
 
 \textbf{Cross-sectional RCTs} are the simplest possible study design:
@@ -133,6 +196,7 @@ However, controls for imbalance that are not part of the design
 may reduce the variance of estimates, but there is debate on
 the importance of these tests and corrections.
 
+%-----------------------------------------------------------------------------------------------
 \subsection{Differences-in-differences}
 
 \textbf{Differences-in-differences}\sidenote{
@@ -168,6 +232,7 @@ a treatment group indicator (the pre-treatment control is the base level),
 and it is the \textit{interaction} of treatment and time indicators
 that we interpret as the differential effect of the treatment assignment.
 
+%-----------------------------------------------------------------------------------------------
 \subsection{Regression discontinuity}
 
 \textbf{Regression discontinuity (RD)} designs differ from other RCTs
@@ -198,27 +263,7 @@ or the size of the window around the cutoff to use,
 has to be decided and tested against various options for robustness.
 The rest of the model depends largely on the design and execution of the experiment.
 
-%------------------------------------------------
-
-\section{Quasi-experimental designs}
-
-\textbf{Quasi-experimental} research designs,\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Quasi-Experimental_Methods}}
-are inference methods based on methods other than explicit experimentation.
-Instead, they rely on ``experiments of nature'',
-in which natural variation can be argued to approximate
-the type of exogenous variations in circumstances
-that a researcher would attempt to create with an experiment.\cite{dinardo2016natural}
-
-Unlike with planned experimental designs,
-quasi-experimental designs typically require the extra luck
-of having data collected at the right times and places
-to exploit events that occurred in the past.
-Therefore, these methods often use either secondary data,
-or use primary data in a cross-sectional retrospective method,
-applying additional corrections as needed to make
-the treatment and comparison groups plausibly identical.
-
+%-----------------------------------------------------------------------------------------------
 \subsection{Instrumental variables}
 
 Instrumental variables designs utilize variation in an
@@ -246,6 +291,7 @@ and only the most believable designs,
 usually those backed by extensive qualitative analysis,
 are acceptable as high-quality evidence.
 
+%-----------------------------------------------------------------------------------------------
 \subsection{Matching estimators}
 
 \textbf{Matching} estimators rely on the assumption that,
@@ -272,6 +318,7 @@ given somewhat weaker assumptions on the structure of that effect.
 One solution, as with the experimental variant of 2SLS proposed above,
 is to incorporate matching models into explicitly experimental designs.
 
+%-----------------------------------------------------------------------------------------------
 \subsection{Synthetic controls}
 
 \textbf{Synthetic controls} methods\cite{abadie2015comparative}
