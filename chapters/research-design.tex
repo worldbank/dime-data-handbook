@@ -60,20 +60,34 @@ and \textbf{quasi-experimental} designs, in which the team
 identifies a ``natural'' source of variation and uses it for identification.
 Nearly all methods can fall into either category.
 
-
 %-----------------------------------------------------------------------------------------------
-\subsection{Defining treatment and control groups}
+\subsection{Estimating treatment effects using control groups}
 
 The key assumption behind estimating treatment effects is that every
-person, facility, village, or whatever the unit of intervention is
-has two possible states: their outcome if they do not recieve the treatment
-and their outcome if they do recieve the treatment.
-Each unit's treatment effect is the difference between these two states,
-and the true \textbf{average treatment effect} is the average of all of
+person, facility, or village (or whatever the unit of intervention is)
+has two possible states: their outcomes if they do not recieve some treatment
+and their outcomes if they do recieve that treatment.
+Each unit's treatment effect is the individual difference between these two states,
+and the \textbf{average treatment effect (ATE)} is the average of all of
 these differences across the potentially treated population.
   \index{average treatment effect}
+This is the most common parameter that research designs will want to estimate.
+In most designs, the goal is to establish a ``counterfactual scenario'' for the treatment group
+with which outcomes can be directly compared.
+There are several resources that provide more or less mathematically intensive
+approaches to understanding how various methods to his.
+\textit{Causal Inference} and \textit{Causal Inference: The Mixtape}
+provides a detailed practical introduction to and history of
+each of these methods.\sidenote{
+  \url{https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/}
+  \\ \noindent \url{http://scunning.com/cunningham_mixtape.pdf}}
+\textit{Mostly Harmless Econometrics} and \textit{Mastering Metrics}
+are canonical treatments of the mathematics behind all econometric approaches.\sidenote{
+  \url{https://www.researchgate.net/publication/51992844\_Mostly\_Harmless\_Econometrics\_An\_Empiricist's\_Companion}
+  \\ \noindent \url{http://assets.press.princeton.edu/chapters/s10363.pdf}}
 
-In reality, we never see the same unit in both their treated and untreated state simultaneously,
+Intuitively, the problem is as follows: we can never observe the same unit
+in both their treated and untreated states simultaneously,
 so measuring and averaging these effects directly is impossible.\sidenote{
   \url{http://www.stat.columbia.edu/~cook/qr33.pdf}}
 Instead, we typically make inferences from samples.
@@ -81,44 +95,38 @@ Instead, we typically make inferences from samples.
 average treatment effect without observing individual-level effects,
 but can obtain it from some comparison of averages with a \textbf{control} group.
   \index{causal inference}\index{control group}
-Each method is based around a way of comparing another set of observations --
-the ``control'' observations -- with the treatment group,
-which would have identical to the treated group in the absence of the treatment.
-Therefore, almost all of these designs can be accurately described
+Every research design is based around a way of comparing another set of observations --
+the ``control'' observations -- against the treatment group.
+They all work to establish that the control observations would have been
+identical \textit{on average} to the treated group in the absence of the treatment.
+Then, the mathematical properties of averages implies that the calculated
+difference in averages is equivalent to the average difference:
+exactly the parameter we are seeking to estimate.
+Therefore, almost all designs can be accurately described
 as a series of between-group comparisons.\sidenote{
   \url{http://nickchk.com/econ305.html}}
 
-This \textbf{control group} serves as a counterfactual to the treatment group,
-and we compare the distributions of outcomes within each
-to make a computation of how different the groups are from each other.
-\textit{Causal Inference} and \textit{Causal Inference: The Mixtape}
-provides a detailed practical introduction to and history of
-each of these methods, so we will only introduce you to
-them very abstractly in this chapter.\sidenote{\url{https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/}
-\\ \noindent \url{http://scunning.com/cunningham_mixtape.pdf}}
-Each of the methods described in this chapter
-relies on some variant of this basic strategy.
-In counterfactual causal analysis,
-the econometric models and estimating equations
+Most of the methods that you will encounter rely on some variant of this strategy,
+which is designed to maximize the ability to estimate the effect
+of an average unit being offered the treatment being evaluated.
+The focus on identification of the treatment effect, however,
+means there are several essential features to this approach
+that are not common in other types of statistical and data science work.
+First, the econometric models and estimating equations used
 do not attempt to create a predictive or comprehensive model
-of how the outcome of interest is generated --
-typically we do not care about measures of fit or predictive accuracy
-like R-squared values or root mean square errors.
-Instead, the econometric models desribed here aim to
-correctly describe the experimental design being used,
-so that the correct estimate of the difference
-between the treatment and control groups is obtained
-and can be interpreted as the effect of the treatment on outcomes.
-
-Correctly describing the experiment means accounting for design factors
-such as stratification and clustering, and
-ensuring that time trends are handled sensibly.
-We aren't even going to get into regression models here.
-The models you will construct and estimate are intended to do two things:
-to express the intention of your research design,
-and to help you group the potentially endless concepts of field reality
-into intellectually tractable categories.
-In other words, these models tell the story of your research design.
+of how the outcome of interest is generated.
+Typically, these designs are not interested in predictive accuracy,
+and the estimates and predictions that these models produce
+will not be as good at predicting outcomes or fitting the data as other models.
+Additionally, when control variables or other variables are used in estimation,
+there is no guarantee that those parameters are marginal effects.
+They can only be interpreted as correlative averages,
+unless the experimenter has additional sources of identification for them.
+The models you will construct and estimate are intended to do exactly one thing:
+to express the intention of your project's research design,
+and to accurately estimate the effect of the treatment it is evaluating.
+In other words, these models tell the story of the research design
+in a way that clarifies the exact comparison being made between control and treatment.
 
 %-----------------------------------------------------------------------------------------------
 \subsection{Experimental research designs}
