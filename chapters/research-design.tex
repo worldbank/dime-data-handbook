@@ -129,42 +129,80 @@ In other words, these models tell the story of the research design
 in a way that clarifies the exact comparison being made between control and treatment.
 
 %-----------------------------------------------------------------------------------------------
-\subsection{Experimental research designs}
+\subsection{Experimental and quasi-experimental research designs}
 
 Experimental research designs explicitly allow the research team
-to change the condition of the populations being studied,\sidenote{\url{https://dimewiki.worldbank.org/wiki/Experimental_Methods}}
-in the form of NGO programs, government regulations,
+to change the condition of the populations being studied,\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Experimental_Methods}}
+often in the form of NGO programs, government regulations,
 information campaigns, and many more types of interventions.\cite{banerjee2009experimental}
-The classic method is the \textbf{randomized control trial (RCT)}.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomized_Control_Trials}}
-(Not everyone agrees this is the best way to do research.\sidenote{\url{https://www.nber.org/papers/w14690.pdf}})
-\index{randomized control trial}
-There treatment and control groups are drawn from the same underlying population
-so that the strong condition of statistical equality
-in the absence of the experiment can be assumed.
-Three RCT-based methods are discussed here:
-\textbf{cross-sectional randomization} (``endline-only'' studies),
-\textbf{difference-in-difference} (``panel-data'' studies),
-and \textbf{regression discontinuity} (``cutoff'' studies).
+The classic method is the \textbf{randomized control trial (RCT)}.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Randomized_Control_Trials}}
+  \index{randomized control trials}
+In randomized control trials, the control group is randomized --
+that is, from an eligible population,
+a random subset of units are not given access to the treatment,
+so that they may serve as a counterfactual for those who are.
+A randomized control group, intuitively, is meant to represent
+how things would have turned out for the treated group
+if they had not been treated, and it is particularly effective at doing so
+as evidenced by its broad credibility in fields ranging from clinical medicine to development.
+However, there are many types of treatments that are impractical or unethical
+to effectively approach using an experimental strategy,
+and therefore many limitations to accessing ``big questions''
+through RCT approaches.\sidenote{
+  \url{https://www.nber.org/papers/w14690.pdf}}
 
-%-----------------------------------------------------------------------------------------------
-\subsection{Quasi-experimental research designs}
+Randomized designs all share several major statistical concerns.
+The first is the fact that it is always possible to select a control group,
+by chance, which was not in fact going to be very similar to the treatment group.
+This feature is called randomization noise, and all RCTs share the need to understand
+how randomization noise may impact the estimates that are obtained.
+Second, takeup and implementation fidelity are extremely important,
+since programs will by definition have no effect
+if they are not in fact accepted by or delivered to
+the people who are supposed to recieve them.
+Unfortunately, these effects kick in very quickly and are highly nonlinear:
+70\% takeup or efficacy doubles the required sample, and 50\% quadruples it.\sidenote{
+  \url{https://blogs.worldbank.org/impactevaluations/power-calculations-101-dealing-with-incomplete-take-up}}
+Such effects are also very hard to correct ex post,
+since they require strong assumptions about the randomness or non-randomness of takeup.
+Therefore a large amount of field time and descriptive work
+must be dedicated to understanding how these effects played out in a given study,
+and often overshadow the effort put into the econometric design itself.
 
 \textbf{Quasi-experimental} research designs,\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Quasi-Experimental_Methods}}
-are inference methods based on methods other than explicit experimentation.
+  \url{https://dimewiki.worldbank.org/wiki/Quasi-Experimental_Methods}}
+by contrast, are inference methods based on events not controlled by the research team.
 Instead, they rely on ``experiments of nature'',
 in which natural variation can be argued to approximate
-the type of exogenous variations in circumstances
+the type of exogenous variation in treatment availability
 that a researcher would attempt to create with an experiment.\cite{dinardo2016natural}
-
-Unlike with planned experimental designs,
+Unlike with carefully planned experimental designs,
 quasi-experimental designs typically require the extra luck
-of having data collected at the right times and places
-to exploit events that occurred in the past.
+of having access to data collected at the right times and places
+to exploit events that occurred in the past,
+or having the ability to collect data in a time and place
+dictated by the availability of identification.
 Therefore, these methods often use either secondary data,
-or use primary data in a cross-sectional retrospective method,
-applying additional corrections as needed to make
-the treatment and comparison groups plausibly identical.
+or use primary data in a cross-sectional retrospective method.
+
+Quasi-experimental designs therefore can access a much broader range of questions,
+and with much less effort in terms of executing an intervention.
+However, they require in-depth understanding of the precise events
+the researcher wishes to address in order to know what data to collect
+and how to model the underlying natural experiment.
+Additionally, because the population who will have been exposed
+to such events is limited by the scale of the event,
+quasi-experimental designs are often power-constrained.
+There is nothing the research team can do to increase power
+by providing treatment to more people or expanding the control group:
+instead, power is typically maximized by ensuring
+that sampling is carried out effectively
+and that attrition from the sampled groups is dealt with effectively.
+Sampling noise and survey non-response are therefore analogous
+to the randomization noise and implementation failures
+that can be observed in RCT designs, and have similar implications for field work.
 
 %-----------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------
