@@ -206,41 +206,67 @@ that can be observed in RCT designs, and have similar implications for field wor
 
 %-----------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------
-\section{Working with specific research designs}
+\section{Obtaining treatment effects from specific research designs}
 
 
 %-----------------------------------------------------------------------------------------------
-\subsection{Cross-sectional RCTs}
+\subsection{Cross-sectional randomized control trials (RCTs)}
 
 \textbf{Cross-sectional RCTs} are the simplest possible study design:
 a program is implemented, surveys are conducted, and data is analyzed.
-The randomization process
-draws the treatment and control groups from the same underlying population.
-This implies the groups' outcome means would be identical in expectation
-before intervention, and would have been identical at measurement --
-therefore, differences are due to the effect of the intervention.
-Cross-sectional data is simple because
-for research teams do not need track individuals over time,
-or analyze attrition and follow-up other than non-response.
-Cross-sectional designs can have a time dimension;
-they are then called ``repeated cross-sections'',
-but do not imply a panel structure for individual observations.
+The randomization process constructs the control group at random
+from the population that is eligible to recieve each treatment.
+Therefore, by construction, each unit's receipt of the treatment
+is unrelated to any of its other characteristics
+and the ordinary least squares (OLS) regression
+of outcome on treatment, without any control variables,
+is an unbiased estimate of the average treatment effect.
+Cross-sectional data is simple to handle because
+for research teams do not need track anything over time.
+A cross-section is simply a representative set of observations
+taken at a single point in time.
+If this point in time is after a treatment has been fully delivered,
+then the outcome values at that point in time
+already reflect the effect of the treatment.
 
-Typically, the cross-sectional model is developed
-only with controls for the research design.
-\textbf{Balance checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/iebaltab}} can be utilized, but an effective experiment
-can use \textbf{stratification} (sometimes called blocking) aggressively\sidenote{\url{https://blogs.worldbank.org/impactevaluations/impactevaluations/how-randomize-using-many-baseline-variables-guest-post-thomas-barrios}} to ensure balance
-before data is collected.\cite{athey2017econometrics}
-\index{balance}
-Stratification disaggregates a single experiment to a collection
-of smaller experiments by conducting randomization within
-``sufficiently similar'' strata groups.
-Adjustments for balance variables are never necessary in RCTs,
+What needs to be carefully maintainted in data for cross-sectional RCTs
+is the treatment randomization process itself,
+as well as detailed field data about differences
+in data quality and loss-to-follow up across groups.\cite{athey2017econometrics}
+Only these details are needed to construct the appropriate estimator:
+clustering of the estimate is required at the level
+at which the treatment is assigned to observations,
+and controls are required for variables which
+were used to stratify the treatment (in the form of strata fixed effects).\sidenote{
+  \url{https://blogs.worldbank.org/impactevaluations/impactevaluations/how-randomize-using-many-baseline-variables-guest-post-thomas-barrios}}
+\textbf{Randomization inference} can be used
+to esetimate the underlying variability in the randomization process
+(more on this in the next chapter).
+\textbf{Balance checks} are typically reported as evidence of an effective randomization,
+and are particularly important when the design is quasi-experimental
+(since then the randomization process cannot be simulated explicitly).
+However, controls for balance variables are usually unnecessary in RCTs,
 because it is certain that the true data-generating process
-has no correlation between the treatment and the balance factors.\sidenote{\url{https://blogs.worldbank.org/impactevaluations/should-we-require-balance-t-tests-baseline-observables-randomized-experiments}}
-However, controls for imbalance that are not part of the design
-may reduce the variance of estimates, but there is debate on
-the importance of these tests and corrections.
+has no correlation between the treatment and the balance factors.\sidenote{
+  \url{https://blogs.worldbank.org/impactevaluations/should-we-require-balance-t-tests-baseline-observables-randomized-experiments}}
+
+Analysis is typically straightforward with a strong understanding of the randomization.
+A typical analysis will include a decription of the sampling and randomization process,
+summary statistics for the eligible population,
+balance checks for randomization and sample selection,
+a primary regression specification (with multiple hypotheses appropriately adjusted),
+additional specifications with adjustments for attrition, balance, and other potential contamination,
+and randomization-inference analysis or other placebo regression approaches.
+There are a number of tools that are available
+to help with the complete process of data collection,\sidenote{
+  \url{https://toolkit.povertyactionlab.org/resource/coding-resources-randomized-evaluations}}
+to analyze balance,\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/iebaltab}}
+and to visualize treatment effects.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/iegraph}}
+Tools and methods for analyzing selective attrition are available.\sidenote{
+  \url{https://blogs.worldbank.org/impactevaluations/dealing-attrition-field-experiments}}
+
 
 %-----------------------------------------------------------------------------------------------
 \subsection{Differences-in-differences}
