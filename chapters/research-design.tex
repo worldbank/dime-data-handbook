@@ -210,12 +210,13 @@ that can be observed in RCT designs, and have similar implications for field wor
 
 
 %-----------------------------------------------------------------------------------------------
-\subsection{Cross-sectional randomized control trials (RCTs)}
+\subsection{Cross-sectional designs}
 
-\textbf{Cross-sectional RCTs} are the simplest possible study design:
+\textbf{Cross-sectional} surveys are the simplest possible study design:
 a program is implemented, surveys are conducted, and data is analyzed.
-The randomization process constructs the control group at random
+When it is an RCT, a randomization process constructs the control group at random
 from the population that is eligible to recieve each treatment.
+When it is observational, we present other evidence that a similar equivalence holds.
 Therefore, by construction, each unit's receipt of the treatment
 is unrelated to any of its other characteristics
 and the ordinary least squares (OLS) regression
@@ -267,42 +268,83 @@ and to visualize treatment effects.\sidenote{
 Tools and methods for analyzing selective attrition are available.\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/dealing-attrition-field-experiments}}
 
-
 %-----------------------------------------------------------------------------------------------
 \subsection{Differences-in-differences}
 
-\textbf{Differences-in-differences}\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Difference-in-Differences}}
-\index{differences-in-differences}
-(abbreviated as DD, DiD, diff-in-diff, and other variants)
-deals with the construction of controls differently:
-it uses a panel data structure to additionally use each
-unit in the pre-treatment phase as an additional control for itself post-treatment (the first difference),
-then comparing that mean change with the control group (the second difference).\cite{mckenzie2012beyond}
-Therefore, rather than relying entirely on treatment-control balance for identification,
-this class of designs intends to test whether \textit{changes}
-in outcomes over time were different in the treatment group than the control group.\sidenote{\url{https://blogs.worldbank.org/impactevaluations/often-unspoken-assumptions-behind-difference-difference-estimator-practice}}
-The primary identifying assumption for diff-in-diff is \textbf{parallel trends},
-the idea that the change in all groups over time would have been identical
-in the absence of the treatment.
+Where cross-sectional designs draw their estimates of treatment effects
+from differences in outcome levels in a single measurement,
+\textbf{differences-in-differences}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Difference-in-Differences}}
+designs (abbreviated as DD, DiD, diff-in-diff, and other variants)
+estimate treatment effects from /textit{changes} in outcomes
+between two or more rounds of measurement.
+  \index{differences-in-differences}
+In these designs, three control groups are used –
+the baseline level of treatment units,
+the baseline level of non-treatment units,
+and the endline level of non-treatment units.\sidenote{
+  \url{https://www.princeton.edu/~otorres/DID101.pdf}}
+The estimated treatment effect is the excess change
+of units that recieve the treatment, as they recieve it:
+calculating that value is equivalent to taking
+the difference in means at endline and subtracting
+the difference in means at baseline
+(giving the name of a ``difference-in-differences'').\cite{mckenzie2012beyond}
+The regression model includes a control variable for treatment assignment,
+and a control variable for the measurement round,
+but the treatment effect estimate corresponds to
+an interaction variable for treatment and round:
+the group of observations for which the treatment is active.
+This model critically depends on the assumption that,
+in the absense of the treatment,
+the two groups would have changed performance at the same rate over time,
+typically referred to as the \textbf{parallel trends} assumption.\sidenote{
+  \url{https://blogs.worldbank.org/impactevaluations/often-unspoken-assumptions-behind-difference-difference-estimator-practice}}
 
-Diff-in-diff experiments therefore require substantially more effort
-in the field work portion, so that the \textbf{panel} of observations is well-constructed.\sidenote{\url{https://www.princeton.edu/~otorres/Panel101.pdf}}
+There are two main types of data structures for differences-in-differences:
+\textbf{repeated cross-sections} and \textbf{panel data}.
+In repeated cross-sections, each round contains a random sample
+of observations from the treated and untreated groups;
+as in cross-sectional designs, both the randomization and sampling processes,
+as well as their execution in the field,
+are critically important to maintain alongside the survey results.
+In panel data structures, we attempt to observe the exact same units
+in the repeated rounds, so that we see the same individuals
+both before and after they have recieved treatment (or not).\sidenote{
+  \url{https://blogs.worldbank.org/impactevaluations/what-are-we-estimating-when-we-estimate-difference-differences}}
+This allows each unit's baseline outcome to be used
+as an additional control for its endline outcome,
+a \textbf{fixed effects} design often referred to as an ANCOVA model,
+which can provide large increases in power and robustness.\sidenote{
+  \url{https://blogs.worldbank.org/impactevaluations/another-reason-prefer-ancova-dealing-changes-measurement-between-baseline-and-follow}}
+When tracking individuals over rounds for this purpose,
+maintaining sampling and tracking records is especially important,
+because attrition and loss-to-follow-up will remove that unit's information
+from all rounds of observation, not just the one they are unobserved in.
+Panel-stype experiments therefore require substantially more effort
+in the field work portion.\sidenote{
+  \url{https://www.princeton.edu/~otorres/Panel101.pdf}}
 Since baseline and endline data collection may be far apart,
 it is important to create careful records during the first round
 so that follow-ups can be conducted with the same subjects,
-and \textbf{attrition} across rounds can be properly taken into account.\sidenote{\url{http://blogs.worldbank.org/impactevaluations/dealing-attrition-field-experiments}}
-Depending on the distribution of results,
-estimates may become completely uninformative
-with relatively little loss to follow-up.
+and attrition across rounds can be properly taken into account.\sidenote{
+  \url{http://blogs.worldbank.org/impactevaluations/dealing-attrition-field-experiments}}
 
-The diff-in-diff model is a four-way comparison.\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieddtab}}
-The experimental design intends to compare treatment to control,
-after taking out the pre-levels for both.\sidenote{\url{https://www.princeton.edu/~otorres/DID101.pdf}}
-Therefore the model includes a time period indicator,
-a treatment group indicator (the pre-treatment control is the base level),
-and it is the \textit{interaction} of treatment and time indicators
-that we interpret as the differential effect of the treatment assignment.
+As with cross-sectional designs, this set of study designs is widespread.
+Therefore there exist a large number of standardized tools for analysis.
+Our \texttt{ietoolkit} package includes the \texttt{ieddtab} command
+which produces standardized tables for reporting results.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/ieddtab}}
+For more complicated versions of the model
+(and they can get quite complicated quite quickly),
+you can use an online dashboard to simulate counterfactual results.\sidenote{
+  \url{https://blogs.worldbank.org/impactevaluations/econometrics-sandbox-event-study-designs-co}}
+As in cross-sectional designs, these main specifications
+will always be accompanied by balance checks (using baseline values),
+as well as randomization, selection, and attrition analysis.
+In trials of this type, reporting experimental design and execution
+using the CONSORT style is common in many disciplines
+and will help you to track your data over time.\cite{schulz2010consort}
 
 %-----------------------------------------------------------------------------------------------
 \subsection{Regression discontinuity}
