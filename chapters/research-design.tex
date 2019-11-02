@@ -349,33 +349,64 @@ and will help you to track your data over time.\cite{schulz2010consort}
 %-----------------------------------------------------------------------------------------------
 \subsection{Regression discontinuity}
 
-\textbf{Regression discontinuity (RD)} designs differ from other RCTs
-\index{regression discontinuity}
-in that the treatment group is not directly randomly assigned,
-even though it is often applied in the context of a specific experiment.\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Regression_Discontinuity}}
-(In practice, many RDs are quasi-experimental, but this section
-will treat them as though they are designed by the researcher.)
-In an RD design, there is a \textbf{running variable}
-which gives eligible people access to some program,
-and a strict cutoff determines who is included.\cite{lee2010regression}
-This is usually justified by budget limitations.
-The running variable should not be the outcome of interest,
-and while it can be time, that may require additional modeling assumptions.
-Those who qualify are given the intervention and those who don't are not;
-this process substitutes for explicit randomization.\sidenote{\url{http://blogs.worldbank.org/impactevaluations/regression-discontinuity-porn}}
+\textbf{Regression discontinuity (RD)} designs exploit sharp breaks or limits
+in policy designs to separate a group of potentially eligible recipients
+into comparable gorups of individuals who do and do not recieve a treatment.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Regression_Discontinuity}}
+These types of designs differ from cross-sectional and diff-in-diff designs
+in that the group eligible to recieve treatment is not defined directly,
+but instead created during the process of the treatment implementation.
+  \index{regression discontinuity}
+In an RD design, there is typically some program or event
+which has limited availability dye to practical considerations or poicy choices
+and is therefore made available only to individuals who meet a certain threshold requirement.
+The intuition of this design is that there is an underlying \textbf{running variable}
+which serves as the sole determinant of access to the program,
+and a strict cutoff determines the value of this variable at which eligibility stops.\cite{imbens2008regression}
+Common examples are test score thresholds, income thresholds, and some types of lotteries.\sidenote{
+  \url{http://blogs.worldbank.org/impactevaluations/regression-discontinuity-porn}}
+The intuition is that individuals who are just on the recieving side of the threshold
+will be very nearly indistinguishable from those on the non-receiving side,
+and their post-treatment outcomes are therefore directly comparable.\cite{lee2010regression}
+The key assumption here is that the running variable cannot be directly manipulated
+by the potential recipients; if the running variable is time there are special considerations.\cite{hausman2018regression}
 
-For example, imagine that there is a strict income cutoff created
-for a program that subsidizes some educational resources.
-Here, income is the running variable.
-The intuition is that the people who are ``barely eligible''
-should not in reality be very different from those who are ``barely ineligible'',
-and that resulting differences between them at measurement
-are therefore due to the intervention or program.\cite{imbens2008regression}
-For the modeling component, the \textbf{bandwidth},
-or the size of the window around the cutoff to use,
-has to be decided and tested against various options for robustness.
-The rest of the model depends largely on the design and execution of the experiment.
+Regression discontinuity designs are, once implemented,
+very similar in analysis to cross-sectional or differences-in-differences designs.
+Depending on the data that is available,
+the analytical approach will center on the comparison of individuals
+who are narrowly on the inclusion side of the discontinuity,
+compared against those who are narrowly on the exclusion side.
+The regression model will be identical to the matching research designs
+(ie, contingent whether data has one or more rounds
+and whether the same units are known to be observed repeatedly).
+The treatment effect will be identified, however, by the addition of a control
+for the running variable -- meaning that the treatment effect variable
+will only be applicable for observations in a small window around the cutoff.
+In the RD model, the functional form of that control and the size of that window
+(often referred to as the choice of \textbf{bandwidth} for the design)
+are the critical parameters for the result.\cite{calonico2019regression}
+Therefore, RD analysis often includes extensive robustness checking
+using a variety of both functional forms and bandwidths,
+as well as placebo testing for non-realized locations of the cutoff
+(conceptually similar to the idea of randomization inference).
+
+In the analytical stage, regression discontinuity designs
+often include a large component of visual evidence presentation.\sidenote{
+  \url{http://faculty.smu.edu/kyler/courses/7312/presentations/baumer/Baumer\_RD.pdf}}
+These presentations help to suggest both the functional form
+of the underlying relationship and the type of change observed at the discontinuity,
+and help to avoid pitfalls in modelling that are difficult to detect with hypothesis tests.\sidenote{
+  \url{http://econ.lse.ac.uk/staff/spischke/ec533/RD.pdf}}
+Because these designs are so flexible compared to others,
+there is an extensive set of commands that help assess
+the efficacy and results from these designs under various assumptions.\sidenote{
+  \url{https://sites.google.com/site/rdpackages/}}
+These packages support the testing and reporting
+of robust plotting and estimation procedures,
+tests for manipulation of the running variable,
+and tests for power, sample size, and randomization inference approaches
+that will complement the main regression approach used for point estimates.
 
 %-----------------------------------------------------------------------------------------------
 \subsection{Instrumental variables}
