@@ -53,12 +53,28 @@ When we are discussing the types of inputs commonly referred to as
 of a program-specific \textbf{treatment effect}, or the change in outcomes
 directly attributable to exposure to what we call the \textbf{treatment}.\cite{abadie2018econometric}
   \index{treatment effect}
-You can categorize most research designs into one of two main types:
+When identification is believed, then we can say with confidence
+that our estimate of the treatment effect would,
+with an infinite amount of data,
+give us a precise estimate of that treatment effect.
+Under this condition, we can proceed to draw evidence from the limited samples we have access to,
+using statistical techniques to express the uncertainty of not having infinite data.
+Without identification, we cannot say that the estimate would be accurate,
+even with unlimited data, and therefore cannot associate it to the treatment
+in the small samples that we typically have access to.
+Conversely, more data is not a substitute for a well-identified experimental design.
+Therefore it is important to understand how exactly your study
+identifies its estimate of treatment effects,
+so you can calculate and interpret those estimates appropriately.
+All the study designs we discuss here use the \textbf{potential outcomes} framework
+to compare the a group that recieved some treatment to another, counterfactual group.
+Each of these types of approaches can be used in two contexts:
 \textbf{experimental} designs, in which the research team
 is directly responsible for creating the variation in treatment,
 and \textbf{quasi-experimental} designs, in which the team
 identifies a ``natural'' source of variation and uses it for identification.
-Nearly all methods can fall into either category.
+Neither type of approach is implicitly better or worse,
+and both are capable of achieving effect identification under different contexts.
 
 %-----------------------------------------------------------------------------------------------
 \subsection{Estimating treatment effects using control groups}
@@ -412,7 +428,10 @@ that will complement the main regression approach used for point estimates.
 %-----------------------------------------------------------------------------------------------
 \subsection{Instrumental variables}
 
-Instrumental variables designs utilize variation in an
+Instrumental variables designs, unlike the previous set, begin by assuming
+that the treatment delivered in the study in question is
+inextricably linked to the outcomes and therefore not directly identifiable.
+utilize variation in an
 otherwise-unrelated predictor of exposure to a treatment condition
 as an ``instrument'' for the treatment condition itself.\sidenote{\url{https://dimewiki.worldbank.org/wiki/instrumental_variables}}
 \index{instrumental variables}
