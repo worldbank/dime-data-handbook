@@ -428,33 +428,50 @@ that will complement the main regression approach used for point estimates.
 %-----------------------------------------------------------------------------------------------
 \subsection{Instrumental variables}
 
-Instrumental variables designs, unlike the previous set, begin by assuming
-that the treatment delivered in the study in question is
+\textbf{Instrumental variables (IV)} designs, unlike the previous approaches,
+begins by assuming that the treatment delivered in the study in question is
 inextricably linked to the outcomes and therefore not directly identifiable.
-utilize variation in an
-otherwise-unrelated predictor of exposure to a treatment condition
-as an ``instrument'' for the treatment condition itself.\sidenote{\url{https://dimewiki.worldbank.org/wiki/instrumental_variables}}
-\index{instrumental variables}
-The simplest example is actually experimental --
-in a randomization design, we can use instrumental variables
-based on an \textit{offer} to join some program,
-rather than on the actual inclusion in the program.\cite{angrist2001instrumental}
-The reason for doing this is that the \textbf{second stage}
-of actual program takeup may be severely self-selected,
-making the group of program participants in fact
-wildly different from the group of non-participants.\sidenote{\url{http://www.rebeccabarter.com/blog/2018-05-23-instrumental_variables/}}
-The corresponding \textbf{two-stage-least-squares (2SLS)} estimator\sidenote{\url{http://www.nuff.ox.ac.uk/teaching/economics/bond/IV\%20Estimation\%20Using\%20Stata.pdf}}
-solves this by conditioning on only the random portion of takeup --
-in this case, the randomized offer of enrollment in the program.
+Instead, similar to regression discontinuity designs,
+it attempts to focus on a subset of the variation in treatment uptake
+and assesses that limited window of variation that can be argued
+to be unrelated to other factors.\cite{angrist2001instrumental}
+To so so, the IV approach selects an \textbf{instrument}
+for the treatment status -- an otherwise-unrelated predictor of exposure to treatment
+that affects the uptake status of an individual.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/instrumental_variables}}
+Whereas regression discontinuity designs are ``sharp'' --
+treatment status is completely determined by which side of a cutoff an individual is on --
+IV designs are ``fuzzy'', meaning that they do not completely determine
+the treatment status but instead influence the \textit{probability} of treatment.
 
-Unfortunately, instrumental variables designs are known
-to have very high variances relative to \textbf{ordinary least squares}.\cite{young2017consistency}
+As in regression discontinuity designs,
+the fundamental form of the regression
+is similar to either cross-sectional or differences-in-differences designs.
+However, instead of controlling for the running variable directly,
+the IV approach typically uses the \textbf{two-stage-least-squares (2SLS)} estimator.\sidenote{
+  \url{http://www.nuff.ox.ac.uk/teaching/economics/bond/IV\%20Estimation\%20Using\%20Stata.pdf}}
+This estimator forms a prediction of the probability that the unit recieves treatment
+based on a regression against the instrumental variable.
+That prediction will, by assumption, be the portion of the actual treatment
+that is due to the instrument and not any other source,
+and since the instrument is unrelated to all other factors,
+this portion of the treatment can be used to assess its effects.
+Unfortunately, these estimators are known
+to have very high variances relative other methods,
+particularly when the relationship between the intrument and the treatment is small.\cite{young2017consistency}
 IV designs furthermore rely on strong but untestable assumptions
 about the relationship between the instrument and the outcome.\cite{bound1995problems}
-Therefore IV designs face special scrutiny,
-and only the most believable designs,
-usually those backed by extensive qualitative analysis,
-are acceptable as high-quality evidence.
+Therefore IV designs face intense scrutiny on the strength and exogeneity of the instrument,
+and tests for sensitivity to alternative specifications and samples
+are usually required with an instrumental variables analysis.
+However, the method has special experimental cases that are significantly easier to assess:
+for example, a randomized treatment \textit{assignment} can be used as an instrument
+for the eventual uptake of the treatment itself,
+especially in cases where uptake is expected to be low,
+or in circumstances where the treatment is available
+to those who are not specifically assigned to it (``encouragement designs'').
+
+In practice, there 
 
 %-----------------------------------------------------------------------------------------------
 \subsection{Matching estimators}
