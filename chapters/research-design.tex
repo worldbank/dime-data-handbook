@@ -551,15 +551,35 @@ and the estimated effect will be generated based on a subset of the data.
 %-----------------------------------------------------------------------------------------------
 \subsection{Synthetic controls}
 
-\textbf{Synthetic controls} methods\cite{abadie2015comparative}
-\index{synthetic controls}
-are designed for a particularly interesting situation:
-one where useful controls for an intervention simply do not exist.
-Canonical examples are policy changes at state or national levels,
-since at that scope there are no other units quite like
-the one that was affected by the policy change
-(much less sufficient \textit{N} for a regression estimation).\cite{gobillon2016regional}
-In this method, \textbf{time series data} is almost always required,
-and the control comparison is contructed by creating
-a linear combination of other units such that pre-treatment outcomes
-for the treated unit are best approximated by that specific combination.
+\textbf{Synthetic control} is a relative newer method
+for the case when appropriate counterfactual individuals
+do not exist in reality and there are very few (often only one) treatment unit.\cite{abadie2015comparative}
+  \index{synthetic controls}
+For example, state- or national-level policy changes
+are typically very difficult to find valid comparators for,
+since the set of potential comparators is usually small and diverse
+and therefore there are no close matches to the treated unit.
+Intuitively, the synthetic control method works
+by constructing a counterfactual version of the treated unit
+using an average of the other units available.
+This is a particularly effective approach
+when the lower-level components of the units would be directly comparable:
+people, households, business, and so on in the case of states and countries;
+os passengers or cargo shipments in the case of transport corridors, for example.\cite{gobillon2016regional}
+This is because in those situations the average of the untreated units
+can be thought of as balancing by matching the composition of the treated unit.
+
+To construct this estimator, the synthetic controls method requires
+a significant amount of retrospective data on the treatment unit and possible comparators,
+including historical data on the outcome of interest for all units.
+The counterfactual blend is chosen by optimizing the prediction of past outcomes
+based on the potential input characteristics,
+and typically selects a small set of comparators to weight into the final analysis.
+These datasets therefore may not have a large number of variables or observations,
+but the extent of the time series both before and after the implementation
+of the treatment are the key sources of power for the estimate.
+Visualizations are often excellent demonstrations of these results.
+The `synth` package provides functionality for use in Stata,
+although since there are a large number of possible parameters
+and implementations of the design it can be complex to operate.s\sidenote{
+  \url{https://web.stanford.edu/~jhain/synthpage.html}}
