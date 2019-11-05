@@ -471,7 +471,23 @@ especially in cases where uptake is expected to be low,
 or in circumstances where the treatment is available
 to those who are not specifically assigned to it (``encouragement designs'').
 
-In practice, there 
+In practice, there are a variety of packages that can be used
+to analyse data and report results from instrumental variables designs.
+While the built-in command \texttt{ivregress} will often be used
+to create the final results, these are not sufficient on their own.
+The \textbf{first stage} of the design should be extensively tested,
+to demonstrate the strength of the relationship between
+the instrument and the treatment variable being instrumented.\cite{stock2005weak}
+This can be done using the \texttt{weakiv} and \texttt{weakivtest} commands.\sidenote{
+  \url{https://www.carolinpflueger.com/WangPfluegerWeakivtest_20141202.pdf}}
+Additionally, tests should be run that identify and exclude individual
+observations or clusters that have extreme effects on the estimator,
+using customized bootstrap or leave-one-out approaches.
+Finally, bounds can be constructed allowing for imperfections
+in the exogeneity of the instrument using loosened assumptions,
+particularly when the underlying instrument is not directly randomized.\sidenote{
+  \url{http://www.damianclarke.net/research/papers/practicalIV-CM.pdf}}
+
 
 %-----------------------------------------------------------------------------------------------
 \subsection{Matching estimators}
