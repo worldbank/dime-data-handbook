@@ -123,34 +123,48 @@ re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure nothing
 
 %-----------------------------------------------------------------------------------------------
 
-\section{Simple sampling and randomization}
+\section{Sampling and randomization}
 
 \subsection{Sampling}
 
 \textbf{Sampling} is the process of randomly selecting units of observation
-\index{sampling}
-from a master list for survey data collection.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Sampling_\%26_Power_Calculations}}
-This list may be called a \textbf{sampling universe}, a \textbf{listing frame}, or something similar.
-We refer to it as a \textbf{master data set}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master_Data_Set}}
-because it is the authoritative source
-for the existence and fixed characteristics of each of the units that may be surveyed.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
-If data collected in the field contradicts the master data,
-the master data always dominates
-(unless the field data is so inconsistent that a master update is necessary).
-Most importantly, the master data set indicates
-how many individuals are eligible for sampling and surveying,
-and therefore contains statistical information
-about the likelihood that each will be chosen.
+from a master list for data collection.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Sampling_\%26_Power_Calculations}}
+  \index{sampling}
+That master list may be called a \textbf{sampling universe}, a \textbf{listing frame}, or something similar.
+We refer to it as a \textbf{master data set}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Master_Data_Set}}
+because it is the authoritative source for the existence and fixed characteristics
+of each of the units that may be surveyed.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
+The master data set indicates how many individuals are eligible for data collection,
+and therefore contains statistical information about the likelihood that each will be chosen.
 
-The code below demonstrates how to take
-a uniform-probability random sample
-from a population using the \texttt{sample} command.
-More advanced sampling techniques,
-such as clustering and stratification,
-are in practice identical in implementation
-to the randomization section that follows --
-instead of creating a \texttt{treatment} variable,
-create a \texttt{sample} variable.
+The simplest form of random sampling is \textbf{uniform-probability random sampling}.
+This means that every observation in the master data set
+has an equal probability of being included in the sample.
+The most explicit method of implementing this process
+is to assign random numbers to all your potential observations,
+order them by the number they are assigned,
+and mark as `sampled' those with the lowest numbers, to the desired proportion.
+(In general, we will talk about sampling proportions rather than numbers of observations.
+Sampling specific numbers of observations is complicated and should be avoided,
+because it will make the probability of selection very hard to calculate.)
+There are a number of shortcuts to doing this process,
+but they all use this method as the starting point,
+so you should become familiar with exactly how this method works.
+
+Almost all of the relevant considerations for sampling come from two sources:
+deciding what population, if any, a sample is meant to represent (including subgroups);
+and deciding that different individuals should have different probabilities
+of being included in the sample.
+These should be determined in advance by the study design,
+since otherwise the sampling process will not be clear,
+and the interpretation of measurements is directly linked to who is included in them.
+Often, data collection can be designed to keep complications to a minimum,
+so long as it are carefully thought through from this perspective.
+Ex post changes to the study scope using a sample drawn for a different purpose
+usually involve tedious calculations of probabilities and should be avoided.
 
 \section{Randomization}
 
