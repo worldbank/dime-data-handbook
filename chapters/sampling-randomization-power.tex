@@ -209,28 +209,51 @@ to ensure that the field randomization process is appropriately designed and exe
 
 \section{Clustering and stratification}
 
-To control randomization noise, we often use techniques
-\index{clustering}\index{stratification}
-that reduce the likelihood of a ``bad draw''.\cite{athey2017econometrics}
-These techniques can be used in any random process,
-including sampling; their implementation is nearly identical in code.
+For a variety of experimental and theoretical reasons,
+the actual sampling and randomization processes we need to perform
+are rarely as straightforward as a uniform-probability draw.
+We may only be able to implement treatment on a certain group of units
+(such as a school, a firm, or a market)
+or we may want to ensure that minority groups appear
+in either our sample or in specific treatment groups.
+The most common methods used in real studies are \textbf{clustering} and \textbf{stratification}.
+They allow us to control the randomization process with high precision,
+which is often necessary for appropriate inference,
+particularly when samples or subgroups are small.\cite{athey2017econometrics}
+These techniques can be used in any random process;
+their implementation is nearly identical in both sampling and randomization.
 
 \subsection{Clustering}
 
-Many studies collect data at a different level of observation than the randomization unit.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
+Many studies collect data at a different level of observation than the randomization unit.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
 For example, a policy may only be able to affect an entire village,
-but you are interested in household behavior.
-This type of structure is called \textbf{clustering},\sidenote{\url{https://dimewiki.worldbank.org/wiki/Multi-stage_(Cluster)_Sampling}}
-because the units are assigned to treatment in clusters.
-Because the treatments are assigned in clusters, however,
-there are in reality fewer randomized groups than the number of units in the data.
-Therefore, standard errors for clustered designs must also be clustered,
-at the level at which the treatment was assigned.\sidenote{\url{https://blogs.worldbank.org/impactevaluations/when-should-you-cluster-standard-errors-new-wisdom-econometrics-oracle}}
+but the study is interested in household behavior.
+This type of structure is called \textbf{clustering},\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Multi-stage_(Cluster)_Sampling}}
+and the groups in which units are assigned to treatment are called clusters.
+The same principle extends to sampling:
+it may be infeasible to decide whether to test individual children
+within a single classroom, for example.
 
-Clustered randomization must typically be implemented manually;
-it typically relies on subsetting the data intelligently
-to the desired assignment levels.
-We demonstrate here.
+Clustering is procedurally straightforward in Stata,
+although it typically needs to be performed manually.
+To cluster sampling or randomization,
+\texttt{preserve} the data, keep one observation from each cluster
+using a command like \texttt{bys [cluster] : keep if _n == 1}.
+Then sort the data and set the seed, and generate the random assignment you need.
+Save the assignment in a separate dataset or a \texttt{tempfile},
+then \texttt{restore} and \texttt{merge} the assignment back on to the original dataset.
+
+When sampling or randomization is conducted using clusters,
+the clustering variable should be clearly identified
+since it will need to be used in subsequent statistical analysis.
+Namely, standard errors for these types of designs must be clustered
+at the level at which the randomization was clustered.\sidenote{
+  \url{https://blogs.worldbank.org/impactevaluations/when-should-you-cluster-standard-errors-new-wisdom-econometrics-oracle}}
+This accounts for the design covariance within the cluster --
+the information that if one individual was observed or treated there,
+the other members of the clustering group were as well.
 
 \subsection{Stratification}
 
