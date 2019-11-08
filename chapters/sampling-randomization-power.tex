@@ -29,69 +29,97 @@ and maximizes the likelihood that reported effect sizes are accurate.
 
 %-----------------------------------------------------------------------------------------------
 
-\section{General principles of random processes}
+\section{Random processes in Stata}
 
-\subsection{Reproducibility in sampling, randomization, and power calculation}
+Most experimental designs rely directly on random processes,
+particularly sampling and randomization, to be executed in code.
+The fundamental econometrics behind impact evaluation
+depends on establishing that the observations in the sample
+and any experimental treatment assignment processes are truly random.
+Therefore, understanding and programming for sampling and randomization
+is essential to ensuring that planned experiments
+are correctly implemented in the field, so that the results
+can be interpreted according to the experimental design.
+(Note that there are two distinct concepts referred to here by ``randomization'':
+the conceptual process of assigning units to treatment arms,
+and the technical process of assigning random numbers in statistical software,
+which is a part of all tasks that include a random component.\sidenote{
+  \url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata/}})
 
-Reproducibility in statistical programming is absolutely essential.\cite{orozco2018make}
-This is especially true when simulating or analyzing random processes,
-and sampling, randomization, and power calculation
-are the prime examples of these sorts of tasks.
-This section is a short introduction to ensuring that code
-which generates randomized outputs is reproducible.
-There are three key inputs to assuring reproducibility in these processes:
+Randomization is challenging. It is deeply unintuitive for the human brain.
+``True'' randomization is also nearly impossible to achieve for computers,
+which are inherently deterministic. There are plenty of sources to read about this.\sidenote{
+  \url{https://www.random.org/randomness/}}
+For our purposes, we will focus on what you need to understand
+in order to produce truly random results for your project using Stata,
+and how you can make sure you can get those exact results again in the future.
+This takes a combination of strict rules, solid understanding, and careful programming.
+This section introduces the strict rules: these are non-negotiable (but thankfully simple).
+The second section provides basic introductions to the tasks of sampling and randomization,
+and the third introduces common varieties encountered in the field.
+The fourth section discusses more advanced topics that are used
+to analyze the random processes directly in order to understand their properties.
+However, the needs you will encounter in the field will inevitably
+be more complex than anything we present here,
+and you will need to recombine these lessons to match your project's needs.
+
+\subsection{Reproducibility in random Stata processes}
+
+Reproducibility in statistical programming means that random results
+can be re-obtained at a future time.
+All random methods should be reproducible.\cite{orozco2018make}
+Stata, like most statistical software, uses a \textbf{pseudo-random number generator}.
+Basically, it has a really long ordered list of numbers with the property that
+knowing the previous one gives you precisely zero information about the next one.
+Stata uses one of these numbers every time it has a task that is non-deterministic.
+In ordinary use, it will cycle through these numbers starting from a fixed point
+every time you restart Stata, and by the time you get to any given script,
+the current state and the subsequent states will be as good as random.\sidenote{
+  \url{https://www.stata.com/manuals14/rsetseed.pdf}}
+However, for true reproducible randomization, we need two additional properties:
+we need to be able to fix the starting point so we can come back to it later;
+and we need that starting point to be independently random from our process.
+In Stata, this is accomplished through three command concepts:
 \textbf{versioning}, \textbf{sorting}, and \textbf{seeding}.
-\index{reproducible randomization}
-Without these, other people running your code may get very different results in the future.
 
 \textbf{Versioning} means using the same version of the software.
-(All software versions of Stata above version 13 currently operate identically on all platforms.)
 If anything is different, the underlying randomization algorithms may have changed,
 and it will be impossible to recover the original result.
 In Stata, the \texttt{version} command ensures that the software algorithm is fixed.
-The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieboilstart}}
-In general, you will use \texttt{ieboilstart} at the beginning of your master do-file\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master_Do-files}}
-to set the version once; in this guide, we will use
-\texttt{version 13.1} in examples where we expect this to already be done.
+We recommend using \texttt{version 13.1} for back-compatibility;
+the algorithm was changed after Stata 14 but its improvements do not matter in practice.
+(Note that you will \textit{never} be able to transfer a randomization to another software such as R.)
+The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/ieboilstart}}
+We recommend, you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Master_Do-files}}
+However, note that testing your do-files without running them
+via the master do-file may produce different resuls:
+Stata's \texttt{version} expires after execution just like a \texttt{local}.
 
-\textbf{Sorting} means that the actual data that the random process is run on is fixed.
-Most random outcomes have as their basis an algorithmic sequence of pseudorandom numbers.
-This means that if the start point is set, the full sequence of numbers will not change.
-A corollary of this is that the underlying data must be unchanged between runs:
-to ensure that the dataset is fixed, you must make a \texttt{LOCKED} copy of it at runtime.
-However, if you re-run the process with the dataset in a different order,
-the same numbers will get assigned to different units, and the randomization will turn out different.
-In Stata, \texttt{isid [id\_variable], sort} will ensure that order is fixed over repeat runs.
+\textbf{Sorting} means that the actual data that the random process is run on is fixed;
+because numbers are assigned to each observation in sequence,
+changing their order will change the result of the process.
+A corollary is that the underlying data must be unchanged between runs:
+you must make a fixed final copy of the data when you run a randomization for fieldwork.
+In Stata, the only way to guarantee a unique sorting order is to use\texttt{isid [id\_variable], sort}. (The \texttt{sort , stable} command is insufficient.)
+You can additional use the \texttt{datasignature} commannd to make sure the data is fixed.
 
-\textbf{Seeding} means manually setting the start-point of the underlying randomization algorithm.
-You can draw a standard seed randomly by visiting \url{http://bit.ly/stata-random}.
-You will see in the code below that we include the timestamp for verification.
-Note that there are two distinct concepts referred to here by ``randomization'':
-the conceptual process of assigning units to treatment arms,
-and the technical process of assigning random numbers in statistical software,
-which is a part of all tasks that include a random component.\sidenote{\url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata/}}
-If the randomization seed for the statistical software is not set,
-then its pseudorandom algorithm will pick up where it left off.
-By setting the seed, you force it to restart from the same point.
-In Stata, \texttt{set seed [seed]} will accomplish this.
-
-The code below code loads and sets up the \texttt{auto.dta} dataset
-for any random process. Note the three components: versioning, sorting, and seeding.
-Why are \texttt{check1} and \texttt{check3} the same? Why is \texttt{check2} different?
-
-Commands like \texttt{bys:} and \texttt{merge} will re-sort your data as part of their execution,
-To reiterate: any process that includes a random component
-is a random process, including sampling, randomization, power calculation,
-and many algorithms like bootstrapping.
-and other commands may alter the seed without you realizing it.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomization_in_Stata}}
-Any of these things will cause the output to fail to replicate.
-Therefore, each random process should be independently executed
-to ensure that these three rules are followed.
-Before shipping the results of any random process,
+\textbf{Seeding} means manually setting the start-point of the randomization algorithm.
+You can draw a six-digit seed randomly by visiting \url{http://bit.ly/stata-random}.
+There are many more seeds possible but this is a large enough set for most purposes.
+In Stata, \texttt{set seed [seed]} will set the generator to that state.
+You should use exactly one seed per randomization process:
+what is important is that each of these seeds is truly random.
+You will see in the code below that we include the source and timestamp for verification.
+Any process that includes a random component is a random process,
+including sampling, randomization, power calculation, and algorithms like bootstrapping.
+Other commands may induce randomness or alter the seed without you realizing it,
+so carefully confirm exactly how your code runs before finalizing it.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Randomization_in_Stata}}
+To confirm that a randomization has worked well before finalizing its results,
 save the outputs of the process in a temporary location,
-re-run the file, and use \texttt{cf \_all using [dataset]} targeting the saved file.
-If there are any differences, the process has not reproduced,
-and \texttt{cf} will return an error, as shown here.
+re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure nothing has changed.
 
 %-----------------------------------------------------------------------------------------------
 
