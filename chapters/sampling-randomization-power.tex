@@ -169,31 +169,41 @@ usually involve tedious calculations of probabilities and should be avoided.
 \section{Randomization}
 
 \textbf{Randomization} is the process of assigning units to some kind of treatment program.
-Many of the Stata techniques shown here can also be used for sampling,
-by understanding ``being included in the sample'' as a treatment in itself.
-Randomization is used to assign treatment programs in development research
-because it guarantees that, \textit{on average},
+Most of the Stata commands shown for sampling can be directly transferred to randomization,
+since randomization is also a process of splitting a sample into groups.
+Where sampling determines whether a particular individual
+will be observed at all in the course of data collection,
+randomization determines what state each individual will be observed in.
+Randomizing a treatment guarantees that, \textit{on average},
 the treatment will not be correlated with anything it did not cause.\cite{duflo2007using}
-However, as you have just seen,
-any random process induces noise: so does randomization.
-You may get unlucky and create important correlations by chance --
-in fact, you can almost always identify some treatment assignment that
-creates the appearance of statistical relationships that are not really there.
-This section will show you how to assess and control this \textbf{randomization noise}.
+Causal inference from randomization therefore depends on a specific counterfactual:
+that the units who recieved the treatment program might not have done so.
+Therefore, controlling the exact probability that each individual receives treatment
+is the most important part of a randomization process,
+and must be carefully worked out in more complex designs.
 
-To do that, we create a randomization \textbf{program}, which
-\index{programming}
-allows us to re-run the randomization method many times
-and assess the amount of randomization noise correctly.\sidenote{\url{https://data.princeton.edu/stata/programming}}
-Storing the randomization code as a program allows us to access the whole code block
-with a single line of code, so we can tinker with the randomization process
-separately from its application to the data.
-Programming takes a few lines of code that may be new to you,
-but getting used to this structure is very useful.
-A simple randomization program is shown below.
-This code randomizes observations into two groups by combining
-\texttt{xtile} and \texttt{recode},
-which can be extended to any proportions for any number of arms.
+Just like sampling, the simplest form of randomization is a uniform-probability process.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Randomization_in_Stata}}
+Sampling typically has only two possible outcomes: observed and unobserved.
+Randomization, by contrast, often involves multiple possible results
+which each represent various varieties of treatments to be delivered;
+in some cases, multiple treatment assignments are intended to overlap in the same sample.
+Complexity can therefore grow very quickly in randomization
+and it is doubly important to fully understand the conceptual process
+that is described in the experimental design,
+and fill in any gaps in the process before implmenting it in Stata.
+
+Some types of experimental designs necessitate that randomization be done live in the field.
+It is possible to do this using survey software or live events.
+These methods typically do not leave a record of the randomization,
+so particularly when the experiment is electronic,
+it is best to execute the randomization in advance and preload the results.
+Even when randomization absolutely cannot be done in advance, it is still useful
+to build a corresponding model of the randomization process in Stata
+so that you can conduct statistical analysis later
+including checking for irregularities in the field assignment.
+Understanding that process will also improve the ability of the team
+to ensure that the field randomization process is appropriately designed and executed.
 
 %-----------------------------------------------------------------------------------------------
 
