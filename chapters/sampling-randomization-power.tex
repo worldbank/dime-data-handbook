@@ -25,7 +25,7 @@ and to make optimal choices when planning studies.
 All random processes introduce statistical noise
 or uncertainty into the final estimates of effect sizes.
 Choosing one sample from all the possibilities produces some probability of
-choosing a group of units that are not, in fact representative.
+choosing a group of units that are not, in fact, representative.
 Choosing one final randomization assignment similarly produces some probability of
 creating groups that are not good counterfactuals for each other.
 Power calculation and randomization inference
@@ -66,7 +66,7 @@ which is a part of all tasks that include a random component.\sidenote{
 
 Randomization is challenging. It is deeply unintuitive for the human brain.
 ``True'' randomization is also nearly impossible to achieve for computers,
-which are inherently deterministic. There are plenty of sources to read about this.\sidenote{
+which are inherently deterministic.\sidenote{
   \url{https://www.random.org/randomness/}}
 For our purposes, we will focus on what you need to understand
 in order to produce truly random results for your project using Stata,
@@ -96,7 +96,7 @@ the current state and the subsequent states will be as good as random.\sidenote{
   \url{https://www.stata.com/manuals14/rsetseed.pdf}}
 However, for true reproducible randomization, we need two additional properties:
 we need to be able to fix the starting point so we can come back to it later;
-and we need that starting point to be independently random from our process.
+and we need to ensure that the starting point is independently random from our process.
 In Stata, this is accomplished through three command concepts:
 \textbf{versioning}, \textbf{sorting}, and \textbf{seeding}.
 
@@ -109,31 +109,33 @@ the algorithm was changed after Stata 14 but its improvements do not matter in p
 (Note that you will \textit{never} be able to transfer a randomization to another software such as R.)
 The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/ieboilstart}}
-We recommend, you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
+We recommend you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Master_Do-files}}
 However, note that testing your do-files without running them
-via the master do-file may produce different resuls:
-Stata's \texttt{version} expires after execution just like a \texttt{local}.
+via the master do-file may produce different results,
+since Stata's \texttt{version} expires after execution just like a \texttt{local}.
 
 \textbf{Sorting} means that the actual data that the random process is run on is fixed;
 because numbers are assigned to each observation in sequence,
 changing their order will change the result of the process.
 A corollary is that the underlying data must be unchanged between runs:
 you must make a fixed final copy of the data when you run a randomization for fieldwork.
-In Stata, the only way to guarantee a unique sorting order is to use\texttt{isid [id\_variable], sort}. (The \texttt{sort , stable} command is insufficient.)
-You can additional use the \texttt{datasignature} commannd to make sure the data is fixed.
+In Stata, the only way to guarantee a unique sorting order is to use
+\texttt{isid [id\_variable], sort}. (The \texttt{sort, stable} command is insufficient.)
+You can additionally use the \texttt{datasignature} commannd to make sure the data is unchanged.
 
 \textbf{Seeding} means manually setting the start-point of the randomization algorithm.
 You can draw a six-digit seed randomly by visiting \url{http://bit.ly/stata-random}.
 (This link is a shortcut to a specific request on \url{https://www.random.org}.)
 There are many more seeds possible but this is a large enough set for most purposes.
 In Stata, \texttt{set seed [seed]} will set the generator to that state.
-You should use exactly one seed per randomization process:
-what is important is that each of these seeds is truly random.
+You should use exactly one seed per randomization process.
+The most important thing is that each of these seeds is truly random,
+so do not use shortcuts such as the current date or a fixed seed.
 You will see in the code below that we include the source and timestamp for verification.
 Any process that includes a random component is a random process,
 including sampling, randomization, power calculation, and algorithms like bootstrapping.
-Other commands may induce randomness or alter the seed without you realizing it,
+Other commands may induce randomness in the data or alter the seed without you realizing it,
 so carefully confirm exactly how your code runs before finalizing it.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Randomization_in_Stata}}
 To confirm that a randomization has worked well before finalizing its results,
@@ -144,17 +146,18 @@ re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure nothing
 
 \section{Sampling and randomization}
 
-The sampling and randomization processes that we choose
+The sampling and randomization processes we choose
 play an important role in determining the size of the confidence intervals
 for any estimates generated from that sample,
-and therefore our ability to draw conclusions with confidence.
-(Note that random sampling and random assignment serve different purposes:
-random sampling ensures that you have unbiased population estimates,
+and therefore our ability to draw conclusions.
+(Note that random sampling and random assignment serve different purposes.
+Random sampling ensures that you have unbiased population estimates,
 and random assignment ensures that you have unbiased treatment estimates.)
 If you randomly sample or assign a set number of observations from a set frame,
 there are a large -- but fixed -- number of permutations which you may draw.
+
 In reality, you have to work with exactly one of them,
-so we put a lot of effort into making sure that one is a good one,
+so we put a lot of effort into making sure that one is a good one
 by reducing the probability that we observe nonexistent, or ``spurious'', results.
 In large studies, we can use what are called \textbf{asymptotic standard errors}
 to express how far away from the true population parameters our estimates are likely to be.
@@ -188,7 +191,7 @@ has an equal probability of being included in the sample.
 The most explicit method of implementing this process
 is to assign random numbers to all your potential observations,
 order them by the number they are assigned,
-and mark as `sampled' those with the lowest numbers, to the desired proportion.
+and mark as `sampled' those with the lowest numbers, up to the desired proportion.
 (In general, we will talk about sampling proportions rather than numbers of observations.
 Sampling specific numbers of observations is complicated and should be avoided,
 because it will make the probability of selection very hard to calculate.)
@@ -208,10 +211,10 @@ so long as it are carefully thought through from this perspective.
 Ex post changes to the study scope using a sample drawn for a different purpose
 usually involve tedious calculations of probabilities and should be avoided.
 
-\section{Randomization}
+\subsection{Randomization}
 
 \textbf{Randomization} is the process of assigning units to some kind of treatment program.
-Most of the Stata commands shown for sampling can be directly transferred to randomization,
+Most of the Stata commands used for sampling can be directly transferred to randomization,
 since randomization is also a process of splitting a sample into groups.
 Where sampling determines whether a particular individual
 will be observed at all in the course of data collection,
@@ -239,7 +242,7 @@ Some types of experimental designs necessitate that randomization be done live i
 It is possible to do this using survey software or live events.
 These methods typically do not leave a record of the randomization,
 so particularly when the experiment is electronic,
-it is best to execute the randomization in advance and preload the results.
+it is best to execute the randomization in advance and preload the results if possible.
 Even when randomization absolutely cannot be done in advance, it is still useful
 to build a corresponding model of the randomization process in Stata
 so that you can conduct statistical analysis later
@@ -283,7 +286,7 @@ Clustering is procedurally straightforward in Stata,
 although it typically needs to be performed manually.
 To cluster sampling or randomization,
 \texttt{preserve} the data, keep one observation from each cluster
-using a command like \texttt{bys [cluster] : keep if _n == 1}.
+using a command like \texttt{bys [cluster] : keep if \_n == 1}.
 Then sort the data and set the seed, and generate the random assignment you need.
 Save the assignment in a separate dataset or a \texttt{tempfile},
 then \texttt{restore} and \texttt{merge} the assignment back on to the original dataset.
@@ -300,7 +303,7 @@ the other members of the clustering group were as well.
 
 \subsection{Stratification}
 
-\texttt{Stratification} is a study design component
+\textbf{Stratification} is a study design component
 that breaks the full set of observations into a number of subgroups
 before performing randomization within each subgroup.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Stratified_Random_Sample}}
@@ -385,7 +388,7 @@ each of which has different practical uses.\sidenote{
   \url{http://www.stat.columbia.edu/~gelman/stuff_for_blog/chap20.pdf}}
 The purpose of power calculations is to identify where the strengths and weaknesses
 of your design are located, so you know the relative tradeoffs you will face
-by changing your randomization schemes so can select a final design appropriately.
+by changing your randomization scheme for the final design.
 They also allow realistic interpretations of evidence:
 results low-power studies can be very interesting,
 but they have a correspondingly higher likelihood
@@ -453,7 +456,7 @@ Randomization inference is particularly important
 in quasi-experimental designs and in small samples,
 because these conditions usually lead to the situation
 where the number of possible \textit{randomizations} is itself small.
-In those cases, we cannot rely on the usual conclusiong
+In those cases, we cannot rely on the usual assertion
 (a consequence of the Central Limit Theorem)
 that the variance of the treatment effect estimate is normal,
 and we therefore cannot use the ``asymptotic'' standard errors from Stata.
@@ -469,8 +472,8 @@ After analyzing the actual treatment assignment,
 that this randomization approach can produce by chance
 between outcomes and treatments.
 The randomization-inference p-value is the number of times
-that a false effect was larger than the one you measured;
-interpretable as the probability that a program with no effect
+that a false effect was larger than the one you measured,
+and it is interpretable as the probability that a program with no effect
 would have given you a result like the one actually observed.
 These randomization inference\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Randomization\_Inference}}
@@ -482,11 +485,11 @@ Randomization inference can therefore be used proactively during experimental de
 As long as there is some outcome data usable at this stage,
 you can use the same procedure to examine the potential treatment effects
 that your exact design is likely to produce.
-The range of these effect, again, may be very different
+The range of these effects, again, may be very different
 from those predicted by standard approaches to power calculation,
 and randomization inference futher allows visual inspection of results.
 If there is significant heaping at particular result levels,
-or results seem to depend dramatically on the placement of a small number of individuals,
+or if results seem to depend dramatically on the placement of a small number of individuals,
 randomization inference will flag those issues before the experiment is fielded
 and allow adjustments to the design to be made.
 
