@@ -336,87 +336,50 @@ Power calculation and randomization inference are the two key tools to doing so.
 (Going forward, this section will use ``randomization'' to refer to the whole process
 of sampling and randomization: the relevant study design will often include both.)
 
-
 \subsection{Power calculations}
 
-When we have decided on a practical sampling and randomization design,
-we next assess its \textbf{power}.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Power_Calculations_in_Stata}}
-\index{power}
-Statistical power can be described in a few ways,
-each of which has different uses.\sidenote{\url{http://www.stat.columbia.edu/~gelman/stuff_for_blog/chap20.pdf}}
-The purpose of power calculations is not to
-demonstrate that a study is ``strong'',
-but rather to identify where the strengths and weaknesses
-of your design are located, so that readers
-can correctly assess the evidentiary value of
-any results (or null results) in the analysis.
-This should be done before going to the field,
-across the entire range of research questions
-your study might try to answer,
-so you know the relative tradeoffs you will face
-by changing your sampling and randomization schemes
-and can select your final strategy appropriately.
+Power calculations report the likelihood that your experimental design
+will be able to detect the treatment effects you are interested in.
+This measure of \textbf{power} can be described in various different ways,
+each of which has different practical uses.\sidenote{
+  \url{http://www.stat.columbia.edu/~gelman/stuff_for_blog/chap20.pdf}}
+The purpose of power calculations is to identify where the strengths and weaknesses
+of your design are located, so you know the relative tradeoffs you will face
+by changing your randomization schemes so can select a final design appropriately.
+They also allow realistic interpretations of evidence:
+results low-power studies can be very interesting,
+but they have a correspondingly higher likelihood
+of reporting false positive results.
 
-The classic definition of power is
-``the likelihood that your design detects a significant treatment effect,
-given that there is a non-zero true effect in reality''.
-Here we will look at two useful practical applications
-of that definition and show what quantitative results can be obtained.
-We suggest doing all power calculations by simulation;
-you are very unlikely to be able to determine analytically
-the power of your study unless you have a very simple design.
-Stata has some commands that can calculate power for
+The classic definition of power
+is the likelihood that a design detects a significant treatment effect,
+given that there is a non-zero true effect in reality.
+This definition is useful retrospectively,
+but it can also be re-interpreted to help in experimental design.
+There are two common and useful practical applications
+of that definition that give actionable, quantitative results.
+The \textbf{minimum detectable effect (MDE)}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Minimum_Detectable_Effect}}
+is the smallest true effect that a given study design can detect.
+This is useful as a check on whether a study is worthwhile.
+If, in your field, a ``large'' effect is just a few percentage points
+or a fraction of a standard deviation,
+then it is nonsensical to run a study whose MDE is much larger than that.
+Conversely, the \textbf{minimum sample size} pre-specifies expected effects
+and tells you how large a study would need to be to detect that effect.
+
+Stata has some commands that can calculate power analytically for
 very simple designs -- \texttt{power} and \texttt{clustersampsi} --
 but they will not answer most of the practical questions
-that complex experimental designs require.
-
-To determine the \textbf{minimum detectable effect}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Minimum_Detectable_Effect}}
-\index{minimum detectable effect}
--- the smallest true effect that your design can detect --
-conduct a simulation for your actual design.
-The structure below uses fake data,
-but you should use real data whenever it is available,
+that complex experimental designs require.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Power_Calculations_in_Stata}}
+We suggest doing more advanced power calculations by simulation,
+since the interactions of experimental design,
+sampling and randomization,
+clustering, stratification, and treatment arms
+quickly becomes very complex.
+Furthermore, you should use real data whenever it is available,
 or you will have to make assumptions about the distribution of outcomes.
-If you are willing to make even more assumptions,
-you can use one of the built-in functions.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Power_Calculations_in_Stata}}
-
-Here, we use an outer loop to vary the size of the assumed treatment effect,
-which is later used to simulate outcomes in a ``true''
-data-generating process (DGP).
-The data generating process is written similarly to a
-regression model, but it is a separate step.
-A data generating process is the ``truth''
-that the regression model is trying to estimate.
-If our regression results are close to the DGP,
-then the regression is ``good'' in the sense we care about.
-For each of 100 runs indexed by \texttt{i},
-we ask the question: If this DGP were true,
-would our design have detected it in this draw?
-We run our planned regression model including all controls and store the result,
-along with an indicator of the effect size we assumed.
-
-When we have done this 100 times for each effect size we are interested in,
-we have built a large matrix of regression results.
-That can be loaded into data and manipulated directly,
-where each observation represents one possible randomization result.
-We flag all the runs where the p-value is significant,
-then visualize the proportion of significant results
-from each assumed treatment effect size.
-Knowing the design's sensitivity to a variety of effect sizes
-lets us calibrate whether the experiment we propose
-is realistic given the constraints of the amount of data we can collect.
-
-Another way to think about the power of a design
-is to figure out how many observations you need to include
-to test various hypotheses -- the \textbf{minimum sample size}.
-This is an important practical consideration
-when you are negotiating funding or submitting proposals,
-as it may also determine the number of treatment arms
-and types of hypotheses you can test.
-The basic structure of the simulation is the same.
-Here, we use the outer loop to vary the sample size,
-and report significance across those groups
-instead of across variation in the size of the effect.
 
 Using the concepts of minimum detectable effect
 and minimum sample size in tandem can help answer a key question
@@ -438,8 +401,7 @@ For reporting purposes, such as grantwriting and registered reports,
 simulation ensures you will have understood the key questions well enough
 to report standard measures of power once your design is decided.
 
-\subsection{Sampling error and randomization noise}
-
+\subsection{Randomization inference}
 
 The sampling noise in the process that we choose
 determines the size of the confidence intervals
@@ -496,8 +458,6 @@ After generating the ``true'' treatment assignment,
 that randomization can spuriously produce
 between \texttt{price} and \texttt{treatment}.
 
-
-\subsection{Randomization inference}
 
 % code
 
