@@ -333,8 +333,6 @@ Your sample or randomization will inevitably fall in one of these categories,
 and we need to assess the likelihood and magnitude of this occurence.\sidenote{
   \url{https://davegiles.blogspot.com/2019/04/what-is-permutation-test.html}}
 Power calculation and randomization inference are the two key tools to doing so.
-(Going forward, this section will use ``randomization'' to refer to the whole process
-of sampling and randomization: the relevant study design will often include both.)
 
 \subsection{Power calculations}
 
@@ -403,61 +401,52 @@ to report standard measures of power once your design is decided.
 
 \subsection{Randomization inference}
 
-The sampling noise in the process that we choose
-determines the size of the confidence intervals
-for any estimates generated from that sample.
-In general, for any underlying distribution,
-the Central Limit Theorem implies that
-the distribution of variation across the possible samples is exactly normal.
-Therefore, we can use what are called \textbf{asymptotic standard errors}
-to express how far away from the true population parameters our estimates are likely to be.
-These standard errors can be calculated with only two datapoints:
-the sample size and the standard deviation of the value in the chosen sample.
-The code below illustrates the fact that sampling noise
-has a distribution in the sense that some actual executions of the sample
-give estimation results far from the true value,
-and others give results close to it.
+Randomization inference is used to analyze the likelihood
+that the randomization process, by chance,
+would have created a false treatment effect as large as the one you observed.
+Randomization inference is a generalization of placebo tests,
+because it considers what the estimated results would have been
+from a randomization that did not in fact happen in reality.
+Randomization inference is particularly important
+in quasi-experimental designs and in small samples,
+because these conditions usually lead to the situation
+where the number of possible \textit{randomizations} is itself small.
+In those cases, we cannot rely on the usual conclusiong
+(a consequence of the Central Limit Theorem)
+that the variance of the treatment effect estimate is normal,
+and we therefore cannot use the ``asymptotic'' standard errors from Stata.
 
-The output of the code is a distribution of means in sub-populations of the overall data.
-This distribution is centered around the true population mean,
-but its dispersion depends on the exact structure of the population.
-We use an estimate of the population variation taken from the sample
-to assess how far away from that true mean any given sample draw is:
-essentially, we estimate the properties of the distribution you see now.
-With that estimate, we can quantify the uncertainty in estimates due to sampling noise,
-calculate precisely how far away from the true mean
-our sample-based estimate is likely to be,
-and report that as the standard error of our point estimates.
-The interpretation of, say, a 95\% \textbf{confidence interval}
-\index{confidence interval}
-in this context is that, conditional on our sampling strategy,
-we would anticipate that 95\% of future samples from the same distribution
-would lead to parameter estimates in the indicated range.
-This approach says nothing about the truth or falsehood of any hypothesis.
-
-With this program created and executed,
-the next part of the code, shown below,
-can set up for reproducibility.
-Then it will call the randomization program by name,
-which executes the exact randomization process we programmed
-to the data currently loaded in memory.
-Having pre-programmed the exact randomization does two things:
-it lets us write this next code chunk much more simply,
-and it allows us to reuse that precise randomization as needed.
-Specifically, the user-written \texttt{ritest} command\sidenote{\url{http://hesss.org/ritest.pdf}}
-\index{randomization inference}
-allows us to execute a given randomization program repeatedly,
+Instead, we directly simulate a large variety of possible alternative randomizations.
+Specifically, the user-written \texttt{ritest} command\sidenote{
+  \url{http://hesss.org/ritest.pdf}}
+allows us to execute a given randomization repeatedly,
 visualize how the randomization might have gone differently,
-and calculate alternative p-values against null hypotheses.
-These \textbf{randomization inference}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomization\_Inference}} significance levels may be very different
+and calculate empirical p-values for the effect size in our sample.
+After analyzing the actual treatment assignment,
+\texttt{ritest} illustrates the distribution of false correlations
+that this randomization approach can produce by chance
+between outcomes and treatments.
+The randomization-inference p-value is the number of times
+that a false effect was larger than the one you measured;
+interpretable as the probability that a program with no effect
+would have given you a result like the one actually observed.
+These randomization inference\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Randomization\_Inference}}
+significance levels may be very different
 than those given by asymptotic confidence intervals,
 particularly in small samples (up to several hundred clusters).
 
-After generating the ``true'' treatment assignment,
-\texttt{ritest} illustrates the distribution of correlations
-that randomization can spuriously produce
-between \texttt{price} and \texttt{treatment}.
-
+Randomization inference can therefore be used proactively during experimental design.
+As long as there is some outcome data usable at this stage,
+you can use the same procedure to examine the potential treatment effects
+that your exact design is likely to produce.
+The range of these effect, again, may be very different
+from those predicted by standard approaches to power calculation,
+and randomization inference futher allows visual inspection of results.
+If there is significant heaping at particular result levels,
+or results seem to depend dramatically on the placement of a small number of individuals,
+randomization inference will flag those issues before the experiment is fielded
+and allow adjustments to the design to be made.
 
 % code
 
