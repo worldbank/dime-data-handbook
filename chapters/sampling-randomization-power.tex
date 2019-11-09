@@ -125,6 +125,26 @@ re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure nothing
 
 \section{Sampling and randomization}
 
+The sampling and randomization processes that we choose
+play an important role in determining the size of the confidence intervals
+for any estimates generated from that sample,
+and therefore our ability to draw conclusions with confidence.
+If you randomly sample or assign a set number of observations from a set frame,
+there are a large -- but fixed -- number of permutations which you may draw.
+In reality, you have to work with exactly one of them,
+so we put a lot of effort into making sure that one is a good one,
+by reducing the probability that we observe nonexistent, or ``spurious'', results.
+In large studies, we can use what are called \textbf{asymptotic standard errors}
+to express how far away from the true population parameters our estimates are likely to be.
+These standard errors can be calculated with only two datapoints:
+the sample size and the standard deviation of the value in the chosen sample.
+They are also typically the best case scenario for the population given the data structure.
+In small studies, such as those we often see in development,
+we have to be much more careful, particularly about practical considerations
+such as determining the representative population
+and fitting any constraints on study and sample design.
+This section introduces universal basic principles for sampling and randomization.
+
 \subsection{Sampling}
 
 \textbf{Sampling} is the process of randomly selecting units of observation
