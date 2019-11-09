@@ -295,7 +295,8 @@ no adjustments are necessary as long as the sampling proportion is constant acro
 One common pitfall is to vary the sampling or randomization \textit{probability}
 across different strata (such as ``sample/treat all female heads of household'').
 If this is done, you must calculate and record the exact probability
-of inclusion for every unit, and re-weight observations accordingly.
+of inclusion for every unit, and re-weight observations accordingly.\sidenote{
+  \url{http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-when-to-use-those-sample-weights}}
 The exact formula depends on the analysis being performed,
 but is usually related to the inverse of the likelihood of inclusion.
 
@@ -304,86 +305,37 @@ but is usually related to the inverse of the likelihood of inclusion.
 
 \section{Power calculation and randomization inference}
 
-The fundamental contribution of sampling to the power of a research design is this:
-if you randomly sample a set number of observations from a set frame,
-there are a large -- but fixed -- number of sample sets which you may draw.\sidenote{\url{https://davegiles.blogspot.com/2019/04/what-is-permutation-test.html}}
-From any large group, you can find some possible sample sets
-that have higher-than-average values of some measure;
-similarly, you can find some sets that have lower-than-average values.
-The variation of these values across the range of all possible sample sets is what creates
-\textbf{sampling noise}, the uncertainty in statistical estimates caused by sampling.
-\index{sampling noise}
+Both sampling and randomization are noisy processes:
+they are random, after all, so it is impossible to predict the result in advance.
+By design, we know that the exact choice of sample or treatment
+will be uncorrelated with our key outcomes,
+but this lack of correlation is only true ``in expectation'' --
+that is, across a large number of randomizations.
+In any \textit{particular} randomization,
+the correlation between the sampling or randomization and the outcome variable
+is guaranteed to be \textit{nonzero}:
+this is called the \textbf{in-sample} or \textbf{finite-sample correlation}.
 
-\subsection{Sampling error and randomization noise}
+Since we know that the true correlation
+(over the ``population'' of potential samples or randomizations)
+is zero, we think of the observed correlation as an \textbf{error}.
+In sampling, we call this the \textbf{sampling error},
+and it is defined as the difference between the true population parameter
+and the observed mean due to chance selection of units.\sidenote{
+  \url{https://economistjourney.blogspot.com/2018/06/what-is-sampling-noise.html}}
+In randomization, we call this the \textbf{randomization noise},
+and define it as the difference between the true treatment effect
+and the estimated effect due to placing units in groups.
+The intuition for both measures is that from any group,
+you can find some possible subsets that have higher-than-average values of some measure;
+similarly, you can find some that have lower-than-average values.
+Your sample or randomization will inevitably fall in one of these categories,
+and we need to assess the likelihood and magnitude of this occurence.\sidenote{
+  \url{https://davegiles.blogspot.com/2019/04/what-is-permutation-test.html}}
+Power calculation and randomization inference are the two key tools to doing so.
+(Going forward, this section will use ``randomization'' to refer to the whole process
+of sampling and randomization: the relevant study design will often include both.)
 
-Portions of this noise can be reduced through design choices
-such as clustering and stratification.
-In general, all sampling requires \textbf{inverse probability weights}.
-These are conceptually simple in that the weights for each individual must be precisely the inverse of the probability
-with which that individual is included in the sample, but may be practically difficult to calculate for complex methods.
-When the sampling probability is uniform, all the weights are equal to one.
-Sampling can be structured such that subgroups are guaranteed to appear in a sample:
-that is, you can pick ``half the level one facilities and half the level two facilities'' instead of
-``half of all facilities''. The key here is that, \textit{for each facility},
-the probability of being chosen remains the same -- 0.5.
-By contrast, a sampling design that chooses unbalanced proportions of subgroups
-has changed the probability that a given individual is included in the sample,
-and needs to be reweighted in case you want to calculate overall average statistics.\sidenote{\url{http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-when-to-use-those-sample-weights}}
-
-The sampling noise in the process that we choose
-determines the size of the confidence intervals
-for any estimates generated from that sample.\sidenote{\url{https://economistjourney.blogspot.com/2018/06/what-is-sampling-noise.html}}
-In general, for any underlying distribution,
-the Central Limit Theorem implies that
-the distribution of variation across the possible samples is exactly normal.
-Therefore, we can use what are called \textbf{asymptotic standard errors}
-to express how far away from the true population parameters our estimates are likely to be.
-These standard errors can be calculated with only two datapoints:
-the sample size and the standard deviation of the value in the chosen sample.
-The code below illustrates the fact that sampling noise
-has a distribution in the sense that some actual executions of the sample
-give estimation results far from the true value,
-and others give results close to it.
-
-The output of the code is a distribution of means in sub-populations of the overall data.
-This distribution is centered around the true population mean,
-but its dispersion depends on the exact structure of the population.
-We use an estimate of the population variation taken from the sample
-to assess how far away from that true mean any given sample draw is:
-essentially, we estimate the properties of the distribution you see now.
-With that estimate, we can quantify the uncertainty in estimates due to sampling noise,
-calculate precisely how far away from the true mean
-our sample-based estimate is likely to be,
-and report that as the standard error of our point estimates.
-The interpretation of, say, a 95\% \textbf{confidence interval}
-\index{confidence interval}
-in this context is that, conditional on our sampling strategy,
-we would anticipate that 95\% of future samples from the same distribution
-would lead to parameter estimates in the indicated range.
-This approach says nothing about the truth or falsehood of any hypothesis.
-
-With this program created and executed,
-the next part of the code, shown below,
-can set up for reproducibility.
-Then it will call the randomization program by name,
-which executes the exact randomization process we programmed
-to the data currently loaded in memory.
-Having pre-programmed the exact randomization does two things:
-it lets us write this next code chunk much more simply,
-and it allows us to reuse that precise randomization as needed.
-Specifically, the user-written \texttt{ritest} command\sidenote{\url{http://hesss.org/ritest.pdf}}
-\index{randomization inference}
-allows us to execute a given randomization program repeatedly,
-visualize how the randomization might have gone differently,
-and calculate alternative p-values against null hypotheses.
-These \textbf{randomization inference}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomization\_Inference}} significance levels may be very different
-than those given by asymptotic confidence intervals,
-particularly in small samples (up to several hundred clusters).
-
-After generating the ``true'' treatment assignment,
-\texttt{ritest} illustrates the distribution of correlations
-that randomization can spuriously produce
-between \texttt{price} and \texttt{treatment}.
 
 \subsection{Power calculations}
 
@@ -485,6 +437,65 @@ the complexity of your experiment significantly.
 For reporting purposes, such as grantwriting and registered reports,
 simulation ensures you will have understood the key questions well enough
 to report standard measures of power once your design is decided.
+
+\subsection{Sampling error and randomization noise}
+
+
+The sampling noise in the process that we choose
+determines the size of the confidence intervals
+for any estimates generated from that sample.
+In general, for any underlying distribution,
+the Central Limit Theorem implies that
+the distribution of variation across the possible samples is exactly normal.
+Therefore, we can use what are called \textbf{asymptotic standard errors}
+to express how far away from the true population parameters our estimates are likely to be.
+These standard errors can be calculated with only two datapoints:
+the sample size and the standard deviation of the value in the chosen sample.
+The code below illustrates the fact that sampling noise
+has a distribution in the sense that some actual executions of the sample
+give estimation results far from the true value,
+and others give results close to it.
+
+The output of the code is a distribution of means in sub-populations of the overall data.
+This distribution is centered around the true population mean,
+but its dispersion depends on the exact structure of the population.
+We use an estimate of the population variation taken from the sample
+to assess how far away from that true mean any given sample draw is:
+essentially, we estimate the properties of the distribution you see now.
+With that estimate, we can quantify the uncertainty in estimates due to sampling noise,
+calculate precisely how far away from the true mean
+our sample-based estimate is likely to be,
+and report that as the standard error of our point estimates.
+The interpretation of, say, a 95\% \textbf{confidence interval}
+\index{confidence interval}
+in this context is that, conditional on our sampling strategy,
+we would anticipate that 95\% of future samples from the same distribution
+would lead to parameter estimates in the indicated range.
+This approach says nothing about the truth or falsehood of any hypothesis.
+
+With this program created and executed,
+the next part of the code, shown below,
+can set up for reproducibility.
+Then it will call the randomization program by name,
+which executes the exact randomization process we programmed
+to the data currently loaded in memory.
+Having pre-programmed the exact randomization does two things:
+it lets us write this next code chunk much more simply,
+and it allows us to reuse that precise randomization as needed.
+Specifically, the user-written \texttt{ritest} command\sidenote{\url{http://hesss.org/ritest.pdf}}
+\index{randomization inference}
+allows us to execute a given randomization program repeatedly,
+visualize how the randomization might have gone differently,
+and calculate alternative p-values against null hypotheses.
+These \textbf{randomization inference}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Randomization\_Inference}} significance levels may be very different
+than those given by asymptotic confidence intervals,
+particularly in small samples (up to several hundred clusters).
+
+After generating the ``true'' treatment assignment,
+\texttt{ritest} illustrates the distribution of correlations
+that randomization can spuriously produce
+between \texttt{price} and \texttt{treatment}.
+
 
 \subsection{Randomization inference}
 
