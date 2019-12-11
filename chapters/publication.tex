@@ -151,6 +151,53 @@ Therefore, to take advantage of the features of \LaTeX,
 while making it easy and accessible to the entire writing team,
 we need to abstract away from the technical details where possible.
 
+One of the most important tools available in \LaTeX\ is the BibTeX bibliography manager.\sidenote{
+  \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.365.3194&rep=rep1&type=pdf}}
+BibTeX keeps all the references you might use in an auxiliary file,
+then references them as plain text in the document using a \LaTeX\ command.
+The same principles that apply to figures and tables are therefore applied here:
+You can make changes to the references in one place (the \texttt{.bib} file),
+and then everywhere they are used they are updated correctly with one process.
+Specifically, \LaTeX\ inserts references in text using the \texttt{\textbackslash cite\{\}} command.
+Once this is written, \LaTeX\ automatically pulls all the citations into text
+and creates a complete bibliography based on the citations you use when you compile the document.
+The system allows you to specify exactly how references should be displayed in text
+(such as superscripts, inline references, etc.)
+as well as how the bibliography should be styled and in what order
+(such as Chicago, MLA, Harvard, or other common styles).
+To obtain the references for the \texttt{.bib} file,
+you can copy the specification directly from Google Scholar
+by clicking ``BibTeX'' at the bottom of the Cite window.
+When pasted into the \texttt{.bib} file they look like the following:
+
+\codeexample{sample.bib}{./code/sample.bib}
+
+\noindent BibTeX citations are then used as follows:
+
+\codeexample{citation.tex}{./code/citation.tex}
+
+With these tools, you can ensure that references are handled
+in a format you can manage and control.\cite{flom2005latex}
+Finally, \LaTeX\ has one more useful trick:
+and use \textbf{\texttt{pandoc}},\sidenote{\url{http://pandoc.org/}}
+you can translate the raw document into Word
+(or a number of other formats)
+by running the following code from the command line:
+
+\codeexample{pandoc.sh}{./code/pandoc.sh}
+
+\noindent The last portion after \texttt{--csl=} specifies the bibliography style.
+You can download a CSL (Citation Styles Library) file\sidenote{
+  \url{https://github.com/citation-style-language/styles}}
+for nearly any journal and have it applied automatically in this process.
+Therefore, even in the case where you are requested to provide
+\texttt{.docx} versions of materials to others, or tracked-changes versions,
+you can create them effortlessly,
+and use external tools like Word's compare feature 
+to generate integrated tracked versions when needed.
+
+\subsection{Getting started with \LaTeX via Overleaf}
+
 The easiest way for someone new to \LaTeX\ to be able to ``just write''
 is often the web-based Overleaf suite.\sidenote{
   \url{https://www.overleaf.com}}
@@ -163,6 +210,11 @@ so it is easy to start up a project and see results right away.
 On the downside, there is a small amount of up-front learning required,
 continous access to the Internet is necessary,
 and updating figures and tables requires a bulk file upload that is tough to automate.
+
+The purpose of this setup, just like with other synced folders,
+is to avoid there ever being more than one master copy of the document.
+This means that people can edit simultaneously without fear of conflicts,
+and it is never necessary to manually resolve differences in the document.
 
 One of the most common issues you will face using Overleaf will be special characters
 which, because of code functions, need to be handled differently than in Word.
@@ -180,45 +232,7 @@ so long as you make sure you are available to troubleshoot minor issues like the
 
 
 
-One of the important tools available in \LaTeX\ is the \textbf{BibTeX bibliography manager}.\sidenote{\url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.365.3194&rep=rep1&type=pdf}}
-This tool stores unformatted references
-in an accompanying \texttt{.bib} file,
-and \LaTeX\ then inserts them in text
-using the \texttt{\textbackslash cite\{\}} command.
-With this structure, \LaTeX\ automatically pulls
-all the citations into text. \LaTeX\ allows you to specify
-how they should be displayed in text
-(ie, as superscripts, inline references, etc.)
-and how the bibliography should be styled and in what order.
-A reference in the \texttt{.bib} file
-can be copied directly from Google Scholar
-by clicking "BibTeX" at the bottom of the Cite window.
-When pasted into the \texttt{.bib} file they look like the following:
 
-\codeexample{sample.bib}{./code/sample.bib}
-
-\noindent BibTeX citations are then used as follows:
-
-\codeexample{citation.tex}{./code/citation.tex}
-
-With these tools, you can ensure that co-authors are writing
-in a format you can manage and control.\cite{flom2005latex}
-The purpose of this setup, just like with other synced folders,
-is to avoid there ever being more than one master copy of the document.
-This means that people can edit simultaneously without fear of conflicts,
-and it is never necessary to manually resolve differences in the document.
-Finally, \LaTeX\ has one more useful trick:
-if you download a journal styler from the \textbf{Citation Styles Library}\sidenote{
-\url{https://github.com/citation-style-language/styles}}
-and use \textbf{\texttt{pandoc}},\sidenote{\url{http://pandoc.org/}}
-you can translate the raw document into Word by running the following code from the command line:
-
-\codeexample{pandoc.sh}{./code/pandoc.sh}
-
-Therefore, even in the case where you are requested to provide
-\texttt{.docx} versions of materials to others, or tracked-changes versions,
-you can create them effortlessly,
-and use Word's compare feature to generate a single integrated tracked version.
 
 %------------------------------------------------
 
