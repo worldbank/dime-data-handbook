@@ -137,40 +137,48 @@ particularly if you are new to working with plain text code and file management.
 and it is not particularly informative when you do something wrong.
 This can be off-putting very quickly for people
 who simply want to get to writing, like senior researchers.
-While integrated editing and compiling tools like TeXStudio and Atom
+While integrated editing and compiling tools like TeXStudio\sidenote{
+  \url{https://www.texstudio.org}}
+and \texttt{atom-latex}\sidenote{
+  \url{https://atom.io/packages/atom-latex}}
 offer the most flexibility to work with \LaTeX\ on your computer,
-they can require a lot of troubleshooting at a basic level at first,
+such as advanced integration with Git,
+the entire team needs to be comfortable
+with \LaTeX\ before adopting one of these tools.
+They can require a lot of troubleshooting at a basic level at first,
 and non-technical staff may not be willing or able to acquire the required knowledge.
 Therefore, to take advantage of the features of \LaTeX,
 while making it easy and accessible to the entire writing team,
 we need to abstract away from the technical details where possible.
 
-The first is choice of software. The easiest way
-for someone new to \LaTeX\ to be able to ``just write''
-is often the web-based Overleaf suite.\sidenote{\url{https://www.overleaf.com}}
-Overleaf offers a \textbf{rich text editor}
-that behaves pretty similarly to familiar tools like Word.
-With minimal workflow adjustments, you can
-to show coauthors how to write and edit in Overleaf,
-so long as you make sure you are always available to troubleshoot
-\LaTeX\ crashes and errors. It also offers a convenient selection of templates
-so it is easy to start up a project
-and replicate a lot of the underlying setup code.
-One  of the most common issues you will face while using Overleaf will be special characters, namely
-\texttt{\&}, \texttt{\%}, and \texttt{\_},
-which need to be \textbf{escaped} (instructed to interpret literally)
-by writing a backslash (\texttt{\textbackslash}) before them,
-such as  \texttt{40\textbackslash\%} for the percent sign to function.
-Another issue is that you need to upload input files
-(such as figures and tables) manually.
-This can create conflicts when these inputs are still being updated --
-namely, the main document not having the latest results.
-One solution is to move to Overleaf only once there will not be substantive changes to results.
+The easiest way for someone new to \LaTeX\ to be able to ``just write''
+is often the web-based Overleaf suite.\sidenote{
+  \url{https://www.overleaf.com}}
+Overleaf offers a text editor that behaves pretty similarly to familiar tools like Word,
+and it is free-to-use for a broad variety of basic applications.
+It allows simultaneous online editing and invitations similarly to Google Docs,
+handles most of the basic under-the-hood technical requirements.
+Overleaf also offers a convenient selection of templates
+so it is easy to start up a project and see results right away.
+On the downside, there is a small amount of up-front learning required,
+continous access to the Internet is necessary,
+and updating figures and tables requires a bulk file upload that is tough to automate.
 
-Other popular desktop-based tools for writing \LaTeX are TeXstudio\sidenote{\url{https://www.texstudio.org}} and atom-latex\sidenote{\url{https://atom.io/packages/atom-latex}}.
-They allow more advanced integration with Git,
-among other advantages, but the entire team needs to be comfortable
-with \LaTeX\ before adopting one of these tools.
+One of the most common issues you will face using Overleaf will be special characters
+which, because of code functions, need to be handled differently than in Word.
+Most critically, the ampersand (\texttt{\&}), percent (\texttt{\%}), and underscore (\texttt{\_})
+need to be ``escaped'' (interpreted as text and not code) in order to render.
+This is done by by writing a backslash (\texttt{\textbackslash}) before them,
+such as writing \texttt{40\textbackslash\%} for the percent sign to appear in text.
+Despite this, we believe that with minimal learning and workflow adjustments,
+Overleaf is often the easiest way to allow coauthors to write and edit in \LaTeX\,
+so long as you make sure you are available to troubleshoot minor issues like these.
+
+
+
+
+
+
 
 One of the important tools available in \LaTeX\ is the \textbf{BibTeX bibliography manager}.\sidenote{\url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.365.3194&rep=rep1&type=pdf}}
 This tool stores unformatted references
