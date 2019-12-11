@@ -34,10 +34,86 @@ that co-authors prefer and journals request.
 
 %------------------------------------------------
 
-\section{Collaborating on academic writing}
+\section{Collaborating on technical writing}
 
-The gold standard for academic writing is \LaTeX.\sidenote{\url{https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/GSWLaTeX.pdf}}
-\index{\LaTeX}
+It is increasingly rare that a single author will prepare an entire manuscript alone.
+More often than not, documents will pass back and forth between several writers
+before they are prepared for publication,
+so it is essential to use technology and workflows that avoid conflicts.
+Just as with the preparation of analytical outputs,
+this means adopting tools practices that enable tasks
+such as version control and simultaneous contribution.
+Furthermore, it means preparing documents that are \textbf{dynamic} --
+meaning that updates to the analytical outputs that constitute them
+can be updated in the final output with a single process,
+rather than copy-and-pasted or otherwise handled individually.
+Thinking of the writing process in this way
+is intended to improve organization and reduce error,
+such that there is no risk of materials being compiled
+with out-of-date results, or of completed work being lost or redundant.
+
+\subsection{Dynamic documents}
+
+Dynamic documents are a broad class of tools that enable such a workflow.
+The term ``dynamic'' can refer to any document-creation technology
+that allows the creation of explicit references to raw output files.
+This means that, whenever outputs are updated,
+the next iteration of the document will automatically include
+all changes made to all outputs without any additional intervention from the writer.
+This means that updates will never be accidentally excluded,
+and it further means that updating results will never become more difficult
+as the number of inputs grows,
+because they are all managed by a single integrated process.
+
+You will note that this is not possible in tools like Microsoft Office.
+In Word, for example, you have to copy and paste each object individually
+whenever there are materials that have to be updated.
+This means that both the features above are not available:
+fully updating the document becomes more and more time-consuming
+as the number of inputs increases,
+and it therefore becomes more and more likely
+that a mistake will be made or something will be missed.
+Furthermore, it is very hard to simultaneously edit or track changes
+in a Microsoft Word document.
+It is usually the case that a file needs to be passed back and forth
+and the order of contributions strictly controlled
+so that time-consuming resolutions of differences can be avoided.
+Therefore this is a broadly unsuitable way to prepare technical documents.
+
+There are a number of tools that can be used for dynamic documents.
+They fall into two broad groups --
+the first which compiles a document as part of code execution,
+and the second which operates a separate document compiler.
+In the first group are tools such as R's RMarkdown and Stata's \texttt{dyndoc}.
+These tools ``knit'' or ``weave'' text and code together,
+and are programmed to insert code outputs in pre-specified locations.
+Documents called ``notebooks'' (such as Jupyter) work similarly,
+as they also use the underlying analytical software to create the document.
+These types of dynamic documents are usually appropriate for short or informal materials
+because they tend to offer limited editability outside the base software
+and often have limited abilities to incorporate precision formatting.
+
+On the other hand, some dynamic document tools do not require
+operation of any underlying software, but simply require
+that the writer have access to the updated outputs.
+One very simple one is Dropbox Paper, a free online writing tool
+that allows linkages to files in Dropbox,
+which are then automatically updated anytime the file is replaced.
+Like the first class of tools, Dropbox Paper has very limited formatting options,
+but it is appropriate for work with collaborators who are not using statistical software.
+However, the most widely utilized software
+for dynamically managing both text and results is \LaTeX.\sidenote{
+  \url{https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/GSWLaTeX.pdf}}
+  \index{\LaTeX}
+(\LaTeX also operates behind-the-scenes in many other tools.)
+While this tool has a significant learning curve,
+its enormous flexibility in terms of operation, collaboration,
+and output formatting and styling
+makes it the primary choice for most large technical outputs today.
+
+\subsection{Technical writing with \LaTeX}
+
+The gold standard for academic writing is \LaTeX.
 \LaTeX\ allows automatically-organized sections like titles and bibliographies,
 imports tables and figures in a dynamic fashion,
 and can be version controlled using Git.
@@ -55,7 +131,7 @@ The first is choice of software. The easiest way
 for someone new to \LaTeX\ to be able to ``just write''
 is often the web-based Overleaf suite.\sidenote{\url{https://www.overleaf.com}}
 Overleaf offers a \textbf{rich text editor}
-that behaves pretty similarly to familiar tools like Word. 
+that behaves pretty similarly to familiar tools like Word.
 With minimal workflow adjustments, you can
 to show coauthors how to write and edit in Overleaf,
 so long as you make sure you are always available to troubleshoot
@@ -120,7 +196,11 @@ and use Word's compare feature to generate a single integrated tracked version.
 
 %------------------------------------------------
 
-\section{Publishing data and code for replication}
+\section{Preparing a complete replication package}
+
+\section{Publishing data for replication}
+
+\section{Publishing code for replication}
 
 Data and code should always be released with any publication.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Publishing_Data}}
 \index{data publication}
