@@ -383,8 +383,17 @@ so that others can learn from your work and adapt it as they like.
 
 \section{Publishing code for replication}
 
+Publishing code for replication has fewer legal and privacy constraints.
+In most cases code will not contain identifying information;
+check carefully that it does not.
 
+Pubishing code also requires assigning a license to it;
+in a majority of cases code publishers like GitHub
+offer extremely permissive licensing options by default.
+(If you do not provide a license, nobody can use your code!)
 
+Make sure the code functions identically on a fresh install of your chosen software.
+A new user should have no problem getting the code to execute perfectly.
 In either a scripts folder or in the root directory,
 include a master script (dofile or Rscript for example).
 The master script should allow the reviewer
@@ -397,8 +406,16 @@ Install any required user-written commands in the master script
 (for example, in Stata using \texttt{ssc install} or \texttt{net install}
 and in R include code for installing packages,
 including selecting a specific version of the package if necessary).
+In many cases you can even directly provide the underlying code
+for any user-installed packages that are needed to ensure forward-compatibility.
 Make sure system settings like \texttt{version}, \texttt{matsize}, and texttt{varabbrev} are set.
-All outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
+
+Finally, make sure that the code and its inputs and outputs are clearly identified.
+A new user should, for example, be able to easily identify and remove
+any files created by the code so that they can be recreated quickly.
+They should also be able to quickly map all the outputs of the code
+to the locations where they are placed in the associated published material,
+such as ensuring that the raw components of figures or tables are clearly identified.
+For example, outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
 (Supplying a compiling \LaTeX\ document can support this.)
-The submission package should include these outputs in the location they are produced, and
-code and outputs which are not used should be removed.
+Code and outputs which are not used should be removed.
