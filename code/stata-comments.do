@@ -4,8 +4,9 @@
     section of it
 */
 
-* Standardize settings (This comment is used to document a task
-* covering at maximum a few lines of code)
+* Standardize settings, explicitly set the version, and
+* clear all previous information from memory
+* (This comment is used to document a task covering at maximum a few lines of code)
     ieboilstart, version(13.1)
     `r(version)'
 
