@@ -247,13 +247,17 @@ Therefore we recommend that indentation be 4 manual spaces instead of a tab.
 
 All conditional (true/false) expressions should be within at least one set of parentheses.
 The negation of logical expressions should use bang (\texttt{!}) and not tilde (\texttt{\~}).
+Always use explicit truth checks (\texttt{if `value'==1}) rather than implicits (\texttt{if `value'}).
+Always use the \texttt{missing(`var')} function instead of arguments like (\texttt{if `var'<=.}),
+and always consider whether missing values will affect the evaluation conditional expressions.
 
 \codeexample{stata-conditional-expressions1.do}{./code/stata-conditional-expressions1.do}
 
-You should also always use \texttt{if-else} statements when applicable even if you can express the same
-thing with two separate \texttt{if} statements. When using \texttt{if-else} statements you are
-communicating to anyone reading your code that the two cases are mutually exclusive in an \texttt{if-else} statement
-which makes your code more readable. It is also less error-prone and easier to update.
+Use \texttt{if-else} statements when applicable
+even if you can express the same thing with two separate \texttt{if} statements.
+When using \texttt{if-else} statements you are communicating to anyone reading your code
+that the two cases are mutually exclusive which makes your code more readable.
+It is also less error-prone and easier to update if you want to change the condition.
 
 \codeexample{stata-conditional-expressions2.do}{./code/stata-conditional-expressions2.do}
 
