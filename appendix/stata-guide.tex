@@ -263,17 +263,31 @@ It is also less error-prone and easier to update if you want to change the condi
 
 \subsection{Using macros}
 
-Stata has several types of \textbf{macros} where numbers or text can be stored temporarily, but the two most common
-macros are \textbf{local} and \textbf{global}. Locals should always be the default type and globals should only
-be used when the information stored is used in a different do-file. Globals are error-prone since they are
-active as long as Stata is open, which creates a risk that a global from one project is incorrectly used in
-another, so only use globals where they are necessary. Our recommendation is that globals should only be defined in the \textbf{master do-file}.
-All globals should be referenced using both the the dollar sign and the curly brackets around their name;
+Stata has several types of \textbf{macros} where numbers or text can be stored temporarily,
+but the two most common macros are \textbf{local} and \textbf{global}.
+All macros should be defined using the \texttt{=} operator.
+Never abbreviate the commands for \textbf{local} and \textbf{global}.
+Locals should always be the default type and globals should only
+be used when the information stored is used in a different do-file.
+Globals are error-prone since they are active as long as Stata is open,
+which creates a risk that a global from one project is incorrectly used in another,
+so only use globals where they are necessary.
+Our recommendation is that globals should only be defined in the \textbf{master do-file}.
+All globals should be referenced using both the the dollar sign and curly brackets around their name (\texttt{\$\{\}});
 otherwise, they can cause readability issues when the endpoint of the macro name is unclear.
 
+You should use descriptive names for all macros (up to 32 characters; prefer fewer).
+Simple prefixes are useful and encouraged such as \texttt{thisParam}, \texttt{allParams},
+\texttt{theLastParam}, \texttt{allParams}, or \texttt{nParams}.
 There are several naming conventions you can use for macros with long or multi-word names.
 Which one you use is not as important as whether you and your team are consistent in how you name then.
-You can use all lower case (\texttt{mymacro}), underscores (\texttt{my\_macro}), or ``camel case'' (\texttt{myMacro}), as long as you are consistent.
+You can use all lower case (\texttt{mymacro}), underscores (\texttt{my\_macro}),
+or ``camel case'' (\texttt{myMacro}), as long as you are consistent.
+Nested locals are also possible for a variety of reasons when looping.
+Finally, if you need a macro to hold a literal macro name,
+it can be done using the backslash escape character;
+this causes the stored macro to be evaluated
+at the usage of the macro rather than at its creation.
 
 \codeexample{stata-macros.do}{./code/stata-macros.do}
 
