@@ -348,13 +348,24 @@ of the \textbf{option comma} or other functional syntax in Stata commands.
 
 \subsection{Using boilerplate code}
 
-Boilerplate code is a type of code that always comes at the top of the code file, and its purpose is to harmonize
-the settings across users running the same code to the greatest degree possible. There is no way in Stata to
-guarantee that any two installations of Stata will always run code in exactly the same way. In the vast
-majority of cases it does, but not always, and boilerplate code can mitigate that risk (although not eliminate
-it). We have developed a command that runs many commonly used boilerplate settings that are optimized given
-your installation of Stata. It requires two lines of code to execute the \texttt{version}
-setting that avoids difference in results due to different versions of Stata.
+Boilerplate code is a few lines of code that always comes at the top of the code file,
+and its purpose is to harmonize settings across users running the same code to the greatest degree possible. There is no way in Stata to guarantee that any two installations of Stata
+will always run code in exactly the same way.
+In the vast majority of cases it does, but not always,
+and boilerplate code can mitigate that risk (although not eliminate it).
+We have developed a command that runs many commonly used boilerplate settings
+that are optimized given your installation of Stata.
+It requires two lines of code to execute the \texttt{version}
+setting that avoids differences in results due to different versions of Stata.
+Among other things, it turns the \texttt{more} flag off so code never hangs;
+it turns \texttt{varabbrev} off so abbrevated variable names are rejected;
+and it maximizes the allowed memory usage and matrix size
+so that code is not rejected on other machines for violating system limits.
+(Again, other software versions, such as Small Stata and outdated versions,
+have lower limits and it may not be able to run newer code in them.)
+Finally, it clears all stored information in Stata memory,
+such as non-installed programs and globals,
+so it gets as close as possible to opening Stata fresh.
 
 \codeexample{stata-boilerplate.do}{./code/stata-boilerplate.do}
 
