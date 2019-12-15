@@ -325,19 +325,24 @@ You can create multiple folder globals as needed and this is encouraged.
 
 \codeexample{stata-filepaths.do}{./code/stata-filepaths.do}
 
-\subsection{Placing line breaks}
+\subsection{Line breaks}
 
 Long lines of code are difficult to read if you have to scroll left and right to see the full line of code.
-When your line of code is wider than text on a regular paper you should introduce a line break.
-A common line breaking length is around 80 characters, and Stata and other code editors
-provide a visible ``guide line'' to tell you when you should start a new line using \texttt{///}.
-This breaks the line in the code editor while telling Stata that the same line of code continues on the next row in the
-code editor. Using the \texttt{\#delimit} command is only intended for advanced programming
-and is discouraged for analytical code in an article in Stata's official journal.\cite{cox2005styleguide}
-These do not need to be horizontally aligned in code unless they have comments,
+When your line of code is wider than text on a regular paper, you should introduce a line break.
+A common line breaking length is around 80 characters.
+Stata and other code editors provide a visible ``guide line''.
+Around that length, start a new line using \texttt{///}.
+You can and should write comments after \texttt{///} just as with \texttt{//}.
+(The \texttt{\#delimit} command is only acceptable for advanced function programming
+and is officially discouraged in analytical code.\cite{cox2005styleguide}
+Never, for any reason, use \texttt{/* */} to wrap a line.)
+The \texttt{///} breaks the line in the code editor,
+while telling Stata that the same line of code continues on the next line.
+The \texttt{///} breaks do not need to be horizontally aligned in code,
+although you may prefer to if they have comments that read better aligned,
 since indentations should reflect that the command continues to a new line.
-Line breaks and indentations can similarly be used to highlight the placement
-of the \textbf{option comma} in Stata commands.
+Line breaks and indentations may be used to highlight the placement
+of the \textbf{option comma} or other functional syntax in Stata commands.
 
 \codeexample{stata-linebreak.do}{./code/stata-linebreak.do}
 
