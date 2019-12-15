@@ -293,25 +293,35 @@ at the usage of the macro rather than at its creation.
 
 \subsection{Writing file paths}
 
-All file paths should be absolute and dynamic, should always be enclosed in double quotes, and should
-always use forward slashes for folder hierarchies (\texttt{/}), since Mac and Linux computers cannot read file paths with backslashes.
-File paths should also always include the file extension (\texttt{.dta}, \texttt{.do}, \texttt{.csv}, etc.),
-since to omit the extension causes ambiguity if another file with the same name is created (even if there is a default).
+All file paths should be absolute and dynamic,
+should always be enclosed in double quotes,
+and should \textbf{always use forward slashes} for folder hierarchies (\texttt{/}).
+File names should be written in lower case with dashes (\texttt{my-file.dta}).
+Mac and Linux computers cannot read file paths with backslashes,
+and backslashes cannot be removed with find-and-replace.
+File paths should also always include the file extension
+(\texttt{.dta}, \texttt{.do}, \texttt{.csv}, etc.).
+Omitting the extension causes ambiguity
+if another file with the same name is created
+(even if there is a default file type).
 
-\textbf{Absolute file paths} means that all file paths must start at the root folder of the computer, for
-example \texttt{C:/} on a PC or \texttt{/Users/} on a Mac. This makes sure that
-you always get the correct file in the correct folder. \textbf{We never use \texttt{cd}.}
-We have seen many cases when using \texttt{cd} where
-a file has been overwritten in another project folder where \texttt{cd} was currently pointing to.
-Relative file paths are common in many other programming languages, but there they are relative to the
-location of the file running the code, and then there is no risk that a file is saved in a completely different folder.
+\textbf{Absolute} means that all file paths start at the root folder of the computer,
+often \texttt{C:/} on a PC or \texttt{/Users/} on a Mac.
+This makes ensures that you always get the correct file in the correct folder.
+\textbf{Do not use \texttt{cd} unless there is a function that \textit{requires} it.}
+When using \texttt{cd}, it is easy to overwrite a file in another project folder.
+Many Stata functions use \texttt{cd} and therefore the current directory may change without warning.
+Relative file paths are common in many other programming languages,
+but there they are always relative to the location of the file running the code.
 Stata does not provide this functionality.
 
-\textbf{Dynamic file paths} use globals that are set in a central master do-file to dynamically build your file
-paths. This has the same function in practice as setting \texttt{cd}, as all new users should only have to change these
-file path globals in one location. But dynamic absolute file paths are a better practice since if the
-global names are set uniquely there is no risk that files are saved in the incorrect project folder, and
-you can create multiple folder globals instead of just one location as with \texttt{cd}.
+\textbf{Dynamic} file paths use global macros for the location of the root folder.
+These globals should be set in a central master do-file.
+This makes it possible to write file paths that work very similarly to relative paths.
+This achieves the functionality that setting \texttt{cd} is often intended to:
+executing the code on a new system only requires updating file path globals in one location.
+If global names are unique, there is no risk that files are saved in the incorrect project folder.
+You can create multiple folder globals as needed and this is encouraged.
 
 \codeexample{stata-filepaths.do}{./code/stata-filepaths.do}
 
