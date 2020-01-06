@@ -3,7 +3,7 @@
 \begin{fullwidth}
 Preparation for collaborative data work begins long before you collect any data,
 and involves planning both the software tools you will use yourself
-as well as the collaboration platforms and processes for your team.
+and the collaboration platforms and processes for your team.
 In order to be prepared to work on the data you receive with a group,
 you need to plan out the structure of your workflow in advance.
 This means knowing which data sets and output you need at the end of the process,
@@ -103,18 +103,18 @@ because other users can alter or delete them.
 Find your \textbf{home folder}. It is never your desktop.
 On MacOS, this will be a folder with your username.
 On Windows, this will be something like ``This PC''.
-Ensure you know how to get the \textbf{absolute filepath} for any given file.
-Using the absolute filepath, starting from the filesystem root,
+Ensure you know how to get the \textbf{absolute file path} for any given file.
+Using the absolute file path, starting from the filesystem root,
 means that the computer will never accidentally load the wrong file.
-  \index{filepaths}
+  \index{file paths}
 On MacOS this will be something like \path{/users/username/dropbox/project/...},
 and on Windows, \path{C:/users/username/Github/project/...}.
-We will write filepaths such as \path{/Dropbox/project-titleDataWorkEncryptedData/},
+We will write file paths such as \path{/Dropbox/project-title/DataWork/EncryptedData/},
 assuming the ``Dropbox'' folder lives inside your home folder.
-Filepaths will use forward slashes (\texttt{/}) to indicate folders,
+File paths will use forward slashes (\texttt{/}) to indicate folders,
 and typically use only A-Z (the 26 English characters),
 dashes (\texttt{-}), and underscores (\texttt{\_}) in folder names and filenames.
-You should \textit{always} use forward slashes (\texttt{/}) in filepaths in code,
+You should \textit{always} use forward slashes (\texttt{/}) in file paths in code,
 just like an internet address, and no matter how your computer provides them,
 because the other type will cause your code to break on many systems.
 Making the structure of your directories a core part of your workflow is very important,
@@ -125,7 +125,7 @@ When you are working with others, you will most likely be using
 some kind of \textbf{file sharing} software.
   \index{file sharing}
 The exact services you use will depend on your tasks,
-but in general, there are three file sharing paradigms that are the most common.
+but in general, there are different approaches to file sharing, and the three discussed here are the most common.
 \textbf{File syncing} is the most familiar method,
 and is implemented by software like Dropbox and OneDrive.
   \index{file syncing}
@@ -147,7 +147,7 @@ to exactly the same files and environment, and it also enables
 high-powered computing processes for large and complex data.
 All three file sharing methods are used for collaborative workflows,
 and you should review the types of data work
-that you are going to be doing, and plan which types of files
+that you will be doing, and plan which types of files
 will live in which types of sharing services.
 It is important to note that they are, in general, not interoperable:
 you cannot have version-controlled files inside a syncing service,
@@ -164,8 +164,8 @@ The first habit that many teams need to break
 is using instant communication for management and documentation.
 Email is, simply put, not a system. It is not a system for anything. Neither is WhatsApp.
   \index{email} \index{WhatsApp}
-These tools are developed for communicating ``now'' and this is what they does well.
-These tools are not structured to manage group membership or to present the same information
+These tools are developed for communicating ``now'' and this is what they do well.
+They are not structured to manage group membership or to present the same information
 across a group of people, or to remind you when old information becomes relevant.
 They are not structured to allow people to collaborate over a long time or to review old discussions.
 It is therefore easy to miss or lose communications from the past when they have relevance in the present.
@@ -186,7 +186,7 @@ track task progress across time, and quickly see the overall project state.
 These systems therefore link communication to specific tasks so that
 the records related to decision making on those tasks is permanently recorded
 and easy to find in the future when questions about that task come up.
-One popular and free implementation of this system is the one found in GitHub project boards.
+One popular and free implementation of this system is found in GitHub project boards.
 Other systems which offer similar features (but are not explicitly Kanban-based)
 are GitHub Issues and Dropbox Paper, which has a more chronological structure.
 What is important is that your team chooses its system and sticks to it,
@@ -353,7 +353,7 @@ across the entire portfolio of projects means that everyone
 can easily move between projects without having to reorient
 themselves to how files and folders are organized.
 
-The DIME file structure is not for everyone.
+Our suggested file structure is not for everyone.
 But if you do not already have a standard file structure across projects,
 it is intended to be an easy template to start from.
 This system operates by creating a \texttt{DataWork} folder at the project level,
@@ -374,10 +374,10 @@ to document the contents of every folder in the structure.
 
 The \texttt{DataWork} folder may be created either inside
 an existing project-based folder structure, or it may be created separately.
-It should always be created by the leading RA by agreement with the PI.
+It's usually created by the leading RA in agreement with the PI.
 Increasingly, our recommendation is to create the \texttt{DataWork} folder
 separately from the project management materials,
-reserving the ``project folder'' for data collection and other management work.
+reserving the ``project folder'' for contracts, Terms of Reference, briefs and other administrative or management work.
   \index{project folder}
 This is so the project folder can be maintained in a synced location like Dropbox,
 while the code folder can be maintained in a version-controlled location like GitHub.
@@ -394,7 +394,7 @@ tools such as {\LaTeX} and dynamic documents.
   \index{{\LaTeX}}\index{dynamic documents}
 Keeping such plaintext files in a version-controlled folder allows you
 to maintain better control of their history and functionality.
-Because of the high degree with which code files depend on file structure,
+Because of the high degree of dependence between code files depend and file structure,
 you will be able to enforce better practices in a separate folder than in the project folder,
 which will usually be managed by a PI, FC, or field team members.
 
@@ -408,10 +408,12 @@ to be able to find the version of a presentation that you delivered to a donor,
 or to understand why the significance level of your estimates has changed.
 Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
 can appreciate how useful such a system can be.
+
+
 Most syncing services offer some kind of rudimentary version control;
-These are usually enough to manage changes to binary files (such as Word and PowerPoint documents)
+these are usually enough to manage changes to binary files (such as Word and PowerPoint documents)
 without needing to rely on dreaded filename-based versioning conventions.
-For technical files, however, a more detailed version control system is usually desirable.
+For code files, however, a more detailed version control system is usually desirable.
 We recommend using Git\sidenote{
   \textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.}
 for all plaintext files.
@@ -464,7 +466,7 @@ but if the code is well-organized, they will be much easier to make.
 Below we discuss a few crucial steps to code organization.
 They all come from the principle that code is an output by itself,
 not just a means to an end,
-and code should be written thinking of how easy it will be for someone to read it later.
+and should be written thinking of how easy it will be for someone to read it later.
 
 Code documentation is one of the main factors that contribute to readability.
 Start by adding a code header to every file.
@@ -478,17 +480,18 @@ While there are other ways to document decisions related to creating code
 (GitHub offers a lot of different documentation options, for example),
 the information that is relevant to understand the code should always be written in the code file.
 
-Mixed among the code itself, are two types of comments that should be included.
+In the script, alongside the code, are two types of comments that should be included.
 The first type of comment describes what is being done.
 This might be easy to understand from the code itself
 if you know the language well enough and the code is clear,
 but often it is still a great deal of work to reverse-engineer the code's intent.
 Writing the task in plain English (or whichever language you communicate with your team on)
-will make it easier for everyone to read and understand the code's purpose.
+will make it easier for everyone to read and understand the code's purpose
+-- and also for you to think about your code as you write it.
 The second type of comment explains why the code is performing a task in a particular way.
 As you are writing code, you are making a series of decisions that
 (hopefully) make perfect sense to you at the time.
-These are often highly specialized and may exploit functionality
+These are often highly specialized and may exploit a functionality
 that is not obvious or has not been seen by others before.
 Even you will probably not remember the exact choices that were made in a couple of weeks.
 Therefore, you must document your precise processes in your code.
@@ -502,7 +505,7 @@ One way to do this is to create sections where a specific task is completed.
 So, for example, if you want to find the line in your code where a variable was created,
 you can go straight to \texttt{PART 2: Create new variables},
 instead of reading line by line through the entire code.
-RStudio, for example makes it very easy to create sections,
+RStudio, for example, makes it very easy to create sections,
 and it compiles them into an interactive script index for you.
 In Stata, you can use comments to create section headers,
 though they're just there to make the reading easier and don't have functionality.
@@ -537,7 +540,7 @@ and we will discuss some important features soon.
 The master script should mimic the structure of the \texttt{DataWork} folder.
 This is done through the creation of globals (in Stata) or string scalars (in R).
 These coding shortcuts can refer to subfolders,
-so that those folders can be referenced without repeatedly writing out their absolute filepaths.
+so that those folders can be referenced without repeatedly writing out their absolute file paths.
 Because the \texttt{DataWork} folder is shared by the whole team,
 its structure is the same in each team member's computer.
 The only difference between machines should be
@@ -556,12 +559,13 @@ It's normal (and common) to make mistakes as you write your code.
 Reading it again to organize and comment it as you prepare it to be reviewed will help you identify them.
 Try to have a code review scheduled frequently,
 every time you finish writing a piece of code, or complete a small task.
-If you wait for a long time to have your code review, and it gets too complex,
+If you wait for a long time to have your code reviewed, and it gets too complex,
 preparation and code review will require more time and work,
 and that is usually the reason why this step is skipped.
-Making sure that the code is running properly on other machines,
+One other important advantage of code review if that 
+making sure that the code is running properly on other machines,
 and that other people can read and understand the code easily,
-is also the easiest way to be prepared in advance for a smooth project handover.
+is the easiest way to be prepared in advance for a smooth project handover.
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Output management}
@@ -598,7 +602,7 @@ in not re-writing scripts again and again.
 It is common for teams to maintain one analyisis file or folder with ``exploratory analysis'',
 which are pieces of code that are stored only to be found again in the future,
 but not cleaned up to be included in any outputs yet.
-Once you are happy with a partiular result or output,
+Once you are happy with a result or output,
 it should be named and moved to a dedicated location.
 It's typically desirable to have the names of outputs and scripts linked,
 so, for example, \texttt{factor-analysis.do} creates \texttt{factor-analysis-f1.eps} and so on.
@@ -622,7 +626,7 @@ The main advantage of using {\LaTeX} is that you can write dynamic documents,
 that import inputs every time they are compiled.
 This means you can skip the copying and pasting whenever an output is updated.
 Because it's written in plaintext, it's also easier to control and document changes using Git.
-Creating documents in {\LaTeX} using an integrated writing environment such as TeXstudio
+Creating documents in {\LaTeX} using an integrated writing environment such as TeXstudio, TeXmaker or LyX
 is great for outputs that focus mainly on text,
 but include small chunks of code and static code outputs.
 This book, for example, was written in {\LaTeX} and managed on GitHub.
