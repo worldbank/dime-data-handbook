@@ -8,8 +8,7 @@ TYPE 1:
 
 TYPE 2:
 
-* Standardize settings, explicitly set the version, and
-* clear all previous information from memory
+* Standardize settings, explicitly set version, and clear memory
 * (This comment is used to document a task covering at maximum a few lines of code)
     ieboilstart, version(13.1)
     `r(version)'
