@@ -3,7 +3,7 @@
 \begin{fullwidth}
 Publishing academic research today extends well beyond writing up a Word document alone.
 There are often various contributors making specialized inputs to a single output,
-a large number of iterations, versions, and rervisions,
+a large number of iterations, versions, and revisions,
 and a wide variety of raw materials and results to be published together.
 Ideally, your team will spend as little time as possible
 fussing with the technical requirements of publication.
@@ -20,13 +20,13 @@ which contains the code and materials needed to create the results.
 These represent an intellectual contribution in their own right,
 because they enable others to learn from your process
 and better understand the results you have obtained.
-Holding code and data to the same standards a written work
-is a new discpline for many researchers,
-and here we provide some basic guidelines and basic responsibilities for both
-that will help you to prepare a functioning and informative replication package.
+Holding code and data to the same standards as written work
+is a new discipline for many researchers,
+and here we provide some basic guidelines and responsibilities for both
+that will help you prepare a functioning and informative replication package.
 In all cases, we note that technology is rapidly evolving
 and that the specific tools noted here may not remain cutting-edge,
-but the core principles of materials publication and transparency will endure.
+but the core principles involved in publication and transparency will endure.
 \end{fullwidth}
 
 %------------------------------------------------
@@ -35,14 +35,14 @@ but the core principles of materials publication and transparency will endure.
 
 It is increasingly rare that a single author will prepare an entire manuscript alone.
 More often than not, documents will pass back and forth between several writers
-before they are prepared for publication,
+before they are ready for publication,
 so it is essential to use technology and workflows that avoid conflicts.
 Just as with the preparation of analytical outputs,
-this means adopting tools practices that enable tasks
+this means adopting tools and practices that enable tasks
 such as version control and simultaneous contribution.
 Furthermore, it means preparing documents that are \textbf{dynamic} --
 meaning that updates to the analytical outputs that constitute them
-can be updated in the final output with a single process,
+can be passed on to the final output with a single process,
 rather than copy-and-pasted or otherwise handled individually.
 Thinking of the writing process in this way
 is intended to improve organization and reduce error,
@@ -58,13 +58,13 @@ This means that, whenever outputs are updated,
 the next iteration of the document will automatically include
 all changes made to all outputs without any additional intervention from the writer.
 This means that updates will never be accidentally excluded,
-and it further means that updating results will never become more difficult
+and it further means that updating results will not become more difficult
 as the number of inputs grows,
 because they are all managed by a single integrated process.
 
 You will note that this is not possible in tools like Microsoft Office.
 In Word, for example, you have to copy and paste each object individually
-whenever there are materials that have to be updated.
+whenever tables, graphs or other inputs have to be updated.
 This means that both the features above are not available:
 fully updating the document becomes more and more time-consuming
 as the number of inputs increases,
@@ -79,8 +79,8 @@ Therefore this is a broadly unsuitable way to prepare technical documents.
 
 There are a number of tools that can be used for dynamic documents.
 They fall into two broad groups --
-the first which compiles a document as part of code execution,
-and the second which operates a separate document compiler.
+the first compiles a document as part of code execution,
+and the second operates a separate document compiler.
 In the first group are tools such as R's RMarkdown and Stata's \texttt{dyndoc}.
 These tools ``knit'' or ``weave'' text and code together,
 and are programmed to insert code outputs in pre-specified locations.
@@ -97,29 +97,29 @@ One very simple one is Dropbox Paper, a free online writing tool
 that allows linkages to files in Dropbox,
 which are then automatically updated anytime the file is replaced.
 Like the first class of tools, Dropbox Paper has very limited formatting options,
-but it is appropriate for work with collaborators who are not using statistical software.
+but it is appropriate for working with collaborators who are not using statistical software.
 However, the most widely utilized software
 for dynamically managing both text and results is \LaTeX\ (pronounced ``lah-tek'').\sidenote{
   \url{https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/GSWLaTeX.pdf}}
   \index{\LaTeX}
-(\LaTeX\ also operates behind-the-scenes in many other tools.)
 While this tool has a significant learning curve,
 its enormous flexibility in terms of operation, collaboration,
 and output formatting and styling
 makes it the primary choice for most large technical outputs today.
+In fact, \LaTeX\ operates behind-the-scenes in many of the tools listed in the first group.
 
 \subsection{Technical writing with \LaTeX}
 
 \LaTeX\ is billed as a ``document preparation system''.
 What this means is worth unpacking.
-In \LaTeX\, instead of writing in a ``what-you-see-is-what-you-get'' mode
+In {\LaTeX}, instead of writing in a ``what-you-see-is-what-you-get'' mode
 as you do in Word or the equivalent,
 you write plain text interlaced with coded instructions for formatting
 (similar in concept to HTML).
 The \LaTeX\ system includes commands for simple markup
 like font styles, paragraph formatting, section headers and the like.
 But it also includes special controls for including tables and figures,
-footnotes and endnotes, complex mathematics, and automated bibliography preparation.
+footnotes and endnotes, complex mathematical notation, and automated bibliography preparation.
 It also allows publishers to apply global styles and templates
 to already-written material, allowing them to reformat entire documents in house styles
 with only a few keystrokes.
@@ -241,11 +241,11 @@ so long as you make sure you are available to troubleshoot minor issues like the
 \section{Preparing a complete replication package}
 
 While we have focused so far on the preparation of written materials for publication,
-is is increasingly important for you to consider how you will publish
+it is increasingly important for you to consider how you will publish
 the data and code you used for your research as well.
-Increasingly, major journals are requiring that publications
+More and more major journals are requiring that publications
 provide direct links to both the code and data used to create the results,
-and some even require that they are able to reproduce the results themselves
+and some even require being able to reproduce the results themselves
 before they will approve a paper for publication.\sidenote{
   \url{https://www.aeaweb.org/journals/policies/data-code/}}
 If your material has been well-structured throughout the analytical process,
@@ -272,7 +272,7 @@ although in many cases you will have the right to release
 at least some subset of your analytical dataset.
 You should only directly publish data which is fully de-identified
 and, to the extent required to ensure reasonable privacy,
-potential identifying characteristics are futher masked or removed.
+potentially identifying characteristics are further masked or removed.
 In all other cases, you should contact an appropriate data catalog
 to determine what privacy and licensing options are available.
 
@@ -334,27 +334,27 @@ By contrast, replication code usually has few legal and privacy constraints.
 In most cases code will not contain identifying information;
 check carefully that it does not.
 Pubishing code also requires assigning a license to it;
-in a majority of cases code publishers like GitHub
+in a majority of cases, code publishers like GitHub
 offer extremely permissive licensing options by default.
 (If you do not provide a license, nobody can use your code!)
 
 Make sure the code functions identically on a fresh install of your chosen software.
 A new user should have no problem getting the code to execute perfectly.
 In either a scripts folder or in the root directory,
-include a master script (dofile or Rscript for example).
+include a master script (dofile or R script for example).
 The master script should allow the reviewer
-to change one line of code setting the directory path.
-Then, running the master script should run the entire project
+to change a single line of code: the one setting the directory path.
+After that, running the master script should run the entire project
 and re-create all the raw outputs exactly as supplied.
 Indicate the filename and line to change.
 Check that all your code will run completely on a new computer:
 Install any required user-written commands in the master script
 (for example, in Stata using \texttt{ssc install} or \texttt{net install}
-and in R include code for installing packages,
+and in R include code giving users the option to install packages,
 including selecting a specific version of the package if necessary).
 In many cases you can even directly provide the underlying code
 for any user-installed packages that are needed to ensure forward-compatibility.
-Make sure system settings like \texttt{version}, \texttt{matsize}, and texttt{varabbrev} are set.
+Make sure system settings like \texttt{version}, \texttt{matsize}, and \texttt{varabbrev} are set.
 
 Finally, make sure that the code and its inputs and outputs are clearly identified.
 A new user should, for example, be able to easily identify and remove
@@ -364,7 +364,8 @@ to the locations where they are placed in the associated published material,
 such as ensuring that the raw components of figures or tables are clearly identified.
 For example, outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
 (Supplying a compiling \LaTeX\ document can support this.)
-Code and outputs which are not used should be removed.
+Code and outputs which are not used should be removed -- 
+if you are using GitHub, consider making them available in a different branch for transparency.
 
 \subsection{Releasing a replication package}
 
@@ -380,7 +381,7 @@ as well as their strengths and weaknesses.
 GitHub provides one solution.
 Making your GitHub repository public
 is completely free for finalized projects.
-The site can hold any file types,
+It can hold any file types,
 provide a structured download of your whole project,
 and allow others to look at alternate versions or histories easily.
 It is straightforward to simply upload a fixed directory to GitHub
@@ -415,7 +416,7 @@ can execute and modify your code
 without having to download your tools and match your local environment
 when packages and other underlying softwares may have changed since publication.
 
-In addition to the code and data,
+In addition to code and data,
 you may also want to release an author's copy or preprint
 of the article itself along with these raw materials.
 Check with your publisher before doing so;
