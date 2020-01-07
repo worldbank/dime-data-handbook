@@ -104,7 +104,7 @@ In Stata, this is accomplished through three command concepts:
 If anything is different, the underlying randomization algorithms may have changed,
 and it will be impossible to recover the original result.
 In Stata, the \texttt{version} command ensures that the software algorithm is fixed.
-We recommend using \texttt{version 13.1} for back-compatibility;
+We recommend using \texttt{version 13.1} for backward compatibility;
 the algorithm was changed after Stata 14 but its improvements do not matter in practice.
 (Note that you will \textit{never} be able to transfer a randomization to another software such as R.)
 The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
@@ -115,8 +115,8 @@ However, note that testing your do-files without running them
 via the master do-file may produce different results,
 since Stata's \texttt{version} expires after execution just like a \texttt{local}.
 
-\textbf{Sorting} means that the actual data that the random process is run on is fixed;
-because numbers are assigned to each observation in sequence,
+\textbf{Sorting} means that the actual data that the random process is run on is fixed.
+Because numbers are assigned to each observation in sequence,
 changing their order will change the result of the process.
 A corollary is that the underlying data must be unchanged between runs:
 you must make a fixed final copy of the data when you run a randomization for fieldwork.
@@ -213,7 +213,7 @@ usually involve tedious calculations of probabilities and should be avoided.
 
 \subsection{Randomization}
 
-\textbf{Randomization} is the process of assigning units to some kind of treatment program.
+\textbf{Randomization}, in this context, is the process of assigning units into treatment arms.
 Most of the Stata commands used for sampling can be directly transferred to randomization,
 since randomization is also a process of splitting a sample into groups.
 Where sampling determines whether a particular individual
@@ -222,7 +222,7 @@ randomization determines what state each individual will be observed in.
 Randomizing a treatment guarantees that, \textit{on average},
 the treatment will not be correlated with anything it did not cause.\cite{duflo2007using}
 Causal inference from randomization therefore depends on a specific counterfactual:
-that the units who recieved the treatment program might not have done so.
+that the units who received the treatment program might not have done so.
 Therefore, controlling the exact probability that each individual receives treatment
 is the most important part of a randomization process,
 and must be carefully worked out in more complex designs.
@@ -335,7 +335,7 @@ requires a control in the form of an indicator variable for all strata (fixed ef
 This accounts for the fact that randomizations were conducted within the strata,
 comparing units to the others within its own strata by correcting for the local mean.
 Stratification is typically used for sampling
-in order to ensure that individuals with various types will be observed;
+in order to ensure that individuals with relevant characteristics will be observed;
 no adjustments are necessary as long as the sampling proportion is constant across all strata.
 One common pitfall is to vary the sampling or randomization \textit{probability}
 across different strata (such as ``sample/treat all female heads of household'').
@@ -409,7 +409,7 @@ If, in your field, a ``large'' effect is just a few percentage points
 or a fraction of a standard deviation,
 then it is nonsensical to run a study whose MDE is much larger than that.
 Conversely, the \textbf{minimum sample size} pre-specifies expected effects
-and tells you how large a study would need to be to detect that effect.
+and tells you how large a study's sample would need to be to detect that effect.
 
 Stata has some commands that can calculate power analytically for
 very simple designs -- \texttt{power} and \texttt{clustersampsi} --
