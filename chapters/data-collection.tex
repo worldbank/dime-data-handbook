@@ -3,6 +3,11 @@
 \begin{fullwidth}
 	
 	%PLACEHOLDER FOR NEW INTRO
+	Here we focus on tools and workflows that are primarily conceptual, rather than software-specific. This chapter should provide a motivation for
+	planning data structure during survey design,
+	developing surveys that are easy to control for quality and security,
+	and having proper file storage ready for sensitive PII data.
+	
 
 \end{fullwidth}
 
@@ -12,7 +17,7 @@
 A well-designed questionnaire results from careful planning, consideration of analysis and indicators, close review of existing questionnaires, survey pilots, and research team and stakeholder review.Although most surveys are now collected electronically -- Computer Assisted Personal Interviews (CAPI) -- 
 \textbf{Questionnaire design}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
 \index{questionnaire design} 
-(content development) and questionnaire programming (functionality development) should be seen as two strictly separate tasks. The research team should agree on all questionnaire content and design a paper version before programming a CAPI version. This facilitates a focus on content during the design process, rather than technical programming details, and ensures teams have a readable, printable paper version of their questionnaire. 
+(content development) and questionnaire programming (functionality development) should be seen as two strictly separate tasks. By focusing on content first and programming implementation later, the survey design quality is better than when the questionnaire is set up in a way which is technically convenient to program. The research team should agree on all questionnaire content and design a paper version before programming a CAPI version. This facilitates a focus on content during the design process and ensures teams have a readable, printable paper version of their questionnaire.  
 
 An easy-to-read paper version of the questionnaire is particularly critical for training enumerators, so they can get an overview of the survey content and structure before diving into the programming. It is much easier for enumerators to understand all possible response pathways from a paper version, than from swiping question by question. Finalizing the questionnaire before programming also avoids version control concerns that arise from concurrent work on paper and electronic survey instruments. In addition, a paper questionnaire is an important documentation for data publication. 
 
@@ -21,23 +26,38 @@ The workflow for designing a questionnaire will feel much like writing an essay,
 and \textbf{experimental design} for your project.The first step of questionnaire design is to list key outcomes of interest, as well as the main covariates and variables needed for experimental design. The ideal starting point for this is a 
 \textbf{pre-analysis plan}. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan}}
 
-Use the list of key outcomes to create an outline of questionnaire \textit{modules} (do not number the modules yet; instead use a short prefix so they can be easily reordered). Each module should then be expanded into specific indicators to observe in the field.
+Use the list of key outcomes to create an outline of questionnaire \textit{modules} (do not number the modules yet; instead use a short prefix so they can be easily reordered). For each module, determine if the module is applicable to the full sample, the appropriate respondent, and whether (or how often), the module should be repeated. A few examples: a module on maternal health only applies to household with a woman who has children, a household income module should be answered by the person responsible for household finances, and a module on agricultural production might be repeated for each crop the household cultivated. 
+
+Each module should then be expanded into specific indicators to observe in the field.
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
 At this point, it is useful to do a 
 \textbf{content-focused pilot} \sidenote{url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}} of the questionnaire. 
 Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions, as there is no need to factor in costs of re-programming, and as a result improves the overall quality of the survey instrument. 
 
-\subsection{Data-focused issues in questionnaire design}
+\subsection{Questionnaire design considerations for quantitative analysis}
+This book covers surveys designed to yield datasets useful for quantitative analysis. This is a subset of surveys, and there are specific design considerations that will help to ensure the raw data outputs are ready for analysis. 
 
+\subsubsection{Coded response options}
 From a data perspective, questions with pre-coded response options are always preferable to open-ended questions (the content-based pilot is an excellent time to ask open-ended questions, and refine responses for the final version of the questionnaire). Coding responses helps to ensure that the data will be useful for quantitative analysis. Two examples help illustrate the point. First, instead of asking ``How do you feel about the proposed policy change?'', use techniques like 
 \textbf{Likert scales}\sidenote{\textbf{Likert scale:} an ordered selection of choices indicating the respondent's level of agreement or disagreement with a proposed statement.}. Second, if collecting data on medication use or supplies, you could collect: the brand name of the product; the generic name of the product; the coded compound of the product; or the broad category to which each product belongs (antibiotic, etc.). All four may be useful for different reasons, but the latter two are likely to be the most useful for data analysis. The coded compound requires providing a translation dictionary to field staff, but enables automated rapid recoding for analysis with no loss of information. The generic class requires agreement on the broad categories of interest, but allows for much more comprehensible top-line statistics and data quality checks.
 
-\textbf{Extensive tracking} sections -- in which reasons for \textbf{attrition}, treatment \textbf{contamination}, and \textbf{loss to follow-up} can be documented --
+\subsubsection{Sample tracking}
+\textbf{Extensive tracking} sections - in which reasons for \textbf{attrition}, treatment \textbf{contamination}, and \textbf{loss to follow-up} are documented -
 \index{attrition}\index{contamination}
 are essential data components for completing CONSORT
 \sidenote[][-3.5cm]{\textbf{CONSORT:} a standardized system for reporting enrollment, intervention allocation, follow-up, and data analysis through the phases of a randomized trial of two groups.} 
 records.
 \sidenote[][-1.5cm]{Begg, C., Cho, M., Eastwood, S., Horton, R., Moher, D., Olkin, I., Pitkin,	R., Rennie, D., Schulz, K. F., Simel, D., et al. (1996). Improving the quality of	reporting of randomized controlled	trials: The CONSORT statement. \textit{JAMA},	276(8):637--639}
+
+\subsubsection{How to name questions}
+% needs update
+There is not yet a full consensus over how individual questions should be identified:
+formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder,
+but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
+
+\subsubsection{importance of a unique ID}
+When ID matching and tracking across rounds is essential, the survey should be prepared to verify new data
+against \textbf{preloaded data} from master records or from other rounds.
 
 
 Once the content of the questionnaire is finalized, it should be translated into appropriate language(s). Only then is it time to proceed with the CAPI programming.
@@ -48,28 +68,20 @@ Once the content of the questionnaire is finalized, it should be translated into
 \section{Programming CAPI questionnaires}
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
 
-Most data collection is now done using digital data entry
-using tools that are specially designed for surveys.
-These tools, called \textbf{computer-assisted personal interviewing (CAPI)} software,
-provide a wide range of features designed to make
-implementing even highly complex surveys easy, scalable, and secure.
-However, these are not fully automatic:
-you still need to actively design and manage the survey.
-Each software has specific practices that you need to follow
-to enable features such as Stata-compatibility and data encryption.
+Most data collection is now done using software tools specifically designed for surveys. CAPI surveys
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted_Personal_Interviews_(CAPI)}}
+are typically created in a spreadsheet (e.g. Excel or Google Sheets), or software-specific form builder. As these are typically accessible even to novice users, we will not address software-specific form design in this book. Rather, we focus coding conventions that are important to follow regardless of CAPI software choice, rather than software-specific form design. 
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
 
-You can work in any software you like,
-and this guide will present tools and workflows
-that are primarily conceptual:
-this chapter should provide a motivation for
-planning data structure during survey design,
-developing surveys that are easy to control for quality and security,
-and having proper file storage ready for sensitive PII data.
+CAPI software tools provide a wide range of features designed to make implementing even highly complex surveys easy, scalable, and secure. However, these are not fully automatic: you still need to actively design and manage the survey. Each software has specific practices that you need to follow to take advantage of CAPI features, encrypt you data, and ensure that the exported data is compatible with the software that will be used for analysis. 
 
+\section{CAPI features}
+\subsection{uniquely identified data}
+As it is critical to be able to uniquely identify each observation, and link it to the original sample, build in a programming check to confirm the numeric ID and identifying details of the household. 
 
-CAPI surveys\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted_Personal_Interviews_(CAPI)}}
-are primarily created in a spreadsheet (Excel or Google Sheets),or software-specific form builders
-making them one of the few research outputs for which little coding is required.\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
+\section{Data encryption}
+
+\subsection{compatibility with data analysis software}
 The \texttt{ietestform} command,\sidenote{\url{https://dimewiki.worldbank.org/wiki/ietestform}} part of
 \texttt{iefieldkit}, implements form-checking routines
 for \textbf{SurveyCTO}, a proprietary implementation of \textbf{Open Data Kit (ODK)}.
@@ -78,119 +90,42 @@ relate directly to the data that will be used later,
 both the field team and the data team should
 collaborate to make sure that the survey suits all needs.\cite{krosnick2018questionnaire}
 
-In addition to having prepared a unique anonymous ID variable using the master data,
-that ID should be built into confirmation checks in the survey form.
-When ID matching and tracking across rounds is essential, the survey should be prepared to verify new data
-against \textbf{preloaded data} from master records or from other rounds.
+\subsection{version control}
 
-There is not yet a full consensus over how individual questions should be identified:
-formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder,
-but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
 
+%------------------------------------------------
 \section{Piloting}
 \textbf{piloted}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}}
+https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes
+https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes
 
+
+%------------------------------------------------
 \section{Data quality assurance}
 
-While the team is in the field, the research assistant
-and field coordinator will be jointly responsible
-for making sure that the survey is progressing correctly,\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}
-that the collected data matches the survey sample,
-and that errors and duplicate observations are resolved
-quickly so that the field team can make corrections.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Duplicates_and_Survey_Logs}}
-Modern survey software makes it relatively easy
-to control for issues in individual surveys,
-using a combination of in-built features
-such as hard constraints on answer ranges
-and soft confirmations or validation questions.
+A huge advantage of CAPI surveys, compared to traditional paper surveys, is the ability to access and analyze the data in real time. 
+This greatly simplifies monitoring and improves data quality assurance. As part of survey preparation, the research team should develop a 
+\textbf{data quality assurance plan} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}. While data collection is ongoing, a research assistant or data analyst should work closely with the field team to ensure that the survey is progressing correctly, and perform \textbf{high-frequency checks (HFCs)} of the incoming data. 
+\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
+Ensuring high quality data requires a combination of both real-time data checks and field monitoring. For this book, we focus on high-frequency data checks, and specific data-related considerations for field monitoring.
 
-These features allow you to spend more time
-looking for issues that the software cannot check automatically.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
-Namely, these will be suspicious patterns across multiple responses
-or across a group of surveys rather than errors in any single response field
-(those can often be flagged by the questionnaire software);
-enumerators who are taking either too long or not long enough to complete their work,
-``difficult'' groups of respondents who are systematically incomplete; and
-systematic response errors.
-These are typically done in two main forms:
-high-frequency checks (HFCs) and back-checks.
+\subsection{High-frequency checks}
+High-frequency checks should carefully inspect key treatment and outcome variables so that the data quality of core experimental variables is uniformly high,
+and that additional field effort is centered where it is most important. Data quality checks should be run on the data every time it is downloaded (ideally on a daily basis), to flag irregularities in survey progress, sample completeness or response quality.
+\texttt{ipacheck}\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks}} 
+is a very useful command that automates some of these tasks.
 
-\textbf{High-frequency checks} are carried out on the data side.\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
-First, observations need to be checked for duplicate entries:
+
+\subsubsection{Sample completeness}
+It is important to check every day that the households interviewed match the survey sample. Reporting errors and duplicate observations in real-time allows the field team to make corrections efficiently.
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Duplicates_and_Survey_Logs}}
+It also helps the team track attrition, so that it is clear early on if a change in protocols or additional tracking will be needed. It is also important to check interview progress and sample compliance by surveyor and survey team, to identify any under-performing individuals or teams. 
+
+To assess sample completeness, observations first need to be checked for duplicate entries, which may occur due to field errors or duplicated submissions to the server. 
 \texttt{ieduplicates}\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieduplicates}}
-provides a workflow for collaborating on the resolution of
-duplicate entries between you and the field team.
-Next, observations must be validated against the sample list:
-this is as straightforward as \texttt{merging} the sample list with
-the survey data and checking for mismatches.
-High-frequency checks should carefully inspect
-key treatment and outcome variables
-so that the data quality of core experimental variables is uniformly high,
-and that additional field effort is centered where it is most important.
-Finally, data quality checks
-should be run on the data every time it is downloaded
-to flag irregularities in observations, sample groups, or enumerators.
-\texttt{ipacheck}\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks}} is a very useful command that automates some of these tasks.
-
-Unfortunately, it is very hard to specify in general
-what kinds of quality checks should be utilized,
-since the content of surveys varies so widely.
-Fortunately, you will know your survey very well
-by the time it is programmed, and should have a good sense
-of the types of things that would raise concerns
-that you were unable to program directly into the survey.
-Thankfully it is also easy to prepare high-frequency checking code in advance.
-Once you have built and piloted the survey form,
-you will have some bits of test data to play with.
-Using this data, you should prepare code that outputs
-a list of flags from any given dataset.
-This HFC code is then ready to run every time you download the data,
-and should allow you to rapidly identify issues
-that are occurring in fieldwork.
-You should also have a plan to address issues found with the field team.
-Discuss in advance which inconsistencies will require a revisit,
-and how you will communicate to the field teams what were the problems found.
-Some issues will need immediate follow-up,
-and it will be harder to solve them once the enumeration team leaves the area.
-
-\textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}}
-involve more extensive collaboration with the field team,
-and are best thought of as direct data audits.
-In back-checks, a random subset of the field sample is chosen
-and basic information from the full survey is verified
-using a small survey re-done with the same respondent.
-Back-checks should be done with a substantial portion
-of the full sample early in the survey
-so that the enumerators and field team
-get used to the idea of \textbf{quality assurance}.
-Checks should continue throughout fieldwork,
-and their content and targeting can be refined if particular
-questionnaire items are flagged as error-prone
-or specific enumerators or observations appear unusual.
-
-Back-checks cover three main types of questions.
-First, they validate basic information that should not change.
-This ensures the basic quality control that the right respondent
-was interviewed or observed in a given survey,
-and flags cases of outright quality failure that need action.
-Second, they check the quality of enumeration,
-particularly in cases that involve measurement or calculation
-on the part of the enumerator.
-This can be anything such as correctly calculating plot sizes,
-family rosters, or income measurements.
-These questions should be carefully validated
-to determine whether they are reliable measures
-and how much they may vary as a result of difficulty in measurement.
-Finally, back-checks confirm that questions are being asked and answered
-in a consistent fashion. Some questions, if poorly phrased,
-can be hard for the enumerator to express or for all respondents
-to understand in an identical fashion.
-Changes in responses between original and back-check surveys
-of the same respondent
-can alert you and the team that changes need to be made
-to portions of the survey.
-\texttt{bcstats} is a Stata command for back checks
-that takes the different question types into account when comparing surveys.
+provides a workflow for collaborating on the resolution of duplicate entries between you and the field team.
+Next, observed units in the data must be validated against the expected sample:
+this is as straightforward as \texttt{merging} the sample list with the survey data and checking for mismatches.
 
 When all data collection is complete,
 the survey team should have a final field report
@@ -212,124 +147,65 @@ that records all events in which survey substitutions
 and loss to follow-up occurred in the field
 and how they were implemented and resolved.
 
+
+\subsubsection{response quality}
+As discussed above, modern survey software makes it relatively easy to control for issues in individual surveys as part of the questionnaire programming, using a combination of in-built features such as hard constraints on answer ranges and soft confirmations or validation questions. These features allow you to spend more time looking for issues that the software cannot check automatically, such as consistency across multiple responses or suspicious timing or resopnse patters from specific enumerators. 
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
+
+
+\section{Data considerations for field monitoring}
+Careful monitoring of field work is essential for high quality data. 
+\textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}}
+and other survey audits help ensure that enumerators are following established protocols, and are not falsifying data. 
+For back-checks, a random subset of the field sample is chosen and a subset of information from the full survey is verified through a brief interview with the original respondent. Design of the backcheck questionnaire follows the same survey design principles discussed above, in particular you should use the pre-analysis plan or list of key outcomes to establish which subset of variables to prioritize. 
+
+Real-time access to the survey data increases the potential utility of backchecks dramatically, and both simplifies and improves the rigor of related workflows. You can use the raw data to ensure that the backcheck sample is appropriately apportioned across interviews and survey teams. As soon as backchecks are done, the backcheck data can be tested against the original data to identify areas of concern in real-time. 
+\texttt{bcstats} is a useful tool for analyzing back-check data in Stata module.
+\sidenote{url{https://ideas.repec.org/c/boc/bocode/s458173.html}}
+
 %------------------------------------------------
 
-\section{Collecting data securely}
+\section{Collecting Data Securely}
+Primary data collection almost always includes 
+\textbf{personally-identifiable information (PII)} \sidenote{url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}. 
+PII must be handled with great care at all points in the data collection and management process, to avoid breaches of confidentiality. 
+Access to PII must be restricted to team members granted that permission by the applicable Institutional Review Board or a data licensing agreement with a partner agency. Research teams must maintain strict protocols for data security at each stage of the process: data collection, storage, and sharing. 
 
-At all points in the data collection and handling process,
-access to personally-identifying information (PII)
-must always be restricted to the members of the team
-who have been granted that permission by the appropriate agreement
-(typically an IRB approving data collection or partner agency providing it).
-Any established data collection platform will always \textbf{encrypt}\sidenote{\textbf{Encryption:} the process of making information unreadable
-to anyone without access to a specific deciphering key. \\ \url{https://dimewiki.worldbank.org/wiki/Encryption}}
-all data submitted from the field automatically while in transit
-(i.e., upload or download), so if you use servers hosted by SurveyCTO
-or SurveySolutions this is nothing you need to worry about.
-Your data will be encrypted from the time it leaves the device
-(in tablet-assisted data collation) or your browser (in web data collection)
-until it reaches the server.
+\subsection{Securing data in the field}
+All mainstream data collection software automatically \textbf{encrypt}\sidenote{\textbf{Encryption:} the process of making information unreadable
+to anyone without access to a specific deciphering key. 
+\sidenote{url{https://dimewiki.worldbank.org/wiki/Encryption}}
+all data submitted from the field while in transit (i.e., upload or download). As long as you are using an established CAPI software, this step is taken care of. Your data will be encrypted from the time it leaves the device (in tablet-assisted data collation) or your browser (in web data collection), until it reaches the server.
 
-\textbf{Encryption at rest} is the only way to ensure
-that PII data remains private when it is stored
-on someone else's server on the open internet.
-Encryption makes data files completely unusable
-without access to a security key specific to that data --
-a higher level of security than password-protection.
-The World Bank's and many of our donors' security requirements
-for data storage can only be fulfilled by this method.
-We recommend keeping your data encrypted whenever PII data is collected --
-therefore, we recommend it for all field data collection.
+\subsection{Securing data on the server}
+\textbf{Encryption at rest} is the only way to ensure that PII data remains private when it is stored on someone else's server on the open internet.
+Encryption makes data files completely unusable without access to a security key specific to that data --
+a higher level of security than password-protection. You must keep your data encrypted on the server whenever PII data is collected. 
 
-Encryption in cloud storage, by contrast, is not enabled by default.
-This is because the service will not encrypt user data unless you confirm
-you know how to operate the encryption system and understand the consequences if basic protocols are not followed.
-Encryption at rest is different from password-protection:
-encryption at rest makes the underlying data itself unreadable,
-even if accessed, except to users who have a specific private \textbf{keyfile}.
-Encryption at rest requires active participation from you, the user,
-and you should be fully aware that if your private key is lost,
-there is absolutely no way to recover your data.
+Encryption in cloud storage is not enabled by default. The service will not encrypt user data unless you confirm you know how to operate the encryption system and understand the consequences if basic protocols are not followed.
+Encryption at rest is different from password-protection: encryption at rest makes the underlying data itself unreadable, even if accessed, except to users who have a specific private \textbf{keyfile}. Encryption at rest requires active participation from you, the user, and you should be fully aware that if your private key is lost, there is absolutely no way to recover your data.
 
-To enable data encryption in SurveyCTO, for example,
-simply select the encryption option
-when you create a new form on a SurveyCTO server.
-Other data collection services should work similarly,
-but the exact implementation of encryption at rest
-will vary slightly from service to service.
-At that time, the service will allow you to download -- once --
-the keyfile pair needed to decrypt the data.
-You must download and store this in a secure location.
-Make sure you store keyfiles with descriptive names to match the survey to which it corresponds.
-Any time you access the data - either when viewing it in browser or syncing it to your
-computer - the user will be asked to provide this keyfile. It could differ between the software,
-but typically you would copy that keyfile from where it is stored (for example LastPass)
-to your desktop, point to it, and the rest is automatic.
-After each time you use the keyfile, delete it from your desktop,
-but not from your password manager.
-
-Finally, you should ensure that all teams take basic precautions
-to ensure the security of data, as most problems are due to human error.
-Most importantly, all computers, tablets, and accounts used
-\textit{must} have a logon password associated with them.
-Ideally, the machine hard drives themselves should also be encrypted.
-This policy should also be applied to physical data storage
-such as flash drives and hard drives;
-similarly, files sent to the field containing PII data
-such as the sampling list should at least be password-protected.
-This can be done using a zip-file creator.
-LastPass can also be used to share passwords securely,
-and you cannot share passwords across email.
-This step significantly mitigates the risk in case there is
-a security breach such as loss, theft, hacking, or a virus,
-and adds very little hassle to utilization.
+When you enable encryption, the service will allow you to download -- once -- the keyfile pair needed to decrypt the data.
+You must download and store this in a secure location. Make sure you store keyfiles with descriptive names to match the survey to which they correspond.
+Any time anyone accesses the data - either when viewing it in the browser or downloading it to your computer - they will be asked to provide the keyfile. 
 
 
-In this section, you finally get your hands on some data!
-What do we do with it? Data handling is one of the biggest
-``black boxes'' in primary research -- it always gets done,
-but teams have wildly different approaches for actually doing it.
-This section breaks the process into key conceptual steps
-and provides at least one practical solution for each.
-Initial receipt of data will proceed as follows:
-the data will be downloaded, and a ``gold master'' copy
-of the raw data should be permanently stored in a secure location.
-Then, a ``master'' copy of the data is placed into an encrypted location
-that will remain accessible on disk and backed up.
-This handling satisfies the rule of three:
-there are two on-site copies of the data and one off-site copy,
-so the data can never be lost in case of hardware failure.
-For this step, the remote location can be a variety of forms:
-the cheapest is a long-term cloud storage service
-such as Amazon Web Services or Microsoft Azure.
-Equally sufficient is a physical hard drive
-stored somewhere other than the primary work location
-(and encrypted with a service like BitLocker To Go).
-If you remain lucky, you will never have to access this copy --
-you just want to know it is out there, safe, if you need it.
+\subsection{Securing stored data}
+How should you ensure data security once downloaded to a computer? 
+The workflow for securely receiving and storing data looks like this:
+\begin{itemize}
+	\item download data
+	\item store a ``master'' copy of the data into an encrypted location that will remain accessible on disk and be regularly backed up
+	\item secure a ``gold master'' copy of the raw data in a secure location, such as a long-term cloud storage service or an encrypted physical hard drive stored in a separate location. If you remain lucky, you will never have to access this copy -- you just want to know it is out there, safe, if you need it.
+	
+\end{itemize}
 
-The copy of the raw data you are going to use
-should be handled with care.
-Since you will probably need to share it among the team,
-it should be placed in an encrypted storage location,
-although the data file itself may or may not need to be encrypted.
-Enterprise cloud solutions like Microsoft OneDrive can work as well.
-If the service satisfies your security needs,
-the raw data can be stored unencrypted here.
-Placing encrypted data (such as with VeraCrypt)
-into an unencrypted cloud storage location (such as Dropbox)
-may also satisfy this requirement for some teams,
-since this will never make the data visible to someone
-who gets access to the Dropbox,
-without the key to the file that is generated on encryption.
-\textit{The raw data file must never be placed in Dropbox unencrypted, however.}
-The way VeraCrypt works is that it creates a virtual copy
-of the unencrypted file outside of Dropbox, and lets you access that copy.
-Since you should never edit the raw data, this will not be very cumbersome,
-but the decryption and usage of the raw data is a manual process.
-With the raw data securely stored and backed up,
-you are ready to move to de-identification, data cleaning, and analysis.
+This handling satisfies the rule of three: there are two on-site copies of the data and one off-site copy, so the data can never be lost in case of hardware failure. In addition, you should ensure that all teams take basic precautions to ensure the security of data, as most problems are due to human error.
+Most importantly, all computers, tablets, and accounts used \textit{must} have a logon password associated with them. 
+Ideally, the machine hard drives themselves should also be encrypted, as well as any external hard drives or flash drives used. All files sent to the field containing PII data, such as sampling lists, should at least be password protected. This can be done using a zip-file creator.
+You must never share passwords by email; rather, use a secure password manager. This significantly mitigates the risk in case there is a security breach such as loss, theft, hacking, or a virus, with little impact on day-to-day utilization.
+
+With the raw data securely stored and backed up, you are ready to move to de-identification, data cleaning, and analysis.
+
 %------------------------------------------------
-
-
 
