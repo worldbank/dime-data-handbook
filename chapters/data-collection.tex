@@ -1,6 +1,58 @@
 %------------------------------------------------
 
 \begin{fullwidth}
+	
+	%PLACEHOLDER FOR NEW INTRO
+
+\end{fullwidth}
+
+%------------------------------------------------
+
+\section{Designing CAPI questionnaires}
+A well-designed questionnaire results from careful planning, consideration of analysis and indicators, close review of existing questionnaires, survey pilots, and research team and stakeholder review.Although most surveys are now collected electronically -- Computer Assisted Personal Interviews (CAPI) -- 
+\textbf{Questionnaire design}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
+\index{questionnaire design} 
+(content development) and questionnaire programming (functionality development) should be seen as two strictly separate tasks. The research team should agree on all questionnaire content and design a paper version before programming a CAPI version. This facilitates a focus on content during the design process, rather than technical programming details, and ensures teams have a readable, printable paper version of their questionnaire. 
+
+An easy-to-read paper version of the questionnaire is particularly critical for training enumerators, so they can get an overview of the survey content and structure before diving into the programming. It is much easier for enumerators to understand all possible response pathways from a paper version, than from swiping question by question. Finalizing the questionnaire before programming also avoids version control concerns that arise from concurrent work on paper and electronic survey instruments. In addition, a paper questionnaire is an important documentation for data publication. 
+
+The workflow for designing a questionnaire will feel much like writing an essay, or writing pseudocode: begin from broad concepts and slowly flesh out the specifics. It is essential to start with a clear understanding of the 
+\textbf{theory of change} \sidenote{url{https://dimewiki.worldbank.org/wiki/Theory_of_Change}}
+and \textbf{experimental design} for your project.The first step of questionnaire design is to list key outcomes of interest, as well as the main covariates and variables needed for experimental design. The ideal starting point for this is a 
+\textbf{pre-analysis plan}. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan}}
+
+Use the list of key outcomes to create an outline of questionnaire \textit{modules} (do not number the modules yet; instead use a short prefix so they can be easily reordered). Each module should then be expanded into specific indicators to observe in the field.
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
+At this point, it is useful to do a 
+\textbf{content-focused pilot} \sidenote{url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}} of the questionnaire. 
+Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions, as there is no need to factor in costs of re-programming, and as a result improves the overall quality of the survey instrument. 
+
+Once the content of the questionnaire is finalized, it should be translated into appropriate language(s). Only then is it time to proceed with the CAPI programming.
+
+
+
+\textbf{Extensive tracking} sections --
+in which reasons for \textbf{attrition}, treatment \textbf{contamination}, and
+\textbf{loss to follow-up} can be documented --
+\index{attrition}\index{contamination}
+are essential data components for completing CONSORT\sidenote[][-3.5cm]{\textbf{CONSORT:} a standardized system for reporting enrollment, intervention allocation, follow-up, and data analysis through the phases of a randomized trial of two groups.} records.\sidenote[][-1.5cm]{Begg, C., Cho, M., Eastwood, S.,
+	Horton, R., Moher, D., Olkin, I., Pitkin,
+	R., Rennie, D., Schulz, K. F., Simel, D.,
+	et al. (1996). Improving the quality of
+	reporting of randomized controlled
+	trials: The CONSORT statement. \textit{JAMA},
+	276(8):637--639}
+
+From a data perspective, there are a few important points to keep in mind for all quantitative analysis of survey data (regardless of sector). First, questions with pre-coded response options are always preferable to open-ended questions (the content-based pilot is an excellent time to ask open-ended questions, and refine responses for the final version of the questionnaire). Coding responses helps to ensure that the data will be useful for quantitative analysis. 
+
+Two examples help illustrate the point. First, instead of asking ``How do you feel about the proposed policy change?'', use techniques like 
+\textbf{Likert scales}\sidenote{\textbf{Likert scale:} an ordered selection of choices indicating the respondent's level of agreement or disagreement with a proposed statement.}. Second, if collecting data on medication use or supplies, you could collect: the brand name of the product; the generic name of the product; the coded compound of the product; or the broad category to which each product belongs (antibiotic, etc.). All four may be useful for different reasons, but the latter two are likely to be the most useful for data analysis. The coded compound requires providing a translation dictionary to field staff, but enables automated rapid recoding for analysis with no loss of information. The generic class requires agreement on the broad categories of interest, but allows for much more comprehensible top-line statistics and data quality checks.
+
+%------------------------------------------------
+
+\section{Programming CAPI questionnaires}
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
+
 Most data collection is now done using digital data entry
 using tools that are specially designed for surveys.
 These tools, called \textbf{computer-assisted personal interviewing (CAPI)} software,
@@ -18,15 +70,10 @@ this chapter should provide a motivation for
 planning data structure during survey design,
 developing surveys that are easy to control for quality and security,
 and having proper file storage ready for sensitive PII data.
-\end{fullwidth}
 
-%------------------------------------------------
-
-\section{Designing CAPI questionnaires}
 
 CAPI surveys\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted_Personal_Interviews_(CAPI)}}
-are primarily created in Excel, Google Sheets,
-or software-specific form builders
+are primarily created in a spreadsheet (Excel or Google Sheets),or software-specific form builders
 making them one of the few research outputs for which little coding is required.\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
 The \texttt{ietestform} command,\sidenote{\url{https://dimewiki.worldbank.org/wiki/ietestform}} part of
 \texttt{iefieldkit}, implements form-checking routines
@@ -36,161 +83,19 @@ relate directly to the data that will be used later,
 both the field team and the data team should
 collaborate to make sure that the survey suits all needs.\cite{krosnick2018questionnaire}
 
-Generally, this collaboration means building the experimental design
-fundamentally into the structure of the survey.
-In addition to having prepared a unique anonymous ID variable
-using the master data,
+In addition to having prepared a unique anonymous ID variable using the master data,
 that ID should be built into confirmation checks in the survey form.
-When ID matching and tracking across rounds is essential,
-the survey should be prepared to verify new data
+When ID matching and tracking across rounds is essential, the survey should be prepared to verify new data
 against \textbf{preloaded data} from master records or from other rounds.
-\textbf{Extensive tracking} sections --
-in which reasons for \textbf{attrition}, treatment \textbf{contamination}, and
-\textbf{loss to follow-up} can be documented --
-\index{attrition}\index{contamination}
-are essential data components for completing CONSORT\sidenote[][-3.5cm]{\textbf{CONSORT:} a standardized system for reporting enrollment, intervention allocation, follow-up, and data analysis through the phases of a randomized trial of two groups.} records.\sidenote[][-1.5cm]{Begg, C., Cho, M., Eastwood, S.,
-	Horton, R., Moher, D., Olkin, I., Pitkin,
-	R., Rennie, D., Schulz, K. F., Simel, D.,
-	et al. (1996). Improving the quality of
-	reporting of randomized controlled
-	trials: The CONSORT statement. \textit{JAMA},
-	276(8):637--639}
 
-\textbf{Questionnaire design}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
-\index{questionnaire design}
-is the first task where the data team
-and the field team must collaborate on data structure.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Preparing_for_Field_Data_Collection}}
-Questionnaire design should always be a separated task from questionnaire programming, meaning
-that the team should have designed and agreed on a questionnaire before that questionnaire is
-programmed in the CAPI software used. Otherwise teams tend to spend more time discussing technical
-programming details, rather than the content in the questionnaire. The field-oriented staff and the
-PIs will likely prefer to capture a large amount of detailed \textit{information}
-in the field, some of which will serve very poorly as \textit{data}.\sidenote{\url{
-https://iriss.stanford.edu/sites/g/files/sbiybj6196/f/questionnaire\_design\_1.pdf}}
-In particular, \textbf{open-ended responses} and questions which will have
-many null or missing responses by design will not be very useful
-in statistical analyses unless pre-planned.
-You must work with the field team to determine the appropriate amount
-of abstraction inherent in linking concepts to responses.\sidenote{\url{
-https://www.povertyactionlab.org/sites/default/files/documents/Instrument\%20Design\_Diva\_final.pdf}}
-For example, it is always possible to ask for open-ended responses to questions,
-but it is far more useful to ask for things like \textbf{Likert scale}\sidenote{\textbf{Likert scale:} an ordered selection of choices
-indicating the respondent's level of agreement or disagreement
-with a proposed statement.} responses
-instead of asking, for instance,
-``How do you feel about the proposed policy change?''
-
-Coded responses are always more useful than open-ended responses,
-because they reduce the time necessary for post-processing by
-expensive specialized staff.
-For example, if collecting data on medication use or supplies,
-you could collect: the brand name of the product;
-the generic name of the product;
-the coded compound of the product;
-or the broad category to which each product belongs (antibiotic, etc.).
-All four may be useful for different reasons,
-but the latter two are likely to be the most useful for the analyst.
-The coded compound requires providing a translation dictionary
-to field staff, but enables automated rapid recoding for analysis
-with no loss of information.
-The generic class requires agreement on the broad categories of interest,
-but allows for much more comprehensible top-line statistics and data quality checks.
-
-Broadly, the questionnaire should be designed as follows.
-The workflow will feel much like writing an essay:
-begin from broad concepts and slowly flesh out the specifics.
-The \textbf{theory of change}, \textbf{experimental design},
-and any \textbf{pre-analysis plans} should be discussed
-and the structure of required data for those conceptualized first.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
-Next, the conceptual outcomes of interest, as well as the main covariates, classifications,
-and other variables needed for the experimental design should be listed out.
-The questionnaire \textit{modules} should be outlined based on this list.
-At this stage, modules should not be numbered --
-they should use a short prefix so they can be easily reordered.
-Each module should then be expanded into specific indicators to observe in the field.
 There is not yet a full consensus over how individual questions should be identified:
 formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder,
 but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
-Finally, the questionnaire can be \textbf{piloted}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}}
-in a non-experimental sample.
-Revisions are made, and the survey is then translated into the appropriate language and programmed electronically.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
 
-%------------------------------------------------
+\section{Piloting}
+\textbf{piloted}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}}
 
-\section{Collecting data securely}
-
-At all points in the data collection and handling process,
-access to personally-identifying information (PII)
-must always be restricted to the members of the team
-who have been granted that permission by the appropriate agreement
-(typically an IRB approving data collection or partner agency providing it).
-Any established data collection platform will always \textbf{encrypt}\sidenote{\textbf{Encryption:} the process of making information unreadable
-to anyone without access to a specific deciphering key. \\ \url{https://dimewiki.worldbank.org/wiki/Encryption}}
-all data submitted from the field automatically while in transit
-(i.e., upload or download), so if you use servers hosted by SurveyCTO
-or SurveySolutions this is nothing you need to worry about.
-Your data will be encrypted from the time it leaves the device
-(in tablet-assisted data collation) or your browser (in web data collection)
-until it reaches the server.
-
-\textbf{Encryption at rest} is the only way to ensure
-that PII data remains private when it is stored
-on someone else's server on the open internet.
-Encryption makes data files completely unusable
-without access to a security key specific to that data --
-a higher level of security than password-protection.
-The World Bank's and many of our donors' security requirements
-for data storage can only be fulfilled by this method.
-We recommend keeping your data encrypted whenever PII data is collected --
-therefore, we recommend it for all field data collection.
-
-Encryption in cloud storage, by contrast, is not enabled by default.
-This is because the service will not encrypt user data unless you confirm
-you know how to operate the encryption system and understand the consequences if basic protocols are not followed.
-Encryption at rest is different from password-protection:
-encryption at rest makes the underlying data itself unreadable,
-even if accessed, except to users who have a specific private \textbf{keyfile}.
-Encryption at rest requires active participation from you, the user,
-and you should be fully aware that if your private key is lost,
-there is absolutely no way to recover your data.
-
-To enable data encryption in SurveyCTO, for example,
-simply select the encryption option
-when you create a new form on a SurveyCTO server.
-Other data collection services should work similarly,
-but the exact implementation of encryption at rest
-will vary slightly from service to service.
-At that time, the service will allow you to download -- once --
-the keyfile pair needed to decrypt the data.
-You must download and store this in a secure location.
-Make sure you store keyfiles with descriptive names to match the survey to which it corresponds.
-Any time you access the data - either when viewing it in browser or syncing it to your
-computer - the user will be asked to provide this keyfile. It could differ between the software,
-but typically you would copy that keyfile from where it is stored (for example LastPass)
-to your desktop, point to it, and the rest is automatic.
-After each time you use the keyfile, delete it from your desktop,
-but not from your password manager.
-
-Finally, you should ensure that all teams take basic precautions
-to ensure the security of data, as most problems are due to human error.
-Most importantly, all computers, tablets, and accounts used
-\textit{must} have a logon password associated with them.
-Ideally, the machine hard drives themselves should also be encrypted.
-This policy should also be applied to physical data storage
-such as flash drives and hard drives;
-similarly, files sent to the field containing PII data
-such as the sampling list should at least be password-protected.
-This can be done using a zip-file creator.
-LastPass can also be used to share passwords securely,
-and you cannot share passwords across email.
-This step significantly mitigates the risk in case there is
-a security breach such as loss, theft, hacking, or a virus,
-and adds very little hassle to utilization.
-
-
-%------------------------------------------------
-
-\section{Overseeing fieldwork and quality assurance}
+\section{Data quality assurance}
 
 While the team is in the field, the research assistant
 and field coordinator will be jointly responsible
@@ -314,7 +219,76 @@ and how they were implemented and resolved.
 
 %------------------------------------------------
 
-\section{Receiving primary data}
+\section{Collecting data securely}
+
+At all points in the data collection and handling process,
+access to personally-identifying information (PII)
+must always be restricted to the members of the team
+who have been granted that permission by the appropriate agreement
+(typically an IRB approving data collection or partner agency providing it).
+Any established data collection platform will always \textbf{encrypt}\sidenote{\textbf{Encryption:} the process of making information unreadable
+to anyone without access to a specific deciphering key. \\ \url{https://dimewiki.worldbank.org/wiki/Encryption}}
+all data submitted from the field automatically while in transit
+(i.e., upload or download), so if you use servers hosted by SurveyCTO
+or SurveySolutions this is nothing you need to worry about.
+Your data will be encrypted from the time it leaves the device
+(in tablet-assisted data collation) or your browser (in web data collection)
+until it reaches the server.
+
+\textbf{Encryption at rest} is the only way to ensure
+that PII data remains private when it is stored
+on someone else's server on the open internet.
+Encryption makes data files completely unusable
+without access to a security key specific to that data --
+a higher level of security than password-protection.
+The World Bank's and many of our donors' security requirements
+for data storage can only be fulfilled by this method.
+We recommend keeping your data encrypted whenever PII data is collected --
+therefore, we recommend it for all field data collection.
+
+Encryption in cloud storage, by contrast, is not enabled by default.
+This is because the service will not encrypt user data unless you confirm
+you know how to operate the encryption system and understand the consequences if basic protocols are not followed.
+Encryption at rest is different from password-protection:
+encryption at rest makes the underlying data itself unreadable,
+even if accessed, except to users who have a specific private \textbf{keyfile}.
+Encryption at rest requires active participation from you, the user,
+and you should be fully aware that if your private key is lost,
+there is absolutely no way to recover your data.
+
+To enable data encryption in SurveyCTO, for example,
+simply select the encryption option
+when you create a new form on a SurveyCTO server.
+Other data collection services should work similarly,
+but the exact implementation of encryption at rest
+will vary slightly from service to service.
+At that time, the service will allow you to download -- once --
+the keyfile pair needed to decrypt the data.
+You must download and store this in a secure location.
+Make sure you store keyfiles with descriptive names to match the survey to which it corresponds.
+Any time you access the data - either when viewing it in browser or syncing it to your
+computer - the user will be asked to provide this keyfile. It could differ between the software,
+but typically you would copy that keyfile from where it is stored (for example LastPass)
+to your desktop, point to it, and the rest is automatic.
+After each time you use the keyfile, delete it from your desktop,
+but not from your password manager.
+
+Finally, you should ensure that all teams take basic precautions
+to ensure the security of data, as most problems are due to human error.
+Most importantly, all computers, tablets, and accounts used
+\textit{must} have a logon password associated with them.
+Ideally, the machine hard drives themselves should also be encrypted.
+This policy should also be applied to physical data storage
+such as flash drives and hard drives;
+similarly, files sent to the field containing PII data
+such as the sampling list should at least be password-protected.
+This can be done using a zip-file creator.
+LastPass can also be used to share passwords securely,
+and you cannot share passwords across email.
+This step significantly mitigates the risk in case there is
+a security breach such as loss, theft, hacking, or a virus,
+and adds very little hassle to utilization.
+
 
 In this section, you finally get your hands on some data!
 What do we do with it? Data handling is one of the biggest
@@ -360,3 +334,7 @@ Since you should never edit the raw data, this will not be very cumbersome,
 but the decryption and usage of the raw data is a manual process.
 With the raw data securely stored and backed up,
 you are ready to move to de-identification, data cleaning, and analysis.
+%------------------------------------------------
+
+
+
