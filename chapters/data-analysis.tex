@@ -258,35 +258,36 @@ or that you intend to release as part of a replication package or data publicati
 \section{Indicator construction}
 
 % What is construction -------------------------------------
-Construction is the time to transform the data received from the field
-into data that can be analyzed.
+Any changes to the original data set happen during construction.
+It is at this stage that the raw data is transformed into analysis data.
 This is done by creating derived variables
-(binaries, indices, and interactions, to name a few)
-To understand why this is needed, think of a consumption module from a survey.
-There will be separate variables indicating the 
+(binaries, indices, and interactions, to name a few).
+To understand why construction is necessary,
+let's take the example of a survey's consumption module.
+It will result in separate variables indicating the 
 amount of each item in the bundle that was consumed.
 There may be variables indicating the cost of these items.
 You cannot run a meaningful regression on these variables. 
 You need to manipulate them into something that has \textit{economic} meaning. 
 
-During this process, the data points will typically be reshaped and aggregated 
-so that level of the data set goes from the unit of observation to the unit of analysis. 
+\textcolor{red}{During this process, the data points will typically be reshaped and aggregated 
+so that level of the data set goes from the unit of observation in the survey to the unit of analysis. 
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}} 
 In the consumption module example, the unit of observation is one good. 
 The survey will probably also include a household composition module,
 where age and gender variable will be defined for each household member.
-The typical unit of analysis for such indicators, on the other hand, is the household.
+The typical unit of analysis for such consumption indices, on the other hand, is the household.
 So to calculate the final indicator, 
-the number members will have to be aggregated to the household level,
-taking gender and age into account;
-then the expenditure or quantity consumed will be aggregated as well,
-and finally the result of the latter aggregation will be divided by the result of the former.
+the number of household members will be aggregated to the household level;
+then the expenditure or quantity consumed will be aggregated as well;
+and finally the result of the latter aggregation will be divided by the result of the former.}
 
 % Why it is a separate process -------------------------------
 
 % From cleaning
 Construction is done separately from data cleaning for two reasons. 
 First, so you have a clear cut of what was the data originally received,
-and what it the result of data processing that could have been done differently.
+and what is the result of data processing decisions.
 Second, because if you have different data sources, 
 say a baseline and an endline survey, 
 unless the two instruments were exactly the same, 
@@ -296,53 +297,33 @@ So you want to first merge the data sets and then create the variables only once
 
 % From analysis
 Data construction is never a finished process.
-It comes ``before'' data analysis only in a limited sense:
-the construction code must be run before the analysis code.
-Typically, however, it is the case that the construction and analysis code
-are written concurrently -- both do-files will be open at the same time.
-It is only in the process of writing the analysis
-that you will come to know which constructed variables are necessary,
-and which subsets and alterations of the data are desired.
-Still, construction should be done separately from analysis 
-to make sure there is consistency across different pieces of analysis. 
-If every do file that creates a table starts by loading a data set, 
-then aggregating variables, dropping observation, etc., 
-any change that needs to be made has to be replicated in all do files,
-increasing the chances that at least one of them will use a different 
-sample or variable definition.
+It comes ``before'' data analysis only in a limited sense: the construction code must be run before the analysis code.
+Typically, however, construction and analysis code are written concurrently.
+As you write the analysis, different constructed variables will become necessary, as well as subsets and other alterations to the data.
+Still, constructing variables in a separate script from the analysis will help you ensure consistency across different outputs. 
+If every script that creates a table starts by loading a data set, subsetting it and manipulating variables, any edits to construction need to be replicated in all scripts. 
+This increases the chances that at least one of them will have a different sample or variable definition.
+
 
 % What to do during construction -----------------------------------------
-Construction is the step where you face the largest risk 
-of making a mistake that will affect your results. 
+Construction is the step where you face the largest risk of making a mistake that will affect your results. 
 Keep in mind that details and scales matter. 
-It is important to check and double check the value-assignments of questions 
-and their scales before constructing new variables based on these. 
+It is important to check and double-check the value-assignments of questions and their scales before constructing new variables using them. 
 Are they in percentages or proportions? 
-Are all of the variables you are combining into an index or average in the same scale? 
+Are all variables you are combining into an index or average using the same scale? 
 Are yes or no questions coded as 0 and 1, or 1 and 2?
-This is when you use the knowledge of the data you acquired and
-the documentation you created during the cleaning step.
+This is when you will use the knowledge of the data you acquired and the documentation you created during the cleaning step the most.
 
 Adding comments to the code explaining what you are doing and why is crucial here.
-There are always ways for things to go wrong that you never anticipated,
-but two issues to pay extra attention to are missing values and dropped observations. 
-If you are subsetting a data set, drop observations explicitly, 
-indicating why you are doing that and how many they are.
-Merging, reshaping and aggregating data sets can change both the total number of observations
-and the number of observations with missing values.
-Make sure to read about how each command treats missing observations and, 
-whenever possible, add automatic checks in the script that throw an error message 
-if the result is changing.
+There are always ways for things to go wrong that you never anticipated, but two issues to pay extra attention to are missing values and dropped observations. 
+If you are subsetting a data set, drop observations explicitly, indicating why you are doing that and how the data set changed.
+Merging, reshaping and aggregating data sets can change both the total number of observations and the number of observations with missing values.
+Make sure to read about how each command treats missing observations and, whenever possible, add automated checks in the script that throw an error message if the result is changing.
 
-At this point, you will also need to address some of the issues in the data
-that you identified during data cleaning,
-the most common of them being the presence of outliers.
-How to treat outliers is a research question, 
-but make sure to note what we the decision made by the research team,
-and how you came to it. 
-Results can be sensitive to the treatment of outliers,
-so try to keep the original variable in the data set 
-so you can test how much it affects the estimates.
+At this point, you will also need to address some of the issues in the data that you identified during data cleaning. 
+The most common of them is the presence of outliers.
+How to treat outliers is a research question, but make sure to note what we the decision made by the research team, and how you came to it. 
+Results can be sensitive to the treatment of outliers, so keeping the original variable in the data set will allow you to test how much it affects the estimates.
 
 % Outputs -----------------------------------------------------------------
 
@@ -365,17 +346,14 @@ As you no longer need to worry about keeping variable names
 consistent with the survey, they should be as intuitive as possible.
 
 % Documentation
-The creation of final data sets and indicators must be carefully recorded,
-not only through comments in the code, but also in documentation.
-Someone unfamiliar with the project should be able to understand
-the contents of the analysis data sets,
-the steps taken to get to them,
-and the decision-making process.
-This should complement the reports and notes 
-created during data cleaning, 
-for example recording data patterns such as
-outliers and non-responses, 
-creating a detailed account of the data processing.
+It is wise to start an explanatory guide as soon as you start making changes to the data.
+Carefully record how specific variables have been combined, recoded, and scaled. 
+This can be part of a wider discussion with your team about creating protocols for variable definition.
+That will guarantee that indicators are defined consistently across projects.
+Documentation is an output of construction as relevant as the codes.
+Someone unfamiliar with the project should be able to understand the contents of the analysis data sets, the steps taken to create them, and the decision-making process through your documentation.
+The construction documentation will complement the reports and notes created during data cleaning.
+Together, they will form a detailed account of the data processing.
 
 
 
