@@ -14,7 +14,8 @@
 %------------------------------------------------
 
 \section{Designing CAPI questionnaires}
-A well-designed questionnaire results from careful planning, consideration of analysis and indicators, close review of existing questionnaires, survey pilots, and research team and stakeholder review.Although most surveys are now collected electronically -- Computer Assisted Personal Interviews (CAPI) -- 
+A well-designed questionnaire results from careful planning, consideration of analysis and indicators, close review of existing questionnaires, survey pilots, and research team and stakeholder review. 
+Although most surveys are now collected electronically (often referred to as Computer Assisted Personal Interviews (CAPI)) -- 
 \textbf{Questionnaire design}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
 \index{questionnaire design} 
 (content development) and questionnaire programming (functionality development) should be seen as two strictly separate tasks. By focusing on content first and programming implementation later, the survey design quality is better than when the questionnaire is set up in a way which is technically convenient to program. The research team should agree on all questionnaire content and design a paper version before programming a CAPI version. This facilitates a focus on content during the design process and ensures teams have a readable, printable paper version of their questionnaire.  
@@ -57,25 +58,31 @@ but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
 When ID matching and tracking across rounds is essential, the survey should be prepared to verify new data
 against \textbf{preloaded data} from master records or from other rounds.
 
-\end{itemize}
+\subsection{Content-focused Pilot}
+A \textbf{Survey Pilot} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}} is the final step of questionnaire design. 
+A Content-focused Pilot \sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}  is best done on pen-and-paper, before the questionnaire is programmed. 
+The objective is to improve the structure and length of the questionnaire, refine the phrasing and translation of specific questions, and confirm coded response options are exhaustive.\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes}} 
+In addition, it is an opportunity to test and refine all survey protocols, such as how units will be sampled or pre-selected units identified. The pilot must be done out-of-sample, but in a context as similar as possible to the study sample.
 
-Once the content of the questionnaire is finalized, it should be translated into appropriate language(s). Only then is it time to proceed with the CAPI programming.
+Once the content of the questionnaire is finalized and translated, it is time to proceed with programming the electronic survey instrument.
 
 
 %------------------------------------------------
 
 \section{Programming CAPI questionnaires}
-Most data collection is now done using software tools specifically designed for surveys. CAPI surveys
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted_Personal_Interviews_(CAPI)}}
-are typically created in a spreadsheet (e.g. Excel or Google Sheets), or software-specific form builder. 
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
-As these are typically accessible even to novice users, we will not address software-specific form design in this book. Rather, we focus coding conventions that are important to follow regardless of CAPI software choice, rather than software-specific form design. 
+Most data collection is now done using software tools specifically designed for surveys. CAPI surveys \sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted_Personal_Interviews_(CAPI)}}
+are typically created in a spreadsheet (e.g. Excel or Google Sheets), or software-specific form builder. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
+As these are typically accessible even to novice users, we will not address software-specific form design in this book. Rather, we focus coding conventions that are important to follow regardless of CAPI software choice. 
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
+
+The starting point for questionnaire programming is a complete paper version of the questionnaire, piloted for content, and translated where needed. Starting the programming at this point reduces version control issues that arise from making significant changes to concurrent paper and electronic survey instruments. Most importantly, it means the research, not the technology, drives the questionnaire design. When you start programming, do not start with the first question and program your way to the last question. Instead, code from high level to small detail, following the same questionnaire outline established at design phase. The outline provides the basis for pseudocode, allowing you to start with high level structure and work down to the level of individual questions. This will save time and reduce errors. 
 
 CAPI software tools provide a wide range of features designed to make implementing even highly complex surveys easy, scalable, and secure. However, these are not fully automatic: you still need to actively design and manage the survey. Each software has specific practices that you need to follow to take advantage of CAPI features and ensure that the exported data is compatible with the software that will be used for analysis. 
 
 \subsection{CAPI features}
 \begin{itemize}
+	\item{Survey logic}: build all skip patterns in to the survey instrument, to prevent enumerator errors related to the flow of questions
+	\item{Range checks}: 
 \item{Unique Identifier}
 As it is critical to be able to uniquely identify each observation, and link it to the original sample, build in a programming check to confirm the numeric ID and identifying details of the household. 
 \item{etc}
@@ -83,21 +90,15 @@ As it is critical to be able to uniquely identify each observation, and link it 
 
 \subsection{Compatibility with analysis software}
 The \texttt{ietestform} command,\sidenote{\url{https://dimewiki.worldbank.org/wiki/ietestform}} part of
-\texttt{iefieldkit}, implements form-checking routines
-for \textbf{SurveyCTO}, a proprietary implementation of \textbf{Open Data Kit (ODK)}.
-However, since they make extensive use of logical structure and
-relate directly to the data that will be used later,
-both the field team and the data team should
-collaborate to make sure that the survey suits all needs.\cite{krosnick2018questionnaire}
-
-\subsection{version control}
+\texttt{iefieldkit}, implements form-checking routines for \textbf{SurveyCTO}, a proprietary implementation of \textbf{Open Data Kit (ODK)}.
+However, since they make extensive use of logical structure and relate directly to the data that will be used later,
+both the field team and the data team should collaborate to make sure that the survey suits all needs.\cite{krosnick2018questionnaire}
 
 
-%------------------------------------------------
-\section{Piloting}
-\textbf{piloted}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}}
-\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes}
-\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes}
+\subsection{Data-focused Pilot}
+The final stage of questionnaire programming is another Survey Pilot. The objective of the Data-focused Pilot \sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes}} is to validate programming and export a sample dataset. Significant desk-testing of the instrument is required to debug the programming as fully as possible before going to the field. It is important to plan for multiple days of piloting, so that any further debugging or other revisions to the electronic survey instrument can be made at the end of each day and tested the following, until no further field errors arise. The Data-focused pilot should be done in advance of Enumerator training
+
+
 
 
 %------------------------------------------------
@@ -125,25 +126,14 @@ provides a workflow for collaborating on the resolution of duplicate entries bet
 Next, observed units in the data must be validated against the expected sample:
 this is as straightforward as \texttt{merging} the sample list with the survey data and checking for mismatches.
 
-When all data collection is complete,
-the survey team should have a final field report
-ready for validation against the sample frame and the dataset.
-This should contain all the observations that were completed;
-it should merge perfectly with the received dataset;
-and it should report reasons for any observations not collected.
-Identification and reporting of \textbf{missing data} and \textbf{attrition} is critical
-to the interpretation of any survey dataset.
-It is important to structure this reporting in a way that
-not only group broads rationales into specific categories
-but also collects all the detailed, open-ended responses to questions the field team can provide
-for any observations that they were unable to complete.
-This reporting should be validated and saved
-alongside the final raw data, and treated the same way.
-This information should be stored as a dataset in its own right
--- a \textbf{tracking dataset} --
-that records all events in which survey substitutions
-and loss to follow-up occurred in the field
-and how they were implemented and resolved.
+When all data collection is complete, the survey team should have a final field report ready for validation against the sample frame and the dataset.
+This should contain all the observations that were completed; it should merge perfectly with the received dataset; and it should report reasons for any observations not collected.
+Identification and reporting of \textbf{missing data} and \textbf{attrition} is critical to the interpretation of any survey dataset.
+It is important to structure this reporting in a way that not only group broads rationales into specific categories
+but also collects all the detailed, open-ended responses to questions the field team can provide for any observations that they were unable to complete.
+This reporting should be validated and saved alongside the final raw data, and treated the same way.
+This information should be stored as a dataset in its own right -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
+and loss to follow-up occurred in the field and how they were implemented and resolved.
 
 
 \subsection{response quality}
@@ -202,6 +192,7 @@ The workflow for securely receiving and storing data looks like this:
 This handling satisfies the rule of three: there are two on-site copies of the data and one off-site copy, so the data can never be lost in case of hardware failure. In addition, you should ensure that all teams take basic precautions to ensure the security of data, as most problems are due to human error.
 Ideally, the machine hard drives themselves should also be encrypted, as well as any external hard drives or flash drives used. All files sent to the field containing PII data, such as sampling lists, should at least be password protected. This can be done using a zip-file creator.
 You must never share passwords by email; rather, use a secure password manager. This significantly mitigates the risk in case there is a security breach such as loss, theft, hacking, or a virus, with little impact on day-to-day utilization.
+
 
 With the raw data securely stored and backed up, you are ready to move to de-identification, data cleaning, and analysis.
 
