@@ -1,77 +1,65 @@
 %------------------------------------------------
 
 \begin{fullwidth}
-Data analysis is hard. Making sense of a data set in such a way
-that makes a substantial contribution to scientific knowledge
-requires a mix of subject expertise, programming skills,
-and statistical and econometric knowledge.
-The process of data analysis is therefore typically
-a back-and-forth discussion between the various people
-who have differing experiences, perspectives, and research interests.
-The research assistant usually ends up being the fulcrum for this discussion.
-It is the RA's job to translate the data received from the field
-into economically meaningful indicators, and to analyze them,
-while making sure that code and outputs do not become
-tangled and lost over time (typically months or years).
+Data analysis is hard. 
+Transforming raw data into a substantial contribution to scientific knowledge 
+requires a mix of subject expertise, programming skills, 
+and statistical and econometric knowledge. 
+The process of data analysis is, therefore, 
+a back-and-forth discussion between people 
+with differing experiences, perspectives, and research interests. 
+The research assistant usually ends up being the pivot of this discussion. 
+It is their job to translate the data received from the field into
+economically meaningful indicators and to analyze them 
+while making sure that code and outputs do not become tangled and lost over time.
 
 When it comes to code, though, analysis is the easy part, 
-as long as you have organized your data well.
-The econometrics behind data analysis is complex,
-but since this is not a book on econometrics, 
-this will focus a on how to prepare your data for analysis.
-In fact, most of a Research Assistant time is spent cleaning data 
-and preparing getting it to the right format.
-This chapter outlines how to stay organized
-so that you and the team can focus on the research.
-If the practices recommended here are adopted,
-it becomes much easier to use the commands already implemented
-in any statistical software to analyze the data.
+as long as you have organized your data well. 
+Of course, the econometrics behind data analysis is complex, 
+but this is not a book on econometrics. 
+Instead, this chapter will focus on how to organize your data work.
+Most of a Research Assistant's time is spent cleaning data and getting it into the right format. 
+When the practices recommended here are adopted,
+it becomes much easier to analyze the data 
+using commands that are already implemented in any statistical software. 
+
 
 \end{fullwidth}
 
 %------------------------------------------------
 
 \section{Data management}
-
-The goal of data management is to organize 
-code, folders and data sets in such a manner that 
-it is as easy as possible to follow a project's data work.
-In our experience, are four key elements to good data management are:
-folder structure, task breakdown, a master script and version control.
-A good folder structure organizes files
-so that any material can be found when it is needed.
-It creates a connection between code, data sets and outputs
-that makes it clear how they are connected, 
-so they can always be traced and revised without massive effort.
-This folder structure reflects a task breakdown into clear steps
-with well-defined inputs, tasks and outputs,
-so it is clear at what point a data set or table was created,
-and by which script.
-The master do-file connects folder structure and code,
-runs all the scripts in the project in one click, 
-and creates a clear map of the tasks done by each piece of code,
-as well as what file it requires and creates.
-Finally, version histories and backups enable the team
-to make changes without fear of losing information,
-and create the ability to check instantly how an edit affected the other files in the project.
-so that different work streams can exist simultaneously.
+The goal of data management is to organize the components of data work 
+so it can traced back and revised without massive effort.
+In our experience, there are four key elements to good data management: 
+folder structure, task breakdown, master scripts, and version control. 
+A good folder structure organizes files so that any material can be found when needed.
+It reflects a task breakdown into steps with well-defined inputs, tasks, and outputs.
+This breakdown is applied to code, data sets, and outputs.
+A master script connects folder structure and code.
+It is a one-file summary of your whole project.
+Finally, version histories and backups enable the team 
+to edit files without fear of losing information.
+Smart use of version control also allows you to track 
+how each edit affects other files in the project.
 
 % Task breakdown
-We divide the processing of raw data to analysis data into three stages:
-data cleaning, variable construction, and data analysis.
-Though they frequently happen simultaneously,
-we find that breaking them into separate scripts and data sets helps prevent mistakes.
-It will be easier to understand this division in the following sections,
-as we discuss what they comprise,
-but the point is that each of these stages has well-defined inputs and outputs.
-This makes it easier to tracking the tasks implemented in each script,
-and avoids duplication of code that could lead to inconsistent results.
-For each stage, there will be a code folder and a corresponding data folder
-so that it is clear where each of them is implemented and where its outputs live.
-The scripts and data sets for each of these should have self-explanatory and connected names.
+We divide the process of turning raw data into analysis data in three stages: 
+data cleaning, variable construction, and data analysis. 
+Though they are frequently implemented at the same time, 
+we find that creating separate scripts and data sets prevents mistakes. 
+It will be easier to understand this division as we discuss what each stage comprises. 
+What you should know by now is that each of these stages has well-defined inputs and outputs. 
+This makes it easier to track tasks across scripts, 
+and avoids duplication of code that could lead to inconsistent results. 
+For each stage, there should be a code folder and a corresponding data set. 
+The names of codes, data sets and outputs for each stage should be consistent,
+making clear how they relate to one another. 
+So, for example, a script called \texttt{clean-section-1} would create
+a data set called \texttt{cleaned-section-1}.
 
 % Folder structure
-There are many schemes to organize research data.
+There are many schemes to organize research data. 
 Our preferred scheme reflects this task breakdown.
 \index{data organization}
 We created the \texttt{iefolder}\sidenote{
@@ -79,63 +67,54 @@ We created the \texttt{iefolder}\sidenote{
 package (part of \texttt{ietoolkit}\sidenote{
 	\url{https://dimewiki.worldbank.org/wiki/ietoolkit}})
 based on our experience with primary survey data,
-but its principles can be used for different types of data.
+but it can be used for different types of data. 
 \texttt{iefolder} is designed to standardize folder structures across teams and projects.
-This means that PIs and RAs face very small costs
-when switching between projects, because all the materials
-will be organized in exactly the same basic way.
+This means that PIs and RAs face very small costs when switching between projects, 
+because they are organized in the same way. 
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork_Folder}}
-The first level in this folder are what we call survey round folders.
+At the first level of this folder are what we call survey round folders. 
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork_Survey_Round}}
-You can think of a round as one source of data,
-that will be cleaned in the same manner.
-Inside round folders, there will be dedicated folders for raw (encrypted) data;
-for de-identified data; for cleaned data; and for final (constructed) data.
-There will be a folder for raw results, as well as for final outputs.
-The folders that hold code will be organized in parallel to these,
-so that the progression through the whole project can be followed
-by anyone new to the team. 
+You can think of a round as one source of data, 
+that will be cleaned in the same manner. 
+Inside round folders, there are dedicated folders for 
+raw (encrypted) data; de-identified data; cleaned data; and final (constructed) data. 
+There is a folder for raw results, as well as for final outputs. 
+The folders that hold code are organized in parallel to these, 
+so that the progression through the whole project can be followed by anyone new to the team.  
 Additionally, \texttt{iefolder} creates \textbf{master do-files}
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Master_Do-files}} 
-so that the entire order of the project is maintained in a top-level script,
-ensuring that no complex instructions are needed
-to exactly replicate the project.
+so all project code is reflected in a top-level script.
 
 % Master do file
-Master scripts allow all the project code to be executed 
-from one file.
-This file connects code and folder structure through globals or path objects,
-runs all other code files in the correct order,
-and tracks inputs and outputs for each of them.
-It is a key component of data management: 
-a human-readable map to the file and folder structure used for the whole project. 
-By reading the master do-file anyone not familiar to the project should
-understand which are the main tasks, 
-what are the scripts that execute those tasks, 
-and where in the project folder they can be found.
-This way, when you or someone else finds a problems or wants to make a change,
-the master script should contain all the information needed
-to know what files to open.
+Master scripts allow users to execute all the project code from a single file.
+It briefly describes what each code, 
+and maps the files they require and create. 
+It also connects code and folder structure through globals or objects. 
+In short, a master script is a human-readable map to the tasks, 
+files and folder structure that comprise a project.  
+Having a master script eliminates the need for complex instructions to replicate results. 
+Reading the master do-file should be enough for anyone who's unfamiliar with the project
+to understand what are the main tasks, which scripts execute them,
+and where different files can be found in the project folder. 
+That is, it should contain all the information needed to interact with a project's data work.
 
-% Version control ----------------------------------------------
-Finally, everything that can be version-controlled should be.
-Version control allows you to effectively manage the history of your code,
-including tracking the addition and deletion of files.
-This lets you get rid of code you no longer need
-simply by deleting it in the working directory,
-and allows you to recover those chunks easily
-if you ever need to get back previous work.
+% Version control
+Finally, everything that can be version-controlled should be. 
+Version control allows you to effectively track code edits,
+including the addition and deletion of files. 
+This way you can delete code you no longer need, 
+and still recover it easily if you ever need to get back previous work.
 Both analysis results and data sets will change with the code.
 You should have each of them stored with the code that created it.
-If you are writing your code in Git/GitHub,
+If you are writing code in Git/GitHub,
 you can output plain text files such as \texttt{.tex} tables,
 and meta data saved in \texttt{.txt} or \texttt{.csv} to that directory.
-Binary files that compile the tables, as well as the complete data sets,
-on the other hand, are stored in your team's shared folder.
-Whenever edits are made to data cleaning and data construction, 
-we the master script to run all the code for you project.
-Git will highlight the changes that were in data sets and results
-that they entail. 
+Binary files that compile the tables,
+as well as the complete data sets, on the other hand,
+should be stored in your team's shared folder. 
+Whenever data cleaning or data construction codes are edited,
+use the master script to run all the code for your project.
+Git will highlight the changes that were in data sets and results that they entail. 
 
 %------------------------------------------------
 
@@ -159,6 +138,7 @@ the contents and structure of the data that was collected.
 You should use this time to understand the types of responses collected,
 both within each survey question and across respondents.
 Knowing your data set well will make it possible to do analysis.
+
 
 % Deidentification ------------------------------------------------------------------
 The initial input for data cleaning is the raw data.
@@ -374,12 +354,13 @@ Since different pieces of analysis may require different samples,
 or even different units of observation,
 you may have one or multiple constructed data sets, 
 depending on how your analysis is structured.
-So don't worry if you cannot create a single, ``canonical'' analysis dataset.
+So don't worry if you cannot create a single, ``canonical'' analysis data set.
 It is common to have many purpose-built analysis datasets:
 there may be a \texttt{data-wide.dta},
 \texttt{data-wide-children-only.dta}, \texttt{data-long.dta},
 \texttt{data-long-counterfactual.dta}, and many more as needed.
-One thing all constructed data sets should have in common are functionally-named variables.
+One thing all constructed data sets should have in common, though,
+are functionally-named variables.
 As you no longer need to worry about keeping variable names
 consistent with the survey, they should be as intuitive as possible.
 
@@ -436,7 +417,7 @@ It's important to take the time to organize scripts in a clean manner and to avo
 A well-organized analysis script starts with 
 a completely fresh workspace and load its data directly
 prior to running that specific analysis.
-This encourages data manipulation to be done upstream (in construction),
+This encourages data manipulation to be done upstream (that is, during construction),
 and prevents you from accidentally writing pieces of code
 that depend on each other, leading to the too-familiar
 ``run this part, then that part, then this part'' process.
@@ -456,8 +437,11 @@ and allow code to be found very quickly.
 
 Analysis files should be as simple as possible, 
 so you can focus on the econometrics.
-Research decisions should be made very explicit in the code, 
-including clustering, sampling and use of control variables. 
+The first thing any analysis code does is to load a data set
+and explicitly set the analysis sample.
+In fact, all research decisions, not only the sampling,
+should be made very explicit in the code.
+This includes clustering, sampling and use of control variables. 
 As you come a decision on what are the main specifications to be reported,
 you can create globals or objects in the master do file 
 that set these options.
