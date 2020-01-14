@@ -123,85 +123,82 @@ Git will highlight the changes that were in data sets and results that they enta
 % intro: what is data cleaning -------------------------------------------------
 Data cleaning is the first stage towards transforming 
 the data received from the field into data that can be analyzed.
+Data cleaning is the first stage of transforming the data you received from the field into data that you can analyze.
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Cleaning}}
-\index{data cleaning}
-The cleaning process involves
-(1) making the data set easily usable and understandable, and
-(2) documenting individual data points and patterns that may bias the analysis.
-The underlying data structure is unchanged:
-it should contain only data that was collected in the field,
-without any modifications to data points,
-except for corrections of mistaken entries.
+The cleaning process involves (1) making the data set easily usable and understandable, and (2) documenting individual data points and patterns that may bias the analysis.
+The underlying data structure does not change.
+The cleaned data set should contain only the data collected in the field.
+No modifications to data points are made at this stage, except for corrections of mistaken entries.
+
 Cleaning is probably the most time consuming of the stages discussed in this chapter.
-This is the time when you obtain an extensive understanding of 
-the contents and structure of the data that was collected.
-You should use this time to understand the types of responses collected,
-both within each survey question and across respondents.
+This is the time when you obtain an extensive understanding of  the contents and structure of the data that was collected.
+Explore your data set using tabulations, summaries, and descriptive plots.
+You should use this time to understand the types of responses collected, both within each survey question and across respondents.
 Knowing your data set well will make it possible to do analysis.
 
 
 % Deidentification ------------------------------------------------------------------
 The initial input for data cleaning is the raw data.
 It should contain only materials that are received directly from the field.
-They will invariably come in a host of file formats
-and nearly always contain personally-identifying information.
-These files should be retained in the raw data folder
-\textit{exactly as they were received},
+They will invariably come in a host of file formats and nearly always contain personally-identifying information.\index{personally-identifying information}
+These files should be retained in the raw data folder \textit{exactly as they were received}.
 The folder must be encrypted if it is shared in an insecure fashion,
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}.
 and it must be backed up in a secure offsite location.
 Everything else can be replaced, but raw data cannot.
 Therefore, raw data should never be interacted with directly.
 
-Secure storage of the raw data
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Security}},
-means access to it will be restricted even inside the research team,
-and opening it can be a bureaucratic process.
-To facilitate the handling of the data,
-any personally identifiable information should be removed from the data set,
-and a de-identified data set can be saved in a non-encrypted folder.
-De-identification, at this stage, mean stripping the data set of sensitive fields 
-such as names, phone numbers, addresses and geolocations.\sidenote{\url{https://dimewiki.worldbank.org/wiki/De-identification}}
-The resulting de-identified data will be the underlying source
-for all cleaned and constructed data.
-Because the identifying information contained in the raw data
-\index{personally-identifying information}
-is typically only used during data collection, 
-to find and confirm their identity of interviewees,
+Secure storage of the raw
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Security}}
+data means access to it will be restricted even inside the research team.
+Loading encrypted data multiple times it can be annoying.
+To facilitate the handling of the data, remove any personally identifiable information from the data set.
+This will create a de-identified data set, that can be saved in a non-encrypted folder. 
+De-identification,
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/De-identification}}
+at this stage, means stripping the data set of direct identifiers such as names, phone numbers, addresses, and geolocations.
+\sidenote{\url{ https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf }}
+The resulting de-identified data will be the underlying source for all cleaned and constructed data.
+Because identifying information is typically only used during data collection, 
+to find and confirm the identity of interviewees, 
 de-identification should not affect the usability of the data.
-In fact, most cases identifying information can be converted 
-into non-identified variables for analysis
+In fact, most identifying information can be converted into non-identified variables for analysis purposes
 (e.g. GPS coordinates can be translated into distances). 
-However, if sensitive information is strictly needed for analysis, 
+However, if sensitive information is strictly needed for analysis,
 all the tasks described in this chapter must be performed in a secure environment.
 
-
 % Unique ID and data entry corrections ---------------------------------------------
-The next two tasks in data cleaning are typically done during the data collection,
-as part of data quality monitoring. 
-They are: ensuring that observations are uniquely and fully identified,
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/ID_Variable_Properties}}
-and correcting mistakes in data entry.
-Though modern survey tools create unique observation identifiers,
-that is not the same as having a unique ID variable for each individual in the sample
+There are two main cases when the raw data will be modified during data cleaning.
+The first one is when there are duplicated entries in the data.
+Ensuring that observations are uniquely and fully identified\sidenote{\url{https://dimewiki.worldbank.org/wiki/ID_Variable_Properties}}
+is possibly the most important step in data cleaning
+(as anyone who ever tried to merge data sets that are not uniquely identified knows).
+Modern survey tools create unique observation identifiers.
+That, however, is not the same as having a unique ID variable for each individual in the sample.
+You want to make sure the data set has a unique ID variable
 that can be cross-referenced with other records, such as the Master Data Set\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master_Data_Set}}
 and other rounds of data collection.
 \texttt{ieduplicates} and \texttt{iecompdup}, 
 two commands  included in the \texttt{ietoolkit} package,
 create an automated workflow to identify, correct and document
 occurrences of duplicate entries. 
-During data quality monitoring, mistakes in data entry may be found,
-including typos and inconsistent values.
-Theses mistakes should be fixed during data cleaning,
-and you should keep a careful record of how they were identified, and
-how the correct value was obtained.
+
+Looking for duplicated entries is usually part of data quality monitoring,
+as is the only other reason to change the raw data during cleaning:
+correcting mistakes in data entry.
+During data quality monitoring, you will inevitably encounter data entry mistakes,
+such as typos and inconsistent values.
+If you don't, you are probably not doing a very good job at looking for them.
+These mistakes should be fixed in the cleaned data set,
+and you should keep a careful record of how they were identified,
+and how the correct value was obtained.
 
 % Data description ------------------------------------------------------------------
 Note that if you are using secondary data, 
-the tasks described above are most likely unnecessary to you.
+the tasks described above can likely be skipped.
 However, the last step of data cleaning, describing the data,
 will probably still be necessary.
-This is a key step, but can be quite repetitive.
+This is a key step to making the data easy to use, but it can be quite repetitive.
 The \texttt{iecodebook} command suite, part of \texttt{iefieldkit},
 is designed to make some of the most tedious components of this process,
 such as renaming, relabeling, and value labeling,
@@ -210,13 +207,16 @@ much easier (including in data appending).\sidenote{\url{https://dimewiki.worldb
 We have a few recommendations on how to use this command for data cleaning.
 First, we suggest keeping the same variable names as in the survey instrument,
 so it's easy to connect the two files.
+Don't skip the labelling!
+Applying labels makes it easier to understand what the data is showing while exploring the data. 
+This minimizes the risk of small errors making their way through into the analysis stage.
 Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Applying\_Labels}}
 Recodes should be used to turn codes for "Don't know", "Refused to answer", and
 other non-responses into extended missing values.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
 String variables need to be encoded, and open-ended responses, categorized or dropped\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Strings}}
 (unless you are using qualitative or classification analyses, which are less common).
-Finally, any additional information collected for quality monitoring purposes,
-such as notes and duration field, can also be dropped using \texttt{iecodebook}.
+Finally, any additional information collected only for quality monitoring purposes,
+such as notes and duration field, can also be dropped.
 
 % Outputs -----------------------------------------------------------------
 
@@ -233,8 +233,9 @@ If the raw data set is very large, or the survey instrument is very complex,
 you may want to break the data cleaning into sub-steps, 
 and create intermediate cleaned data sets
 (for example, one per survey module).
-That can be very helpful, but having a single, ``final", data set
-will help you with sharing and publishing the data.
+Breaking cleaned data sets into the smallest unit of observation inside a roster
+make the cleaning faster and the data easier to handle during construction.
+But having a single cleaned data set will help you with sharing and publishing the data.
 To make sure this file doesn't get too big to be handled,
 use commands such as \texttt{compress} in Stata to make sure the data
 is always stored in the most efficient format.
@@ -246,11 +247,13 @@ supervisor notes, and data quality monitoring reports.
 These materials are part of what we call data documentation
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Documentation}}
 \index{Documentation},
-and should be stored in the corresponding data folder, 
+and should be stored in the corresponding folder, 
 as you will probably need them during analysis and publication.
 Include in the \texttt{Documentation} folder records of any
 corrections made to the data, including to duplicated entries,
 as well as communications from the field where theses issues are reported.
+Make sure to also have a record of potentially problematic patterns you noticed
+while exploring the data, such as outliers and variables with many missing values.
 Be very careful not to include sensitive information in 
 documentation that is not securely stored, 
 or that you intend to release as part of a replication package or data publication.
