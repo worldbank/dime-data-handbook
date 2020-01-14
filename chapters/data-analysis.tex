@@ -78,9 +78,9 @@ but it can be used for different types of data.
 \texttt{iefolder} is designed to standardize folder structures across teams and projects.
 This means that PIs and RAs face very small costs when switching between projects, 
 because they are organized in the same way. 
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork_Folder}}
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork\_Folder}}
 At the first level of this folder are what we call survey round folders. 
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork_Survey_Round}}
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork\_Survey\_Round}}
 You can think of a round as one source of data, 
 that will be cleaned in the same manner. 
 Inside round folders, there are dedicated folders for 
@@ -89,7 +89,7 @@ There is a folder for raw results, as well as for final outputs.
 The folders that hold code are organized in parallel to these, 
 so that the progression through the whole project can be followed by anyone new to the team.  
 Additionally, \texttt{iefolder} creates \textbf{master do-files}
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master_Do-files}} 
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}} 
 so all project code is reflected in a top-level script.
 
 % Master do file
@@ -129,7 +129,7 @@ Git will highlight the changes that were in data sets and results that they enta
 
 % intro: what is data cleaning -------------------------------------------------
 Data cleaning is the first stage of transforming the data you received from the field into data that you can analyze.
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Cleaning}}
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning}}
 The cleaning process involves (1) making the data set easily usable and understandable, and (2) documenting individual data points and patterns that may bias the analysis.
 The underlying data structure does not change.
 The cleaned data set should contain only the data collected in the field.
@@ -154,7 +154,7 @@ Everything else can be replaced, but raw data cannot.
 Therefore, raw data should never be interacted with directly.
 
 Secure storage of the raw
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Security}}
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Security}}
 data means access to it will be restricted even inside the research team.
 Loading encrypted data multiple times it can be annoying.
 To facilitate the handling of the data, remove any personally identifiable information from the data set.
@@ -175,13 +175,13 @@ all the tasks described in this chapter must be performed in a secure environmen
 % Unique ID and data entry corrections ---------------------------------------------
 There are two main cases when the raw data will be modified during data cleaning.
 The first one is when there are duplicated entries in the data.
-Ensuring that observations are uniquely and fully identified\sidenote{\url{https://dimewiki.worldbank.org/wiki/ID_Variable_Properties}}
+Ensuring that observations are uniquely and fully identified\sidenote{\url{https://dimewiki.worldbank.org/wiki/ID\_Variable\_Properties}}
 is possibly the most important step in data cleaning
 (as anyone who ever tried to merge data sets that are not uniquely identified knows).
 Modern survey tools create unique observation identifiers.
 That, however, is not the same as having a unique ID variable for each individual in the sample.
 You want to make sure the data set has a unique ID variable
-that can be cross-referenced with other records, such as the Master Data Set\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master_Data_Set}}
+that can be cross-referenced with other records, such as the Master Data Set\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Data\_Set}}
 and other rounds of data collection.
 \texttt{ieduplicates} and \texttt{iecompdup}, 
 two commands  included in the \texttt{ietoolkit} package,
@@ -216,7 +216,7 @@ Don't skip the labelling!
 Applying labels makes it easier to understand what the data is showing while exploring the data. 
 This minimizes the risk of small errors making their way through into the analysis stage.
 Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Applying\_Labels}}
-Recodes should be used to turn codes for "Don't know", "Refused to answer", and
+Recodes should be used to turn codes for ``Don't know'', ``Refused to answer'', and
 other non-responses into extended missing values.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
 String variables need to be encoded, and open-ended responses, categorized or dropped\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Strings}}
 (unless you are using qualitative or classification analyses, which are less common).
@@ -250,7 +250,7 @@ Throughout the data cleaning process, you will need inputs from the field,
 including enumerator manuals, survey instruments, 
 supervisor notes, and data quality monitoring reports.
 These materials are part of what we call data documentation
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Documentation}}
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Documentation}}
 \index{Documentation},
 and should be stored in the corresponding folder, 
 as you will probably need them during analysis and publication.
@@ -279,7 +279,7 @@ You cannot run a meaningful regression on these variables.
 You need to manipulate them into something that has \textit{economic} meaning. 
 During this process, the data points will typically be reshaped and aggregated 
 so that level of the data set goes from the unit of observation in the survey to the unit of analysis. 
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}} 
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}} 
 To use the same example, the data on quantity consumed was collect for each item, and needs to be aggregated to the household level before analysis.
 
 % Why it is a separate process -------------------------------
@@ -366,8 +366,8 @@ Data analysis is the stage when research outputs are created.
 \index{data analysis}
 Many introductions to common code skills and analytical frameworks exist, such as
 \textit{R for Data Science};\sidenote{\url{https://r4ds.had.co.nz/}}
-\textit{A Practical Introduction to Stata};\sidenote{\url{https://scholar.harvard.edu/files/mcgovern/files/practical_introduction_to_stata.pdf}}
-\textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844_Mostly_Harmless_Econometrics_An_Empiricist's_Companion}} 
+\textit{A Practical Introduction to Stata};\sidenote{\url{https://scholar.harvard.edu/files/mcgovern/files/practical\_introduction\_to\_stata.pdf}}
+\textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844\_Mostly\_Harmless\_Econometrics\_An\_Empiricist's\_Companion}} 
 and \textit{Causal Inference: The Mixtape}.\sidenote{\url{http://scunning.com/mixtape.html}}
 This section will not include instructions on how to conduct specific analyses.
 That is a research question, and requires expertise beyond the scope of this book.
@@ -413,7 +413,7 @@ The \texttt{ietoolkit} package includes two commands to export nicely formatted 
 \texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Iebaltab}} creates and exports balance tables to excel and {\TeX}. \texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Ieddtab}} does the same for difference-in-differences regressions.
 The \textbf{Stata Visual Library}\sidenote{	\url{https://worldbank.github.io/Stata-IE-Visual-Library/}}
 has examples of graphs created in Stata and curated by us.\sidenote{A similar resource for R is \href{https://www.r-graph-gallery.com/}{The R Graph Gallery}.}
-\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_visualization}} \index{data visualization}
+\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_visualization}} \index{data visualization}
 is increasingly popular, but a great deal lacks in quality.\cite{healy2018data,wilke2019fundamentals}
 We attribute some of this to the difficulty of writing code to create them.
 Making a visually compelling graph would already be hard enough if you didn't have to go through many rounds of googling to understand a command.
