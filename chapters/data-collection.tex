@@ -1,12 +1,9 @@
 %------------------------------------------------
 
 \begin{fullwidth}
-	
-	%PLACEHOLDER FOR NEW INTRO
-	Here we focus on tools and workflows that are primarily conceptual, rather than software-specific. This chapter should provide a motivation for
-	planning data structure during survey design,
-	developing surveys that are easy to control for quality and security,
-	and having proper file storage ready for sensitive PII data.
+High quality research begins with a thoughtfully-designed, field-tested survey instrument, and a carefully supervised survey. 
+Much of the recent push toward credibiity in the social sciences has focused on analytical practices. 
+We contest that credible research depends, first and foremost, on the quality of the raw data. This chapter focuses on data generation, from questionnaire design to field monitoring. As there are many excellent resources on questionnaire design and field supervision \sidenote{\url{Grosh, Margaret; Glewwe, Paul. 2000. Designing Household Survey Questionnaires for Developing Countries : Lessons from 15 Years of the Living Standards Measurement Study, Volume 3. Washington, DC: World Bank. © World Bank. https://openknowledge.worldbank.org/handle/10986/15195 License: CC BY 3.0 IGO.}}, we focus on the particularly challenges and opportunities presented by electronic surveys. As there are many electronic survey tools, we cover workflows and primary concepts, rather than software-specific tools. The chapter covers questionnaire design, piloting and programming; monitoring data quality during the survey; and how to ensure confidential data is handled securely from collection to storage and sharing. 
 	
 
 \end{fullwidth}
@@ -58,12 +55,12 @@ Once the content of the questionnaire is finalized and translated, it is time to
 
 
 %------------------------------------------------
-
 \section{Programming CAPI questionnaires}
-Most data collection is now done using software tools specifically designed for surveys. CAPI surveys \sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted_Personal_Interviews_(CAPI)}}
-are typically created in a spreadsheet (e.g. Excel or Google Sheets), or software-specific form builder. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
-As these are typically accessible even to novice users, we will not address software-specific form design in this book. Rather, we focus coding conventions that are important to follow regardless of CAPI software choice. 
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}} CAPI software tools provide a wide range of features designed to make implementing even highly complex surveys easy, scalable, and secure. However, these are not fully automatic: you still need to actively design and manage the survey. Each software has specific practices that you need to follow to take advantage of CAPI features and ensure that the exported data is compatible with the software that will be used for analysis. 
+Most data collection is now done using electronic survey instruments, known as Computer Assisted Personal Interviews (CAPI). \sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted_Personal_Interviews_(CAPI)}}
+Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets) or software-specific form builder, accessible even to novice users. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
+We will not address software-specific form design in this book; rather, we focus on coding conventions that are important to follow for CAPI regardless of software choice. 
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}} 
+CAPI software tools provide a wide range of features designed to make implementing even highly complex surveys easy, scalable, and secure. However, these are not fully automatic: you still need to actively design and manage the survey. Each software has specific practices that you need to follow to take advantage of CAPI features and ensure that the exported data is compatible with the software that will be used for analysis. 
 
 \subsection{CAPI workflow}
 The starting point for questionnaire programming is a complete paper version of the questionnaire, piloted for content, and translated where needed. Starting the programming at this point reduces version control issues that arise from making significant changes to concurrent paper and electronic survey instruments. Most importantly, it means the research, not the technology, drives the questionnaire design. When you start programming, do not start with the first question and program your way to the last question. Instead, code from high level to small detail, following the same questionnaire outline established at design phase. The outline provides the basis for pseudocode, allowing you to start with high level structure and work down to the level of individual questions. This will save time and reduce errors. 
@@ -117,7 +114,7 @@ Reporting errors and duplicate observations in real-time allows the field team t
 Tracking survey progress is important for monitoring attrition, so that it is clear early on if a change in protocols or additional tracking will be needed. 
 It is also important to check interview completion rate and sample compliance by surveyor and survey team, to identify any under-performing individuals or teams. 
 
-When all data collection is complete, the survey team should have a final field report, which should report reasons for any deviations between the original sample and the dataset collected.
+When all data collection is complete, the survey team should prepare a final field report, which should report reasons for any deviations between the original sample and the dataset collected.
 Identification and reporting of \textbf{missing data} and \textbf{attrition} is critical to the interpretation of survey data.
 It is important to structure this reporting in a way that not only group broads rationales into specific categories
 but also collects all the detailed, open-ended responses to questions the field team can provide for any observations that they were unable to complete.
