@@ -92,40 +92,40 @@ The final stage of questionnaire programming is another Survey Pilot. The object
 
 %------------------------------------------------
 \section{Data quality assurance}
-A huge advantage of CAPI surveys, compared to traditional paper surveys, is the ability to access and analyze the data in real time. 
-This greatly simplifies monitoring and improves data quality assurance. As part of survey preparation, the research team should develop a 
-\textbf{data quality assurance plan} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}. While data collection is ongoing, a research assistant or data analyst should work closely with the field team to ensure that the survey is progressing correctly, and perform \textbf{high-frequency checks (HFCs)} of the incoming data. 
+A huge advantage of CAPI surveys, compared to traditional paper surveys, is the ability to access and analyze the data while the survey is ongoing.
+Data issues can be identified and resolved in real-time. Designing systematic data checks, and running them routinely throughout data collection, simplifies monitoring and improves data quality. 
+As part of survey preparation, the research team should develop a \textbf{data quality assurance plan} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}. 
+While data collection is ongoing, a research assistant or data analyst should work closely with the field team to ensure that the survey is progressing correctly, and perform \textbf{high-frequency checks (HFCs)} of the incoming data. 
 \sidenote{\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
-Ensuring high quality data requires a combination of both real-time data checks and field monitoring. For this book, we focus on high-frequency data checks, and specific data-related considerations for field monitoring.
+Data quality assurance requires a combination of both real-time data checks, survey audits, and field monitoring. Although field monitoring is critical for a successful survey, we focus on the first two in this chapter, as they are the most directly data related. 
 
+
+\subsection{High Frequency Checks}
 High-frequency checks should carefully inspect key treatment and outcome variables so that the data quality of core experimental variables is uniformly high, and that additional field effort is centered where it is most important. 
 Data quality checks should be run on the data every time it is downloaded (ideally on a daily basis), to flag irregularities in survey progress, sample completeness or response quality. \texttt{ipacheck}\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks}} 
 is a very useful command that automates some of these tasks.
 
-\subsection{Sample completeness}
-It is important to check every day that the households interviewed match the survey sample. Reporting errors and duplicate observations in real-time allows the field team to make corrections efficiently.
+It is important to check every day that the households interviewed match the survey sample. 
+Many CAPI software programs include case management features, through which sampled units are directly assigned to individual enumerators. 
+Even with careful management, it is often the case that raw data includes duplicate entries, which may occur due to field errors or duplicated submissions to the server. 
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Duplicates_and_Survey_Logs}}
-It also helps the team track attrition, so that it is clear early on if a change in protocols or additional tracking will be needed. It is also important to check interview progress and sample compliance by surveyor and survey team, to identify any under-performing individuals or teams. 
-
-To assess sample completeness, observations first need to be checked for duplicate entries, which may occur due to field errors or duplicated submissions to the server. 
 \texttt{ieduplicates}\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieduplicates}}
 provides a workflow for collaborating on the resolution of duplicate entries between you and the field team.
 Next, observed units in the data must be validated against the expected sample:
 this is as straightforward as \texttt{merging} the sample list with the survey data and checking for mismatches.
+Reporting errors and duplicate observations in real-time allows the field team to make corrections efficiently.
+Tracking survey progress is important for monitoring attrition, so that it is clear early on if a change in protocols or additional tracking will be needed. 
+It is also important to check interview completion rate and sample compliance by surveyor and survey team, to identify any under-performing individuals or teams. 
 
-When all data collection is complete, the survey team should have a final field report ready for validation against the sample frame and the dataset.
-This should contain all the observations that were completed; it should merge perfectly with the received dataset; and it should report reasons for any observations not collected.
-Identification and reporting of \textbf{missing data} and \textbf{attrition} is critical to the interpretation of any survey dataset.
+When all data collection is complete, the survey team should have a final field report, which should report reasons for any deviations between the original sample and the dataset collected.
+Identification and reporting of \textbf{missing data} and \textbf{attrition} is critical to the interpretation of survey data.
 It is important to structure this reporting in a way that not only group broads rationales into specific categories
 but also collects all the detailed, open-ended responses to questions the field team can provide for any observations that they were unable to complete.
 This reporting should be validated and saved alongside the final raw data, and treated the same way.
 This information should be stored as a dataset in its own right -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
 and loss to follow-up occurred in the field and how they were implemented and resolved.
 
-
-\subsection{Response quality}
-As discussed above, modern survey software makes it relatively easy to control for issues in individual surveys as part of the questionnaire programming, using a combination of in-built features such as hard constraints on answer ranges and soft confirmations or validation questions. These features allow you to spend more time looking for issues that the software cannot check automatically, such as consistency across multiple responses or suspicious timing or response patters from specific enumerators. 
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}} Survey software also provides rich metadata, that can be useful in assessing interview quality. For example, automatically collected time stamps show how long enumerators spent per question, and trace histories show how many times answers were changed before the survey was submitted. 
+High frequency checks should also include survey-specific data checks. As CAPI software incorporates many data control features, discussed above, these checks should focus on issues CAPI software cannot check automatically. As most of these checks are survey specific, it is difficult to provide general guidance. An in-depth knowledge of the questionnaire, and a careful examination of the pre-analysis plan, is the best preparation.Examples include  consistency across multiple responses, complex calculations suspicious patterns in survey timing or atypical response patters from specific enumerators. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}} CAPI software typically provides rich metadata, which can be useful in assessing interview quality. For example, automatically collected time stamps show how long enumerators spent per question, and trace histories show how many times answers were changed before the survey was submitted. 
 
 
 \subsection{Data considerations for field monitoring}
@@ -135,12 +135,13 @@ For back-checks, a random subset of the field sample is chosen and a subset of i
 Design of the backcheck questionnaire follows the same survey design principles discussed above, in particular you should use the pre-analysis plan or list of key outcomes to establish which subset of variables to prioritize. 
 
 Real-time access to the survey data increases the potential utility of backchecks dramatically, and both simplifies and improves the rigor of related workflows. 
-You can use the raw data to ensure that the backcheck sample is appropriately apportioned across interviews and survey teams. 
-As soon as backchecks are done, the backcheck data can be tested against the original data to identify areas of concern in real-time. 
+You can use the raw data to draw the backcheck sample; assuring it is appropriately apportioned across interviews and survey teams. 
+As soon as backchecks are complete, the backcheck data can be tested against the original data to identify areas of concern in real-time. 
 \texttt{bcstats} is a useful tool for analyzing back-check data in Stata module. \sidenote{\url{https://ideas.repec.org/c/boc/bocode/s458173.html}}
 
 CAPI surveys also provide a unique opportunity to do audits through audio recordings of the interview, typically short recordings triggered at random throughout the questionnaire. 
-\textbf{Audio audits} are a useful means to assess whether the enumerator is conducting the interview as expected (and not sitting under a tree making up data).
+\textbf{Audio audits} are a useful means to assess whether the enumerator is conducting the interview as expected (and not sitting under a tree making up data). 
+Do note, however, that audio audits must be included in the Informed Consent. 
 
 \textcolor{red}{
 \subsection{Dashboard}
