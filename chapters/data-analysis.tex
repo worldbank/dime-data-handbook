@@ -270,18 +270,10 @@ amount of each item in the bundle that was consumed.
 There may be variables indicating the cost of these items.
 You cannot run a meaningful regression on these variables. 
 You need to manipulate them into something that has \textit{economic} meaning. 
-
-\textcolor{red}{During this process, the data points will typically be reshaped and aggregated 
+During this process, the data points will typically be reshaped and aggregated 
 so that level of the data set goes from the unit of observation in the survey to the unit of analysis. 
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}} 
-In the consumption module example, the unit of observation is one good. 
-The survey will probably also include a household composition module,
-where age and gender variable will be defined for each household member.
-The typical unit of analysis for such consumption indices, on the other hand, is the household.
-So to calculate the final indicator, 
-the number of household members will be aggregated to the household level;
-then the expenditure or quantity consumed will be aggregated as well;
-and finally the result of the latter aggregation will be divided by the result of the former.}
+To use the same example, the data on quantity consumed was collect for each item, and needs to be aggregated to the household level before analysis.
 
 % Why it is a separate process -------------------------------
 
@@ -363,170 +355,114 @@ Together, they will form a detailed account of the data processing.
 \section{Writing data analysis code}
 
 % Intro --------------------------------------------------------------
-Data analysis is the stage of the process when research outputs are created. 
+Data analysis is the stage when research outputs are created. 
 \index{data analysis}
 Many introductions to common code skills and analytical frameworks exist, such as
 \textit{R for Data Science};\sidenote{\url{https://r4ds.had.co.nz/}}
 \textit{A Practical Introduction to Stata};\sidenote{\url{https://scholar.harvard.edu/files/mcgovern/files/practical_introduction_to_stata.pdf}}
-\textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844_Mostly_Harmless_Econometrics_An_Empiricist's_Companion}} and
-\textit{Causal Inference: The Mixtape}.\sidenote{\url{http://scunning.com/mixtape.html}}
-This section will not include instructions on how to conduct specific analyses,
-as these are highly specialized and require field and statistical expertise.
+\textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844_Mostly_Harmless_Econometrics_An_Empiricist's_Companion}} 
+and \textit{Causal Inference: The Mixtape}.\sidenote{\url{http://scunning.com/mixtape.html}}
+This section will not include instructions on how to conduct specific analyses.
+That is a research question, and requires expertise beyond the scope of this book.
 Instead, we will outline the structure of writing analysis code,
 assuming you have completed the process of data cleaning and construction.
 
 % Exploratory and final data analysis -----------------------------------------
-Data analysis can be divided into two steps. 
-The first, which we will call exploratory data analysis, 
-is when you are trying different things and looking for patterns in your data. 
-The second step, the final analysis,
-happens when the research has matured,
-and your team has decided what pieces of analysis will make into the research output.
+The analysis stage usually starts with a process we call exploratory data analysis.
+This is when you are trying different things and looking for patterns in your data. 
+It progresses into final analysis when your team starts to decide what are the main results, those that will make it into the research output.
+The way you deal with code and outputs for exploratory and final analysis is different, and this section will discuss how.
 
 % Organizing scripts ---------------------------------------------------------
-During exploratory data analysis,
-you will be tempted to write lots of analysis 
-into one big, impressive, start-to-finish analysis file. 
-Though it's fine to write such a script during a long analysis meeting, 
-this practice is error-prone, 
-because it subtly encourages poor practices such as 
-not clearing the workspace or loading fresh data. 
+During exploratory data analysis, you will be tempted to write lots of analysis into one big, impressive, start-to-finish script. 
+Though it's fine to write such a script during a long analysis meeting, this practice is error-prone.  
+It subtly encourages poor practices such as not clearing the workspace or loading fresh data. 
 It's important to take the time to organize scripts in a clean manner and to avoid mistakes.
 
-A well-organized analysis script starts with 
-a completely fresh workspace and load its data directly
-prior to running that specific analysis.
-This encourages data manipulation to be done upstream (that is, during construction),
-and prevents you from accidentally writing pieces of code
-that depend on each other, leading to the too-familiar
-``run this part, then that part, then this part'' process.
+A well-organized analysis script starts with a completely fresh workspace and explicitly loads data before analyzing it.
+This encourages data manipulation to be done earlier in the workflow (that is, during construction).
+It also and prevents you from accidentally writing pieces of code that depend on one another, leading to the too-familiar ``run this part, then that part, then this part'' process.
 Each script should run completely independently of all other code.
 You can go as far as coding every output in a separate file.
-There is nothing wrong with code files being short and simple --
-as long as they directly correspond to specific pieces of analysis.
+There is nothing wrong with code files being short and simple -- as long as they directly correspond to specific pieces of analysis.
 
-To accomplish this, you will need to make sure that you
-have an effective system of naming, organization, and version control.
-Just like you named each of the analysis datasets,
-each of the individual analysis files should be descriptively named.
-Code files such as \path{spatial-diff-in-diff.do},
-\path{matching-villages.do}, and \path{summary-statistics.do}
-are clear indicators of what each file is doing
-and allow code to be found very quickly.
+Analysis files should be as simple as possible, so you can focus on the econometrics.
+All research decisions should be made very explicit in the code.
+This includes clustering, sampling, and control variables, to name a few. 
+If you have multiple analysis data sets, each of them should have a descriptive name about its sample and unit of observation.
+As your team comes to a decision about model specification, you can create globals or objects in the master script to use across scripts.
+This is a good way to make sure specifications are consistent throughout the analysis. It's also very dynamic, making it easy to update all scripts if needed.
+It is completely acceptable to have folders for each task, and compartmentalize each analysis as much as needed.
+It is always better to have more code files open than to keep scrolling inside a given file.
 
-Analysis files should be as simple as possible, 
-so you can focus on the econometrics.
-The first thing any analysis code does is to load a data set
-and explicitly set the analysis sample.
-In fact, all research decisions, not only the sampling,
-should be made very explicit in the code.
-This includes clustering, sampling and use of control variables. 
-As you come a decision on what are the main specifications to be reported,
-you can create globals or objects in the master do file 
-that set these options.
-This is a good way to make sure specifications are consistent throughout the analysis, 
-apart from being very dynamic and making it easy to update all scripts if needed.
-It is completely acceptable to have folders for each task,
-and compartmentalize each analysis as much as needed.
-It is always better to have more code files open
-than to have to scroll around repeatedly inside a given file.
+To accomplish this, you will need to make sure that you have an effective data management system, including naming, file organization, and version control.
+Just like you did with each of the analysis datasets, name each of the individual analysis files descriptively.
+Code files such as \path{spatial-diff-in-diff.do}, \path{matching-villages.do}, and \path{summary-statistics.do} 
+are clear indicators of what each file is doing, and allow you to find code quickly.
 
-% Outputs -----------------------------------------------------
+% Self-promotion ------------------------------------------------
+Out team has created a few products to automate common outputs and save you precious research time.
+The \texttt{ietoolkit} package includes two commands to export nicely formatted tables.
+\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Iebaltab}} creates and exports balance tables to excel and {\TeX}. \texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Ieddtab}} does the same for difference-in-differences regressions.
+The \textbf{Stata Visual Library}\sidenote{	\url{https://worldbank.github.io/Stata-IE-Visual-Library/}}
+has examples of graphs created in Stata and curated by us.\sidenote{A similar resource for R is \href{https://www.r-graph-gallery.com/}{The R Graph Gallery}.}
+\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_visualization}} \index{data visualization}
+is increasingly popular, but a great deal lacks in quality.\cite{healy2018data,wilke2019fundamentals}
+We attribute some of this to the difficulty of writing code to create them.
+Making a visually compelling graph would already be hard enough if you didn't have to go through many rounds of googling to understand a command.
+The trickiest part of using plot commands is to get the data in the right format.
+This is why the \textbf{Stata Visual Library} includes example data sets to use with each do file.
 
+Whole books have been written on how to create good data visualizations,
+so we will not attempt to give you advice on it.
+Rather, here are a few resources we have found useful.
+The Tapestry conference focuses on ``storytelling with data''.\sidenote{
+	\url{https://www.youtube.com/playlist?list=PLb0GkPPcZCVE9EAm9qhlg5eXMgLrrfMRq}}
+\textit{Fundamentals of Data Visualization} provides extensive details on practical application;\sidenote{
+	\url{https://serialmentor.com/dataviz}}
+as does \textit{Data Visualization: A Practical Introduction}.\sidenote{
+	\url{http://socvis.co}}
+Graphics tools like Stata are highly customizable.
+There is a fair amount of learning curve associated with extremely-fine-grained adjustment,
+but it is well worth reviewing the graphics manual\sidenote{\url{https://www.stata.com/manuals/g.pdf}}
+For an easier way around it, Gray Kimbrough's \textit{Uncluttered Stata Graphs} code is an excellent default replacement for Stata graphics that is easy to install.
+\sidenote{\url{https://graykimbrough.github.io/uncluttered-stata-graphs/}}
+If you are a R user, the \textit{R Graphics Cookbook}\sidenote{\url{https://r-graphics.org/}} is a great resource for the most popular visualization package\texttt{ggplot}\sidenote{\url{https://ggplot2.tidyverse.org/}}. But there are a variety of other visualization packages, such as \href{http://jkunst.com/highcharter/}{\texttt{highcharter}}, \href{https://rstudio.github.io/r2d3/}{\texttt{r2d3}}, \href{https://rstudio.github.io/leaflet/}{leaflet}, and \href{https://plot.ly/r/}{plotly}, to name a few.
+We have no intention of creating an exhaustive list, and this one is certainly missing very good references.
+But at least it is a place to start.
+
+\section{Exporting analysis outputs}
 % Exploratory analysis
 It's ok to not export each and every table and graph created during exploratory analysis. 
-Instead, we suggest running them into markdown files using RMarkdown or 
-the different dynamic document options available in Stata. 
-This will allow you to update and present results quickly, 
-while maintaining a record the different analysis explored. 
+Instead, we suggest running them into markdown files using RMarkdown or the different dynamic document options available in Stata. 
+This will allow you to update and present results quickly while maintaining a record of the different analysis tried. 
 % Final analysis
-Final analysis scripts, on the other hand, should export final outputs: 
-these are ready to be included to a paper or report; and
-no manual edits, including formatting, should be necessary after running them. 
-Manual edits are difficult to replicate, 
-and you will end up having to make changes to the outputs,
-so automating them will save you time by the end of the process. 
-Don't ever set a workflow that includes copying and pasting results printed in the console.
-% Output content
-Finally, a final outputs should be self-standing,
-meaning they are easy to read and understand 
-with only the information they contain.
-To accomplish this, labels and notes should cover all 
-relevant information such as
-sample, unit of observation, unit of measurement and variable definition. 
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Checklist:_Reviewing_Graphs}}
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Checklist:_Submit_Table}}
+Final analysis scripts, on the other hand, should export final outputs, which are ready to be included to a paper or report.
+No manual edits, including formatting, should be necessary after exporting final outputs. 
+Manual edits are difficult to replicate, and you will inevitably need to make changes to the outputs. 
+Automating them will save you time by the end of the process. 
+However, don't spend too much time formatting tables and graphs until you are ready to publish. 
+Polishing final outputs can be a time-consuming process, 
+and you want to it as few times as possible.
 
-% Output formats
-Outputs should be saved in accessible and, whenever possible, lightweight formats.
-% Figures
-Accessible means that other people can easily open them  -- 
-in Stata, that would mean always using \texttt{graph export} 
-to save images as \texttt{.jpg}, \texttt{.png}, \texttt{.pdf}, etc.,
-instead of \texttt{graph save}, which creates a \texttt{.gph} file 
-that can only be opened through a Stata installation.
-\texttt{.tif} and \texttt{.eps} are two examples of accessible lightweight formats,
-and \texttt{.eps} has the added advantage of allowing a designer to edit the images for printing.
-% Tables
+We cannot stress this enough: don't ever set a workflow that requires copying and pasting results from the console.
+There are numerous commands to export outputs from both R and Stata.\sidenote{Some examples are \href{ http://repec.sowi.unibe.ch/stata/estout/}{\texttt{estout}}, \href{https://www.princeton.edu/~otorres/Outreg2.pdf}{\texttt{outreg2}}, and \href{https://www.benjaminbdaniels.com/stata-code/outwrite/}{\texttt{outwrite}} in Stata, and \href{https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf}{\texttt{stargazer}} and \href{https://ggplot2.tidyverse.org/reference/ggsave.html}{\texttt{ggsave}} in R.}
+Save outputs in accessible and, whenever possible, lightweight formats.
+Accessible means that it's easy for other people to open them.
+In Stata, that would mean always using \texttt{graph export} to save images as \texttt{.jpg}, \texttt{.png}, \texttt{.pdf}, etc., instead of \texttt{graph save}, which creates a \texttt{.gph} file that can only be opened through a Stata installation.
 For tables, \texttt{.tex} is preferred. 
-A variety of packages in both R and Stata export tables in this format.
-Excel \texttt{.xlsx} and \texttt{.csv} files are also acceptable,
-although if you are working on a large report they will become cumbersome to update after revisions.
+Excel \texttt{.xlsx} and \texttt{.csv} files are also acceptable, although if you are working on a large report they will become cumbersome to update after revisions.
 
 % Formatting
-Don't spend too much time formatting tables and graphs until you are ready to publish. 
-Polishing final outputs can be a time-consuming process, 
-and you want to avoid doing it multiple times.
-If you need to create a table with a very particular format, 
-that is not automated by any command you know,
-consider writing the table manually 
+If you need to create a table with a very particular format, that is not automated by any command you know, consider writing the it manually 
 (Stata's \texttt{filewrite}, for example, allows you to do that).
-This will allow you to write a cleaner script that focuses on the econometrics, 
-and not on complicated commands to create and append intermediate matrices.
+This will allow you to write a cleaner script that focuses on the econometrics, and not on complicated commands to create and append intermediate matrices.
 To avoid cluttering your scripts with formatting and ensure that formatting is consistent across outputs,
 define formatting options in an R object or a Stata global and call them when needed.
-
-%------------------------------------------------
-
-\section{Visualizing data}
-
-\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_visualization}} is increasingly popular,
-\index{data visualization}
-but a great deal of it is very low quality.\cite{healy2018data,wilke2019fundamentals}
-The default graphics settings in Stata, for example,
-are pretty bad.\sidenote{Gray Kimbrough's
-\textit{Uncluttered Stata Graphs} code is an excellent
-default replacement that is easy to install.
-\url{https://graykimbrough.github.io/uncluttered-stata-graphs/}}
-Thankfully, graphics tools like Stata are highly customizable.
-There is a fair amount of learning curve associated with
-extremely-fine-grained adjustment,
-but it is well worth reviewing the graphics manual
-to understand how to apply basic colors, alignments, and labelling tools\sidenote{
-\url{https://www.stata.com/manuals/g.pdf}}
-The manual is worth skimming in full, as it provides
-many visual examples and corresponding code examples
-that detail how to produce them.
-
-Graphics are hard to get right because you, as the analyst,
-will already have a pretty good idea of what you are trying to convey.
-Someone seeing the illustration for the first time,
-by contrast, will have no idea what they are looking at.
-Therefore, a visual image has to be compelling in the sense
-that it shows that there is something interesting going on
-and compels the reader to figure out exactly what it is.
-A variety of resources can help you
-figure out how best to structure a given visual.
-The \textbf{Stata Visual Library}\sidenote{
-\url{https://worldbank.github.io/Stata-IE-Visual-Library/}}
- has many examples of figures that communicate effectively.
-The Tapestry conference focuses on ``storytelling with data''.\sidenote{
-\url{https://www.youtube.com/playlist?list=PLb0GkPPcZCVE9EAm9qhlg5eXMgLrrfMRq}}
-\textit{Fundamentals of Data Visualization} provides extensive details on practical application;\sidenote{
-\url{https://serialmentor.com/dataviz}}
-as does \textit{Data Visualization: A Practical Introduction}.\sidenote{
-\url{http://socvis.co}}
-
+% Output content
+Keep in mind that final outputs should be self-standing.
+This means it should be easy to read and understand them with only the information they contain.
+Make sure labels and notes cover all relevant information, such as sample, unit of observation, unit of measurement and variable definition.\sidenote{ \url{https://dimewiki.worldbank.org/wiki/Checklist:\_Reviewing\_Graphs} \\ \url{https://dimewiki.worldbank.org/wiki/Checklist:\_Submit\_Table}}
 
 
 
