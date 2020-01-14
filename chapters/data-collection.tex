@@ -1,67 +1,67 @@
 %------------------------------------------------
 
 \begin{fullwidth}
-High quality research begins with a thoughtfully-designed, field-tested survey instrument, and a carefully supervised survey. 
-Much of the recent push toward credibility in the social sciences has focused on analytical practices. 
-We contest that credible research depends, first and foremost, on the quality of the raw data. This chapter covers the data generation workflow, from questionnaire design to field monitoring, for electronic data collection. 
-There are many excellent resources on questionnaire design and field supervision, 
-\sidenote{\url{Grosh, Margaret; Glewwe, Paul. 2000. Designing Household Survey Questionnaires for Developing Countries : Lessons from 15 Years of the Living Standards Measurement Study, Volume 3. Washington, DC: World Bank. © World Bank. https://openknowledge.worldbank.org/handle/10986/15195 License: CC BY 3.0 IGO.}}
+High quality research begins with a thoughtfully-designed, field-tested survey instrument, and a carefully supervised survey.
+Much of the recent push toward credibility in the social sciences has focused on analytical practices.
+We contest that credible research depends, first and foremost, on the quality of the raw data. This chapter covers the data generation workflow, from questionnaire design to field monitoring, for electronic data collection.
+There are many excellent resources on questionnaire design and field supervision,
+\sidenote{Grosh, Margaret; Glewwe, Paul. 2000. Designing Household Survey Questionnaires for Developing Countries : Lessons from 15 Years of the Living Standards Measurement Study, Volume 3. Washington, DC: World Bank. © World Bank. \url{https://openknowledge.worldbank.org/handle/10986/15195 License: CC BY 3.0 IGO.}}
 but few covering the particularly challenges and opportunities presented by electronic surveys (often referred to as Computer Assisted Personal Interviews (CAPI)).
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted_Personal_Interviews_(CAPI)}} 
-As there are many electronic survey tools, we focus on workflows and primary concepts, rather than software-specific tools. 
-The chapter covers questionnaire design, piloting and programming; monitoring data quality during the survey; and how to ensure confidential data is handled securely from collection to storage and sharing. 
-	
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted\_Personal\_Interviews\_(CAPI)}}
+As there are many electronic survey tools, we focus on workflows and primary concepts, rather than software-specific tools.
+The chapter covers questionnaire design, piloting and programming; monitoring data quality during the survey; and how to ensure confidential data is handled securely from collection to storage and sharing.
+
 
 \end{fullwidth}
 
 %------------------------------------------------
 
 \section{Designing CAPI questionnaires}
-A well-designed questionnaire results from careful planning, consideration of analysis and indicators, close review of existing questionnaires, survey pilots, and research team and stakeholder review. 
-Although most surveys are now collected electronically  -- 
+A well-designed questionnaire results from careful planning, consideration of analysis and indicators, close review of existing questionnaires, survey pilots, and research team and stakeholder review.
+Although most surveys are now collected electronically  --
 \textbf{Questionnaire design}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
-\index{questionnaire design} 
-(content development) and questionnaire programming (functionality development) should be seen as two strictly separate tasks. 
-The research team should agree on all questionnaire content and design a paper version before programming a CAPI version. 
-This facilitates a focus on content during the design process and ensures teams have a readable, printable paper version of their questionnaire. 
-Most importantly, it means the research, not the technology, drives the questionnaire design.  
+\index{questionnaire design}
+(content development) and questionnaire programming (functionality development) should be seen as two strictly separate tasks.
+The research team should agree on all questionnaire content and design a paper version before programming a CAPI version.
+This facilitates a focus on content during the design process and ensures teams have a readable, printable paper version of their questionnaire.
+Most importantly, it means the research, not the technology, drives the questionnaire design.
 
-An easy-to-read paper version of the questionnaire is particularly critical for training enumerators, so they can get an overview of the survey content and structure before diving into the programming. 
-It is much easier for enumerators to understand all possible response pathways from a paper version, than from swiping question by question. 
-Finalizing the questionnaire before programming also avoids version control concerns that arise from concurrent work on paper and electronic survey instruments. 
-Finally, a paper questionnaire is an important documentation for data publication. 
+An easy-to-read paper version of the questionnaire is particularly critical for training enumerators, so they can get an overview of the survey content and structure before diving into the programming.
+It is much easier for enumerators to understand all possible response pathways from a paper version, than from swiping question by question.
+Finalizing the questionnaire before programming also avoids version control concerns that arise from concurrent work on paper and electronic survey instruments.
+Finally, a paper questionnaire is an important documentation for data publication.
 
-The workflow for designing a questionnaire will feel much like writing an essay, or writing pseudocode: begin from broad concepts and slowly flesh out the specifics. It is essential to start with a clear understanding of the 
+The workflow for designing a questionnaire will feel much like writing an essay, or writing pseudocode: begin from broad concepts and slowly flesh out the specifics. It is essential to start with a clear understanding of the
 \textbf{theory of change} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Theory_of_Change}} and \textbf{experimental design} for your project.
-The first step of questionnaire design is to list key outcomes of interest, as well as the main covariates and variables needed for experimental design. 
+The first step of questionnaire design is to list key outcomes of interest, as well as the main covariates and variables needed for experimental design.
 The ideal starting point for this is a \textbf{pre-analysis plan}. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan}}
 
-Use the list of key outcomes to create an outline of questionnaire \textit{modules} (do not number the modules yet; instead use a short prefix so they can be easily reordered). For each module, determine if the module is applicable to the full sample, the appropriate respondent, and whether (or how often), the module should be repeated. A few examples: a module on maternal health only applies to household with a woman who has children, a household income module should be answered by the person responsible for household finances, and a module on agricultural production might be repeated for each crop the household cultivated. 
+Use the list of key outcomes to create an outline of questionnaire \textit{modules} (do not number the modules yet; instead use a short prefix so they can be easily reordered). For each module, determine if the module is applicable to the full sample, the appropriate respondent, and whether (or how often), the module should be repeated. A few examples: a module on maternal health only applies to household with a woman who has children, a household income module should be answered by the person responsible for household finances, and a module on agricultural production might be repeated for each crop the household cultivated.
 
 Each module should then be expanded into specific indicators to observe in the field. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
-At this point, it is useful to do a  \textbf{content-focused pilot} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}} of the questionnaire. 
-Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions, as there is no need to factor in costs of re-programming, and as a result improves the overall quality of the survey instrument. 
+At this point, it is useful to do a  \textbf{content-focused pilot} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}} of the questionnaire.
+Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions, as there is no need to factor in costs of re-programming, and as a result improves the overall quality of the survey instrument.
 
 \subsection{Questionnaire design for quantitative analysis}
-This book covers surveys designed to yield datasets useful for quantitative analysis. This is a subset of surveys, and there are specific design considerations that will help to ensure the raw data outputs are ready for analysis. 
+This book covers surveys designed to yield datasets useful for quantitative analysis. This is a subset of surveys, and there are specific design considerations that will help to ensure the raw data outputs are ready for analysis.
 
-From a data perspective, questions with pre-coded response options are always preferable to open-ended questions (the content-based pilot is an excellent time to ask open-ended questions, and refine responses for the final version of the questionnaire). Coding responses helps to ensure that the data will be useful for quantitative analysis. Two examples help illustrate the point. First, instead of asking ``How do you feel about the proposed policy change?'', use techniques like 
+From a data perspective, questions with pre-coded response options are always preferable to open-ended questions (the content-based pilot is an excellent time to ask open-ended questions, and refine responses for the final version of the questionnaire). Coding responses helps to ensure that the data will be useful for quantitative analysis. Two examples help illustrate the point. First, instead of asking ``How do you feel about the proposed policy change?'', use techniques like
 \textbf{Likert scales}\sidenote{\textbf{Likert scale:} an ordered selection of choices indicating the respondent's level of agreement or disagreement with a proposed statement.}. Second, if collecting data on medication use or supplies, you could collect: the brand name of the product; the generic name of the product; the coded compound of the product; or the broad category to which each product belongs (antibiotic, etc.). All four may be useful for different reasons, but the latter two are likely to be the most useful for data analysis. The coded compound requires providing a translation dictionary to field staff, but enables automated rapid recoding for analysis with no loss of information. The generic class requires agreement on the broad categories of interest, but allows for much more comprehensible top-line statistics and data quality checks.
 
 There is debate over how individual questions should be identified: formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder, but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
-We recommend using descriptive names with clear prefixes so that variables within a module stay together when sorted alphabetically. {\sidenote{\url{https://medium.com/@janschenk/variable-names-in-survey-research-a18429d2d4d8}} Variable names should never include spaces or mixed cases (all lower case is best). Take care with the length: very long names will be cut off in certain software, which could result in a loss of uniqueness. We discourage explicit question numbering, as it discourages re-ordering, which is a common recommended change after the pilot. In the case of follow-up surveys, numbering can quickly become convoluted, too often resulting in variables names like 'ag_15a', 'ag_15_new', ag_15_fup2', etc. 
+We recommend using descriptive names with clear prefixes so that variables within a module stay together when sorted alphabetically.\sidenote{\url{https://medium.com/@janschenk/variable-names-in-survey-research-a18429d2d4d8}} Variable names should never include spaces or mixed cases (all lower case is best). Take care with the length: very long names will be cut off in certain software, which could result in a loss of uniqueness. We discourage explicit question numbering, as it discourages re-ordering, which is a common recommended change after the pilot. In the case of follow-up surveys, numbering can quickly become convoluted, too often resulting in variables names like 'ag_15a', 'ag_15_new', ag_15_fup2', etc.
 
-Questionnaires must include ways to document the reasons for \textbf{attrition}, treatment \textbf{contamination}, and \textbf{loss to follow-up}. 
-\index{attrition}\index{contamination} 
+Questionnaires must include ways to document the reasons for \textbf{attrition}, treatment \textbf{contamination}, and \textbf{loss to follow-up}.
+\index{attrition}\index{contamination}
 These are essential data components for completing CONSORT records, a standardized system for reporting enrollment, intervention allocation, follow-up, and data analysis through the phases of a randomized trial of two groups.
 \sidenote[][-3.5cm]{Begg, C., Cho, M., Eastwood, S., Horton, R., Moher, D., Olkin, I., Pitkin,	R., Rennie, D., Schulz, K. F., Simel, D., et al. (1996). Improving the quality of	reporting of randomized controlled	trials: The CONSORT statement. \textit{JAMA},	276(8):637--639}
 
 
 
 \subsection{Content-focused Pilot}
-A \textbf{Survey Pilot} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}} is the final step of questionnaire design. 
-A Content-focused Pilot \sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}  is best done on pen-and-paper, before the questionnaire is programmed. 
-The objective is to improve the structure and length of the questionnaire, refine the phrasing and translation of specific questions, and confirm coded response options are exhaustive.\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes}} 
+A \textbf{Survey Pilot} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}} is the final step of questionnaire design.
+A Content-focused Pilot \sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}  is best done on pen-and-paper, before the questionnaire is programmed.
+The objective is to improve the structure and length of the questionnaire, refine the phrasing and translation of specific questions, and confirm coded response options are exhaustive.\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes}}
 In addition, it is an opportunity to test and refine all survey protocols, such as how units will be sampled or pre-selected units identified. The pilot must be done out-of-sample, but in a context as similar as possible to the study sample.
 
 Once the content of the questionnaire is finalized and translated, it is time to proceed with programming the electronic survey instrument.
@@ -69,55 +69,55 @@ Once the content of the questionnaire is finalized and translated, it is time to
 
 %------------------------------------------------
 \section{Programming CAPI questionnaires}
-Electronic data collection has great potential to simplify survey implementation and improve data quality. 
+Electronic data collection has great potential to simplify survey implementation and improve data quality.
 Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets) or software-specific form builder, accessible even to novice users. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
-We will not address software-specific form design in this book; rather, we focus on coding conventions that are important to follow for CAPI regardless of software choice. 
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}} 
+We will not address software-specific form design in this book; rather, we focus on coding conventions that are important to follow for CAPI regardless of software choice.
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
 
-CAPI software tools provide a wide range of features designed to make implementing even highly complex surveys easy, scalable, and secure. 
-However, these are not fully automatic: you still need to actively design and manage the survey. 
-Here, we discuss specific practices that you need to follow to take advantage of CAPI features and ensure that the exported data is compatible with the software that will be used for analysis, and the importance of a data-focused pilot. 
+CAPI software tools provide a wide range of features designed to make implementing even highly complex surveys easy, scalable, and secure.
+However, these are not fully automatic: you still need to actively design and manage the survey.
+Here, we discuss specific practices that you need to follow to take advantage of CAPI features and ensure that the exported data is compatible with the software that will be used for analysis, and the importance of a data-focused pilot.
 
 \subsection{CAPI workflow}
-The starting point for questionnaire programming is a complete paper version of the questionnaire, piloted for content, and translated where needed. 
-Starting the programming at this point reduces version control issues that arise from making significant changes to concurrent paper and electronic survey instruments. 
-When you start programming, do not start with the first question and program your way to the last question. 
-Instead, code from high level to small detail, following the same questionnaire outline established at design phase. 
-The outline provides the basis for pseudocode, allowing you to start with high level structure and work down to the level of individual questions. This will save time and reduce errors. 
+The starting point for questionnaire programming is a complete paper version of the questionnaire, piloted for content, and translated where needed.
+Starting the programming at this point reduces version control issues that arise from making significant changes to concurrent paper and electronic survey instruments.
+When you start programming, do not start with the first question and program your way to the last question.
+Instead, code from high level to small detail, following the same questionnaire outline established at design phase.
+The outline provides the basis for pseudocode, allowing you to start with high level structure and work down to the level of individual questions. This will save time and reduce errors.
 
 \subsection{CAPI features}
-CAPI surveys are more than simply an electronic version of a paper questionnaire. 
-All common CAPI software allow you to automate survey logic and add in hard and soft constraints on survey responses. 
-These features make enumerators' work easier, and they create the opportunity to identify and resolve data issues in real-time, simplifying data cleaning and improving response quality. 
-Well-programmed questionnaires should include most or all of the following features: 
+CAPI surveys are more than simply an electronic version of a paper questionnaire.
+All common CAPI software allow you to automate survey logic and add in hard and soft constraints on survey responses.
+These features make enumerators' work easier, and they create the opportunity to identify and resolve data issues in real-time, simplifying data cleaning and improving response quality.
+Well-programmed questionnaires should include most or all of the following features:
 
 \begin{itemize}
 	\item{\textbf{Survey logic}}: build all skip patterns into the survey instrument, to ensure that only relevant questions are asked. This covers simple skip codes, as well as more complex interdependencies (e.g., a child health module is only asked to households that report the presence of a child under 5)
 	\item{\textbf{Range checks}}:  add range checks for all numeric variables to catch data entry mistakes (e.g. age must be less than 120)
 	\item{\textbf{Confirmation of key variables}}: require double entry of essential information (such as a contact phone number in a survey with planned phone follow-ups), with automatic validation that the two entries match
 	\item{\textbf{Multimedia}}: electronic questionnaires facilitate collection of images, video, and geolocation data directly during the survey, using the camera and GPS built into the tablet or phone.
-	\item{\textbf{Preloaded data}}: data from previous rounds or related surveys can be used to prepopulate certain sections of the questionnaire, and validated during the interview. 
-	\item{\textbf{Filtered response options}}: filters reduce the number of response options dynamically (e.g. filtering the cities list based on the state provided). 
-	\item{\textbf{Location checks}}: enumerators submit their actual location using in-built GPS, to confirm they are in the right place for the interview. 
-	\item{\textbf{Consistency checks}}: check that answers to related questions align, and trigger a warning if not so that enumerators can probe further. For example, if a household reports producing 800 kg of maize, but selling 900 kg of maize from their own production. 
-	\item{\textbf{Calculations}}: make the electronic survey instrument do all math, rather than relying on the enumerator or asking them to carry a calculator. 
+	\item{\textbf{Preloaded data}}: data from previous rounds or related surveys can be used to prepopulate certain sections of the questionnaire, and validated during the interview.
+	\item{\textbf{Filtered response options}}: filters reduce the number of response options dynamically (e.g. filtering the cities list based on the state provided).
+	\item{\textbf{Location checks}}: enumerators submit their actual location using in-built GPS, to confirm they are in the right place for the interview.
+	\item{\textbf{Consistency checks}}: check that answers to related questions align, and trigger a warning if not so that enumerators can probe further. For example, if a household reports producing 800 kg of maize, but selling 900 kg of maize from their own production.
+	\item{\textbf{Calculations}}: make the electronic survey instrument do all math, rather than relying on the enumerator or asking them to carry a calculator.
 \end{itemize}
 
 \subsection{Compatibility with analysis software}
-All CAPI software include debugging and test options to correct syntax errors and make sure that the survey instruments will successfully compile. 
+All CAPI software include debugging and test options to correct syntax errors and make sure that the survey instruments will successfully compile.
 This is not sufficient, however, to ensure that the resulting dataset will load without errors in your data analysis software of choice.
 We developed the \texttt{ietestform} command,\sidenote{\url{https://dimewiki.worldbank.org/wiki/ietestform}} part of
 \texttt{iefieldkit}, to implement a form-checking routine for \textbf{SurveyCTO}, a proprietary implementation of \textbf{Open Data Kit (ODK)}.
 Intended for use during questionnaire programming and before fieldwork, ietestform tests for best practices in coding, naming and labeling, and choice lists.
-Although \texttt{ietestform} is software-specific, many of the tests it runs are general and important to consider regardless of software choice. 
-To give a few examples, ietestform tests that no variable names exceed 32 characters, the limit in Stata (variable names that exceed that limit will be truncated, and as a result may no longer be unique). It checks whether ranges are included for numeric variables. 
-\texttt{ietestform} also removes all leading and trailing blanks from response lists, which could be handled inconsistently across software. 
+Although \texttt{ietestform} is software-specific, many of the tests it runs are general and important to consider regardless of software choice.
+To give a few examples, ietestform tests that no variable names exceed 32 characters, the limit in Stata (variable names that exceed that limit will be truncated, and as a result may no longer be unique). It checks whether ranges are included for numeric variables.
+\texttt{ietestform} also removes all leading and trailing blanks from response lists, which could be handled inconsistently across software.
 
 \subsection{Data-focused Pilot}
-The final stage of questionnaire programming is another Survey Pilot. 
-The objective of the Data-focused Pilot \sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes}} is to validate programming and export a sample dataset. 
-Significant desk-testing of the instrument is required to debug the programming as fully as possible before going to the field. 
-It is important to plan for multiple days of piloting, so that any further debugging or other revisions to the electronic survey instrument can be made at the end of each day and tested the following, until no further field errors arise. 
+The final stage of questionnaire programming is another Survey Pilot.
+The objective of the Data-focused Pilot \sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes}} is to validate programming and export a sample dataset.
+Significant desk-testing of the instrument is required to debug the programming as fully as possible before going to the field.
+It is important to plan for multiple days of piloting, so that any further debugging or other revisions to the electronic survey instrument can be made at the end of each day and tested the following, until no further field errors arise.
 The Data-focused pilot should be done in advance of Enumerator training
 
 
@@ -125,29 +125,29 @@ The Data-focused pilot should be done in advance of Enumerator training
 %------------------------------------------------
 \section{Data quality assurance}
 A huge advantage of CAPI surveys, compared to traditional paper surveys, is the ability to access and analyze the data while the survey is ongoing.
-Data issues can be identified and resolved in real-time. Designing systematic data checks, and running them routinely throughout data collection, simplifies monitoring and improves data quality. 
-As part of survey preparation, the research team should develop a \textbf{data quality assurance plan} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}. 
-While data collection is ongoing, a research assistant or data analyst should work closely with the field team to ensure that the survey is progressing correctly, and perform \textbf{high-frequency checks (HFCs)} of the incoming data. 
+Data issues can be identified and resolved in real-time. Designing systematic data checks, and running them routinely throughout data collection, simplifies monitoring and improves data quality.
+As part of survey preparation, the research team should develop a \textbf{data quality assurance plan} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}.
+While data collection is ongoing, a research assistant or data analyst should work closely with the field team to ensure that the survey is progressing correctly, and perform \textbf{high-frequency checks (HFCs)} of the incoming data.
 \sidenote{\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
-Data quality assurance requires a combination of both real-time data checks, survey audits, and field monitoring. Although field monitoring is critical for a successful survey, we focus on the first two in this chapter, as they are the most directly data related. 
+Data quality assurance requires a combination of both real-time data checks, survey audits, and field monitoring. Although field monitoring is critical for a successful survey, we focus on the first two in this chapter, as they are the most directly data related.
 
 
 \subsection{High Frequency Checks}
-High-frequency checks should carefully inspect key treatment and outcome variables so that the data quality of core experimental variables is uniformly high, and that additional field effort is centered where it is most important. 
-Data quality checks should be run on the data every time it is downloaded (ideally on a daily basis), to flag irregularities in survey progress, sample completeness or response quality. \texttt{ipacheck}\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks}} 
+High-frequency checks should carefully inspect key treatment and outcome variables so that the data quality of core experimental variables is uniformly high, and that additional field effort is centered where it is most important.
+Data quality checks should be run on the data every time it is downloaded (ideally on a daily basis), to flag irregularities in survey progress, sample completeness or response quality. \texttt{ipacheck}\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks}}
 is a very useful command that automates some of these tasks.
 
-It is important to check every day that the households interviewed match the survey sample. 
-Many CAPI software programs include case management features, through which sampled units are directly assigned to individual enumerators. 
-Even with careful management, it is often the case that raw data includes duplicate entries, which may occur due to field errors or duplicated submissions to the server. 
+It is important to check every day that the households interviewed match the survey sample.
+Many CAPI software programs include case management features, through which sampled units are directly assigned to individual enumerators.
+Even with careful management, it is often the case that raw data includes duplicate entries, which may occur due to field errors or duplicated submissions to the server.
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Duplicates_and_Survey_Logs}}
 \texttt{ieduplicates}\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieduplicates}}
 provides a workflow for collaborating on the resolution of duplicate entries between you and the field team.
 Next, observed units in the data must be validated against the expected sample:
 this is as straightforward as \texttt{merging} the sample list with the survey data and checking for mismatches.
 Reporting errors and duplicate observations in real-time allows the field team to make corrections efficiently.
-Tracking survey progress is important for monitoring attrition, so that it is clear early on if a change in protocols or additional tracking will be needed. 
-It is also important to check interview completion rate and sample compliance by surveyor and survey team, to identify any under-performing individuals or teams. 
+Tracking survey progress is important for monitoring attrition, so that it is clear early on if a change in protocols or additional tracking will be needed.
+It is also important to check interview completion rate and sample compliance by surveyor and survey team, to identify any under-performing individuals or teams.
 
 When all data collection is complete, the survey team should prepare a final field report, which should report reasons for any deviations between the original sample and the dataset collected.
 Identification and reporting of \textbf{missing data} and \textbf{attrition} is critical to the interpretation of survey data.
@@ -157,23 +157,23 @@ This reporting should be validated and saved alongside the final raw data, and t
 This information should be stored as a dataset in its own right -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
 and loss to follow-up occurred in the field and how they were implemented and resolved.
 
-High frequency checks should also include survey-specific data checks. As CAPI software incorporates many data control features, discussed above, these checks should focus on issues CAPI software cannot check automatically. As most of these checks are survey specific, it is difficult to provide general guidance. An in-depth knowledge of the questionnaire, and a careful examination of the pre-analysis plan, is the best preparation.Examples include  consistency across multiple responses, complex calculations suspicious patterns in survey timing or atypical response patters from specific enumerators. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}} CAPI software typically provides rich metadata, which can be useful in assessing interview quality. For example, automatically collected time stamps show how long enumerators spent per question, and trace histories show how many times answers were changed before the survey was submitted. 
+High frequency checks should also include survey-specific data checks. As CAPI software incorporates many data control features, discussed above, these checks should focus on issues CAPI software cannot check automatically. As most of these checks are survey specific, it is difficult to provide general guidance. An in-depth knowledge of the questionnaire, and a careful examination of the pre-analysis plan, is the best preparation.Examples include  consistency across multiple responses, complex calculations suspicious patterns in survey timing or atypical response patters from specific enumerators. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}} CAPI software typically provides rich metadata, which can be useful in assessing interview quality. For example, automatically collected time stamps show how long enumerators spent per question, and trace histories show how many times answers were changed before the survey was submitted.
 
 
 \subsection{Data considerations for field monitoring}
-Careful monitoring of field work is essential for high quality data.  
-\textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}} and other survey audits help ensure that enumerators are following established protocols, and are not falsifying data. 
-For back-checks, a random subset of the field sample is chosen and a subset of information from the full survey is verified through a brief interview with the original respondent. 
-Design of the backcheck questionnaire follows the same survey design principles discussed above, in particular you should use the pre-analysis plan or list of key outcomes to establish which subset of variables to prioritize. 
+Careful monitoring of field work is essential for high quality data.
+\textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}} and other survey audits help ensure that enumerators are following established protocols, and are not falsifying data.
+For back-checks, a random subset of the field sample is chosen and a subset of information from the full survey is verified through a brief interview with the original respondent.
+Design of the backcheck questionnaire follows the same survey design principles discussed above, in particular you should use the pre-analysis plan or list of key outcomes to establish which subset of variables to prioritize.
 
-Real-time access to the survey data increases the potential utility of backchecks dramatically, and both simplifies and improves the rigor of related workflows. 
-You can use the raw data to draw the backcheck sample; assuring it is appropriately apportioned across interviews and survey teams. 
-As soon as backchecks are complete, the backcheck data can be tested against the original data to identify areas of concern in real-time. 
+Real-time access to the survey data increases the potential utility of backchecks dramatically, and both simplifies and improves the rigor of related workflows.
+You can use the raw data to draw the backcheck sample; assuring it is appropriately apportioned across interviews and survey teams.
+As soon as backchecks are complete, the backcheck data can be tested against the original data to identify areas of concern in real-time.
 \texttt{bcstats} is a useful tool for analyzing back-check data in Stata module. \sidenote{\url{https://ideas.repec.org/c/boc/bocode/s458173.html}}
 
-CAPI surveys also provide a unique opportunity to do audits through audio recordings of the interview, typically short recordings triggered at random throughout the questionnaire. 
-\textbf{Audio audits} are a useful means to assess whether the enumerator is conducting the interview as expected (and not sitting under a tree making up data). 
-Do note, however, that audio audits must be included in the Informed Consent. 
+CAPI surveys also provide a unique opportunity to do audits through audio recordings of the interview, typically short recordings triggered at random throughout the questionnaire.
+\textbf{Audio audits} are a useful means to assess whether the enumerator is conducting the interview as expected (and not sitting under a tree making up data).
+Do note, however, that audio audits must be included in the Informed Consent.
 
 \textcolor{red}{
 \subsection{Dashboard}
@@ -182,71 +182,70 @@ Do we want to include something here about displaying HFCs? }
 %------------------------------------------------
 
 \section{Collecting Data Securely}
-Primary data collection almost always includes  \textbf{personally-identifiable information (PII)} 
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}. 
-PII must be handled with great care at all points in the data collection and management process, to comply with ethical requirements and avoid breaches of confidentiality. Access to PII must be restricted to team members granted that permission by the applicable Institutional Review Board or a data licensing agreement with a partner agency. Research teams must maintain strict protocols for data security at each stage of the process: data collection, storage, and sharing. 
+Primary data collection almost always includes  \textbf{personally-identifiable information (PII)}
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}.
+PII must be handled with great care at all points in the data collection and management process, to comply with ethical requirements and avoid breaches of confidentiality. Access to PII must be restricted to team members granted that permission by the applicable Institutional Review Board or a data licensing agreement with a partner agency. Research teams must maintain strict protocols for data security at each stage of the process: data collection, storage, and sharing.
 
 \subsection{Secure data in the field}
 All mainstream data collection software automatically \textbf{encrypt}
-\sidenote{\textbf{Encryption:} the process of making information unreadable to anyone without access to a specific deciphering key.} 
+\sidenote{\textbf{Encryption:} the process of making information unreadable to anyone without access to a specific deciphering key.}
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}
-all data submitted from the field while in transit (i.e., upload or download).  Your data will be encrypted from the time it leaves the device (in tablet-assisted data collation) or your browser (in web data collection), until it reaches the server. Therefore, as long as you are using an established CAPI software, this step is largely taken care of. However, the research team must ensure that all computers, tablets, and accounts used have a logon password and are never left unlocked. 
+all data submitted from the field while in transit (i.e., upload or download).  Your data will be encrypted from the time it leaves the device (in tablet-assisted data collation) or your browser (in web data collection), until it reaches the server. Therefore, as long as you are using an established CAPI software, this step is largely taken care of. However, the research team must ensure that all computers, tablets, and accounts used have a logon password and are never left unlocked.
 
 \subsection{Secure data storage}
 \textbf{Encryption at rest} is the only way to ensure that PII data remains private when it is stored on someone else's server on the open internet. You must keep your data encrypted on the server whenever PII data is collected.
-Encryption makes data files completely unusable without access to a security key specific to that data -- a higher level of security than password-protection. 
+Encryption makes data files completely unusable without access to a security key specific to that data -- a higher level of security than password-protection.
 Encryption at rest requires active participation from the user; and you should be fully aware that if your private key is lost, there is absolutely no way to recover your data.
 
-You should not assume that your data is encrypted by default: indeed, for most CAPI software platforms, encryption needs to be enabled by the user. 
+You should not assume that your data is encrypted by default: indeed, for most CAPI software platforms, encryption needs to be enabled by the user.
 To enable it, you must confirm you know how to operate the encryption system and understand the consequences if basic protocols are not followed.
 When you enable encryption, the service will allow you to download -- once -- the keyfile pair needed to decrypt the data.
 You must download and store this in a secure location, such as a password manager. Make sure you store keyfiles with descriptive names to match the survey to which they correspond.
-Any time anyone accesses the data - either when viewing it in the browser or downloading it to your computer - they will be asked to provide the keyfile. 
-Only project teams members names in the IRB are allowed access to the private keyfile. 
+Any time anyone accesses the data - either when viewing it in the browser or downloading it to your computer - they will be asked to provide the keyfile.
+Only project teams members names in the IRB are allowed access to the private keyfile.
 
-To proceed with data analysis, you typically need a working copy of the data accessible from a personal computer. The following workflow allows you to receive data from the server and store it securely, without compromising data security. 
+To proceed with data analysis, you typically need a working copy of the data accessible from a personal computer. The following workflow allows you to receive data from the server and store it securely, without compromising data security.
 
 \begin{enumerate}
 	\item Download data
 	\item Store a ``master'' copy of the data into an encrypted location that will remain accessible on disk and be regularly backed up
 	\item Secure a ``gold master'' copy of the raw data in a secure location, such as a long-term cloud storage service or an encrypted physical hard drive stored in a separate location. If you remain lucky, you will never have to access this copy -- you just want to know it is out there, safe, if you need it.
-	
+
 \end{enumerate}
 
-This handling satisfies the rule of three: there are two on-site copies of the data and one off-site copy, so the data can never be lost in case of hardware failure. 
+This handling satisfies the rule of three: there are two on-site copies of the data and one off-site copy, so the data can never be lost in case of hardware failure.
 In addition, you should ensure that all teams take basic precautions to ensure the security of data, as most problems are due to human error.
-Ideally, the machine hard drives themselves should also be encrypted, as well as any external hard drives or flash drives used. 
+Ideally, the machine hard drives themselves should also be encrypted, as well as any external hard drives or flash drives used.
 All files sent to the field containing PII data, such as sampling lists, should at least be password protected. This can be done using a zip-file creator.
-You must never share passwords by email; rather, use a secure password manager. 
+You must never share passwords by email; rather, use a secure password manager.
 This significantly mitigates the risk in case there is a security breach such as loss, theft, hacking, or a virus, with little impact on day-to-day utilization.
 
 \subsection{Secure data sharing}
-To simplify workflow, it is best to remove PII variables from your data at the earliest possible opportunity, and save a de-identified copy of the data. 
-Once the data is de-identified, it no longer needs to be encrypted - therefore you can interact with it directly, without having to provide the keyfile. 
+To simplify workflow, it is best to remove PII variables from your data at the earliest possible opportunity, and save a de-identified copy of the data.
+Once the data is de-identified, it no longer needs to be encrypted - therefore you can interact with it directly, without having to provide the keyfile.
 
-We recommend de-identification in two stages: an initial process to remove direct identifiers to create a working de-identified dataset, and a final process to remove all possible identifiers to create a publishable dataset. 
+We recommend de-identification in two stages: an initial process to remove direct identifiers to create a working de-identified dataset, and a final process to remove all possible identifiers to create a publishable dataset.
 The \textbf{initial de-identification} should happen directly after the encrypted data is downloaded to disk. At this time, for each variable that contains PII, ask: will this variable be needed for analysis?
-If not, the variable should be dropped. Examples include respondent names, enumerator names, interview date, respondent phone number. 
-If the variable is needed for analysis, ask: can I encode or otherwise construct a variable to use for the analysis that masks the PII, and drop the original variable? 
-Examples include: geocoordinates - after construction measures of distance or area, the specific location is often not necessary; and names for social network analysis, which can be encoded to unique numeric IDs. 
-If PII variables are directly required for the analysis itself, it will be necessary to keep at least a subset of the data encrypted through the data analysis process. 
+If not, the variable should be dropped. Examples include respondent names, enumerator names, interview date, respondent phone number.
+If the variable is needed for analysis, ask: can I encode or otherwise construct a variable to use for the analysis that masks the PII, and drop the original variable?
+Examples include: geocoordinates - after construction measures of distance or area, the specific location is often not necessary; and names for social network analysis, which can be encoded to unique numeric IDs.
+If PII variables are directly required for the analysis itself, it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
 
-Flagging all potentially identifying variables in the questionnaire design stage, as recommended above, simplifies the initial de-identification. 
-You already have the list of variables to assess, and ideally have already assessed those against the pre-analysis plan. 
-If so, all you need to do is write a script to drop the variables that are not required for analysis, encode or otherwise mask those that are required, and save a working version of the data. 
+Flagging all potentially identifying variables in the questionnaire design stage, as recommended above, simplifies the initial de-identification.
+You already have the list of variables to assess, and ideally have already assessed those against the pre-analysis plan.
+If so, all you need to do is write a script to drop the variables that are not required for analysis, encode or otherwise mask those that are required, and save a working version of the data.
 
-The \textbf{final de-identification} is a more involved process, with the objective of creating a dataset for publication that cannot be manipulated or linked to identify any individual research participant. 
+The \textbf{final de-identification} is a more involved process, with the objective of creating a dataset for publication that cannot be manipulated or linked to identify any individual research participant.
 You must remove all direct and indirect identifiers, and assess the risk of statistical disclosure. \sidenote{Disclosure risk: the likelihood that a released data record can be associated with an individual or organization}.
 \index{statistical disclosure}
-There will almost always be a trade-off between accuracy and privacy. For publicly disclosed data, you should always favor privacy. 
-There are a number of useful tools for de-identification: PII scanners for Stata \sidenote{\url{https://github.com/J-PAL/stata_PII_scan}} or R \sidenote{\url{https://github.com/J-PAL/PII-Scan}}, 
-and tools for statistical disclosure control. \sidenote{\url{https://sdcpractice.readthedocs.io/en/latest/#}}
-In cases where PII data is required for analysis, we recommend embargoing the sensitive variables when publishing the data. 
-Access to the embargoed data could be granted for the purposes of study replication, if approved by an IRB. 
+There will almost always be a trade-off between accuracy and privacy. For publicly disclosed data, you should always favor privacy.
+There are a number of useful tools for de-identification: PII scanners for Stata \sidenote{\url{https://github.com/J-PAL/stata_PII_scan}} or R \sidenote{\url{https://github.com/J-PAL/PII-Scan}},
+and tools for statistical disclosure control. \sidenote{\url{https://sdcpractice.readthedocs.io/en/latest/}}
+In cases where PII data is required for analysis, we recommend embargoing the sensitive variables when publishing the data.
+Access to the embargoed data could be granted for the purposes of study replication, if approved by an IRB.
 
 
 
 With the raw data securely stored and backed up, and a de-identified dataset to work with, you are ready to move to data cleaning, and analysis.
 
 %------------------------------------------------
-
