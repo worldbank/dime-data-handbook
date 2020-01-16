@@ -429,21 +429,26 @@ You will generally be working with two types of files:
 and ``non-technical'' files, which will not be accessed by code processes.
 The former takes precedent: an Excel file is a technical file
 even if it is a field log, because at some point it will be used by code.
-We will not give much emphasis to non-technical files here;
+We will not give much emphasis to files that are not linked to code here;
 but you should make sure to name them in an orderly fashion that works for your team.
 These rules will ensure you can find files within folders
 and reduce the amount of time others will spend opening files
 to find out what is inside them.
-Some of the differences between the two file types are major and may be new to you. For example,
-you can use spaces and datestamps in names of non-technical files, but not technical ones:
-the former might have a name like \texttt{2019-10-30 Sampling Procedure Description.docx}
-while the latter might have a name like \texttt{endline-sampling.do}.
-Technical files have stricter requirements than non-technical ones.\sidenote{
-  \url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-Git/slides/naming-slides/naming-slides.pdf}}
-For example, you should never use spaces in technical names;
-this can cause problems in code. (This includes all folder names.)
-Similarly, technical files should never include capital letters.
-One organizational practice that takes some getting used to
+The main point to be considered is that files accessed by code face more restrictions\sidenote{
+  \url{http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-Git/slides/naming-slides/naming-slides.pdf}},
+since different software and operating systems read file names in different ways.
+Some of the differences between the two naming approaches are major and may be new to you,
+so below are a few examples.
+Introducing spaces between words in a file name (including the folder path)
+can break a file's path when it's read by code,
+so while a Word document may be called \texttt{2019-10-30 Sampling Procedure Description.docx},
+a related do file would have a name like \texttt{sampling-endline.do}.
+Adding timestamps to binary files as in the example above can be useful,
+as it is not straightforward to track changes using version control software.
+However, for plaintext files tracked using Git, timestamps are an unnecessary distraction.
+Similarly, technical files should never include capital letters,
+as strings and file paths are case-sensitive in some software.
+Finally, one organizational practice that takes some getting used to
 is the fact that the best names from a coding perspective
 are usually the opposite of those from an English perspective.
 For example, for a deidentified household dataset from the baseline round,
