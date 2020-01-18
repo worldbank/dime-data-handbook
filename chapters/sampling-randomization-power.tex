@@ -113,10 +113,11 @@ We recommend you use \texttt{ieboilstart} at the beginning of your master do-fil
   \url{https://dimewiki.worldbank.org/wiki/Master_Do-files}}
 However, note that testing your do-files without running them
 via the master do-file may produce different results,
-since Stata's \texttt{version} expires after execution just like a \texttt{local}.
+since Stata's \texttt{version} setting expires after each time you run your do-files.
 
 \textbf{Sorting} means that the actual data that the random process is run on is fixed.
-Because numbers are assigned to each observation in sequence,
+Because numbers are assigned to each observation in row-by-row starting from 
+the top row,
 changing their order will change the result of the process.
 A corollary is that the underlying data must be unchanged between runs:
 you must make a fixed final copy of the data when you run a randomization for fieldwork.
@@ -132,16 +133,20 @@ There are many more seeds possible but this is a large enough set for most purpo
 In Stata, \texttt{set seed [seed]} will set the generator to that state.
 You should use exactly one seed per randomization process.
 The most important thing is that each of these seeds is truly random,
-so do not use shortcuts such as the current date or a fixed seed.
+so do not use shortcuts such as the current date or a seed you have used before.
 You will see in the code below that we include the source and timestamp for verification.
 Any process that includes a random component is a random process,
 including sampling, randomization, power calculation, and algorithms like bootstrapping.
 Other commands may induce randomness in the data or alter the seed without you realizing it,
 so carefully confirm exactly how your code runs before finalizing it.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Randomization_in_Stata}}
+
 To confirm that a randomization has worked well before finalizing its results,
 save the outputs of the process in a temporary location,
-re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure nothing has changed.
+re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure 
+nothing has changed. It is also advisable to let someone else reproduce your 
+randomization results on their machine to remove any doubt that your results 
+are reproducable.
 
 %-----------------------------------------------------------------------------------------------
 
