@@ -10,7 +10,7 @@ their first years after graduating.
 Recent Masters' program graduates that have joined our team
 tended to have very good knowledge in the theory of our
 trade, but also to require a lot of training in its practical skills.
-To us, this is like graduating  in architecture having learned 
+To us, this is like graduating  in architecture having learned
 how to sketch, describe, and discuss
 the concepts and requirements of a new building very well,
 but without having the technical skill-set
@@ -61,13 +61,13 @@ extracting the .zip-file you will find all the code in a folder called \texttt{/
 \subsection{Understanding Stata code}
 
 Regardless of being new to Stata or having used it for decades, you will always run into commands that
-you have not seen before or whose purpose you do not remember. 
-Every time that happens, you should always look that command up in the help file. 
-For some reason, we often encounter the conception that help files are only for beginners. 
-We could not disagree with that conception more, 
-as the only way to get better at Stata is to constantly read help files. 
-So if there is a command that you do not understand in any of our code examples, 
-for example \texttt{isid}, then write \texttt{help isid}, 
+you have not seen before or whose purpose you do not remember.
+Every time that happens, you should always look that command up in the help file.
+For some reason, we often encounter the conception that help files are only for beginners.
+We could not disagree with that conception more,
+as the only way to get better at Stata is to constantly read help files.
+So if there is a command that you do not understand in any of our code examples,
+for example \texttt{isid}, then write \texttt{help isid},
 and the help file for the command \texttt{isid} will open.
 
 We cannot emphasize enough how important we think it is that you get into the habit of reading help files.
@@ -76,24 +76,24 @@ Sometimes, you will encounter code that employs user-written commands,
 and you will not be able to read their help files until you have installed the commands.
 Two examples of these in our code are \texttt{randtreat} or \texttt{ieboilstart}.
 The most common place to distribute user-written commands for Stata
-is the Boston College Statistical Software Components (SSC) archive. 
+is the Boston College Statistical Software Components (SSC) archive.
 In our code examples, we only use either Stata's built-in commands or commands available from the
-SSC archive. 
+SSC archive.
 So, if your installation of Stata does not recognize a command in our code, for example
 \texttt{randtreat}, then type \texttt{ssc install randtreat} in Stata.
 
-Some commands on SSC are distributed in packages. 
-This is the case, for example, of \texttt{ieboilstart}. 
-That means that you will not be able to install it using \texttt{ssc install ieboilstart}. 
+Some commands on SSC are distributed in packages.
+This is the case, for example, of \texttt{ieboilstart}.
+That means that you will not be able to install it using \texttt{ssc install ieboilstart}.
 If you do, Stata will suggest that you instead use \texttt{findit ieboilstart},
 which will search SSC (among other places) and see if there is a
-package that contains a command called \texttt{ieboilstart}. 
-Stata will find \texttt{ieboilstart} in the package \texttt{ietoolkit}, 
+package that contains a command called \texttt{ieboilstart}.
+Stata will find \texttt{ieboilstart} in the package \texttt{ietoolkit},
 so to use this command you will type \texttt{ssc install ietoolkit} in Stata instead.
 
-We understand that it can be confusing to work with packages for first time, 
-but this is the best way to set up your Stata installation to benefit from other 
-people's work that has been made publicly available, 
+We understand that it can be confusing to work with packages for first time,
+but this is the best way to set up your Stata installation to benefit from other
+people's work that has been made publicly available,
 and once you get used to installing commands like this it will not be confusing at all.
 All code with user-written commands, furthermore, is best written when it installs such commands
 at the beginning of the master do-file, so that the user does not have to search for packages manually.
@@ -106,22 +106,22 @@ Python.\sidenote{\url{https://www.python.org/dev/peps/pep-0008/}} More commonly,
 non-official style guides like the JavaScript Standard Style\sidenote{\url{https://standardjs.com/\#the-rules}} for
 JavaScript or Hadley Wickham's\sidenote{\url{http://adv-r.had.co.nz/Style.html}} style guide for R.
 
-Aesthetics is an important part of style guides, but not the main point. 
+Aesthetics is an important part of style guides, but not the main point.
 The existence of style guides improves the quality of the code in that language that is produced by all programmers in the community.
 It is through a style guide that unexperienced programmers can learn from more experienced programmers
-how certain coding practices are more or less error-prone. 
-Broadly-accepted style guides make it easier to borrow solutions from each other and from examples online without causing bugs that might only be found too late. 
+how certain coding practices are more or less error-prone.
+Broadly-accepted style guides make it easier to borrow solutions from each other and from examples online without causing bugs that might only be found too late.
 Similarly, globally standardized style guides make it easier to solve each others'
 problems and to collaborate or move from project to project, and from team to team.
 
-There is room for personal preference in style guides, 
-but style guides are first and foremost about quality and standardization -- 
-especially when collaborating on code. 
+There is room for personal preference in style guides,
+but style guides are first and foremost about quality and standardization --
+especially when collaborating on code.
 We believe that a commonly used Stata style guide would improve the quality of all code written in Stata,
-which is why we have begun the one included here. 
-You do not necessarily need to follow our style guide precisely. 
-We encourage you to write your own style guide if you disagree with us. 
-The best style guide would be the one adopted the most widely. 
+which is why we have begun the one included here.
+You do not necessarily need to follow our style guide precisely.
+We encourage you to write your own style guide if you disagree with us.
+The best style guide would be the one adopted the most widely.
 What is important is that you adopt a style guide and follow it consistently across your projects.
 
 \newpage
@@ -198,9 +198,11 @@ Here is our non-exhaustive list of widely accepted abbreviations of common Stata
 		\texttt{tab} & \texttt{tabulate} \\
 		\texttt{bys} & \texttt{bysort} \\
 		\texttt{qui} & \texttt{quietly} \\
+		\texttt{noi} & \texttt{noisilt} \\
 		\texttt{cap} & \texttt{capture} \\
 		\texttt{forv} & \texttt{forvalues} \\
 		\texttt{prog} & \texttt{program} \\
+		\texttt{hist} & \texttt{histogram} \\
 		\hline
 	\end{tabular}
 \end{center}
@@ -223,8 +225,8 @@ for looping through \textbf{iterations} with \texttt{i};
 and for looping across matrices with \texttt{i}, \texttt{j}.
 Other typical index names are \texttt{obs} or \texttt{var} when looping over observations or variables, respectively.
 But since Stata does not have arrays, such abstract syntax should not be used in Stata code otherwise.
-Instead, index names should describe what the code is looping over -- 
-for example household members, crops, or medicines. 
+Instead, index names should describe what the code is looping over --
+for example household members, crops, or medicines.
 This makes code much more readable, particularly in nested loops.
 
 \codeexample{stata-loops.do}{./code/stata-loops.do}
@@ -240,7 +242,7 @@ The same principles apply to coding.
 In the example below the exact same code is written twice,
 but in the better example whitespace is used to signal to the reader
 that the central object of this segment of code is the variable \texttt{employed}.
-Organizing the code like this makes it much quicker to read, 
+Organizing the code like this makes it much quicker to read,
 and small typos stand out more, making them easier to spot.
 
 \codeexample{stata-whitespace-columns.do}{./code/stata-whitespace-columns.do}
