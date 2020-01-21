@@ -6,11 +6,11 @@ requires a mix of subject expertise, programming skills,
 and statistical and econometric knowledge. 
 The process of data analysis is, therefore, 
 a back-and-forth discussion between people 
-with differing experiences, perspectives, and research interests. 
+with differing skill sets. 
 The research assistant usually ends up being the pivot of this discussion. 
 It is their job to translate the data received from the field into
 economically meaningful indicators and to analyze them 
-while making sure that code and outputs do not become tangled and lost over time.
+while making sure that code and outputs do not become too difficult to follow or get lost over time.
 
 When it comes to code, though, analysis is the easy part, 
 \textit{as long as you have organized your data well}. 
@@ -200,7 +200,7 @@ is designed to make some of the most tedious components of this process,
 such as renaming, relabeling, and value labeling, much easier.\sidenote{\url{https://dimewiki.worldbank.org/wiki/iecodebook}}
 \index{iecodebook}
 We have a few recommendations on how to use this command for data cleaning.
-First, we suggest keeping the same variable names as in the survey instrument, so it's straightforward to link data points for a variable to the question that originated them.
+First, we suggest keeping the same variable names in the cleaned data set as in the survey instrument, so it's straightforward to link data points for a variable to the question that originated them.
 Second, don't skip the labeling.
 Applying labels makes it easier to understand what the data is showing while exploring the data. 
 This minimizes the risk of small errors making their way through into the analysis stage.
@@ -342,7 +342,7 @@ It is wise to start an explanatory guide as soon as you start making changes to 
 Carefully record how specific variables have been combined, recoded, and scaled. 
 This can be part of a wider discussion with your team about creating protocols for variable definition.
 That will guarantee that indicators are defined consistently across projects.
-Documentation is an output of construction as relevant as the codes.
+Documentation is an output of construction as relevant as the code and the data.
 Someone unfamiliar with the project should be able to understand the contents of the analysis data sets, the steps taken to create them, and the decision-making process through your documentation.
 The construction documentation will complement the reports and notes created during data cleaning.
 Together, they will form a detailed account of the data processing.
@@ -374,7 +374,7 @@ The way you deal with code and outputs for exploratory and final analysis is dif
 % Organizing scripts ---------------------------------------------------------
 During exploratory data analysis, you will be tempted to write lots of analysis into one big, impressive, start-to-finish script. 
 Although it's fine to write such a script if you are coding in real-time during a long analysis meeting with your PIs, this practice is error-prone.  
-It subtly encourages poor practices such as not clearing the workspace and not loading fresh data for each analysis task. 
+It subtly encourages poor practices such as not clearing the workspace and not reloading the constructed data set before each analysis task. 
 It's important to take the time to organize scripts in a clean manner and to avoid mistakes.
 
 A well-organized analysis script starts with a completely fresh workspace and explicitly loads data before analyzing it.
@@ -389,7 +389,8 @@ All research decisions should be made very explicit in the code.
 This includes clustering, sampling, and control variables, to name a few. 
 If you have multiple analysis data sets, each of them should have a descriptive name about its sample and unit of observation.
 As your team comes to a decision about model specification, you can create globals or objects in the master script to use across scripts.
-This is a good way to make sure specifications are consistent throughout the analysis. It's also very dynamic, making it easy to update all scripts if needed.
+This is a good way to make sure specifications are consistent throughout the analysis. 
+Using pre-specified globals or objects also makes your code more dynamic, so it is easy to update specifications and results without changing every script.
 It is completely acceptable to have folders for each task, and compartmentalize each analysis as much as needed.
 It is always better to have more code files open than to keep scrolling inside a given file.
 
