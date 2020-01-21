@@ -17,7 +17,7 @@ When it comes to code, though, analysis is the easy part,
 Of course, there is plenty of complexity behind it: 
 the econometrics, the theory of change, the measurement methods, and so much more.
 But none of those are the subject of this book. 
-Instead, this chapter will focus on how to organize your data work.
+\textit{Instead, this chapter will focus on how to organize your data work so that coding the analysis becomes easy}.
 Most of a Research Assistant's time is spent cleaning data and getting it into the right format. 
 When the practices recommended here are adopted,
 analyzing the data is as simple as using a command that is already implemented in a statistical software. 
@@ -145,12 +145,11 @@ They will invariably come in a host of file formats and nearly always contain pe
 These files should be retained in the raw data folder \textit{exactly as they were received}.
 The folder must be encrypted if it is shared in an insecure fashion,\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}
 and it must be backed up in a secure offsite location.
-Everything else can be replaced, but raw data cannot.
-Therefore, raw data should never be interacted with directly.
+Every other file is created from the raw data, and therefore can be recreated.
+The exception, of course, is the raw data itself, so it should never be edited directly.
 
-Secure storage of the raw\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Security}}
-data means access to it will be restricted even inside the research team.
-Loading encrypted data multiple times it can be annoying.
+Secure storage of the raw data means access to it will be restricted even inside the research team.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Security}}
+Loading encrypted data frequently can be disruptive to the work flow.
 To facilitate the handling of the data, remove any personally identifiable information from the data set.
 This will create a de-identified data set, that can be saved in a non-encrypted folder. 
 De-identification,\sidenote{\url{https://dimewiki.worldbank.org/wiki/De-identification}}
@@ -192,24 +191,21 @@ and you should keep a careful record of how they were identified,
 and how the correct value was obtained.
 
 % Data description ------------------------------------------------------------------
-Note that if you are using secondary data, 
-the tasks described above can likely be skipped.
-However, the last step of data cleaning, describing the data,
-will probably still be necessary.
+Note that if you are using secondary data, the tasks described above can likely be skipped.
+The last step of data cleaning, however, will most likely still be necessary.
+It consists of describing the data, so that its users have all the information needed to interact with it.
 This is a key step to making the data easy to use, but it can be quite repetitive.
 The \texttt{iecodebook} command suite, also part of \texttt{iefieldkit},
 is designed to make some of the most tedious components of this process,
-such as renaming, relabeling, and value labeling,
-much easier (including in data appending).\sidenote{\url{https://dimewiki.worldbank.org/wiki/iecodebook}}
+such as renaming, relabeling, and value labeling, much easier.\sidenote{\url{https://dimewiki.worldbank.org/wiki/iecodebook}}
 \index{iecodebook}
 We have a few recommendations on how to use this command for data cleaning.
-First, we suggest keeping the same variable names as in the survey instrument,
-so it's easy to connect the two files.
-Don't skip the labelling.
+First, we suggest keeping the same variable names as in the survey instrument, so it's straightforward to link data points for a variable to the question that originated them.
+Second, don't skip the labeling.
 Applying labels makes it easier to understand what the data is showing while exploring the data. 
 This minimizes the risk of small errors making their way through into the analysis stage.
 Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Applying\_Labels}}
-Recodes should be used to turn codes for ``Don't know'', ``Refused to answer'', and
+Third, recodes should be used to turn codes for ``Don't know'', ``Refused to answer'', and
 other non-responses into extended missing values.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
 String variables need to be encoded, and open-ended responses, categorized or dropped\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Strings}}
 (unless you are using qualitative or classification analyses, which are less common).
@@ -282,7 +278,7 @@ The first one is to clear differentiation between the data originally collected 
 The second is to ensure that variable definition is consistent across data sources. 
 Unlike cleaning, construction can create many outputs from many inputs. 
 Let's take the example of a project that has a baseline and an endline survey. 
-Unless the two instruments are exactly the same, which is unlikely,  the data cleaning for them will require different steps, and therefore will be done separately. 
+Unless the two instruments are exactly the same, which is preferable but often not the case,  the data cleaning for them will require different steps, and therefore will be done separately. 
 However, you still want the constructed variables to be calculated in the same way, so they are comparable.
 So you want to construct indicators for both rounds in the same code, after merging them.
 
@@ -334,10 +330,11 @@ It is common to have many purpose-built analysis datasets:
 there may be a \texttt{data-wide.dta},
 \texttt{data-wide-children-only.dta}, \texttt{data-long.dta},
 \texttt{data-long-counterfactual.dta}, and many more as needed.
-One thing all constructed data sets should have in common, though,
-are functionally-named variables.
-As you no longer need to worry about keeping variable names
-consistent with the survey, they should be as intuitive as possible.
+One thing all constructed data sets should have in common, though, are functionally-named variables.
+Constructed variables are called ``constructed'' because they were not present in the survey to start with,
+so making their names consistent with the survey form is not as crucial.
+Of course, whenever possible, having variables names that are both intuitive and can be linked to the survey is ideal.
+However, functionality should be prioritized here.
 Remember to consider keeping related variables together and adding notes to each as necessary.
 
 % Documentation
@@ -376,18 +373,18 @@ It progresses into final analysis when your team starts to decide what are the m
 The way you deal with code and outputs for exploratory and final analysis is different, and this section will discuss how.
 % Organizing scripts ---------------------------------------------------------
 During exploratory data analysis, you will be tempted to write lots of analysis into one big, impressive, start-to-finish script. 
-Though it's fine to write such a script during a long analysis meeting, this practice is error-prone.  
-It subtly encourages poor practices such as not clearing the workspace and not loading fresh data. 
+Although it's fine to write such a script if you are coding in real-time during a long analysis meeting with your PIs, this practice is error-prone.  
+It subtly encourages poor practices such as not clearing the workspace and not loading fresh data for each analysis task. 
 It's important to take the time to organize scripts in a clean manner and to avoid mistakes.
 
 A well-organized analysis script starts with a completely fresh workspace and explicitly loads data before analyzing it.
 This encourages data manipulation to be done earlier in the workflow (that is, during construction).
-It also and prevents you from accidentally writing pieces of analysis code that depend on one another, leading to the too-familiar ``run this part, then that part, then this part'' process.
+It also and prevents you from accidentally writing pieces of analysis code that depend on one another and requires manual instructions for all required code snippets be run in the right order.
 Each script should run completely independently of all other code.
 You can go as far as coding every output in a separate script.
 There is nothing wrong with code files being short and simple -- as long as they directly correspond to specific pieces of analysis.
 
-Analysis files should be as simple as possible, so you can focus on the econometrics.
+Analysis files should be as simple as possible, so whoever is reading it can focus on the econometrics.
 All research decisions should be made very explicit in the code.
 This includes clustering, sampling, and control variables, to name a few. 
 If you have multiple analysis data sets, each of them should have a descriptive name about its sample and unit of observation.
@@ -407,7 +404,7 @@ leave this to near publication time.
 Our team has created a few products to automate common outputs and save you 
 precious research time.
 The \texttt{ietoolkit} package includes two commands to export nicely formatted tables.
-\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Iebaltab}} creates and exports balance tables to excel and {\TeX}. 
+\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Iebaltab}} creates and exports balance tables to excel or {\LaTeX}. 
 \texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Ieddtab}} does the same for difference-in-differences regressions.
 The \textbf{Stata Visual Library}\sidenote{	\url{https://worldbank.github.io/Stata-IE-Visual-Library/}}
 has examples of graphs created in Stata and curated by us.\sidenote{A similar resource for R is \textit{The R Graph Gallery}. \\\url{https://www.r-graph-gallery.com/}}
@@ -469,8 +466,7 @@ In Stata, that would mean always using \texttt{graph export} to save images as \
 instead of \texttt{graph save}, which creates a \texttt{.gph} file that can only be opened through a Stata installation.
 Some publications require ``lossless'' TIFF of EPS files, which are created by specifying the desired extension.
 For tables, \texttt{.tex} is preferred. 
-Excel \texttt{.xlsx} and \texttt{.csv} files are also acceptable, 
-although if you are working on a large report they will become cumbersome to update after revisions.
+Excel \texttt{.xlsx} and \texttt{.csv} files are also acceptable, but require the extra step of copying the tables into the final output, so it can be cumbersome to ensure that your paper or report is always up-to-date.
 Whichever format you decide to use, remember to always specify the file extension explicitly.
 
 % Formatting
