@@ -36,8 +36,7 @@ Finally, a paper questionnaire is an important documentation for data publicatio
 \subsection{Content-focused Pilot}
 A \textbf{survey pilot}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}} is essential to finalize questionnaire design.
 A content-focused pilot\sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}  is best done on pen-and-paper, before the questionnaire is programmed.
-The objective is to improve the structure and length of the questionnaire, refine the phrasing and translation of specific questions, and confirm coded response options are exhaustive.\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes}}
-In addition, it is an opportunity to test and refine all survey protocols, such as how units will be sampled or pre-selected units identified. The pilot must be done out-of-sample, but in a context as similar as possible to the study sample.
+The objective is to improve the structure and length of the questionnaire, refine the phrasing and translation of specific questions, and confirm coded response options are exhaustive.\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes}} In addition, it is an opportunity to test and refine all survey protocols, such as how units will be sampled or pre-selected units identified. The pilot must be done out-of-sample, but in a context as similar as possible to the study sample.
 
 \subsection{Data-focused pilot}
 A second survey pilot should be done after the questionnaire is programmed. 
@@ -188,19 +187,28 @@ should focus on issues survey software cannot check automatically. As most of
 these checks are survey specific, it is difficult to provide general guidance. 
 An in-depth knowledge of the questionnaire, and a careful examination of the 
 pre-analysis plan, is the best preparation. Examples include  consistency 
-across multiple responses, complex calculations, suspicious patterns in survey 
-timing, or atypical response patters from specific enumerators. 
+across multiple responses, complex calculation (such as crop yield, which first requires unit conversions), 
+suspicious patterns in survey timing, or atypical response patters from specific enumerators. 
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}} 
 survey software typically provides rich metadata, which can be useful in 
 assessing interview quality. For example, automatically collected time stamps 
 show how long enumerators spent per question, and trace histories show how many 
 times answers were changed before the survey was submitted.
 
+High-frequency checks will only improve data quality if the issues they catch are communicated to the field.
+There are lots of ways to do this; what's most important is to find a way to create actionable information for your team, given field constraints. 
+`ipacheck` generates an excel sheet with results for each run; these can be sent directly to the field teams.
+Many teams choose other formats to display results, notably online dashboards created by custom scripts.
+It is also possible to automate communication of errors to the field team by adding scripts to link the HFCs with a messaging program such as whatsapp.
+Any of these solutions are possible: what works best for your team will depend on such variables as cellular networks in fieldwork areas, whether field supervisors have access to laptops, internet speed, and coding skills of the team preparing the HFC workflows. 
+
 
 \subsection{Data considerations for field monitoring}
 Careful monitoring of field work is essential for high quality data.
-\textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}} and other survey audits help ensure that enumerators are following established protocols, and are not falsifying data.
-For back-checks, a random subset of the field sample is chosen and a subset of information from the full survey is verified through a brief interview with the original respondent.
+\textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}} and 
+other survey audits help ensure that enumerators are following established protocols, and are not falsifying data.
+For back-checks, a random subset of the field sample is chosen and a subset of information from the full survey is 
+verified through a brief interview with the original respondent.
 Design of the back-check questionnaire follows the same survey design 
 principles discussed above: you should use the pre-analysis plan 
 or list of key outcomes to establish which subset of variables to prioritize.
@@ -215,13 +223,11 @@ the original data to identify areas of concern in real-time.
 \texttt{bcstats} is a useful tool for analyzing back-check data in Stata module.
 \sidenote{\url{https://ideas.repec.org/c/boc/bocode/s458173.html}}
 
-Electronic surveys also provide a unique opportunity to do audits through audio recordings of the interview, typically short recordings triggered at random throughout the questionnaire.
-\textbf{Audio audits} are a useful means to assess whether the enumerator is conducting the interview as expected (and not sitting under a tree making up data).
+Electronic surveys also provide a unique opportunity to do audits through audio recordings of the interview, 
+typically short recordings triggered at random throughout the questionnaire.
+\textbf{Audio audits} are a useful means to assess whether the enumerator is conducting the interview 
+as expected (and not sitting under a tree making up data).
 Do note, however, that audio audits must be included in the Informed Consent.
-
-\textcolor{red}{
-\subsection{Dashboard}
-Do we want to include something here about displaying HFCs? }
 
 %------------------------------------------------
 
@@ -234,7 +240,7 @@ PII must be handled with great care at all points in the data collection and man
 All mainstream data collection software automatically \textbf{encrypt}
 \sidenote{\textbf{Encryption:} the process of making information unreadable to 
 anyone without access to a specific deciphering 
-key. \url{https://dimewiki.worldbank.org/wiki/Encryption}}
+key. \sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}
 all data submitted from the field while in transit (i.e., upload or download).  Your data will be encrypted from the time it leaves the device (in tablet-assisted data collation) or your browser (in web data collection), until it reaches the server. Therefore, as long as you are using an established survey software, this step is largely taken care of. However, the research team must ensure that all computers, tablets, and accounts used have a logon password and are never left unlocked.
 
 \subsection{Secure data storage}
