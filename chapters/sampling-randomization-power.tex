@@ -116,19 +116,19 @@ via the master do-file may produce different results,
 since Stata's \texttt{version} setting expires after each time you run your do-files.
 
 \textbf{Sorting} means that the actual data that the random process is run on is fixed.
-Because numbers are assigned to each observation in row-by-row starting from 
+Because numbers are assigned to each observation in row-by-row starting from
 the top row,
 changing their order will change the result of the process.
 A corollary is that the underlying data must be unchanged between runs:
 you must make a fixed final copy of the data when you run a randomization for fieldwork.
 In Stata, the only way to guarantee a unique sorting order is to use
 \texttt{isid [id\_variable], sort}. (The \texttt{sort, stable} command is insufficient.)
-You can additionally use the \texttt{datasignature} command to make sure the 
+You can additionally use the \texttt{datasignature} command to make sure the
 data is unchanged.
 
 \textbf{Seeding} means manually setting the start-point of the randomization algorithm.
-You can draw a six-digit seed randomly by visiting \url{http://bit.ly/stata-random}.
-(This link is a shortcut to a specific request on \url{https://www.random.org}.)
+You can draw a uniformly distributed six-digit seed randomly by visiting \url{http://bit.ly/stata-random}.
+(This link is a just shortcut to request such a random seed on \url{https://www.random.org}.)
 There are many more seeds possible but this is a large enough set for most purposes.
 In Stata, \texttt{set seed [seed]} will set the generator to that state.
 You should use exactly one seed per randomization process.
@@ -143,9 +143,9 @@ so carefully confirm exactly how your code runs before finalizing it.\sidenote{
 
 To confirm that a randomization has worked well before finalizing its results,
 save the outputs of the process in a temporary location,
-re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure 
-nothing has changed. It is also advisable to let someone else reproduce your 
-randomization results on their machine to remove any doubt that your results 
+re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure
+nothing has changed. It is also advisable to let someone else reproduce your
+randomization results on their machine to remove any doubt that your results
 are reproducable.
 
 %-----------------------------------------------------------------------------------------------
@@ -185,7 +185,7 @@ from a master list of individuals to be surveyed for data collection.\sidenote{
 That master list may be called a \textbf{sampling universe}, a \textbf{listing frame}, or something similar.
 We recommend that this list be organized in a \textbf{master data set}\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Master_Data_Set}},
-creating an authoritative source for the existence and fixed 
+creating an authoritative source for the existence and fixed
 characteristics of each of the units that may be surveyed.\sidenote{
 	\url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
 The master data set indicates how many individuals are eligible for data collection,
