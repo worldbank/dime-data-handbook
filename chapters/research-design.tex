@@ -69,7 +69,7 @@ Each of these approaches can be used in two contexts:
 is directly responsible for creating the variation in treatment,
 and \textbf{quasi-experimental} designs, in which the team
 identifies a ``natural'' source of variation and uses it for identification.
-Neither type of approach is implicitly better or worse,
+Neither approach is implicitly better or worse,
 and both are capable of achieving effect identification under different contexts.
 
 %-----------------------------------------------------------------------------------------------
@@ -83,8 +83,8 @@ Each unit's treatment effect is the individual difference between these two stat
 and the \textbf{average treatment effect (ATE)} is the average of all
 individual differences across the potentially treated population.
   \index{average treatment effect}
-This is the most common parameter that research designs will want to estimate.
-In most designs, the goal is to establish a ``counterfactual scenario'' for the treatment group
+This is the parameter that most research designs attempt to estimate.
+Their goal is to establish a ``counterfactual scenario'' for the treatment group
 with which outcomes can be directly compared.
 There are several resources that provide more or less mathematically intensive
 approaches to understanding how various methods to his.
@@ -120,7 +120,7 @@ as a series of between-group comparisons.\sidenote{
   \url{http://nickchk.com/econ305.html}}
 
 Most of the methods that you will encounter rely on some variant of this strategy,
-which is designed to maximize the ability to estimate the effect
+which is designed to maximize their ability to estimate the effect
 of an average unit being offered the treatment you want to evaluate.
 The focus on identification of the treatment effect, however,
 means there are several essential features to this approach
@@ -128,13 +128,13 @@ that are not common in other types of statistical and data science work.
 First, the econometric models and estimating equations used
 do not attempt to create a predictive or comprehensive model
 of how the outcome of interest is generated.
-Typically, these designs are not interested in predictive accuracy,
+Typically, causal inference designs are not interested in predictive accuracy,
 and the estimates and predictions that they produce
 will not be as good at predicting outcomes or fitting the data as other models.
 Additionally, when control variables or other variables are used in estimation,
-there is no guarantee that those parameters are marginal effects.
+there is no guarantee that the resulting parameters are marginal effects.
 They can only be interpreted as correlative averages,
-unless the experimenter has additional sources of identification for them.
+unless there are additional sources of identification.
 The models you will construct and estimate are intended to do exactly one thing:
 to express the intention of your project's research design,
 and to accurately estimate the effect of the treatment it is evaluating.
@@ -170,8 +170,8 @@ through RCT approaches.\sidenote{
 
 Randomized designs all share several major statistical concerns.
 The first is the fact that it is always possible to select a control group,
-by chance, which was not in fact going to be very similar to the treatment group.
-This feature is called randomization noise, and all RCTs share the need to understand
+by chance, which is not in fact very similar to the treatment group.
+This feature is called randomization noise, and all RCTs share the need to assess
 how randomization noise may impact the estimates that are obtained.
 Second, takeup and implementation fidelity are extremely important,
 since programs will by definition have no effect
@@ -188,12 +188,12 @@ and often overshadow the effort put into the econometric design itself.
 
 \textbf{Quasi-experimental} research designs,\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Quasi-Experimental_Methods}}
-by contrast, are inference methods based on events not controlled by the research team.
+by contrast, are causal inference methods based on events not controlled by the research team.
 Instead, they rely on ``experiments of nature'',
 in which natural variation can be argued to approximate
 the type of exogenous variation in treatment availability
 that a researcher would attempt to create with an experiment.\cite{dinardo2016natural}
-Unlike with carefully planned experimental designs,
+Unlike carefully planned experimental designs,
 quasi-experimental designs typically require the extra luck
 of having access to data collected at the right times and places
 to exploit events that occurred in the past,
@@ -205,9 +205,9 @@ or use primary data in a cross-sectional retrospective method.
 Quasi-experimental designs therefore can access a much broader range of questions,
 and with much less effort in terms of executing an intervention.
 However, they require in-depth understanding of the precise events
-the researcher wishes to address in order to know what data to collect
+the researcher wishes to address in order to know what data to use
 and how to model the underlying natural experiment.
-Additionally, because the population who will have been exposed
+Additionally, because the population exposed
 to such events is limited by the scale of the event,
 quasi-experimental designs are often power-constrained.
 There is nothing the research team can do to increase power
@@ -227,9 +227,9 @@ that can be observed in RCT designs, and have similar implications for field wor
 %-----------------------------------------------------------------------------------------------
 \subsection{Cross-sectional designs}
 
-When it is an RCT, a randomization process constructs the control group at random
+In an RCT, the control group is randomly constructed
 from the population that is eligible to receive each treatment.
-When it is observational, we present other evidence that a similar equivalence holds.
+In an observational study, we present other evidence that a similar equivalence holds.
 Therefore, by construction, each unit's receipt of the treatment
 is unrelated to any of its other characteristics
 and the ordinary least squares (OLS) regression
@@ -244,7 +244,7 @@ If this point in time is after a treatment has been fully delivered,
 then the outcome values at that point in time
 already reflect the effect of the treatment.
 
-What needs to be carefully maintained in data for cross-sectional RCTs
+For cross-sectional RCTs, what needs to be carefully maintained in data
 is the treatment randomization process itself,
 as well as detailed field data about differences
 in data quality and loss-to-follow-up across groups.\cite{athey2017econometrics}
@@ -305,13 +305,13 @@ the difference in means at endline and subtracting
 the difference in means at baseline
 (hence the singular ``difference-in-differences'').\cite{mckenzie2012beyond}
 The regression model includes a control variable for treatment assignment,
-and a control variable for the measurement round,
+and a control variable for time period,
 but the treatment effect estimate corresponds to
-an interaction variable for treatment and round:
+an interaction variable for treatment and time:
 it indicates the group of observations for which the treatment is active.
 This model critically depends on the assumption that,
 in the absense of the treatment,
-the two groups would have changed performance at the same rate over time,
+the outcome of the two groups would have changed at the same rate over time,
 typically referred to as the \textbf{parallel trends} assumption.\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/often-unspoken-assumptions-behind-difference-difference-estimator-practice}}
 Experimental approaches satisfy this requirement in expectation,
@@ -326,22 +326,22 @@ as in cross-sectional designs, both the randomization and sampling processes,
 as well as their execution in the field,
 are critically important to maintain alongside the survey results.
 In panel data structures, we attempt to observe the exact same units
-in the repeated rounds, so that we see the same individuals
+in different points in time, so that we see the same individuals
 both before and after they have received treatment (or not).\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/what-are-we-estimating-when-we-estimate-difference-differences}}
-This allows each unit's baseline outcome to be used
-as an additional control for its endline outcome,
+This allows each unit's baseline outcome (the outcome before the intervention) to be used
+as an additional control for its endline outcome (the last outcome observation in the data),
 a \textbf{fixed effects} design often referred to as an ANCOVA model,
 which can provide large increases in power and robustness.\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/another-reason-prefer-ancova-dealing-changes-measurement-between-baseline-and-follow}}
-When tracking individuals over rounds for this purpose,
+When tracking individuals over time for this purpose,
 maintaining sampling and tracking records is especially important,
 because attrition and loss-to-follow-up will remove that unit's information
-from all rounds of observation, not just the one they are unobserved in.
+from all points in time, not just the one they are unobserved in.
 Panel-style experiments therefore require substantially more effort
 in the field work portion.\sidenote{
   \url{https://www.princeton.edu/~otorres/Panel101.pdf}}
-Since baseline and endline data collection may be far apart,
+Since baseline and endline may be far apart in time,
 it is important to create careful records during the first round
 so that follow-ups can be conducted with the same subjects,
 and attrition across rounds can be properly taken into account.\sidenote{
@@ -370,7 +370,7 @@ and will help you to track your data over time.\cite{schulz2010consort}
 in policy designs to separate a group of potentially eligible recipients
 into comparable gorups of individuals who do and do not receive a treatment.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Regression_Discontinuity}}
-These types of designs differ from cross-sectional and diff-in-diff designs
+These designs differ from cross-sectional and diff-in-diff designs
 in that the group eligible to receive treatment is not defined directly,
 but instead created during the treatment implementation.
   \index{regression discontinuity}
@@ -378,12 +378,12 @@ In an RD design, there is typically some program or event
 that has limited availability due to practical considerations or policy choices
 and is therefore made available only to individuals who meet a certain threshold requirement.
 The intuition of this design is that there is an underlying \textbf{running variable}
-which serves as the sole determinant of access to the program,
+that serves as the sole determinant of access to the program,
 and a strict cutoff determines the value of this variable at which eligibility stops.\cite{imbens2008regression}
 Common examples are test score thresholds, income thresholds, and some types of lotteries.\sidenote{
   \url{http://blogs.worldbank.org/impactevaluations/regression-discontinuity-porn}}
 The intuition is that individuals who are just on the receiving side of the threshold
-will be very nearly indistinguishable from those on the non-receiving side,
+will be very nearly indistinguishable from those who are just under it,
 and their post-treatment outcomes are therefore directly comparable.\cite{lee2010regression}
 The key assumption here is that the running variable cannot be directly manipulated
 by the potential recipients.
@@ -397,7 +397,7 @@ who are narrowly on the inclusion side of the discontinuity,
 compared against those who are narrowly on the exclusion side.\sidenote{
   \url{https://cattaneo.princeton.edu/books/Cattaneo-Idrobo-Titiunik_2019\_CUP-Vol1.pdf}}
 The regression model will be identical to the matching research designs
-(ie, contingent whether data has one or more rounds
+(i.e., contingent on whether data has one or more time periods
 and whether the same units are known to be observed repeatedly).
 The treatment effect will be identified, however, by the addition of a control
 for the running variable -- meaning that the treatment effect variable
