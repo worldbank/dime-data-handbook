@@ -13,8 +13,7 @@ The chapter covers questionnaire design, piloting and programming; monitoring da
 \end{fullwidth}
 
 %------------------------------------------------
-
-\section{Designing electronic questionnaires}
+\section{Survey development workflow}
 A well-designed questionnaire results from careful planning, consideration of analysis and indicators, close review of existing questionnaires, survey pilots, and research team and stakeholder review. There are many excellent resources on questionnaire design, such as from the World Bank's Living Standards Measurement Survey.
 \sidenote{Grosh, Margaret; Glewwe, Paul. 2000. Designing Household Survey Questionnaires for Developing Countries : Lessons from 15 Years of the Living Standards Measurement Study, Volume 3. Washington, DC: World Bank. © World Bank.\url{https://openknowledge.worldbank.org/handle/10986/15195 License: CC BY 3.0 IGO.}}
 The focus of this chapter is the particular design challenges for electronic surveys (often referred to as Computer Assisted Personal Interviews (CAPI)).
@@ -33,6 +32,22 @@ It is much easier for enumerators to understand all possible response pathways f
 Finalizing the questionnaire before programming also avoids version control concerns that arise from concurrent work on paper and electronic survey instruments.
 Finally, a paper questionnaire is an important documentation for data publication.
 
+
+\subsection{Content-focused Pilot}
+A \textbf{survey pilot}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}} is essential to finalize questionnaire design.
+A content-focused pilot\sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}  is best done on pen-and-paper, before the questionnaire is programmed.
+The objective is to improve the structure and length of the questionnaire, refine the phrasing and translation of specific questions, and confirm coded response options are exhaustive.\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes}}
+In addition, it is an opportunity to test and refine all survey protocols, such as how units will be sampled or pre-selected units identified. The pilot must be done out-of-sample, but in a context as similar as possible to the study sample.
+
+\subsection{Data-focused pilot}
+A second survey pilot should be done after the questionnaire is programmed. 
+The objective of the data-focused pilot\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes}} is to validate programming and export a sample dataset.
+Significant desk-testing of the instrument is required to debug the programming as fully as possible before going to the field.
+It is important to plan for multiple days of piloting, so that any further debugging or other revisions to the electronic survey instrument can be made at the end of each day and tested the following, until no further field errors arise.
+The data-focused pilot should be done in advance of enumerator training
+
+
+\section{Designing electronic questionnaires}
 The workflow for designing a questionnaire will feel much like writing an essay, or writing pseudocode: 
 begin from broad concepts and slowly flesh out the specifics. 
 It is essential to start with a clear understanding of the
@@ -40,13 +55,14 @@ It is essential to start with a clear understanding of the
 The first step of questionnaire design is to list key outcomes of interest, as well as the main factors to control for (covariates) and variables needed for experimental design.
 The ideal starting point for this is a \textbf{pre-analysis plan}.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan}}
 
-Use the list of key outcomes to create an outline of questionnaire \textit{modules} (do not number the modules yet; instead use a short prefix so they can be easily reordered). For each module, determine if it is applicable to the full sample, who is the appropriate respondent, and whether or how often the module should be repeated. A few examples: a module on maternal health only applies to households with a woman who has children, a household income module should be answered by the person responsible for household finances, and a module on agricultural production might be repeated for each crop the household cultivated.
+Use the list of key outcomes to create an outline of questionnaire \textit{modules} (do not number the modules yet; instead use a short prefix so they can be easily reordered). For each module, determine if the module is applicable to the full sample, the appropriate respondent, and whether or how often, the module should be repeated. A few examples: a module on maternal health only applies to household with a woman who has children, a household income module should be answered by the person responsible for household finances, and a module on agricultural production might be repeated for each crop the household cultivated.
 
 Each module should then be expanded into specific indicators to observe in the field.
-Each module should then be expanded into specific indicators to observe in the field.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
 At this point, it is useful to do a  \textbf{content-focused pilot}
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}} of the questionnaire.
 Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions, as there is no need to factor in costs of re-programming, and as a result improves the overall quality of the survey instrument.
+
 
 \subsection{Questionnaire design for quantitative analysis}
 This book covers surveys designed to yield datasets useful for quantitative analysis. This is a subset of surveys, and there are specific design considerations that will help to ensure the raw data outputs are ready for analysis.
@@ -71,14 +87,6 @@ Questionnaires must include ways to document the reasons for \textbf{attrition},
 These are essential data components for completing CONSORT records, a standardized system for reporting enrollment, intervention allocation, follow-up, and data analysis through the phases of a randomized trial of two groups.
 \sidenote[][-3.5cm]{Begg, C., Cho, M., Eastwood, S., Horton, R., Moher, D., Olkin, I., Pitkin,	R., Rennie, D., Schulz, K. F., Simel, D., et al. (1996). Improving the quality of	reporting of randomized controlled	trials: The CONSORT statement. \textit{JAMA},	276(8):637--639}
 
-
-
-\subsection{Content-focused Pilot}
-A \textbf{survey pilot}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}} is the final step of questionnaire design.
-A content-focused pilot\sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}  is best done on pen-and-paper, before the questionnaire is programmed.
-The objective is to improve the structure and length of the questionnaire, refine the phrasing and translation of specific questions, and confirm coded response options are exhaustive.\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes}}
-In addition, it is an opportunity to test and refine all survey protocols, such as how units will be sampled or pre-selected units identified. The pilot must be done out-of-sample, but in a context as similar as possible to the study sample.
-
 Once the content of the questionnaire is finalized and translated, it is time to proceed with programming the electronic survey instrument.
 
 
@@ -92,14 +100,15 @@ We will not address software-specific form design in this book; rather, we focus
 
 Survey software tools provide a wide range of features designed to make implementing even highly complex surveys easy, scalable, and secure.
 However, these are not fully automatic: you still need to actively design and manage the survey.
-Here, we discuss specific practices that you need to follow to take advantage of electronic survey features and ensure that the exported data is compatible with the software that will be used for analysis, and the importance of a data-focused pilot.
+Here, we discuss specific practices that you need to follow to take advantage of electronic survey features and ensure that the exported data is compatible with the software that will be used for analysis.
 
-\subsection{Electronic survey workflow}
-The starting point for questionnaire programming is a complete paper version of the questionnaire, piloted for content, and translated where needed.
-Starting the programming at this point reduces version control issues that arise from making significant changes to concurrent paper and electronic survey instruments.
+
+As discussed above, the starting point for questionnare programming is a complete paper version of the questionnaire, piloted for content, and translated where needed.
+Doing so reduces version control issues that arise from making significant changes to concurrent paper and electronic survey instruments.
 When programming, do not start with the first question and proceed straight through to the last question.
 Instead, code from high level to small detail, following the same questionnaire outline established at design phase.
 The outline provides the basis for pseudocode, allowing you to start with high level structure and work down to the level of individual questions. This will save time and reduce errors.
+
 
 \subsection{Electronic survey features}
 Electronic surveys are more than simply a paper questionnaire displayed on a mobile device or web browser.
@@ -135,14 +144,6 @@ To give a few examples, \texttt{ietestform} tests that no variable names exceed
 be truncated, and as a result may no longer be unique). It checks whether 
 ranges are included for numeric variables.
 \texttt{ietestform} also removes all leading and trailing blanks from response lists, which could be handled inconsistently across software.
-
-\subsection{Data-focused pilot}
-The final stage of questionnaire programming is another survey pilot.
-The objective of the data-focused pilot\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes}} is to validate programming and export a sample dataset.
-Significant desk-testing of the instrument is required to debug the programming as fully as possible before going to the field.
-It is important to plan for multiple days of piloting, so that any further debugging or other revisions to the electronic survey instrument can be made at the end of each day and tested the following, until no further field errors arise.
-The data-focused pilot should be done in advance of enumerator training
-
 
 
 %------------------------------------------------
@@ -226,7 +227,7 @@ Do we want to include something here about displaying HFCs? }
 
 \section{Collecting Data Securely}
 Primary data collection almost always includes  \textbf{personally-identifiable information (PII)}
-Primary data collection almost always includes  \textbf{personally-identifiable information (PII)}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}.
+\sidenote{\url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}.
 PII must be handled with great care at all points in the data collection and management process, to comply with ethical requirements and avoid breaches of confidentiality. Access to PII must be restricted to team members granted that permission by the applicable Institutional Review Board or a data licensing agreement with a partner agency. Research teams must maintain strict protocols for data security at each stage of the process: data collection, storage, and sharing.
 
 \subsection{Secure data in the field}
