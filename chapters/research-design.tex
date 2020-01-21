@@ -17,21 +17,21 @@ the way in which each method constructs treatment and control groups,
 the data structures needed to estimate the corresponding effects,
 and any available code tools that will assist you in this process.
 
-This is important to understand before going into the field for several reasons.
+Understanding your design before starting data work is important for several reasons.
 If you do not understand how to calculate the correct estimator for your study,
 you will not be able to assess the power of your research design.
-You will also be unable to make tradeoffs in the field
+You will also be unable to make decisions in the field
 when you inevitable have to allocate scarce resources
 between tasks like maximizing sample size
 and ensuring follow-up with specific individuals.
 You will save a lot of time by understanding the way
-your data needs to be organized and set up as it comes in
+your data needs to be organized as it comes in
 before you will be able to calculate meaningful results.
 Just as importantly, understanding each of these approaches
 will allow you to keep your eyes open for research opportunities:
 many of the most interesting projects occur because people in the field
-recognize the opportunity to implement one of these methods on the fly
-in response to an unexpected event in the field.
+recognize the opportunity to implement one of these methods
+in response to an unexpected event.
 While somewhat more conceptual than practical,
 a basic understanding of your project's chosen approach will make you
 much more effective at the analytical part of your work.
@@ -43,7 +43,7 @@ much more effective at the analytical part of your work.
 \section{Causality, inference, and identification}
 
 The primary goal of research design is to establish \textbf{identification}
-for a parameter of interest -- that is, to demonstrate
+for a parameter of interest. That means finding
 a source of variation in a particular input that has no other possible channel
 to alter a particular outcome, in order to assert that some change in that outcome
 was caused by that change in the input.
@@ -53,7 +53,7 @@ When we are discussing the types of inputs commonly referred to as
 of a program-specific \textbf{treatment effect}, or the change in outcomes
 directly attributable to exposure to what we call the \textbf{treatment}.\cite{abadie2018econometric}
   \index{treatment effect}
-When identification is believed, then we can say with confidence
+When a study is well-identified, then we can say with confidence
 that our estimate of the treatment effect would,
 with an infinite amount of data,
 give us a precise estimate of that treatment effect.
@@ -81,11 +81,11 @@ and both are capable of achieving effect identification under different contexts
 
 The key assumption behind estimating treatment effects is that every
 person, facility, or village (or whatever the unit of intervention is)
-has two possible states: their outcomes if they do not recieve some treatment
-and their outcomes if they do recieve that treatment.
+has two possible states: their outcomes if they do not receive some treatment
+and their outcomes if they do receive that treatment.
 Each unit's treatment effect is the individual difference between these two states,
-and the \textbf{average treatment effect (ATE)} is the average of all of
-these differences across the potentially treated population.
+and the \textbf{average treatment effect (ATE)} is the average of all
+individual differences across the potentially treated population.
   \index{average treatment effect}
 This is the most common parameter that research designs will want to estimate.
 In most designs, the goal is to establish a ``counterfactual scenario'' for the treatment group
@@ -112,11 +112,11 @@ Instead, we typically make inferences from samples.
 average treatment effect without observing individual-level effects,
 but can obtain it from some comparison of averages with a \textbf{control} group.
   \index{causal inference}\index{control group}
-Every research design is based around a way of comparing another set of observations --
+Every research design is based on a way of comparing another set of observations --
 the ``control'' observations -- against the treatment group.
 They all work to establish that the control observations would have been
 identical \textit{on average} to the treated group in the absence of the treatment.
-Then, the mathematical properties of averages implies that the calculated
+Then, the mathematical properties of averages imply that the calculated
 difference in averages is equivalent to the average difference:
 exactly the parameter we are seeking to estimate.
 Therefore, almost all designs can be accurately described
@@ -125,7 +125,7 @@ as a series of between-group comparisons.\sidenote{
 
 Most of the methods that you will encounter rely on some variant of this strategy,
 which is designed to maximize the ability to estimate the effect
-of an average unit being offered the treatment being evaluated.
+of an average unit being offered the treatment you want to evaluate.
 The focus on identification of the treatment effect, however,
 means there are several essential features to this approach
 that are not common in other types of statistical and data science work.
@@ -133,7 +133,7 @@ First, the econometric models and estimating equations used
 do not attempt to create a predictive or comprehensive model
 of how the outcome of interest is generated.
 Typically, these designs are not interested in predictive accuracy,
-and the estimates and predictions that these models produce
+and the estimates and predictions that they produce
 will not be as good at predicting outcomes or fitting the data as other models.
 Additionally, when control variables or other variables are used in estimation,
 there is no guarantee that those parameters are marginal effects.
@@ -231,8 +231,6 @@ that can be observed in RCT designs, and have similar implications for field wor
 %-----------------------------------------------------------------------------------------------
 \subsection{Cross-sectional designs}
 
-\textbf{Cross-sectional} surveys are the simplest possible study design:
-a program is implemented, surveys are conducted, and data is analyzed.
 When it is an RCT, a randomization process constructs the control group at random
 from the population that is eligible to receive each treatment.
 When it is observational, we present other evidence that a similar equivalence holds.
@@ -241,8 +239,9 @@ is unrelated to any of its other characteristics
 and the ordinary least squares (OLS) regression
 of outcome on treatment, without any control variables,
 is an unbiased estimate of the average treatment effect.
-Cross-sectional data is simple to handle because
-for research teams do not need track anything over time.
+A \textbf{cross-section} is the simplest data structure that can be used.
+This type of data is easy to collect and handle because 
+you do not need track individual across time or across data sets.
 A cross-section is simply a representative set of observations
 taken at a single point in time.
 If this point in time is after a treatment has been fully delivered,
@@ -260,7 +259,7 @@ and controls are required for variables which
 were used to stratify the treatment (in the form of strata fixed effects).\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/impactevaluations/how-randomize-using-many-baseline-variables-guest-post-thomas-barrios}}
 \textbf{Randomization inference} can be used
-to esetimate the underlying variability in the randomization process
+to estimate the underlying variability in the randomization process
 (more on this in the next chapter).
 \textbf{Balance checks} are often reported as evidence of an effective randomization,
 and are particularly important when the design is quasi-experimental
@@ -270,14 +269,14 @@ because it is certain that the true data-generating process
 has no correlation between the treatment and the balance factors.\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/should-we-require-balance-t-tests-baseline-observables-randomized-experiments}}
 
-Analysis is typically straightforward with a strong understanding of the randomization.
-A typical analysis will include a decription of the sampling and randomization process,
+Analysis is typically straightforward \textit{once you have a strong understanding of the randomization}.
+A typical analysis will include a description of the sampling and randomization process,
 summary statistics for the eligible population,
 balance checks for randomization and sample selection,
 a primary regression specification (with multiple hypotheses appropriately adjusted),
 additional specifications with adjustments for non-response, balance, and other potential contamination,
 and randomization-inference analysis or other placebo regression approaches.
-There are a number of tools that are available
+There are a number of tools that are also available
 to help with the complete process of data collection,\sidenote{
   \url{https://toolkit.povertyactionlab.org/resource/coding-resources-randomized-evaluations}}
 to analyze balance,\sidenote{
@@ -288,7 +287,7 @@ Tools and methods for analyzing selective non-response are available.\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/dealing-attrition-field-experiments}}
 
 %-----------------------------------------------------------------------------------------------
-\subsection{Differences-in-differences}
+\subsection{Difference-in-differences}
 
 Where cross-sectional designs draw their estimates of treatment effects
 from differences in outcome levels in a single measurement,
@@ -297,14 +296,14 @@ from differences in outcome levels in a single measurement,
 designs (abbreviated as DD, DiD, diff-in-diff, and other variants)
 estimate treatment effects from \textit{changes} in outcomes
 between two or more rounds of measurement.
-  \index{differences-in-differences}
+  \index{difference-in-differences}
 In these designs, three control groups are used –
 the baseline level of treatment units,
 the baseline level of non-treatment units,
 and the endline level of non-treatment units.\sidenote{
   \url{https://www.princeton.edu/~otorres/DID101.pdf}}
 The estimated treatment effect is the excess growth
-of units that recieve the treatment, in the period they recieve it:
+of units that receive the treatment, in the period they receive it:
 calculating that value is equivalent to taking
 the difference in means at endline and subtracting
 the difference in means at baseline
@@ -313,7 +312,7 @@ The regression model includes a control variable for treatment assignment,
 and a control variable for the measurement round,
 but the treatment effect estimate corresponds to
 an interaction variable for treatment and round:
-the group of observations for which the treatment is active.
+it indicates the group of observations for which the treatment is active.
 This model critically depends on the assumption that,
 in the absense of the treatment,
 the two groups would have changed performance at the same rate over time,
@@ -373,28 +372,29 @@ and will help you to track your data over time.\cite{schulz2010consort}
 
 \textbf{Regression discontinuity (RD)} designs exploit sharp breaks or limits
 in policy designs to separate a group of potentially eligible recipients
-into comparable gorups of individuals who do and do not recieve a treatment.\sidenote{
+into comparable gorups of individuals who do and do not receive a treatment.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Regression_Discontinuity}}
 These types of designs differ from cross-sectional and diff-in-diff designs
 in that the group eligible to receive treatment is not defined directly,
-but instead created during the process of the treatment implementation.
+but instead created during the treatment implementation.
   \index{regression discontinuity}
 In an RD design, there is typically some program or event
-which has limited availability due to practical considerations or policy choices
+that has limited availability due to practical considerations or policy choices
 and is therefore made available only to individuals who meet a certain threshold requirement.
 The intuition of this design is that there is an underlying \textbf{running variable}
 which serves as the sole determinant of access to the program,
 and a strict cutoff determines the value of this variable at which eligibility stops.\cite{imbens2008regression}
 Common examples are test score thresholds, income thresholds, and some types of lotteries.\sidenote{
   \url{http://blogs.worldbank.org/impactevaluations/regression-discontinuity-porn}}
-The intuition is that individuals who are just on the recieving side of the threshold
+The intuition is that individuals who are just on the receiving side of the threshold
 will be very nearly indistinguishable from those on the non-receiving side,
 and their post-treatment outcomes are therefore directly comparable.\cite{lee2010regression}
 The key assumption here is that the running variable cannot be directly manipulated
-by the potential recipients; if the running variable is time there are special considerations.\cite{hausman2018regression}
+by the potential recipients.
+If the running variable is time there are special considerations.\cite{hausman2018regression}
 
 Regression discontinuity designs are, once implemented,
-very similar in analysis to cross-sectional or differences-in-differences designs.
+very similar in analysis to cross-sectional or difference-in-differences designs.
 Depending on the data that is available,
 the analytical approach will center on the comparison of individuals
 who are narrowly on the inclusion side of the discontinuity,
@@ -438,7 +438,7 @@ that will complement the main regression approach used for point estimates.
 
 \textbf{Instrumental variables (IV)} designs, unlike the previous approaches,
 begin by assuming that the treatment delivered in the study in question is
-linked to outcomes such that the effect is not directly identifiable.
+linked to the outcome, so its effect is not directly identifiable.
 Instead, similar to regression discontinuity designs,
 IV attempts to focus on a subset of the variation in treatment uptake
 and assesses that limited window of variation that can be argued
@@ -454,7 +454,7 @@ the treatment status but instead influence the \textit{probability} of treatment
 
 As in regression discontinuity designs,
 the fundamental form of the regression
-is similar to either cross-sectional or differences-in-differences designs.
+is similar to either cross-sectional or difference-in-differences designs.
 However, instead of controlling for the instrument directly,
 the IV approach typically uses the \textbf{two-stage-least-squares (2SLS)} estimator.\sidenote{
   \url{http://www.nuff.ox.ac.uk/teaching/economics/bond/IV\%20Estimation\%20Using\%20Stata.pdf}}
