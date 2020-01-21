@@ -292,13 +292,9 @@ within a single classroom, for example.
 
 Clustering is procedurally straightforward in Stata,
 although it typically needs to be performed manually.
-To cluster sampling or randomization,
-\texttt{preserve} the data, keep one observation from each cluster
-using a command like \texttt{bys [cluster] : keep if \_n == 1}.
-Then sort the data and set the seed, and generate the random assignment you need.
-Save the assignment in a separate dataset or a \texttt{tempfile},
-then \texttt{restore} and \texttt{merge} the assignment back on to the original dataset.
-
+To cluster a sampling or randomization,
+create or use a data set where each cluster unit is an observation,
+randomize on that data set, and then merge back the results.
 When sampling or randomization is conducted using clusters,
 the clustering variable should be clearly identified
 since it will need to be used in subsequent statistical analysis.
