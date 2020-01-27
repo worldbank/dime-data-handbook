@@ -103,10 +103,11 @@ In Stata, this is accomplished through three command concepts:
 \textbf{Versioning} means using the same version of the software.
 If anything is different, the underlying randomization algorithms may have changed,
 and it will be impossible to recover the original result.
-In Stata, the \texttt{version} command ensures that the software algorithm is fixed.
-We recommend using \texttt{version 13.1} for backward compatibility;
-the algorithm was changed after Stata 14 but its improvements do not matter in practice.
-(Note that you will \textit{never} be able to transfer a randomization to another software such as R.)
+In Stata, the \texttt{version} command ensures that the software algorithm is fixed.\sidenote{
+At the time of writing we recommend using \texttt{version 13.1} for backward compatibility;
+the algorithm was changed after Stata 14 but its improvements do not matter in practice.}
+Note that you will \textit{never} be able to reproduce a randomization in a different software,
+such as moving from Stata to R or vice versa.}
 The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/ieboilstart}}
 We recommend you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
