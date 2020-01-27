@@ -77,7 +77,7 @@ The second section provides basic introductions to the tasks of sampling and ran
 and the third introduces common varieties encountered in the field.
 The fourth section discusses more advanced topics that are used
 to analyze the random processes directly in order to understand their properties.
-However, the needs you will encounter in the field will inevitably
+However, field realities will inevitably
 be more complex than anything we present here,
 and you will need to recombine these lessons to match your project's needs.
 
@@ -85,7 +85,7 @@ and you will need to recombine these lessons to match your project's needs.
 
 Reproducibility in statistical programming means that random results
 can be re-obtained at a future time.
-All random methods should be reproducible.\cite{orozco2018make}
+All random methods must be reproducible.\cite{orozco2018make}
 Stata, like most statistical software, uses a \textbf{pseudo-random number generator}.
 Basically, it has a really long ordered list of numbers with the property that
 knowing the previous one gives you precisely zero information about the next one.
@@ -100,7 +100,7 @@ and we need to ensure that the starting point is independently random from our p
 In Stata, this is accomplished through three command concepts:
 \textbf{versioning}, \textbf{sorting}, and \textbf{seeding}.
 
-\textbf{Versioning} means using the same version of the software.
+\textbf{Versioning} means using the same version of the software each time you run the random process.
 If anything is different, the underlying randomization algorithms may have changed,
 and it will be impossible to recover the original result.
 In Stata, the \texttt{version} command ensures that the software algorithm is fixed.\sidenote{
