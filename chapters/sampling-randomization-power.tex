@@ -58,11 +58,11 @@ Therefore, understanding and correctly programming for sampling and randomizatio
 is essential to ensuring that planned experiments
 are correctly implemented in the field, so that the results
 can be interpreted according to the experimental design.
-(Note that there are two distinct random processes referred to here:
+There are two distinct random processes referred to here:
 the conceptual process of assigning units to treatment arms,
 and the technical process of assigning random numbers in statistical software,
 which is a part of all tasks that include a random component.\sidenote{
-  \url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata/}})
+  \url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata/}}
 
 Randomization is challenging. It is deeply unintuitive for the human brain.
 ``True'' randomization is also nearly impossible to achieve for computers,
@@ -108,13 +108,13 @@ and it will be impossible to recover the original result.
 In Stata, the \texttt{version} command ensures that the software algorithm is fixed.\sidenote{
 At the time of writing we recommend using \texttt{version 13.1} for backward compatibility;
 the algorithm was changed after Stata 14 but its improvements do not matter in practice.}
-Note that you will \textit{never} be able to reproduce a randomization in a different software,
+You will \textit{never} be able to reproduce a randomization in a different software,
 such as moving from Stata to R or vice versa.}
 The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/ieboilstart}}
 We recommend you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Master_Do-files}}
-However, note that testing your do-files without running them
+However, testing your do-files without running them
 via the master do-file may produce different results,
 since Stata's \texttt{version} setting expires after each time you run your do-files.
 
@@ -159,9 +159,9 @@ The sampling and randomization processes we choose
 play an important role in determining the size of the confidence intervals
 for any estimates generated from that sample,
 and therefore our ability to draw conclusions.
-(Note that random sampling and random assignment serve different purposes.
-Random sampling ensures that you have unbiased population estimates,
-and random assignment ensures that you have unbiased treatment estimates.)
+Random sampling and random assignment serve different purposes.
+Random \textit{sampling} ensures that you have unbiased population estimates,
+and random \textit{assignment} ensures that you have unbiased treatment estimates.
 If you randomly sample or assign a set number of observations from a set frame,
 there are a large -- but fixed -- number of permutations which you may draw.
 
