@@ -297,13 +297,14 @@ However, you still want the constructed variables to be calculated in the same w
 So you want to construct indicators for both rounds in the same code, after merging them.
 
 % From analysis
-Data construction is never a finished process.
-It comes ``before'' data analysis only in a limited sense: the construction code must be run before the analysis code.
-Typically, however, construction and analysis code are written concurrently.
+Ideally, indicator construction is done right after data cleaning, following the pre-analysis plan. 
+In practice, it's almost never that easy.
 As you write the analysis, different constructed variables will become necessary, as well as subsets and other alterations to the data.
 Still, constructing variables in a separate script from the analysis will help you ensure consistency across different outputs. 
 If every script that creates a table starts by loading a data set, subsetting it and manipulating variables, any edits to construction need to be replicated in all scripts. 
 This increases the chances that at least one of them will have a different sample or variable definition.
+Therefore, even if construction ends up coming before analysis only in the order the code is run,
+it's important to think of them as different steps.
 
 
 % What to do during construction -----------------------------------------
