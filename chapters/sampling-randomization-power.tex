@@ -83,7 +83,9 @@ and you will need to recombine these lessons to match your project's needs.
 
 \subsection{Reproducibility in random Stata processes}
 
-Reproducibility in statistical programming means that random results
+Any process that includes a random component is a random process,
+including sampling, randomization, power calculation simulations, and algorithms like bootstrapping.
+Reproducibility in statistical programming means that the outputs of random processes
 can be re-obtained at a future time.
 All random methods must be reproducible.\cite{orozco2018make}
 Stata, like most statistical software, uses a \textbf{pseudo-random number generator}.
@@ -138,8 +140,6 @@ but instead you should set a new seed in code right before each random process.
 The most important thing is that each of these seeds is truly random,
 so do not use shortcuts such as the current date or a seed you have used before.
 You will see in the code below that we include the source and timestamp for verification.
-Any process that includes a random component is a random process,
-including sampling, randomization, power calculation simulations, and algorithms like bootstrapping.
 Other commands may induce randomness in the data or alter the seed without you realizing it,
 so carefully confirm exactly how your code runs before finalizing it.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Randomization_in_Stata}}
