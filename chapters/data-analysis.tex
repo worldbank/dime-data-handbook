@@ -300,55 +300,70 @@ such as caloric input or food expenditure per adult equivalent.
 During this process, the data points will typically be reshaped and aggregated 
 so that level of the data set goes from the unit of observation (one item in the bundle) in the survey to the unit of analysis (the household).\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}} 
 
-% Why it is a separate process -------------------------------
+\subsection{Why construction?}
 
 % From cleaning
 Construction is done separately from data cleaning for two reasons. 
-The first one is to clear differentiation between the data originally collected and the result of data processing decisions.
+The first one is to clearly differentiate the data originally collected from the result of data processing decisions.
 The second is to ensure that variable definition is consistent across data sources. 
 Unlike cleaning, construction can create many outputs from many inputs. 
 Let's take the example of a project that has a baseline and an endline survey. 
 Unless the two instruments are exactly the same, which is preferable but often not the case,  the data cleaning for them will require different steps, and therefore will be done separately. 
 However, you still want the constructed variables to be calculated in the same way, so they are comparable.
-So you want to construct indicators for both rounds in the same code, after merging them.
+To do this, you will at least two cleaning scripts, and a single one for construction --
+we will discuss how to do this in practice in a bit.
 
 % From analysis
-Ideally, indicator construction is done right after data cleaning, following the pre-analysis plan. 
-In practice, it's almost never that easy.
-As you write the analysis, different constructed variables will become necessary, as well as subsets and other alterations to the data.
+Ideally, indicator construction should be done right after data cleaning, according to the pre-analysis plan. 
+In practice, however, following this principle is not always easy.
+As you analyze the data, different constructed variables will become necessary, as well as subsets and other alterations to the data.
 Still, constructing variables in a separate script from the analysis will help you ensure consistency across different outputs. 
 If every script that creates a table starts by loading a data set, subsetting it and manipulating variables, any edits to construction need to be replicated in all scripts. 
 This increases the chances that at least one of them will have a different sample or variable definition.
 Therefore, even if construction ends up coming before analysis only in the order the code is run,
 it's important to think of them as different steps.
 
-\subsection{Construction tasks}
-% What to do during construction -----------------------------------------
-Keep in mind that details matter when constructing variables, and overlooking them may affect your results. 
-It is important to check and double-check the value-assignments of questions and their scales before constructing new variables using them.
-Are they in percentages or proportions? 
-Are all variables you are combining into an index or average using the same scale? 
-Are yes or no questions coded as 0 and 1, or 1 and 2?
+\subsection{Construction tasks and how to approach them}
+
+The first thing that comes to mind when we talk about variable construction is, of course, creating new variables.
+Do this by adding new variables to the data set instead of overwriting the original information, and assign functional names to them.
+During cleaning, you want to keep all variables consistent with the survey instrument.
+But constructed variables were not present in the survey to start with,
+so making their names consistent with the survey form is not as crucial.
+Of course, whenever possible, having variable names that are both intuitive \textit{and} can be linked to the survey is ideal, but if you need to choose, prioritize functionality.
+Ordering the data set so that related variables are together and adding notes to each of them as necessary will also make your data set more user-friendly.
+
+The most simple case of new variables to be created are aggregate indicators. 
+For example, you may want to add a household's income from different sources into a single total income variable, or create a dummy for having at least one child in school.
+Jumping to the step where you actually create this variables seems intuitive,
+but it can also cause you a lot of problems, as overlooking details may affect your results.
+It is important to check and double-check the value-assignments of questions and their scales before constructing new variables based on them.
 This is when you will use the knowledge of the data you acquired and the documentation you created during the cleaning step the most.
-It is often useful to start looking at comparisons and other documentation 
-outside the code editor.
+It is often useful to start looking at comparisons and other documentation outside the code editor.
 
-Adding comments to the code explaining what you are doing and why is crucial here.
-There are always ways for things to go wrong that you never anticipated, but two issues to pay extra attention to are missing values and dropped observations. 
-If you are subsetting a data set, you should drop observations explicitly, indicating why you are doing that and how the data set changed.
-Merging, reshaping and aggregating data sets can change both the total number of observations and the number of observations with missing values.
-Make sure to read about how each command treats missing observations and, whenever possible, add automated checks in the script that throw an error message if the result is changing.
+Make sure to standardize units and recode categorical variables so their values are consistent.
+It's possible that your questionnaire asked respondents to report some answers as percentages and others as proportions,
+or that in one variable 0 means "no" and 1 means "yes", while in another one the same answers were coded are 1 and 2.
+We recommend coding yes/no questions as either 1/0 or TRUE/FALSE, so they can be used numerically as frequencies in means and as dummies in regressions.
+Check that non-binary categorical variables have the same value-assignment, i.e., 
+that labels and levels have the same correspondence across variables that use the same options.
+Finally, make sure that any numeric variables you are comparing are converted to the same scale or unit of measure. You cannot add one hectare and twos acres into a meaningful number.
 
-At this point, you will also need to address some of the issues in the data that you identified during data cleaning. 
+During construction, you will also need to address some of the issues you identified in the data during data cleaning. 
 The most common of them is the presence of outliers.
 How to treat outliers is a research question, but make sure to note what we the decision made by the research team, and how you came to it. 
 Results can be sensitive to the treatment of outliers, so keeping the original variable in the data set will allow you to test how much it affects the estimates.
-More generally, create derived measures in new variables instead of overwriting the original information.
-Because data construction involves translating concrete data points to more abstract measurements, it is important to document exactly how each variable is derived or calculated.
+All these points also apply to imputation of missing values and other distributional patterns.
 
-% Outputs -----------------------------------------------------------------
-When dealing with primary panel data, is it common to construct indicators soon after receiving data from a new survey round.
-Dealing with primary panel data also has its own complexities.
+The more complex construction tasks involve changing the structure of the data:
+adding new observations or variables by merging data sets, 
+and changing the unit of observation through collapses or reshapes.
+There are always ways for things to go wrong that we never anticipated, but two issues to pay extra attention to are missing values and dropped observations. 
+Merging, reshaping and aggregating data sets can change both the total number of observations and the number of observations with missing values.
+Make sure to read about how each command treats missing observations and, whenever possible, add automated checks in the script that throw an error message if the result is changing.
+If you are subsetting your data, drop observations explicitly, indicating why you are doing that and how the data set changed.
+
+Finally, primary panel data involves additional timing complexities.
 It is common to construct indicators soon after receiving data from a new survey round.
 However, creating indicators for each round separately increases the risk of using different definitions every time.
 Having a well-established definition for each constructed variable helps prevent that mistake,
@@ -361,8 +376,10 @@ Apart from preventing inconsistencies, this process will also save you time and 
 
 \subsection{Documenting indicators construction}
 
-It is wise to start writing a variable dictionary as soon as you begin making changes to the data.
-Carefully record how specific variables have been combined, recoded, and scaled. 
+Because data construction involves translating concrete data points to more abstract measurements, it is important to document exactly how each variable is derived or calculated.
+Adding comments to the code explaining what you are doing and why is a crucial step both to prevent mistakes and to guarantee transparency.
+To make sure that these comments can be more easily navigated, it is wise to start writing a variable dictionary as soon as you begin making changes to the data.
+Carefully record how specific variables have been combined, recoded, and scaled,  and refer to those records in the code. 
 This can be part of a wider discussion with your team about creating protocols for variable definition, which will guarantee that indicators are defined consistently across projects.
 When all your final variables have been created, you can use \texttt{iecodebook}'s \texttt{export} subcommand to list all variables in the data set, 
 and complement it with the variable definitions you wrote during construction to create a concise meta data document.
@@ -373,25 +390,15 @@ Together, they will form a detailed account of the data processing.
 
 \subsection{Constructed data sets}
 
-The outputs of construction are the data sets that will be used for analysis.
-The level of observation of a constructed data set is the unit analysis. 
-Each data set is purpose-built to answer an analysis question.
-Since different pieces of analysis may require different samples,
-or even different units of observation,
-you may have one or multiple constructed data sets, 
-depending on how your analysis is structured.
+The other set of construction outputs, as expected, consists of the data sets that will be used for analysis.
+A constructed data set is built to answer an analysis question.
+Since different pieces of analysis may require different samples, or even different units of observation,
+you may have one or multiple constructed data sets, depending on how your analysis is structured.
 So don't worry if you cannot create a single, ``canonical'' analysis data set.
 It is common to have many purpose-built analysis datasets.
 Think of an agricultural intervention that was randomized across villages and only affected certain plots within each village. 
 The research team may want to run household-level regressions on income, test for plot-level productivity gains, and check if village characteristics are balanced.
 Having three separate datasets for each of these three pieces of analysis will result in much cleaner do files than if they all started from the same file. 
-
-One thing all constructed data sets should have in common, though, are functionally-named variables.
-Constructed variables are called ``constructed'' because they were not present in the survey to start with,
-so making their names consistent with the survey form is not as crucial.
-Of course, whenever possible, having variables names that are both intuitive and can be linked to the survey is ideal.
-However, functionality should be prioritized here.
-Remember to consider keeping related variables together and adding notes to each as necessary.
 
 %------------------------------------------------
 
@@ -410,12 +417,12 @@ That is a research question, and requires expertise beyond the scope of this boo
 Instead, we will outline the structure of writing analysis code,
 assuming you have completed the process of data cleaning and construction.
 
-% Exploratory and final data analysis -----------------------------------------
+\subsection{Organizing analysis code}
+
 The analysis stage usually starts with a process we call exploratory data analysis.
 This is when you are trying different things and looking for patterns in your data. 
 It progresses into final analysis when your team starts to decide what are the main results, those that will make it into the research output.
 The way you deal with code and outputs for exploratory and final analysis is different, and this section will discuss how.
-% Organizing scripts ---------------------------------------------------------
 During exploratory data analysis, you will be tempted to write lots of analysis into one big, impressive, start-to-finish script. 
 It subtly encourages poor practices such as not clearing the workspace and not reloading the constructed data set before each analysis task. 
 It's important to take the time to organize scripts in a clean manner and to avoid mistakes.
@@ -435,7 +442,9 @@ As your team comes to a decision about model specification, you can create globa
 This is a good way to make sure specifications are consistent throughout the analysis. 
 Using pre-specified globals or objects also makes your code more dynamic, so it is easy to update specifications and results without changing every script.
 It is completely acceptable to have folders for each task, and compartmentalize each analysis as much as needed.
-It is always better to have more code files open than to keep scrolling inside a given file.
+It is better to have more code files open than to keep scrolling inside a given file.
+
+\subsection{Exporting outputs}
 
 To accomplish this, you will need to make sure that you have an effective data management system, including naming, file organization, and version control.
 Just like you did with each of the analysis datasets, name each of the individual analysis files descriptively.
@@ -445,20 +454,7 @@ If you intend to numerically order the code as they appear in a paper or report,
 leave this to near publication time.
 
 % Self-promotion ------------------------------------------------
-Our team has created a few products to automate common outputs and save you 
-precious research time.
-The \texttt{ietoolkit} package includes two commands to export nicely formatted tables.
-\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Iebaltab}} creates and exports balance tables to excel or {\LaTeX}. 
-\texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Ieddtab}} does the same for difference-in-differences regressions.
-The \textbf{Stata Visual Library}\sidenote{	\url{https://worldbank.github.io/Stata-IE-Visual-Library/}}
-has examples of graphs created in Stata and curated by us.\sidenote{A similar resource for R is \textit{The R Graph Gallery}. \\\url{https://www.r-graph-gallery.com/}}
-\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_visualization}} \index{data visualization}
-is increasingly popular, but a great deal lacks in quality.\cite{healy2018data,wilke2019fundamentals}
-We attribute some of this to the difficulty of writing code to create them.
-Making a visually compelling graph would already be hard enough if you didn't have to go through many rounds of googling to understand a command.
-The trickiest part of using plot commands is to get the data in the right format.
-This is why the \textbf{Stata Visual Library} includes example data sets to use 
-with each do-file.
+
 
 Whole books have been written on how to create good data visualizations,
 so we will not attempt to give you advice on it.
@@ -485,6 +481,21 @@ We have no intention of creating an exhaustive list, and this one is certainly m
 But at least it is a place to start.
 
 \section{Exporting analysis outputs}
+
+Our team has created a few products to automate common outputs and save you 
+precious research time.
+The \texttt{ietoolkit} package includes two commands to export nicely formatted tables.
+\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Iebaltab}} creates and exports balance tables to excel or {\LaTeX}. 
+\texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Ieddtab}} does the same for difference-in-differences regressions.
+The \textbf{Stata Visual Library}\sidenote{	\url{https://worldbank.github.io/Stata-IE-Visual-Library/}}
+has examples of graphs created in Stata and curated by us.\sidenote{A similar resource for R is \textit{The R Graph Gallery}. \\\url{https://www.r-graph-gallery.com/}}
+\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_visualization}} \index{data visualization}
+is increasingly popular, but a great deal lacks in quality.\cite{healy2018data,wilke2019fundamentals}
+We attribute some of this to the difficulty of writing code to create them.
+Making a visually compelling graph would already be hard enough if you didn't have to go through many rounds of googling to understand a command.
+The trickiest part of using plot commands is to get the data in the right format.
+This is why the \textbf{Stata Visual Library} includes example data sets to use 
+with each do-file.
 
 It's ok to not export each and every table and graph created during exploratory analysis. 
 Final analysis scripts, on the other hand, should export final outputs, which are ready to be included to a paper or report.
