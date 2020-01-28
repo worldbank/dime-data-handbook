@@ -323,7 +323,7 @@ This increases the chances that at least one of them will have a different sampl
 Therefore, even if construction ends up coming before analysis only in the order the code is run,
 it's important to think of them as different steps.
 
-
+\subsection{Construction tasks}
 % What to do during construction -----------------------------------------
 Keep in mind that details matter when constructing variables, and overlooking them may affect your results. 
 It is important to check and double-check the value-assignments of questions and their scales before constructing new variables using them.
@@ -349,7 +349,20 @@ Because data construction involves translating concrete data points to more abst
 
 % Outputs -----------------------------------------------------------------
 
-% Data set
+\subsection{Documenting indicators construction}
+
+It is wise to start writing a variable dictionary as soon as you begin making changes to the data.
+Carefully record how specific variables have been combined, recoded, and scaled. 
+This can be part of a wider discussion with your team about creating protocols for variable definition, which will guarantee that indicators are defined consistently across projects.
+When all your final variables have been created, you can use \texttt{iecodebook}'s \texttt{export} subcommand to list all variables in the data set, 
+and complement it with the variable definitions you wrote during construction to create a concise meta data document.
+Documentation is an output of construction as relevant as the code and the data.
+Someone unfamiliar with the project should be able to understand the contents of the analysis data sets, the steps taken to create them, and the decision-making process through your documentation.
+The construction documentation will complement the reports and notes created during data cleaning.
+Together, they will form a detailed account of the data processing.
+
+\subsection{Constructed data sets}
+
 The outputs of construction are the data sets that will be used for analysis.
 The level of observation of a constructed data set is the unit analysis. 
 Each data set is purpose-built to answer an analysis question.
@@ -362,26 +375,13 @@ It is common to have many purpose-built analysis datasets.
 Think of an agricultural intervention that was randomized across villages and only affected certain plots within each village. 
 The research team may want to run household-level regressions on income, test for plot-level productivity gains, and check if village characteristics are balanced.
 Having three separate datasets for each of these three pieces of analysis will result in much cleaner do files than if they all started from the same file. 
- 
+
 One thing all constructed data sets should have in common, though, are functionally-named variables.
 Constructed variables are called ``constructed'' because they were not present in the survey to start with,
 so making their names consistent with the survey form is not as crucial.
 Of course, whenever possible, having variables names that are both intuitive and can be linked to the survey is ideal.
 However, functionality should be prioritized here.
 Remember to consider keeping related variables together and adding notes to each as necessary.
-
-% Documentation
-It is wise to start writing a variable dictionary as soon as you begin making changes to the data.
-Carefully record how specific variables have been combined, recoded, and scaled. 
-This can be part of a wider discussion with your team about creating protocols for variable definition, which will guarantee that indicators are defined consistently across projects.
-When all your final variables have been created, you can use \texttt{iecodebook}'s \texttt{export} subcommand to list all variables in the data set, 
-and complement it with the variable definitions you wrote during construction to create a concise meta data document.
-Documentation is an output of construction as relevant as the code and the data.
-Someone unfamiliar with the project should be able to understand the contents of the analysis data sets, the steps taken to create them, and the decision-making process through your documentation.
-The construction documentation will complement the reports and notes created during data cleaning.
-Together, they will form a detailed account of the data processing.
-
-
 
 %------------------------------------------------
 
