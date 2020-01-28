@@ -42,29 +42,7 @@ to edit files without fear of losing information.
 Smart use of version control also allows you to track 
 how each edit affects other files in the project.
 
-% Task breakdown
-We divide the process of turning raw data into analysis data into three stages: 
-data cleaning, variable construction, and data analysis. 
-Though they are frequently implemented at the same time, 
-we find that creating separate scripts and data sets prevents mistakes. 
-It will be easier to understand this division as we discuss what each stage comprises. 
-What you should know by now is that each of these stages has well-defined inputs and outputs. 
-This makes it easier to track tasks across scripts, 
-and avoids duplication of code that could lead to inconsistent results. 
-For each stage, there should be a code folder and a corresponding data set. 
-The names of codes, data sets and outputs for each stage should be consistent,
-making clear how they relate to one another. 
-So, for example, a script called \texttt{clean-section-1} would create
-a data set called \texttt{cleaned-section-1}.
-
-The division of a project in stages also helps the review workflow inside your team.
-The code, data and outputs of each of these stages should go through at least one round of code review.
-During the code review process, team members should read and run each other's codes.
-Doing this at the end of each stage helps prevent the amount of work to be reviewed to become too overwhelming.
-Code review is a common quality assurance practice among data scientists.
-It helps to keep the level of the outputs high, and is also a great way to learn and improve your code.
-
-% Folder structure
+\subsection{Folder structure}
 There are many schemes to organize research data. 
 Our preferred scheme reflects the task breakdown just discussed.
 \index{data organization}
@@ -91,7 +69,29 @@ so that the progression through the whole project can be followed by anyone new 
 Additionally, \texttt{iefolder} creates \textbf{master do-files}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}} 
 so all project code is reflected in a top-level script.
 
-% Master scripts
+\subsection{Task breakdown}
+We divide the process of turning raw data into analysis data into three stages: 
+data cleaning, variable construction, and data analysis. 
+Though they are frequently implemented at the same time, 
+we find that creating separate scripts and data sets prevents mistakes. 
+It will be easier to understand this division as we discuss what each stage comprises. 
+What you should know by now is that each of these stages has well-defined inputs and outputs. 
+This makes it easier to track tasks across scripts, 
+and avoids duplication of code that could lead to inconsistent results. 
+For each stage, there should be a code folder and a corresponding data set. 
+The names of codes, data sets and outputs for each stage should be consistent,
+making clear how they relate to one another. 
+So, for example, a script called \texttt{clean-section-1} would create
+a data set called \texttt{cleaned-section-1}.
+
+The division of a project in stages also helps the review workflow inside your team.
+The code, data and outputs of each of these stages should go through at least one round of code review.
+During the code review process, team members should read and run each other's codes.
+Doing this at the end of each stage helps prevent the amount of work to be reviewed to become too overwhelming.
+Code review is a common quality assurance practice among data scientists.
+It helps to keep the level of the outputs high, and is also a great way to learn and improve your code.
+
+\subsection{Master scripts}
 Master scripts allow users to execute all the project code from a single file.
 They briefly describes what each code, 
 and maps the files they require and create. 
@@ -104,7 +104,7 @@ to understand what are the main tasks, which scripts execute them,
 and where different files can be found in the project folder. 
 That is, it should contain all the information needed to interact with a project's data work.
 
-% Version control
+\subsection{Version control}
 Finally, everything that can be version-controlled should be. 
 Version control allows you to effectively track code edits,
 including the addition and deletion of files. 
@@ -126,7 +126,6 @@ Git will highlight the changes that were in data sets and results that they enta
 
 \section{Data cleaning}
 
-% intro: what is data cleaning -------------------------------------------------
 Data cleaning is the first stage of transforming the data you received from the field into data that you can analyze.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning}}
 The cleaning process involves (1) making the data set easily usable and understandable, 
 and (2) documenting individual data points and patterns that may bias the analysis.
