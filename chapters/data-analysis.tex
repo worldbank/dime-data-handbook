@@ -227,27 +227,6 @@ String variables need to be encoded, and open-ended responses, categorized or dr
 Finally, any additional information collected only for quality monitoring purposes,
 such as notes and duration fields, can also be dropped.
 
-\subsection{Outputs from data cleaning}
-
-The most important output of data cleaning is the cleaned data set. 
-It should contain the same information as the raw data set,
-with no changes to data points.
-It should also be easily traced back to the survey instrument,
-and be accompanied by a dictionary or codebook.
-Typically, one cleaned data set will be created for each data source,
-i.e. per survey instrument.
-Each row in the cleaned data set represents one survey entry or unit of observation.\sidenote{\cite{tidy-data}}
-If the raw data set is very large, or the survey instrument is very complex,
-you may want to break the data cleaning into sub-steps, 
-and create intermediate cleaned data sets
-(for example, one per survey module).
-Breaking cleaned data sets into the smallest unit of observation inside a roster
-make the cleaning faster and the data easier to handle during construction.
-But having a single cleaned data set will help you with sharing and publishing the data.
-To make sure this file doesn't get too big to be handled,
-use commands such as \texttt{compress} in Stata to make sure the data
-is always stored in the most efficient format.
-
 \subsection{Documenting data cleaning}
 Throughout the data cleaning process, you will need inputs from the field, 
 including enumerator manuals, survey instruments, 
@@ -273,6 +252,35 @@ Instead, create a record of what you observe,
 then use it as a basis to discuss with your team how to address potential issues during data construction.
 This material will also be valuable during exploratory data analysis.
 
+
+\subsection{The cleaned data set}
+
+The main output of data cleaning is the cleaned data set. 
+It should contain the same information as the raw data set,
+with no changes to data points.
+It should also be easily traced back to the survey instrument,
+and be accompanied by a dictionary or codebook.
+Typically, one cleaned data set will be created for each data source,
+i.e. per survey instrument.
+Each row in the cleaned data set represents one survey entry or unit of observation.\sidenote{\cite{tidy-data}}
+If the raw data set is very large, or the survey instrument is very complex,
+you may want to break the data cleaning into sub-steps, 
+and create intermediate cleaned data sets
+(for example, one per survey module).
+Breaking cleaned data sets into the smallest unit of observation inside a roster
+make the cleaning faster and the data easier to handle during construction.
+But having a single cleaned data set will help you with sharing and publishing the data.
+To make sure this file doesn't get too big to be handled,
+use commands such as \texttt{compress} in Stata to make sure the data
+is always stored in the most efficient format.
+Once you have a cleaned, de-identified data set, and documentation to support it, 
+you have created the first data output of your project:
+a publishable data set.
+The next chapter will get into the details of data publication.
+For now, all you need to know is that your team should consider submitting the data set for publication at this point,
+even if it will remain embargoed for some time.
+This will help you organize your files and create a back up of the data,
+and some donors require that the data be filed as an intermediate step of the project.
 
 \section{Indicator construction}
 
