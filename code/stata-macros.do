@@ -1,20 +1,17 @@
-* Define a local and a global using the same name convention
-    local  myLocal  "A string local"
-    global myGlobal "A string global"
+GOOD:
 
-* Reference the local and the global macros
-    display "`myLocal'"
+    global myGlobal = "A string global"
+    local  myLocal1  = length("${myGlobal}")
+    local  myLocal2  = "\${myGlobal}"
+
     display "${myGlobal}"
+    global myGlobal = "A different string"
 
-* Escape character. If backslashes are used just before a local
-* or a global then two backslashes must be used
-    local myFolderLocal  "Documents"
-    local myFolderGlobal "Documents"
+    forvalues i = 1/2 {
+        display "`myLocal`i''"
+    }
 
-* These are BAD
-    display "C:\Users\username\`myFolderLocal'"
-    display "C:\Users\username\${myFolderGlobal}"
+BAD:
 
-* These are GOOD
-    display "C:\Users\username\\`myFolderLocal'"
-    display "C:\Users\username\\${myFolderGlobal}"
+    global myglobal "A string global"
+    local my_Local = length($myGlobal)

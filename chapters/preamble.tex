@@ -63,7 +63,7 @@
 
 \newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage} % Command to insert a blank page
 
-\usepackage{makeidx} % Used to generate the index
+\usepackage{imakeidx} % Used to generate the index
 \makeindex % Generate the index which is printed at the end of the document
 
 %So we can use option FloatBarrier, which is similar to [H] but is an
@@ -83,6 +83,26 @@
 	\end{figure*}
 	\FloatBarrier
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Customizing section/subsection titles
+% https://tex.stackexchange.com/questions/96090/formatting-subsections-and-chapters-in-tufte-book
+
+% section format
+\titleformat{\section}%
+{\normalfont\Large\bfseries}% format applied to label+text
+{}% label
+{}% horizontal separation between label and title body
+{}% before the title body
+[]% after the title body
+
+% subsection format
+\titleformat{\subsection}%
+{\normalfont\large}% format applied to label+text
+{}% label
+{}% horizontal separation between label and title body
+{}% before the title body
+[]% after the title body
 
 %----------------------------------------------------------------------------------------
 %	BOOK META-INFORMATION
