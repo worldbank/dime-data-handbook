@@ -544,12 +544,20 @@ By follow, we mean someone external to the project who has the master script and
 The master script is also where all the settings are established,
 such as versions, folder paths, functions, and constants used throughout the project.
 
-\texttt{iefolder} creates these as master do-files.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
-Master scripts are a key element of code organization and collaboration,
-and we will discuss some important features soon.
-The master script should mimic the structure of the \texttt{DataWork} folder.
-This is done through the creation of globals (in Stata) or string scalars (in R).
+Try to create the habit of running your code from the master script.
+Creating ``section switches'' using macros or objects to run only the codes related to a certain task
+should always be preferred to manually open different scripts to run them in a certain order
+(see Part 1 of \texttt{stata-master-dofile.do} for an example of how to do this).
+Furthermore, running all scripts related to a particular task through the master whenever one of them is edited
+helps you identify unintended consequences of the changes you made.
+Say, for example, that you changed the name of a variable created in one script.
+This may break another script that refers to this variable.
+But unless you run both of them when the change is made, it may take time for that to happen, 
+and when it does, it may take time for you to understand what's causing an error.
+The same applies to changes in data sets and results.
+
+To link code, data and outputs, the master script reflects the structure of the \texttt{DataWork} folder in code
+through globals (in Stata) or string scalars (in R).
 These coding shortcuts can refer to subfolders,
 so that those folders can be referenced without repeatedly writing out their absolute file paths.
 Because the \texttt{DataWork} folder is shared by the whole team,
@@ -560,6 +568,10 @@ This is reflected in the master script in such a way that
 the only change necessary to run the entire code from a new computer
 is to change the path to the project folder to reflect the filesystem and username.
 The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
+Because writing and maintaining a master script can be challenging as a project grows,
+an important feature of the \texttt{iefolder} is to write master do-files
+and add to them whenever new subfolders are created in the \texttt{DataWork} folder.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
 
 In order to maintain these practices and ensure they are functioning well,
 you should agree with your team on a plan to review code as it is written.
