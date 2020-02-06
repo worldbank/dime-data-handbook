@@ -1,20 +1,23 @@
-* Set the version
+* VERSIONING - Set the version
     ieboilstart , v(13.1)
     `r(version)'
 
-* Load the auto dataset and sort uniquely
+* Load the auto dataset
     sysuse auto.dta , clear
+
+* SORTING - sort on the uniquely identifying variable "make"
     isid make, sort
 
-* Set the seed using random.org (range: 100000 - 999999)
-    set seed 287608 // Timestamp: 2019-02-17 23:06:36 UTC
-
-* Demonstrate stability under the three rules
-    gen check1 = rnormal()
-    gen check2 = rnormal()
-
+* SEEDING - Seed picked using http://bit.ly/stata-random
     set seed 287608
-    gen check3 = rnormal()
 
-//Visualize randomization results
+* Demonstrate stability after VERSIONING, SORTING and SEEDING
+    gen check1 = rnormal()  //Create random number
+    gen check2 = rnormal()  //Create a second random number without resetting seed
+
+    set seed 287608         //Reset the seed
+    gen check3 = rnormal()  //Create a third random number after resetting seed
+
+* Visualize randomization results. See how check1 and check3 are identical,
+* but check2 is random relative check1 and check3
     graph matrix check1 check2 check3 , half
