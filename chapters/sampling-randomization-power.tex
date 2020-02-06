@@ -122,8 +122,11 @@ since Stata's \texttt{version} setting expires after each time you run your do-f
 Because numbers are assigned to each observation in row-by-row starting from
 the top row,
 changing their order will change the result of the process.
-A corollary is that the underlying data must be unchanged between runs:
-you must make a fixed final copy of the data when you run a randomization for fieldwork.
+Since the exact order must be unchanged, the underlying data itself must be unchanged as well between runs.
+This means that if you expect the number of observations to change (for example increase during
+ongoing data collection) your randomization will not be stable unless you split your data up into
+smaller fixed data set where the number of observations does not change. You can combine all
+those smaller data sets after your randomization.
 In Stata, the only way to guarantee a unique sorting order is to use
 \texttt{isid [id\_variable], sort}. (The \texttt{sort, stable} command is insufficient.)
 You can additionally use the \texttt{datasignature} command to make sure the
