@@ -1,6 +1,6 @@
 * If user written command randtreat is not installed, install it here
-	cap which randtreat
-	if _rc ssc install randtreat
+    cap which randtreat
+    if _rc ssc install randtreat
 
 * Set up reproducbilitiy - VERSIONING, SORTTING and SEEDING
     ieboilstart , v(13.1)    // Version
