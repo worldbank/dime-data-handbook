@@ -39,4 +39,4 @@
     lab val treatment treatment
 
 * Show result of randomization
-	tab treatment sex_agegroup
+    tab treatment sex_agegroup
