@@ -89,9 +89,9 @@ Reproducibility in statistical programming means that the outputs of random proc
 can be re-obtained at a future time.
 All random methods must be reproducible.\cite{orozco2018make}
 Stata, like most statistical software, uses a \textbf{pseudo-random number generator}.
-Basically, it has a really long ordered list of numbers with the property that
-knowing the previous one gives you precisely zero information about the next one.
-Stata uses one of these numbers every time it has a task that is non-deterministic.
+Basically, it has a pre-calculated really long ordered list of numbers with the property that
+knowing the previous one gives you precisely zero information about the next one, i.e. a list of random numbers.
+Stata uses one number from this list every time it has a task that is non-deterministic.
 In ordinary use, it will cycle through these numbers starting from a fixed point
 every time you restart Stata, and by the time you get to any given script,
 the current state and the subsequent states will be as good as random.\sidenote{
@@ -103,11 +103,11 @@ In Stata, this is accomplished through three command concepts:
 \textbf{versioning}, \textbf{sorting}, and \textbf{seeding}.
 
 \textbf{Versioning} means using the same version of the software each time you run the random process.
-If anything is different, the underlying randomization algorithms may have changed,
+If anything is different, the underlying list of random numbers may have changed,
 and it will be impossible to recover the original result.
-In Stata, the \texttt{version} command ensures that the software algorithm is fixed.\sidenote{
+In Stata, the \texttt{version} command ensures that the list of random numbers is fixed.\sidenote{
 At the time of writing we recommend using \texttt{version 13.1} for backward compatibility;
-the algorithm was changed after Stata 14 but its improvements do not matter in practice.
+the algorithm used to create this list of random numbers was changed after Stata 14 but its improvements do not matter in practice.
 You will \textit{never} be able to reproduce a randomization in a different software,
 such as moving from Stata to R or vice versa.}
 The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
@@ -132,7 +132,7 @@ In Stata, the only way to guarantee a unique sorting order is to use
 You can additionally use the \texttt{datasignature} command to make sure the
 data is unchanged.
 
-\textbf{Seeding} means manually setting the start-point of the randomization algorithm.
+\textbf{Seeding} means manually setting the start-point in the list of random numbers.
 You can draw a uniformly distributed six-digit seed randomly by visiting \url{http://bit.ly/stata-random}.
 (This link is a just shortcut to request such a random seed on \url{https://www.random.org}.)
 There are many more seeds possible but this is a large enough set for most purposes.
