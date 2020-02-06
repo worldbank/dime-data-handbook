@@ -2,7 +2,7 @@
     ieboilstart , v(13.1)
     `r(version)'
 
-* Load the auto dataset
+* Load the auto dataset (auto.dta is a test data set included in all Stata installations)
     sysuse auto.dta , clear
 
 * SORTING - sort on the uniquely identifying variable "make"
