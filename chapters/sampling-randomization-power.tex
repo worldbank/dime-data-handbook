@@ -133,16 +133,16 @@ You can additionally use the \texttt{datasignature} command to make sure the
 data is unchanged.
 
 \textbf{Seeding} means manually setting the start-point in the list of random numbers.
-You can draw a uniformly distributed six-digit seed randomly by visiting \url{http://bit.ly/stata-random}.
-(This link is a just shortcut to request such a random seed on \url{https://www.random.org}.)
-There are many more seeds possible but this is a large enough set for most purposes.
-In Stata, \texttt{set seed [seed]} will set the generator to that state.
-You should use exactly one unique, different, and randomly created seed per randomization process.
+The seed is a number that should be at least six digits long and you should use exactly 
+one unique, different, and randomly created seed per randomization process.\sidenote{You 
+can draw a uniformly distributed six-digit seed randomly by visiting \url{http://bit.ly/stata-random}. 
+(This link is a just shortcut to request such a random seed on \url{https://www.random.org}.) 
+There are many more seeds possible but this is a large enough set for most purposes.}
+In Stata, \texttt{set seed [seed]} will set the generator to that start-point.
 To be clear: you should not set a single seed once in the master do-file,
 but instead you should set a new seed in code right before each random process.
 The most important thing is that each of these seeds is truly random,
 so do not use shortcuts such as the current date or a seed you have used before.
-You will see in the code below that we include the source and timestamp for verification.
 Other commands may induce randomness in the data or alter the seed without you realizing it,
 so carefully confirm exactly how your code runs before finalizing it.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Randomization_in_Stata}}
