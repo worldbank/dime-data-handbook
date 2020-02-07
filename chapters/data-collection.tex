@@ -16,8 +16,7 @@ The chapter covers questionnaire design, piloting and programming; monitoring da
 \section{Survey development workflow}
 A well-designed questionnaire results from careful planning, consideration of analysis and indicators, close review of existing questionnaires, survey pilots, and research team and stakeholder review. There are many excellent resources on questionnaire design, such as from the World Bank's Living Standards Measurement Survey.
 \sidenote{Grosh, Margaret; Glewwe, Paul. 2000. Designing Household Survey Questionnaires for Developing Countries : Lessons from 15 Years of the Living Standards Measurement Study, Volume 3. Washington, DC: World Bank. © World Bank.\url{https://openknowledge.worldbank.org/handle/10986/15195 License: CC BY 3.0 IGO.}}
-The focus of this chapter is the particular design challenges for electronic surveys (often referred to as Computer Assisted Personal Interviews (CAPI)).
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted\_Personal\_Interviews\_(CAPI)}}
+The focus of this chapter is the particular design challenges for electronic surveys (often referred to as Computer Assisted Personal Interviews (CAPI)).\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted\_Personal\_Interviews\_(CAPI)}}
 
 Although most surveys are now collected electronically, by tablet, mobile phone or web browser,
 \textbf{questionnaire design}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
@@ -56,10 +55,10 @@ The ideal starting point for this is a \textbf{pre-analysis plan}.\sidenote{\url
 
 Use the list of key outcomes to create an outline of questionnaire \textit{modules} (do not number the modules yet; instead use a short prefix so they can be easily reordered). For each module, determine if the module is applicable to the full sample, the appropriate respondent, and whether or how often, the module should be repeated. A few examples: a module on maternal health only applies to household with a woman who has children, a household income module should be answered by the person responsible for household finances, and a module on agricultural production might be repeated for each crop the household cultivated.
 
-Each module should then be expanded into specific indicators to observe in the field.
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
-At this point, it is useful to do a  \textbf{content-focused pilot}
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}} of the questionnaire.
+Each module should then be expanded into specific indicators to observe in the field.\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
+At this point, it is useful to do a  \textbf{content-focused pilot}\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}} of the questionnaire.
 Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions, as there is no need to factor in costs of re-programming, and as a result improves the overall quality of the survey instrument.
 
 
@@ -92,17 +91,16 @@ Once the content of the questionnaire is finalized and translated, it is time to
 %------------------------------------------------
 \section{Programming electronic questionnaires}
 Electronic data collection has great potential to simplify survey implementation and improve data quality.
-Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets) or software-specific form builder, accessible even to novice users.
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
-We will not address software-specific form design in this book; rather, we focus on coding conventions that are important to follow for electronic surveys regardless of software choice.
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
+Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets) or software-specific form builder, accessible even to novice users.\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
+We will not address software-specific form design in this book; rather, we focus on coding conventions that are important to follow for electronic surveys regardless of software choice.\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
 
 Survey software tools provide a wide range of features designed to make implementing even highly complex surveys easy, scalable, and secure.
 However, these are not fully automatic: you still need to actively design and manage the survey.
 Here, we discuss specific practices that you need to follow to take advantage of electronic survey features and ensure that the exported data is compatible with the software that will be used for analysis.
 
-
-As discussed above, the starting point for questionnare programming is a complete paper version of the questionnaire, piloted for content, and translated where needed.
+As discussed above, the starting point for questionnaire programming is a complete paper version of the questionnaire, piloted for content, and translated where needed.
 Doing so reduces version control issues that arise from making significant changes to concurrent paper and electronic survey instruments.
 When programming, do not start with the first question and proceed straight through to the last question.
 Instead, code from high level to small detail, following the same questionnaire outline established at design phase.
@@ -131,7 +129,7 @@ Well-programmed questionnaires should include most or all of the following featu
 All survey software include debugging and test options to correct syntax errors and make sure that the survey instruments will successfully compile.
 This is not sufficient, however, to ensure that the resulting dataset will load without errors in your data analysis software of choice.
 We developed the \texttt{ietestform}
-command,\sidenote{\url{https://dimewiki.worldbank.org/wiki/ietestform}} part of
+command\sidenote{\url{https://dimewiki.worldbank.org/wiki/ietestform}}, part of
 the Stata package
 \texttt{iefieldkit}, to implement a form-checking routine for \textbf{SurveyCTO}, a proprietary implementation of \textbf{Open Data Kit (ODK)}.
 Intended for use during questionnaire programming and before fieldwork,
@@ -149,9 +147,9 @@ ranges are included for numeric variables.
 \section{Data quality assurance}
 A huge advantage of electronic surveys, compared to traditional paper surveys, is the ability to access and analyze the data while the survey is ongoing.
 Data issues can be identified and resolved in real-time. Designing systematic data checks, and running them routinely throughout data collection, simplifies monitoring and improves data quality.
-As part of survey preparation, the research team should develop a \textbf{data quality assurance plan} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}.
-While data collection is ongoing, a research assistant or data analyst should work closely with the field team to ensure that the survey is progressing correctly, and perform \textbf{high-frequency checks (HFCs)} of the incoming data.
-\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
+As part of survey preparation, the research team should develop a \textbf{data quality assurance plan}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}.
+While data collection is ongoing, a research assistant or data analyst should work closely with the field team to ensure that the survey is progressing correctly, and perform \textbf{high-frequency checks (HFCs)} of the incoming data.\sidenote{
+\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
 Data quality assurance requires a combination of real-time data checks and survey audits. Careful field supervision is also essential for a successful survey; however, we focus on the first two in this chapter, as they are the most directly data related.
 
 
@@ -220,8 +218,8 @@ You can use the raw data to draw the back-check sample; assuring it is
 appropriately apportioned across interviews and survey teams.
 As soon as back-checks are complete, the back-check data can be tested against
 the original data to identify areas of concern in real-time.
-\texttt{bcstats} is a useful tool for analyzing back-check data in Stata module.
-\sidenote{\url{https://ideas.repec.org/c/boc/bocode/s458173.html}}
+\texttt{bcstats} is a useful tool for analyzing back-check data in Stata module.\sidenote{
+\url{https://ideas.repec.org/c/boc/bocode/s458173.html}}
 
 Electronic surveys also provide a unique opportunity to do audits through audio recordings of the interview,
 typically short recordings triggered at random throughout the questionnaire.
@@ -232,9 +230,10 @@ Do note, however, that audio audits must be included in the Informed Consent.
 %------------------------------------------------
 
 \section{Collecting Data Securely}
-Primary data collection almost always includes  \textbf{personally-identifiable information (PII)}
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}.
-PII must be handled with great care at all points in the data collection and management process, to comply with ethical requirements and avoid breaches of confidentiality. Access to PII must be restricted to team members granted that permission by the applicable Institutional Review Board or a data licensing agreement with a partner agency. Research teams must maintain strict protocols for data security at each stage of the process: data collection, storage, and sharing.
+Primary data collection almost always includes  \textbf{personally-identifiable information (PII)}\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}.
+PII must be handled with great care at all points in the data collection and management process, to comply with ethical requirements and avoid breaches of confidentiality. Access to PII must be restricted to team members granted that permission by the applicable Institutional Review Board (IRB)\sidenote{\url{https://dimewiki.worldbank.org/wiki/IRB_Approval}} or a data licensing
+agreement with a partner agency. Research teams must maintain strict protocols for data security at each stage of the process: data collection, storage, and sharing.
 
 \subsection{Secure data in the field}
 All mainstream data collection software automatically \textbf{encrypt}
