@@ -1,41 +1,43 @@
 \begin{fullwidth}
 Welcome to Data for Development Impact.
-This book is intended to teach you how to handle data effectively, efficiently, and ethically 
-at all stages of the research process: design, data acquisition, and analysis.
-This book is not sector-specific. 
-It will not teach you econometrics, or how to design an impact evaluation. 
-It will teach you how to think about all aspects of your research from a data perspective: 
-how to structure every stage of your research to maximize data quality 
-and institute transparent and reproducible workflows. 
-The central premise of this book is that data work is a ``social process'',
-in which many people need to have the same idea about what is to be done, and when and where and by whom,
-so that they can collaborate effectively on large, long-term research projects.
+This book is intended to teach all users of development data 
+how to handle data effectively, efficiently, and ethically. 
 
-An [empirical revolution]{\sidenote\url{https://www.bloomberg.com/opinion/articles/2018-08-02/how-economics-went-from-philosophy-to-science}}
+
+An [empirical revolution]{\cite{angrist2017economic}}
 has changed the face of research economics rapidly over the last decade. 
 Economics graduate students of the 2000s expected to work with primarily "clean" data from secondhand sources. 
 Today, especially in the development subfield, working with raw data- 
-whether collected through surveys or acquired through 'big' data sources like sensors, satellites, or call data records- 
+whether collected through surveys or acquired from 'big' data sources like sensors, satellites, or call data records- 
 is a key skill for researchers and their staff. 
-However, most graduates have little or no experience working with raw data when they are recruited as research assistants. 
-Therefore they tend to have a large "skills gap" on the practical tasks of development economics research. 
-Yet there are few guides to the conventions, standards, and best practices that are fast becoming a necessity for impact evaluation projects.
-This book aims to fill that gap, providing a practical resource complete with code snippets and references to concrete resources that allow the reader to immediately put recommended processes into practice.
+At the same time, the scope and scale of empirical research projects is expanding: 
+more people are working on the same data over longer timeframes. 
+As the ambition of development researchers grows, so too has the complexity of the data
+on which they rely to make policy-relevant research conclusions. 
+Yet there are few guides to the conventions, standards, and best practices 
+that are fast becoming a necessity for empirical research.
+This book aims to fill that gap, providing guidance on how to handle data efficiently, transparently and collaboratively. 
+
+This book is targeted to everyone who interacts with development data: 
+graduate students, research assistants, policymakers, and empirical researchers. 
+It covers data workflows at all stages of the research process: design, data acquisition, and analysis.
+This book is not sector-specific; it will not teach you econometrics, or how to design an impact evaluation. 
+There are many excellent existing resources on those topics. 
+Instead, this book will teach you how to think about all aspects of your research from a data perspective, 
+how to structure research projects to maximize data quality, 
+and how to institute transparent and reproducible workflows. 
+The central premise of this book is that data work is a ``social process'',
+in which many people need to have the same idea about what is to be done, and when and where and by whom,
+so that they can collaborate effectively on large, long-term research projects.
+It aims to be a highly practical resource: each chapter offers code snippets, links to checklists and other practical tools, 
+and references to primary resources that allow the reader to immediately put recommended processes into practice. 
+
 
 \end{fullwidth}
 
 %------------------------------------------------
 
 \section{Doing credible research at scale}
-Development economics is increasingly dominated by empirical research.\cite{angrist2017economic}
-The scope and scale of empirical research projects has expanded rapidly in recent years:
-more people are working on the same data over longer timeframes.
-As the ambition of development researchers grows, so too has the complexity of the data
-on which they rely to make policy-relevant research conclusions from \textbf{field experiments}.\sidenote{
-\textbf{Field experiment:} experimental intervention in the real world, rather than in a laboratory.}
-Unfortunately, this seems to have happened (so far) without the creation of
-standards for practitioners to collaborate efficiently or structure data work for maximal reproducibility.
-This book contributes by providing practical guidance on how to handle data efficiently, transparently and collaboratively.
 
 The team responsible for this book is known as \textbf{DIME Analytics}.\sidenote{
 \url{http://www.worldbank.org/en/research/dime/data-and-analytics}}
@@ -68,24 +70,41 @@ Each chapter focuses on one task, providing a primarily narrative account of:
 what you will be doing; where in the workflow this task falls;
 when it should be done; and how to implement it according to best practices.
 
-We will use broad terminology throughout this book
-to refer to different team members:
+
+
+\section{Outline of this book}
+The book progresses through the typical workflow of an empirical research project.
+We start with ethical principles to guide empirical research, 
+focusing on research transparency and the right to privacy. 
+The second chapter discusses the importance of planning data work at the outset of the research project- 
+long before any data is acquired - and provide suggestions for collaborative workflows and tools. 
+Next, we turn to common research designs for \textbf{causal inference}{\sidenote{causal inference: identifying the change in outcome \textit{caused} by a particular intervention}}, and consider their implications for data structure. 
+The fourth chapter covers how to implement sampling and randomization to ensure research credibility, 
+and includes details on power calculation and randomization inference. 
+The fifth chapter provides guidance on high quality primary data collection, particularly for projects that use surveys. 
+The sixth chapter turns to data processing, 
+focusing on how to organize data work so that it is easy to code the desired analysis. 
+In the final chapter, we discuss publishing collaborative research- 
+both the research paper and the code and materials needed to recreate the results.  
+
+We will use broad terminology throughout this book to refer to research team members:
 \textbf{principal investigators (PIs)} who are responsible for
-the overall success of the project;
+the overall design and stewardship of the study;
 \textbf{field coordinators (FCs)} who are responsible for
 the operation of the project on the ground;
 and \textbf{research assistants (RAs)} who are responsible for
 handling raw data processing and analytical tasks.
 
-\section{Writing reproducible code in a collaborative environment}
 
-Research reproduciblity and data quality follow naturally from
-good code and standardized processes.
-Good code practices are a core part of the new data science of development research.
+\section{Writing reproducible code in a collaborative environment}
+Throughout the book, we refer to the importance of good coding practices. 
+These are the foundation of reproducible and credible data work,
+and a core part of the new data science of development research.
 Code today is no longer a means to an end (such as a research paper),
 rather it is part of the output itself: a means for communicating how something was done,
 in a world where the credibility and transparency of data cleaning and analysis is increasingly important.
-
+As this is fundamental to the remainder of the book's content, 
+we provide here a brief introduction to "good" code and standardized practices.
 
 "Good" code has two elements:
 - it is correct (doesn't produce any errors along the way)
@@ -126,11 +145,13 @@ Elements like spacing, indentation, and naming (or lack thereof) can make your c
 
 For some implementation portions where precise code is particularly important,
 we will provide minimal code examples either in the book or on the DIME Wiki.
-In the book, they will be presented like the following:
+All code guidance is software-agnostic, but code examples are provided in Stata 
+(we offer analogous examples in R as much as possible). 
+In the book, code examples will be presented like the following:
 
 \codeexample{code.do}{./code/code.do}
 
-For the code examples, we ensure that each block runs, is well-formatted, and uses built-in functions as much as possible.
+We ensure that each code block runs independently, is well-formatted, and uses built-in functions as much as possible.
 We will point to user-written functions when they provide important tools.
 In particular, we point to two suites of Stata commands developed by DIME Analytics,
 \texttt{ietoolkit}\sidenote{\url{https://dimewiki.worldbank.org/wiki/ietoolkit}} and \texttt{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/wiki/iefieldkit}},
@@ -144,10 +165,9 @@ We hope that these snippets will provide a foundation for your code style.
 Providing some standardization to Stata code style is also a goal of this team,
 we provide our guidance on this in the DIME Analytics Stata Style Guide Appendix. 
 
-
-While adopting the workflows and mindsets described in this book
-requires an up-front cost,
-it should start to save yourself and others a lot of time and hassle very quickly.
+\section{Adopting reproducible workflows}
+While adopting the workflows and mindsets described in this book requires an up-front cost,
+it will save you (and your collaborators) a lot of time and hassle very quickly.
 In part this is because you will learn how to implement essential practices directly;
 in part because you will find tools for the more advanced practices;
 and most importantly because you will acquire the mindset of doing research with a high-quality data focus.
