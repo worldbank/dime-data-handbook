@@ -110,30 +110,100 @@ but in a context as similar as possible to the study sample.
 Once the team is satisfied with the content and structure of the survey,
 it is time to move on to implementing it electronically.
 
-\subsection{Designing electronic questionnaires}
+\subsection{Designing surveys for electronic deployment}
 
 Electronic data collection has great potential to simplify survey implementation and improve data quality.
-Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets) or software-specific form builder, accessible even to novice users.
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
-We will not address software-specific form design in this book; rather, we focus on coding conventions that are important to follow for electronic surveys regardless of software choice.
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
+Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets)
+or software-specific form builder, which are accessible even to novice users.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
+We will not address software-specific form design in this book;
+rather, we focus on coding conventions that are important to follow
+for electronic surveys regardless of software choice.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
+Survey software tools provide a wide range of features
+designed to make implementing even highly complex surveys easy, scalable, and secure.
+However, these are not fully automatic: you need to actively design and manage the survey.
+Here, we discuss specific practices that you need to follow
+to take advantage of electronic survey features
+and ensure that the exported data is compatible with your analysis software.
 
-Survey software tools provide a wide range of features designed to make implementing even highly complex surveys easy, scalable, and secure.
-However, these are not fully automatic: you still need to actively design and manage the survey.
-Here, we discuss specific practices that you need to follow to take advantage of electronic survey features and ensure that the exported data is compatible with the software that will be used for analysis.
+From a data perspective, questions with pre-coded response options
+are always preferable to open-ended questions.
+The content-based pilot is an excellent time to ask open-ended questions
+and refine fixed responses for the final version of the questionnaire --
+do not count on coding up lots of free text after a full survey.
+Coding responses helps to ensure that the data will be useful for quantitative analysis.
+Two examples help illustrate the point.
+First, instead of asking ``How do you feel about the proposed policy change?'',
+use techniques like \textbf{Likert scales}\sidenote{
+  \textbf{Likert scale:} an ordered selection of choices indicating the respondent's level of agreement or disagreement with a proposed statement.}.
+Second, if collecting data on medication use or supplies, you could collect:
+the brand name of the product; the generic name of the product; the coded compound of the product;
+or the broad category to which each product belongs (antibiotic, etc.).
+All four may be useful for different reasons,
+but the latter two are likely to be the most useful for data analysis.
+The coded compound requires providing a translation dictionary to field staff,
+but enables automated rapid recoding for analysis with no loss of information.
+The generic class requires agreement on the broad categories of interest,
+but allows for much more comprehensible top-line statistics and data quality checks.
+Rigorous field testing is required to ensure that answer categories are comprehensive;
+however, it is best practice to include an \textit{other, specify} option.
+Keep track of those reponses in the first few weeks of fieldwork.
+Adding an answer category for a response frequently showing up as \textit{other} can save time,
+as it avoids extensive post-coding.
 
-As discussed above, the starting point for questionnare programming is a complete paper version of the questionnaire, piloted for content, and translated where needed.
-Doing so reduces version control issues that arise from making significant changes to concurrent paper and electronic survey instruments.
-When programming, do not start with the first question and proceed straight through to the last question.
-Instead, code from high level to small detail, following the same questionnaire outline established at design phase.
-The outline provides the basis for pseudocode, allowing you to start with high level structure and work down to the level of individual questions. This will save time and reduce errors.
+It is essential to name the fields in your questionnaire
+in a way that will also work in your data analysis software.
+Most survey programs will not enforce this by default,
+since limits vary by software,
+and surveys will subtly encourage you to use long sentences
+and detailed descriptions of choice options.
+This is what you want for the enumerator-respondent interaction,
+but you should already have analysis-compatible labels programmed in the background
+so the resulting data can be rapidly imported in anlytical software.
+There is some debate over how exactly individual questions should be identified:
+formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder,
+but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
+We recommend using descriptive names with clear prefixes so that variables
+within a module stay together when sorted alphabetically.\sidenote{
+  \url{https://medium.com/@janschenk/variable-names-in-survey-research-a18429d2d4d8}}
+Variable names should never include spaces or mixed cases
+(we prefer all-lowercase naming).
+Take special care with the length: very long names will be cut off in some softwares,
+which could result in a loss of uniqueness and lots of manual work to restore compatibility.
+We further discourage explicit question numbering, as it discourages re-ordering,
+which is a common recommended change after the pilot.
+In the case of follow-up surveys, numbering can quickly become convoluted,
+too often resulting in uninformative variables names like
+\texttt{ag\_15a}, \texttt{ag\_15\_new}, \texttt{ag\_15\_fup2}, and so on.
+
+\subsection{Programming electronic questionnaires}
+
+The starting point for questionnare programming is therefore a complete paper version of the questionnaire,
+piloted for content and translated where needed.
+Doing so reduces version control issues that arise from making significant changes
+to concurrent paper and electronic survey instruments.
+Changing structural components of the survey after programming has been started
+often requires the coder to substantially re-work the entire code.
+This is because the more efficient way to code surveys is non-linear.
+When programming, we do not start with the first question and proceed through to the last question.
+Instead, we code from high level to small detail,
+following the same questionnaire outline established at design phase.
+The outline provides the basis for pseudocode,
+allowing you to start with high level structure and work down to the level of individual questions.
+This will save time and reduce errors,
+particularly where sections or field are interdependent or repeated in complex ways.
 
 Electronic surveys are more than simply a paper questionnaire displayed on a mobile device or web browser.
-All common survey software allow you to automate survey logic and add in hard and soft constraints on survey responses.
-These features make enumerators' work easier, and they create the opportunity to identify and resolve data issues in real-time, simplifying data cleaning and improving response quality.
+All common survey software allow you to automate survey logic
+and add in hard and soft constraints on survey responses.
+These features make enumerators' work easier,
+and they create the opportunity to identify and resolve data issues in real-time,
+simplifying data cleaning and improving response quality.
 Well-programmed questionnaires should include most or all of the following features:
 
 \begin{itemize}
+  \item{\textbf{Localizations}}: the survey instrument should display full text questions and responses in the survey language, and it should also have English and code-compatible versions of all text and labels.
 	\item{\textbf{Survey logic}}: build in all logic, so that only relevant questions appear, rather than relying on enumerators to follow complex survey logic. This covers simple skip codes, as well as more complex interdependencies (e.g., a child health module is only asked to households that report the presence of a child under 5).
 	\item{\textbf{Range checks}}:  add range checks for all numeric variables to catch data entry mistakes (e.g. age must be less than 120).
 	\item{\textbf{Confirmation of key variables}}: require double entry of essential information (such as a contact phone number in a survey with planned phone follow-ups), with automatic validation that the two entries match.
@@ -145,45 +215,36 @@ Well-programmed questionnaires should include most or all of the following featu
 	\item{\textbf{Calculations}}: make the electronic survey instrument do all math, rather than relying on the enumerator or asking them to carry a calculator.
 \end{itemize}
 
-All survey software include debugging and test options to correct syntax errors and make sure that the survey instruments will successfully compile.
-This is not sufficient, however, to ensure that the resulting dataset will load without errors in your data analysis software of choice.
-We developed the \texttt{ietestform}
-command,\sidenote{\url{https://dimewiki.worldbank.org/wiki/ietestform}} part of
-the Stata package
-\texttt{iefieldkit}, to implement a form-checking routine for \textbf{SurveyCTO}, a proprietary implementation of \textbf{Open Data Kit (ODK)}.
+All survey softwares include debugging and test options
+to correct syntax errors and make sure that the survey instruments will successfully compile.
+This is not sufficient, however, to ensure that the resulting dataset
+will load without errors in your data analysis software of choice.
+We developed the \texttt{ietestform} command,\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/ietestform}}
+part of the Stata package \texttt{iefieldkit},
+to implement a form-checking routine for \textbf{SurveyCTO},
+a proprietary implementation of the \textbf{Open Data Kit (ODK)} software.
 Intended for use during questionnaire programming and before fieldwork,
-\texttt{ietestform} tests for best practices in coding, naming and labeling,
-and choice lists.
-Although \texttt{ietestform} is software-specific, many of the tests it runs are general and important to consider regardless of software choice.
+\texttt{ietestform} tests for best practices in coding, naming and labeling, and choice lists.
+Although \texttt{ietestform} is software-specific,
+many of the tests it runs are general and important to consider regardless of software choice.
 To give a few examples, \texttt{ietestform} tests that no variable names exceed
 32 characters, the limit in Stata (variable names that exceed that limit will
-be truncated, and as a result may no longer be unique). It checks whether
-ranges are included for numeric variables.
-\texttt{ietestform} also removes all leading and trailing blanks from response lists, which could be handled inconsistently across software.
-
-From a data perspective, questions with pre-coded response options are always preferable to open-ended questions (the content-based pilot is an excellent time to ask open-ended questions, and refine responses for the final version of the questionnaire). Coding responses helps to ensure that the data will be useful for quantitative analysis. Two examples help illustrate the point. First, instead of asking ``How do you feel about the proposed policy change?'', use techniques like
-\textbf{Likert scales}\sidenote{\textbf{Likert scale:} an ordered selection of choices indicating the respondent's level of agreement or disagreement with a proposed statement.}. Second, if collecting data on medication use or supplies, you could collect: the brand name of the product; the generic name of the product; the coded compound of the product; or the broad category to which each product belongs (antibiotic, etc.). All four may be useful for different reasons, but the latter two are likely to be the most useful for data analysis. The coded compound requires providing a translation dictionary to field staff, but enables automated rapid recoding for analysis with no loss of information. The generic class requires agreement on the broad categories of interest, but allows for much more comprehensible top-line statistics and data quality checks. Rigorous field testing is required to ensure that answer categories are comprehensive; however, it is best practice to include an \textit{other, specify} option. Keep track of those reponses in the first few weeks of fieldwork; adding an answer category for a response frequently showing up as \textit{other} can save time, as it avoids post-coding.
-
-It is useful to name the fields in your questionnaire in a way that will also work in the data analysis software.
-There is debate over how individual questions should be identified: formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder, but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
-We recommend using descriptive names with clear prefixes so that variables
-within a module stay together when sorted
-alphabetically.\sidenote{\url{https://medium.com/@janschenk/variable-names-in-survey-research-a18429d2d4d8}}
- Variable names should never include spaces or mixed cases (all lower case is
-best). Take care with the length: very long names will be cut off in certain
-software, which could result in a loss of uniqueness. We discourage explicit
-question numbering, as it discourages re-ordering, which is a common
-recommended change after the pilot. In the case of follow-up surveys, numbering
-can quickly become convoluted, too often resulting in variables names like
-\texttt{ag\_15a}, \texttt{ag\_15\_new}, \texttt{ag\_15\_fup2}, etc.
+be truncated, and as a result may no longer be unique).
+It checks whether ranges are included for numeric variables.
+\texttt{ietestform} also removes all leading and trailing blanks from response lists,
+which could be handled inconsistently across software.
 
 A second survey pilot should be done after the questionnaire is programmed.
-The objective of the data-focused pilot\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes}} is to validate programming and export a sample dataset.
-Significant desk-testing of the instrument is required to debug the programming as fully as possible before going to the field.
-It is important to plan for multiple days of piloting, so that any further debugging or other revisions to the electronic survey instrument can be made at the end of each day and tested the following, until no further field errors arise.
-The data-focused pilot should be done in advance of enumerator training
-
-\subsection{Programming electronic questionnaires}
+The objective of this \textbf{data-focused pilot}\sidenote{
+  \url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes}}
+is to validate the programming and export a sample dataset.
+Significant desk-testing of the instrument is required to debug the programming
+as fully as possible before going to the field.
+It is important to plan for multiple days of piloting,
+so that any further debugging or other revisions to the electronic survey instrument
+can be made at the end of each day and tested the following, until no further field errors arise.
+The data-focused pilot should be done in advance of enumerator training.
 
 %------------------------------------------------
 \section{Data quality assurance and data security}
