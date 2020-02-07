@@ -1,81 +1,72 @@
 \begin{fullwidth}
 Welcome to Data for Development Impact.
-This book is intended to serve as a resource guide
-for people who collect or use data for development research.
-In particular, the book is intended to guide the reader
-through the process of research using primary survey data,
-from research design to fieldwork to data management to analysis.
-This book will not teach you econometrics or epidemiology or agribusiness.
-This book will not teach you how to design an impact evaluation.
-This book will not teach you how to do data analysis, or how to code.
-There are lots of really good resources out there for all of these things,
-and they are much better than what we would be able to squeeze into this book.
-
-What this book will teach you is how to think about quantitative data,
-keeping in mind that you are not going to be the only person
-collecting it, using it, or looking back on it.
-We hope to provide you two key tools by the time you finish this book.
-First, we want you to form a mental model of data collection as a ``social process'',
+This book is intended to teach you how to handle data effectively, efficiently, and ethically 
+at all stages of the research process: design, data acquisition, and analysis.
+This book is not sector-specific. 
+It will not teach you econometrics, or how to design an impact evaluation. 
+It will teach you how to think about all aspects of your research from a data perspective: 
+how to structure every stage of your research to maximize data quality 
+and institute transparent and reproducible workflows. 
+The central premise of this book is that data work is a ``social process'',
 in which many people need to have the same idea about what is to be done, and when and where and by whom,
-so that they can collaborate effectively on large, long-term projects.
-Second, we want to provide a map of concrete resources for supporting these processes in practice.
-As research teams and timespans have grown dramatically over the last decade,
-it has become inefficient for everyone to have their own personal style
-dictating how they use different functions, how they store data, and how they write code.
+so that they can collaborate effectively on large, long-term research projects.
+
+An [empirical revolution]{\sidenote\url{https://www.bloomberg.com/opinion/articles/2018-08-02/how-economics-went-from-philosophy-to-science}}
+has changed the face of research economics rapidly over the last decade. 
+Economics graduate students of the 2000s expected to work with primarily "clean" data from secondhand sources. 
+Today, especially in the development subfield, working with raw data- 
+whether collected through surveys or acquired through 'big' data sources like sensors, satellites, or call data records- 
+is a key skill for researchers and their staff. 
+However, most graduates have little or no experience working with raw data when they are recruited as research assistants. 
+Therefore they tend to have a large "skills gap" on the practical tasks of development economics research. 
+Yet there are few guides to the conventions, standards, and best practices that are fast becoming a necessity for impact evaluation projects.
+This book aims to fill that gap, providing a practical resource complete with code snippets and references to concrete resources that allow the reader to immediately put recommended processes into practice.
+
 \end{fullwidth}
 
 %------------------------------------------------
 
 \section{Doing credible research at scale}
+Development economics is increasingly dominated by empirical research.\cite{angrist2017economic}
+The scope and scale of empirical research projects has expanded rapidly in recent years:
+more people are working on the same data over longer timeframes.
+As the ambition of development researchers grows, so too has the complexity of the data
+on which they rely to make policy-relevant research conclusions from \textbf{field experiments}.\sidenote{
+\textbf{Field experiment:} experimental intervention in the real world, rather than in a laboratory.}
+Unfortunately, this seems to have happened (so far) without the creation of
+standards for practitioners to collaborate efficiently or structure data work for maximal reproducibility.
+This book contributes by providing practical guidance on how to handle data efficiently, transparently and collaboratively.
 
 The team responsible for this book is known as \textbf{DIME Analytics}.\sidenote{
 \url{http://www.worldbank.org/en/research/dime/data-and-analytics}}
-The DIME Analytics team works within the \textbf{Development Impact Evaluation  (DIME)} group \sidenote{
+The DIME Analytics team works within the \textbf{Development Impact Evaluation  (DIME)} Department \sidenote{
 \url{http://www.worldbank.org/en/research/dime}}
-at the World Bank's \textbf{Development Economics group (DEC)}.\sidenote{
-\url{http://www.worldbank.org/en/research/}}
-After years of supporting hundreds of projects and staff in total,
-DIME Analytics has built up a set of ideas, practices, and software tools
-that support all of the research projects operated at DIME.
+at the World Bank's \textbf{Development Economics (DEC) Vice Presidency}.\sidenote{
+\url{https://www.worldbank.org/en/about/unit/unit-dec}}
+DIME generates high-quality and operationally relevant data and research 
+to transform development policy, help reduce extreme poverty, and secure shared prosperity. 
+It develops customized data and evidence ecosystems to produce actionable information 
+and recommend specific policy pathways to maximize impact.
+DIME conducts research in 60 countries with 200 agencies, leveraging a 
+US\$180 million research budget to shape the design and implementation of 
+US\$18 billion in development finance. 
+DIME also provides advisory services to 30 multilateral and bilateral development agencies. 
+Finally, DIME invests in public goods to improve the quality and reproducibility of development research around the world. 
 
-In the time that we have been working in the development field,
-the proportion of projects that rely on \textbf{primary data} has soared.\cite{angrist2017economic}
-Today, the scope and scale of those projects continue to expand rapidly.
-More and more people are working on the same data over longer timeframes.
-This is because, while administrative datasets
-and \textbf{big data} have important uses,
-primary data\sidenote{\textbf{Primary data:} data collected from first-hand sources.}
-is critical for answering specific research questions.\cite{levitt2009field}
-As the ambition of development researchers grows, so too has the complexity of the data
-on which they rely to make policy-relevant research conclusions from \textbf{field experiments}.\sidenote{\textbf{Field experiment:} experimental intervention in the real world, rather than in a laboratory.}
-Unfortunately, this seems to have happened (so far) without the creation of
-guidelines for practitioners to handle data efficiently and transparently,
-which could provide relevant and objective quality markers for research consumers.
-
-One important lesson we have learned from doing field work over this time is that
-the most overlooked parts of primary data work are reproducibility and collaboration.
-You may be working with people
-who have very different skillsets and mindsets than you,
-from and in a variety of cultures and contexts, and you will have to adopt workflows
-that everyone can agree upon, and that save time and hassle on every project.
-This is not easy. But for some reason, the people who agreed to write this book enjoy doing it.
-(In part this is because it has saved ourselves a lot of time and effort.)
-As we have worked with more and more DIME recruits
-we have realized that we barely have the time to give everyone the attention they deserve.
-This book itself is therefore intended to be a vehicle to document our experiences and share it with with future DIME team members.
-
-The \textbf{DIME Wiki} is one of our flagship resources designed for teams engaged in impact evaluation projects.
-It is available as a free online collection of our resources and best practices.\sidenote{\url{http://dimewiki.worldbank.org/}}
-This book therefore complements the detailed-but-unstructured DIME Wiki
-with a guided tour of the major tasks that make up primary data collection.\sidenote{Like this: \url{https://dimewiki.worldbank.org/wiki/Primary_Data_Collection}}
+DIME Analytics was created take advantage of the concentration and scale of research at DIME to develop and test solutions, 
+to ensure high quality of data collection and research across the DIME portfolio, 
+and to make public training and tools available to the larger community of development researchers.
+Data for Development Impact compiles the ideas, best practices and software tools Analytics 
+has developed while supporting DIME's global impact evaluation portfolio. 
+The \textbf{DIME Wiki} is one of our flagship products, a free online collection of our resources and best practices.\sidenote{
+\url{http://dimewiki.worldbank.org/}}
+This book complements the DIME Wiki by providing a structure narrative of the data workflow for a typical research project. 
 We will not give a lot of highly specific details in this text,
-but we will point you to where they can be found,
-and give you a sense of what you need to find next.
-Each chapter will focus on one task,
-and give a primarily narrative account of:
+but we will point you to where they can be found.\sidenote{Like this: 
+\url{https://dimewiki.worldbank.org/wiki/Primary_Data_Collection}}
+Each chapter focuses on one task, providing a primarily narrative account of:
 what you will be doing; where in the workflow this task falls;
-when it should be done; who you will be working with;
-why this task is important; and how to implement the most basic form of the task.
+when it should be done; and how to implement it according to best practices.
 
 We will use broad terminology throughout this book
 to refer to different team members:
