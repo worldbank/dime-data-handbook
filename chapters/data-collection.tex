@@ -249,7 +249,92 @@ The data-focused pilot should be done in advance of enumerator training.
 %------------------------------------------------
 \section{Data quality assurance and data security}
 
+Data quality assurance requires a combination of real-time data checks and back-checks or validation audits.
+Careful field supervision is also essential for a successful survey;
+however, we focus on the first two in this chapter, as they are the most directly data-related.
+
 \subsection{Implementing high frequency quality checks}
+
+A key advantage of continuous electronic data intake methods,
+as compared to traditional paper surveys and one-time data dumps,
+is the ability to access and analyze the data while the project is ongoing.
+Data issues can be identified and resolved in real-time.
+Designing systematic data checks and running them routinely throughout data intake
+simplifies monitoring and improves data quality.
+As part of data collection preparation,
+the research team should develop a \textbf{data quality assurance plan}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}.
+While data collection is ongoing,
+a research assistant or data analyst should work closely with the field team or partner
+to ensure that the data collection is progressing correctly,
+and set up and perform \textbf{high-frequency checks (HFCs)} with the incoming data.\sidenote{
+  \url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
+
+High-frequency checks (HFCs) should carefully inspect key treatment and outcome variables
+so that the data quality of core experimental variables is uniformly high,
+and that additional effort is centered where it is most important.
+Data quality checks should be run on the data every time it is received (ideally on a daily basis)
+to flag irregularities in survey progress, sample completeness or response quality.
+\texttt{ipacheck}\sidenote{
+  \url{https://github.com/PovertyAction/high-frequency-checks}}
+is a very useful command that automates some of these tasks,
+regardless of the source of the data.
+
+It is important to check continuously that the observations in the data match the intended sample.
+Many survey softwares provide some form of case management features
+through which sampled units are directly assigned to individual enumerators.
+For data recieved from partners this may be harder to validate,
+since they are the authoritative source of the data,
+so cross-referencing with other data sources may be necessary to validate data.
+Even with careful management, it is often the case that raw data includes duplicate or missing entries,
+which may occur due to data entry errors or failed submissions to data servers.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Duplicates_and_Survey_Logs}}
+\texttt{ieduplicates}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/ieduplicates}}
+provides a workflow for collaborating on the resolution of duplicate entries between you and the provider.
+Then, observed units in the data must be validated against the expected sample:
+this is as straightforward as merging the sample list with the survey data and checking for mismatches.
+Reporting errors and duplicate observations in real-time allows the field team to make corrections efficiently.
+Tracking data collection progress is important for monitoring attrition,
+so that it is clear early on if a change in protocols or additional tracking will be needed.
+It is also important to check data collection completion rate
+and sample compliance by surveyor and survey team, if applicable,
+or compare data missingness across administrative regions,
+to identify any clusters that may be providing data of suspect quality.
+
+High frequency checks should also include content-specific data checks.
+Electronic survey and data entry software often incorporates many quality control features,
+so these checks should focus on issues survey software cannot check automatically.
+As most of these checks are project specific,
+it is difficult to provide general guidance.
+An in-depth knowledge of the questionnaire and a careful examination of the analysis plan
+is the best preparation.
+Examples include verifying consistency across multiple response fields,
+validation of complex calculations like crop yields or medicine stocks (which require unit conversions),
+suspicious patterns in survey timing,
+or atypical response patters from specific data sources or enumerators.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
+Electronic data entry software typically provides rich metadata,
+which can be useful in assessing data quality.
+For example, automatically collected timestamps show when data was submitted
+and (for surveys) how long enumerators spent on each question,
+and trace histories show how many
+times answers were changed before or after the data was submitted.
+
+High-frequency checks will only improve data quality
+if the issues they catch are communicated to the data collection team.
+There are lots of ways to do this;
+what's most important is to find a way to create actionable information for your team.
+\texttt{ipacheck}, for example, generates a spreadsheet with flagged errors;
+these can be sent directly to the data collection teams.
+Many teams choose other formats to display results,
+such as online dashboards created by custom scripts.
+It is also possible to automate communication of errors to the field team
+by adding scripts to link the HFCs with a messaging program such as WhatsApp.
+Any of these solutions are possible:
+what works best for your team will depend on such variables as
+cellular networks in fieldwork areas, whether field supervisors have access to laptops,
+internet speed, and coding skills of the team preparing the HFC workflows.
 
 \subsection{Conducting back-checks and data validation}
 
@@ -258,30 +343,13 @@ The data-focused pilot should be done in advance of enumerator training.
 %------------------------------------------------
 
 
-A huge advantage of electronic surveys, compared to traditional paper surveys, is the ability to access and analyze the data while the survey is ongoing.
-Data issues can be identified and resolved in real-time. Designing systematic data checks, and running them routinely throughout data collection, simplifies monitoring and improves data quality.
-As part of survey preparation, the research team should develop a \textbf{data quality assurance plan} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}.
-While data collection is ongoing, a research assistant or data analyst should work closely with the field team to ensure that the survey is progressing correctly, and perform \textbf{high-frequency checks (HFCs)} of the incoming data.
-\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
-Data quality assurance requires a combination of real-time data checks and survey audits. Careful field supervision is also essential for a successful survey; however, we focus on the first two in this chapter, as they are the most directly data related.
 
 
 
-High-frequency checks (HFCs) should carefully inspect key treatment and outcome variables so that the data quality of core experimental variables is uniformly high, and that additional field effort is centered where it is most important.
-Data quality checks should be run on the data every time it is downloaded (ideally on a daily basis), to flag irregularities in survey progress, sample completeness or response quality. \texttt{ipacheck}\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks}}
-is a very useful command that automates some of these tasks.
 
-It is important to check every day that the units interviewed match the survey sample.
-Many survey software include case management features, through which sampled units are directly assigned to individual enumerators.
-Even with careful management, it is often the case that raw data includes duplicate entries, which may occur due to field errors or duplicated submissions to the server.
-Even with careful management, it is often the case that raw data includes duplicate entries, which may occur due to field errors or duplicated submissions to the server.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Duplicates_and_Survey_Logs}}
-\texttt{ieduplicates}\sidenote{\url{https://dimewiki.worldbank.org/wiki/ieduplicates}}
-provides a workflow for collaborating on the resolution of duplicate entries between you and the field team.
-Next, observed units in the data must be validated against the expected sample:
-this is as straightforward as merging the sample list with the survey data and checking for mismatches.
-Reporting errors and duplicate observations in real-time allows the field team to make corrections efficiently.
-Tracking survey progress is important for monitoring attrition, so that it is clear early on if a change in protocols or additional tracking will be needed.
-It is also important to check interview completion rate and sample compliance by surveyor and survey team, to identify any under-performing individuals or teams.
+
+
+
 
 When all data collection is complete, the survey team should prepare a final field report,
 which should report reasons for any deviations between the original sample and the dataset collected.
@@ -292,26 +360,7 @@ This reporting should be validated and saved alongside the final raw data, and t
 This information should be stored as a dataset in its own right -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
 and loss to follow-up occurred in the field and how they were implemented and resolved.
 
-High frequency checks should also include survey-specific data checks. As electronic survey
-software incorporates many data control features, discussed above, these checks
-should focus on issues survey software cannot check automatically. As most of
-these checks are survey specific, it is difficult to provide general guidance.
-An in-depth knowledge of the questionnaire, and a careful examination of the
-pre-analysis plan, is the best preparation. Examples include  consistency
-across multiple responses, complex calculation (such as crop yield, which first requires unit conversions),
-suspicious patterns in survey timing, or atypical response patters from specific enumerators.
-timing, or atypical response patterns from specific enumerators.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
-survey software typically provides rich metadata, which can be useful in
-assessing interview quality. For example, automatically collected time stamps
-show how long enumerators spent per question, and trace histories show how many
-times answers were changed before the survey was submitted.
 
-High-frequency checks will only improve data quality if the issues they catch are communicated to the field.
-There are lots of ways to do this; what's most important is to find a way to create actionable information for your team, given field constraints.
-`ipacheck` generates an excel sheet with results for each run; these can be sent directly to the field teams.
-Many teams choose other formats to display results, notably online dashboards created by custom scripts.
-It is also possible to automate communication of errors to the field team by adding scripts to link the HFCs with a messaging program such as whatsapp.
-Any of these solutions are possible: what works best for your team will depend on such variables as cellular networks in fieldwork areas, whether field supervisors have access to laptops, internet speed, and coding skills of the team preparing the HFC workflows.
 
 Careful monitoring of field work is essential for high quality data.
 \textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}} and
