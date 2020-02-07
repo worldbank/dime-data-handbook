@@ -338,55 +338,38 @@ internet speed, and coding skills of the team preparing the HFC workflows.
 
 \subsection{Conducting back-checks and data validation}
 
-\subsection{Receiving, storing, and sharing data securely}
-
-%------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-When all data collection is complete, the survey team should prepare a final field report,
-which should report reasons for any deviations between the original sample and the dataset collected.
-Identification and reporting of \textbf{missing data} and \textbf{attrition} is critical to the interpretation of survey data.
-It is important to structure this reporting in a way that not only groups broad rationales into specific categories
-but also collects all the detailed, open-ended responses to questions the field team can provide for any observations that they were unable to complete.
-This reporting should be validated and saved alongside the final raw data, and treated the same way.
-This information should be stored as a dataset in its own right -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
-and loss to follow-up occurred in the field and how they were implemented and resolved.
-
-
-
-Careful monitoring of field work is essential for high quality data.
+Careful validation of data is essential for high-quality data.
+Since we cannot control natural measurement error
+that comes from variation in the realization of key outcomes,
+primary data collection provides the opportunity to make sure
+that there is no error arising from inaccuracies in the data itself.
 \textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}} and
-other survey audits help ensure that enumerators are following established protocols, and are not falsifying data.
-For back-checks, a random subset of the field sample is chosen and a subset of information from the full survey is
-verified through a brief interview with the original respondent.
-Design of the back-check questionnaire follows the same survey design
-principles discussed above: you should use the pre-analysis plan
-or list of key outcomes to establish which subset of variables to prioritize.
+other validation audits help ensure that data collection is following established protocols,
+and that data is not fasified, incomplete, or otherwise suspect.
+For back-checks and validation audies, a random subset of the main data is selected,
+and a subset of information from the full survey is
+verified through a brief targeted survey with the original respondent
+or a cross-referenced data set from another source.
+Design of the back-checks or validations follows the same survey design
+principles discussed above: you should use the analysis plan
+or list of key outcomes to establish which subset of variables to prioritize,
+and similarly focus on errors that would be major flags for poor quality data.
 
-Real-time access to the survey data increases the potential utility of
-back-checks dramatically, and both simplifies and improves the rigor of related
-workflows.
-You can use the raw data to draw the back-check sample; assuring it is
-appropriately apportioned across interviews and survey teams.
-As soon as back-checks are complete, the back-check data can be tested against
+Real-time access to the data massively increases the potential utility of validation,
+and both simplifies and improves the rigor of the associated workflows.
+You can use the raw primary data to draw the back-check or validation sample;
+this ensures that the validation is correctly apportioned across observations.
+As soon as checking is complete, the comparator data can be tested against
 the original data to identify areas of concern in real-time.
-\texttt{bcstats} is a useful tool for analyzing back-check data in Stata module.
-\sidenote{\url{https://ideas.repec.org/c/boc/bocode/s458173.html}}
-
-Electronic surveys also provide a unique opportunity to do audits through audio recordings of the interview,
+The \texttt{bcstats} command is a useful tool for analyzing back-check data in Stata.\sidenote{
+  \url{https://ideas.repec.org/c/boc/bocode/s458173.html}}
+Some electronic surveys surveys also provide a unique opportunity
+to do audits through audio recordings of the interview,
 typically short recordings triggered at random throughout the questionnaire.
-\textbf{Audio audits} are a useful means to assess whether the enumerator is conducting the interview
-as expected (and not sitting under a tree making up data).
-Do note, however, that audio audits must be included in the Informed Consent.
+\textbf{Audio audits} are a useful means to assess whether enumerators are conducting interviews as expected.
+Do note, however, that audio audits must be included in the informed consent for the respondents.
 
+\subsection{Receiving, storing, and sharing data securely}
 
 Primary data collection almost always includes  \textbf{personally-identifiable information (PII)}
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}.
@@ -455,6 +438,14 @@ and tools for statistical disclosure control.
 In cases where PII data is required for analysis, we recommend embargoing the sensitive variables when publishing the data.
 Access to the embargoed data could be granted for the purposes of study replication, if approved by an IRB.
 
+When all data collection is complete, the survey team should prepare a final field report,
+which should report reasons for any deviations between the original sample and the dataset collected.
+Identification and reporting of \textbf{missing data} and \textbf{attrition} is critical to the interpretation of survey data.
+It is important to structure this reporting in a way that not only groups broad rationales into specific categories
+but also collects all the detailed, open-ended responses to questions the field team can provide for any observations that they were unable to complete.
+This reporting should be validated and saved alongside the final raw data, and treated the same way.
+This information should be stored as a dataset in its own right -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
+and loss to follow-up occurred in the field and how they were implemented and resolved.
 With the raw data securely stored and backed up, and a de-identified dataset to work with, you are ready to move to data cleaning, and analysis.
 
 %------------------------------------------------
