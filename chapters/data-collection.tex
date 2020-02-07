@@ -248,7 +248,7 @@ largely taken care of.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encrypt
 However, the research team must ensure that all computers, tablets, and accounts
 used have a logon password and are never left unlocked.
 
-\subsection{Secure data storage}
+\subsection{Secure data storage -- during data collection}
 \textbf{Encryption at rest}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption\#Encryption\_at\_Rest}}
 is the only way to ensure that PII data remains private when it is stored on a
 server on the internet. You must keep your data encrypted on the server 
@@ -258,12 +258,24 @@ than password-protection. Encryption at rest requires active participation from
 the user, and you should be fully aware that if your decryption key is lost, there 
 is absolutely no way to recover your data.
 
-You should not assume that your data is encrypted by default: indeed, for most survey software platforms, encryption needs to be enabled by the user.
-To enable it, you must confirm you know how to operate the encryption system and understand the consequences if basic protocols are not followed.
-When you enable encryption, the service will allow you to download -- once -- the keyfile pair needed to decrypt the data.
-You must download and store this in a secure location, such as a password manager. Make sure you store keyfiles with descriptive names to match the survey to which they correspond.
-Any time anyone accesses the data- either when viewing it in the browser or downloading it to your computer- they will be asked to provide the keyfile.
-Only project team members named in the IRB are allowed access to the private keyfile.
+You should not assume that your data is encrypted by default: indeed, for most survey
+software platforms, encryption needs to be enabled by the user. To enable it, you must
+confirm you know how to operate the encryption system and understand the consequences 
+if basic protocols are not followed. Most survey software implement \textbf{asymmetric 
+encryption}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption\#Asymmetric\_Encryption}}
+where there are two keys in a public/private key pair. The private key can be used to
+decrypt the encrypted data, and the public key can only be used to encrypt the data.
+It is therefore safe to send the public key to the tablet or the browser used to 
+collect the data. When you enable encryption, the survey software will allow you to 
+download -- once -- the public/private keyfile pair needed to decrypt the data. You 
+upload the public key when you start a new survey, and all data collected using that
+public key can only be accessed with the private key in the same public/private key 
+pair. You must store the key pair in a secure location, such as a password manager, as 
+there is no way to access your data if the private key is lost. Make sure you store 
+keyfiles with descriptive names to match the survey to which they correspond. Any time 
+anyone accesses the data- either when viewing it in the browser or downloading it to 
+your computer- they will be asked to provide the keyfile. Only project team members 
+named in the IRB are allowed access to the private keyfile.
 
 To proceed with data analysis, you typically need a working copy of the data accessible from a personal computer. The following workflow allows you to receive data from the server and store it securely, without compromising data security.
 
