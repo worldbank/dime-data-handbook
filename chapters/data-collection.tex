@@ -333,31 +333,59 @@ You may never share passwords by email, text message, WhatsApp etc.This signific
 mitigates the risk in case there is a security breach such as loss, theft, hacking, 
 or a virus, with little impact on day-to-day utilization.
 
-We recommend de-identification in two stages: an initial process to remove direct identifiers to create a working de-identified dataset, and a final process to remove all possible identifiers to create a publishable dataset.
-The \textbf{initial de-identification} should happen directly after the encrypted data is downloaded to disk. At this time, for each variable that contains PII, ask: will this variable be needed for analysis?
-If not, the variable should be dropped. Examples include respondent names, enumerator names, interview date, respondent phone number.
-If the variable is needed for analysis, ask: can I encode or otherwise construct a variable to use for the analysis that masks the PII, and drop the original variable?
-Examples include geocoordinates (after constructing measures of distance or area, drop the specific location), and names for social network analysis (can be encoded to unique numeric IDs).
-If PII variables are directly required for the analysis itself, it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
+\subsection{Secure data sharing and publication}
+The first secure folder you created when downloading the data can safely be shared with
+anyone in your team. If you did create the secure folder in a shared folder, then you 
+have already done so. As long as this folder stays encrypted and you do not leak the 
+key, you can share this folder however you want, even using insecure methods such as 
+email. While you can share this folder with anyone, you should be careful to only 
+share the key with people listed on the IRB, and you should only share the key using 
+password managers. Everyone accessing the secure folder must decrypt the folder each 
+time they use it and never copy any identifying data to a location outside it. This is 
+inconvenient but there is a way to make this easier.
 
-Flagging all potentially identifying variables in the questionnaire design stage, as recommended above, simplifies the initial de-identification.
-You already have the list of variables to assess, and ideally have already assessed those against the pre-analysis plan.
-If so, all you need to do is write a script to drop the variables that are not required for analysis, encode or otherwise mask those that are required, and save a working version of the data.
+To simplify the workflow, it is best to remove PII variables from your data at the 
+earliest possible opportunity, and save a de-identified copy of the data.
+Once the data is de-identified, it no longer needs to be encrypted - therefore 
+you can interact with it directly, without having to decrypt it using the key.
 
-The \textbf{final de-identification} is a more involved process, with the objective of creating a dataset for publication that cannot be manipulated or linked to identify any individual research participant.
-You must remove all direct and indirect identifiers, and assess the risk of statistical disclosure.
-\sidenote{Disclosure risk: the likelihood that a released data record can be associated with an individual or organization}.
-\index{statistical disclosure}
-There will almost always be a trade-off between accuracy and privacy. For publicly disclosed data, you should favor privacy.
-There are a number of useful tools for de-identification: PII scanners for Stata
-\sidenote{\url{https://github.com/J-PAL/stata_PII_scan}} or R
-\sidenote{\url{https://github.com/J-PAL/PII-Scan}},
-and tools for statistical disclosure control.
-\sidenote{\url{https://sdcpractice.readthedocs.io/en/latest/}}
-In cases where PII data is required for analysis, we recommend embargoing the sensitive variables when publishing the data.
+We recommend de-identification in two stages: an initial process to remove direct 
+identifiers to create a working de-identified dataset, and a final process to remove
+all possible identifiers to create a publishable dataset. The \textbf{initial de-identification} 
+should happen directly after the encrypted data is downloaded to disk. At this time, 
+for each variable that contains PII, ask: will this variable be needed for analysis?
+If not, the variable should be dropped. Examples include respondent names, enumerator
+names, interview date, respondent phone number. If the variable is needed for analysis, 
+ask: can I encode or otherwise construct a variable to use for the analysis that masks 
+the PII, and drop the original variable? Examples include geocoordinates (after 
+constructing measures of distance or area, drop the specific location), and names for
+social network analysis (can be encoded to unique numeric IDs). If PII variables are 
+directly required for the analysis itself, it will be necessary to keep at least a 
+subset of the data encrypted through the data analysis process.
+
+Flagging all potentially identifying variables in the questionnaire design stage, as 
+recommended above, simplifies the initial de-identification. You already have the list 
+of variables to assess, and ideally have already assessed those against the pre-analysis 
+plan. If so, all you need to do is write a script to drop the variables that are not 
+required for analysis, encode or otherwise mask those that are required, and save a working
+version of the data.
+
+While the initially de-identified dataset can be share with a lower level of security, 
+it should still be shared with caution and not made public as it is not a publishable 
+dataset. The \textbf{final de-identification} to create a publishable
+dataset is a more involved process, with the objective of creating a dataset for 
+publication that cannot be manipulated or linked to identify any individual research 
+participant. You must remove all direct and indirect identifiers,
+as well as assess the risk of statistical disclosure\index{statistical disclosure}.\sidenote{
+Disclosure risk: the likelihood that a released data record can be associated with an 
+individual or organization} There will almost always be a trade-off between accuracy and
+privacy. For publicly disclosed data, you should favor privacy. There are a number of 
+useful tools for de-identification: PII scanners for Stata\sidenote{\url{
+https://github.com/J-PAL/stata_PII_scan}} or R\sidenote{\url{
+https://github.com/J-PAL/PII-Scan}}, and tools for statistical disclosure control\sidenote{
+\url{https://sdcpractice.readthedocs.io/en/latest/}}. In cases where PII data is required
+for analysis, we recommend embargoing the sensitive variables when publishing the data.
 Access to the embargoed data could be granted for the purposes of study replication, if approved by an IRB.
-
-
 
 With the raw data securely stored and backed up, and a de-identified dataset to work with, you are ready to move to data cleaning, and analysis.
 
