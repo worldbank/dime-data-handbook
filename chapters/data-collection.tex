@@ -13,84 +13,105 @@ The chapter covers questionnaire design, piloting and programming; monitoring da
 \end{fullwidth}
 
 %------------------------------------------------
-\section{Survey development workflow}
-A well-designed questionnaire results from careful planning, consideration of analysis and indicators, close review of existing questionnaires, survey pilots, and research team and stakeholder review. There are many excellent resources on questionnaire design, such as from the World Bank's Living Standards Measurement Survey.
-\sidenote{Grosh, Margaret; Glewwe, Paul. 2000. Designing Household Survey Questionnaires for Developing Countries : Lessons from 15 Years of the Living Standards Measurement Study, Volume 3. Washington, DC: World Bank. © World Bank.\url{https://openknowledge.worldbank.org/handle/10986/15195 License: CC BY 3.0 IGO.}}
-The focus of this chapter is the particular design challenges for electronic surveys (often referred to as Computer Assisted Personal Interviews (CAPI)).
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Computer-Assisted\_Personal\_Interviews\_(CAPI)}}
+\section{Collecting primary data with development partners}
 
+\subsection{Who owns data?}
+
+\subsection{Data licensing agreements}
+
+\subsection{Receiving data from development partners}
+
+%------------------------------------------------
+\section{Collecting primary data using electronic surveys}
+
+\subsection{Developing a survey instrument}
+
+A well-designed questionnaire results from careful planning,
+consideration of analysis and indicators, close review of existing questionnaires,
+survey pilots, and research team and stakeholder review.
+There are many excellent resources on questionnaire design,
+such as from the World Bank's Living Standards Measurement Survey.\cite{glewwe2000designing}
+The focus of this section is the design of electronic field surveys,
+often referred to as Computer Assisted Personal Interviews (CAPI).\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Computer-Assisted\_Personal\_Interviews\_(CAPI)}}
 Although most surveys are now collected electronically, by tablet, mobile phone or web browser,
-\textbf{questionnaire design}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
-\index{questionnaire design}
-(content development) and questionnaire programming (functionality development) should be seen as two strictly separate tasks.
-The research team should agree on all questionnaire content and design a paper version before programming an electronic version.
-This facilitates a focus on content during the design process and ensures teams have a readable, printable paper version of their questionnaire.
+\textbf{questionnaire design}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
+  \index{questionnaire design}
+(content development) and questionnaire programming (functionality development)
+should be seen as two strictly separate tasks.
+Therefore, the research team should agree on all questionnaire content
+and design a paper version of the survey before beginning to program the electronic version.
+This facilitates a focus on content during the design process
+and ensures teams have a readable, printable version of their questionnaire.
 Most importantly, it means the research, not the technology, drives the questionnaire design.
 
-An easy-to-read paper version of the questionnaire is particularly critical for training enumerators, so they can get an overview of the survey content and structure before diving into the programming.
-It is much easier for enumerators to understand all possible response pathways from a paper version than from swiping question by question.
-Finalizing the questionnaire before programming also avoids version control concerns that arise from concurrent work on paper and electronic survey instruments.
-Finally, a paper questionnaire is an important documentation for data publication.
+We recomment this approach because an easy-to-read paper questionnaire
+is especially useful for training data collection staff,
+by focusing on the survey content and structure before diving into the technical component.
+It is much easier for enumerators to understand the range of possible participant responses
+and how to hand them correctly on a paper survey than on a tablet,
+and it is much easier for them to translate that logic to digital functionality later.
+Finalizing this version of the questionnaire before beginning any programming
+also avoids version control concerns that arise from concurrent work
+on paper and electronic survey instruments.
+Finally, a readable paper questionnaire is a necessary component of data documentation,
+since it is difficult to work backwards from the survey program to the intended concepts.
 
-
-\subsection{Content-focused Pilot}
-A \textbf{survey pilot}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}} is essential to finalize questionnaire design.
-A content-focused pilot\sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}  is best done on pen-and-paper, before the questionnaire is programmed.
-The objective is to improve the structure and length of the questionnaire, refine the phrasing and translation of specific questions, and confirm coded response options are exhaustive.\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes}} In addition, it is an opportunity to test and refine all survey protocols, such as how units will be sampled or pre-selected units identified. The pilot must be done out-of-sample, but in a context as similar as possible to the study sample.
-
-\subsection{Data-focused pilot}
-A second survey pilot should be done after the questionnaire is programmed.
-The objective of the data-focused pilot\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes}} is to validate programming and export a sample dataset.
-Significant desk-testing of the instrument is required to debug the programming as fully as possible before going to the field.
-It is important to plan for multiple days of piloting, so that any further debugging or other revisions to the electronic survey instrument can be made at the end of each day and tested the following, until no further field errors arise.
-The data-focused pilot should be done in advance of enumerator training
-
-
-\section{Designing electronic questionnaires}
 The workflow for designing a questionnaire will feel much like writing an essay, or writing pseudocode:
 begin from broad concepts and slowly flesh out the specifics.
 It is essential to start with a clear understanding of the
-\textbf{theory of change}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Theory_of_Change}} and \textbf{experimental design} for your project.
-The first step of questionnaire design is to list key outcomes of interest, as well as the main factors to control for (covariates) and variables needed for experimental design.
-The ideal starting point for this is a \textbf{pre-analysis plan}.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan}}
+\textbf{theory of change}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Theory_of_Change}}
+and \textbf{experimental design} for your project.
+The first step of questionnaire design is to list key outcomes of interest,
+as well as the main covariates to control for and any variables needed for experimental design.
+The ideal starting point for this is a \textbf{pre-analysis plan}.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan}}
 
-Use the list of key outcomes to create an outline of questionnaire \textit{modules} (do not number the modules yet; instead use a short prefix so they can be easily reordered). For each module, determine if the module is applicable to the full sample, the appropriate respondent, and whether or how often, the module should be repeated. A few examples: a module on maternal health only applies to household with a woman who has children, a household income module should be answered by the person responsible for household finances, and a module on agricultural production might be repeated for each crop the household cultivated.
-
-Each module should then be expanded into specific indicators to observe in the field.
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
-At this point, it is useful to do a  \textbf{content-focused pilot}
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}} of the questionnaire.
-Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions, as there is no need to factor in costs of re-programming, and as a result improves the overall quality of the survey instrument.
-
-
-\subsection{Questionnaire design for quantitative analysis}
-This book covers surveys designed to yield datasets useful for quantitative analysis. This is a subset of surveys, and there are specific design considerations that will help to ensure the raw data outputs are ready for analysis.
-
-From a data perspective, questions with pre-coded response options are always preferable to open-ended questions (the content-based pilot is an excellent time to ask open-ended questions, and refine responses for the final version of the questionnaire). Coding responses helps to ensure that the data will be useful for quantitative analysis. Two examples help illustrate the point. First, instead of asking ``How do you feel about the proposed policy change?'', use techniques like
-\textbf{Likert scales}\sidenote{\textbf{Likert scale:} an ordered selection of choices indicating the respondent's level of agreement or disagreement with a proposed statement.}. Second, if collecting data on medication use or supplies, you could collect: the brand name of the product; the generic name of the product; the coded compound of the product; or the broad category to which each product belongs (antibiotic, etc.). All four may be useful for different reasons, but the latter two are likely to be the most useful for data analysis. The coded compound requires providing a translation dictionary to field staff, but enables automated rapid recoding for analysis with no loss of information. The generic class requires agreement on the broad categories of interest, but allows for much more comprehensible top-line statistics and data quality checks. Rigorous field testing is required to ensure that answer categories are comprehensive; however, it is best practice to include an \textit{other, specify} option. Keep track of those reponses in the first few weeks of fieldwork; adding an answer category for a response frequently showing up as \textit{other} can save time, as it avoids post-coding.
-
-It is useful to name the fields in your paper questionnaire in a way that will also work in the data analysis software.
-There is debate over how individual questions should be identified: formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder, but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
-We recommend using descriptive names with clear prefixes so that variables
-within a module stay together when sorted
-alphabetically.\sidenote{\url{https://medium.com/@janschenk/variable-names-in-survey-research-a18429d2d4d8}}
- Variable names should never include spaces or mixed cases (all lower case is
-best). Take care with the length: very long names will be cut off in certain
-software, which could result in a loss of uniqueness. We discourage explicit
-question numbering, as it discourages re-ordering, which is a common
-recommended change after the pilot. In the case of follow-up surveys, numbering
-can quickly become convoluted, too often resulting in variables names like
-\texttt{ag\_15a}, \texttt{ag\_15\_new}, \texttt{ag\_15\_fup2}, etc.
-
-Questionnaires must include ways to document the reasons for \textbf{attrition}, treatment \textbf{contamination}, and \textbf{loss to follow-up}.
+Use the list of key outcomes to create an outline of questionnaire \textit{modules}.
+Do not number the modules yet; instead use a short prefix so they can be easily reordered.
+For each module, determine if the module is applicable to the full sample,
+the appropriate respondent, and whether or how often, the module should be repeated.
+A few examples: a module on maternal health only applies to household with a woman who has children,
+a household income module should be answered by the person responsible for household finances,
+and a module on agricultural production might be repeated for each crop the household cultivated.
+Each module should then be expanded into specific indicators to observe in the field.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
+At this point, it is useful to do a  \textbf{content-focused pilot}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}
+of the questionnaire.
+Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions,
+as there is no need to factor in costs of re-programming,
+and as a result improves the overall quality of the survey instrument.
+Questionnaires must also include ways to document the reasons for \textbf{attrition},
+treatment \textbf{contamination}, and \textbf{loss to follow-up}.
 \index{attrition}\index{contamination}
-These are essential data components for completing CONSORT records, a standardized system for reporting enrollment, intervention allocation, follow-up, and data analysis through the phases of a randomized trial of two groups.\cite{begg1996improving}
+These are essential data components for completing CONSORT records,
+a standardized system for reporting enrollment, intervention allocation, follow-up,
+and data analysis through the phases of a randomized trial.\cite{begg1996improving}
 
-Once the content of the questionnaire is finalized and translated, it is time to proceed with programming the electronic survey instrument.
+Once the content of the survey is drawn up,
+the team should conduct a small \textbf{survey pilot}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}}
+using the paper forms to finalize questionnaire design and detect any content issues.
+A content-focused pilot\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}
+is best done on pen and paper, before the questionnaire is programmed,
+because changes at this point may be deep and structural, which are hard to adjust in code.
+The objective is to improve the structure and length of the questionnaire,
+refine the phrasing and translation of specific questions,
+and confirm coded response options are exhaustive.\sidenote{
+  \url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Content)&printable=yes}}
+In addition, it is an opportunity to test and refine all survey protocols,
+such as how units will be sampled or pre-selected units identified.
+The pilot must be done out-of-sample,
+but in a context as similar as possible to the study sample.
+Once the team is satisfied with the content and structure of the survey,
+it is time to move on to implementing it electronically.
 
+\subsection{Designing electronic questionnaires}
 
-%------------------------------------------------
-\section{Programming electronic questionnaires}
 Electronic data collection has great potential to simplify survey implementation and improve data quality.
 Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets) or software-specific form builder, accessible even to novice users.
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
@@ -101,15 +122,12 @@ Survey software tools provide a wide range of features designed to make implemen
 However, these are not fully automatic: you still need to actively design and manage the survey.
 Here, we discuss specific practices that you need to follow to take advantage of electronic survey features and ensure that the exported data is compatible with the software that will be used for analysis.
 
-
 As discussed above, the starting point for questionnare programming is a complete paper version of the questionnaire, piloted for content, and translated where needed.
 Doing so reduces version control issues that arise from making significant changes to concurrent paper and electronic survey instruments.
 When programming, do not start with the first question and proceed straight through to the last question.
 Instead, code from high level to small detail, following the same questionnaire outline established at design phase.
 The outline provides the basis for pseudocode, allowing you to start with high level structure and work down to the level of individual questions. This will save time and reduce errors.
 
-
-\subsection{Electronic survey features}
 Electronic surveys are more than simply a paper questionnaire displayed on a mobile device or web browser.
 All common survey software allow you to automate survey logic and add in hard and soft constraints on survey responses.
 These features make enumerators' work easier, and they create the opportunity to identify and resolve data issues in real-time, simplifying data cleaning and improving response quality.
@@ -127,7 +145,6 @@ Well-programmed questionnaires should include most or all of the following featu
 	\item{\textbf{Calculations}}: make the electronic survey instrument do all math, rather than relying on the enumerator or asking them to carry a calculator.
 \end{itemize}
 
-\subsection{Compatibility with analysis software}
 All survey software include debugging and test options to correct syntax errors and make sure that the survey instruments will successfully compile.
 This is not sufficient, however, to ensure that the resulting dataset will load without errors in your data analysis software of choice.
 We developed the \texttt{ietestform}
@@ -144,9 +161,42 @@ be truncated, and as a result may no longer be unique). It checks whether
 ranges are included for numeric variables.
 \texttt{ietestform} also removes all leading and trailing blanks from response lists, which could be handled inconsistently across software.
 
+From a data perspective, questions with pre-coded response options are always preferable to open-ended questions (the content-based pilot is an excellent time to ask open-ended questions, and refine responses for the final version of the questionnaire). Coding responses helps to ensure that the data will be useful for quantitative analysis. Two examples help illustrate the point. First, instead of asking ``How do you feel about the proposed policy change?'', use techniques like
+\textbf{Likert scales}\sidenote{\textbf{Likert scale:} an ordered selection of choices indicating the respondent's level of agreement or disagreement with a proposed statement.}. Second, if collecting data on medication use or supplies, you could collect: the brand name of the product; the generic name of the product; the coded compound of the product; or the broad category to which each product belongs (antibiotic, etc.). All four may be useful for different reasons, but the latter two are likely to be the most useful for data analysis. The coded compound requires providing a translation dictionary to field staff, but enables automated rapid recoding for analysis with no loss of information. The generic class requires agreement on the broad categories of interest, but allows for much more comprehensible top-line statistics and data quality checks. Rigorous field testing is required to ensure that answer categories are comprehensive; however, it is best practice to include an \textit{other, specify} option. Keep track of those reponses in the first few weeks of fieldwork; adding an answer category for a response frequently showing up as \textit{other} can save time, as it avoids post-coding.
+
+It is useful to name the fields in your questionnaire in a way that will also work in the data analysis software.
+There is debate over how individual questions should be identified: formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder, but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
+We recommend using descriptive names with clear prefixes so that variables
+within a module stay together when sorted
+alphabetically.\sidenote{\url{https://medium.com/@janschenk/variable-names-in-survey-research-a18429d2d4d8}}
+ Variable names should never include spaces or mixed cases (all lower case is
+best). Take care with the length: very long names will be cut off in certain
+software, which could result in a loss of uniqueness. We discourage explicit
+question numbering, as it discourages re-ordering, which is a common
+recommended change after the pilot. In the case of follow-up surveys, numbering
+can quickly become convoluted, too often resulting in variables names like
+\texttt{ag\_15a}, \texttt{ag\_15\_new}, \texttt{ag\_15\_fup2}, etc.
+
+A second survey pilot should be done after the questionnaire is programmed.
+The objective of the data-focused pilot\sidenote{\url{https://dimewiki.worldbank.org/index.php?title=Checklist:_Refine_the_Questionnaire_(Data)&printable=yes}} is to validate programming and export a sample dataset.
+Significant desk-testing of the instrument is required to debug the programming as fully as possible before going to the field.
+It is important to plan for multiple days of piloting, so that any further debugging or other revisions to the electronic survey instrument can be made at the end of each day and tested the following, until no further field errors arise.
+The data-focused pilot should be done in advance of enumerator training
+
+\subsection{Programming electronic questionnaires}
 
 %------------------------------------------------
-\section{Data quality assurance}
+\section{Data quality assurance and data security}
+
+\subsection{Implementing high frequency quality checks}
+
+\subsection{Conducting back-checks and data validation}
+
+\subsection{Receiving, storing, and sharing data securely}
+
+%------------------------------------------------
+
+
 A huge advantage of electronic surveys, compared to traditional paper surveys, is the ability to access and analyze the data while the survey is ongoing.
 Data issues can be identified and resolved in real-time. Designing systematic data checks, and running them routinely throughout data collection, simplifies monitoring and improves data quality.
 As part of survey preparation, the research team should develop a \textbf{data quality assurance plan} \sidenote{\url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}.
@@ -155,7 +205,7 @@ While data collection is ongoing, a research assistant or data analyst should wo
 Data quality assurance requires a combination of real-time data checks and survey audits. Careful field supervision is also essential for a successful survey; however, we focus on the first two in this chapter, as they are the most directly data related.
 
 
-\subsection{High frequency checks}
+
 High-frequency checks (HFCs) should carefully inspect key treatment and outcome variables so that the data quality of core experimental variables is uniformly high, and that additional field effort is centered where it is most important.
 Data quality checks should be run on the data every time it is downloaded (ideally on a daily basis), to flag irregularities in survey progress, sample completeness or response quality. \texttt{ipacheck}\sidenote{\url{https://github.com/PovertyAction/high-frequency-checks}}
 is a very useful command that automates some of these tasks.
@@ -181,18 +231,18 @@ This reporting should be validated and saved alongside the final raw data, and t
 This information should be stored as a dataset in its own right -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
 and loss to follow-up occurred in the field and how they were implemented and resolved.
 
-High frequency checks should also include survey-specific data checks. As electronic survey 
-software incorporates many data control features, discussed above, these checks 
-should focus on issues survey software cannot check automatically. As most of 
-these checks are survey specific, it is difficult to provide general guidance. 
-An in-depth knowledge of the questionnaire, and a careful examination of the 
-pre-analysis plan, is the best preparation. Examples include  consistency 
-across multiple responses, complex calculation (such as crop yield, which first requires unit conversions), 
-suspicious patterns in survey timing, or atypical response patters from specific enumerators. 
+High frequency checks should also include survey-specific data checks. As electronic survey
+software incorporates many data control features, discussed above, these checks
+should focus on issues survey software cannot check automatically. As most of
+these checks are survey specific, it is difficult to provide general guidance.
+An in-depth knowledge of the questionnaire, and a careful examination of the
+pre-analysis plan, is the best preparation. Examples include  consistency
+across multiple responses, complex calculation (such as crop yield, which first requires unit conversions),
+suspicious patterns in survey timing, or atypical response patters from specific enumerators.
 timing, or atypical response patterns from specific enumerators.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
-survey software typically provides rich metadata, which can be useful in 
-assessing interview quality. For example, automatically collected time stamps 
-show how long enumerators spent per question, and trace histories show how many 
+survey software typically provides rich metadata, which can be useful in
+assessing interview quality. For example, automatically collected time stamps
+show how long enumerators spent per question, and trace histories show how many
 times answers were changed before the survey was submitted.
 
 High-frequency checks will only improve data quality if the issues they catch are communicated to the field.
@@ -202,8 +252,6 @@ Many teams choose other formats to display results, notably online dashboards cr
 It is also possible to automate communication of errors to the field team by adding scripts to link the HFCs with a messaging program such as whatsapp.
 Any of these solutions are possible: what works best for your team will depend on such variables as cellular networks in fieldwork areas, whether field supervisors have access to laptops, internet speed, and coding skills of the team preparing the HFC workflows.
 
-
-\subsection{Data considerations for field monitoring}
 Careful monitoring of field work is essential for high quality data.
 \textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}} and
 other survey audits help ensure that enumerators are following established protocols, and are not falsifying data.
@@ -229,21 +277,17 @@ typically short recordings triggered at random throughout the questionnaire.
 as expected (and not sitting under a tree making up data).
 Do note, however, that audio audits must be included in the Informed Consent.
 
-%------------------------------------------------
 
-\section{Collecting Data Securely}
 Primary data collection almost always includes  \textbf{personally-identifiable information (PII)}
 \sidenote{\url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}.
 PII must be handled with great care at all points in the data collection and management process, to comply with ethical requirements and avoid breaches of confidentiality. Access to PII must be restricted to team members granted that permission by the applicable Institutional Review Board or a data licensing agreement with a partner agency. Research teams must maintain strict protocols for data security at each stage of the process: data collection, storage, and sharing.
 
-\subsection{Secure data in the field}
 All mainstream data collection software automatically \textbf{encrypt}
 \sidenote{\textbf{Encryption:} the process of making information unreadable to
 anyone without access to a specific deciphering
 key. \url{https://dimewiki.worldbank.org/wiki/Encryption}}
 all data submitted from the field while in transit (i.e., upload or download).  Your data will be encrypted from the time it leaves the device (in tablet-assisted data collation) or your browser (in web data collection), until it reaches the server. Therefore, as long as you are using an established survey software, this step is largely taken care of. However, the research team must ensure that all computers, tablets, and accounts used have a logon password and are never left unlocked.
 
-\subsection{Secure data storage}
 \textbf{Encryption at rest} is the only way to ensure that PII data remains private when it is stored on someone else's server on the internet. You must keep your data encrypted on the server whenever PII data is collected.
 Encryption makes data files completely unusable without access to a security key specific to that data -- a higher level of security than password-protection.
 Encryption at rest requires active participation from the user, and you should be fully aware that if your private key is lost, there is absolutely no way to recover your data.
@@ -264,9 +308,9 @@ To proceed with data analysis, you typically need a working copy of the data acc
 
 \end{enumerate}
 
-This handling satisfies the \textbf{3-2-1 rule}: there are 
-two on-site copies of the data and one off-site copy, so the data can never 
-be lost in case of hardware 
+This handling satisfies the \textbf{3-2-1 rule}: there are
+two on-site copies of the data and one off-site copy, so the data can never
+be lost in case of hardware
 failure.\sidenote{\url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
 In addition, you should ensure that all teams take basic precautions to ensure the security of data, as most problems are due to human error.
 Ideally, the machine hard drives themselves should also be encrypted, as well as any external hard drives or flash drives used.
@@ -274,7 +318,6 @@ All files sent to the field containing PII data, such as sampling lists, must be
 You must never share passwords by email; rather, use a secure password manager.
 This significantly mitigates the risk in case there is a security breach such as loss, theft, hacking, or a virus, with little impact on day-to-day utilization.
 
-\subsection{Secure data sharing}
 To simplify workflow, it is best to remove PII variables from your data at the earliest possible opportunity, and save a de-identified copy of the data.
 Once the data is de-identified, it no longer needs to be encrypted - therefore you can interact with it directly, without having to provide the keyfile.
 
@@ -301,8 +344,6 @@ and tools for statistical disclosure control.
 \sidenote{\url{https://sdcpractice.readthedocs.io/en/latest/}}
 In cases where PII data is required for analysis, we recommend embargoing the sensitive variables when publishing the data.
 Access to the embargoed data could be granted for the purposes of study replication, if approved by an IRB.
-
-
 
 With the raw data securely stored and backed up, and a de-identified dataset to work with, you are ready to move to data cleaning, and analysis.
 
