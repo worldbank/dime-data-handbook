@@ -371,81 +371,150 @@ Do note, however, that audio audits must be included in the informed consent for
 
 \subsection{Receiving, storing, and sharing data securely}
 
-Primary data collection almost always includes  \textbf{personally-identifiable information (PII)}
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}.
-PII must be handled with great care at all points in the data collection and management process, to comply with ethical requirements and avoid breaches of confidentiality. Access to PII must be restricted to team members granted that permission by the applicable Institutional Review Board or a data licensing agreement with a partner agency. Research teams must maintain strict protocols for data security at each stage of the process: data collection, storage, and sharing.
+Primary data collection, whether in surveys or from partners,
+almost always includes \textbf{personally-identifiable information (PII)}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}
+from the people who are described in the dataset.
+PII must be handled with great care at all points in the data collection and management process,
+in order to comply with ethical and legal requirements
+and to avoid breaches of confidentiality.
+Access to PII must be restricted exclusively to team members
+who are granted that permission by the applicable Institutional Review Board
+or the data licensing agreement with the partner agency.
+Research teams must maintain strict protocols for data security at each stage of the process,
+including data collection, storage, and sharing.
 
-All mainstream data collection software automatically \textbf{encrypt}
-\sidenote{\textbf{Encryption:} the process of making information unreadable to
-anyone without access to a specific deciphering
-key. \url{https://dimewiki.worldbank.org/wiki/Encryption}}
-all data submitted from the field while in transit (i.e., upload or download).  Your data will be encrypted from the time it leaves the device (in tablet-assisted data collation) or your browser (in web data collection), until it reaches the server. Therefore, as long as you are using an established survey software, this step is largely taken care of. However, the research team must ensure that all computers, tablets, and accounts used have a logon password and are never left unlocked.
+In field surveys, most common data collection software will automatically \textbf{encrypt}\sidenote{
+  \textbf{Encryption:} the process of making information unreadable to
+  anyone without access to a specific deciphering
+  key. \url{https://dimewiki.worldbank.org/wiki/Encryption}}
+all data submitted from the field while in transit (i.e., when uploading or downloading).
+If this is implemented by the software,
+the data will be encrypted from the time it leaves the device or browser until it reaches the server.
+Therefore, as long as you are using an established survey software, this step is largely taken care of.
+Of course, the research team must ensure that all computers, tablets, and accounts
+that are used in data collection have a secure logon password and are never left unlocked.
 
-\textbf{Encryption at rest} is the only way to ensure that PII data remains private when it is stored on someone else's server on the internet. You must keep your data encrypted on the server whenever PII data is collected.
-Encryption makes data files completely unusable without access to a security key specific to that data -- a higher level of security than password-protection.
-Encryption at rest requires active participation from the user, and you should be fully aware that if your private key is lost, there is absolutely no way to recover your data.
+Even though your data is therefore usually safe while it is being transmitted,
+it is not automatially secure when it is being stored.
+\textbf{Encryption at rest} is the only way to ensure
+that PII data remains private when it is stored on someone else's server on the internet.
+You must keep your data encrypted on the data collection server whenever PII data is collected.
+If you do not, the raw data will be accessible by individuals
+who are not approved by your IRB agreement,
+such as tech support personnel, server administrators, and other third-party staff.
+Encryption at rest must be used to make data files completely unusable
+without access to a security key specific to that data
+-- a higher level of security than simple password-protection.
+Encryption at rest requires active participation from the user,
+and you should be fully aware that if your private encryption key is lost,
+there is absolutely no way to recover your data.
 
-You should not assume that your data is encrypted by default: indeed, for most survey software platforms, encryption needs to be enabled by the user.
-To enable it, you must confirm you know how to operate the encryption system and understand the consequences if basic protocols are not followed.
-When you enable encryption, the service will allow you to download -- once -- the keyfile pair needed to decrypt the data.
-You must download and store this in a secure location, such as a password manager. Make sure you store keyfiles with descriptive names to match the survey to which they correspond.
-Any time anyone accesses the data- either when viewing it in the browser or downloading it to your computer- they will be asked to provide the keyfile.
-Only project team members named in the IRB are allowed access to the private keyfile.
+You should not assume that your data is encrypted by default:
+because of the careful protocols necessary, for most data collection platforms,
+encryption at rest needs to be explicitly enabled and operated by the user.
+There is no automatic way to implement this protocol,
+because the encryption key that is generated
+can never pass through the hands of a third party, including the data storage application.
+To enable encryption at rest, you must confirm
+you know how to operate the encryption system
+and understand the consequences if the correct protocols are not followed.
+When you enable encryption at rest, the service typically will allow you to download -- once --
+the keyfile pair needed to decrypt the data.
+You must download and store this keyfile in a secure location, such as a password manager.
+Make sure you store keyfiles with descriptive names to match the survey to which they correspond.
+The keyfiles must only be accessible to people who are IRB-approved to use PII data.
+Any time anyone accesses the data -- either when viewing it in the browser or downloading it to your computer -- they will be asked to provide the keyfile.
+If they cannot, the data is inaccessible.
+This makes keyfile encryption the recommended storage for any data service
+that is not enterprise-grade.
+Enterprise-grade storage services typically implement a similar protocol
+and are legally and technically configured so that your organization
+is able to hold keys safely and allow data access based on verification of your identity.
 
-To proceed with data analysis, you typically need a working copy of the data accessible from a personal computer. The following workflow allows you to receive data from the server and store it securely, without compromising data security.
+For most analytical needs, you will therefore need to create
+a copy of the data which has all direct identifiers removed.
+This working copy can be stored using unencrypted storage methods,
+staff who are not IRB-approved can access and use the data,
+and it can be shared with other people involved in the research without strict protocols.
+The following workflow allows you to receive data and store it securely,
+without compromising data security:
 
 \begin{enumerate}
 	\item Download data
 	\item Store a ``master'' copy of the data into an encrypted location that will remain accessible on disk and be regularly backed up
-	\item Create a ``gold master'' copy of the raw data in a secure location, such as a long-term cloud storage service or an encrypted physical hard drive stored in a separate location. If you remain lucky, you will never have to access this copy -- you just want to know it is out there, safe, if you need it.
+	\item Create a ``gold master'' copy of the raw data in a secure location, such as a long-term cloud storage service or an encrypted physical hard drive stored in a separate location. If you remain lucky, you will never have to access this copy -- you just want to know it is there, safe, if you need it.
 
 \end{enumerate}
 
 This handling satisfies the \textbf{3-2-1 rule}: there are
 two on-site copies of the data and one off-site copy, so the data can never
-be lost in case of hardware
-failure.\sidenote{\url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
+be lost in case of hardware failure.\sidenote{
+  \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
 In addition, you should ensure that all teams take basic precautions to ensure the security of data, as most problems are due to human error.
-Ideally, the machine hard drives themselves should also be encrypted, as well as any external hard drives or flash drives used.
+Ideally, the machine hard drives themselves should also be encrypted,
+as well as any external hard drives or flash drives used.
 All files sent to the field containing PII data, such as sampling lists, must be encrypted.
 You must never share passwords by email; rather, use a secure password manager.
-This significantly mitigates the risk in case there is a security breach such as loss, theft, hacking, or a virus, with little impact on day-to-day utilization.
+This significantly mitigates the risk in case there is a security breach
+such as loss, theft, hacking, or a virus, with little impact on day-to-day utilization.
 
-To simplify workflow, it is best to remove PII variables from your data at the earliest possible opportunity, and save a de-identified copy of the data.
-Once the data is de-identified, it no longer needs to be encrypted - therefore you can interact with it directly, without having to provide the keyfile.
-
-We recommend de-identification in two stages: an initial process to remove direct identifiers to create a working de-identified dataset, and a final process to remove all possible identifiers to create a publishable dataset.
-The \textbf{initial de-identification} should happen directly after the encrypted data is downloaded to disk. At this time, for each variable that contains PII, ask: will this variable be needed for analysis?
-If not, the variable should be dropped. Examples include respondent names, enumerator names, interview date, respondent phone number.
-If the variable is needed for analysis, ask: can I encode or otherwise construct a variable to use for the analysis that masks the PII, and drop the original variable?
+To simplify workflow, it is best to remove PII variables from your data
+at the earliest possible opportunity, and save a de-identified copy of the data.
+Once the data is de-identified, it no longer needs to be encrypted
+-- therefore you can interact with it directly without having to provide the keyfile.
+We recommend de-identification in two stages:
+an initial process to remove direct identifiers to create a working de-identified dataset,
+and a final process to remove all possible identifiers to create a publishable dataset.
+The \textbf{initial de-identification} should happen directly after the encrypted data is downloaded to disk.
+At this time, for each variable that contains PII, ask: will this variable be needed for analysis?
+If not, the variable should be dropped.
+Examples include respondent names, enumerator names, interview dates, and respondent phone numbers.
+If the variable is needed for analysis, ask:
+can I encode or otherwise construct a variable to use for the analysis that masks the PII,
+and drop the original variable?
 Examples include geocoordinates (after constructing measures of distance or area, drop the specific location), and names for social network analysis (can be encoded to unique numeric IDs).
-If PII variables are directly required for the analysis itself, it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
+If PII variables are directly required for the analysis itself,
+it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
 
-Flagging all potentially identifying variables in the questionnaire design stage, as recommended above, simplifies the initial de-identification.
-You already have the list of variables to assess, and ideally have already assessed those against the pre-analysis plan.
-If so, all you need to do is write a script to drop the variables that are not required for analysis, encode or otherwise mask those that are required, and save a working version of the data.
+Flagging all potentially identifying variables in the questionnaire design stage,
+as recommended above, simplifies the initial de-identification.
+You already have the list of variables to assess,
+and ideally have already assessed those against the analysis plan.
+If so, all you need to do is write a script to drop the variables that are not required for analysis,
+ encode or otherwise mask those that are required, and save a working version of the data.
 
-The \textbf{final de-identification} is a more involved process, with the objective of creating a dataset for publication that cannot be manipulated or linked to identify any individual research participant.
-You must remove all direct and indirect identifiers, and assess the risk of statistical disclosure.
-\sidenote{Disclosure risk: the likelihood that a released data record can be associated with an individual or organization}.
+The \textbf{final de-identification} is a more involved process,
+with the objective of creating a dataset for publication
+that cannot be manipulated or linked to identify any individual research participant.
+You must remove all direct and indirect identifiers, and assess the risk of statistical disclosure.\sidenote{
+  \textbf{Disclosure risk:} the likelihood that a released data record can be associated with an individual or organization.}
 \index{statistical disclosure}
-There will almost always be a trade-off between accuracy and privacy. For publicly disclosed data, you should favor privacy.
-There are a number of useful tools for de-identification: PII scanners for Stata
-\sidenote{\url{https://github.com/J-PAL/stata_PII_scan}} or R
-\sidenote{\url{https://github.com/J-PAL/PII-Scan}},
-and tools for statistical disclosure control.
-\sidenote{\url{https://sdcpractice.readthedocs.io/en/latest/}}
-In cases where PII data is required for analysis, we recommend embargoing the sensitive variables when publishing the data.
+There will almost always be a trade-off between accuracy and privacy.
+For publicly disclosed data, you should favor privacy.
+There are a number of useful tools for de-identification: PII scanners for Stata\sidenote{
+  \url{https://github.com/J-PAL/stata_PII_scan}}
+or R\sidenote{
+  \url{https://github.com/J-PAL/PII-Scan}},
+and tools for statistical disclosure control.\sidenote{
+  \url{https://sdcpractice.readthedocs.io/en/latest/}}
+In cases where PII data is required for analysis,
+we recommend embargoing the sensitive variables when publishing the data.
 Access to the embargoed data could be granted for the purposes of study replication, if approved by an IRB.
 
 When all data collection is complete, the survey team should prepare a final field report,
 which should report reasons for any deviations between the original sample and the dataset collected.
-Identification and reporting of \textbf{missing data} and \textbf{attrition} is critical to the interpretation of survey data.
-It is important to structure this reporting in a way that not only groups broad rationales into specific categories
-but also collects all the detailed, open-ended responses to questions the field team can provide for any observations that they were unable to complete.
+Identification and reporting of \textbf{missing data} and \textbf{attrition}
+is critical to the interpretation of survey data.
+It is important to structure this reporting in a way that not only
+groups broad rationales into specific categories
+but also collects all the detailed, open-ended responses
+to questions the field team can provide for any observations that they were unable to complete.
 This reporting should be validated and saved alongside the final raw data, and treated the same way.
-This information should be stored as a dataset in its own right -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
+This information should be stored as a dataset in its own right
+-- a \textbf{tracking dataset} -- that records all events in which survey substitutions
 and loss to follow-up occurred in the field and how they were implemented and resolved.
-With the raw data securely stored and backed up, and a de-identified dataset to work with, you are ready to move to data cleaning, and analysis.
+With the raw data securely stored and backed up,
+and a de-identified dataset to work with, you are ready to move to data cleaning and analysis.
 
 %------------------------------------------------
