@@ -277,28 +277,61 @@ anyone accesses the data- either when viewing it in the browser or downloading i
 your computer- they will be asked to provide the keyfile. Only project team members 
 named in the IRB are allowed access to the private keyfile.
 
-To proceed with data analysis, you typically need a working copy of the data accessible from a personal computer. The following workflow allows you to receive data from the server and store it securely, without compromising data security.
+\subsection{Secure data storage -- after data collection}
+
+To proceed with data analysis, you typically need a to store the data somewhere else 
+than the survey software's server, for example your computer or a cloud drive. While 
+asymmetric encryption is optimal for one-way transfer from the data collection device
+to the data collection server, it is not practical once you start interacting with the data.
+
+Instead we want to use \textbf{symmetric encryption}\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Encryption\#Symmetric\_Encryption}} where we 
+create a secure encrypted folder, using for example VeraCrypt\sidenote{\url{https://www.veracrypt.fr/}}, 
+where a single key is used to both encrypt and decrypt the information. Since only one 
+key is used, the work flow can be simplified, the re-encryption after decrypting can 
+be done automatically and the same secure folder can be used for multiple files, and 
+these files can be interacted with and modified like any unencryted file as long as you
+have the key. To not risk leaking data at any point of the process and to make sure that
+your data is properly backed up, follow these steps:
 
 \begin{enumerate}
-	\item Download data
-	\item Store a ``master'' copy of the data into an encrypted location that will remain accessible on disk and be regularly backed up
-	\item Create a ``gold master'' copy of the raw data in a secure location, such as a long-term cloud storage service or an encrypted physical hard drive stored in a separate location. If you remain lucky, you will never have to access this copy -- you just want to know it is out there, safe, if you need it.
-
+	\item Create a secure encrypted folder in your project folder, this should be on
+	your computer and could be in a shared folder.
+	\item Download data from the data collection server to that secure folder -- if 
+	you encrypted the data during data collection you will need \textit{both} the 
+	private key used during data collection to be able to download the data, \textit{and}
+	you will need the key used when created the secure folder to save it there. This
+	your first copy of your raw data.
+	\item Then create a secure folder on a pen-drive or a external hard drive, that you
+	can keep in your office. Copy the data you just downloaded to this second secure 
+	folder. This is your ''master'' copy of your raw data. (Instead of creating a second
+	secure folder, you can simply copy the first secure folder)
+	\item Finally, create a third secure folder. Either you can create this on your 
+	computer and upload it to a long-term cloud storage service, or you can create it on 
+	an external hard drive that you then store in a separate location, for example at 
+	another office of your organization. This is your ''golden master'' copy of your raw 
+	data. You should never store the ''golden master'' copy of your raw data in a synced 
+	folder where it is also deleted in the cloud storage if it is deleted on your computer.
+	(Instead of creating a third secure folder, you can simply copy the first secure folder).
 \end{enumerate}
 
 This handling satisfies the \textbf{3-2-1 rule}: there are 
 two on-site copies of the data and one off-site copy, so the data can never 
-be lost in case of hardware 
-failure.\sidenote{\url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
-In addition, you should ensure that all teams take basic precautions to ensure the security of data, as most problems are due to human error.
-Ideally, the machine hard drives themselves should also be encrypted, as well as any external hard drives or flash drives used.
-All files sent to the field containing PII data, such as sampling lists, must be encrypted.
-You must never share passwords by email; rather, use a secure password manager.
-This significantly mitigates the risk in case there is a security breach such as loss, theft, hacking, or a virus, with little impact on day-to-day utilization.
+be lost in case of hardware failure.\sidenote{\url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
+If you remain lucky, you will never have to access your ''master'' or 
+''golden master'' copies -- you just want to know it is out there, safe, 
+if you need it.
 
-\subsection{Secure data sharing}
-To simplify workflow, it is best to remove PII variables from your data at the earliest possible opportunity, and save a de-identified copy of the data.
-Once the data is de-identified, it no longer needs to be encrypted - therefore you can interact with it directly, without having to provide the keyfile.
+In addition, you should ensure that all teams take basic precautions to ensure the 
+security of data, as most problems are due to human error. Ideally, the machine 
+hard drives themselves should also be encrypted. All files sent to the field containing
+PII data, such as sampling lists, must be encrypted. The best way to do that is to 
+set up a small secure encrypted folder and send that folder attached to an email.
+You must then share the key in a secure way. To share keys and passwords securely, 
+you must use a password manager\sidenote{\url{https://www.lastpass.com} or \url{https://bitwarden.com}}.
+You may never share passwords by email, text message, WhatsApp etc.This significantly
+mitigates the risk in case there is a security breach such as loss, theft, hacking, 
+or a virus, with little impact on day-to-day utilization.
 
 We recommend de-identification in two stages: an initial process to remove direct identifiers to create a working de-identified dataset, and a final process to remove all possible identifiers to create a publishable dataset.
 The \textbf{initial de-identification} should happen directly after the encrypted data is downloaded to disk. At this time, for each variable that contains PII, ask: will this variable be needed for analysis?
