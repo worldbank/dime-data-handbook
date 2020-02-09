@@ -11,7 +11,7 @@
     sort treatment_rand            //Sort based on the random number
 
 * See simple-sample.do example for an explanation of "(_n <= _N * X)". The code
-* below randomly selects one third into group 0, one third into group 1 and
+* below randomly selects one third of the observations into group 0, one third into group 1 and
 * one third into group 2. Typically 0 represents the control group and 1 and
 * 2 represents two treatment arms
     generate treatment = 0                       //Set all observations to 0
