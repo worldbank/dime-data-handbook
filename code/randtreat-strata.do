@@ -15,7 +15,7 @@
     label var sex_agegroup "Strata Gender and Age Group"
 
 * Use the user written command randtreat to randomize when the groups
-* cannot be evenly distributed into treatment arms. There are 20
+* cannot be evenly distributed into treatment arms.
 * observations in each strata, and there is no way to evenly distribute
 * 20 observations in 6 groups. If we assign 3 observation to each
 * treatment arm we have 2 observations in each strata left. The remaining
