@@ -16,7 +16,7 @@
 
 * Use the user written command randtreat to randomize when the groups
 * cannot be evenly distributed into treatment arms.
-* observations in each strata, and there is no way to evenly distribute
+* This is the case here, since there are 20 observations in each strata
 * 20 observations in 6 groups. If we assign 3 observation to each
 * treatment arm we have 2 observations in each strata left. The remaining
 * observations are called "misfits". In randtreat we can use the "global"
