@@ -9,7 +9,7 @@
     isid patient, sort       // Sort
     set seed 796683          // Seed - drawn using http://bit.ly/stata-random
 
-* Create strata indicator. The indicator is a categorical varaible with
+* Create strata indicator. The indicator is a categorical variable with
 * one value for each unique combination of gender and age group.
     egen sex_agegroup = group(sex agegrp) , label
     label var sex_agegroup "Strata Gender and Age Group"
