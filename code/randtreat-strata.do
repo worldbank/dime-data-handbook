@@ -17,12 +17,12 @@
 * Use the user written command randtreat to randomize when the groups
 * cannot be evenly distributed into treatment arms.
 * This is the case here, since there are 20 observations in each strata
-* 20 observations in 6 groups. If we assign 3 observation to each
-* treatment arm we have 2 observations in each strata left. The remaining
-* observations are called "misfits". In randtreat we can use the "global"
+* and 6 treatment arms to distribute them into.
+* This will always result in two remaining ("misfits") observations in each group.
+* randtreat offers different ways to deal with misfits. In this example, we use the "global"
 * misfit strategy, meaning that the misfits will be randomized into
 * treatment groups so that the sizes of the treatment groups are as
-* balanced as possible globally (read helpfile for more information).
+* balanced as possible globally (read helpfile for details on this and other strategies for misfits).
 * This way we have 6 treatment groups with exactly 20 observations
 * in each, and it is randomized which strata that has an extra
 * observation in each treatment arm.
