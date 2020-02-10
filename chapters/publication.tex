@@ -453,3 +453,45 @@ sharing the preprint through.
 Do not use Dropbox or Google Drive for this purpose:
 many organizations do not allow access to these tools,
 and that includes blocking staff from accessing your material.
+
+%--------------------------------------- REFIT!
+The \textbf{final de-identification} is a more involved process,
+with the objective of creating a dataset for publication
+that cannot be manipulated or linked to identify any individual research participant.
+You must remove all direct and indirect identifiers, and assess the risk of statistical disclosure.\sidenote{
+	\textbf{Disclosure risk:} the likelihood that a released data record can be associated with an individual or organization.}
+\index{statistical disclosure}
+There will almost always be a trade-off between accuracy and privacy.
+For publicly disclosed data, you should favor privacy.
+There are a number of useful tools for de-identification: PII scanners for Stata\sidenote{
+	\url{https://github.com/J-PAL/stata_PII_scan}}
+or R\sidenote{
+	\url{https://github.com/J-PAL/PII-Scan}},
+and tools for statistical disclosure control.\sidenote{
+	\url{https://sdcpractice.readthedocs.io/en/latest/}}
+In cases where PII data is required for analysis,
+we recommend embargoing the sensitive variables when publishing the data.
+Access to the embargoed data could be granted for the purposes of study replication, if approved by an IRB.
+
+
+
+There are a number of tools developed to help researchers de-identify data
+and which you should use as appropriate at that stage of data collection.
+These include \texttt{PII\_detection}\sidenote{\url{https://github.com/PovertyAction/PII\_detection}} from IPA,
+\texttt{PII-scan}\sidenote{\url{https://github.com/J-PAL/PII-Scan}} from JPAL,
+and \texttt{sdcMicro}\sidenote{\url{https://sdcpractice.readthedocs.io/en/latest/sdcMicro.html}} from the World Bank.
+\index{anonymization}
+The \texttt{sdcMicro} tool, in particular, has a feature
+that allows you to assess the uniqueness of your data observations,
+and simple measures of the identifiability of records from that.
+Additional options to protect privacy in data that will become public exist,
+and you should expect and intend to release your datasets at some point.
+One option is to add noise to data, as the US Census Bureau has proposed,\cite{abowd2018us}
+as it makes the trade-off between data accuracy and privacy explicit.
+But there are no established norms for such ``differential privacy'' approaches:
+most approaches fundamentally rely on judging ``how harmful'' information disclosure would be.
+The fact remains that there is always a balance between information release (and therefore transparency)
+and privacy protection, and that you should engage with it actively and explicitly.
+The best thing you can do is make a complete record of the steps that have been taken
+so that the process can be reviewed, revised, and updated as necessary.
+
