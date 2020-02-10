@@ -550,13 +550,10 @@ However, that set up is advanced and you should never trust it unless you are a 
 or a cyber security expert within your organization have specified what it can be used for. In all
 other cases you should follow the steps laid out in this section.
 
-in order to comply with ethical and legal requirements
+\subsection{Data security during data collection}
 
-In field surveys, most common data collection software will automatically \index{encryption}\textbf{encrypt}\sidenote{
-\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops
-are stolen, databases are hacked, or unauthorized access to the data is obtained in
-any other way. \url{https://dimewiki.worldbank.org/wiki/Encryption}}
-all data submitted from the field while in transit (i.e., upload or download).\sidenote{
+In field surveys, most common data collection software will automatically encrypt
+all data in transit (i.e., upload from field or download from server).\sidenote{
 \url{https://dimewiki.worldbank.org/wiki/Encryption\#Encryption\_in\_Transit}}
 If this is implemented by the software you are using, then your
 data will be encrypted from the time it leaves the device (in tablet-assisted data 
@@ -590,10 +587,12 @@ https://dimewiki.worldbank.org/wiki/Encryption\#Asymmetric\_Encryption}} where
 there are two keys in a public/private key pair. Only the private key can be used to
 decrypt the encrypted data, and the public key can only be used to encrypt the data.
 It is therefore safe to send the public key to the tablet or the browser used to
-collect the data. When you enable encryption, the survey software will allow you to
+collect the data. 
+
+When you enable encryption, the survey software will allow you to create and
 download -- once -- the public/private keyfile pair needed to decrypt the data. You
 upload the public key when you start a new survey, and all data collected using that
-public key can only be accessed with the private key from that public/private key
+public key can only be accessed with the private key from that specific public/private key
 pair. You must store the key pair in a secure location, such as a password manager, as
 there is no way to access your data if the private key is lost. Make sure you store
 keyfiles with descriptive names to match the survey to which they correspond. Any time
@@ -601,6 +600,7 @@ anyone accesses the data -- either when viewing it in the browser or downloading
 your computer -- they will be asked to provide the keyfile. Only project team members
 named in the IRB are allowed access to the private keyfile.
 
+\subsection{Data security after data collection}
 
 For most analytical needs, you typically need a to store the data somewhere else
 than the survey software's server, for example your computer or a cloud drive. While
@@ -608,7 +608,7 @@ asymmetric encryption is optimal for one-way transfer from the data collection d
 to the data collection server, it is not practical once you start interacting with the data.
 
 Instead we want to use \textbf{symmetric encryption}\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Encryption\#Symmetric\_Encryption}} where we
+\url{https://dimewiki.worldbank.org/wiki/Encryption\#Symmetric\_Encryption}} where we
 create a secure encrypted folder, using for example VeraCrypt\sidenote{\url{https://www.veracrypt.fr/}},
 where a single key is used to both encrypt and decrypt the information. Since only one
 key is used, the work flow can be simplified, the re-encryption after decrypting can
@@ -645,8 +645,8 @@ https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}} However, you still
 need to keep track of your encryption keys as without them your data is lost. 
 If you remain lucky, you will never have to access your ``master'' or ``golden master''
 copies -- you just want to know it is out there, safe, if you need it.
-All files sent to the field containing PII data, such as sampling lists, must be encrypted.
-You must never share passwords by email; rather, use a secure password manager.
+
+\subsection{Secure data sharing}
 You and your team will use your first copy of the raw data as the starting point for data 
 cleaning analysis of the data. This raw data set must remain encrypted at all times if it 
 includes PII data, which is almost always the case. As long as the data is properly encrypted,
