@@ -708,7 +708,47 @@ VeraCrypt and share that secure folder with the field team.
 Remember that you must always share passwords and keys in a secure way like password managers.
 
 
-\section{Finalizing data collection}
+%------------------------------------------------
+
+\section{de-identification - for luiza to move - either back to this chapter or to other chapters}
+
+We recommend de-identification in two stages:
+an initial process to remove direct identifiers to create a working de-identified dataset,
+and a final process to remove all possible identifiers to create a publishable dataset.
+The \textbf{initial de-identification} should happen directly after the encrypted data is downloaded to disk.
+At this time, for each variable that contains PII, ask: will this variable be needed for analysis?
+If not, the variable should be dropped.
+Examples include respondent names, enumerator names, interview dates, and respondent phone numbers.
+If the variable is needed for analysis, ask:
+can I encode or otherwise construct a variable to use for the analysis that masks the PII,
+and drop the original variable?
+Examples include geocoordinates (after constructing measures of distance or area, drop the specific location), and names for social network analysis (can be encoded to unique numeric IDs).
+
+
+Flagging all potentially identifying variables in the questionnaire design stage,
+as recommended above, simplifies the initial de-identification.
+You already have the list of variables to assess,
+and ideally have already assessed those against the analysis plan.
+If so, all you need to do is write a script to drop the variables that are not required for analysis,
+encode or otherwise mask those that are required, and save a working version of the data.
+
+The \textbf{final de-identification} is a more involved process,
+with the objective of creating a dataset for publication
+that cannot be manipulated or linked to identify any individual research participant.
+You must remove all direct and indirect identifiers, and assess the risk of statistical disclosure.\sidenote{
+	\textbf{Disclosure risk:} the likelihood that a released data record can be associated with an individual or organization.}
+\index{statistical disclosure}
+There will almost always be a trade-off between accuracy and privacy.
+For publicly disclosed data, you should favor privacy.
+There are a number of useful tools for de-identification: PII scanners for Stata\sidenote{
+	\url{https://github.com/J-PAL/stata_PII_scan}}
+or R\sidenote{
+	\url{https://github.com/J-PAL/PII-Scan}},
+and tools for statistical disclosure control.\sidenote{
+	\url{https://sdcpractice.readthedocs.io/en/latest/}}
+In cases where PII data is required for analysis,
+we recommend embargoing the sensitive variables when publishing the data.
+Access to the embargoed data could be granted for the purposes of study replication, if approved by an IRB.
 
 When all data collection is complete, the survey team should prepare a final field report,
 which should report reasons for any deviations between the original sample and the dataset collected.
@@ -722,12 +762,5 @@ This reporting should be validated and saved alongside the final raw data, and t
 This information should be stored as a dataset in its own right
 -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
 and loss to follow-up occurred in the field and how they were implemented and resolved.
-
-At this point, the raw data securely stored and backed up.
-It can now be transformed into your final analysis data set,
-through the steps described in the next chapter.
-Once the data collection is over, 
-you typically will no longer need to interact with the identified data.
-So you should create a working version of it that you can safely interact with.
-This is described in the next chapter as the first task in the data cleaning process,
-but it's useful to get it started as soon as encrypted data is downloaded to disk.
+With the raw data securely stored and backed up,
+and a de-identified dataset to work with, you are ready to move to data cleaning and analysis.
