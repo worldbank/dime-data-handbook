@@ -563,27 +563,27 @@ data -- a higher level of security than password-protection. Encryption at rest
 requires active participation from the user, and you should be fully aware that 
 if your decryption key is lost, there is absolutely no way to recover your data.
 
-You should not assume that your data is encrypted by default:
-because of the careful protocols necessary, for most data collection platforms,
-encryption at rest needs to be explicitly enabled and operated by the user.
-There is no automatic way to implement this protocol,
-because the encryption key that is generated
-can never pass through the hands of a third party, including the data storage application.
-To enable encryption at rest, you must confirm
-you know how to operate the encryption system
-and understand the consequences if the correct protocols are not followed.
-When you enable encryption at rest, the service typically will allow you to download -- once --
-the keyfile pair needed to decrypt the data.
-You must download and store this keyfile in a secure location, such as a password manager.
-Make sure you store keyfiles with descriptive names to match the survey to which they correspond.
-The keyfiles must only be accessible to people who are IRB-approved to use PII data.
-Any time anyone accesses the data -- either when viewing it in the browser or downloading it to your computer -- they will be asked to provide the keyfile.
-If they cannot, the data is inaccessible.
-This makes keyfile encryption the recommended storage for any data service
-that is not enterprise-grade.
-Enterprise-grade storage services typically implement a similar protocol
-and are legally and technically configured so that your organization
-is able to hold keys safely and allow data access based on verification of your identity.
+You should not assume that your data is encrypted at rest by default because of 
+the careful protocols necessary. In most data collection platforms, encryption at 
+rest needs to be explicitly enabled and operated by the user. There is no automatic 
+way to implement this protocol, because the encryption key that is generated may 
+never pass through the hands of a third party, including the data storage application.
+Most survey software implement \textbf{asymmetric encryption}\sidenote{\url{
+https://dimewiki.worldbank.org/wiki/Encryption\#Asymmetric\_Encryption}} where 
+there are two keys in a public/private key pair. Only the private key can be used to
+decrypt the encrypted data, and the public key can only be used to encrypt the data.
+It is therefore safe to send the public key to the tablet or the browser used to
+collect the data. When you enable encryption, the survey software will allow you to
+download -- once -- the public/private keyfile pair needed to decrypt the data. You
+upload the public key when you start a new survey, and all data collected using that
+public key can only be accessed with the private key from that public/private key
+pair. You must store the key pair in a secure location, such as a password manager, as
+there is no way to access your data if the private key is lost. Make sure you store
+keyfiles with descriptive names to match the survey to which they correspond. Any time
+anyone accesses the data -- either when viewing it in the browser or downloading it to
+your computer -- they will be asked to provide the keyfile. Only project team members
+named in the IRB are allowed access to the private keyfile.
+
 
 For most analytical needs, you will therefore need to create
 a copy of the data which has all direct identifiers removed.
