@@ -387,22 +387,14 @@ can be made at the end of each day and tested the following, until no further fi
 The data-focused pilot should be done in advance of enumerator training.
 
 %------------------------------------------------
-\section{Data quality assurance and data security}
+\section{Data quality assurance}
 
 Whether you are handling data from a partner or collecting it directly,
 it is important to make sure that data faithfully reflects ground realities.
 Data quality assurance requires a combination of real-time data checks
 and back-checks or validation audits, which often means tracking down
 the people whose information is in the dataset.
-However, since that data also likely contains sensitive or personal information,
-it is important to keep it safe throughout the entire process.
-All sensitive data must be handled in a way
-where there is no risk that anyone who is not approved by an IRB
-for the specific project has the ability to access the data.
-Data can be sensitive for multiple reasons,
-but the most common reasons are that it contains personally identifiable information (PII)
-or that the partner providing the data does not want it to be released.
-This section will detail principles and practices for the verification and handling of these datasets.
+
 
 \subsection{Implementing high frequency quality checks}
 
@@ -520,20 +512,45 @@ typically short recordings triggered at random throughout the questionnaire.
 \textbf{Audio audits} are a useful means to assess whether enumerators are conducting interviews as expected.
 Do note, however, that audio audits must be included in the informed consent for the respondents.
 
-\subsection{Receiving, storing, and sharing data securely}
+%------------------------------------------------
+\section{Collecting and sharing data securely}
 
-Primary data collection, whether in surveys or from partners,
-almost always includes \textbf{personally-identifiable information (PII)}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Personally_Identifiable_Information_(PII)}}
-from the people who are described in the dataset.
-PII must be handled with great care at all points in the data collection and management process,
+All sensitive data must be handled in a way where there is no risk that anyone who is 
+not approved by an Institutional Review Board (IRB)\sidenote{\url{
+https://dimewiki.worldbank.org/wiki/IRB\_Approval}} for the specific project has the 
+ability to access the data. Data can be sensitive for multiple reasons, but the two most 
+common reasons are that it contains personally identifiable information (PII)\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Personally\_Identifiable\_Information\_(PII)}} 
+or that the partner providing the data does not want it to be released. 
+
+Central to data security is \index{encryption}\textbf{data encryption} which is a group 
+of methods that ensure that files are unreadable even if laptops are stolen, servers
+are hacked, or unauthorized access to the data is obtained in any other way.\sidenote{\url{
+https://dimewiki.worldbank.org/wiki/Encryption}} Proper encryption is rarely just one thing as 
+the data will travel through many servers, devices and computers from the source of the data
+to the final analysis. So encryption should be seen as a system that is only as secure as 
+its weakest link. This section recommends a workflow with as few parts as possible, so that
+it is easy as possible to make sure the weakest link is still strong enough.
+
+Encrypted data is made readable again using decryption, and decryption requires a password or a key.
+You must never share passwords or keys by email, WhatsApp or other insecure modes of communication;
+instead you must use a secure password manager\sidenote{\url{https://lastpass.com} or 
+\url{https://bitwarden.com}}. In addition to providing a way to securely share passwords, password 
+managers also provide a secure location for long term storage for passwords and keys regardless if 
+they are shared or not.
+
+Many data sharing software providers you are using will promote their services by saying they have
+on-the-fly encryption and decryption. While this is not a bad thing and it makes your data more secure, 
+on-the-fly encryption/decryption by itself is never secure enough, as in order to make it automatic 
+they need to keep a copy of the password or key. Since it unlikely that that software provider is 
+included in your IRB, this is not good enough.
+
+It is possible in some enterprise versions of data sharing softwares, to set up on-the-fly encryption. 
+However, that set up is advanced and you should never trust it unless you are a cyber security expert, 
+or a cyber security expert within your organization have specified what it can be used for. In all
+other cases you should follow the steps laid out in this section.
+
 in order to comply with ethical and legal requirements
-and to avoid breaches of confidentiality.
-Access to PII must be restricted exclusively to team members
-who are granted that permission by the applicable Institutional Review Board
-or the data licensing agreement with the partner agency.
-Research teams must maintain strict protocols for data security at each stage of the process,
-including data collection, storage, and sharing.
 
 In field surveys, most common data collection software will automatically \index{encryption}\textbf{encrypt}\sidenote{
 \textbf{Encryption:} Methods which ensure that files are unreadable even if laptops
