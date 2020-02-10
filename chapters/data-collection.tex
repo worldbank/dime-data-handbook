@@ -647,8 +647,34 @@ If you remain lucky, you will never have to access your ``master'' or ``golden m
 copies -- you just want to know it is out there, safe, if you need it.
 All files sent to the field containing PII data, such as sampling lists, must be encrypted.
 You must never share passwords by email; rather, use a secure password manager.
-This significantly mitigates the risk in case there is a security breach
-such as loss, theft, hacking, or a virus, with little impact on day-to-day utilization.
+You and your team will use your first copy of the raw data as the starting point for data 
+cleaning analysis of the data. This raw data set must remain encrypted at all times if it 
+includes PII data, which is almost always the case. As long as the data is properly encrypted,
+using for example VeraCrypt, it can be shared using insecure modes of communication such as
+email or third-party syncing services. While this is safe from a data security perspective, 
+this is a burdensome workflow as anyone accessing the raw data must be listed on the IRB, 
+have access to the decryption key and know how to use that key. Fortunately there is a way 
+to simplify the workflow without compromising data security.
+
+To simplify the workflow, the PII variables should be removed from your data at the earliest 
+possible opportunity creating a de-identified copy of the data. Once the data is de-identified,
+it no longer needs to be encrypted -- therefore you and you team members can share it directly 
+without having to encrypt it and handle decryption keys. Next chapter will discuss how to 
+de-identify your data. If PII variables are directly required for the analysis itself, it will 
+be necessary to keep at least a subset of the data encrypted through the data analysis process.
+
+The data security standards that apply when receiving PII data obviously also apply when sending 
+PII data. A common example where this is often forgotten is when sending survey information, 
+such as sampling lists, to the field partner. This data is by all definitions also PII data and 
+must be encrypted. A sampling list can often be used to reverse identify a de-identified data set,
+so if you were to share it using an insecure method, then that would be your weakest link that 
+could break all the other steps you have taken to ensure the privacy of the respondents.
+
+In some survey softwares you can use the same encryption that allows you to receive data securely 
+from the field, to also send data, such a sampling list, to the field. But if you are not sure how 
+that is done, or even can be done, in the survey software you are using, then you should create a 
+secure folder using, for example, VeraCrypt and share that secure folder with the field team. 
+Remember that you must always share passwords and keys in a secure way like password managers.
 
 To simplify workflow, it is best to remove PII variables from your data
 at the earliest possible opportunity, and save a de-identified copy of the data.
