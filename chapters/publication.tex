@@ -248,6 +248,76 @@ so long as you make sure you are available to troubleshoot minor issues like the
 
 %------------------------------------------------
 
+\section{Publishing primary data}
+
+If your project collected primary data,
+releasing the cleaned dataset is a significant contribution that can be made
+in addition to any publication of analysis results.
+Publishing data can foster collaboration with researchers
+interested in the same subjects as your team.
+Collaboration can enable your team to fully explore variables and 
+questions that you may not have time to focus on otherwise,
+even though data was collected on them.
+There are different options for data publication.
+The World Bank's Development Data Hub\sidenote{
+	\url{https://data.worldbank.org/}}
+includes a Microdata Catalog\sidenote{
+\url{https://microdata.worldbank.org}}
+where researchers can publish data and documentation for their projects.\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Microdata\_Catalog}
+\newline
+\url{https://dimewiki.worldbank.org/wiki/Checklist:\_Microdata\_Catalog\_submission}
+}
+The Harvard Dataverse\sidenote{
+	\url{https://dataverse.harvard.edu}}
+publishes both data and code,
+and also creates a data citation for its entries --
+IPA/J-PAL field experiment repository is especially relevant\sidenote{
+	\url{https://www.povertyactionlab.org/blog/9-11-19/new-hub-data-randomized-evaluations}}
+for those interested in impact evaluation.
+
+There will almost always be a trade-off between accuracy and privacy.
+For publicly disclosed data, you should favor privacy.
+Therefore, before publishing data, 
+you should carefully perform a \textbf{final de-identification}.
+Its objective is to create a dataset for publication
+that cannot be manipulated or linked to identify any individual research participant.
+If you are following the steps outlined in this book,
+you have already removed any direct identifiers after collecting the data.
+At this stage, however, you should further remove
+all indirect identifiers, and assess the risk of statistical disclosure.\sidenote{
+	\textbf{Disclosure risk:} the likelihood that a released data record can be associated with an individual or organization.}\index{statistical disclosure}
+To the extent required to ensure reasonable privacy,
+potentially identifying variables must be further masked or removed.
+
+There are a number of tools developed to help researchers de-identify data
+and which you should use as appropriate at that stage of data collection.
+These include \texttt{PII\_detection}\sidenote{
+	\url{https://github.com/PovertyAction/PII\_detection}} 
+from IPA,
+\texttt{PII-scan}\sidenote{
+	\url{https://github.com/J-PAL/PII-Scan}} 
+from JPAL,
+and \texttt{sdcMicro}\sidenote{
+	\url{https://sdcpractice.readthedocs.io/en/latest/sdcMicro.html}} 
+from the World Bank.
+\index{anonymization}
+The \texttt{sdcMicro} tool, in particular, has a feature
+that allows you to assess the uniqueness of your data observations,
+and simple measures of the identifiability of records from that.
+Additional options to protect privacy in data that will become public exist,
+and you should expect and intend to release your datasets at some point.
+One option is to add noise to data, as the US Census Bureau has proposed,\cite{abowd2018us}
+as it makes the trade-off between data accuracy and privacy explicit.
+But there are no established norms for such ``differential privacy'' approaches:
+most approaches fundamentally rely on judging ``how harmful'' information disclosure would be.
+The fact remains that there is always a balance between information release (and therefore transparency)
+and privacy protection, and that you should engage with it actively and explicitly.
+The best thing you can do is make a complete record of the steps that have been taken
+so that the process can be reviewed, revised, and updated as necessary.
+
+%----------------------------------------------------
+
 \section{Preparing a complete replication package}
 
 While we have focused so far on the preparation of written materials for publication,
@@ -279,13 +349,21 @@ It allows other researchers to validate the mechanical construction of your resu
 to investigate what other results might be obtained from the same population,
 and test alternative approaches to other questions.
 Therefore you should make clear in your study
-where and how data are stored, and how and under what circumstances it might be accessed.
+where and how data are stored, and how and under what circumstances they may be accessed.
 You do not always have to publish the data yourself,
-and in some cases you are legally not allowed to,
-but what matters is that the data is published
-(with or without access restrictions)
-and that you cite or otherwise directly reference all data,
-even data that you cannot release.
+and in some cases you are legally not allowed to.
+Even if you cannot release data immediately or publicly,
+there are often options to catalog or archive the data without open publication.
+These may take the form of metadata catalogs or embargoed releases.
+Such setups allow you to hold an archival version of your data
+which your publication can reference,
+as well as provide information about the contents of the datasets
+and how future users might request permission to access them
+(even if you are not the person who can grant that permission).
+They can also provide for timed future releases of datasets
+once the need for exclusive access has ended.
+
+What matters is for you to be able to cite or otherwise directly reference the data used.
 When your raw data is owned by someone else,
 or for any other reason you are not able to publish it,
 in many cases you will have the right to release
@@ -294,12 +372,6 @@ even if it is just the derived indicators you constructed and their documentatio
   \url{https://guide-for-data-archivists.readthedocs.io/en/latest/}}
 If you have questions about your rights over original or derived materials,
 check with the legal team at your organization or at the data provider's.
-You should only directly publish data which is fully de-identified
-and, to the extent required to ensure reasonable privacy,
-potentially identifying characteristics are further masked or removed.
-In all other cases, you should contact an appropriate data catalog
-to determine what privacy and licensing options are available.
-
 Make sure you have a clear understanding of the rights associated with the data release
 and communicate them to any future users of the data.
 You must provide a license with any data release.\sidenote{
@@ -315,16 +387,6 @@ Keep in mind that you may or may not own your data,
 depending on how it was collected,
 and the best time to resolve any questions about these rights
 is at the time that data collection or transfer agreements are signed.
-Even if you cannot release data immediately or publicly,
-there are often options to catalog or archive the data without open publication.
-These may take the form of metadata catalogs or embargoed releases.
-Such setups allow you to hold an archival version of your data
-which your publication can reference,
-as well as provide information about the contents of the datasets
-and how future users might request permission to access them
-(even if you are not the person who can grant that permission).
-They can also provide for timed future releases of datasets
-once the need for exclusive access has ended.
 
 Data publication should release the dataset in a widely recognized format.
 While software-specific datasets are acceptable accompaniments to the code
@@ -336,13 +398,23 @@ Additionally, you should also release
 the data collection instrument or survey questionnaire
 so that readers can understand which data components are
 collected directly in the field and which are derived.
-You should publish both a clean version of the data
+If possible, you should publish both a clean version of the data
 which corresponds exactly to the original database or questionnaire
 as well as the constructed or derived dataset used for analysis.
-Wherever possible, you should also release the code
+You should also release the code 
 that constructs any derived measures,
 particularly where definitions may vary,
 so that others can learn from your work and adapt it as they like.
+
+As in the case of raw primary data, 
+final analysis data sets that will become public for the purpose of replication
+must also be fully de-identified.
+In cases where PII data is required for analysis,
+we recommend embargoing the sensitive variables when publishing the data.
+You should contact an appropriate data catalog
+to determine what privacy and licensing options are available.
+Access to the embargoed data could be granted for the purposes of study replication, 
+if approved by an IRB.
 
 \subsection{Publishing code for replication}
 
