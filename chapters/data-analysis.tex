@@ -145,36 +145,70 @@ The initial input for data cleaning is the raw data.
 It should contain only materials that are received directly from the field.
 They will invariably come in a host of file formats and nearly always contain personally-identifying information.\index{personally-identifying information}
 These files should be retained in the raw data folder \textit{exactly as they were received}.
-Be mindful of where this file is stored. 
+Be mindful of where they are stored. 
 Maintain a backup copy in a secure offsite location.
 Every other file is created from the raw data, and therefore can be recreated.
-The exception, of course, is the raw data itself, so it should never be edited 
-directly.
+The exception, of course, is the raw data itself, so it should never be edited directly.
 The rare and only case when the raw data can be edited directly is when it is encoded incorrectly
 and some non-English character is causing rows or columns to break at the wrong place
 when the data is imported. 
 In this scenario, you will have to remove the special character manually, save the resulting data set \textit{in a new file} and securely back up \textit{both} the broken and the fixed version of the raw data.
 
-Note that no one who is not listed in the IRB should be able to access its content, not even the company providing file-sharing services.
+Note that no one who is not listed in the IRB should be able to access confidential data, 
+not even the company providing file-sharing services.
 Check if your organization has guidelines on how to store data securely, as they may offer an institutional solution. 
 If that is not the case, you will need to encrypt the data, especially before
 sharing it, and make sure that only IRB-listed team members have the
 encryption key.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}.
-
 Secure storage of the raw data means access to it will be restricted even inside the research team.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Security}}
+
 Loading encrypted data frequently can be disruptive to the workflow.
 To facilitate the handling of the data, remove any personally identifiable information from the data set.
 This will create a de-identified data set, that can be saved in a non-encrypted folder. 
 De-identification,\sidenote{\url{https://dimewiki.worldbank.org/wiki/De-identification}}
-at this stage, means stripping the data set of direct identifiers such as names, phone numbers, addresses, and geolocations.\sidenote{\url{ https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
+at this stage, means stripping the data set of direct identifiers.\sidenote{\url{ https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
+To be able to do so, you will need to go through your data set and
+find all the variables that contain identifying information.
+Flagging all potentially identifying variables in the questionnaire design stage 
+simplifies the initial de-identification process.
+If you haven't done that, that are a few tools that can help you with it.
+JPAL's \texttt{PII scan}, as indicated by its name,
+scans variable names and labels for common string patterns associated with identifying information.\sidenote{
+	\url{https://github.com/J-PAL/PII-Scan}}
+The World Bank's \texttt{sdcMicro}
+lists variables that uniquely identify observations,
+as well as allowing for more sophisticated disclosure risk calculations.\sidenote{
+	\url{http://sdctools.github.io/sdcMicro/articles/sdcMicro.html}}
+\texttt{iefielkit}'s \texttt{iecodebook}
+function lists all variables in a data set and exports an Excel sheet
+where you can easily select which variables to keep or drop.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Iecodebook}} 
+
+Once you have a list of variables that contain PII, 
+assess them against the pre-analysis plan and ask: 
+will this variable be needed for analysis?
+If not, the variable should be dropped. 
+Examples include respondent names, enumerator names, interview date, respondent phone number.
+If the variable is needed for analysis, ask: 
+can I encode or otherwise construct a variable to use for the analysis that masks the PII, 
+and drop the original variable?
+This is typically the case for most identifying information.
+Examples include geocoordinates 
+(after constructing measures of distance or area, 
+drop the specific location), 
+and names for social network analysis (can be encoded to unique numeric IDs).
+If PII variables are strictly required for the analysis itself, 
+it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
+If the answer is yes to either of these questions, 
+all you need to do is write a script to drop the variables that are not required for analysis, 
+encode or otherwise mask those that are required, 
+and save a working version of the data.
+
 The resulting de-identified data will be the underlying source for all cleaned and constructed data.
+This is the data set that you will interact with directly during the remaining tasks described in this chapter.
 Because identifying information is typically only used during data collection, 
 to find and confirm the identity of interviewees, 
 de-identification should not affect the usability of the data.
-In fact, most identifying information can be converted into non-identified variables for analysis purposes
-(e.g. GPS coordinates can be translated into distances). 
-However, if sensitive information is strictly needed for analysis, 
-the data must be encrypted while performing the tasks described in this chapter.
 
 \subsection{Correction of data entry errors}
 
