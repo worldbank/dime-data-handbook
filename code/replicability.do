@@ -12,11 +12,11 @@
     set seed 287608
 
 * Demonstrate stability after VERSIONING, SORTING and SEEDING
-    gen check1 = rnormal()  //Create random number
-    gen check2 = rnormal()  //Create a second random number without resetting seed
+    gen check1 = rnormal()  // Create random number
+    gen check2 = rnormal()  // Create a second random number without resetting seed
 
-    set seed 287608         //Reset the seed
-    gen check3 = rnormal()  //Create a third random number after resetting seed
+    set seed 287608         // Reset the seed
+    gen check3 = rnormal()  // Create a third random number after resetting seed
 
 * Visualize randomization results. See how check1 and check3 are identical,
 * but check2 is random relative check1 and check3

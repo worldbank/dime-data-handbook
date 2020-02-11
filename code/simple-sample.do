@@ -7,8 +7,8 @@
 
 * Generate a random number and use it to sort the observation. Then
 * the order the observations are sorted in is random.
-    gen sample_rand = rnormal() //Generate a random number
-    sort sample_rand            //Sort based on the random number
+    gen sample_rand = rnormal() // Generate a random number
+    sort sample_rand            // Sort based on the random number
 
 * Use the sort order to sample 20% (0.20) of the observations. _N in
 * Stata is the number of observations in the active data set , and _n
