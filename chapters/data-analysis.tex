@@ -28,7 +28,7 @@ analyzing the data is as simple as using a command that is already implemented i
 
 %------------------------------------------------
 
-\section{Data management}
+\section{Managing data effectively}
 
 The goal of data management is to organize the components of data work
 so it can traced back and revised without massive effort.
@@ -44,7 +44,7 @@ to edit files without fear of losing information.
 Smart use of version control also allows you to track
 how each edit affects other files in the project.
 
-\subsection{Folder structure}
+\subsection{Organizing your folder structure}
 
 There are many ways to organize research data.
 Our preferred scheme reflects the task breakdown that will be outlined in this chapter.
@@ -77,7 +77,7 @@ Additionally, \texttt{iefolder} creates \textbf{master do-files}\sidenote{
 	\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
 so all project code is reflected in a top-level script.
 
-\subsection{Task breakdown}
+\subsection{Breaking down tasks}
 
 We divide the data work process that starts from the raw data
 and builds on it to create final analysis outputs into three stages:
@@ -101,7 +101,7 @@ Doing this at the end of each stage helps prevent the amount of work to be revie
 Code review is a common quality assurance practice among data scientists.
 It helps to keep the level of the outputs high, and is also a great way to learn and improve your code.
 
-\subsection{Master scripts}
+\subsection{Writing master scripts}
 
 Master scripts allow users to execute all the project code from a single file.
 They briefly describe what each code does,
@@ -115,7 +115,7 @@ to understand what are the main tasks, which scripts execute them,
 and where different files can be found in the project folder.
 That is, it should contain all the information needed to interact with a project's data work.
 
-\subsection{Version control}
+\subsection{Implementing version control}
 
 Finally, establishing a version control system is an incredibly useful
 and important step for documentation, collaboration and conflict-solving.
@@ -138,7 +138,7 @@ Git will highlight the changes that were in data sets and results that they enta
 
 %------------------------------------------------
 
-\section{De-identification}
+\section{De-identifying research data}
 
 The starting point for all tasks described in this chapter is the raw data.
 It should contain only materials that are received directly from the field.
@@ -214,7 +214,7 @@ to find and confirm the identity of interviewees,
 de-identification should not affect the usability of the data.
 
 
-\section{Data cleaning}
+\section{Cleaning data for analysis}
 
 Data cleaning is the second stage in the transformation of data you received from the field into data that you can analyze.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning}}
 The cleaning process involves (1) making the data set easily usable and understandable,
@@ -259,7 +259,36 @@ These mistakes should be fixed in the cleaned data set,
 and you should keep a careful record of how they were identified,
 and how the correct value was obtained.
 
-\subsection{Labeling and annotating the raw data}
+\subsection{Labeling, annotating, and finalizing clean data}
+
+The main output of data cleaning is the cleaned data set.
+It should contain the same information as the raw data set,
+with no changes to data points.
+It should also be easily traced back to the survey instrument,
+and be accompanied by a dictionary or codebook.
+Typically, one cleaned data set will be created for each data source,
+i.e. per survey instrument.
+Each row in the cleaned data set represents one survey entry or unit of observation.\sidenote{\cite{tidy-data}}
+If the raw data set is very large, or the survey instrument is very complex,
+you may want to break the data cleaning into sub-steps,
+and create intermediate cleaned data sets
+(for example, one per survey module).
+When dealing with complex surveys with multiple nested groups,
+is is also useful to have each cleaned data set at the smallest unit of observation inside a roster.
+This will make the cleaning faster and the data easier to handle during construction.
+But having a single cleaned data set will help you with sharing and publishing the data.
+
+To make sure the cleaned data set file doesn't get too big to be handled,
+use commands such as \texttt{compress} in Stata to make sure the data
+is always stored in the most efficient format.
+Once you have a cleaned, de-identified data set, and documentation to support it,
+you have created the first data output of your project:
+a publishable data set.
+The next chapter will get into the details of data publication.
+For now, all you need to know is that your team should consider submitting the data set for publication at this point,
+even if it will remain embargoed for some time.
+This will help you organize your files and create a back up of the data,
+and some donors require that the data be filed as an intermediate step of the project.
 
 On average, making corrections to primary data is more time-consuming than when using secondary data.
 But you should always check for possible issues in any data you are about to use.
@@ -319,36 +348,6 @@ Instead, create a record of what you observe,
 then use it as a basis to discuss with your team how to address potential issues during data construction.
 This material will also be valuable during exploratory data analysis.
 
-\subsection{The cleaned data set}
-
-The main output of data cleaning is the cleaned data set.
-It should contain the same information as the raw data set,
-with no changes to data points.
-It should also be easily traced back to the survey instrument,
-and be accompanied by a dictionary or codebook.
-Typically, one cleaned data set will be created for each data source,
-i.e. per survey instrument.
-Each row in the cleaned data set represents one survey entry or unit of observation.\sidenote{\cite{tidy-data}}
-If the raw data set is very large, or the survey instrument is very complex,
-you may want to break the data cleaning into sub-steps,
-and create intermediate cleaned data sets
-(for example, one per survey module).
-When dealing with complex surveys with multiple nested groups,
-is is also useful to have each cleaned data set at the smallest unit of observation inside a roster.
-This will make the cleaning faster and the data easier to handle during construction.
-But having a single cleaned data set will help you with sharing and publishing the data.
-To make sure the cleaned data set file doesn't get too big to be handled,
-use commands such as \texttt{compress} in Stata to make sure the data
-is always stored in the most efficient format.
-Once you have a cleaned, de-identified data set, and documentation to support it,
-you have created the first data output of your project:
-a publishable data set.
-The next chapter will get into the details of data publication.
-For now, all you need to know is that your team should consider submitting the data set for publication at this point,
-even if it will remain embargoed for some time.
-This will help you organize your files and create a back up of the data,
-and some donors require that the data be filed as an intermediate step of the project.
-
 \section{Constructing final indicators}
 
 % What is construction -------------------------------------
@@ -371,8 +370,6 @@ During this process, the data points will typically be reshaped and aggregated
 so that level of the data set goes from the unit of observation
 (one item in the bundle) in the survey to the unit of analysis (the household).\sidenote{
 	\url{https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}}
-
-\subsection{Why construction?}
 
 % From cleaning
 Construction is done separately from data cleaning for two reasons.
@@ -405,7 +402,7 @@ This increases the chances that at least one of them will have a different sampl
 Therefore, even if construction ends up coming before analysis only in the order the code is run,
 it's important to think of them as different steps.
 
-\subsection{Construction tasks and how to approach them}
+\subsection{Constructing analytical variables}
 
 The first thing that comes to mind when we talk about variable construction is, of course, creating new variables.
 Do this by adding new variables to the data set instead of overwriting the original information,
@@ -476,7 +473,7 @@ After that, adapt the construction code so it can be used on the panel data set.
 Apart from preventing inconsistencies,
 this process will also save you time and give you an opportunity to review your original code.
 
-\subsection{Documenting indicators construction}
+\subsection{Documenting variable construction}
 
 Because data construction involves translating concrete data points to more abstract measurements,
 it is important to document exactly how each variable is derived or calculated.
@@ -625,7 +622,7 @@ The Stata Visual Library includes example data sets to use with each do-file,
 so you get a good sense of what your data should look like
 before you can start writing code to create a visualization.
 
-\section{Exporting analysis outputs}
+\subsection{Exporting analysis outputs}
 
 Our team has created a few products to automate common outputs and save you
 precious research time.
