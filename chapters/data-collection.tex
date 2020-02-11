@@ -2,11 +2,11 @@
 
 \begin{fullwidth}
 Much of the recent push toward credibility in the social sciences has focused on analytical practices.
-We contest that credible research depends, first and foremost, on the quality of the raw data. 
+We contest that credible research depends, first and foremost, on the quality of the raw data.
 
-This chapter covers the data acquisition 
+This chapter covers the data acquisition
 
-We then dive specifically into survey data, providing guidance on the data generation workflow, 
+We then dive specifically into survey data, providing guidance on the data generation workflow,
 from questionnaire design to programming electronic survey instruments and monitoring data quality.
 We conclude with a discussion of safe data handling, storage, and sharing.
 
@@ -21,12 +21,14 @@ As there are many survey software, and the market is rapidly evolving, we focus 
 %------------------------------------------------
 \section{Acquiring data}
 
-Primary data is the key to most modern development research.
+High-quality data is essential to most modern development research.
 Often, there is simply no source of reliable official statistics
 on the inputs or outcomes we are interested in.
-Therefore we undertake to create or obtain new data,
+Therefore we undertake to create or obtain development data
+-- including administrative data, secondary data, original records,
+field surveys, or other forms of big data --
 typically in partnership with a local agency or organization.
-The intention of primary data collection
+The intention of this mode of data acquisition
 is to answer a unique question that cannot be approached in any other way,
 so it is important to properly collect and handle that data,
 especially when it belongs to or describes people.
@@ -395,12 +397,11 @@ The data-focused pilot should be done in advance of enumerator training.
 %------------------------------------------------
 \section{Data quality assurance}
 
-Whether you are handling data from a partner or collecting it directly,
+Whether you are acquiring data from a partner or collecting it directly,
 it is important to make sure that data faithfully reflects ground realities.
 Data quality assurance requires a combination of real-time data checks
 and back-checks or validation audits, which often means tracking down
 the people whose information is in the dataset.
-
 
 \subsection{Implementing high frequency quality checks}
 
@@ -422,17 +423,17 @@ and set up and perform \textbf{high-frequency checks (HFCs)} with the incoming d
 High-frequency checks (HFCs) should carefully inspect key treatment and outcome variables
 so that the data quality of core experimental variables is uniformly high,
 and that additional effort is centered where it is most important.
-Data quality checks should be run on the data every time it is received (ideally on a daily basis)
-to flag irregularities in survey progress, sample completeness or response quality.
+Data quality checks should be run on the data every time it is received from the field or partner
+to flag irregularities in the aquisition progress, in sample completeness, or in response quality.
 \texttt{ipacheck}\sidenote{
   \url{https://github.com/PovertyAction/high-frequency-checks}}
 is a very useful command that automates some of these tasks,
 regardless of the source of the data.
 
 It is important to check continuously that the observations in the data match the intended sample.
-Many survey softwares provide some form of case management features
+In surveys, the software often provides some form of case management features
 through which sampled units are directly assigned to individual enumerators.
-For data recieved from partners this may be harder to validate,
+For data recieved from partners, this may be harder to validate,
 since they are the authoritative source of the data,
 so cross-referencing with other data sources may be necessary to validate data.
 Even with careful management, it is often the case that raw data includes duplicate or missing entries,
@@ -498,7 +499,7 @@ and that data is not fasified, incomplete, or otherwise suspect.
 For back-checks and validation audies, a random subset of the main data is selected,
 and a subset of information from the full survey is
 verified through a brief targeted survey with the original respondent
-or a cross-referenced data set from another source.
+or a cross-referenced data set from another source (if the original data is not a field survey).
 Design of the back-checks or validations follows the same survey design
 principles discussed above: you should use the analysis plan
 or list of key outcomes to establish which subset of variables to prioritize,
@@ -506,7 +507,7 @@ and similarly focus on errors that would be major flags for poor quality data.
 
 Real-time access to the data massively increases the potential utility of validation,
 and both simplifies and improves the rigor of the associated workflows.
-You can use the raw primary data to draw the back-check or validation sample;
+You can use the raw data to draw the back-check or validation sample;
 this ensures that the validation is correctly apportioned across observations.
 As soon as checking is complete, the comparator data can be tested against
 the original data to identify areas of concern in real-time.
@@ -518,203 +519,7 @@ typically short recordings triggered at random throughout the questionnaire.
 \textbf{Audio audits} are a useful means to assess whether enumerators are conducting interviews as expected.
 Do note, however, that audio audits must be included in the informed consent for the respondents.
 
-%------------------------------------------------
-\section{Collecting and sharing data securely}
-
-All sensitive data must be handled in a way where there is no risk that anyone who is 
-not approved by an Institutional Review Board (IRB)\sidenote{\url{
-https://dimewiki.worldbank.org/wiki/IRB\_Approval}} 
-for the specific project has the 
-ability to access the data.
- Data can be sensitive for multiple reasons, but the two most 
-common reasons are that it contains personally identifiable information (PII)\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Personally\_Identifiable\_Information\_(PII)}} 
-or that the partner providing the data does not want it to be released. 
-
-Central to data security is \index{encryption}\textbf{data encryption} which is a group 
-of methods that ensure that files are unreadable even if laptops are stolen, servers
-are hacked, or unauthorized access to the data is obtained in any other way.
-\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}} 
-Proper encryption is rarely just one thing as the data will travel through many servers, 
-devices and computers from the source of the data to the final analysis.
-So encryption should be seen as a system that is only as secure as its weakest link. 
-This section recommends a workflow with as few parts as possible, 
-so that it is easy as possible to make sure the weakest link is still strong enough.
-
-Encrypted data is made readable again using decryption, and decryption requires a password or a key.
-You must never share passwords or keys by email, WhatsApp or other insecure modes of communication;
-instead you must use a secure password manager\sidenote{\url{
-https://lastpass.com} or \url{https://bitwarden.com}}. 
-In addition to providing a way to securely share passwords, 
-password managers also provide a secure location for long term storage for passwords and keys regardless if 
-they are shared or not.
-
-Many data sharing software providers you are using will promote their services by saying they have
-on-the-fly encryption and decryption. 
-While this is not a bad thing and it makes your data more secure, 
-on-the-fly encryption/decryption by itself is never secure enough, 
-as in order to make it automatic 
-they need to keep a copy of the password or key. 
-Since it unlikely that that software provider is 
-included in your IRB, this is not good enough.
-
-It is possible in some enterprise versions of data sharing software, to set up on-the-fly encryption. 
-However, that set up is advanced and you should never trust it unless you are a cyber security expert, 
-or a cyber security expert within your organization have specified what it can be used for. 
-In all other cases you should follow the steps laid out in this section.
-
-\subsection{Data security during data collection}
-
-In field surveys, most common data collection software will automatically encrypt
-all data in transit (i.e., upload from field or download from server).\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Encryption\#Encryption\_in\_Transit}}
-If this is implemented by the software you are using, 
-then your data will be encrypted from the time it leaves the device 
-(in tablet-assisted data collection) or browser (in web data collection), 
-until it reaches the server. 
-Therefore, as long as you are using an established survey software, 
-this step is largely taken care of. 
-However, the research team must ensure that all computers, tablets, 
-and accounts that are used in data collection have secure a logon 
-password and are never left unlocked.
-
-Even though your data is therefore usually safe while it is being transmitted,
-it is not automatically secure when it is being stored.
-\textbf{Encryption at rest}\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Encryption\#Encryption\_at\_Rest}}
-is the only way to ensure that PII data remains private when it is stored on a
-server on the internet. 
-You must keep your data encrypted on the data collection server whenever PII data is collected. 
-If you do not, the raw data will be accessible by 
-individuals who are not approved by your IRB, 
-such as tech support personnel, 
-server administrators and other third-party staff. 
-Encryption at rest must be used to make
-data files completely unusable without access to a security key specific to that 
-data -- a higher level of security than password-protection. 
-Encryption at rest requires active participation from the user, 
-and you should be fully aware that if your decryption key is lost, 
-there is absolutely no way to recover your data.
-
-You should not assume that your data is encrypted at rest by default because of 
-the careful protocols necessary. 
-In most data collection platforms, 
-encryption at rest needs to be explicitly enabled and operated by the user. 
-There is no automatic way to implement this protocol, 
-because the encryption key that is generated may 
-never pass through the hands of a third party, 
-including the data storage application.
-Most survey software implement \textbf{asymmetric encryption}\sidenote{\url{
-https://dimewiki.worldbank.org/wiki/Encryption\#Asymmetric\_Encryption}} 
-where there are two keys in a public/private key pair. 
-Only the private key can be used to decrypt the encrypted data, 
-and the public key can only be used to encrypt the data.
-It is therefore safe to send the public key to the tablet or the browser used to collect the data. 
-
-When you enable encryption, the survey software will allow you to create and
-download -- once -- the public/private keyfile pair needed to decrypt the data. 
-You upload the public key when you start a new survey, and all data collected using that
-public key can only be accessed with the private key from that specific public/private key pair. 
-You must store the key pair in a secure location, such as a password manager, 
-as there is no way to access your data if the private key is lost. 
-Make sure you store keyfiles with descriptive names to match the survey to which they correspond. 
-Any time anyone accesses the data -- 
-either when viewing it in the browser or downloading it to your computer -- 
-they will be asked to provide the keyfile. 
-Only project team members named in the IRB are allowed access to the private keyfile.
-
-\subsection{Data security after data collection}
-
-For most analytical needs, you typically need a to store the data somewhere else
-than the survey software's server, for example your computer or a cloud drive. 
-While asymmetric encryption is optimal for one-way transfer from the data collection device
-to the data collection server, 
-it is not practical once you start interacting with the data.
-
-Instead we want to use \textbf{symmetric encryption}\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Encryption\#Symmetric\_Encryption}} 
-where we create a secure encrypted folder, 
-using for example VeraCrypt\sidenote{\url{https://www.veracrypt.fr/}},
-where a single key is used to both encrypt and decrypt the information. 
-Since only one key is used, the work flow can be simplified, 
-the re-encryption after decrypting can be done automatically and the same secure folder can be used for multiple files, 
-and these files can be interacted with and modified like any unencryted file as long as you have the key. 
-The following workflow allows you to receive data and store it securely,
-without compromising data security:
-
-\begin{enumerate}
-	\item Create a secure encrypted folder in your project folder, 
-	this should be on your computer and could be in a shared folder.
-	\item Download data from the data collection server to that secure folder -- 
-	if you encrypted the data during data collection you will need \textit{both} the
-	private key used during data collection to be able to download the data, 
-	\textit{and} you will need the key used when created the secure folder to save it there. 
-	This your first copy of your raw data, and the copy you will used in your cleaning and analysis.
-	\item Then create a secure folder on a pen-drive or a external hard drive, 
-	that you can keep in your office. 
-	Copy the data you just downloaded to this second secure	folder. 
-	This is your ''master'' copy of your raw data. 
-	(Instead of creating a second secure folder, you can simply copy the first secure folder)
-	\item Finally, create a third secure folder. 
-	Either you can create this on your computer and upload it to a long-term cloud storage service, 
-	or you can create it on	an external hard drive that you then store in a separate location, 
-	for example at another office of your organization. 
-	This is your ''golden master'' copy of your raw	data. 
-	You should never store the ''golden master'' copy of your raw data in a synced
-	folder where it is also deleted in the cloud storage if it is deleted on your computer.
-	(Instead of creating a third secure folder, you can simply copy the first secure folder).
-\end{enumerate}
-
-\noindent This handling satisfies the \textbf{3-2-1 rule}: 
-there are two on-site copies of the data and one off-site copy, 
-so the data can never be lost in case of hardware failure.\sidenote{\url{
-https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}} 
-However, you still need to keep track of your encryption keys as without them your data is lost. 
-If you remain lucky, you will never have to access your ``master'' or ``golden master'' copies -- 
-you just want to know it is out there, safe, if you need it.
-
-\subsection{Secure data sharing}
-You and your team will use your first copy of the raw data as the starting point for data 
-cleaning analysis of the data. 
-This raw data set must remain encrypted at all times if it includes PII data, 
-which is almost always the case. 
-As long as the data is properly encrypted, using for example VeraCrypt, 
-it can be shared using insecure modes of communication such as email or third-party syncing services. 
-While this is safe from a data security perspective, 
-this is a burdensome workflow as anyone accessing the raw data must be listed on the IRB, 
-have access to the decryption key and know how to use that key. 
-Fortunately there is a way to simplify the workflow without compromising data security.
-
-To simplify the workflow, 
-the PII variables should be removed from your data at the earliest 
-possible opportunity creating a de-identified copy of the data. 
-Once the data is de-identified,
-it no longer needs to be encrypted -- 
-therefore you and you team members can share it directly 
-without having to encrypt it and handle decryption keys. 
-ext chapter will discuss how to de-identify your data. 
-If PII variables are directly required for the analysis itself, 
-it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
-
-The data security standards that apply when receiving PII data obviously also apply when sending PII data. 
-A common example where this is often forgotten is when sending survey information, 
-such as sampling lists, to the field partner. 
-This data is by all definitions also PII data and must be encrypted. 
-A sampling list can often be used to reverse identify a de-identified data set,
-so if you were to share it using an insecure method, 
-then that would be your weakest link that could break all the other steps 
-you have taken to ensure the privacy of the respondents.
-
-In some survey software you can use the same encryption that allows you to receive data securely 
-from the field, to also send data, such a sampling list, to the field. 
-But if you are not sure how that is done, or even can be done, 
-in the survey software you are using, 
-then you should create a secure folder using, for example, 
-VeraCrypt and share that secure folder with the field team. 
-Remember that you must always share passwords and keys in a secure way like password managers.
-
-
-\section{Finalizing data collection}
+\subsection{Finalizing data collection}
 
 When all data collection is complete, the survey team should prepare a final field report,
 which should report reasons for any deviations between the original sample and the dataset collected.
@@ -729,10 +534,211 @@ This information should be stored as a dataset in its own right
 -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
 and loss to follow-up occurred in the field and how they were implemented and resolved.
 
+%------------------------------------------------
+\section{Collecting and sharing data securely}
+
+All sensitive data must be handled in a way where there is no risk that anyone who is
+not approved by an Institutional Review Board (IRB)\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/IRB\_Approval}}
+for the specific project has the ability to access the data.
+Data can be sensitive for multiple reasons, but the two most
+common reasons are that it contains personally identifiable information (PII)\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Personally\_Identifiable\_Information\_(PII)}}
+or that the partner providing the data does not want it to be released.
+
+Central to data security is \index{encryption}\textbf{data encryption}, which is a group
+of methods that ensure that files are unreadable even if laptops are stolen, servers
+are hacked, or unauthorized access to the data is obtained in any other way.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Encryption}}
+Proper encryption is rarely just a single method,
+as the data will travel through many servers, devices, and computers
+from the source of the data to the final analysis.
+So encryption should be seen as a system that is only as secure as its weakest link.
+This section recommends a workflow with as few parts as possible,
+so that it is easy as possible to make sure the weakest link is still sufficiently secure.
+
+Encrypted data is made readable again using decryption,
+and decryption requires a password or a key.
+You must never share passwords or keys by email,
+WhatsApp or other insecure modes of communication;
+instead you must use a secure password manager.\sidenote{
+  \url{https://lastpass.com} or \url{https://bitwarden.com}}
+In addition to providing a way to securely share passwords,
+password managers also provide a secure location
+for long term storage for passwords and keys, whether they are shared or not.
+
+Many data-sharing software providers you are using will promote their services
+by saying they have on-the-fly encryption and decryption.
+While this is not a bad thing and it makes your data more secure,
+on-the-fly encryption is never secure enough.
+This is because, in order to make it automatic,
+the service provider needs to keep a copy of the password or key.
+Since it unlikely that that software provider is included in your IRB,
+this is not secure enough.
+
+It is possible, in some enterprise versions of data sharing software,
+to set up appropriately secure on-the-fly encryption.
+However, that setup is advanced, and you should never trust it
+unless you are a cybersecurity expert,
+or a cybersecurity expert within your organization
+has specified what it can be used for.
+In all other cases you should follow the steps laid out in this section.
+
+\subsection{Collecting data securely}
+
+In field surveys, most common data collection software will automatically encrypt
+all data in transit (i.e., upload from field or download from server).\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Encryption\#Encryption\_in\_Transit}}
+If this is implemented by the software you are using,
+then your data will be encrypted from the time it leaves the device
+(in tablet-assisted data collection) or browser (in web data collection),
+until it reaches the server.
+Therefore, as long as you are using an established survey software,
+this step is largely taken care of.
+However, the research team must ensure that all computers, tablets,
+and accounts that are used in data collection have secure a logon
+password and are never left unlocked.
+
+Even though your data is therefore usually safe while it is being transmitted,
+it is not automatically secure when it is being stored.
+\textbf{Encryption at rest}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Encryption\#Encryption\_at\_Rest}}
+is the only way to ensure that PII data remains private when it is stored on a
+server on the internet.
+You must keep your data encrypted on the data collection server whenever PII data is collected.
+If you do not, the raw data will be accessible by
+individuals who are not approved by your IRB,
+such as tech support personnel,
+server administrators and other third-party staff.
+Encryption at rest must be used to make
+data files completely unusable without access to a security key specific to that
+data -- a higher level of security than password-protection.
+Encryption at rest requires active participation from the user,
+and you should be fully aware that if your decryption key is lost,
+there is absolutely no way to recover your data.
+
+You should not assume that your data is encrypted at rest by default because of
+the careful protocols necessary.
+In most data collection platforms,
+encryption at rest needs to be explicitly enabled and operated by the user.
+There is no automatic way to implement this protocol,
+because the encryption key that is generated may
+never pass through the hands of a third party,
+including the data storage application.
+Most survey software implement \textbf{asymmetric encryption}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Encryption\#Asymmetric\_Encryption}}
+where there are two keys in a public/private key pair.
+Only the private key can be used to decrypt the encrypted data,
+and the public key can only be used to encrypt the data.
+It is therefore safe to send the public key
+to the tablet or the browser used to collect the data.
+
+When you enable encryption, the survey software will allow you to create and
+download -- once -- the public/private key pair needed to encrypt and decrypt the data.
+You upload the public key when you start a new survey, and all data collected using that
+public key can only be accessed with the private key from that specific public/private key pair.
+You must store the key pair in a secure location, such as a password manager,
+as there is no way to access your data if the private key is lost.
+Make sure you store keyfiles with descriptive names to match the survey to which they correspond.
+Any time anyone accesses the data --
+either when viewing it in the browser or downloading it to your computer --
+they will be asked to provide the key.
+Only project team members named in the IRB are allowed access to the private key.
+
+\subsection{Storing data securely}
+
+For most analytical needs, you typically need a to store the data somewhere other
+than the survey software's server, for example, on your computer or a cloud drive.
+While public/private key encryption is optimal for one-way transfer
+from the data collection device to the data collection server,
+it is not practical once you start interacting with the data.
+Instead, we use \textbf{symmetric encryption}\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Encryption\#Symmetric\_Encryption}}
+where we create a secure encrypted folder,
+using, for example, VeraCrypt.\sidenote{\url{https://www.veracrypt.fr/}}
+Here, a single key is used to both encrypt and decrypt the information.
+Since only one key is used, the workflow can be simplified:
+the re-encryption after decrypted access can be done automatically,
+and the same secure folder can be used for multiple files.
+These files can be interacted with and modified like any unencrypted file as long as you have the key.
+The following workflow allows you to receive data and store it securely,
+without compromising data security:
+
+\begin{enumerate}
+	\item Create a secure encrypted folder in your project folder.
+  This should be on your computer, and could be in a shared folder.
+	\item Download data from the data collection server to that secure folder.
+	If you encrypted the data during data collection, you will need \textit{both} the
+	private key used during data collection to be able to download the data,
+	\textit{and} you will need the key used when you created the secure folder to save it there.
+	This your first copy of your raw data, and the copy you will use in your cleaning and analysis.
+	\item Create a secure folder on a pen-drive or a external hard drive that you can keep in your office.
+	Copy the data you just downloaded to this second secure	folder.
+	This is your ``master'' copy of your raw data.
+	(Instead of creating a second secure folder, you can simply copy the first secure folder.)
+	\item Finally, create a third secure folder.
+	Either you can create this on your computer and upload it to a long-term cloud storage service,
+	or you can create it on	an external hard drive that you then store in a separate location,
+	for example, at another office of your organization.
+	This is your ``golden master'' copy of your raw	data.
+	You should never store the ``golden master'' copy of your raw data in a synced
+	folder, where it is also deleted in the cloud storage if it is deleted on your computer.
+	(Instead of creating a third secure folder, you can simply copy the first secure folder.)
+\end{enumerate}
+
+\noindent This handling satisfies the \textbf{3-2-1 rule}:
+there are two on-site copies of the data and one off-site copy,
+so the data can never be lost in case of hardware failure.\sidenote{
+  \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
+However, you still need to keep track of your encryption keys as without them your data is lost.
+If you remain lucky, you will never have to access your ``master'' or ``golden master'' copies --
+you just want to know it is out there, safe, if you need it.
+
+\subsection{Sharing data securely}
+You and your team will use your first copy of the raw data
+as the starting point for data cleaning and analysis of the data.
+This raw data set must remain encrypted at all times if it includes PII data,
+which is almost always the case.
+As long as the data is properly encrypted,
+it can be shared using insecure modes of communication
+such as email or third-party syncing services.
+While this is safe from a data security perspective,
+this is a burdensome workflow, as anyone accessing the raw data must be listed on the IRB,
+have access to the decryption key and know how to use that key.
+Fortunately, there is a way to simplify the workflow without compromising data security.
+
+To simplify the workflow,
+the PII variables should be removed from your data at the earliest
+possible opportunity creating a de-identified copy of the data.
+Once the data is de-identified,
+it no longer needs to be encrypted --
+you and you team members can share it directly
+without having to encrypt it and handle decryption keys.
+The next chapter will discuss how to de-identify your data.
+If PII variables are directly required for the analysis itself,
+it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
+
+The data security standards that apply when receiving PII data also apply when transferring PII data.
+A common example where this is often forgotten is when sending survey information,
+such as sampling lists, to a field partner.
+This data is -- by all definitions -- also PII data and must be encrypted.
+A sampling list can often be used to reverse identify a de-identified data set,
+so if you were to share it using an insecure method,
+then that would be your weakest link that could render useless all the other steps
+you have taken to ensure the privacy of the respondents.
+
+In some survey software, you can use the same encryption that allows you to receive data securely
+from the field, to also send data, such a sampling list, to the field.
+But if you are not sure how that is done, or even can be done,
+in the survey software you are using,
+then you should create a secure folder using, for example,
+VeraCrypt and share that secure folder with the field team.
+Remember that you must always share passwords and keys in a secure way like password managers.
+
 At this point, the raw data securely stored and backed up.
 It can now be transformed into your final analysis data set,
 through the steps described in the next chapter.
-Once the data collection is over, 
+Once the data collection is over,
 you typically will no longer need to interact with the identified data.
 So you should create a working version of it that you can safely interact with.
 This is described in the next chapter as the first task in the data cleaning process,
