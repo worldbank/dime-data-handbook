@@ -265,8 +265,11 @@ This minimizes the risk of small errors making their way through into the analys
 Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Applying\_Labels}}
 Third, recodes should be used to turn codes for ``Don't know'', ``Refused to answer'', and
 other non-responses into extended missing values.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
-String variables need to be encoded, and open-ended responses, categorized or dropped\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Strings}}
-(unless you are using qualitative or classification analyses, which are less common).
+String variables that correspond to categorical variables need to be encoded.
+Open-ended responses stored as strings usually have a high-risk of being identifiers,
+so they should be dropped at this point.
+You can use the encrypted data as an input to a construction script
+that categorizes these responses and merges them to the rest of the dataset. 
 Finally, any additional information collected only for quality monitoring purposes,
 such as notes and duration fields, can also be dropped.
 
