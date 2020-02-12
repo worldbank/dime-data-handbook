@@ -186,28 +186,30 @@ where you can easily select which variables to keep or drop.\sidenote{
 	\url{https://dimewiki.worldbank.org/wiki/Iecodebook}}
 
 Once you have a list of variables that contain PII,
-assess them against the analysis plan and ask:
-will this variable be needed for analysis?
+assess them against the analysis plan and first ask yourself for each variable:
+\textit{will this variable be needed for the analysis?}
 If not, the variable should be dropped.
 Don't be afraid to drop too many variables the first time,
 as you can always go back and remove variables from the list of variables to be dropped,
 but you can not go back in time and drop a PII variable that was leaked
 because it was incorrectly kept.
 Examples include respondent names, enumerator names, interview date, respondent phone number.
-If the variable is needed for analysis, ask:
-can I encode or otherwise construct a variable to use for the analysis that masks the PII,
-and drop the original variable?
+For each PII variable that is needed in the analysis, ask yourself:
+\textit{can I encode or otherwise construct a variable that masks the PII, and 
+then drop this variable?}
 This is typically the case for most identifying information.
 Examples include geocoordinates
 (after constructing measures of distance or area,
 drop the specific location),
 and names for social network analysis (can be encoded to secret and unique IDs).
-If PII variables are strictly required for the analysis itself,
-it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
-If the answer is yes to either of these questions,
+If the answer to either of two questions above is yes,
 all you need to do is write a script to drop the variables that are not required for analysis,
 encode or otherwise mask those that are required,
 and save a working version of the data.
+If PII variables are strictly required for the analysis itself and can not be 
+masked or encoded,
+it will be necessary to keep at least a subset of the data encrypted through 
+the data analysis process.
 
 The resulting de-identified data will be the underlying source for all cleaned and constructed data.
 This is the data set that you will interact with directly during the remaining tasks described in this chapter.
