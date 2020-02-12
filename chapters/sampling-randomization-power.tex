@@ -1,27 +1,20 @@
 %-----------------------------------------------------------------------------------------------
 
 \begin{fullwidth}
-Sampling and randomization are two core elements of research design.
+Sampling and randomized assignment are two core elements of research design.
 In experimental methods, sampling and randomization directly determine
 the set of individuals who are going to be observed
 and what their status will be for the purpose of effect estimation.
 Since we only get one chance to implement a given experiment,
 we need to have a detailed understanding of how these processes work
 and how to implement them properly.
-This allows us to ensure the field reality corresponds well to our experimental design.
-In quasi-experimental methods,
-sampling determines what populations the study
+In quasi-experimental methods, sampling determines what populations the study
 will be able to make meaningful inferences about,
-and randomization analyses simulate counterfactual possibilities
-if the events being studied had happened differently.
-These analytical dimensions are particularly important in the initial phases of development research --
-typically conducted well before any actual fieldwork occurs --
-and often have implications for feasibility, planning, and budgeting.
+and randomization analyses simulate counterfactual possibilities;
+what would have happened in the absence of the event.
+Demonstrating that sampling and randomization were taken into consideration
+before going to field lends credibility to any research study.
 
-Power calculations and randomization inference methods
-give us the tools to critically and quantitatively assess different
-sampling and randomization designs in light of our theories of change
-and to make optimal choices when planning studies.
 All random processes introduce statistical noise
 or uncertainty into the final estimates of effect sizes.
 Choosing one sample from all the possibilities produces some probability of
@@ -30,19 +23,20 @@ Choosing one final randomization assignment similarly produces some probability 
 creating groups that are not good counterfactuals for each other.
 Power calculation and randomization inference
 are the main methods by which these probabilities of error are assessed.
-Good experimental design has high \textbf{power} -- a low likelihood that statistical noise
-will substantially affect estimates of treatment effects.
+These analytical dimensions are particularly important in the initial phases of development research --
+typically conducted well before any actual fieldwork occurs --
+and often have implications for feasibility, planning, and budgeting.
 
-Not all studies are capable of achieving traditionally high power:
-sufficiently precise sampling or treatment assignments may not be available.
-This may be especially true for novel or small-scale studies --
-things that have never been tried before may be hard to fund or execute at scale.
-What is important is that every study includes reasonable estimates of its power,
-so that the evidentiary value of its results can be assessed.
-Demonstrating that sampling and randomization were taken into consideration
-before going to field lends credibility to any research study.
-Using these tools to design the best experiments possible
-maximizes the likelihood that reported estimates are accurate.
+In this chapter, we first cover the necessary practices to ensure that random processes are reproducible.
+We next turn to how to implement sampling and randomized assignment,
+both for simple, uniform probability cases, and more complex designs, 
+such as those that require clustering or stratification. 
+We include code examples so the guidance is concrete and applicable. 
+The last section discusses power calculations and randomization inference,
+and how both are important tools to critically and quantitatively assess different
+sampling and randomization designs and to make optimal choices when planning studies. 
+
+
 \end{fullwidth}
 
 %-----------------------------------------------------------------------------------------------
@@ -392,7 +386,7 @@ The intuition for both measures is that from any group,
 you can find some possible subsets that have higher-than-average values of some measure;
 similarly, you can find some that have lower-than-average values.
 Your sample or randomization will inevitably fall in one of these categories,
-and we need to assess the likelihood and magnitude of this occurence.\sidenote{
+and we need to assess the likelihood and magnitude of this occurrence.\sidenote{
   \url{https://davegiles.blogspot.com/2019/04/what-is-permutation-test.html}}
 Power calculation and randomization inference are the two key tools to doing so.
 
@@ -464,6 +458,13 @@ the complexity of your experiment significantly.
 For reporting purposes, such as grant writing and registered reports,
 simulation ensures you will have understood the key questions well enough
 to report standard measures of power once your design is decided.
+
+Not all studies are capable of achieving traditionally high power:
+sufficiently precise sampling or treatment assignments may not be available.
+This may be especially true for novel or small-scale studies --
+things that have never been tried before may be hard to fund or execute at scale.
+What is important is that every study includes reasonable estimates of its power,
+so that the evidentiary value of its results can be assessed.
 
 \subsection{Randomization inference}
 

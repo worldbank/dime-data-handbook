@@ -1,49 +1,63 @@
 %------------------------------------------------
 
 \begin{fullwidth}
-Transforming raw data into a substantial contribution to scientific knowledge 
-requires a mix of subject expertise, programming skills, 
-and statistical and econometric knowledge. 
-The process of data analysis is, therefore, 
-a back-and-forth discussion between people 
-with differing skill sets. 
-The research assistant usually ends up being the pivot of this discussion. 
-It is their job to translate the data received from the field into
-economically meaningful indicators and to analyze them 
-while making sure that code and outputs do not become too difficult to follow or get lost over time.
+Transforming raw data into a substantial contribution to scientific knowledge
+requires a mix of subject expertise, programming skills,
+and statistical and econometric knowledge.
+The process of data analysis is typically
+a back-and-forth discussion between people
+with differing skill sets.
+An essential part of the process is translating the
+raw data received from the field into economically meaningful indicators.
+To effectively do this in a team environment,
+data, code and outputs must be well-organized,
+with a clear system for version control,
+and analytical scripts structured such that any member of the research team can run them.
+Putting in time upfront to structure data work well
+pays off substantial dividends throughout the process.
 
-When it comes to code, though, analysis is the easy part, 
-\textit{as long as you have organized your data well}. 
-Of course, there is plenty of complexity behind it: 
-the econometrics, the theory of change, the measurement methods, and so much more.
-But none of those are the subject of this book. 
-\textit{Instead, this chapter will focus on how to organize your data work so that coding the analysis becomes easy}.
-Most of a Research Assistant's time is spent cleaning data and getting it into the right format. 
-When the practices recommended here are adopted,
-analyzing the data is as simple as using a command that is already implemented in a statistical software. 
-
+In this chapter, we first cover data management:
+how to organize your data work at the start of a project
+so that coding the analysis itself is straightforward.
+This includes setting up folders, organizing tasks, master scripts,
+and putting in place a version control system
+so that your work is easy for all research team members to follow,
+and meets standards for transparency and reproducibility.
+Second, we turn to de-identification,
+a critical step when working with any personally-identified data.
+In the third section, we offer detailed guidance on data cleaning,
+from identifying duplicate entries to labeling and annotating raw data,
+and how to transparently document the cleaning process.
+Section four focuses on how to transform your clean data
+into the actual indicators you will need for analysis,
+again emphasizing the importance of transparent documentation.
+Finally, we turn to analysis itself.
+We do not offer instructions on how to conduct specific analyses,
+as that is determined by research design;
+rather, we discuss how to structure analysis code,
+and how to automate common outputs so that your analysis is fully reproducible.
 
 \end{fullwidth}
 
 %------------------------------------------------
 
 \section{Data management}
-The goal of data management is to organize the components of data work 
+The goal of data management is to organize the components of data work
 so it can traced back and revised without massive effort.
-In our experience, there are four key elements to good data management: 
-folder structure, task breakdown, master scripts, and version control. 
+In our experience, there are four key elements to good data management:
+folder structure, task breakdown, master scripts, and version control.
 A good folder structure organizes files so that any material can be found when needed.
 It reflects a task breakdown into steps with well-defined inputs, tasks, and outputs.
 This breakdown is applied to code, data sets, and outputs.
 A master script connects folder structure and code.
 It is a one-file summary of your whole project.
-Finally, version histories and backups enable the team 
+Finally, version histories and backups enable the team
 to edit files without fear of losing information.
-Smart use of version control also allows you to track 
+Smart use of version control also allows you to track
 how each edit affects other files in the project.
 
 \subsection{Folder structure}
-There are many schemes to organize research data. 
+There are many schemes to organize research data.
 Our preferred scheme reflects the task breakdown just discussed.
 \index{data organization}
 DIME Analytics created the \texttt{iefolder}\sidenote{
@@ -51,36 +65,36 @@ DIME Analytics created the \texttt{iefolder}\sidenote{
 package (part of \texttt{ietoolkit}\sidenote{
 	\url{https://dimewiki.worldbank.org/wiki/ietoolkit}})
 to standardize folder structures across teams and projects.
-This means that PIs and RAs face very small costs when switching between projects, 
+This means that PIs and RAs face very small costs when switching between projects,
 because they are organized in the same way.\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork\_Folder}}
 We created the command based on our experience with primary data,
 but it can be used for different types of data.
-Whatever you team may need in terms of organization, 
+Whatever you team may need in terms of organization,
 the principle of creating one standard remains.
 
 At the first level of the structure created by \texttt{iefolder} are what we call survey round folders.\sidenote{\url{https://dimewiki.worldbank.org/wiki/DataWork\_Survey\_Round}}
-You can think of a ``round'' as one source of data, 
-that will be cleaned in the same script. 
-Inside round folders, there are dedicated folders for 
-raw (encrypted) data; de-identified data; cleaned data; and final (constructed) data. 
-There is a folder for raw results, as well as for final outputs. 
-The folders that hold code are organized in parallel to these, 
-so that the progression through the whole project can be followed by anyone new to the team.  
-Additionally, \texttt{iefolder} creates \textbf{master do-files}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}} 
+You can think of a ``round'' as one source of data,
+that will be cleaned in the same script.
+Inside round folders, there are dedicated folders for
+raw (encrypted) data; de-identified data; cleaned data; and final (constructed) data.
+There is a folder for raw results, as well as for final outputs.
+The folders that hold code are organized in parallel to these,
+so that the progression through the whole project can be followed by anyone new to the team.
+Additionally, \texttt{iefolder} creates \textbf{master do-files}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
 so all project code is reflected in a top-level script.
 
 \subsection{Task breakdown}
-We divide the process of turning raw data into analysis data into three stages: 
-data cleaning, variable construction, and data analysis. 
-Though they are frequently implemented at the same time, 
-we find that creating separate scripts and data sets prevents mistakes. 
-It will be easier to understand this division as we discuss what each stage comprises. 
-What you should know by now is that each of these stages has well-defined inputs and outputs. 
-This makes it easier to track tasks across scripts, 
-and avoids duplication of code that could lead to inconsistent results. 
-For each stage, there should be a code folder and a corresponding data set. 
+We divide the process of turning raw data into analysis data into three stages:
+data cleaning, variable construction, and data analysis.
+Though they are frequently implemented at the same time,
+we find that creating separate scripts and data sets prevents mistakes.
+It will be easier to understand this division as we discuss what each stage comprises.
+What you should know by now is that each of these stages has well-defined inputs and outputs.
+This makes it easier to track tasks across scripts,
+and avoids duplication of code that could lead to inconsistent results.
+For each stage, there should be a code folder and a corresponding data set.
 The names of codes, data sets and outputs for each stage should be consistent,
-making clear how they relate to one another. 
+making clear how they relate to one another.
 So, for example, a script called \texttt{clean-section-1} would create
 a data set called \texttt{cleaned-section-1}.
 
@@ -93,22 +107,22 @@ It helps to keep the level of the outputs high, and is also a great way to learn
 
 \subsection{Master scripts}
 Master scripts allow users to execute all the project code from a single file.
-They briefly describes what each code, 
-and maps the files they require and create. 
-They also connects code and folder structure through globals or objects. 
-In short, a master script is a human-readable map to the tasks, 
-files and folder structure that comprise a project.  
-Having a master script eliminates the need for complex instructions to replicate results. 
+They briefly describes what each code,
+and maps the files they require and create.
+They also connects code and folder structure through globals or objects.
+In short, a master script is a human-readable map to the tasks,
+files and folder structure that comprise a project.
+Having a master script eliminates the need for complex instructions to replicate results.
 Reading the master do-file should be enough for anyone unfamiliar with the project
 to understand what are the main tasks, which scripts execute them,
-and where different files can be found in the project folder. 
+and where different files can be found in the project folder.
 That is, it should contain all the information needed to interact with a project's data work.
 
 \subsection{Version control}
-Finally, everything that can be version-controlled should be. 
+Finally, everything that can be version-controlled should be.
 Version control allows you to effectively track code edits,
-including the addition and deletion of files. 
-This way you can delete code you no longer need, 
+including the addition and deletion of files.
+This way you can delete code you no longer need,
 and still recover it easily if you ever need to get back previous work.
 Both analysis results and data sets will change with the code.
 You should have each of them stored with the code that created it.
@@ -117,17 +131,18 @@ you can output plain text files such as \texttt{.tex} tables
 and metadata saved in \texttt{.txt} or \texttt{.csv} to that directory.
 Binary files that compile the tables,
 as well as the complete data sets, on the other hand,
-should be stored in your team's shared folder. 
+should be stored in your team's shared folder.
 Whenever data cleaning or data construction codes are edited,
 use the master script to run all the code for your project.
-Git will highlight the changes that were in data sets and results that they entail. 
+Git will highlight the changes that were in data sets and results that they entail.
 
 %------------------------------------------------
 
 \section{Data cleaning}
 
-Data cleaning is the first stage of transforming the data you received from the field into data that you can analyze.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning}}
-The cleaning process involves (1) making the data set easily usable and understandable, 
+Data cleaning is the first stage of transforming the data you received from the field
+into data that you can analyze.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning}}
+The cleaning process involves (1) making the data set easily usable and understandable,
 and (2) documenting individual data points and patterns that may bias the analysis.
 The underlying data structure does not change.
 The cleaned data set should contain only the variables collected in the field.
@@ -145,18 +160,18 @@ The initial input for data cleaning is the raw data.
 It should contain only materials that are received directly from the field.
 They will invariably come in a host of file formats and nearly always contain personally-identifying information.\index{personally-identifying information}
 These files should be retained in the raw data folder \textit{exactly as they were received}.
-Be mindful of where this file is stored. 
+Be mindful of where this file is stored.
 Maintain a backup copy in a secure offsite location.
 Every other file is created from the raw data, and therefore can be recreated.
-The exception, of course, is the raw data itself, so it should never be edited 
+The exception, of course, is the raw data itself, so it should never be edited
 directly.
 The rare and only case when the raw data can be edited directly is when it is encoded incorrectly
 and some non-English character is causing rows or columns to break at the wrong place
-when the data is imported. 
+when the data is imported.
 In this scenario, you will have to remove the special character manually, save the resulting data set \textit{in a new file} and securely back up \textit{both} the broken and the fixed version of the raw data.
 
 Note that no one who is not listed in the IRB should be able to access its content, not even the company providing file-sharing services.
-Check if your organization has guidelines on how to store data securely, as they may offer an institutional solution. 
+Check if your organization has guidelines on how to store data securely, as they may offer an institutional solution.
 If that is not the case, you will need to encrypt the data, especially before
 sharing it, and make sure that only IRB-listed team members have the
 encryption key.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}.
@@ -164,16 +179,16 @@ encryption key.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}}.
 Secure storage of the raw data means access to it will be restricted even inside the research team.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Security}}
 Loading encrypted data frequently can be disruptive to the workflow.
 To facilitate the handling of the data, remove any personally identifiable information from the data set.
-This will create a de-identified data set, that can be saved in a non-encrypted folder. 
+This will create a de-identified data set, that can be saved in a non-encrypted folder.
 De-identification,\sidenote{\url{https://dimewiki.worldbank.org/wiki/De-identification}}
 at this stage, means stripping the data set of direct identifiers such as names, phone numbers, addresses, and geolocations.\sidenote{\url{ https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
 The resulting de-identified data will be the underlying source for all cleaned and constructed data.
-Because identifying information is typically only used during data collection, 
-to find and confirm the identity of interviewees, 
+Because identifying information is typically only used during data collection,
+to find and confirm the identity of interviewees,
 de-identification should not affect the usability of the data.
 In fact, most identifying information can be converted into non-identified variables for analysis purposes
-(e.g. GPS coordinates can be translated into distances). 
-However, if sensitive information is strictly needed for analysis, 
+(e.g. GPS coordinates can be translated into distances).
+However, if sensitive information is strictly needed for analysis,
 the data must be encrypted while performing the tasks described in this chapter.
 
 \subsection{Correction of data entry errors}
@@ -187,11 +202,11 @@ That, however, is not the same as having a unique ID variable for each individua
 You want to make sure the data set has a unique ID variable
 that can be cross-referenced with other records, such as the Master Data Set\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Data\_Set}}
 and other rounds of data collection.
-\texttt{ieduplicates} and \texttt{iecompdup}, 
-two Stata commands included in the \texttt{iefieldkit} 
+\texttt{ieduplicates} and \texttt{iecompdup},
+two Stata commands included in the \texttt{iefieldkit}
 package\index{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/wiki/iefieldkit}}
 create an automated workflow to identify, correct and document
-occurrences of duplicate entries. 
+occurrences of duplicate entries.
 
 Looking for duplicated entries is usually part of data quality monitoring,
 as is the only other reason to change the raw data during cleaning:
@@ -207,7 +222,7 @@ and how the correct value was obtained.
 On average, making corrections to primary data is more time-consuming than when using secondary data.
 But you should always check for possible issues in any data you are about to use.
 The last step of data cleaning, however, will most likely still be necessary.
-It consists of labeling and annotating the data, so that its users have all the 
+It consists of labeling and annotating the data, so that its users have all the
 information needed to interact with it.
 This is a key step to making the data easy to use, but it can be quite repetitive.
 The \texttt{iecodebook} command suite, also part of \texttt{iefieldkit},
@@ -217,7 +232,7 @@ such as renaming, relabeling, and value labeling, much easier.\sidenote{\url{htt
 We have a few recommendations on how to use this command for data cleaning.
 First, we suggest keeping the same variable names in the cleaned data set as in the survey instrument, so it's straightforward to link data points for a variable to the question that originated them.
 Second, don't skip the labeling.
-Applying labels makes it easier to understand what the data is showing while exploring the data. 
+Applying labels makes it easier to understand what the data is showing while exploring the data.
 This minimizes the risk of small errors making their way through into the analysis stage.
 Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Applying\_Labels}}
 Third, recodes should be used to turn codes for ``Don't know'', ``Refused to answer'', and
@@ -229,21 +244,21 @@ such as notes and duration fields, can also be dropped.
 
 \subsection{Documenting data cleaning}
 
-Throughout the data cleaning process, you will need inputs from the field, 
-including enumerator manuals, survey instruments, 
+Throughout the data cleaning process, you will need inputs from the field,
+including enumerator manuals, survey instruments,
 supervisor notes, and data quality monitoring reports.
 These materials are essential for data documentation.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Documentation}}
 \index{Documentation}
-They should be stored in the corresponding ``Documentation'' folder for easy access, 
+They should be stored in the corresponding ``Documentation'' folder for easy access,
 as you will probably need them during analysis,
 and they must be made available for publication.
 Include in the \texttt{Documentation} folder records of any
 corrections made to the data, including to duplicated entries,
 as well as communications from the field where theses issues are reported.
-Be very careful not to include sensitive information in documentation that is not securely stored, 
+Be very careful not to include sensitive information in documentation that is not securely stored,
 or that you intend to release as part of a replication package or data publication.
 
-Another important component of data cleaning documentation are the results of 
+Another important component of data cleaning documentation are the results of
 As clean your data set, take the time to explore the variables in it.
 Use tabulations, histograms and density plots to understand the structure of data,
 and look for potentially problematic patterns such as outliers,
@@ -255,7 +270,7 @@ This material will also be valuable during exploratory data analysis.
 
 \subsection{The cleaned data set}
 
-The main output of data cleaning is the cleaned data set. 
+The main output of data cleaning is the cleaned data set.
 It should contain the same information as the raw data set,
 with no changes to data points.
 It should also be easily traced back to the survey instrument,
@@ -264,7 +279,7 @@ Typically, one cleaned data set will be created for each data source,
 i.e. per survey instrument.
 Each row in the cleaned data set represents one survey entry or unit of observation.\sidenote{\cite{tidy-data}}
 If the raw data set is very large, or the survey instrument is very complex,
-you may want to break the data cleaning into sub-steps, 
+you may want to break the data cleaning into sub-steps,
 and create intermediate cleaned data sets
 (for example, one per survey module).
 Breaking cleaned data sets into the smallest unit of observation inside a roster
@@ -273,7 +288,7 @@ But having a single cleaned data set will help you with sharing and publishing t
 To make sure this file doesn't get too big to be handled,
 use commands such as \texttt{compress} in Stata to make sure the data
 is always stored in the most efficient format.
-Once you have a cleaned, de-identified data set, and documentation to support it, 
+Once you have a cleaned, de-identified data set, and documentation to support it,
 you have created the first data output of your project:
 a publishable data set.
 The next chapter will get into the details of data publication.
@@ -288,7 +303,7 @@ and some donors require that the data be filed as an intermediate step of the pr
 The second stage in the creation of analysis data is construction.
 Constructing variables means processing the data points as provided in the raw data to make them suitable for analysis.
 It is at this stage that the raw data is transformed into analysis data.
-This is done by creating derived variables (dummies, indices, and interactions, to name a few), 
+This is done by creating derived variables (dummies, indices, and interactions, to name a few),
 as planned during research design, and using the pre-analysis plan as a guide.
 To understand why construction is necessary,
 let's take the example of a household survey's consumption module.
@@ -296,29 +311,29 @@ For each item in a context-specific bundle, it will ask whether the household co
 If they did, it will then ask about quantities, units and expenditure for each item.
 However, it is difficult to run a meaningful regression on the number of cups of milk and handfuls of beans that a household consumed over a week.
 You need to manipulate them into something that has \textit{economic} meaning,
-such as caloric input or food expenditure per adult equivalent. 
-During this process, the data points will typically be reshaped and aggregated 
-so that level of the data set goes from the unit of observation (one item in the bundle) in the survey to the unit of analysis (the household).\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}} 
+such as caloric input or food expenditure per adult equivalent.
+During this process, the data points will typically be reshaped and aggregated
+so that level of the data set goes from the unit of observation (one item in the bundle) in the survey to the unit of analysis (the household).\sidenote{\url{https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}}
 
 \subsection{Why construction?}
 
 % From cleaning
-Construction is done separately from data cleaning for two reasons. 
+Construction is done separately from data cleaning for two reasons.
 The first one is to clearly differentiate the data originally collected from the result of data processing decisions.
-The second is to ensure that variable definition is consistent across data sources. 
-Unlike cleaning, construction can create many outputs from many inputs. 
-Let's take the example of a project that has a baseline and an endline survey. 
-Unless the two instruments are exactly the same, which is preferable but often not the case,  the data cleaning for them will require different steps, and therefore will be done separately. 
+The second is to ensure that variable definition is consistent across data sources.
+Unlike cleaning, construction can create many outputs from many inputs.
+Let's take the example of a project that has a baseline and an endline survey.
+Unless the two instruments are exactly the same, which is preferable but often not the case,  the data cleaning for them will require different steps, and therefore will be done separately.
 However, you still want the constructed variables to be calculated in the same way, so they are comparable.
 To do this, you will at least two cleaning scripts, and a single one for construction --
 we will discuss how to do this in practice in a bit.
 
 % From analysis
-Ideally, indicator construction should be done right after data cleaning, according to the pre-analysis plan. 
+Ideally, indicator construction should be done right after data cleaning, according to the pre-analysis plan.
 In practice, however, following this principle is not always easy.
 As you analyze the data, different constructed variables will become necessary, as well as subsets and other alterations to the data.
-Still, constructing variables in a separate script from the analysis will help you ensure consistency across different outputs. 
-If every script that creates a table starts by loading a data set, subsetting it and manipulating variables, any edits to construction need to be replicated in all scripts. 
+Still, constructing variables in a separate script from the analysis will help you ensure consistency across different outputs.
+If every script that creates a table starts by loading a data set, subsetting it and manipulating variables, any edits to construction need to be replicated in all scripts.
 This increases the chances that at least one of them will have a different sample or variable definition.
 Therefore, even if construction ends up coming before analysis only in the order the code is run,
 it's important to think of them as different steps.
@@ -333,7 +348,7 @@ so making their names consistent with the survey form is not as crucial.
 Of course, whenever possible, having variable names that are both intuitive \textit{and} can be linked to the survey is ideal, but if you need to choose, prioritize functionality.
 Ordering the data set so that related variables are together and adding notes to each of them as necessary will also make your data set more user-friendly.
 
-The most simple case of new variables to be created are aggregate indicators. 
+The most simple case of new variables to be created are aggregate indicators.
 For example, you may want to add a household's income from different sources into a single total income variable, or create a dummy for having at least one child in school.
 Jumping to the step where you actually create this variables seems intuitive,
 but it can also cause you a lot of problems, as overlooking details may affect your results.
@@ -345,20 +360,20 @@ Make sure to standardize units and recode categorical variables so their values 
 It's possible that your questionnaire asked respondents to report some answers as percentages and others as proportions,
 or that in one variable 0 means ``no'' and 1 means ``yes'', while in another one the same answers were coded are 1 and 2.
 We recommend coding yes/no questions as either 1/0 or TRUE/FALSE, so they can be used numerically as frequencies in means and as dummies in regressions.
-Check that non-binary categorical variables have the same value-assignment, i.e., 
+Check that non-binary categorical variables have the same value-assignment, i.e.,
 that labels and levels have the same correspondence across variables that use the same options.
 Finally, make sure that any numeric variables you are comparing are converted to the same scale or unit of measure. You cannot add one hectare and twos acres into a meaningful number.
 
-During construction, you will also need to address some of the issues you identified in the data during data cleaning. 
+During construction, you will also need to address some of the issues you identified in the data during data cleaning.
 The most common of them is the presence of outliers.
-How to treat outliers is a research question, but make sure to note what we the decision made by the research team, and how you came to it. 
+How to treat outliers is a research question, but make sure to note what we the decision made by the research team, and how you came to it.
 Results can be sensitive to the treatment of outliers, so keeping the original variable in the data set will allow you to test how much it affects the estimates.
 All these points also apply to imputation of missing values and other distributional patterns.
 
 The more complex construction tasks involve changing the structure of the data:
-adding new observations or variables by merging data sets, 
+adding new observations or variables by merging data sets,
 and changing the unit of observation through collapses or reshapes.
-There are always ways for things to go wrong that we never anticipated, but two issues to pay extra attention to are missing values and dropped observations. 
+There are always ways for things to go wrong that we never anticipated, but two issues to pay extra attention to are missing values and dropped observations.
 Merging, reshaping and aggregating data sets can change both the total number of observations and the number of observations with missing values.
 Make sure to read about how each command treats missing observations and, whenever possible, add automated checks in the script that throw an error message if the result is changing.
 If you are subsetting your data, drop observations explicitly, indicating why you are doing that and how the data set changed.
@@ -379,9 +394,9 @@ Apart from preventing inconsistencies, this process will also save you time and 
 Because data construction involves translating concrete data points to more abstract measurements, it is important to document exactly how each variable is derived or calculated.
 Adding comments to the code explaining what you are doing and why is a crucial step both to prevent mistakes and to guarantee transparency.
 To make sure that these comments can be more easily navigated, it is wise to start writing a variable dictionary as soon as you begin making changes to the data.
-Carefully record how specific variables have been combined, recoded, and scaled,  and refer to those records in the code. 
+Carefully record how specific variables have been combined, recoded, and scaled,  and refer to those records in the code.
 This can be part of a wider discussion with your team about creating protocols for variable definition, which will guarantee that indicators are defined consistently across projects.
-When all your final variables have been created, you can use \texttt{iecodebook}'s \texttt{export} subcommand to list all variables in the data set, 
+When all your final variables have been created, you can use \texttt{iecodebook}'s \texttt{export} subcommand to list all variables in the data set,
 and complement it with the variable definitions you wrote during construction to create a concise meta data document.
 Documentation is an output of construction as relevant as the code and the data.
 Someone unfamiliar with the project should be able to understand the contents of the analysis data sets, the steps taken to create them, and the decision-making process through your documentation.
@@ -396,21 +411,21 @@ Since different pieces of analysis may require different samples, or even differ
 you may have one or multiple constructed data sets, depending on how your analysis is structured.
 So don't worry if you cannot create a single, ``canonical'' analysis data set.
 It is common to have many purpose-built analysis datasets.
-Think of an agricultural intervention that was randomized across villages and only affected certain plots within each village. 
+Think of an agricultural intervention that was randomized across villages and only affected certain plots within each village.
 The research team may want to run household-level regressions on income, test for plot-level productivity gains, and check if village characteristics are balanced.
-Having three separate datasets for each of these three pieces of analysis will result in much cleaner do files than if they all started from the same file. 
+Having three separate datasets for each of these three pieces of analysis will result in much cleaner do files than if they all started from the same file.
 
 %------------------------------------------------
 
 \section{Writing data analysis code}
 
 % Intro --------------------------------------------------------------
-Data analysis is the stage when research outputs are created. 
+Data analysis is the stage when research outputs are created.
 \index{data analysis}
 Many introductions to common code skills and analytical frameworks exist, such as
 \textit{R for Data Science};\sidenote{\url{https://r4ds.had.co.nz/}}
 \textit{A Practical Introduction to Stata};\sidenote{\url{https://scholar.harvard.edu/files/mcgovern/files/practical\_introduction\_to\_stata.pdf}}
-\textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844\_Mostly\_Harmless\_Econometrics\_An\_Empiricist's\_Companion}} 
+\textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844\_Mostly\_Harmless\_Econometrics\_An\_Empiricist's\_Companion}}
 and \textit{Causal Inference: The Mixtape}.\sidenote{\url{http://scunning.com/mixtape.html}}
 This section will not include instructions on how to conduct specific analyses.
 That is a research question, and requires expertise beyond the scope of this book.
@@ -420,11 +435,11 @@ assuming you have completed the process of data cleaning and construction.
 \subsection{Organizing analysis code}
 
 The analysis stage usually starts with a process we call exploratory data analysis.
-This is when you are trying different things and looking for patterns in your data. 
+This is when you are trying different things and looking for patterns in your data.
 It progresses into final analysis when your team starts to decide what are the main results, those that will make it into the research output.
 The way you deal with code and outputs for exploratory and final analysis is different, and this section will discuss how.
-During exploratory data analysis, you will be tempted to write lots of analysis into one big, impressive, start-to-finish script. 
-It subtly encourages poor practices such as not clearing the workspace and not reloading the constructed data set before each analysis task. 
+During exploratory data analysis, you will be tempted to write lots of analysis into one big, impressive, start-to-finish script.
+It subtly encourages poor practices such as not clearing the workspace and not reloading the constructed data set before each analysis task.
 It's important to take the time to organize scripts in a clean manner and to avoid mistakes.
 
 A well-organized analysis script starts with a completely fresh workspace and explicitly loads data before analyzing it.
@@ -436,10 +451,10 @@ There is nothing wrong with code files being short and simple -- as long as they
 
 Analysis files should be as simple as possible, so whoever is reading it can focus on the econometrics.
 All research decisions should be made very explicit in the code.
-This includes clustering, sampling, and control variables, to name a few. 
+This includes clustering, sampling, and control variables, to name a few.
 If you have multiple analysis data sets, each of them should have a descriptive name about its sample and unit of observation.
 As your team comes to a decision about model specification, you can create globals or objects in the master script to use across scripts.
-This is a good way to make sure specifications are consistent throughout the analysis. 
+This is a good way to make sure specifications are consistent throughout the analysis.
 Using pre-specified globals or objects also makes your code more dynamic, so it is easy to update specifications and results without changing every script.
 It is completely acceptable to have folders for each task, and compartmentalize each analysis as much as needed.
 
@@ -447,9 +462,9 @@ It is completely acceptable to have folders for each task, and compartmentalize 
 
 To accomplish this, you will need to make sure that you have an effective data management system, including naming, file organization, and version control.
 Just like you did with each of the analysis datasets, name each of the individual analysis files descriptively.
-Code files such as \path{spatial-diff-in-diff.do}, \path{matching-villages.R}, and \path{summary-statistics.py} 
+Code files such as \path{spatial-diff-in-diff.do}, \path{matching-villages.R}, and \path{summary-statistics.py}
 are clear indicators of what each file is doing, and allow you to find code quickly.
-If you intend to numerically order the code as they appear in a paper or report, 
+If you intend to numerically order the code as they appear in a paper or report,
 leave this to near publication time.
 
 % Self-promotion ------------------------------------------------
@@ -469,22 +484,22 @@ There is a fair amount of learning curve associated with extremely-fine-grained 
 but it is well worth reviewing the graphics manual\sidenote{\url{https://www.stata.com/manuals/g.pdf}}
 For an easier way around it, Gray Kimbrough's \textit{Uncluttered Stata Graphs} code is an excellent default replacement for Stata graphics that is easy to install.
 \sidenote{\url{https://graykimbrough.github.io/uncluttered-stata-graphs/}}
-If you are a R user, the \textit{R Graphics Cookbook}\sidenote{\url{https://r-graphics.org/}} 
-is a great resource for the most popular visualization package \texttt{ggplot}\sidenote{\url{https://ggplot2.tidyverse.org/}}. 
-But there are a variety of other visualization packages, 
-such as \texttt{highcharter}\sidenote{\url{http://jkunst.com/highcharter/}}, 
-\texttt{r2d3}\sidenote{\url{https://rstudio.github.io/r2d3/}}, 
-\texttt{leaflet}\sidenote{\url{https://rstudio.github.io/leaflet/}}, 
+If you are a R user, the \textit{R Graphics Cookbook}\sidenote{\url{https://r-graphics.org/}}
+is a great resource for the most popular visualization package \texttt{ggplot}\sidenote{\url{https://ggplot2.tidyverse.org/}}.
+But there are a variety of other visualization packages,
+such as \texttt{highcharter}\sidenote{\url{http://jkunst.com/highcharter/}},
+\texttt{r2d3}\sidenote{\url{https://rstudio.github.io/r2d3/}},
+\texttt{leaflet}\sidenote{\url{https://rstudio.github.io/leaflet/}},
 and \texttt{plotly}\sidenote{\url{https://plot.ly/r/}}, to name a few.
 We have no intention of creating an exhaustive list, and this one is certainly missing very good references.
 But at least it is a place to start.
 
 \section{Exporting analysis outputs}
 
-Our team has created a few products to automate common outputs and save you 
+Our team has created a few products to automate common outputs and save you
 precious research time.
 The \texttt{ietoolkit} package includes two commands to export nicely formatted tables.
-\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Iebaltab}} creates and exports balance tables to excel or {\LaTeX}. 
+\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Iebaltab}} creates and exports balance tables to excel or {\LaTeX}.
 \texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Ieddtab}} does the same for difference-in-differences regressions.
 The \textbf{Stata Visual Library}\sidenote{	\url{https://worldbank.github.io/Stata-IE-Visual-Library/}}
 has examples of graphs created in Stata and curated by us.\sidenote{A similar resource for R is \textit{The R Graph Gallery}. \\\url{https://www.r-graph-gallery.com/}}
@@ -493,42 +508,42 @@ is increasingly popular, and is becoming a field in its own right.\cite{healy201
 We attribute some of this to the difficulty of writing code to create them.
 Making a visually compelling graph would already be hard enough if you didn't have to go through many rounds of googling to understand a command.
 The trickiest part of using plot commands is to get the data in the right format.
-This is why the \textbf{Stata Visual Library} includes example data sets to use 
+This is why the \textbf{Stata Visual Library} includes example data sets to use
 with each do-file.
 
-It's ok to not export each and every table and graph created during exploratory analysis. 
+It's ok to not export each and every table and graph created during exploratory analysis.
 Final analysis scripts, on the other hand, should export final outputs, which are ready to be included to a paper or report.
-No manual edits, including formatting, should be necessary after exporting final outputs -- 
-those that require copying and pasting edited outputs, in particular, are absolutely not advisable. 
-Manual edits are difficult to replicate, and you will inevitably need to make changes to the outputs. 
-Automating them will save you time by the end of the process. 
+No manual edits, including formatting, should be necessary after exporting final outputs --
+those that require copying and pasting edited outputs, in particular, are absolutely not advisable.
+Manual edits are difficult to replicate, and you will inevitably need to make changes to the outputs.
+Automating them will save you time by the end of the process.
 However, don't spend too much time formatting tables and graphs until you are ready to publish.\sidenote{For a more detailed discussion on this, including different ways to export tables from Stata, see \url{https://github.com/bbdaniels/stata-tables}}
-Polishing final outputs can be a time-consuming process, 
+Polishing final outputs can be a time-consuming process,
 and you want to it as few times as possible.
 
 We cannot stress this enough: don't ever set a workflow that requires copying and pasting results.
 Copying results from excel to word is error-prone and inefficient.
 Copying results from a software console is risk-prone, even more inefficient, and unnecessary.
-There are numerous commands to export outputs from both R and Stata to a myriad of formats.\sidenote{Some examples are \href{ http://repec.sowi.unibe.ch/stata/estout/}{\texttt{estout}}, \href{https://www.princeton.edu/~otorres/Outreg2.pdf}{\texttt{outreg2}}, 
-and \href{https://www.benjaminbdaniels.com/stata-code/outwrite/}{\texttt{outwrite}} in Stata, 
+There are numerous commands to export outputs from both R and Stata to a myriad of formats.\sidenote{Some examples are \href{ http://repec.sowi.unibe.ch/stata/estout/}{\texttt{estout}}, \href{https://www.princeton.edu/~otorres/Outreg2.pdf}{\texttt{outreg2}},
+and \href{https://www.benjaminbdaniels.com/stata-code/outwrite/}{\texttt{outwrite}} in Stata,
 and \href{https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf}{\texttt{stargazer}}
 and \href{https://ggplot2.tidyverse.org/reference/ggsave.html}{\texttt{ggsave}} in R.}
 Save outputs in accessible and, whenever possible, lightweight formats.
 Accessible means that it's easy for other people to open them.
-In Stata, that would mean always using \texttt{graph export} to save images as \texttt{.jpg}, \texttt{.png}, \texttt{.pdf}, etc., 
+In Stata, that would mean always using \texttt{graph export} to save images as \texttt{.jpg}, \texttt{.png}, \texttt{.pdf}, etc.,
 instead of \texttt{graph save}, which creates a \texttt{.gph} file that can only be opened through a Stata installation.
 Some publications require ``lossless'' TIFF of EPS files, which are created by specifying the desired extension.
 Whichever format you decide to use, remember to always specify the file extension explicitly.
 For tables there are less options and more consideration to be made.
-Exporting table to \texttt{.tex} should be preferred. 
-Excel \texttt{.xlsx} and \texttt{.csv} are also commonly used, 
+Exporting table to \texttt{.tex} should be preferred.
+Excel \texttt{.xlsx} and \texttt{.csv} are also commonly used,
 but require the extra step of copying the tables into the final output.
-The amount of work needed in a copy-paste workflow increases rapidly with the number of tables and figures included in a research output, 
+The amount of work needed in a copy-paste workflow increases rapidly with the number of tables and figures included in a research output,
 and do the chances of having the wrong version a result in your paper or report.
 
 
 % Formatting
-If you need to create a table with a very particular format, that is not automated by any command you know, consider writing the it manually 
+If you need to create a table with a very particular format, that is not automated by any command you know, consider writing the it manually
 (Stata's \texttt{filewrite}, for example, allows you to do that).
 This will allow you to write a cleaner script that focuses on the econometrics, and not on complicated commands to create and append intermediate matrices.
 To avoid cluttering your scripts with formatting and ensure that formatting is consistent across outputs,
@@ -539,7 +554,7 @@ This means it should be easy to read and understand them with only the informati
 Make sure labels and notes cover all relevant information, such as sample, unit of observation, unit of measurement and variable definition.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Checklist:\_Reviewing\_Graphs} \\ \url{https://dimewiki.worldbank.org/wiki/Checklist:\_Submit\_Table}}
 
 If you follow the steps outlined in this chapter, most of the data work involved in the last step of the research process -- publication -- will already be done.
-If you used de-identified data for analysis, publishing the cleaned data set in a trusted repository will allow you to cite your data. 
+If you used de-identified data for analysis, publishing the cleaned data set in a trusted repository will allow you to cite your data.
 Some of the documentation produced during cleaning and construction can be published even if your data is too sensitive to be published.
 Your analysis code will be organized in a reproducible way, so will need to do release a replication package is a last round of code review.
 This will allow you to focus on what matters: writing up your results into a compelling story.
