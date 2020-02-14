@@ -4,25 +4,38 @@
 Transforming raw data into a substantial contribution to scientific knowledge
 requires a mix of subject expertise, programming skills,
 and statistical and econometric knowledge.
-The process of data analysis is, therefore,
+The process of data analysis is typically
 a back-and-forth discussion between people
 with differing skill sets.
-The research assistant usually ends up being the pivot of this discussion.
-It is their job to translate the data received from the field into
-economically meaningful indicators and to analyze them
-while making sure that code and outputs do not become too difficult to follow or get lost over time.
-This can be a complex process.
+An essential part of the process is translating the
+raw data received from the field into economically meaningful indicators.
+To effectively do this in a team environment,
+data, code and outputs must be well-organized,
+with a clear system for version control,
+and analytical scripts structured such that any member of the research team can run them.
+Putting in time upfront to structure data work well
+pays off substantial dividends throughout the process.
 
-When it comes to code, though, analysis is substantially less intricate than data cleaning,
-as long as you have already organized your data well.
-Of course, there is plenty of complexity behind it:
-the econometrics, the theory of change, the measurement methods, and so much more.
-However, none of those are the subject of this book,
-and most statistical software packages complex functions into simple expressions.
-This chapter will focus on how to organize your data work so that coding the analysis is simple.
-Most of a research assistant's time is spent cleaning data and getting it into the right format.
-When the practices recommended here are adopted,
-analyzing the data is as simple as using a command that is already implemented in a statistical software.
+In this chapter, we first cover data management:
+how to organize your data work at the start of a project
+so that coding the analysis itself is straightforward.
+This includes setting up folders, organizing tasks, master scripts,
+and putting in place a version control system
+so that your work is easy for all research team members to follow,
+and meets standards for transparency and reproducibility.
+Second, we turn to de-identification,
+a critical step when working with any personally-identified data.
+In the third section, we offer detailed guidance on data cleaning,
+from identifying duplicate entries to labeling and annotating raw data,
+and how to transparently document the cleaning process.
+Section four focuses on how to transform your clean data
+into the actual indicators you will need for analysis,
+again emphasizing the importance of transparent documentation.
+Finally, we turn to analysis itself.
+We do not offer instructions on how to conduct specific analyses,
+as that is determined by research design;
+rather, we discuss how to structure analysis code,
+and how to automate common outputs so that your analysis is fully reproducible.
 
 \end{fullwidth}
 
@@ -217,10 +230,11 @@ Because identifying information is typically only used during data collection,
 when teams need to find and confirm the identity of interviewees,
 de-identification should not affect the usability of the data.
 
-
 \section{Cleaning data for analysis}
 
-Data cleaning is the second stage in the transformation of data you received from the field into data that you can analyze.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning}}
+Data cleaning is the second stage in the transformation of data you received from 
+the field into data that you can analyze.\sidenote{\url{
+https://dimewiki.worldbank.org/wiki/Data\_Cleaning}}
 The cleaning process involves (1) making the data set easily usable and understandable,
 and (2) documenting individual data points and patterns that may bias the analysis.
 The underlying data structure does not change.
@@ -301,6 +315,9 @@ The last step of data cleaning, however,
 will most likely be necessary no matter what type of data is involved.
 It consists of labeling and annotating the data,
 so that its users have all the information needed to interact with it.
+The last step of data cleaning, however, will most likely still be necessary.
+It consists of labeling and annotating the data, so that its users have all the
+information needed to interact with it.
 This is a key step to making the data easy to use, but it can be quite repetitive.
 The \texttt{iecodebook} command suite, also part of \texttt{iefieldkit},
 is designed to make some of the most tedious components of this process,
@@ -316,6 +333,9 @@ Applying labels makes it easier to understand what the data mean as you explore 
 and thus reduces the risk of small errors making their way through into the analysis stage.
 Variable and value labels should be accurate and concise.\sidenote{
 	\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Applying\_Labels}}
+Applying labels makes it easier to understand what the data is showing while exploring the data.
+This minimizes the risk of small errors making their way through into the analysis stage.
+Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Applying\_Labels}}
 Third, recodes should be used to turn codes for ``Don't know'', ``Refused to answer'', and
 other non-responses into extended missing values.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
 String variables that correspond to categorical variables need to be encoded.
@@ -375,6 +395,9 @@ During this process, the data points will typically be reshaped and aggregated
 so that level of the data set goes from the unit of observation
 (one item in the bundle) in the survey to the unit of analysis (the household).\sidenote{
 	\url{https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}}
+so that level of the data set goes from the unit of observation (one item in the bundle) 
+in the survey to the unit of analysis (the household).\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}}
 
 A constructed data set is built to answer an analysis question.
 Since different pieces of analysis may require different samples,
