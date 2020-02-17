@@ -433,27 +433,27 @@ and faster to send over a network or the internet.
 
 \subsection{Miscellaneous notes}
 
-Use wildcards in variable names (\texttt{xx\_?\_*\_xx}) sparingly,
-as they may change results if the dataset changes.
 Write multiple graphs as \texttt{tw (xx)(xx)(xx)}, not \texttt{tw xx||xx||xx}.
-Put spaces around each binary operator except \texttt{\^}.
+
+\bigskip\noindent In simple expressions, put spaces around each binary operator except \texttt{\^}.
 Therefore write \texttt{gen z = x + y} and \texttt{x\^}\texttt{2}.
-When order of operations applies, use spacing and parentheses:
+
+\bigskip\noindent When order of operations applies, you may adjust spacing and parentheses: write
 \texttt{hours + (minutes/60) + (seconds/3600)}, not \texttt{hours + minutes / 60 + seconds / 3600}.
-For long expressions, the operator starts the new line, so:
+For long expressions, \texttt{+} and \texttt{-} operators should start the new line,
+but \texttt{*} and \texttt{/} should be used inline. For example:
 
-\texttt{gen sumvar =   x ///}
+\texttt{gen newvar =   x ///}
 
-\texttt{             + y ///}
-
-\texttt{             - z ///}
+\texttt{             - (y/2) ///}
 
 \texttt{             + a * (b - c)}
 
-\noindent Make sure your code doesn't print very much to the results window as this is slow.
+\bigskip\noindent  Make sure your code doesn't print very much to the results window as this is slow.
 This can be accomplished by using \texttt{run file.do} rather than \texttt{do file.do}.
-Run outputs like \texttt{reg} using the \texttt{qui} prefix.
-Never use interactive commands like \texttt{sum} or \texttt{tab} in dofiles,
-unless they are combined with \texttt{qui} for the purpose of getting \texttt{r()}-statistics.
+Therefore, it is faster to run outputs from commands like \texttt{reg} using the \texttt{qui} prefix.
+Interactive commands like \texttt{sum} or \texttt{tab} should be used sparingly in dofiles,
+unless they are for the purpose of getting \texttt{r()}-statistics.
+In that case, consider using the \texttt{qui} prefix to prevent printing output.
 
 \mainmatter
