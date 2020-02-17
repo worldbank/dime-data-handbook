@@ -327,18 +327,20 @@ All file paths should always be enclosed in double quotes,
 and should always use forward slashes for folder hierarchies (\texttt{/}).
 File names should be written in lower case with dashes (\texttt{my-file.dta}).
 Mac and Linux computers cannot read file paths with backslashes,
-and backslashes cannot be removed with find-and-replace.
-File paths should also always include the file extension
+and backslashes cannot easily be removed with find-and-replace
+because the character has other functional uses in code.
+File paths should always include the file extension
 (\texttt{.dta}, \texttt{.do}, \texttt{.csv}, etc.).
 Omitting the extension causes ambiguity
 if another file with the same name is created
 (even if there is a default file type).
 
-File paths should also be absolute and dynamic. \textbf{Absolute} means that all
+File paths should also be absolute and dynamic.
+\textbf{Absolute} means that all
 file paths start at the root folder of the computer,
 often \texttt{C:/} on a PC or \texttt{/Users/} on a Mac.
 This ensures that you always get the correct file in the correct folder.
-\textbf{Do not use \texttt{cd} unless there is a function that \textit{requires} it.}
+Do not use \texttt{cd} unless there is a function that requires it.
 When using \texttt{cd}, it is easy to overwrite a file in another project folder.
 Many Stata functions use \texttt{cd} and therefore the current directory may change without warning.
 Relative file paths are common in many other programming languages,
@@ -360,17 +362,20 @@ You can create multiple folder globals as needed and this is encouraged.
 Long lines of code are difficult to read if you have to scroll left and right to see the full line of code.
 When your line of code is wider than text on a regular paper, you should introduce a line break.
 A common line breaking length is around 80 characters.
-Stata's do-file editor and other code editors provide a visible ``guide line''.
+Stata's do-file editor and other code editors provide a visible guide line.
 Around that length, start a new line using \texttt{///}.
-You can write comments after \texttt{///} just as with \texttt{//}, and that is usually a good thing.
-(The \texttt{\#delimit} command should only be used for advanced function programming
-and is officially discouraged in analytical code.\cite{cox2005styleguide}
-Never, for any reason, use \texttt{/* */} to wrap a line.)
 Using \texttt{///} breaks the line in the code editor,
 while telling Stata that the same line of code continues on the next line.
 The \texttt{///} breaks do not need to be horizontally aligned in code,
 although you may prefer to if they have comments that read better aligned,
 since indentations should reflect that the command continues to a new line.
+Break lines where it makes functional sense.
+You can write comments after \texttt{///} just as with \texttt{//}, and that is usually a good thing.
+(The \texttt{\#delimit} command should only be used for advanced function programming
+and is officially discouraged in analytical code.\cite{cox2005styleguide}
+Never, for any reason, use \texttt{/* */} to wrap a line:
+it is distracting and difficult to follow compared to the use
+of those characters to write regular comments.
 Line breaks and indentations may be used to highlight the placement
 of the \textbf{option comma} or other functional syntax in Stata commands.
 
