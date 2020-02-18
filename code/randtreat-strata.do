@@ -7,7 +7,7 @@
     `r(version)'             // Version
     sysuse bpwide.dta, clear // Load data
     isid patient, sort       // Sort
-    set seed 796683          // Seed - drawn using http://bit.ly/stata-random
+    set seed 796683          // Seed - drawn using https://bit.ly/stata-random
 
 * Create strata indicator. The indicator is a categorical variable with
 * a different value for each unique combination of gender and age group.

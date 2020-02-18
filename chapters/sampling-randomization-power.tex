@@ -56,12 +56,12 @@ There are two distinct random processes referred to here:
 the conceptual process of assigning units to treatment arms,
 and the technical process of assigning random numbers in statistical software,
 which is a part of all tasks that include a random component.\sidenote{
-  \url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata/}}
+  \url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata}}
 
 Randomization is challenging and its mechanics are unintuitive for the human brain.
 ``True'' randomization is also nearly impossible to achieve for computers,
 which are inherently deterministic.\sidenote{
-  \url{https://www.random.org/randomness/}}
+  \url{https://www.random.org/randomness}}
 For our purposes, we will focus on what you need to understand
 in order to produce truly random results for your project using Stata,
 and how you can make sure you can get those exact results again in the future.
@@ -129,7 +129,7 @@ data is unchanged.
 \textbf{Seeding} means manually setting the start-point in the list of random numbers.
 The seed is a number that should be at least six digits long and you should use exactly
 one unique, different, and randomly created seed per randomization process.\sidenote{You
-can draw a uniformly distributed six-digit seed randomly by visiting \url{http://bit.ly/stata-random}.
+can draw a uniformly distributed six-digit seed randomly by visiting \url{https://bit.ly/stata-random}.
 (This link is a just shortcut to request such a random seed on \url{https://www.random.org}.)
 There are many more seeds possible but this is a large enough set for most purposes.}
 In Stata, \texttt{set seed [seed]} will set the generator to that start-point. In R, the \texttt{set.seed} function does the same.
@@ -354,7 +354,7 @@ One common pitfall is to vary the sampling or randomization \textit{probability}
 across different strata (such as ``sample/treat all female heads of household'').
 If this is done, you must calculate and record the exact probability
 of inclusion for every unit, and re-weight observations accordingly.\sidenote{
-  \url{http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-when-to-use-those-sample-weights}}
+  \url{https://blogs.worldbank.org/impactevaluations/tools-of-the-trade-when-to-use-those-sample-weights}}
 The exact formula depends on the analysis being performed,
 but is usually related to the inverse of the likelihood of inclusion.
 
@@ -397,7 +397,7 @@ Power calculations report the likelihood that your experimental design
 will be able to detect the treatment effects you are interested in.
 This measure of \textbf{power} can be described in various different ways,
 each of which has different practical uses.\sidenote{
-  \url{http://www.stat.columbia.edu/~gelman/stuff_for_blog/chap20.pdf}}
+  \url{https://www.stat.columbia.edu/~gelman/stuff_for_blog/chap20.pdf}}
 The purpose of power calculations is to identify where the strengths and weaknesses
 of your design are located, so you know the relative tradeoffs you will face
 by changing your randomization scheme for the final design.
