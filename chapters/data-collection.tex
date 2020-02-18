@@ -204,10 +204,10 @@ There are many excellent resources on questionnaire design,
 such as from the World Bank's Living Standards Measurement Survey.\cite{glewwe2000designing}
 The focus of this section is the design of electronic field surveys,
 often referred to as Computer Assisted Personal Interviews (CAPI).\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Computer-Assisted\_Personal\_Interviews\_(CAPI)}}
+  \url{https://dimewiki.worldbank.org/Computer-Assisted\_Personal\_Interviews\_(CAPI)}}
 Although most surveys are now collected electronically, by tablet, mobile phone or web browser,
 \textbf{questionnaire design}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
+  \url{https://dimewiki.worldbank.org/Questionnaire_Design}}
   \index{questionnaire design}
 (content development) and questionnaire programming (functionality development)
 should be seen as two strictly separate tasks.
@@ -233,12 +233,12 @@ The workflow for designing a questionnaire will feel much like writing an essay,
 begin from broad concepts and slowly flesh out the specifics.
 It is essential to start with a clear understanding of the
 \textbf{theory of change}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Theory_of_Change}}
+  \url{https://dimewiki.worldbank.org/Theory_of_Change}}
 and \textbf{experimental design} for your project.
 The first step of questionnaire design is to list key outcomes of interest,
 as well as the main covariates to control for and any variables needed for experimental design.
 The ideal starting point for this is a \textbf{pre-analysis plan}.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan}}
+  \url{https://dimewiki.worldbank.org/Pre-Analysis_Plan}}
 
 Use the list of key outcomes to create an outline of questionnaire \textit{modules}.
 Do not number the modules; instead use a short prefix so they can be easily reordered.
@@ -248,9 +248,9 @@ A few examples: a module on maternal health only applies to household with a wom
 a household income module should be answered by the person responsible for household finances,
 and a module on agricultural production might be repeated for each crop the household cultivated.
 Each module should then be expanded into specific indicators to observe in the field.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Literature_Review_for_Questionnaire}}
+  \url{https://dimewiki.worldbank.org/Literature_Review_for_Questionnaire}}
 At this point, it is useful to do a  \textbf{content-focused pilot}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}
+  \url{https://dimewiki.worldbank.org/Piloting_Survey_Content}}
 of the questionnaire.
 Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions,
 as there is no need to factor in costs of re-programming,
@@ -264,10 +264,10 @@ and data analysis through the phases of a randomized trial.\cite{begg1996improvi
 
 Once the content of the survey is drawn up,
 the team should conduct a small \textbf{survey pilot}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Survey_Pilot}}
+  \url{https://dimewiki.worldbank.org/Survey_Pilot}}
 using the paper forms to finalize questionnaire design and detect any content issues.
 A content-focused pilot\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Piloting_Survey_Content}}
+  \url{https://dimewiki.worldbank.org/Piloting_Survey_Content}}
 is best done on pen and paper, before the questionnaire is programmed,
 because changes at this point may be deep and structural, which are hard to adjust in code.
 The objective is to improve the structure and length of the questionnaire,
@@ -286,11 +286,11 @@ it is time to move on to implementing it electronically.
 Electronic data collection has great potential to simplify survey implementation and improve data quality.
 Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets)
 or a software-specific form builder, all of which are accessible even to novice users.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
+  \url{https://dimewiki.worldbank.org/Questionnaire_Programming}}
 We will not address software-specific form design in this book;
 rather, we focus on coding conventions that are important to follow
 for electronic surveys regardless of software choice.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/SurveyCTO_Coding_Practices}}
+  \url{https://dimewiki.worldbank.org/SurveyCTO_Coding_Practices}}
 Survey software tools provide a wide range of features
 designed to make implementing even highly complex surveys easy, scalable, and secure.
 However, these are not fully automatic: you need to actively design and manage the survey.
@@ -392,7 +392,7 @@ to correct syntax errors and make sure that the survey instruments will successf
 This is not sufficient, however, to ensure that the resulting dataset
 will load without errors in your data analysis software of choice.
 We developed the \texttt{ietestform} command,\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/ietestform}}
+  \url{https://dimewiki.worldbank.org/ietestform}}
 part of the Stata package \texttt{iefieldkit},
 to implement a form-checking routine for \textbf{SurveyCTO},
 a proprietary implementation of the \textbf{Open Data Kit (ODK)} software.
@@ -437,7 +437,7 @@ Designing systematic data checks and running them routinely throughout data inta
 simplifies monitoring and improves data quality.
 As part of data collection preparation,
 the research team should develop a \textbf{data quality assurance plan}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Data_Quality_Assurance_Plan}}.
+  \url{https://dimewiki.worldbank.org/Data_Quality_Assurance_Plan}}.
 While data collection is ongoing,
 a research assistant or data analyst should work closely with the field team or partner
 to ensure that the data collection is progressing correctly,
@@ -462,9 +462,9 @@ since they are the authoritative source of the data,
 so cross-referencing with other data sources may be necessary to validate data.
 Even with careful management, it is often the case that raw data includes duplicate or missing entries,
 which may occur due to data entry errors or failed submissions to data servers.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Duplicates_and_Survey_Logs}}
+  \url{https://dimewiki.worldbank.org/Duplicates_and_Survey_Logs}}
 \texttt{ieduplicates}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/ieduplicates}}
+  \url{https://dimewiki.worldbank.org/ieduplicates}}
 provides a workflow for collaborating on the resolution of duplicate entries between you and the provider.
 Then, observed units in the data must be validated against the expected sample:
 this is as straightforward as merging the sample list with the survey data and checking for mismatches.
@@ -487,7 +487,7 @@ Examples include verifying consistency across multiple response fields,
 validation of complex calculations like crop yields or medicine stocks (which require unit conversions),
 suspicious patterns in survey timing,
 or atypical response patters from specific data sources or enumerators.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Monitoring_Data_Quality}}
+  \url{https://dimewiki.worldbank.org/Monitoring_Data_Quality}}
 Electronic data entry software typically provides rich metadata,
 which can be useful in assessing data quality.
 For example, automatically collected timestamps show when data was submitted
@@ -517,7 +517,7 @@ Since we cannot control natural measurement error
 that comes from variation in the realization of key outcomes,
 primary data collection provides the opportunity to make sure
 that there is no error arising from inaccuracies in the data itself.
-\textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}} and
+\textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/Back_Checks}} and
 other validation audits help ensure that data collection is following established protocols,
 and that data is not fasified, incomplete, or otherwise suspect.
 For back-checks and validation audits, a random subset of the main data is selected,
@@ -563,17 +563,17 @@ and loss to follow-up occurred in the field and how they were implemented and re
 
 All sensitive data must be handled in a way where there is no risk that anyone who is
 not approved by an Institutional Review Board (IRB)\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/IRB\_Approval}}
+  \url{https://dimewiki.worldbank.org/IRB\_Approval}}
 for the specific project has the ability to access the data.
 Data can be sensitive for multiple reasons, but the two most
 common reasons are that it contains personally identifiable information (PII)\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Personally\_Identifiable\_Information\_(PII)}}
+  \url{https://dimewiki.worldbank.org/Personally\_Identifiable\_Information\_(PII)}}
 or that the partner providing the data does not want it to be released.
 
 Central to data security is \index{encryption}\textbf{data encryption}, which is a group
 of methods that ensure that files are unreadable even if laptops are stolen, servers
 are hacked, or unauthorized access to the data is obtained in any other way.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Encryption}}
+  \url{https://dimewiki.worldbank.org/Encryption}}
 Proper encryption is rarely just a single method,
 as the data will travel through many servers, devices, and computers
 from the source of the data to the final analysis.
@@ -612,7 +612,7 @@ In all other cases you should follow the steps laid out in this section.
 
 In field surveys, most common data collection software will automatically encrypt
 all data in transit (i.e., upload from field or download from server).\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Encryption\#Encryption\_in\_Transit}}
+  \url{https://dimewiki.worldbank.org/Encryption\#Encryption\_in\_Transit}}
 If this is implemented by the software you are using,
 then your data will be encrypted from the time it leaves the device
 (in tablet-assisted data collection) or browser (in web data collection),
@@ -626,7 +626,7 @@ password and are never left unlocked.
 Even though your data is therefore usually safe while it is being transmitted,
 it is not automatically secure when it is being stored.
 \textbf{Encryption at rest}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Encryption\#Encryption\_at\_Rest}}
+  \url{https://dimewiki.worldbank.org/Encryption\#Encryption\_at\_Rest}}
 is the only way to ensure that PII data remains private when it is stored on a
 server on the internet.
 You must keep your data encrypted on the data collection server whenever PII data is collected.
@@ -650,7 +650,7 @@ because the encryption key that is generated may
 never pass through the hands of a third party,
 including the data storage application.
 Most survey software implement \textbf{asymmetric encryption}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Encryption\#Asymmetric\_Encryption}}
+  \url{https://dimewiki.worldbank.org/Encryption\#Asymmetric\_Encryption}}
 where there are two keys in a public/private key pair.
 Only the private key can be used to decrypt the encrypted data,
 and the public key can only be used to encrypt the data.
@@ -677,7 +677,7 @@ While public/private key encryption is optimal for one-way transfer
 from the data collection device to the data collection server,
 it is not practical once you start interacting with the data.
 Instead, we use \textbf{symmetric encryption}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Encryption\#Symmetric\_Encryption}}
+  \url{https://dimewiki.worldbank.org/Encryption\#Symmetric\_Encryption}}
 where we create a secure encrypted folder,
 using, for example, VeraCrypt.\sidenote{\url{https://www.veracrypt.fr/}}
 Here, a single key is used to both encrypt and decrypt the information.

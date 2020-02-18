@@ -105,9 +105,9 @@ the algorithm used to create this list of random numbers was changed after Stata
 You will \textit{never} be able to reproduce a randomization in a different software,
 such as moving from Stata to R or vice versa.}
 The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/ieboilstart}}
+  \url{https://dimewiki.worldbank.org/ieboilstart}}
 We recommend you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Master_Do-files}}
+  \url{https://dimewiki.worldbank.org/Master_Do-files}}
 However, testing your do-files without running them
 via the master do-file may produce different results,
 since Stata's \texttt{version} setting expires after each time you run your do-files.
@@ -140,7 +140,7 @@ so do not use shortcuts such as the current date or a seed you have used before.
 You should also describe in your code how the seed was selected.
 Other commands may induce randomness in the data or alter the seed without you realizing it,
 so carefully confirm exactly how your code runs before finalizing it.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Randomization_in_Stata}}
+  \url{https://dimewiki.worldbank.org/Randomization_in_Stata}}
 
 \codeexample{replicability.do}{./code/replicability.do}
 
@@ -184,14 +184,14 @@ This section introduces universal basic principles for sampling and randomizatio
 
 \textbf{Sampling} is the process of randomly selecting units of observation
 from a master list of individuals to be included in data collection.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Sampling_\%26_Power_Calculations}}
+  \url{https://dimewiki.worldbank.org/Sampling_\%26_Power_Calculations}}
   \index{sampling}
 That master list may be called a \textbf{sampling universe}, a \textbf{listing frame}, or something similar.
 We recommend that this list be organized in a \textbf{master data set}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Master_Data_Set}},
+  \url{https://dimewiki.worldbank.org/Master_Data_Set}},
 creating an authoritative source for the existence and fixed
 characteristics of each of the units that may be surveyed.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
+	\url{https://dimewiki.worldbank.org/Unit_of_Observation}}
 The master data set indicates how many individuals are eligible for data collection,
 and therefore contains statistical information about the likelihood that each will be chosen.
 
@@ -242,7 +242,7 @@ is the most important part of a randomization process,
 and must be carefully worked out in more complex designs.
 
 Just like sampling, the simplest form of randomization is a uniform-probability process.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Randomization_in_Stata}}
+  \url{https://dimewiki.worldbank.org/Randomization_in_Stata}}
 Sampling typically has only two possible outcomes: observed and unobserved.
 Randomization, by contrast, often involves multiple possible results
 which each represent various varieties of treatments to be delivered;
@@ -287,11 +287,11 @@ their implementation is nearly identical in both sampling and randomization.
 \subsection{Clustering}
 
 Many studies observe data at a different level than the randomization unit.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
+  \url{https://dimewiki.worldbank.org/Unit_of_Observation}}
 For example, a policy may only be able to affect an entire village,
 but the study is interested in household behavior.
 This type of structure is called \textbf{clustering},\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Multi-stage_(Cluster)_Sampling}}
+  \url{https://dimewiki.worldbank.org/Multi-stage_(Cluster)_Sampling}}
 and the groups in which units are assigned to treatment are called clusters.
 The same principle extends to sampling:
 it may be be necessary to observe all the children
@@ -317,7 +317,7 @@ the other members of the clustering group were as well.
 \textbf{Stratification} is a research design component
 that breaks the full set of observations into a number of subgroups
 before performing randomization within each subgroup.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Stratified_Random_Sample}}
+  \url{https://dimewiki.worldbank.org/Stratified_Random_Sample}}
 This has the effect of ensuring that members of each subgroup
 are included in all groups of the randomization process,
 since it is possible that a global randomization
@@ -414,7 +414,7 @@ but it can also be re-interpreted to help in experimental design.
 There are two common and useful practical applications
 of that definition that give actionable, quantitative results.
 The \textbf{minimum detectable effect (MDE)}\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Minimum_Detectable_Effect}}
+  \url{https://dimewiki.worldbank.org/Minimum_Detectable_Effect}}
 is the smallest true effect that a given research design can detect.
 This is useful as a check on whether a study is worthwhile.
 If, in your field, a ``large'' effect is just a few percentage points
@@ -431,7 +431,7 @@ Stata has some commands that can calculate power analytically for
 very simple designs -- \texttt{power} and \texttt{clustersampsi} --
 but they will not answer most of the practical questions
 that complex experimental designs require.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Power_Calculations_in_Stata}}
+  \url{https://dimewiki.worldbank.org/Power_Calculations_in_Stata}}
 We suggest doing more advanced power calculations by simulation,
 since the interactions of experimental design,
 sampling and randomization,
@@ -499,7 +499,7 @@ that a false effect was larger than the one you measured,
 and it is interpretable as the probability that a program with no effect
 would have given you a result like the one actually observed.
 These randomization inference\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Randomization\_Inference}}
+  \url{https://dimewiki.worldbank.org/Randomization\_Inference}}
 significance levels may be very different
 than those given by asymptotic confidence intervals,
 particularly in small samples (up to several hundred clusters).
