@@ -2,7 +2,7 @@
     cap which randtreat
     if _rc ssc install randtreat
 
-* Set up reproducbilitiy - VERSIONING, SORTTING and SEEDING
+* Set up reproducbilitiy - VERSIONING, SORTING and SEEDING
     ieboilstart , v(13.1)    // Version
     `r(version)'             // Version
     sysuse bpwide.dta, clear // Load data
@@ -22,7 +22,7 @@
 * example, we use the "global" misfit strategy, meaning that the misfits will
 * be randomized into treatment groups so that the sizes of the treatment
 * groups are as balanced as possible globally (read the help file for details
-* on this and other strategies for misfits). This way we have 6 treatment  
+* on this and other strategies for misfits). This way we have 6 treatment
 * groups with exactly 20 observations in each, and it is randomized which
 * group that has an extra observation in each treatment arm.
     randtreat,             ///

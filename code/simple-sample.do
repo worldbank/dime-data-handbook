@@ -1,4 +1,4 @@
-* Set up reproducbilitiy - VERSIONING, SORTTING and SEEDING
+* Set up reproducbilitiy - VERSIONING, SORTING and SEEDING
     ieboilstart , v(13.1)    // Version
     `r(version)'             // Version
     sysuse bpwide.dta, clear // Load data
