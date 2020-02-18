@@ -98,7 +98,7 @@
 
 % subsection format
 \titleformat{\subsection}%
-{\normalfont\large}% format applied to label+text
+{\normalfont\itshape\large}% format applied to label+text
 {}% label
 {}% horizontal separation between label and title body
 {}% before the title body
@@ -116,6 +116,16 @@
 \publisher{DIME Analytics} % Publisher
 
 %----------------------------------------------------------------------------------------
+
+% Reset the sidenote number each chapter
+\let\oldchapter\chapter
+\def\chapter{%
+  \setcounter{footnote}{0}%
+  \oldchapter
+}
+
+%----------------------------------------------------------------------------------------
+
 
 \begin{document}
 
