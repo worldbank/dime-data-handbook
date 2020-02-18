@@ -2,7 +2,7 @@
 
 \begin{fullwidth}
 For most research projects, completing a manuscript is not the end of the task.
-Academic journals increasingly require submission of a replication package,
+Academic journals increasingly require submission of a replication package
 which contains the code and materials needed to create the results.
 These represent an intellectual contribution in their own right,
 because they enable others to learn from your process
@@ -60,7 +60,7 @@ is intended to improve organization and reduce error,
 such that there is no risk of materials being compiled
 with out-of-date results, or of completed work being lost or redundant.
 
-\subsection{Dynamic documents}
+\subsection{Preparing dynamic documents}
 
 Dynamic documents are a broad class of tools that enable a streamlined, reproducible workflow.
 The term ``dynamic'' can refer to any document-creation technology
@@ -86,7 +86,7 @@ Therefore this is a broadly unsuitable way to prepare technical documents.
 
 There are a number of tools that can be used for dynamic documents.
 Some are code-based tools such as R's RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com/}}
-and Stata's \texttt{dyndoc}\sidenote{\url{https://www.stata.com/manuals/rptdyndoc.pdf}}.
+and Stata's \texttt{dyndoc}.\sidenote{\url{https://www.stata.com/manuals/rptdyndoc.pdf}}
 These tools ``knit'' or ``weave'' text and code together,
 and are programmed to insert code outputs in pre-specified locations.
 Documents called ``notebooks'' (such as Jupyter\sidenote{\url{https://jupyter.org/}}) work similarly,
@@ -101,7 +101,7 @@ simply access to the updated outputs.
 These can be useful for working on informal outputs, such as blogposts,
 with collaborators who do not code.
 An example of this is Dropbox Paper,
-a free online writing tool that allows linkages to files in Dropbox,
+a free online writing tool that allows linkages to files in Dropbox
 which are automatically updated anytime the file is replaced.
 
 However, the most widely utilized software
@@ -135,12 +135,13 @@ This is why it has become the dominant ``document preparation system'' in techni
 manages tables and figures dynamically,
 and includes commands for simple markup
 like font styles, paragraph formatting, section headers and the like.
-It also includes special controls for including tables and figures,
+It includes special controls for including tables and figures,
 footnotes and endnotes, complex mathematical notation, and automated bibliography preparation.
 It also allows publishers to apply global styles and templates to already-written material,
 allowing them to reformat entire documents in house styles with only a few keystrokes.
 
-One of the most important tools available in \LaTeX\ is the BibTeX bibliography manager.\sidenote{
+One of the most important tools available in \LaTeX\
+is the BibTeX citation and bibliography manager.\sidenote{
   \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.365.3194&rep=rep1&type=pdf}}
 BibTeX keeps all the references you might use in an auxiliary file,
 then references them using a simple element typed directly in the document: a \texttt{cite} command.
@@ -149,7 +150,7 @@ You can make changes to the references in one place (the \texttt{.bib} file),
 and then everywhere they are used they are updated correctly with one process.
 Specifically, \LaTeX\ inserts references in text using the \texttt{\textbackslash cite\{\}} command.
 Once this is written, \LaTeX\ automatically pulls all the citations into text
-and creates a complete bibliography based on the citations you use when you compile the document.
+and creates a complete bibliography based on the citations you used whenever you compile the document.
 The system allows you to specify exactly how references should be displayed in text
 (such as superscripts, inline references, etc.)
 as well as how the bibliography should be styled and in what order
@@ -250,76 +251,6 @@ Despite this, we believe that with minimal learning and workflow adjustments,
 cloud-based implementations are often the easiest way to allow coauthors to write and edit in \LaTeX\,
 so long as you make sure you are available to troubleshoot minor issues like these.
 
-%------------------------------------------------
-
-\section{Publishing primary data}
-
-If your project collected primary data,
-releasing the cleaned dataset is a significant contribution that can be made
-in addition to any publication of analysis results.
-Publishing data can foster collaboration with researchers
-interested in the same subjects as your team.
-Collaboration can enable your team to fully explore variables and
-questions that you may not have time to focus on otherwise,
-even though data was collected on them.
-There are different options for data publication.
-The World Bank's Development Data Hub\sidenote{
-	\url{https://data.worldbank.org/}}
-includes a Microdata Catalog\sidenote{
-\url{https://microdata.worldbank.org}}
-where researchers can publish data and documentation for their projects.\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Microdata\_Catalog}
-\newline
-\url{https://dimewiki.worldbank.org/wiki/Checklist:\_Microdata\_Catalog\_submission}
-}
-The Harvard Dataverse\sidenote{
-	\url{https://dataverse.harvard.edu}}
-publishes both data and code,
-and also creates a data citation for its entries --
-IPA/J-PAL field experiment repository is especially relevant\sidenote{
-	\url{https://www.povertyactionlab.org/blog/9-11-19/new-hub-data-randomized-evaluations}}
-for those interested in impact evaluation.
-
-There will almost always be a trade-off between accuracy and privacy.
-For publicly disclosed data, you should favor privacy.
-Therefore, before publishing data,
-you should carefully perform a \textbf{final de-identification}.
-Its objective is to create a dataset for publication
-that cannot be manipulated or linked to identify any individual research participant.
-If you are following the steps outlined in this book,
-you have already removed any direct identifiers after collecting the data.
-At this stage, however, you should further remove
-all indirect identifiers, and assess the risk of statistical disclosure.\sidenote{
-	\textbf{Disclosure risk:} the likelihood that a released data record can be associated with an individual or organization.}\index{statistical disclosure}
-To the extent required to ensure reasonable privacy,
-potentially identifying variables must be further masked or removed.
-
-There are a number of tools developed to help researchers de-identify data
-and which you should use as appropriate at that stage of data collection.
-These include \texttt{PII\_detection}\sidenote{
-	\url{https://github.com/PovertyAction/PII\_detection}}
-from IPA,
-\texttt{PII-scan}\sidenote{
-	\url{https://github.com/J-PAL/PII-Scan}}
-from JPAL,
-and \texttt{sdcMicro}\sidenote{
-	\url{https://sdcpractice.readthedocs.io/en/latest/sdcMicro.html}}
-from the World Bank.
-\index{anonymization}
-The \texttt{sdcMicro} tool, in particular, has a feature
-that allows you to assess the uniqueness of your data observations,
-and simple measures of the identifiability of records from that.
-Additional options to protect privacy in data that will become public exist,
-and you should expect and intend to release your datasets at some point.
-One option is to add noise to data, as the US Census Bureau has proposed,\cite{abowd2018us}
-as it makes the trade-off between data accuracy and privacy explicit.
-But there are no established norms for such ``differential privacy'' approaches:
-most approaches fundamentally rely on judging ``how harmful'' information disclosure would be.
-The fact remains that there is always a balance between information release (and therefore transparency)
-and privacy protection, and that you should engage with it actively and explicitly.
-The best thing you can do is make a complete record of the steps that have been taken
-so that the process can be reviewed, revised, and updated as necessary.
-
 %----------------------------------------------------
 
 \section{Preparing a complete replication package}
@@ -351,7 +282,7 @@ Enabling permanent access to the data used in your study
 is an important contribution you can make along with the publication of results.
 It allows other researchers to validate the mechanical construction of your results,
 to investigate what other results might be obtained from the same population,
-and test alternative approaches to other questions.
+and test alternative approaches or other questions.
 Therefore you should make clear in your study
 where and how data are stored, and how and under what circumstances they may be accessed.
 You do not always have to publish the data yourself,
@@ -366,6 +297,32 @@ and how future users might request permission to access them
 (even if you are not the person who can grant that permission).
 They can also provide for timed future releases of datasets
 once the need for exclusive access has ended.
+
+If your project collected primary data,
+releasing the cleaned dataset is a significant contribution that can be made
+in addition to any publication of analysis results.
+Publishing data can foster collaboration with researchers
+interested in the same subjects as your team.
+Collaboration can enable your team to fully explore variables and
+questions that you may not have time to focus on otherwise,
+even though data was collected on them.
+There are different options for data publication.
+The World Bank's Development Data Hub\sidenote{
+	\url{https://data.worldbank.org/}}
+includes a Microdata Catalog\sidenote{
+\url{https://microdata.worldbank.org}}
+where researchers can publish data and documentation for their projects.\sidenote{
+\url{https://dimewiki.worldbank.org/wiki/Microdata\_Catalog}
+\newline
+\url{https://dimewiki.worldbank.org/wiki/Checklist:\_Microdata\_Catalog\_submission}
+}
+The Harvard Dataverse\sidenote{
+	\url{https://dataverse.harvard.edu}}
+publishes both data and code,
+and also creates a data citation for its entries --
+IPA/J-PAL field experiment repository is especially relevant\sidenote{
+	\url{https://www.povertyactionlab.org/blog/9-11-19/new-hub-data-randomized-evaluations}}
+for those interested in impact evaluation.
 
 What matters is for you to be able to cite or otherwise directly reference the data used.
 When your raw data is owned by someone else,
@@ -420,6 +377,46 @@ to determine what privacy and licensing options are available.
 Access to the embargoed data could be granted for the purposes of study replication,
 if approved by an IRB.
 
+There will almost always be a trade-off between accuracy and privacy.
+For publicly disclosed data, you should favor privacy.
+Therefore, before publishing data,
+you should carefully perform a \textbf{final de-identification}.
+Its objective is to create a dataset for publication
+that cannot be manipulated or linked to identify any individual research participant.
+If you are following the steps outlined in this book,
+you have already removed any direct identifiers after collecting the data.
+At this stage, however, you should further remove
+all indirect identifiers, and assess the risk of statistical disclosure.\sidenote{
+	\textbf{Disclosure risk:} the likelihood that a released data record can be associated with an individual or organization.}\index{statistical disclosure}
+To the extent required to ensure reasonable privacy,
+potentially identifying variables must be further masked or removed.
+
+There are a number of tools developed to help researchers de-identify data
+and which you should use as appropriate at that stage of data collection.
+These include \texttt{PII\_detection}\sidenote{
+	\url{https://github.com/PovertyAction/PII\_detection}}
+from IPA,
+\texttt{PII-scan}\sidenote{
+	\url{https://github.com/J-PAL/PII-Scan}}
+from JPAL,
+and \texttt{sdcMicro}\sidenote{
+	\url{https://sdcpractice.readthedocs.io/en/latest/sdcMicro.html}}
+from the World Bank.
+\index{anonymization}
+The \texttt{sdcMicro} tool, in particular, has a feature
+that allows you to assess the uniqueness of your data observations,
+and simple measures of the identifiability of records from that.
+Additional options to protect privacy in data that will become public exist,
+and you should expect and intend to release your datasets at some point.
+One option is to add noise to data, as the US Census Bureau has proposed,\cite{abowd2018us}
+as it makes the trade-off between data accuracy and privacy explicit.
+But there are no established norms for such ``differential privacy'' approaches:
+most approaches fundamentally rely on judging ``how harmful'' information disclosure would be.
+The fact remains that there is always a balance between information release (and therefore transparency)
+and privacy protection, and that you should engage with it actively and explicitly.
+The best thing you can do is make a complete record of the steps that have been taken
+so that the process can be reviewed, revised, and updated as necessary.
+
 \subsection{Publishing code for replication}
 
 Before publishing your code, you should edit it for content and clarity
@@ -467,7 +464,7 @@ A new user should, for example, be able to easily identify and remove
 any files created by the code so that they can be recreated quickly.
 They should also be able to quickly map all the outputs of the code
 to the locations where they are placed in the associated published material,
-such as ensuring that the raw components of figures or tables are clearly identified.
+so ensure that the raw components of figures or tables are clearly identified.
 Documentation in the master script is often used to indicate this information.
 For example, outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
 (Supplying a compiling \LaTeX\ document can support this.)
