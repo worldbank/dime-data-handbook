@@ -34,8 +34,8 @@ in response to an unexpected event.
 Intuitive knowledge of your project's chosen approach will make you
 much more effective at the analytical part of your work.
 This chapter first covers causal inference methods.
-Next we discuss how to measure treatment effects and structure data for specific methods,
-including: cross-sectional randomized control trials, difference-in-difference designs,
+Next it discusses how to measure treatment effects and structure data for specific methods,
+including cross-sectional randomized control trials, difference-in-difference designs,
 regression discontinuity, instrumental variables, matching, and synthetic controls.
 
 \end{fullwidth}
@@ -47,7 +47,7 @@ regression discontinuity, instrumental variables, matching, and synthetic contro
 
 When we are discussing the types of inputs -- ``treatments'' -- commonly referred to as
 ``programs'' or ``interventions'', we are typically attempting to obtain estimates
-of program-specific \textbf{treatment effects}
+of program-specific \textbf{treatment effects}.
 These are the changes in outcomes attributable to the treatment.\cite{abadie2018econometric}
   \index{treatment effect}
 The primary goal of research design is to establish \textbf{causal identification} for an effect.
@@ -62,7 +62,7 @@ using statistical techniques to express the uncertainty of not having infinite d
 Without identification, we cannot say that the estimate would be accurate,
 even with unlimited data, and therefore cannot attribute it to the treatment
 in the small samples that we typically have access to.
-Conversely, more data is not a substitute for a well-identified experimental design.
+More data is not a substitute for a well-identified experimental design.
 Therefore it is important to understand how exactly your study
 identifies its estimate of treatment effects,
 so you can calculate and interpret those estimates appropriately.
@@ -74,7 +74,7 @@ is directly responsible for creating the variation in treatment,
 and \textbf{quasi-experimental} designs, in which the team
 identifies a ``natural'' source of variation and uses it for identification.
 Neither type is implicitly better or worse,
-and both types are capable of achieving effect identification under different contexts.
+and both types are capable of achieving causal identification in different contexts.
 
 %-----------------------------------------------------------------------------------------------
 \subsection{Estimating treatment effects using control groups}
@@ -159,9 +159,11 @@ The classic experimental causal inference method
 is the \textbf{randomized control trial (RCT)}.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Randomized_Control_Trials}}
   \index{randomized control trials}
-In randomized control trials, the control group is randomized --
+In randomized control trials, the treatment group is randomized --
 that is, from an eligible population,
-a random subset of units are not given access to the treatment,
+a random group of units are given the treatment.
+Another way to think about these designs is how they establish the control group:
+a random subset of units are \textit{not} given access to the treatment,
 so that they may serve as a counterfactual for those who are.
 A randomized control group, intuitively, is meant to represent
 how things would have turned out for the treated group
@@ -209,7 +211,8 @@ to exploit events that occurred in the past,
 or having the ability to collect data in a time and place
 where an event that produces causal identification occurred.
 Therefore, these methods often use either secondary data,
-or they use primary data in a cross-sectional retrospective method.
+or they use primary data in a cross-sectional retrospective method,
+including administrative data or other new classes of routinely-collected information.
 
 Quasi-experimental designs therefore can access a much broader range of questions,
 and with much less effort in terms of executing an intervention.
@@ -233,25 +236,25 @@ and that attrition from the sampled groups is minimized.
 \subsection{Cross-sectional designs}
 
 A cross-sectional research design is any type of study
-that collects data in only one time period
+that observes data in only one time period
 and directly compares treatment and control groups.
 This type of data is easy to collect and handle because
-you do not need track individual across time or across data sets.
+you do not need to track individuals across time.
 If this point in time is after a treatment has been fully delivered,
 then the outcome values at that point in time
 already reflect the effect of the treatment.
-If the study is an RCT, the control group is randomly constructed
+If the study is experimental, the treatment and control groups are randomly constructed
 from the population that is eligible to receive each treatment.
 If it is a non-randomized observational study, we present other evidence that a similar equivalence holds.
-Therefore, by construction, each unit's receipt of the treatment
+In either case, by construction, each unit's receipt of the treatment
 is unrelated to any of its other characteristics
 and the ordinary least squares (OLS) regression
 of outcome on treatment, without any control variables,
 is an unbiased estimate of the average treatment effect.
 
-For cross-sectional RCTs, what needs to be carefully maintained in data
+For cross-sectional designs, what needs to be carefully maintained in data
 is the treatment randomization process itself,
-as well as detailed field data about differences
+as well as detailed information about differences
 in data quality and loss to follow-up across groups.\cite{athey2017econometrics}
 Only these details are needed to construct the appropriate estimator:
 clustering of the standard errors is required at the level
@@ -317,7 +320,7 @@ and a control variable for time period,
 but the treatment effect estimate corresponds to
 an interaction variable for treatment and time:
 it indicates the group of observations for which the treatment is active.
-This model critically depends on the assumption that,
+This model depends on the assumption that,
 in the absense of the treatment,
 the outcome of the two groups would have changed at the same rate over time,
 typically referred to as the \textbf{parallel trends} assumption.\sidenote{
@@ -338,8 +341,7 @@ in different points in time, so that we see the same individuals
 both before and after they have received treatment (or not).\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/what-are-we-estimating-when-we-estimate-difference-differences}}
 This allows each unit's baseline outcome (the outcome before the intervention) to be used
-as an additional control for its endline outcome (the last outcome observation in the data),
-a \textbf{fixed effects} design often referred to as an ANCOVA model,
+as an additional control for its endline outcome,
 which can provide large increases in power and robustness.\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/another-reason-prefer-ancova-dealing-changes-measurement-between-baseline-and-follow}}
 When tracking individuals over time for this purpose,
@@ -375,8 +377,8 @@ and will help you to track your data over time.\cite{schulz2010consort}
 \subsection{Regression discontinuity}
 
 \textbf{Regression discontinuity (RD)} designs exploit sharp breaks or limits
-in policy designs to separate a group of potentially eligible recipients
-into comparable gorups of individuals who do and do not receive a treatment.\sidenote{
+in policy designs to separate a single group of potentially eligible recipients
+into comparable groups of individuals who do and do not receive a treatment.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Regression_Discontinuity}}
 These designs differ from cross-sectional and diff-in-diff designs
 in that the group eligible to receive treatment is not defined directly,
@@ -444,7 +446,7 @@ that will complement the main regression approach used for point estimates.
 
 \textbf{Instrumental variables (IV)} designs, unlike the previous approaches,
 begin by assuming that the treatment delivered in the study in question is
-linked to the outcome, so its effect is not directly identifiable.
+linked to the outcome in a pattern such that its effect is not directly identifiable.
 Instead, similar to regression discontinuity designs,
 IV attempts to focus on a subset of the variation in treatment uptake
 and assesses that limited window of variation that can be argued
