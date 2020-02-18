@@ -18,8 +18,11 @@ you need to make sure these permissions are correctly granted and documented,
 so that the ownership and licensing of all information is established
 and the privacy rights of the people it describes are respected.
 
-We then dive specifically into survey data, providing guidance on the data generation workflow,
-from questionnaire design to programming electronic survey instruments and monitoring data quality.
+While the principles of data governance and data quality apply to all types of data,
+there are additional considerations to ensuring data quality if you are
+collecting data yourself through an instrument like a field survey.
+This chapter provides detailed guidance on the data generation workflow,
+from questionnaire design to programming electronic instruments and monitoring data quality.
 While surveys remain popular, the rise of electronic data collection instruments
 means that there are additional workflow considerations needed
 to ensure that your data is accurate and usable in statistical software.
@@ -161,12 +164,12 @@ that can be properly submitted to a data catalog and given a reference and citat
 
 As soon as the requisite pieces of information are stored together,
 think about which ones are the components of what you would call a dataset.
-This is, as many things are, more of an art than a science:
+This is more of an art than a science:
 you want to keep things together that belong together,
 but you also want to keep things apart that belong apart.
-There usually won't be a precise way to tell the answer to this question,
+There usually won't be a precise way to answer this question,
 so consult with others about what is the appropriate level of aggregation
-for the data project you have endeavored to obtain.
+for the data you have endeavored to obtain.
 This is the object you will think about cataloging, releasing, and licensing
 as you move towards the publication part of the research process.
 This may require you to re-check with the provider
@@ -183,15 +186,16 @@ These types of data collection technologies
 have greatly accelerated our ability to bring in high-quality data
 using purpose-built survey instruments,
 and therefore improved the precision of research.
-At the same time, electronic surveys create some pitfalls to avoid.
+At the same time, electronic surveys create new pitfalls to avoid.
 Programming surveys efficiently requires a very different mindset
 than simply designing them in word processing software,
 and ensuring that they flow correctly and produce data
 that can be used in statistical software requires careful organization.
 This section will outline the major steps and technical considerations
-you will need to follow whenever you field a custom survey instrument.
+you will need to follow whenever you field a custom survey instrument,
+no matter the scale.
 
-\subsection{Developing a survey instrument}
+\subsection{Developing a data collection instrument}
 
 A well-designed questionnaire results from careful planning,
 consideration of analysis and indicators, close review of existing questionnaires,
@@ -217,7 +221,7 @@ We recommend this approach because an easy-to-read paper questionnaire
 is especially useful for training data collection staff,
 by focusing on the survey content and structure before diving into the technical component.
 It is much easier for enumerators to understand the range of possible participant responses
-and how to hand them correctly on a paper survey than on a tablet,
+and how to handle them correctly on a paper survey than on a tablet,
 and it is much easier for them to translate that logic to digital functionality later.
 Finalizing this version of the questionnaire before beginning any programming
 also avoids version control concerns that arise from concurrent work
@@ -237,9 +241,9 @@ The ideal starting point for this is a \textbf{pre-analysis plan}.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Pre-Analysis_Plan}}
 
 Use the list of key outcomes to create an outline of questionnaire \textit{modules}.
-Do not number the modules yet; instead use a short prefix so they can be easily reordered.
+Do not number the modules; instead use a short prefix so they can be easily reordered.
 For each module, determine if the module is applicable to the full sample,
-the appropriate respondent, and whether or how often, the module should be repeated.
+an appropriate respondent, and whether or how often the module should be repeated.
 A few examples: a module on maternal health only applies to household with a woman who has children,
 a household income module should be answered by the person responsible for household finances,
 and a module on agricultural production might be repeated for each crop the household cultivated.
@@ -281,7 +285,7 @@ it is time to move on to implementing it electronically.
 
 Electronic data collection has great potential to simplify survey implementation and improve data quality.
 Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets)
-or software-specific form builder, which are accessible even to novice users.\sidenote{
+or a software-specific form builder, all of which are accessible even to novice users.\sidenote{
   \url{https://dimewiki.worldbank.org/wiki/Questionnaire_Programming}}
 We will not address software-specific form design in this book;
 rather, we focus on coding conventions that are important to follow
@@ -338,7 +342,8 @@ Variable names should never include spaces or mixed cases
 (we prefer all-lowercase naming).
 Take special care with the length: very long names will be cut off in some softwares,
 which could result in a loss of uniqueness and lots of manual work to restore compatibility.
-We further discourage explicit question numbering, as it discourages re-ordering,
+We further discourage explicit question numbering,
+at least at first, as it discourages re-ordering questions,
 which is a common recommended change after the pilot.
 In the case of follow-up surveys, numbering can quickly become convoluted,
 too often resulting in uninformative variables names like
@@ -515,7 +520,7 @@ that there is no error arising from inaccuracies in the data itself.
 \textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Back_Checks}} and
 other validation audits help ensure that data collection is following established protocols,
 and that data is not fasified, incomplete, or otherwise suspect.
-For back-checks and validation audies, a random subset of the main data is selected,
+For back-checks and validation audits, a random subset of the main data is selected,
 and a subset of information from the full survey is
 verified through a brief targeted survey with the original respondent
 or a cross-referenced data set from another source (if the original data is not a field survey).
@@ -572,7 +577,7 @@ are hacked, or unauthorized access to the data is obtained in any other way.\sid
 Proper encryption is rarely just a single method,
 as the data will travel through many servers, devices, and computers
 from the source of the data to the final analysis.
-So encryption should be seen as a system that is only as secure as its weakest link.
+Encryption should be seen as a system that is only as secure as its weakest link.
 This section recommends a workflow with as few parts as possible,
 so that it is easy as possible to make sure the weakest link is still sufficiently secure.
 
@@ -615,7 +620,7 @@ until it reaches the server.
 Therefore, as long as you are using an established survey software,
 this step is largely taken care of.
 However, the research team must ensure that all computers, tablets,
-and accounts that are used in data collection have secure a logon
+and accounts that are used in data collection have a secure logon
 password and are never left unlocked.
 
 Even though your data is therefore usually safe while it is being transmitted,
@@ -628,7 +633,7 @@ You must keep your data encrypted on the data collection server whenever PII dat
 If you do not, the raw data will be accessible by
 individuals who are not approved by your IRB,
 such as tech support personnel,
-server administrators and other third-party staff.
+server administrators, and other third-party staff.
 Encryption at rest must be used to make
 data files completely unusable without access to a security key specific to that
 data -- a higher level of security than password-protection.
@@ -691,7 +696,7 @@ without compromising data security:
 	private key used during data collection to be able to download the data,
 	\textit{and} you will need the key used when you created the secure folder to save it there.
 	This your first copy of your raw data, and the copy you will use in your cleaning and analysis.
-	\item Create a secure folder on a pen-drive or a external hard drive that you can keep in your office.
+	\item Create a secure folder on a flash drive or a external hard drive that you can keep in your office.
 	Copy the data you just downloaded to this second secure	folder.
 	This is your ``master'' copy of your raw data.
 	(Instead of creating a second secure folder, you can simply copy the first secure folder.)
@@ -711,7 +716,7 @@ so the data can never be lost in case of hardware failure.\sidenote{
   \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy/}}
 However, you still need to keep track of your encryption keys as without them your data is lost.
 If you remain lucky, you will never have to access your ``master'' or ``golden master'' copies --
-you just want to know it is out there, safe, if you need it.
+you just want to know it is there, safe, if you need it.
 
 \subsection{Sharing data securely}
 You and your team will use your first copy of the raw data
