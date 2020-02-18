@@ -1,10 +1,9 @@
 GOOD:
 
-    global myGlobal = "A string global"
-    local  myLocal1 = length("${myGlobal}")
-    local  myLocal2 = "${myGlobal}"
+    global     myGlobal = "A string global"
+    display "${myGlobal}"
 
 BAD:
 
-    global myglobal "A string global"
-    local my_Local = length($myGlobal)
+    global my_Global = "A string global" // Do not mix naming styles
+    display "$myGlobal"                  // Always use ${} for globals
