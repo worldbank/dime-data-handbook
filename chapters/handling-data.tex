@@ -388,7 +388,7 @@ Finally, having an end-of-life plan for data is essential:
 you should always know how to transfer access and control to a new person if the team changes,
 and what the expiry of the data and the planned deletion processes are.
 
-\subsection{De-identifying and anonymizing information}
+\subsection{De-identifying data}
 
 Most of the field research done in development involves human subjects.\sidenote{
 	\url{https://dimewiki.worldbank.org/Human_Subjects_Approval}}
@@ -412,7 +412,9 @@ First, only collect information that is strictly needed for the research.
 Second, avoid the proliferation of copies of identified data.
 There should only be one raw identified dataset copy
 and it should be somewhere where only approved people can access it.
-Finally, not everyone on the research team needs access to identified data.
+Even within the research team, 
+access to PII data should be limited to team members who require it for specific analysis 
+(most analysis will not depend on PII).
 Analysis that requires PII data is rare
 and can be avoided by properly linking identifiers to research information
 such as treatment statuses and weights, then removing identifiers.
@@ -428,9 +430,11 @@ will be re-linked to the data collected about them
 -- even if that data has had all directly identifying information removed --
 by using some other data that becomes identifying when analyzed together.
 For this reason, we recommend de-identification in two stages.
-The \textbf{initial de-identification} process strips the data of direct identifiers
+The \textbf{initial de-identification} process strips the data of direct identifiers 
+as early in the process as possible,
 to create a working de-identified dataset that
 can be shared \textit{within the research team} without the need for encryption.
+This simplifies workflows. 
 The \textbf{final de-identification} process involves
 making a decision about the trade-off between
 risk of disclosure and utility of the data
