@@ -479,10 +479,19 @@ Randomization inference is particularly important
 in quasi-experimental designs and in small samples,
 because these conditions usually lead to the situation
 where the number of possible \textit{randomizations} is itself small.
+It is difficult to draw a firm line on when a study is ``large enough'',
+but even when a treatment effect is real,
+it can take ten or one hundred times more sample size
+than the minimum required power
+to ensure that the average statistically significant estimate
+of the treatment effect is accurate.\cite{schwarzer2015small}
 In those cases, we cannot rely on the usual assertion
 (a consequence of the Central Limit Theorem)
 that the variance of the treatment effect estimate is normal,
 and we therefore cannot use the ``asymptotic'' standard errors from Stata.
+We also don't need to: these methods were developed when it was very costly
+to compute large numbers of combinations using computers,
+and in most cases we now have the ability to do these calculations reasonably quickly.
 
 Instead, we directly simulate a large variety of possible alternative randomizations.
 Specifically, the user-written \texttt{ritest} command\sidenote{
