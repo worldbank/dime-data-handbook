@@ -204,7 +204,10 @@ Sampling specific numbers of observations is complicated and should be avoided,
 because it will make the probability of selection very hard to calculate.)
 There are a number of shortcuts to doing this process,
 but they all use this method as the starting point,
-so you should become familiar with exactly how this method works.
+so you should become familiar with exactly how it works.
+The do-file below provides an example of how to implement uniform-probability sampling in practice. 
+
+\codeexample{simple-sample.do}{./code/simple-sample.do}
 
 Almost all of the relevant considerations for sampling come from two sources:
 deciding what population, if any, a sample is meant to represent (including subgroups);
@@ -218,7 +221,6 @@ so long as it is carefully thought through from this perspective.
 Ex post changes to the study scope using a sample drawn for a different purpose
 usually involve tedious calculations of probabilities and should be avoided.
 
-\codeexample{simple-sample.do}{./code/simple-sample.do}
 
 \subsection{Randomization}
 
@@ -242,15 +244,18 @@ Just like sampling, the simplest form of randomization is a uniform-probability 
   \url{https://dimewiki.worldbank.org/Randomization_in_Stata}}
 Sampling typically has only two possible outcomes: observed and unobserved.
 Randomization, by contrast, often involves multiple possible results
-which each represent various varieties of treatments to be delivered;
+which each represent different varieties of treatments to be delivered;
 in some cases, multiple treatment assignments are intended to overlap in the same sample.
 Complexity can therefore grow very quickly in randomization
 and it is doubly important to fully understand the conceptual process
 that is described in the experimental design,
-and fill in any gaps in the process before implementing it in code.
+and fill in any gaps before implementing it in code.
+The do-file below provides an example of how to implement a simple random assignment of multiple treatment arms. 
 
-Some types of experimental designs necessitate that randomization results be revealed during data collection.
-It is possible to do this using survey software or live events.
+\codeexample{simple-multi-arm-randomization.do}{./code/simple-multi-arm-randomization.do}
+
+Some types of experimental designs necessitate that randomization results be revealed in the field.
+It is possible to do this using survey software or live events, such as a live lottery.
 These methods typically do not leave a record of the randomization,
 so particularly when the experiment is done as part of data collection,
 it is best to execute the randomization in advance and preload the results.
@@ -261,7 +266,6 @@ including checking for irregularities in the field assignment.
 Understanding that process will also improve the ability of the team
 to ensure that the field randomization process is appropriately designed and executed.
 
-\codeexample{simple-multi-arm-randomization.do}{./code/simple-multi-arm-randomization.do}
 
 %-----------------------------------------------------------------------------------------------
 
@@ -285,8 +289,8 @@ their implementation is nearly identical in both sampling and randomization.
 
 Many studies observe data at a different level than the randomization unit.\sidenote{
   \url{https://dimewiki.worldbank.org/Unit_of_Observation}}
-For example, a policy may only be able to affect an entire village,
-but the study is interested in household behavior.
+For example, a policy may be implemented at the village level,
+but the outcome of interest for the study is behavior changes at the household level.
 This type of structure is called \textbf{clustering},\sidenote{
   \url{https://dimewiki.worldbank.org/Multi-stage_(Cluster)_Sampling}}
 and the groups in which units are assigned to treatment are called clusters.
@@ -325,11 +329,13 @@ Manually implementing stratified randomization in Stata is prone to error.
 In particular, it is difficult to precisely account
 for the interaction of strata sizes with multiple treatment arms.
 Even for a very simple design, the method of randomly ordering the observations
-will often create very skewed assignments.
+will often create very skewed assignments.\sidenote{\url
+	{https://blogs.worldbank.org/impactevaluations/tools-of-the-trade-doing-stratified-randomization-with-uneven-numbers-in-some-strata}}
 This is especially true when a given stratum contains a small number of clusters,
 and when there are a large number of treatment arms,
 since the strata will rarely be exactly divisible by the number of arms.\cite{carril2017dealing}
-The user-written \texttt{randtreat} command properly implements stratification.
+The user-written \texttt{randtreat} command properly implements stratification, 
+as shown in the do-file below. 
 However, the options and outputs (including messages) from the command should be carefully reviewed
 so that you understand exactly what has been implemented.
 Notably, it is extremely hard to target precise numbers of observations
@@ -399,13 +405,13 @@ The purpose of power calculations is to identify where the strengths and weaknes
 of your design are located, so you know the relative tradeoffs you will face
 by changing your randomization scheme for the final design.
 They also allow realistic interpretations of evidence:
-results of low-power studies can be very interesting,
+low-power studies can be very interesting,
 but they have a correspondingly higher likelihood
 of reporting false positive results.
 
 The classic definition of power
 is the likelihood that a design detects a significant treatment effect,
-given that there is a non-zero true effect in reality.
+given that there is a non-zero treatment effect in reality.
 This definition is useful retrospectively,
 but it can also be re-interpreted to help in experimental design.
 There are two common and useful practical applications
