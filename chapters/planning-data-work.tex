@@ -370,13 +370,13 @@ But if you do not already have a standard file structure across projects,
 it is intended to be an easy template to start from.
 This system operates by creating a \texttt{DataWork} folder at the project level,
 and within that folder, it provides standardized directory structures
-for each data source (in the primary data context, ``rounds'' of data collection).
+for each data source or survey round.
 For each, \texttt{iefolder} creates folders for raw encrypted data,
 raw deidentified data, cleaned data, final data, outputs, and documentation.
 In parallel, it creates folders for the code files
 that move the data through this progression,
 and for the files that manage final analytical work.
-The command also has some flexibility for the addition of
+The command has some flexibility for the addition of
 folders for other types of data sources, although this is less well developed
 as the needs for larger data sets tend to be very specific.
 The \texttt{ietoolkit} package also includes the \texttt{iegitaddmd} command,
@@ -388,11 +388,9 @@ to document the contents of every folder in the structure.
 
 The \texttt{DataWork} folder may be created either inside
 an existing project-based folder structure, or it may be created separately.
-It's usually created by the leading RA in agreement with the PI.
-Increasingly, our recommendation is to create the \texttt{DataWork} folder
-separately from the project management materials,
-reserving the ``project folder'' for contracts, Terms of Reference, briefs and other administrative or management work.
-  \index{project folder}
+It is preferable to create the \texttt{DataWork} folder
+in a code folder maintained separately from the project management materials 
+(such as contracts, Terms of Reference, briefs and other administrative or management work).
 This is so the project folder can be maintained in a synced location like Dropbox,
 while the code folder can be maintained in a version-controlled location like GitHub.
 (Remember, a version-controlled folder \textit{should not}
@@ -408,8 +406,7 @@ tools such as {\LaTeX} and dynamic documents.\index{{\LaTeX}}\index{dynamic docu
 Keeping such plaintext files in a version-controlled folder allows you
 to maintain better control of their history and functionality.
 Because of the high degree of dependence between code files depend and file structure,
-you will be able to enforce better practices in a separate folder than in the project folder,
-which will usually be managed by a PI, FC, or field team members.
+you will be able to enforce better practices in a separate code folder than in the project folder.
 
 Setting up the \texttt{DataWork} folder folder in a version-controlled directory
 also enables you to use Git and GitHub for version control on your code files.
@@ -432,43 +429,20 @@ Git tracks all the changes you make to your code,
 and allows you to go back to previous versions without losing the information on changes made.
 It also makes it possible to work on multiple parallel versions of the code,
 so you don't risk breaking the code for other team members as you try something new.
-The DIME file management and organization approach is designed with this in mind.
 
 Once the \texttt{DataWork} folder's directory structure is set up,
 you should adopt a file naming convention.
 You will generally be working with two types of files:
-``code-compatiable'' files, which are those that are accessed by code processes,
-and ``non-code-compatiable'' files, which will not be accessed by code processes.
-The former takes precedent: an Excel file is a code-compatiable file
+``code-compatible'' files, which are those that are accessed by code processes,
+and ``non-code-compatible'' files, which will not be accessed by code processes.
+The former takes precedent: an Excel file is a code-compatible file
 even if it is a field log, because at some point it will be used by code.
 We will not give much emphasis to files that are not linked to code here;
 but you should make sure to name them in an orderly fashion that works for your team.
 These rules will ensure you can find files within folders
 and reduce the amount of time others will spend opening files
-to find out what is inside them.
-The main point to be considered is that files accessed by code have special naming requirements\sidenote{
-  \url{https://www2.stat.duke.edu/~rcs46/lectures\_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf}},
-since different software and operating systems read file names in different ways.
-Some of the differences between the two naming approaches are major and may be new to you,
-so below are a few examples.
-Introducing spaces between words in a file name (including the folder path)
-can break a file's path when it's read by code,
-so while a Word document may be called \texttt{2019-10-30 Sampling Procedure Description.docx},
-a related do file would have a name like \texttt{sampling-endline.do}.
-Adding timestamps to binary files as in the example above can be useful,
-as it is not straightforward to track changes using version control software.
-However, for plaintext files version-controlled using Git, timestamps are an unnecessary distraction.
-Similarly, code-compatiable files should never include capital letters,
-as strings and file paths are case-sensitive in some software.
-Finally, one organizational practice that takes some getting used to
-is the fact that the best names from a coding perspective
-are usually the opposite of those from an English perspective.
-For example, for a deidentified household dataset from the baseline round,
-you should prefer a name like \texttt{baseline-household-deidentified.dta},
-rather than the opposite way around as occurs in natural language.
-This ensures that all \texttt{baseline} data stays together,
-then all \texttt{baseline-household} data,
-and finally provides unique information about this specific file.
+to find out what is inside them.\sidenote{\url\{https://dimewiki.worldbank.org/wiki/Naming_Conventions}}
+
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Documenting and organizing code}
