@@ -41,7 +41,7 @@ sampling and randomization designs and to make optimal choices when planning stu
 
 %-----------------------------------------------------------------------------------------------
 
-\section{Random processes in Stata}
+\section{Random processes}
 
 Most experimental designs rely directly on random processes,
 particularly sampling and randomization, to be executed in code.
@@ -50,7 +50,7 @@ depends on establishing that the sampling
 and treatment assignment processes are truly random.
 Therefore, understanding and correctly programming for sampling and randomization
 is essential to ensuring that planned experiments
-are correctly implemented in the field, so that the results
+are correctly implemented, so that the results
 can be interpreted according to the experimental design.
 There are two distinct random processes referred to here:
 the conceptual process of assigning units to treatment arms,
@@ -58,30 +58,25 @@ and the technical process of assigning random numbers in statistical software,
 which is a part of all tasks that include a random component.\sidenote{
   \url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata}}
 
+Any process that includes a random component is a random process,
+including sampling, randomization, power calculation simulations, and algorithms like bootstrapping.
 Randomization is challenging and its mechanics are unintuitive for the human brain.
 ``True'' randomization is also nearly impossible to achieve for computers,
 which are inherently deterministic.\sidenote{
   \url{https://www.random.org/randomness}}
+
+\subsection{Implementing random processes reproducibly in Stata}
+
+Reproducibility in statistical programming means that the outputs of random processes
+can be re-obtained at a future time.\cite{orozco2018make}
 For our purposes, we will focus on what you need to understand
 in order to produce truly random results for your project using Stata,
 and how you can make sure you can get those exact results again in the future.
 This takes a combination of strict rules, solid understanding, and careful programming.
-This section introduces the strict rules: these are non-negotiable (but thankfully simple).
-The second section provides basic introductions to the tasks of sampling and randomization,
-and the third introduces common varieties encountered in the field.
-The fourth section discusses more advanced topics that are used
-to analyze the random processes directly in order to understand their properties.
-However, field realities will inevitably
-be more complex than anything we present here,
-and you will need to recombine these lessons to match your project's needs.
+This section introduces the strict rules: these are non-negotiable (but thankfully simple). 
+At the end of the section, 
+we provide a do-file that provides a concrete example of how to implement these principles. 
 
-\subsection{Ensuring reproducibility in random Stata processes}
-
-Any process that includes a random component is a random process,
-including sampling, randomization, power calculation simulations, and algorithms like bootstrapping.
-Reproducibility in statistical programming means that the outputs of random processes
-can be re-obtained at a future time.
-All random methods must be reproducible.\cite{orozco2018make}
 Stata, like most statistical software, uses a \textbf{pseudo-random number generator}.
 Basically, it has a pre-calculated really long ordered list of numbers with the property that
 knowing the previous one gives you precisely zero information about the next one, i.e. a list of random numbers.
@@ -142,14 +137,16 @@ Other commands may induce randomness in the data or alter the seed without you r
 so carefully confirm exactly how your code runs before finalizing it.\sidenote{
   \url{https://dimewiki.worldbank.org/Randomization_in_Stata}}
 
-\codeexample{replicability.do}{./code/replicability.do}
-
 To confirm that a randomization has worked well before finalizing its results,
 save the outputs of the process in a temporary location,
 re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure
 nothing has changed. It is also advisable to let someone else reproduce your
 randomization results on their machine to remove any doubt that your results
-are reproducable.
+are reproducible.
+
+\codeexample{replicability.do}{./code/replicability.do}
+
+
 
 %-----------------------------------------------------------------------------------------------
 
