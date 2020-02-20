@@ -446,7 +446,6 @@ to find out what is inside them.\sidenote{\url\{https://dimewiki.worldbank.org/w
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Documenting and organizing code}
-
 Once you start a project's data work,
 the number of scripts, datasets, and outputs that you have to manage will grow very quickly.
 This can get out of hand just as quickly,
@@ -457,6 +456,10 @@ Below we discuss a few crucial steps to code organization.
 They all come from the principle that code is an output by itself,
 not just a means to an end,
 and should be written thinking of how easy it will be for someone to read it later.
+At the end of this section, we include a template for a Master Script in Stata, 
+to provide a concrete example of the required elements and structure.
+Throughout this section, we refer to lines of the example .do file 
+to give concrete examples of the required code elements, organization and structure.  
 
 Code documentation is one of the main factors that contribute to readability.
 Start by adding a code header to every file.
@@ -464,19 +467,22 @@ A code header is a long \textbf{comment}\sidenote{
   \textbf{Comments:} Code components that have no function,
   but describe in plain language what the code is supposed to do.
 }
-that details the functionality of the entire script.
+that details the functionality of the entire script;
+refer to lines 5-10 in the example .do file. 
 This should include simple things such as
 the purpose of the script and the name of the person who wrote it.
 If you are using a version control software,
 the last time a modification was made and the person who made it will be recorded by that software.
 Otherwise, you should include it in the header.
-Finally, use the header to track the inputs and outputs of the script.
+You should always track the inputs and outputs of the script, as well as the uniquely identifying variable;
+refer to lines 49-51 in the example .do file. 
 When you are trying to track down which code creates which data set, this will be very helpful.
 While there are other ways to document decisions related to creating code,
 the information that is relevant to understand the code should always be written in the code file.
 
 In the script, alongside the code, are two types of comments that should be included.
-The first type of comment describes what is being done.
+The first type of comment describes what is being done;
+refer to line 35 in the example .do file.
 This might be easy to understand from the code itself
 if you know the language well enough and the code is clear,
 but often it is still a great deal of work to reverse-engineer the code's intent.
@@ -491,7 +497,7 @@ that is not obvious or has not been seen by others before.
 Even you will probably not remember the exact choices that were made in a couple of weeks.
 Therefore, you must document your precise processes in your code.
 
-Code organization means keeping each piece of code in an easily findable location.
+Code organization means keeping each piece of code in an easy-to-find location.
   \index{code organization}
 Breaking your code into independently readable ``chunks'' is one good practice on code organization.
 You should write each functional element as a chunk that can run completely on its own,
@@ -499,13 +505,15 @@ to ensure that each component does not depend on a complex program state
 created by other code chunks that are not obvious from the immediate context.
 One way to do this is to create sections where a specific task is completed.
 So, for example, if you want to find the line in your code where a variable was created,
-you can go straight to \texttt{PART 2: Create new variables},
+you can go straight to \texttt{PART 2: Prepare folder paths and define programs},
 instead of reading line by line through the entire code.
 RStudio, for example, makes it very easy to create sections,
 and it compiles them into an interactive script index for you.
 In Stata, you can use comments to create section headers,
-though they're just there to make the reading easier and don't have functionality.
-You should also add an index in the code header by copying and pasting section titles.
+though they're just there to make the reading easier and don't have functionality;
+refer to line 24 of the example .do file.
+You should also add an index in the code header by copying and pasting section titles;
+refer to lines 8-10 in the example .do file.
 You can then add and navigate through them using the \texttt{find} functionality.
 Since Stata code is harder to navigate, as you will need to scroll through the document,
 it's particularly important to avoid writing very long scripts.
@@ -516,6 +524,7 @@ One reasonable rule of thumb is to not write do-files that have more than 200 li
 This is an arbitrary limit, just like the standard restriction of each line to 80 characters:
 it seems to be ``enough but not too much'' for most purposes.
 
+\subsection{Working with a Master script}
 To bring all these smaller code files together, you must maintain a master script.
   \index{master do-file}
 A master script is the map of all your project's data work
@@ -529,8 +538,6 @@ By follow, we mean someone external to the project who has the master script and
 The master script is also where all the settings are established,
 such as versions, folder paths, functions, and constants used throughout the project.
 
-\codeexample{stata-master-dofile.do}{./code/stata-master-dofile.do}
-
 Try to create the habit of running your code from the master script.
 Creating ``section switches'' using macros or objects to run only the codes related to a certain task
 should always be preferred to manually open different scripts to run them in a certain order
@@ -543,17 +550,21 @@ But unless you run both of them when the change is made, it may take time for th
 and when it does, it may take time for you to understand what's causing an error.
 The same applies to changes in data sets and results.
 
-To link code, data and outputs, the master script reflects the structure of the \texttt{DataWork} folder in code
-through globals (in Stata) or string scalars (in R).
+To link code, data and outputs, 
+the master script reflects the structure of the \texttt{DataWork} folder in code
+through globals (in Stata) or string scalars (in R); 
+refer to lines 35-40 of the example .do file. 
 These coding shortcuts can refer to subfolders,
 so that those folders can be referenced without repeatedly writing out their absolute file paths.
 Because the \texttt{DataWork} folder is shared by the whole team,
 its structure is the same in each team member's computer.
 The only difference between machines should be
-the path to the project root folder, i.e. the highest-level shared folder, which in the context of \texttt{iefolder} is the \texttt{DataWork} folder.
+the path to the project root folder, i.e. the highest-level shared folder, 
+which in the context of \texttt{iefolder} is the \texttt{DataWork} folder.
 This is reflected in the master script in such a way that
 the only change necessary to run the entire code from a new computer
-is to change the path to the project folder to reflect the filesystem and username.
+is to change the path to the project folder to reflect the filesystem and username; 
+refer to lines 27-32 of the example .do file.
 The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
 Because writing and maintaining a master script can be challenging as a project grows,
 an important feature of the \texttt{iefolder} is to write master do-files
@@ -578,6 +589,7 @@ and that other people can read and understand the code easily,
 is the easiest way to be prepared in advance for a smooth project handover
 or for release of the code to the general public.
 
+\codeexample{stata-master-dofile.do}{./code/stata-master-dofile.do}
 % ----------------------------------------------------------------------------------------------
 \subsection{Managing outputs}
 
