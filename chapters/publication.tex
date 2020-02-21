@@ -419,34 +419,33 @@ just as if it were written material.
 The purpose of releasing code is to allow others to understand
 exactly what you have done in order to obtain your results,
 as well as to apply similar methods in future projects.
-Therefore it should both be functional and readable.
-If you've followed the recommendations in this book,
-this will be much easier to do.
+Therefore it should both be functional and readable
+(if you've followed the recommendations in Chapter Six,
+this should be easy to do!).
 Code is often not written this way when it is first prepared,
 so it is important for you to review the content and organization
 so that a new reader can figure out what and how your code should do.
-Therefore, whereas your data should already be very clean at this stage,
-your code is much less likely to be so, and this is where you need to make
-time investments prior to releasing your replication package.
-By contrast, replication code usually has few legal and privacy constraints.
-In most cases code will not contain identifying information;
-but make sure to check carefully that it does not.
+Therefore, whereas your data should already be very clean by publication stage,
+your code is much less likely to be so. 
+This is often where you need to invest time prior to releasing your replication package.
+
+Unlike data, code usually has few legal and privacy constraints to publication.
+The research team owns the code in almost all cases,
+and code is unlikely to contain identifying information 
+(though you must check carefully that it does not).
 Publishing code also requires assigning a license to it;
 in a majority of cases, code publishers like GitHub
 offer extremely permissive licensing options by default.
 (If you do not provide a license, nobody can use your code!)
 
-Make sure the code functions identically on a fresh install of your chosen software.
+Before releasing the code, make sure it functions identically on a fresh install of your chosen software.
 A new user should have no problem getting the code to execute perfectly.
 In either a scripts folder or in the root directory,
-include a master script (dofile or R script for example).
-The master script should allow the reviewer
-to change a single line of code: the one setting the directory path.
-After that, running the master script should run the entire project
-and re-create all the raw outputs exactly as supplied.
-Indicate the filename and line to change.
-Check that all your code will run completely on a new computer:
-Install any required user-written commands in the master script
+you should include a master script that allows the reviewer to run the entire project
+and re-create all raw outputsby changing only a single line of code: 
+the one setting the directory path.
+To ensure that your code will run completely on a new computer,
+you must install any required user-written commands in the master script
 (for example, in Stata using \texttt{ssc install} or \texttt{net install}
 and in R include code giving users the option to install packages,
 including selecting a specific version of the package if necessary).
@@ -454,8 +453,8 @@ In many cases you can even directly provide the underlying code
 for any user-installed packages that are needed to ensure forward-compatibility.
 Make sure system settings like \texttt{version}, \texttt{matsize}, and \texttt{varabbrev} are set.
 
-Finally, make sure that the code and its inputs and outputs are clearly identified.
-A new user should, for example, be able to easily identify and remove
+Finally, make sure that code inputs and outputs are clearly identified.
+A new user should, for example, be able to easily find and remove
 any files created by the code so that they can be recreated quickly.
 They should also be able to quickly map all the outputs of the code
 to the locations where they are placed in the associated published material,
@@ -463,11 +462,11 @@ so ensure that the raw components of figures or tables are clearly identified.
 Documentation in the master script is often used to indicate this information.
 For example, outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
 (Supplying a compiling \LaTeX\ document can support this.)
-Code and outputs which are not used should be removed.
+Code and outputs which are not used should be removed before publication.
 
 \subsection{Releasing a replication package}
 
-If you are at this stage,
+Once your data and code are polished for public release,
 all you need to do is find a place to publish your materials.
 This is slightly easier said than done,
 as there are a few variables to take into consideration
@@ -476,8 +475,8 @@ The technologies available are likely to change dramatically
 over the next few years;
 the specific solutions we mention here highlight some current approaches
 as well as their strengths and weaknesses.
-GitHub provides one solution.
-Making a GitHub repository public is completely free.
+On option is GitHub.
+Making a public GitHub repository is completely free.
 It can hold any file types,
 provide a structured download of your whole project,
 and allow others to look at alternate versions or histories easily.
@@ -486,23 +485,22 @@ apply a sharing license, and obtain a URL for the whole package.
 (However, there is a strict size restriction of 100MB per file and
 a restriction on the size of the repository as a whole,
 so larger projects will need alternative solutions.)
-
 However, GitHub is not ideal for other reasons.
 It is not built to hold data in an efficient way
-or to manage licenses or citations for datasets.
+or to manage licenses.
 It does not provide a true archive service --
 you can change or remove the contents at any time.
-A repository such as the Harvard Dataverse\sidenote{
+It does not assign a permanent digital object identifier (DOI) link for your work.
+
+Another option is the Harvard Dataverse,\sidenote{
   \url{https://dataverse.harvard.edu}}
-addresses these issues, as it is designed to be a citable data repository;
-the IPA/J-PAL field experiment repository is especially relevant.\sidenote{
-  \url{https://www.povertyactionlab.org/blog/9-11-19/new-hub-data-randomized-evaluations}}
+which is designed to be a citable data repository.
 The Open Science Framework\sidenote{
   \url{https://osf.io}}
-can also hold both code and data,
-as can ResearchGate.\sidenote{
+and ResearchGate.\sidenote{
   \url{https://https://www.researchgate.net}}
-Some of these will also assign a permanent digital object identifier (DOI) link for your work.
+can also hold both code and data.
+
 Any of these locations is acceptable --
 the main requirement is that the system can handle
 the structured directory that you are submitting,
@@ -510,6 +508,8 @@ and that it can provide a stable, structured URL for your project
 and report exactly what, if any, modifications you have made since initial publication.
 You can even combine more than one tool if you prefer,
 as long as they clearly point to each other.
+For example, one could publish code on GitHub that points to data published on the World Bank MicroData catalog. 
+
 Emerging technologies such as the ``containerization'' approach of Docker or CodeOcean\sidenote{
   \url{https://codeocean.com}}
 offer to store both code and data,
@@ -531,4 +531,4 @@ on your personal website or whatever medium you are
 sharing the preprint through.
 Do not use Dropbox or Google Drive for this purpose:
 many organizations do not allow access to these tools,
-and that includes blocking staff from accessing your material.
+and staff may be blocked from accessing your material.
