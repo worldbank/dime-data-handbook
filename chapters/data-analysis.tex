@@ -70,7 +70,7 @@ to standardize folder structures across teams and projects.
 Standardizing folders greatly reduces the costs that PIs and RAs face when switching between projects,
 because they are all organized in exactly the same way
 and use the same filepaths, shortcuts, and macro references.\sidenote{
-	\url{https://dimewiki.worldbank.org/DataWork_Folder}}
+	\url{https://dimewiki.worldbank.org/DataWork\_Folder}}
 We created \texttt{iefolder} based on our experience with primary data,
 but it can be used for different types of data,
 and adapted to fit different needs.
@@ -78,7 +78,7 @@ No matter what your team's preferences in terms of folder organization are,
 the principle of creating a single unified standard remains.
 
 At the top level of the structure created by \texttt{iefolder} are what we call ``round'' folders.\sidenote{
-	\url{https://dimewiki.worldbank.org/DataWork_Survey_Round}}
+	\url{https://dimewiki.worldbank.org/DataWork\_Survey\_Round}}
 You can think of a ``round'' as a single source of data,
 which will all be cleaned using a single script.
 Inside each round folder, there are dedicated folders for:
@@ -87,7 +87,7 @@ There is a folder for raw results, as well as for final outputs.
 The folders that hold code are organized in parallel to these,
 so that the progression through the whole project can be followed by anyone new to the team.
 Additionally, \texttt{iefolder} creates \textbf{master do-files}\sidenote{
-	\url{https://dimewiki.worldbank.org/Master_Do-files}}
+	\url{https://dimewiki.worldbank.org/Master\_Do-files}}
 so the structure of all project code is reflected in a top-level script.
 
 \subsection{Breaking down tasks}
@@ -232,7 +232,7 @@ de-identification should not affect the usability of the data.
 \section{Cleaning data for analysis}
 
 Data cleaning is the second stage in the transformation of data you received into data that you can analyze.\sidenote{\url{
-https://dimewiki.worldbank.org/Data_Cleaning}}
+https://dimewiki.worldbank.org/Data\_Cleaning}}
 The cleaning process involves (1) making the data set easily usable and understandable,
 and (2) documenting individual data points and patterns that may bias the analysis.
 The underlying data structure does not change.
@@ -249,12 +249,12 @@ Knowing your data set well will make it possible to do analysis.
 
 There are two main cases when the raw data will be modified during data cleaning.
 The first one is when there are duplicated entries in the data.
-Ensuring that observations are uniquely and fully identified\sidenote{\url{https://dimewiki.worldbank.org/ID_Variable_Properties}}
+Ensuring that observations are uniquely and fully identified\sidenote{\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
 is possibly the most important step in data cleaning.
 Modern survey tools create unique observation identifiers.
 That, however, is not the same as having a unique ID variable for each individual in the sample.
 You want to make sure the data set has a unique ID variable
-that can be cross-referenced with other records, such as the master data set\sidenote{\url{https://dimewiki.worldbank.org/Master_Data_Set}}
+that can be cross-referenced with other records, such as the master data set\sidenote{\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
 and other rounds of data collection.
 \texttt{ieduplicates} and \texttt{iecompdup},
 two Stata commands included in the \texttt{iefieldkit}
@@ -331,12 +331,12 @@ Second, don't skip the labeling.
 Applying labels makes it easier to understand what the data mean as you explore it,
 and thus reduces the risk of small errors making their way through into the analysis stage.
 Variable and value labels should be accurate and concise.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data_Cleaning\#Applying_Labels}}
+	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Applying\_Labels}}
 Applying labels makes it easier to understand what the data is showing while exploring the data.
 This minimizes the risk of small errors making their way through into the analysis stage.
-Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/Data_Cleaning\#Applying_Labels}}
+Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Applying\_Labels}}
 Third, recodes should be used to turn codes for ``Don't know'', ``Refused to answer'', and
-other non-responses into extended missing values.\sidenote{\url{https://dimewiki.worldbank.org/Data_Cleaning\#Survey_Codes_and_Missing_Values}}
+other non-responses into extended missing values.\sidenote{\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
 String variables that correspond to categorical variables need to be encoded.
 Open-ended responses stored as strings usually have a high risk of being identifiers,
 so they should be dropped at this point.
@@ -351,7 +351,7 @@ Throughout the data cleaning process, you will need inputs from the field,
 including enumerator manuals, survey instruments,
 supervisor notes, and data quality monitoring reports.
 These materials are essential for data documentation.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data_Documentation}}
+	\url{https://dimewiki.worldbank.org/Data\_Documentation}}
 \index{Documentation}
 They should be stored in the corresponding \texttt{Documentation} folder for easy access,
 as you will probably need them during analysis,
@@ -393,10 +393,10 @@ such as caloric input or food expenditure per adult equivalent.
 During this process, the data points will typically be reshaped and aggregated
 so that level of the data set goes from the unit of observation
 (one item in the bundle) in the survey to the unit of analysis (the household),\sidenote{
-	\url{https://dimewiki.worldbank.org/Unit_of_Observation}}
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 so that the level of the data set goes from the unit of observation (one item in the bundle)
 in the survey to the unit of analysis (the household).\sidenote{
-\url{https://dimewiki.worldbank.org/Unit_of_Observation}}
+\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 
 A constructed data set is built to answer an analysis question.
 Since different pieces of analysis may require different samples,
@@ -548,8 +548,8 @@ Data analysis is the stage when research outputs are created.
 \index{data analysis}
 Many introductions to common code skills and analytical frameworks exist, such as
 \textit{R for Data Science};\sidenote{\url{https://r4ds.had.co.nz}}
-\textit{A Practical Introduction to Stata};\sidenote{\url{https://scholar.harvard.edu/files/mcgovern/files/practical_introduction_to_stata.pdf}}
-\textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844_Mostly_Harmless_Econometrics_An_Empiricist's_Companion}}
+\textit{A Practical Introduction to Stata};\sidenote{\url{https://scholar.harvard.edu/files/mcgovern/files/practical\_introduction\_to\_stata.pdf}}
+\textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844\_Mostly\_Harmless\_Econometrics\_An\_Empiricist's\_Companion}}
 and \textit{Causal Inference: The Mixtape}.\sidenote{\url{https://scunning.com/mixtape.html}}
 This section will not include instructions on how to conduct specific analyses.
 That is a research question, and requires expertise beyond the scope of this book.
@@ -607,7 +607,7 @@ leave this to near publication time.
 
 \subsection{Visualizing data}
 
-\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/Data_visualization}} \index{data visualization}
+\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/Data\_visualization}} \index{data visualization}
 is increasingly popular, and is becoming a field in its own right.\cite{healy2018data,wilke2019fundamentals}
 Whole books have been written on how to create good data visualizations,
 so we will not attempt to give you advice on it.
@@ -710,8 +710,8 @@ Keep in mind that final outputs should be self-standing.
 This means it should be easy to read and understand them with only the information they contain.
 Make sure labels and notes cover all relevant information, such as sample,
 unit of observation, unit of measurement and variable definition.\sidenote{
-	\url{https://dimewiki.worldbank.org/Checklist:_Reviewing_Graphs} \\
-	\url{https://dimewiki.worldbank.org/Checklist:_Submit_Table}}
+	\url{https://dimewiki.worldbank.org/Checklist:\_Reviewing\_Graphs} \\
+	\url{https://dimewiki.worldbank.org/Checklist:\_Submit\_Table}}
 
 If you follow the steps outlined in this chapter,
 most of the data work involved in the last step of the research process
