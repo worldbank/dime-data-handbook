@@ -45,36 +45,34 @@ and how to automate common outputs so that your analysis is fully reproducible.
 
 The goal of data management is to organize the components of data work
 so the complete process can traced, understood, and revised without massive effort.
-In our experience, there are four key elements to good data management:
+We focus on four key elements to good data management:
 folder structure, task breakdown, master scripts, and version control.
-A good folder structure organizes files so that any material can be found when needed.
-It reflects a task breakdown into steps with well-defined inputs, tasks, and outputs.
-A master script connects folder structure and code.
+A good \textbf{folder structure} organizes files so that any material can be found when needed.
+It reflects a \textbf{task breakdown} into steps with well-defined inputs, tasks, and outputs.
+A \textbf{master script} connects folder structure and code.
 It is a one-file summary of your whole project.
-Finally, version histories and backups enable the team
-to edit files without fear of losing information.
-Smart use of version control allows you to track
-how each edit affects other files in the project.
+Finally, \textbf{version control} gives you clear file histories and backups,
+which enable the team to edit files without fear of losing information
+and track how each edit affects other files in the project.
 
 \subsection{Organizing your folder structure}
 
 There are many ways to organize research data.
-Our preferred scheme reflects the task breakdown that will be outlined in this chapter.
 \index{data organization}
 Our team at DIME Analytics developed the \texttt{iefolder}\sidenote{
 	\url{https://dimewiki.worldbank.org/iefolder}}
 command (part of \texttt{ietoolkit}\sidenote{
 	\url{https://dimewiki.worldbank.org/ietoolkit}})
-to automatize the creation of a folder following this scheme and
+to automatize the creation of folders following our preferred scheme and
 to standardize folder structures across teams and projects.
-Standardizing folders greatly reduces the costs that PIs and RAs face when switching between projects,
-because they are all organized in exactly the same way
+A standardized structure greatly reduces the costs that PIs and RAs 
+face when switching between projects,
+because folders are organized in exactly the same way
 and use the same filepaths, shortcuts, and macro references.\sidenote{
 	\url{https://dimewiki.worldbank.org/DataWork\_Folder}}
 We created \texttt{iefolder} based on our experience with primary data,
-but it can be used for different types of data,
-and adapted to fit different needs.
-No matter what your team's preferences in terms of folder organization are,
+but it can be used for other types of data.
+Other teams may prefer a different scheme, but
 the principle of creating a single unified standard remains.
 
 At the top level of the structure created by \texttt{iefolder} are what we call ``round'' folders.\sidenote{
@@ -92,11 +90,10 @@ so the structure of all project code is reflected in a top-level script.
 
 \subsection{Breaking down tasks}
 
-We divide the data work process that starts from the raw data
-and builds on it to create final analysis outputs into four stages:
+We divide the process of transforming raw datasets to analysis-ready datasets into four steps:
 de-identification, data cleaning, variable construction, and data analysis.
-Though they are frequently implemented at the same time,
-we find that creating separate scripts and data sets prevents mistakes.
+Though they are frequently implemented concurrently,
+creating separate scripts and data sets prevents mistakes.
 It will be easier to understand this division as we discuss what each stage comprises.
 What you should know for now is that each of these stages has well-defined inputs and outputs.
 This makes it easier to track tasks across scripts,
@@ -107,19 +104,21 @@ making clear how they relate to one another.
 So, for example, a script called \texttt{section-1-cleaning} would create
 a data set called \texttt{section-1-clean}.
 
-The division of a project in stages also helps the review workflow inside your team.
-The code, data and outputs of each of these stages should go through at least one round of code review.
-During the code review process, team members should read and run each other's codes.
-Doing this at the end of each stage helps prevent the amount of work to be reviewed to become too overwhelming.
+The division of a project in stages also facilitates a review workflow inside your team.
+The code, data and outputs of each of these stages should go through at least one round of code review,
+in which team members read and run each other's codes.
+Reviewing code at each stage, rather than waiting until the end of a project,
+is preferrable as the amount of code to review is more manageable and 
+it allows you to correct errors in real-time (e.g. correcting errors in variable construction before analysis begins). 
 Code review is a common quality assurance practice among data scientists.
 It helps to keep the quality of the outputs high, and is also a great way to learn and improve your own code.
 
 \subsection{Writing master scripts}
 
 Master scripts allow users to execute all the project code from a single file.
-They briefly describe what each code does,
-and map the files they require and create.
-They also connect code and folder structure through macros or objects.
+As discussed in Chapter 2, the master script should briefly describe what each 
+section of the code does, and map the files they require and create.
+The master script also connects code and folder structure through macros or objects.
 In short, a master script is a human-readable map of the tasks,
 files, and folder structure that comprise a project.
 Having a master script eliminates the need for complex instructions to replicate results.
@@ -152,13 +151,13 @@ Git will highlight the changes that were in data sets and results that they enta
 
 \section{De-identifying research data}
 
-The starting point for all tasks described in this chapter is the raw data
-which should contain only information that is received directly from the field.
+The starting point for all tasks described in this chapter is the raw dataset,
+which should contain the exact data received, with no changes or additions.
 The raw data will invariably come in a variety of file formats and these files
 should be saved in the raw data folder \textit{exactly as they were
-received}. Be mindful of how and where they are stored as they can not be
+received}. Be mindful of how and where they are stored as they cannot be
 re-created and nearly always contain confidential data such as
-personally-identifying information\index{personally-identifying information}.
+\textbf{personally-identifying information}\index{personally-identifying information}.
 As described in the previous chapter, confidential data must always be
 encrypted\sidenote{\url{https://dimewiki.worldbank.org/Encryption}} and be
 properly backed up since every other data file you will use is created from the
@@ -174,17 +173,19 @@ securely back up \textit{both} the broken and the fixed copy of the raw data.
 You will only keep working from the fixed copy, but you keep both copies in
 case you later realize that the manual fix was done incorrectly.
 
-Loading encrypted data frequently can be disruptive to the workflow.
-To facilitate the handling of the data, remove any personally identifiable information from the data set.
-This will create a de-identified data set, that can be saved in a non-encrypted folder.
-De-identification,\sidenote{\url{https://dimewiki.worldbank.org/De-identification}}
-at this stage, means stripping the data set of direct identifiers.\sidenote{\url{
-https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
-To be able to do so, you will need to go through your data set and
-find all the variables that contain identifying information.
-Flagging all potentially identifying variables in the questionnaire design stage
+The first step in the transformation of raw data to an analysis-ready dataset is de-identification.
+This simplifies workflows, as once you create a de-identified version of the dataset, 
+you no longer need to interact directly with the encrypted raw data. 
+at this stage, means stripping the data set of personally identifying information.\sidenote{
+	\url{https://dimewiki.worldbank.org/De-identification}}
+To do so, you will need to identify all variables that contain 
+identifying information.\sidenote{\url{
+		https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
+For primary data collection, where the research team designs the survey instrument,
+flagging all potentially identifying variables in the questionnaire design stage
 simplifies the initial de-identification process.
-If you did not do that or you received the raw data from someone else, that are a few tools that can help you with it.
+If you did not do that, or you received original data by another means,
+there are a few tools to help flag variables with personally-identifying data. 
 JPAL's \texttt{PII scan}, as indicated by its name,
 scans variable names and labels for common string patterns associated with identifying information.\sidenote{
 	\url{https://github.com/J-PAL/PII-Scan}}
@@ -231,28 +232,34 @@ de-identification should not affect the usability of the data.
 
 \section{Cleaning data for analysis}
 
-Data cleaning is the second stage in the transformation of data you received into data that you can analyze.\sidenote{\url{
-https://dimewiki.worldbank.org/Data\_Cleaning}}
-The cleaning process involves (1) making the data set easily usable and understandable,
+Data cleaning is the second stage in the transformation of raw data into data that you can analyze.
+The cleaning process involves (1) making the data set easy to use and understand,
 and (2) documenting individual data points and patterns that may bias the analysis.
 The underlying data structure does not change.
 The cleaned data set should contain only the variables collected in the field.
 No modifications to data points are made at this stage, except for corrections of mistaken entries.
 
 Cleaning is probably the most time-consuming of the stages discussed in this chapter.
-This is the time when you obtain an extensive understanding of the contents and structure of the data that was collected.
-Explore your data set using tabulations, summaries, and descriptive plots.
-You should use this time to understand the types of responses collected, both within each survey question and across respondents.
+You need to acquire an extensive understanding of the contents and structure of the raw data.
+Explore the data set using tabulations, summaries, and descriptive plots.
 Knowing your data set well will make it possible to do analysis.
 
-\subsection{Correcting data entry errors}
+\subsection{Identifying the identifier}
 
-There are two main cases when the raw data will be modified during data cleaning.
-The first one is when there are duplicated entries in the data.
+The first step in the cleaning process is to understand the level of observation in the data (what makes a row), 
+and what variable or set of variables uniquely identifies each observations.
 Ensuring that observations are uniquely and fully identified\sidenote{\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
 is possibly the most important step in data cleaning.
-Modern survey tools create unique observation identifiers.
-That, however, is not the same as having a unique ID variable for each individual in the sample.
+It may be the case that the variable expected to be the unique identifier in fact is either incomplete or contains duplicates. 
+This could be due to duplicate observations or errors in data entry.
+It could also be the case that there is no identifying variable, or the identifier is a long string, such as a name.
+In this case cleaning begins by carefully creating a numeric variable that uniquely identifies the data. 
+As discussed in the previous chapter,
+checking for duplicated entries is usually part of data quality monitoring,
+and is ideally addressed as soon as data is received
+
+Note that while modern survey tools create unique observation identifiers,
+that is not the same as having a unique ID variable for each individual in the sample.
 You want to make sure the data set has a unique ID variable
 that can be cross-referenced with other records, such as the master data set\sidenote{\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
 and other rounds of data collection.
@@ -262,30 +269,23 @@ package\index{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldk
 create an automated workflow to identify, correct and document
 occurrences of duplicate entries.
 
-As discussed in the previous chapter,
-looking for duplicated entries is usually part of data quality monitoring,
-and is typically addressed as part of that process.
-So, in practice, you will start writing data cleaning code during data collection.
-The other only other case when changes to the original data points are made during cleaning
-is also directly connected to data quality monitoring:
-it's when you need to correct mistakes in data entry.
-During data quality monitoring, you will inevitably encounter data entry mistakes,
+\subsection{Preparing a clean dataset}
+The main output of data cleaning is the cleaned data set.
+It should contain the same information as the raw data set,
+with identifying variables and data entry mistakes removed.
+When reviewing raw data, you will inevitably encounter data entry mistakes,
 such as typos and inconsistent values.
 These mistakes should be fixed in the cleaned data set,
 and you should keep a careful record of how they were identified,
-and how the correct value was obtained.
+and how the correct value was obtained.\sidenote{\url{
+		https://dimewiki.worldbank.org/Data\_Cleaning}}
 
-\subsection{Labeling, annotating, and finalizing clean data}
-
-The main output of data cleaning is the cleaned data set.
-It should contain the same information as the raw data set,
-with no changes to data points.
-It should also be easily traced back to the survey instrument,
-and be accompanied by a dictionary or codebook.
+The clean dataset should always be accompanied by a dictionary or codebook.
+Survey data should be easily traced back to the survey instrument. 
 Typically, one cleaned data set will be created for each data source
-or survey instrument.
-Each row in the cleaned data set represents one survey entry or unit of
-observation.\cite{tidy-data}
+or survey instrument; and each row in the cleaned data set represents one 
+respondent or unit of observation.\cite{tidy-data}
+
 If the raw data set is very large, or the survey instrument is very complex,
 you may want to break the data cleaning into sub-steps,
 and create intermediate cleaned data sets
@@ -307,6 +307,7 @@ even if it will remain embargoed for some time.
 This will help you organize your files and create a back up of the data,
 and some donors require that the data be filed as an intermediate step of the project.
 
+\subsection{Labeling, annotating, and finalizing clean data}
 On average, making corrections to primary data is more time-consuming than when using secondary data.
 But you should always check for possible issues in any data you are about to use.
 The last step of data cleaning, however,
