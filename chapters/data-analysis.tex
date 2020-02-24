@@ -14,7 +14,7 @@ data, code and outputs must be well-organized,
 with a clear system for version control,
 and analytical scripts structured such that any member of the research team can run them.
 Putting in time upfront to structure data work well
-pays off substantial dividends throughout the process.
+pays substantial dividends throughout the process.
 
 In this chapter, we first cover data management:
 how to organize your data work at the start of a project
@@ -62,23 +62,23 @@ There are many ways to organize research data.
 Our preferred scheme reflects the task breakdown that will be outlined in this chapter.
 \index{data organization}
 Our team at DIME Analytics developed the \texttt{iefolder}\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/iefolder}}
+	\url{https://dimewiki.worldbank.org/iefolder}}
 command (part of \texttt{ietoolkit}\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/ietoolkit}})
+	\url{https://dimewiki.worldbank.org/ietoolkit}})
 to automatize the creation of a folder following this scheme and
 to standardize folder structures across teams and projects.
 Standardizing folders greatly reduces the costs that PIs and RAs face when switching between projects,
 because they are all organized in exactly the same way
 and use the same filepaths, shortcuts, and macro references.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/DataWork\_Folder}}
+	\url{https://dimewiki.worldbank.org/DataWork_Folder}}
 We created \texttt{iefolder} based on our experience with primary data,
 but it can be used for different types of data,
 and adapted to fit different needs.
-No matter what are your team's preference in terms of folder organization,
+No matter what your team's preferences in terms of folder organization are,
 the principle of creating a single unified standard remains.
 
-At the top level of the structure created by \texttt{iefolder} are what we call survey round folders.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/DataWork\_Survey\_Round}}
+At the top level of the structure created by \texttt{iefolder} are what we call ``round'' folders.\sidenote{
+	\url{https://dimewiki.worldbank.org/DataWork_Survey_Round}}
 You can think of a ``round'' as a single source of data,
 which will all be cleaned using a single script.
 Inside each round folder, there are dedicated folders for:
@@ -87,7 +87,7 @@ There is a folder for raw results, as well as for final outputs.
 The folders that hold code are organized in parallel to these,
 so that the progression through the whole project can be followed by anyone new to the team.
 Additionally, \texttt{iefolder} creates \textbf{master do-files}\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Master\_Do-files}}
+	\url{https://dimewiki.worldbank.org/Master_Do-files}}
 so the structure of all project code is reflected in a top-level script.
 
 \subsection{Breaking down tasks}
@@ -153,21 +153,21 @@ Git will highlight the changes that were in data sets and results that they enta
 \section{De-identifying research data}
 
 The starting point for all tasks described in this chapter is the raw data
-which should contain only information that are received directly from the field.
+which should contain only information that is received directly from the field.
 The raw data will invariably come in a variety of file formats and these files
-should be saved in the raw data folder \textit{exactly as they were 
+should be saved in the raw data folder \textit{exactly as they were
 received}. Be mindful of how and where they are stored as they can not be
 re-created and nearly always contain confidential data such as
 personally-identifying information\index{personally-identifying information}.
 As described in the previous chapter, confidential data must always be
-encrypted\sidenote{\url{https://dimewiki.worldbank.org/wiki/Encryption}} and be
+encrypted\sidenote{\url{https://dimewiki.worldbank.org/Encryption}} and be
 properly backed up since every other data file you will use is created from the
-raw data. The only data sets that can not be re-created are the raw data 
+raw data. The only data sets that can not be re-created are the raw data
 themselves.
 
 The raw data files should never be edited directly. This is true even in the
 rare case when the raw data cannot be opened due to, for example, incorrect
-encoding where non-English character is causing rows or columns to break at the
+encoding where a non-English character is causing rows or columns to break at the
 wrong place when the data is imported. In this scenario, you should create a
 copy of the raw data where you manually remove the special characters and
 securely back up \textit{both} the broken and the fixed copy of the raw data.
@@ -177,8 +177,9 @@ case you later realize that the manual fix was done incorrectly.
 Loading encrypted data frequently can be disruptive to the workflow.
 To facilitate the handling of the data, remove any personally identifiable information from the data set.
 This will create a de-identified data set, that can be saved in a non-encrypted folder.
-De-identification,\sidenote{\url{https://dimewiki.worldbank.org/wiki/De-identification}}
-at this stage, means stripping the data set of direct identifiers.\sidenote{\url{ https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
+De-identification,\sidenote{\url{https://dimewiki.worldbank.org/De-identification}}
+at this stage, means stripping the data set of direct identifiers.\sidenote{\url{
+https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
 To be able to do so, you will need to go through your data set and
 find all the variables that contain identifying information.
 Flagging all potentially identifying variables in the questionnaire design stage
@@ -190,11 +191,11 @@ scans variable names and labels for common string patterns associated with ident
 The World Bank's \texttt{sdcMicro}
 lists variables that uniquely identify observations,
 as well as allowing for more sophisticated disclosure risk calculations.\sidenote{
-	\url{http://sdctools.github.io/sdcMicro/articles/sdcMicro.html}}
+	\url{https://sdctools.github.io/sdcMicro/articles/sdcMicro.html}}
 The \texttt{iefieldkit} command \texttt{iecodebook}
 lists all variables in a data set and exports an Excel sheet
 where you can easily select which variables to keep or drop.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Iecodebook}}
+	\url{https://dimewiki.worldbank.org/Iecodebook}}
 
 Once you have a list of variables that contain PII,
 assess them against the analysis plan and first ask yourself for each variable:
@@ -204,22 +205,22 @@ Don't be afraid to drop too many variables the first time,
 as you can always go back and remove variables from the list of variables to be dropped,
 but you can not go back in time and drop a PII variable that was leaked
 because it was incorrectly kept.
-Examples include respondent names, enumerator names, interview date, respondent phone number.
+Examples include respondent names, enumerator names, interview dates, and respondent phone numbers.
 For each PII variable that is needed in the analysis, ask yourself:
-\textit{can I encode or otherwise construct a variable that masks the PII, and 
+\textit{can I encode or otherwise construct a variable that masks the PII, and
 then drop this variable?}
 This is typically the case for most identifying information.
 Examples include geocoordinates
 (after constructing measures of distance or area,
-drop the specific location),
+drop the specific location)
 and names for social network analysis (can be encoded to secret and unique IDs).
-If the answer to either of two questions above is yes,
+If the answer to either of the two questions above is yes,
 all you need to do is write a script to drop the variables that are not required for analysis,
 encode or otherwise mask those that are required,
 and save a working version of the data.
-If PII variables are strictly required for the analysis itself and can not be 
+If PII variables are strictly required for the analysis itself and can not be
 masked or encoded,
-it will be necessary to keep at least a subset of the data encrypted through 
+it will be necessary to keep at least a subset of the data encrypted through
 the data analysis process.
 
 The resulting de-identified data will be the underlying source for all cleaned and constructed data.
@@ -230,9 +231,8 @@ de-identification should not affect the usability of the data.
 
 \section{Cleaning data for analysis}
 
-Data cleaning is the second stage in the transformation of data you received from 
-the field into data that you can analyze.\sidenote{\url{
-https://dimewiki.worldbank.org/wiki/Data\_Cleaning}}
+Data cleaning is the second stage in the transformation of data you received into data that you can analyze.\sidenote{\url{
+https://dimewiki.worldbank.org/Data_Cleaning}}
 The cleaning process involves (1) making the data set easily usable and understandable,
 and (2) documenting individual data points and patterns that may bias the analysis.
 The underlying data structure does not change.
@@ -249,16 +249,16 @@ Knowing your data set well will make it possible to do analysis.
 
 There are two main cases when the raw data will be modified during data cleaning.
 The first one is when there are duplicated entries in the data.
-Ensuring that observations are uniquely and fully identified\sidenote{\url{https://dimewiki.worldbank.org/wiki/ID\_Variable\_Properties}}
+Ensuring that observations are uniquely and fully identified\sidenote{\url{https://dimewiki.worldbank.org/ID_Variable_Properties}}
 is possibly the most important step in data cleaning.
 Modern survey tools create unique observation identifiers.
 That, however, is not the same as having a unique ID variable for each individual in the sample.
 You want to make sure the data set has a unique ID variable
-that can be cross-referenced with other records, such as the Master Data Set\sidenote{\url{https://dimewiki.worldbank.org/wiki/Master\_Data\_Set}}
+that can be cross-referenced with other records, such as the master data set\sidenote{\url{https://dimewiki.worldbank.org/Master_Data_Set}}
 and other rounds of data collection.
 \texttt{ieduplicates} and \texttt{iecompdup},
 two Stata commands included in the \texttt{iefieldkit}
-package\index{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/wiki/iefieldkit}}
+package\index{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
 create an automated workflow to identify, correct and document
 occurrences of duplicate entries.
 
@@ -284,7 +284,7 @@ It should also be easily traced back to the survey instrument,
 and be accompanied by a dictionary or codebook.
 Typically, one cleaned data set will be created for each data source
 or survey instrument.
-Each row in the cleaned data set represents one survey entry or unit of 
+Each row in the cleaned data set represents one survey entry or unit of
 observation.\cite{tidy-data}
 If the raw data set is very large, or the survey instrument is very complex,
 you may want to break the data cleaning into sub-steps,
@@ -320,8 +320,9 @@ This is a key step to making the data easy to use, but it can be quite repetitiv
 The \texttt{iecodebook} command suite, also part of \texttt{iefieldkit},
 is designed to make some of the most tedious components of this process,
 such as renaming, relabeling, and value labeling, much easier.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/iecodebook}}
+	\url{https://dimewiki.worldbank.org/iecodebook}}
 \index{iecodebook}
+
 We have a few recommendations on how to use this command,
 and how to approach data cleaning in general.
 First, we suggest keeping the same variable names in the cleaned data set as in the survey instrument,
@@ -330,14 +331,14 @@ Second, don't skip the labeling.
 Applying labels makes it easier to understand what the data mean as you explore it,
 and thus reduces the risk of small errors making their way through into the analysis stage.
 Variable and value labels should be accurate and concise.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Applying\_Labels}}
+	\url{https://dimewiki.worldbank.org/Data_Cleaning\#Applying_Labels}}
 Applying labels makes it easier to understand what the data is showing while exploring the data.
 This minimizes the risk of small errors making their way through into the analysis stage.
-Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Applying\_Labels}}
+Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/Data_Cleaning\#Applying_Labels}}
 Third, recodes should be used to turn codes for ``Don't know'', ``Refused to answer'', and
-other non-responses into extended missing values.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
+other non-responses into extended missing values.\sidenote{\url{https://dimewiki.worldbank.org/Data_Cleaning\#Survey_Codes_and_Missing_Values}}
 String variables that correspond to categorical variables need to be encoded.
-Open-ended responses stored as strings usually have a high-risk of being identifiers,
+Open-ended responses stored as strings usually have a high risk of being identifiers,
 so they should be dropped at this point.
 You can use the encrypted data as an input to a construction script
 that categorizes these responses and merges them to the rest of the dataset.
@@ -350,7 +351,7 @@ Throughout the data cleaning process, you will need inputs from the field,
 including enumerator manuals, survey instruments,
 supervisor notes, and data quality monitoring reports.
 These materials are essential for data documentation.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Data\_Documentation}}
+	\url{https://dimewiki.worldbank.org/Data_Documentation}}
 \index{Documentation}
 They should be stored in the corresponding \texttt{Documentation} folder for easy access,
 as you will probably need them during analysis,
@@ -391,18 +392,18 @@ You need to manipulate them into something that has \textit{economic} meaning,
 such as caloric input or food expenditure per adult equivalent.
 During this process, the data points will typically be reshaped and aggregated
 so that level of the data set goes from the unit of observation
-(one item in the bundle) in the survey to the unit of analysis (the household).\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}}
-so that level of the data set goes from the unit of observation (one item in the bundle) 
+(one item in the bundle) in the survey to the unit of analysis (the household),\sidenote{
+	\url{https://dimewiki.worldbank.org/Unit_of_Observation}}
+so that the level of the data set goes from the unit of observation (one item in the bundle)
 in the survey to the unit of analysis (the household).\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}}
+\url{https://dimewiki.worldbank.org/Unit_of_Observation}}
 
 A constructed data set is built to answer an analysis question.
 Since different pieces of analysis may require different samples,
 or even different units of observation,
 you may have one or multiple constructed data sets,
 depending on how your analysis is structured.
-So don't worry if you cannot create a single, ``canonical'' analysis data set.
+Don't worry if you cannot create a single, ``canonical'' analysis data set.
 It is common to have many purpose-built analysis datasets.
 Think of an agricultural intervention that was randomized across villages
 and only affected certain plots within each village.
@@ -410,7 +411,7 @@ The research team may want to run household-level regressions on income,
 test for plot-level productivity gains,
 and check if village characteristics are balanced.
 Having three separate datasets for each of these three pieces of analysis
-will result in much cleaner do files than if they all started from the same file.
+will result in much cleaner do files than if they all started from the same data set.
 
 % From cleaning
 Construction is done separately from data cleaning for two reasons.
@@ -434,7 +435,7 @@ according to the pre-analysis plan.\index{Pre-analysis plan}
 In practice, however, following this principle is not always easy.
 As you analyze the data, different constructed variables will become necessary,
 as well as subsets and other alterations to the data.
-Still, constructing variables in a separate script from the analysis
+Constructing variables in a separate script from the analysis
 will help you ensure consistency across different outputs.
 If every script that creates a table starts by loading a data set,
 subsetting it, and manipulating variables,
@@ -471,12 +472,12 @@ It is often useful to start looking at comparisons and other documentation outsi
 Make sure there is consistency across constructed variables.
 It's possible that your questionnaire asked respondents to report some answers as percentages and others as proportions,
 or that in one variable \texttt{0} means ``no'' and \texttt{1} means ``yes'',
-while in another one the same answers were coded are \texttt{1} and \texttt{2}.
+while in another one the same answers were coded as \texttt{1} and \texttt{2}.
 We recommend coding yes/no questions as either \texttt{1} and \texttt{0} or \texttt{TRUE} and \texttt{FALSE},
 so they can be used numerically as frequencies in means and as dummies in regressions.
-(Note that this implies that categorical variables like \texttt{gender}
+(Note that this implies that categorical variables like \texttt{sex}
 should be re-expressed as binary variables like \texttt{female}.)
-Check that non-binary categorical variables have the same value-assignment, i.e.,
+Check that non-binary categorical variables have the same value assignment, i.e.,
 that labels and levels have the same correspondence across variables that use the same options.
 Finally, make sure that any numeric variables you are comparing are converted to the same scale or unit of measure.
 You cannot add one hectare and two acres into a meaningful number.
@@ -546,10 +547,10 @@ Together, they will form a detailed account of the data processing.
 Data analysis is the stage when research outputs are created.
 \index{data analysis}
 Many introductions to common code skills and analytical frameworks exist, such as
-\textit{R for Data Science};\sidenote{\url{https://r4ds.had.co.nz/}}
-\textit{A Practical Introduction to Stata};\sidenote{\url{https://scholar.harvard.edu/files/mcgovern/files/practical\_introduction\_to\_stata.pdf}}
-\textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844\_Mostly\_Harmless\_Econometrics\_An\_Empiricist's\_Companion}}
-and \textit{Causal Inference: The Mixtape}.\sidenote{\url{http://scunning.com/mixtape.html}}
+\textit{R for Data Science};\sidenote{\url{https://r4ds.had.co.nz}}
+\textit{A Practical Introduction to Stata};\sidenote{\url{https://scholar.harvard.edu/files/mcgovern/files/practical_introduction_to_stata.pdf}}
+\textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844_Mostly_Harmless_Econometrics_An_Empiricist's_Companion}}
+and \textit{Causal Inference: The Mixtape}.\sidenote{\url{https://scunning.com/mixtape.html}}
 This section will not include instructions on how to conduct specific analyses.
 That is a research question, and requires expertise beyond the scope of this book.
 Instead, we will outline the structure of writing analysis code,
@@ -606,7 +607,7 @@ leave this to near publication time.
 
 \subsection{Visualizing data}
 
-\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_visualization}} \index{data visualization}
+\textbf{Data visualization}\sidenote{\url{https://dimewiki.worldbank.org/Data_visualization}} \index{data visualization}
 is increasingly popular, and is becoming a field in its own right.\cite{healy2018data,wilke2019fundamentals}
 Whole books have been written on how to create good data visualizations,
 so we will not attempt to give you advice on it.
@@ -619,18 +620,18 @@ as does \textit{Data Visualization: A Practical Introduction}.\sidenote{
 	\url{http://socvis.co}}
 Graphics tools like Stata are highly customizable.
 There is a fair amount of learning curve associated with extremely-fine-grained adjustment,
-but it is well worth reviewing the graphics manual\sidenote{\url{https://www.stata.com/manuals/g.pdf}}
+but it is well worth reviewing the graphics manual.\sidenote{\url{https://www.stata.com/manuals/g.pdf}}
 For an easier way around it, Gray Kimbrough's \textit{Uncluttered Stata Graphs}
-code is an excellent default replacement for Stata graphics that is easy to install.
-\sidenote{\url{https://graykimbrough.github.io/uncluttered-stata-graphs/}}
-If you are a R user, the \textit{R Graphics Cookbook}\sidenote{\url{https://r-graphics.org/}}
-is a great resource for the its popular visualization package, \texttt{ggplot}\sidenote{
-	\url{https://ggplot2.tidyverse.org/}}.
+code is an excellent default replacement for Stata graphics that is easy to install.\sidenote{
+  \url{https://graykimbrough.github.io/uncluttered-stata-graphs}}
+If you are an R user, the \textit{R Graphics Cookbook}\sidenote{\url{https://r-graphics.org}}
+is a great resource for the its popular visualization package \texttt{ggplot}\sidenote{
+	\url{https://ggplot2.tidyverse.org}}.
 But there are a variety of other visualization packages,
-such as \texttt{highcharter}\sidenote{\url{http://jkunst.com/highcharter/}},
-\texttt{r2d3}\sidenote{\url{https://rstudio.github.io/r2d3/}},
-\texttt{leaflet}\sidenote{\url{https://rstudio.github.io/leaflet/}},
-and \texttt{plotly}\sidenote{\url{https://plot.ly/r/}}, to name a few.
+such as \texttt{highcharter},\sidenote{\url{http://jkunst.com/highcharter}}
+\texttt{r2d3},\sidenote{\url{https://rstudio.github.io/r2d3}}
+\texttt{leaflet},\sidenote{\url{https://rstudio.github.io/leaflet}}
+and \texttt{plotly},\sidenote{\url{https://plot.ly/r}} to name a few.
 We have no intention of creating an exhaustive list, and this one is certainly missing very good references; but it is a good place to start.
 
 We attribute some of the difficulty of creating good data visualization
@@ -639,8 +640,8 @@ Making a visually compelling graph would already be hard enough if
 you didn't have to go through many rounds of googling to understand a command.
 The trickiest part of using plot commands is to get the data in the right format.
 This is why we created the \textbf{Stata Visual Library}\sidenote{
-	\url{https://worldbank.github.io/Stata-IE-Visual-Library/}},
-which has examples of graphs created in Stata and curated by us.\sidenote{A similar resource for R is \textit{The R Graph Gallery}. \\\url{https://www.r-graph-gallery.com/}}
+	\url{https://worldbank.github.io/Stata-IE-Visual-Library}},
+which has examples of graphs created in Stata and curated by us.\sidenote{A similar resource for R is \textit{The R Graph Gallery}. \\\url{https://www.r-graph-gallery.com}}
 The Stata Visual Library includes example data sets to use with each do-file,
 so you get a good sense of what your data should look like
 before you can start writing code to create a visualization.
@@ -650,12 +651,12 @@ before you can start writing code to create a visualization.
 Our team has created a few products to automate common outputs and save you
 precious research time.
 The \texttt{ietoolkit} package includes two commands to export nicely formatted tables.
-\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Iebaltab}}
+\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/iebaltab}}
 creates and exports balance tables to excel or {\LaTeX}.
-\texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Ieddtab}}
+\texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/ieddtab}}
 does the same for difference-in-differences regressions.
-It also includes a command, \texttt{iegraph}\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Iegraph}},
+It also includes a command, \texttt{iegraph},\sidenote{
+	\url{https://dimewiki.worldbank.org/iegraph}}
 to export pre-formatted impact evaluation results graphs.
 
 It's okay to not export each and every table and graph created during exploratory analysis.
@@ -678,10 +679,10 @@ Copying results from Excel to Word is error-prone and inefficient.
 Copying results from a software console is risk-prone,
 even more inefficient, and totally unnecessary.
 There are numerous commands to export outputs from both R and Stata to a myriad of formats.\sidenote{
-	Some examples are \href{ http://repec.sowi.unibe.ch/stata/estout/}{\texttt{estout}}, \href{https://www.princeton.edu/~otorres/Outreg2.pdf}{\texttt{outreg2}},
-and \href{https://www.benjaminbdaniels.com/stata-code/outwrite/}{\texttt{outwrite}} in Stata,
-and \href{https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf}{\texttt{stargazer}}
-and \href{https://ggplot2.tidyverse.org/reference/ggsave.html}{\texttt{ggsave}} in R.}
+	Some examples are \url{http://repec.sowi.unibe.ch/stata/estout}{\texttt{estout}}, \url{https://www.princeton.edu/~otorres/Outreg2.pdf}{\texttt{outreg2}},
+and \url{https://www.benjaminbdaniels.com/stata-code/outwrite}{\texttt{outwrite}} in Stata,
+and \url{https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf}{\texttt{stargazer}}
+and \url{https://ggplot2.tidyverse.org/reference/ggsave.html}{\texttt{ggsave}} in R.}
 Save outputs in accessible and, whenever possible, lightweight formats.
 Accessible means that it's easy for other people to open them.
 In Stata, that would mean always using \texttt{graph export} to save images as
@@ -695,10 +696,10 @@ Exporting table to \texttt{.tex} should be preferred.
 Excel \texttt{.xlsx} and \texttt{.csv} are also commonly used,
 but require the extra step of copying the tables into the final output.
 The amount of work needed in a copy-paste workflow increases rapidly with the number of tables and figures included in a research output,
-and do the chances of having the wrong version a result in your paper or report.
+and so do the chances of having the wrong version a result in your paper or report.
 
-If you need to create a table with a very particular format,
-that is not automated by any command you know, consider writing the it manually
+If you need to create a table with a very particular format
+that is not automated by any command you know, consider writing it manually
 (Stata's \texttt{filewrite}, for example, allows you to do that).
 This will allow you to write a cleaner script that focuses on the econometrics,
 and not on complicated commands to create and append intermediate matrices.
@@ -709,8 +710,8 @@ Keep in mind that final outputs should be self-standing.
 This means it should be easy to read and understand them with only the information they contain.
 Make sure labels and notes cover all relevant information, such as sample,
 unit of observation, unit of measurement and variable definition.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Checklist:\_Reviewing\_Graphs} \\
-	\url{https://dimewiki.worldbank.org/wiki/Checklist:\_Submit\_Table}}
+	\url{https://dimewiki.worldbank.org/Checklist:_Reviewing_Graphs} \\
+	\url{https://dimewiki.worldbank.org/Checklist:_Submit_Table}}
 
 If you follow the steps outlined in this chapter,
 most of the data work involved in the last step of the research process

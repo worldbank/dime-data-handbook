@@ -8,7 +8,7 @@
 * SORTING - sort on the uniquely identifying variable "make"
     isid make, sort
 
-* SEEDING - Seed picked using http://bit.ly/stata-random
+* SEEDING - Seed picked using https://bit.ly/stata-random
     set seed 287608
 
 * Demonstrate stability after VERSIONING, SORTING and SEEDING
