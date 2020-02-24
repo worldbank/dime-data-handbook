@@ -269,10 +269,40 @@ package\index{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldk
 create an automated workflow to identify, correct and document
 occurrences of duplicate entries.
 
+\subsection{Labeling, annotating, and finalizing clean data}
+
+The last step of data cleaning is to label and annotate the data,
+so that all users have the information needed to interact with it.
+There are three key steps: renaming, labeling and recoding. 
+This is a key step to making the data easy to use, but it can be quite repetitive.
+The \texttt{iecodebook} command suite, also part of \texttt{iefieldkit},
+is designed to make some of the most tedious components of this process easier.\sidenote{
+	\url{https://dimewiki.worldbank.org/iecodebook}}
+\index{iecodebook}
+
+First, \textbr{renaming}: for data with an accompanying survey instrument, 
+it is useful to keep the same variable names in the cleaned dataset as in the survey instrument.
+That way it's straightforward to link variables to the relevant survey question.
+Second, \textbf{labeling}: applying labels makes it easier to understand your data as you explore it,
+and thus reduces the risk of small errors making their way through into the analysis stage.
+Variable and value labels should be accurate and concise.\sidenote{
+	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Applying\_Labels}}
+
+Third, \textbf{recoding}: codes for ``Don't know'', ``Refused to answer'', and
+other non-responses should be recoded into extended missing values.\sidenote{
+	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
+String variables that correspond to categorical variables should be encoded.
+Open-ended responses stored as strings usually have a high risk of being identifiers,
+so they should be encoded into categories as much as possible and raw data points dropped.
+You can use the encrypted data as an input to a construction script
+that categorizes these responses and merges them to the rest of the dataset.
+
 \subsection{Preparing a clean dataset}
 The main output of data cleaning is the cleaned data set.
 It should contain the same information as the raw data set,
 with identifying variables and data entry mistakes removed.
+Although primary data typically requires more extensive data cleaning than secondary data, 
+you should carefully explore possible issues in any data you are about to use.
 When reviewing raw data, you will inevitably encounter data entry mistakes,
 such as typos and inconsistent values.
 These mistakes should be fixed in the cleaned data set,
@@ -295,71 +325,39 @@ is is also useful to have each cleaned data set at the smallest unit of observat
 This will make the cleaning faster and the data easier to handle during construction.
 But having a single cleaned data set will help you with sharing and publishing the data.
 
+Finally, any additional information collected only for quality monitoring purposes,
+such as notes and duration fields, can also be dropped.
 To make sure the cleaned data set file doesn't get too big to be handled,
 use commands such as \texttt{compress} in Stata to make sure the data
 is always stored in the most efficient format.
+
 Once you have a cleaned, de-identified data set and the documentation to support it,
-you have created the first data output of your project:
-a publishable data set.
+you have created the first data output of your project: a publishable data set.
 The next chapter will get into the details of data publication.
-For now, all you need to know is that your team should consider submitting the data set for publication at this point,
+For now, all you need to know is that your team should consider submitting this data set for publication,
 even if it will remain embargoed for some time.
-This will help you organize your files and create a back up of the data,
+This will help you organize your files and create a backup of the data,
 and some donors require that the data be filed as an intermediate step of the project.
 
-\subsection{Labeling, annotating, and finalizing clean data}
-On average, making corrections to primary data is more time-consuming than when using secondary data.
-But you should always check for possible issues in any data you are about to use.
-The last step of data cleaning, however,
-will most likely be necessary no matter what type of data is involved.
-It consists of labeling and annotating the data,
-so that its users have all the information needed to interact with it.
-The last step of data cleaning, however, will most likely still be necessary.
-It consists of labeling and annotating the data, so that its users have all the
-information needed to interact with it.
-This is a key step to making the data easy to use, but it can be quite repetitive.
-The \texttt{iecodebook} command suite, also part of \texttt{iefieldkit},
-is designed to make some of the most tedious components of this process,
-such as renaming, relabeling, and value labeling, much easier.\sidenote{
-	\url{https://dimewiki.worldbank.org/iecodebook}}
-\index{iecodebook}
-
-We have a few recommendations on how to use this command,
-and how to approach data cleaning in general.
-First, we suggest keeping the same variable names in the cleaned data set as in the survey instrument,
-so it's straightforward to link data points for a variable to the question that originated them.
-Second, don't skip the labeling.
-Applying labels makes it easier to understand what the data mean as you explore it,
-and thus reduces the risk of small errors making their way through into the analysis stage.
-Variable and value labels should be accurate and concise.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Applying\_Labels}}
-Applying labels makes it easier to understand what the data is showing while exploring the data.
-This minimizes the risk of small errors making their way through into the analysis stage.
-Variable and value labels should be accurate and concise.\sidenote{\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Applying\_Labels}}
-Third, recodes should be used to turn codes for ``Don't know'', ``Refused to answer'', and
-other non-responses into extended missing values.\sidenote{\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
-String variables that correspond to categorical variables need to be encoded.
-Open-ended responses stored as strings usually have a high risk of being identifiers,
-so they should be dropped at this point.
-You can use the encrypted data as an input to a construction script
-that categorizes these responses and merges them to the rest of the dataset.
-Finally, any additional information collected only for quality monitoring purposes,
-such as notes and duration fields, can also be dropped.
 
 \subsection{Documenting data cleaning}
-
-Throughout the data cleaning process, you will need inputs from the field,
-including enumerator manuals, survey instruments,
+Throughout the data cleaning process, 
+you will often need extensive inputs from the people responsible for data collection.
+(This could be a survey team, the government ministry responsible for administrative data systems, 
+the technology firm that generated remote sensing data, etc.)
+You should acquire and organize all documentation of how the data was generated, such as 
+data collection reports, field plans, data collection manuals, survey instruments,
 supervisor notes, and data quality monitoring reports.
 These materials are essential for data documentation.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Documentation}}
 \index{Documentation}
 They should be stored in the corresponding \texttt{Documentation} folder for easy access,
 as you will probably need them during analysis,
-and they must be made available for publication.
+and should be published along with the data.
+
 Include in the \texttt{Documentation} folder records of any
 corrections made to the data, including to duplicated entries,
-as well as communications from the field where theses issues are reported.
+as well as communications where theses issues are reported.
 Be very careful not to include sensitive information in documentation that is not securely stored,
 or that you intend to release as part of a replication package or data publication.
 
@@ -368,9 +366,8 @@ As clean your data set, take the time to explore the variables in it.
 Use tabulations, summary statistics, histograms and density plots to understand the structure of data,
 and look for potentially problematic patterns such as outliers,
 missing values and distributions that may be caused by data entry errors.
-Don't spend time trying to correct data points that were not flagged during data quality monitoring.
-Instead, create a record of what you observe,
-then use it as a basis to discuss with your team how to address potential issues during data construction.
+Create a record of what you observe,
+then use it as a basis for discussions of how to address data issues during variable construction.
 This material will also be valuable during exploratory data analysis.
 
 \section{Constructing final indicators}
