@@ -346,7 +346,7 @@ you will often need extensive inputs from the people responsible for data collec
 (This could be a survey team, the government ministry responsible for administrative data systems, 
 the technology firm that generated remote sensing data, etc.)
 You should acquire and organize all documentation of how the data was generated, such as 
-data collection reports, field plans, data collection manuals, survey instruments,
+reports from the data provider, field protocols, data collection manuals, survey instruments,
 supervisor notes, and data quality monitoring reports.
 These materials are essential for data documentation.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Documentation}}
@@ -373,28 +373,25 @@ This material will also be valuable during exploratory data analysis.
 \section{Constructing final indicators}
 
 % What is construction -------------------------------------
-The third stage in the creation of analysis data is construction.
-Constructing variables means processing the data points as provided in the raw data to make them suitable for analysis.
+The third stage is construction of the variables of interest for analysis.
 It is at this stage that the raw data is transformed into analysis data.
 This is done by creating derived variables (dummies, indices, and interactions, to name a few),
 as planned during research design\index{Research design},
 and using the pre-analysis plan as a guide.\index{Pre-analysis plan}
 To understand why construction is necessary,
-let's take the example of a household survey's consumption module.
+let's take the example of a consumption module from a household survey.
 For each item in a context-specific bundle,
-this module will ask whether the household consumed any of it over a certain period of time.
-If they did, it will then ask about quantities, units and expenditure for each item.
-However, it is difficult to run a meaningful regression
+the respondent is asked whether the household consumed each item over a certain period of time.
+If they did, the respondent will be asked about the quantity consumed and the cost of the relevant unit.
+It would be difficult to run a meaningful regression
 on the number of cups of milk and handfuls of beans that a household consumed over a week.
 You need to manipulate them into something that has \textit{economic} meaning,
 such as caloric input or food expenditure per adult equivalent.
 During this process, the data points will typically be reshaped and aggregated
 so that level of the data set goes from the unit of observation
-(one item in the bundle) in the survey to the unit of analysis (the household),\sidenote{
+(one item in the bundle) in the survey to the unit of analysis (the household).\sidenote{
 	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
-so that the level of the data set goes from the unit of observation (one item in the bundle)
-in the survey to the unit of analysis (the household).\sidenote{
-\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+
 
 A constructed data set is built to answer an analysis question.
 Since different pieces of analysis may require different samples,
@@ -413,9 +410,11 @@ will result in much cleaner do files than if they all started from the same data
 
 % From cleaning
 Construction is done separately from data cleaning for two reasons.
-The first one is to clearly differentiate the data originally collected
-from the result of data processing decisions.
-The second is to ensure that variable definition is consistent across data sources.
+The first one is to clearly differentiate correction of data entry errors
+(necessary for all interactions with the data)
+from creation of analysis indicators (necessary only for the analysis at hand).
+It is also important to differentiate the two stages 
+to ensure that variable definition is consistent across data sources.
 Unlike cleaning, construction can create many outputs from many inputs.
 Let's take the example of a project that has a baseline and an endline survey.
 Unless the two instruments are exactly the same,
@@ -424,52 +423,36 @@ the data cleaning for them will require different steps,
 and therefore will be done separately.
 However, you still want the constructed variables to be calculated in the same way, so they are comparable.
 To do this, you will require at least two cleaning scripts,
-and a single one for construction --
-we will discuss how to do this in practice in a bit.
+and a single one for construction.
 
 % From analysis
-Ideally, indicator construction should be done right after data cleaning,
+Ideally, indicator construction should be done right after data cleaning and before data analysis starts,
 according to the pre-analysis plan.\index{Pre-analysis plan}
-In practice, however, following this principle is not always easy.
-As you analyze the data, different constructed variables will become necessary,
+In practice, however, as you analyze the data, 
+different constructed variables will become necessary,
 as well as subsets and other alterations to the data.
-Constructing variables in a separate script from the analysis
-will help you ensure consistency across different outputs.
+Even if construction and analysis are done concurrently, 
+you should ways do the two in separate scripts. 
 If every script that creates a table starts by loading a data set,
 subsetting it, and manipulating variables,
 any edits to construction need to be replicated in all scripts.
 This increases the chances that at least one of them will have a different sample or variable definition.
-Therefore, even if construction ends up coming before analysis only in the order the code is run,
-it's important to think of them as different steps.
+Doing all variable construction in a single, separate script helps 
+avoid this and ensure consistency across different outputs.
 
 \subsection{Constructing analytical variables}
-
-The first thing that comes to mind when we talk about variable construction is, of course, creating new variables.
-Do this by adding new variables to the data set instead of overwriting the original information,
-and assign functional names to them.
-During cleaning, you want to keep all variables consistent with the survey instrument.
-But constructed variables were not present in the survey to start with,
-so making their names consistent with the survey form is not as crucial.
-Of course, whenever possible, having variable names that are both intuitive
-\textit{and} can be linked to the survey is ideal,
-but if you need to choose, prioritize functionality.
+New variables created during the construction stage should be added to the data set, instead of overwriting the original information.
+New variables should be assigned functional names. 
 Ordering the data set so that related variables are together,
-and adding notes to each of them as necessary will also make your data set more user-friendly.
+and adding notes to each of them as necessary will make your data set more user-friendly.
 
-The most simple case of new variables to be created are aggregate indicators.
-For example, you may want to add a household's income from different sources into a single total income variable,
-or create a dummy for having at least one child in school.
-Jumping to the step where you actually create this variables seems intuitive,
-but it can also cause you a lot of problems,
-as overlooking details may affect your results.
-It is important to check and double-check the value-assignments of questions,
-as well as their scales, before constructing new variables based on them.
-This is when you will use the knowledge of the data you acquired and the documentation you created during the cleaning step the most.
-It is often useful to start looking at comparisons and other documentation outside the code editor.
-
-Make sure there is consistency across constructed variables.
-It's possible that your questionnaire asked respondents to report some answers as percentages and others as proportions,
-or that in one variable \texttt{0} means ``no'' and \texttt{1} means ``yes'',
+Before constructing new variables, 
+you must check and double-check the value-assignments of questions,
+as well as the units and scales
+This is when you will use the knowledge of the data and the documentation you acquired during cleaning.
+For example, it's possible that the survey instrument asked respondents 
+to report some answers as percentages and others as proportions,
+or that in one question \texttt{0} means ``no'' and \texttt{1} means ``yes'',
 while in another one the same answers were coded as \texttt{1} and \texttt{2}.
 We recommend coding yes/no questions as either \texttt{1} and \texttt{0} or \texttt{TRUE} and \texttt{FALSE},
 so they can be used numerically as frequencies in means and as dummies in regressions.
@@ -478,17 +461,16 @@ should be re-expressed as binary variables like \texttt{female}.)
 Check that non-binary categorical variables have the same value assignment, i.e.,
 that labels and levels have the same correspondence across variables that use the same options.
 Finally, make sure that any numeric variables you are comparing are converted to the same scale or unit of measure.
-You cannot add one hectare and two acres into a meaningful number.
+You cannot add one hectare and two acres and get a meaningful number.
 
 During construction, you will also need to address some of the issues
 you identified in the data set as you were cleaning it.
 The most common of them is the presence of outliers.
-How to treat outliers is a research question,
-but make sure to note what was the decision made by the research team,
-and how you came to it.
+How to treat outliers is a question for the research team (as there are multiple possible approaches),
+but make sure to note what decision was made and why.
 Results can be sensitive to the treatment of outliers,
 so keeping the original variable in the data set will allow you to test how much it affects the estimates.
-All these points also apply to imputation of missing values and other distributional patterns.
+These points also apply to imputation of missing values and other distributional patterns.
 
 The more complex construction tasks involve changing the structure of the data:
 adding new observations or variables by merging data sets,
@@ -542,17 +524,14 @@ Together, they will form a detailed account of the data processing.
 \section{Writing data analysis code}
 
 % Intro --------------------------------------------------------------
-Data analysis is the stage when research outputs are created.
+When data is cleaned and indicators constructed, you are ready to generate analytical outputs.
 \index{data analysis}
-Many introductions to common code skills and analytical frameworks exist, such as
+There are many existing resources for data analysis, such as
 \textit{R for Data Science};\sidenote{\url{https://r4ds.had.co.nz}}
 \textit{A Practical Introduction to Stata};\sidenote{\url{https://scholar.harvard.edu/files/mcgovern/files/practical\_introduction\_to\_stata.pdf}}
 \textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844\_Mostly\_Harmless\_Econometrics\_An\_Empiricist's\_Companion}}
 and \textit{Causal Inference: The Mixtape}.\sidenote{\url{https://scunning.com/mixtape.html}}
-This section will not include instructions on how to conduct specific analyses.
-That is a research question, and requires expertise beyond the scope of this book.
-Instead, we will outline the structure of writing analysis code,
-assuming you have completed the process of data cleaning and variable construction.
+We focus on how to \texit{code} data analysis, rather than how to conduct specific analyses. 
 
 \subsection{Organizing analysis code}
 
@@ -630,7 +609,7 @@ such as \texttt{highcharter},\sidenote{\url{http://jkunst.com/highcharter}}
 \texttt{r2d3},\sidenote{\url{https://rstudio.github.io/r2d3}}
 \texttt{leaflet},\sidenote{\url{https://rstudio.github.io/leaflet}}
 and \texttt{plotly},\sidenote{\url{https://plot.ly/r}} to name a few.
-We have no intention of creating an exhaustive list, and this one is certainly missing very good references; but it is a good place to start.
+We have no intention of creating an exhaustive list, but this is a good place to start.
 
 We attribute some of the difficulty of creating good data visualization
 to writing code to create them.
@@ -693,7 +672,8 @@ For tables there are less options and more consideration to be made.
 Exporting table to \texttt{.tex} should be preferred.
 Excel \texttt{.xlsx} and \texttt{.csv} are also commonly used,
 but require the extra step of copying the tables into the final output.
-The amount of work needed in a copy-paste workflow increases rapidly with the number of tables and figures included in a research output,
+The amount of work needed in a copy-paste workflow increases 
+rapidly with the number of tables and figures included in a research output,
 and so do the chances of having the wrong version a result in your paper or report.
 
 If you need to create a table with a very particular format
