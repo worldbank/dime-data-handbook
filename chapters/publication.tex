@@ -2,39 +2,33 @@
 
 \begin{fullwidth}
 For most research projects, completing a manuscript is not the end of the task.
-Academic journals increasingly require submission of a replication package,
-which contains the code and materials needed to create the results.
+Academic journals increasingly require submission of a replication package
+which contains the code and materials used to create the results.
 These represent an intellectual contribution in their own right,
 because they enable others to learn from your process
 and better understand the results you have obtained.
-Typically, various contributors collaborate on both code and writing,
-manuscripts go through many iterations and revisions,
-and the final package for publication includes not just a manuscript
-but also the code and data used to generate the results.
-Ideally, your team will spend as little time as possible
-fussing with the technical requirements of publication.
+Holding code and data to the same standards a written work
+is a new practice for many researchers.
+Publication typically involves multiple iterations of manuscript, 
+code, and data files, with inputs from multiple collaborators.
+This process can quickly become unwieldy. 
 It is in nobody's interest for a skilled and busy researcher
 to spend days re-numbering references (and it can take days)
 when a small amount of up-front effort can automate the task.
-In this section we suggest several methods --
-collectively referred to as dynamic documents --
-for managing the process of collaboration on any technical product.
 
-Holding code and data to the same standards a written work
-is a new practice for many researchers.
-In this chapter, we provide guidelines that will help you
-prepare a functioning and informative replication package.
-Ideally, if you have organized your analytical work
-according to the general principles outlined throughout this book,
-then preparing to release materials will not require
+In this chapter, we suggest tools and workflows for efficiently managing collaboration
+and ensuring reproducible outputs.
+First, we discuss how to use dynamic documents to collaborate on technical writing.
+Second, we provide guidelines for preparing a functioning and informative replication package.
+If you have organized your analytical work
+according to the general principles outlined in earlier chapters,
+preparing to release materials will not require
 substantial reorganization of the work you have already done.
 Hence, this step represents the conclusion of the system
 of transparent, reproducible, and credible research we introduced
 from the very first chapter of this book.
-We start the chapter with a discussion about tools and workflows for collaborating on technical writing.
-Next, we turn to publishing data,
-noting that the data can itself be a significant contribution in addition to analytical results.
-Finally, we provide guidelines that will help you to prepare a functioning and informative replication package.
+We include specific guidance on publishing both code and data files,
+noting that these can be a significant contribution in addition to analytical results.
 In all cases, we note that technology is rapidly evolving
 and that the specific tools noted here may not remain cutting-edge,
 but the core principles involved in publication and transparency will endure.
@@ -44,23 +38,26 @@ but the core principles involved in publication and transparency will endure.
 
 \section{Collaborating on technical writing}
 
-It is increasingly rare that a single author will prepare an entire manuscript alone.
-More often than not, documents will pass back and forth between several writers
+Development economics research is increasingly a collaborative effort. 
+This reflects changes in the economics discipline overall: 
+the number of sole-authored papers is decreasing, 
+and the majority of recent papers in top journals have three or more 
+authors.\sidenote{\url{https://voxeu.org/article/growth-multi-authored-journal-articles-economics}}
+As a consequence, manuscripts typically pass back and forth between several writers
 before they are ready for publication,
-so it is essential to use technology and workflows that avoid conflicts.
 Just as with the preparation of analytical outputs,
-this means adopting tools and practices that enable tasks
-such as version control and simultaneous contribution.
-Furthermore, it means preparing documents that are \textbf{dynamic} --
-meaning that updates to the analytical outputs that constitute them
+effective collaboration requires the adoption of tools and practices 
+that enable version control and simultaneous contribution.
+\textbf{Dynamic documents} are a way to significantly simplify workflows:
+updates to the analytical outputs that appear in these documents, such as tables and figures,
 can be passed on to the final output with a single process,
 rather than copy-and-pasted or otherwise handled individually.
-Thinking of the writing process in this way
-is intended to improve organization and reduce error,
+Managing the writing process in this way
+improves organization and reduces error,
 such that there is no risk of materials being compiled
 with out-of-date results, or of completed work being lost or redundant.
 
-\subsection{Dynamic documents}
+\subsection{Preparing dynamic documents}
 
 Dynamic documents are a broad class of tools that enable a streamlined, reproducible workflow.
 The term ``dynamic'' can refer to any document-creation technology
@@ -84,41 +81,40 @@ As time goes on, it therefore becomes more and more likely
 that a mistake will be made or something will be missed.
 Therefore this is a broadly unsuitable way to prepare technical documents.
 
-There are a number of tools that can be used for dynamic documents.
-Some are code-based tools such as R's RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com/}}
-and Stata's \texttt{dyndoc}\sidenote{\url{https://www.stata.com/manuals/rptdyndoc.pdf}}.
-These tools ``knit'' or ``weave'' text and code together,
-and are programmed to insert code outputs in pre-specified locations.
-Documents called ``notebooks'' (such as Jupyter\sidenote{\url{https://jupyter.org/}}) work similarly,
-as they also use the underlying analytical software to create the document.
-These types of dynamic documents are usually appropriate for short or informal materials
-because they tend to offer restricted editability outside the base software
-and often have limited abilities to incorporate precision formatting.
-
-There are other dynamic document tools
-which do not require direct operation of the underlying code or software,
-simply access to the updated outputs.
-These can be useful for working on informal outputs, such as blogposts,
-with collaborators who do not code.
-An example of this is Dropbox Paper,
-a free online writing tool that allows linkages to files in Dropbox,
-which are automatically updated anytime the file is replaced.
-
-However, the most widely utilized software
+The most widely utilized software
 for dynamically managing both text and results is \LaTeX\ (pronounced ``lah-tek'').\sidenote{
-  \url{https://github.com/worldbank/DIME-LaTeX-Templates}}
-  \index{\LaTeX}
-Rather than using a coding language that is built for another purpose
-or trying to hide the code entirely,
+	\url{https://github.com/worldbank/DIME-LaTeX-Templates}}
+\index{\LaTeX}
 \LaTeX\ is a document preparation and typesetting system with a unique syntax.
 While this tool has a significant learning curve,
-its enormous flexibility in terms of operation, collaboration,
-and output formatting and styling
-makes it the primary choice for most large technical outputs today,
-and it has proven to have enduring popularity.
-In fact, \LaTeX\ operates behind-the-scenes in many of the tools listed before.
+its enormous flexibility in terms of operation, collaboration, output formatting, and styling
+make it the primary choice for most large technical outputs.
+In fact, \LaTeX\ operates behind-the-scenes in many other dynamic document tools (discussed below).
 Therefore, we recommend that you learn to use \LaTeX\ directly
-as soon as you are able to and provide several resources for doing so.
+as soon as you are able to and provide several resources for doing so in the next section.
+
+There are tools that can generate dynamic documents from within your scripts, 
+such as R's RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com}}
+Stata offers a built-in package for dynamic documents, \texttt{dyndoc}\sidenote{\url{https://www.stata.com/manuals/rptdyndoc.pdf}}, and user-written commands such \texttt{texdoc}\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc}} and \texttt{markstat}\sidenote{\url{https://data.princeton.edu/stata/markdown}} allow for additional functionalities.
+These tools ``knit'' or ``weave'' text and code together,
+and are programmed to insert code outputs in pre-specified locations.
+Documents called ``notebooks'' (such as Jupyter\sidenote{\url{https://jupyter.org}}) work similarly,
+as they also use the underlying analytical software to create the document.
+These tools are usually appropriate for short or informal documents
+because it tends to be difficult to edit the content unless using the tool 
+and often does not have as extensive formatting option as, for example, Word.
+
+There are also simple tools for dynamic documents
+that do not require direct operation of the underlying code or software,
+simply access to the updated outputs.
+An example of this is Dropbox Paper,
+a free online writing tool that allows linkages to files in Dropbox
+which are automatically updated anytime the file is replaced.
+They have limited functionality in terms of version control and formatting,
+and may never include any references to confidential data,
+but can be useful for working on informal outputs, such as blogposts,
+with collaborators who do not code. 
+
 
 \subsection{Technical writing with \LaTeX}
 
@@ -135,13 +131,14 @@ This is why it has become the dominant ``document preparation system'' in techni
 manages tables and figures dynamically,
 and includes commands for simple markup
 like font styles, paragraph formatting, section headers and the like.
-It also includes special controls for including tables and figures,
+It includes special controls for including tables and figures,
 footnotes and endnotes, complex mathematical notation, and automated bibliography preparation.
 It also allows publishers to apply global styles and templates to already-written material,
 allowing them to reformat entire documents in house styles with only a few keystrokes.
 
-One of the most important tools available in \LaTeX\ is the BibTeX bibliography manager.\sidenote{
-  \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.365.3194&rep=rep1&type=pdf}}
+One of the most important tools available in \LaTeX\
+is the BibTeX citation and bibliography manager.\sidenote{
+  \url{https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.365.3194&rep=rep1&type=pdf}}
 BibTeX keeps all the references you might use in an auxiliary file,
 then references them using a simple element typed directly in the document: a \texttt{cite} command.
 The same principles that apply to figures and tables are therefore applied here:
@@ -149,7 +146,7 @@ You can make changes to the references in one place (the \texttt{.bib} file),
 and then everywhere they are used they are updated correctly with one process.
 Specifically, \LaTeX\ inserts references in text using the \texttt{\textbackslash cite\{\}} command.
 Once this is written, \LaTeX\ automatically pulls all the citations into text
-and creates a complete bibliography based on the citations you use when you compile the document.
+and creates a complete bibliography based on the citations you used whenever you compile the document.
 The system allows you to specify exactly how references should be displayed in text
 (such as superscripts, inline references, etc.)
 as well as how the bibliography should be styled and in what order
@@ -168,9 +165,10 @@ They will look like the following:
 
 With these tools, you can ensure that references are handled
 in a format you can manage and control.\cite{flom2005latex}
-Finally, \LaTeX\ has one more useful trick:
+
+\LaTeX\ has one more useful trick:
 using \textbf{\texttt{pandoc}},\sidenote{
-  \url{http://pandoc.org/}}
+  \url{https://pandoc.org}}
 you can translate the raw document into Word
 (or a number of other formats)
 by running the following code from the command line:
@@ -203,10 +201,10 @@ such as advanced integration with Git,
 the entire group of writers needs to be comfortable
 with \LaTeX\ before adopting one of these tools.
 They can require a lot of troubleshooting at a basic level at first,
-and non-technical staff may not be willing or able to acquire the required knowledge.
-Therefore, to take advantage of the features of \LaTeX,
-while making it easy and accessible to the entire writing team,
-we need to abstract away from the technical details where possible.
+and staff not used to programming may not be willing or able to acquire the necessary knowledge.
+Cloud-based implementations of \LaTex\, discussed in the next section,
+allow teams to take advantage of the features of \LaTeX,
+without requiring knowledge of the technical details.
 
 \subsection{Getting started with \LaTeX\ in the cloud}
 
@@ -214,22 +212,22 @@ we need to abstract away from the technical details where possible.
 but the control it offers over the writing process is invaluable.
 In order to make it as easy as possible for your team
 to use \LaTeX\ without all members having to invest in new skills,
-we suggest using a web-based implementation as your first foray into \LaTeX\ writing.
+we suggest using a cloud-based implementation as your first foray into \LaTeX\ writing.
 Most such sites offer a subscription feature with useful extensions and various sharing permissions,
 and some offer free-to-use versions with basic tools that are sufficient
 for a broad variety of applications,
 up to and including writing a complete academic paper with coauthors.
 
-Cloud-based implementations of \LaTeX\ are suggested here for several reasons.
-Since they are completely hosted online,
-they avoids the inevitable troubleshooting of setting up a \LaTeX\ installation
-on various personal computers run by the different members of your team.
-They also typically maintain a single continuously synced master copy of the document
+Cloud-based implementations of \LaTeX\ have several advantageous features.
+First, since they are completely hosted online,
+they avoid the inevitable troubleshooting required to set up a \LaTeX\ installation
+on various personal computers run by the different members of a team.
+Second, they typically maintain a single, continuously synced, master copy of the document
 so that different writers do not create conflicted or out-of-sync copies,
 or need to deal with Git themselves to maintain that sync.
-They typically allow inviting collaborators to edit in a fashion similar to Google Docs,
+Third, they typically allow collaborators to edit documents simultaneously,
 though different services vary the number of collaborators and documents allowed at each tier.
-Most importantly, some tools provide a ``rich text'' editor
+Fourth, and most usefully, some implementations provide a ``rich text'' editor
 that behaves pretty similarly to familiar tools like Word,
 so that collaborators can write text directly into the document without worrying too much
 about the underlying \LaTeX\ coding.
@@ -237,54 +235,132 @@ Cloud services also usually offer a convenient selection of templates
 so it is easy to start up a project and see results right away
 without needing to know a lot of the code that controls document formatting.
 
-On the downside, there is a small amount of up-front learning required,
-continous access to the Internet is necessary,
+Cloud-based implementations of \LaTeX\ also have disadvantages.
+There is still some up-front learning required, unless you're using the rich text editor.
+Continuous access to the Internet is necessary,
 and updating figures and tables requires a bulk file upload that is tough to automate.
-One of the most common issues you will face using online editors will be special characters
-which, because of code functions, need to be handled differently than in Word.
-Most critically, the ampersand (\texttt{\&}), percent (\texttt{\%}), and underscore (\texttt{\_})
-need to be ``escaped'' (interpreted as text and not code) in order to render.
-This is done by by writing a backslash (\texttt{\textbackslash}) before them,
-such as writing \texttt{40\textbackslash\%} for the percent sign to appear in text.
 Despite this, we believe that with minimal learning and workflow adjustments,
 cloud-based implementations are often the easiest way to allow coauthors to write and edit in \LaTeX\,
 so long as you make sure you are available to troubleshoot minor issues like these.
 
-%------------------------------------------------
 
-\section{Publishing primary data}
+%----------------------------------------------------
 
-If your project collected primary data,
-releasing the cleaned dataset is a significant contribution that can be made
-in addition to any publication of analysis results.
-Publishing data can foster collaboration with researchers
-interested in the same subjects as your team.
-Collaboration can enable your team to fully explore variables and
-questions that you may not have time to focus on otherwise,
-even though data was collected on them.
+\section{Preparing a complete replication package}
+
+While we have focused so far on the preparation of written materials for publication,
+it is increasingly important for you to consider how you will publish
+the data and code you used for your research as well.
+More and more major journals are requiring that publications
+provide direct links to both the code and data used to create the results,
+and some even require being able to reproduce the results themselves
+before they will approve a paper for publication.\sidenote{
+  \url{https://www.aeaweb.org/journals/policies/data-code}}
+If your material has been well-structured throughout the analytical process,
+this will only require a small amount of extra work;
+if not, paring it down to the ``replication package'' may take some time.
+A complete replication package should accomplish several core functions.
+It must provide the exact data and code that is used for a paper,
+all necessary (de-identified) data for the analysis,
+and all code necessary for the analysis.
+The code and data should exactly reproduce the raw outputs you have used for the paper,
+and the replication file should not include any documentation or data you would not share publicly.
+This usually means removing project-related documentation such as contracts
+and details of data collection and other field work,
+and double-checking all datasets for potentially identifying information.
+
+\subsection{Publishing data for replication}
+
+Publicly documenting all original data generated as part of a research project 
+is an important contribution in its own right.
+Publishing original datasets is a significant contribution that can be made
+in addition to any publication of analysis results.\sidenote{
+	\url{https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-publishing-research-data.pdf}}
+If you are not able to publish the data itself, 
+due to licensing agreements or ethical concerns,
+there are often options to catalog or archive the data.
+These may take the form of metadata catalogs or embargoed releases.
+Such setups allow you to hold an archival version of your data
+which your publication can reference,
+and provide information about the contents of the datasets
+and how future users might request permission to access them
+(even if you are not the person to grant that permission).
+They can also provide for timed future releases of datasets
+once the need for exclusive access has ended.
+
+Publishing data allows other researchers to validate the mechanical construction of your results,
+investigate what other results might be obtained from the same population,
+and test alternative approaches or answer other questions.
+This fosters collaboration and may enable your team to fully explore variables and
+questions that you may not have time to focus on otherwise.
 There are different options for data publication.
 The World Bank's Development Data Hub\sidenote{
-	\url{https://data.worldbank.org/}}
+	\url{https://datacatalog.worldbank.org}}
 includes a Microdata Catalog\sidenote{
 \url{https://microdata.worldbank.org}}
+and a Geospatial Catalog,
 where researchers can publish data and documentation for their projects.\sidenote{
-\url{https://dimewiki.worldbank.org/wiki/Microdata\_Catalog}
+\url{https://dimewiki.worldbank.org/Microdata\_Catalog}
 \newline
-\url{https://dimewiki.worldbank.org/wiki/Checklist:\_Microdata\_Catalog\_submission}
+\url{https://dimewiki.worldbank.org/Checklist:\_Microdata\_Catalog\_submission}
 }
 The Harvard Dataverse\sidenote{
 	\url{https://dataverse.harvard.edu}}
-publishes both data and code,
-and also creates a data citation for its entries --
-IPA/J-PAL field experiment repository is especially relevant\sidenote{
-	\url{https://www.povertyactionlab.org/blog/9-11-19/new-hub-data-randomized-evaluations}}
-for those interested in impact evaluation.
+publishes both data and code. 
+The Datahub for Field Experiments in Economics and Public Policy\sidenote{\url{https://dataverse.harvard.edu/dataverse/DFEEP}} 
+is especially relevant for impact evaluations. 
+Both the World Bank Microdata Catalog and the Harvard Dataverse
+create data citations for deposited entries. 
+DIME has its own collection of data sets in the Microdata Catalog,
+where data from our projects is published.\sidenote{\url{
+		https://microdata.worldbank.org/catalog/dime}}
 
-There will almost always be a trade-off between accuracy and privacy.
-For publicly disclosed data, you should favor privacy.
-Therefore, before publishing data,
+When your raw data is owned by someone else,
+or for any other reason you are not able to publish it,
+in many cases you will still have the right to release derivate datasets,
+even if it is just the indicators you constructed and their documentation.\sidenote{
+  \url{https://guide-for-data-archivists.readthedocs.io}}
+If you have questions about your rights over original or derived materials,
+check with the legal team at your organization or at the data provider's.
+Make sure you have a clear understanding of the rights associated with the data release
+and communicate them to any future users of the data.
+
+When you do publish data, you decide how it may be used and what, if any license, you will assign to it.\sidenote{
+  \url{https://iatistandard.org/en/guidance/preparing-organisation/organisation-data-publication/how-to-license-your-data}}
+Terms of use available in the World Bank Microdata Catalog include, in order of increasing restrictiveness: open access, direct access, and licensed access.\sidenote{
+  \url{https://microdata.worldbank.org/index.php/terms-of-use}}
+Open Access data is freely available to anyone, and simply requires attribution.
+Direct Access data is to registered users who agree to use the data for statistical and scientific research purposes only, 
+to cite the data appropriately, and to not attempt to identify respondents or data providers or link to other datasets that could allow for re-identification. 
+Licensed access data is restricted to bona fide users, who submit a documented application for how they will use the data and sign an agreement governing data use. 
+The user must be acting on behalf of an organization, which will be held responsible in the case of any misconduct.
+Keep in mind that you may or may not own your data,
+depending on how it was collected,
+and the best time to resolve any questions about licensing rights
+is at the time that data collection or sharing agreements are signed.
+
+Published data should be released in a widely recognized format.
+While software-specific datasets are acceptable accompaniments to the code
+(since those precise materials are probably necessary),
+you should also consider releasing generic datasets
+such as CSV files with accompanying codebooks,
+since these can be used by any researcher.
+Additionally, you should also release
+the data collection instrument or survey questionnaire
+so that readers can understand which data components are
+collected directly in the field and which are derived.
+If possible, you should publish both a clean version of the data
+which corresponds exactly to the original database or questionnaire
+as well as the constructed or derived dataset used for analysis.
+You should also release the code
+that constructs any derived measures,
+particularly where definitions may vary,
+so that others can learn from your work and adapt it as they like.
+
+\subsection{De-identifying data for publication}
+Before publishing data,
 you should carefully perform a \textbf{final de-identification}.
-Its objective is to create a dataset for publication
+Its objective is to reduce the risk of disclosing confidential information in the published data set.
 that cannot be manipulated or linked to identify any individual research participant.
 If you are following the steps outlined in this book,
 you have already removed any direct identifiers after collecting the data.
@@ -309,116 +385,26 @@ from the World Bank.
 The \texttt{sdcMicro} tool, in particular, has a feature
 that allows you to assess the uniqueness of your data observations,
 and simple measures of the identifiability of records from that.
-Additional options to protect privacy in data that will become public exist,
-and you should expect and intend to release your datasets at some point.
-One option is to add noise to data, as the US Census Bureau has proposed,\cite{abowd2018us}
-as it makes the trade-off between data accuracy and privacy explicit.
-But there are no established norms for such ``differential privacy'' approaches:
+
+There will almost always be a trade-off between accuracy and privacy.
+For publicly disclosed data, you should favor privacy.
+Stripping identifying variables from a dataset may not be sufficient to protect respondent privacy,
+due to the risk of re-identification. 
+One potential solution is to add noise to data, as the US Census Bureau has proposed.\cite{abowd2018us}
+This makes the trade-off between data accuracy and privacy explicit.
+But there are not, as of yet, established norms for such ``differential privacy'' approaches:
 most approaches fundamentally rely on judging ``how harmful'' information disclosure would be.
 The fact remains that there is always a balance between information release (and therefore transparency)
 and privacy protection, and that you should engage with it actively and explicitly.
 The best thing you can do is make a complete record of the steps that have been taken
 so that the process can be reviewed, revised, and updated as necessary.
 
-%----------------------------------------------------
-
-\section{Preparing a complete replication package}
-
-While we have focused so far on the preparation of written materials for publication,
-it is increasingly important for you to consider how you will publish
-the data and code you used for your research as well.
-More and more major journals are requiring that publications
-provide direct links to both the code and data used to create the results,
-and some even require being able to reproduce the results themselves
-before they will approve a paper for publication.\sidenote{
-  \url{https://www.aeaweb.org/journals/policies/data-code/}}
-If your material has been well-structured throughout the analytical process,
-this will only require a small amount of extra work;
-if not, paring it down to the ``replication package'' may take some time.
-A complete replication package should accomplish several core functions.
-It must provide the exact data and code that is used for a paper,
-all necessary de-identified data for the analysis,
-and all code necessary for the analysis.
-The code should exactly reproduce the raw outputs you have used for the paper,
-and should not include documentation or data you would not share publicly.
-This usually means removing project-related documentation such as contracts
-and details of data collection and other field work,
-and double-checking all datasets for potentially identifying information.
-
-\subsection{Publishing data for replication}
-
-Enabling permanent access to the data used in your study
-is an important contribution you can make along with the publication of results.
-It allows other researchers to validate the mechanical construction of your results,
-to investigate what other results might be obtained from the same population,
-and test alternative approaches to other questions.
-Therefore you should make clear in your study
-where and how data are stored, and how and under what circumstances they may be accessed.
-You do not always have to publish the data yourself,
-and in some cases you are legally not allowed to.
-Even if you cannot release data immediately or publicly,
-there are often options to catalog or archive the data without open publication.
-These may take the form of metadata catalogs or embargoed releases.
-Such setups allow you to hold an archival version of your data
-which your publication can reference,
-as well as provide information about the contents of the datasets
-and how future users might request permission to access them
-(even if you are not the person who can grant that permission).
-They can also provide for timed future releases of datasets
-once the need for exclusive access has ended.
-
-What matters is for you to be able to cite or otherwise directly reference the data used.
-When your raw data is owned by someone else,
-or for any other reason you are not able to publish it,
-in many cases you will have the right to release
-at least some subset of your constructed data set,
-even if it is just the derived indicators you constructed and their documentation.\sidenote{
-  \url{https://guide-for-data-archivists.readthedocs.io/en/latest/}}
-If you have questions about your rights over original or derived materials,
-check with the legal team at your organization or at the data provider's.
-Make sure you have a clear understanding of the rights associated with the data release
-and communicate them to any future users of the data.
-You must provide a license with any data release.\sidenote{
-  \url{https://iatistandard.org/en/guidance/preparing-organisation/organisation-data-publication/how-to-license-your-data/}}
-Some common license types are documented at the World Bank Data Catalog\sidenote{
-  \url{https://datacatalog.worldbank.org/public-licenses}}
-and the World Bank Open Data Policy has futher examples of licenses that are used there.\sidenote{
-  \url{https://microdata.worldbank.org/index.php/terms-of-use}}
-This document need not be extremely detailed,
-but it should clearly communicate to the reader what they are allowed to do with your data and
-how credit should be given and to whom in further work that uses it.
-Keep in mind that you may or may not own your data,
-depending on how it was collected,
-and the best time to resolve any questions about these rights
-is at the time that data collection or transfer agreements are signed.
-
-Data publication should release the dataset in a widely recognized format.
-While software-specific datasets are acceptable accompaniments to the code
-(since those precise materials are probably necessary),
-you should also consider releasing generic datasets
-such as CSV files with accompanying codebooks,
-since these will be re-adaptable by any researcher.
-Additionally, you should also release
-the data collection instrument or survey questionnaire
-so that readers can understand which data components are
-collected directly in the field and which are derived.
-If possible, you should publish both a clean version of the data
-which corresponds exactly to the original database or questionnaire
-as well as the constructed or derived dataset used for analysis.
-You should also release the code
-that constructs any derived measures,
-particularly where definitions may vary,
-so that others can learn from your work and adapt it as they like.
-
-As in the case of raw primary data,
-final analysis data sets that will become public for the purpose of replication
-must also be fully de-identified.
 In cases where PII data is required for analysis,
 we recommend embargoing the sensitive variables when publishing the data.
-You should contact an appropriate data catalog
-to determine what privacy and licensing options are available.
-Access to the embargoed data could be granted for the purposes of study replication,
-if approved by an IRB.
+Access to the embargoed data could be granted for specific purposes,
+such as a computational reproducibility check required for publication,
+if done under careful data security protocols and approved by an IRB.
+
 
 \subsection{Publishing code for replication}
 
@@ -427,34 +413,33 @@ just as if it were written material.
 The purpose of releasing code is to allow others to understand
 exactly what you have done in order to obtain your results,
 as well as to apply similar methods in future projects.
-Therefore it should both be functional and readable.
-If you've followed the recommendations in this book,
-this will be much easier to do.
+Therefore it should both be functional and readable
+(if you've followed the recommendations in this book
+this should be easy to do!).
 Code is often not written this way when it is first prepared,
 so it is important for you to review the content and organization
 so that a new reader can figure out what and how your code should do.
-Therefore, whereas your data should already be very clean at this stage,
-your code is much less likely to be so, and this is where you need to make
-time investments prior to releasing your replication package.
-By contrast, replication code usually has few legal and privacy constraints.
-In most cases code will not contain identifying information;
-but make sure to check carefully that it does not.
+Therefore, whereas your data should already be very clean by publication stage,
+your code is much less likely to be so. 
+This is often where you need to invest time prior to releasing your replication package.
+
+Unlike data, code usually has few legal and privacy constraints to publication.
+The research team owns the code in almost all cases,
+and code is unlikely to contain identifying information 
+(though you must check carefully that it does not).
 Publishing code also requires assigning a license to it;
 in a majority of cases, code publishers like GitHub
 offer extremely permissive licensing options by default.
 (If you do not provide a license, nobody can use your code!)
 
-Make sure the code functions identically on a fresh install of your chosen software.
+Before releasing the code, make sure it functions identically on a fresh install of your chosen software.
 A new user should have no problem getting the code to execute perfectly.
 In either a scripts folder or in the root directory,
-include a master script (dofile or R script for example).
-The master script should allow the reviewer
-to change a single line of code: the one setting the directory path.
-After that, running the master script should run the entire project
-and re-create all the raw outputs exactly as supplied.
-Indicate the filename and line to change.
-Check that all your code will run completely on a new computer:
-Install any required user-written commands in the master script
+you should include a master script that allows the reviewer to run the entire project
+and re-create all raw outputsby changing only a single line of code: 
+the one setting the directory path.
+To ensure that your code will run completely on a new computer,
+you must install any required user-written commands in the master script
 (for example, in Stata using \texttt{ssc install} or \texttt{net install}
 and in R include code giving users the option to install packages,
 including selecting a specific version of the package if necessary).
@@ -462,20 +447,20 @@ In many cases you can even directly provide the underlying code
 for any user-installed packages that are needed to ensure forward-compatibility.
 Make sure system settings like \texttt{version}, \texttt{matsize}, and \texttt{varabbrev} are set.
 
-Finally, make sure that the code and its inputs and outputs are clearly identified.
-A new user should, for example, be able to easily identify and remove
+Finally, make sure that code inputs and outputs are clearly identified.
+A new user should, for example, be able to easily find and remove
 any files created by the code so that they can be recreated quickly.
 They should also be able to quickly map all the outputs of the code
 to the locations where they are placed in the associated published material,
-such as ensuring that the raw components of figures or tables are clearly identified.
+so ensure that the raw components of figures or tables are clearly identified.
 Documentation in the master script is often used to indicate this information.
 For example, outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
 (Supplying a compiling \LaTeX\ document can support this.)
-Code and outputs which are not used should be removed.
+Code and outputs which are not used should be removed before publication.
 
 \subsection{Releasing a replication package}
 
-If you are at this stage,
+Once your data and code are polished for public release,
 all you need to do is find a place to publish your materials.
 This is slightly easier said than done,
 as there are a few variables to take into consideration
@@ -484,33 +469,32 @@ The technologies available are likely to change dramatically
 over the next few years;
 the specific solutions we mention here highlight some current approaches
 as well as their strengths and weaknesses.
-GitHub provides one solution.
-Making a GitHub repository public is completely free.
+One option is GitHub.
+Making a public GitHub repository is completely free.
 It can hold any file types,
 provide a structured download of your whole project,
 and allow others to look at alternate versions or histories easily.
 It is straightforward to simply upload a fixed directory to GitHub
 apply a sharing license, and obtain a URL for the whole package.
-(However, there is a strict size restriction of 100MB per file and
+(There is a strict size restriction of 100MB per file and
 a restriction on the size of the repository as a whole,
 so larger projects will need alternative solutions.)
+However, GitHub is not the ideal platform to release reproducibility packages.
+It is built to version control code, and to facilitate collaboration on it.
+Features to look for in a platform to release such packages and that are not offered by GitHub, include:
+the possibility to store data and documentation as well as code,
+the creation of a static copy of its content, that cannot be changed or removed,
+and the assignment of a permanent digital object identifier (DOI) link.
 
-However, GitHub is not ideal for other reasons.
-It is not built to hold data in an efficient way
-or to manage licenses or citations for datasets.
-It does not provide a true archive service --
-you can change or remove the contents at any time.
-A repository such as the Harvard Dataverse\sidenote{
+Another option is the Harvard Dataverse,\sidenote{
   \url{https://dataverse.harvard.edu}}
-addresses these issues, as it is designed to be a citable data repository;
-the IPA/J-PAL field experiment repository is especially relevant.\sidenote{
-  \url{https://www.povertyactionlab.org/blog/9-11-19/new-hub-data-randomized-evaluations}}
+which is designed to be a citable data repository.
 The Open Science Framework\sidenote{
   \url{https://osf.io}}
-can also hold both code and data,
-as can ResearchGate.\sidenote{
+and ResearchGate.\sidenote{
   \url{https://https://www.researchgate.net}}
-Some of these will also assign a permanent digital object identifier (DOI) link for your work.
+can also hold both code and data.
+
 Any of these locations is acceptable --
 the main requirement is that the system can handle
 the structured directory that you are submitting,
@@ -518,6 +502,8 @@ and that it can provide a stable, structured URL for your project
 and report exactly what, if any, modifications you have made since initial publication.
 You can even combine more than one tool if you prefer,
 as long as they clearly point to each other.
+For example, one could publish code on GitHub that points to data published on the World Bank MicroData catalog. 
+
 Emerging technologies such as the ``containerization'' approach of Docker or CodeOcean\sidenote{
   \url{https://codeocean.com}}
 offer to store both code and data,
@@ -539,4 +525,4 @@ on your personal website or whatever medium you are
 sharing the preprint through.
 Do not use Dropbox or Google Drive for this purpose:
 many organizations do not allow access to these tools,
-and that includes blocking staff from accessing your material.
+and staff may be blocked from accessing your material.

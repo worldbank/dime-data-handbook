@@ -1,9 +1,9 @@
-* Set up reproducbilitiy - VERSIONING, SORTTING and SEEDING
+* Set up reproducbilitiy - VERSIONING, SORTING and SEEDING
     ieboilstart , v(13.1)    // Version
     `r(version)'             // Version
     sysuse bpwide.dta, clear // Load data
     isid patient, sort       // Sort
-    set seed 654697          // Seed - drawn using http://bit.ly/stata-random
+    set seed 654697          // Seed - drawn using https://bit.ly/stata-random
 
 * Generate a random number and use it to sort the observation. Then
 * the order the observations are sorted in is random.

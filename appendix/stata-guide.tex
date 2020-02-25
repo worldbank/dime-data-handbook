@@ -23,7 +23,7 @@ and that includes more than being able to compute the correct numbers.
 
 This appendix begins with a short section containing instructions
 on how to access and use the code examples shared in this book.
-The second section contains the DIME Analytics style guide for Stata code.
+The second section contains the DIME Analytics Stata Style Guide.
 We believe these resources can help anyone write more understandable code,
 no matter how proficient they are in writing Stata code.
 Widely accepted and used style guides are common in most programming languages,
@@ -45,7 +45,7 @@ We use GitHub to version control everything in this book, the code included.
 To see the code on GitHub, go to: \url{https://github.com/worldbank/d4di/tree/master/code}.
 If you are familiar with GitHub you can fork the repository and clone your fork.
 We only use Stata's built-in datasets in our code examples,
-so you do not need to download any data from anywhere.
+so you do not need to download any data.
 If you have Stata installed on your computer, then you will already have the data files used in the code.
 
 A less technical way to access the code is to click the individual file in the URL above, then click
@@ -63,6 +63,9 @@ extracting the .zip-file you will find all the code in a folder called \texttt{/
 Whether you are new to Stata or have used it for decades,
 you will always run into commands that
 you have not seen before or whose function you do not remember.
+(Whether you are new or not, you should frequently revisit the most common commands --
+often you will learn they can do something you never realized.\sidenote{
+  \url{https://www.stata.com/manuals13/u27.pdf}})
 Every time that happens,
 you should always look up the help file for that command.
 We often encounter the conception that help files are only for beginners.
@@ -97,8 +100,8 @@ so to use this command you will type \texttt{ssc install ietoolkit} in Stata ins
 
 We understand that it can be confusing to work with packages for first time,
 but this is the best way to set up your Stata installation to benefit from other
-people's work that has been made publicly available,
-and once you get used to installing commands like this it will not be confusing at all.
+people's work that has been made publicly available.
+Once you get used to installing commands like this it will not be confusing at all.
 All code with user-written commands, furthermore, is best written when it installs such commands
 at the beginning of the master do-file,
 so that the user does not have to search for packages manually.
@@ -107,14 +110,17 @@ so that the user does not have to search for packages manually.
 
 Programming languages used in computer science always have style guides associated with them.
 Sometimes they are official guides that are universally agreed upon, such as PEP8 for
-Python.\sidenote{\url{https://www.python.org/dev/peps/pep-0008/}} More commonly, there are well-recognized but
+Python.\sidenote{\url{https://www.python.org/dev/peps/pep-0008}} More commonly, there are well-recognized but
 non-official style guides like the JavaScript Standard Style\sidenote{\url{https://standardjs.com/\#the-rules}} for
-JavaScript or Hadley Wickham's style guide for R.\sidenote{\url{http://adv-r.had.co.nz/Style.html}}
+JavaScript or Hadley Wickham's style guide for R.\sidenote{\url{https://style.tidyverse.org/syntax.html}}
 Google, for example, maintains style guides for all languages
 that are used in its projects.\sidenote{
   \url{https://github.com/google/styleguide}}
 
 Aesthetics is an important part of style guides, but not the main point.
+Neither is telling you which commands to use:
+there are plenty of guides to Stata's extensive functionality.\sidenote{
+  \url{https://scholar.harvard.edu/files/mcgovern/files/practical_introduction_to_stata.pdf}}
 The important function is to allow programmers who are likely to work together
 to share conventions and understandings of what the code is doing.
 Style guides therefore help improve the quality of the code
@@ -139,9 +145,9 @@ What is important is that you adopt a style guide and follow it consistently acr
 
 \newpage
 
-\section{The DIME Analytics Stata style guide}
+\section{The DIME Analytics Stata Style Guide}
 
-While this section is called a \textit{Stata} Style Guide,
+While this section is called a \textit{Stata} style guide,
 many of these practices are agnostic to which programming language you are using:
 best practices often relate to concepts that are common across many languages.
 If you are coding in a different language,
@@ -214,11 +220,11 @@ that has a name exactly as in the abbreviation.
 and will therefore break any code using variable abbreviations.
 
 Using wildcards and lists in Stata for variable lists
-(texttt{*}, texttt{?}, and texttt{-}) is also discouraged,
+(\texttt{*}, \texttt{?}, and \texttt{-}) is also discouraged,
 because the functionality of the code may change
 if the dataset is changed or even simply reordered.
 If you intend explicitly to capture all variables of a certain type,
-prefer texttt{unab} or texttt{lookfor} to build that list in a local macro,
+prefer \texttt{unab} or \texttt{lookfor} to build that list in a local macro,
 which can then be checked to have the right variables in the right order.
 
 \subsection{Writing loops}
@@ -310,14 +316,14 @@ Which one you use is not as important as whether you and your team are consisten
 You can use all lower case (\texttt{mymacro}), underscores (\texttt{my\_macro}),
 or ``camel case'' (\texttt{myMacro}), as long as you are consistent.
 Simple prefixes are useful and encouraged such as \texttt{this\_estimate} or \texttt{current\_var},
-or (using \texttt{camelCase}) \texttt{lastValue}, \texttt{allValues}, or \texttt{nValues}.
-Nested locals (\texttt{if \`{}\`{}value\textquotesingle\textquotesingle})
+or, using \texttt{camelCase}, \texttt{lastValue}, \texttt{allValues}, or \texttt{nValues}.
+Nested locals (\texttt{\`{}\`{}value\textquotesingle\textquotesingle})
 are also possible for a variety of reasons when looping, and should be indicated in comments.
 If you need a macro to hold a literal macro name,
 it can be done using the backslash escape character;
 this causes the stored macro to be evaluated
 at the usage of the macro rather than at its creation.
-This function should be used sparingly and commented extensively.
+This functionality should be used sparingly and commented extensively.
 
 \codeexample{stata-macros.do}{./code/stata-macros.do}
 
@@ -371,7 +377,7 @@ although you may prefer to if they have comments that read better aligned,
 since indentations should reflect that the command continues to a new line.
 Break lines where it makes functional sense.
 You can write comments after \texttt{///} just as with \texttt{//}, and that is usually a good thing.
-(The \texttt{\#delimit} command should only be used for advanced function programming
+The \texttt{\#delimit} command should only be used for advanced function programming
 and is officially discouraged in analytical code.\cite{cox2005styleguide}
 Never, for any reason, use \texttt{/* */} to wrap a line:
 it is distracting and difficult to follow compared to the use
@@ -419,7 +425,7 @@ and compressing the data set to save disk space and network bandwidth.
 If there is a unique ID variable or a set of ID variables,
 the code should test that they are uniqueally and
 fully identifying the data set.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/ID\_Variable\_Properties}}
+  \url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
 ID variables are also perfect variables to sort on,
 and to \texttt{order} first in the data set.
 
@@ -451,9 +457,9 @@ but \texttt{*} and \texttt{/} should be used inline. For example:
 
 \bigskip\noindent  Make sure your code doesn't print very much to the results window as this is slow.
 This can be accomplished by using \texttt{run file.do} rather than \texttt{do file.do}.
-Therefore, it is faster to run outputs from commands like \texttt{reg} using the \texttt{qui} prefix.
 Interactive commands like \texttt{sum} or \texttt{tab} should be used sparingly in dofiles,
 unless they are for the purpose of getting \texttt{r()}-statistics.
 In that case, consider using the \texttt{qui} prefix to prevent printing output.
+It is also faster to get outputs from commands like \texttt{reg} using the \texttt{qui} prefix.
 
 \mainmatter
