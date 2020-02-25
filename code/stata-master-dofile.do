@@ -17,7 +17,8 @@
         ssc install ietoolkit,  replace
     }
 
-    ieboilstart, v(15.1)
+	*Harmonize settings accross users as much as possible
+    ieboilstart, v(13.1)
     `r(version)'
 
 /*******************************************************************************
