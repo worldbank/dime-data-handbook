@@ -13,10 +13,12 @@
   PART 1:  Install user-written packages and harmonize settings
 ********************************************************************************/
 
-    if (0) {
-        ssc install ietoolkit,  replace
-    }
-
+    local user_commands ietoolkit iefieldkit //Add required user-written commands
+    foreach command of local user_commands {
+        cap which `command'
+        if _rc == 111 ssc install `command'
+    }	
+	
 	*Harmonize settings accross users as much as possible
     ieboilstart, v(13.1)
     `r(version)'
