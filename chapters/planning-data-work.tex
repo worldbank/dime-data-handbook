@@ -279,8 +279,6 @@ Though it is possible to use some statistical software through the user interfac
 without writing any code, we strongly advise against it.
 Writing code creates a record of every task you performed.
 It also prevents direct interaction with the data files that could lead to non-reproducible steps.
-Good code, like a good recipe, allows other people to read and replicate it,
-and this functionality is now considered an essential component of any research output.
 You may do some exploratory tasks by point-and-click or typing directly into the console,
 but anything that is included in a research output
 must be coded up in an organized fashion so that you can release
@@ -360,7 +358,7 @@ to document the contents of every folder in the structure.
 The \texttt{DataWork} folder may be created either inside
 an existing project-based folder structure, or it may be created separately.
 It is preferable to create the \texttt{DataWork} folder
-separately from the project management materials 
+separately from the project management materials
 (such as contracts, Terms of Reference, briefs and other administrative or management work).
 This is so the project folder can be maintained in a synced location like Dropbox,
 while the code folder can be maintained in a version-controlled location like GitHub.
@@ -427,10 +425,10 @@ Below we discuss a few crucial steps to code organization.
 They all come from the principle that code is an output by itself,
 not just a means to an end,
 and should be written thinking of how easy it will be for someone to read it later.
-At the end of this section, we include a template for a master script in Stata, 
+At the end of this section, we include a template for a master script in Stata,
 to provide a concrete example of the required elements and structure.
-Throughout this section, we refer to lines of the example do-file 
-to give concrete examples of the required code elements, organization and structure.  
+Throughout this section, we refer to lines of the example do-file
+to give concrete examples of the required code elements, organization and structure.
 
 Code documentation is one of the main factors that contribute to readability.
 Start by adding a code header to every file.
@@ -439,14 +437,14 @@ A code header is a long \textbf{comment}\sidenote{
   but describe in plain language what the code is supposed to do.
 }
 that details the functionality of the entire script;
-refer to lines 5-10 in the example do-file. 
+refer to lines 5-10 in the example do-file.
 This should include simple things such as
 the purpose of the script and the name of the person who wrote it.
 If you are using a version control software,
 the last time a modification was made and the person who made it will be recorded by that software.
 Otherwise, you should include it in the header.
 You should always track the inputs and outputs of the script, as well as the uniquely identifying variable;
-refer to lines 49-51 in the example do-file. 
+refer to lines 49-51 in the example do-file.
 When you are trying to track down which code creates which data set, this will be very helpful.
 While there are other ways to document decisions related to creating code,
 the information that is relevant to understand the code should always be written in the code file.
@@ -521,20 +519,20 @@ But unless you run both of them when the change is made, it may take time for th
 and when it does, it may take time for you to understand what's causing an error.
 The same applies to changes in data sets and results.
 
-To link code, data and outputs, 
+To link code, data and outputs,
 the master script reflects the structure of the \texttt{DataWork} folder in code
-through globals (in Stata) or string scalars (in R); 
-refer to lines 35-40 of the example do-file. 
+through globals (in Stata) or string scalars (in R);
+refer to lines 35-40 of the example do-file.
 These coding shortcuts can refer to subfolders,
 so that those folders can be referenced without repeatedly writing out their absolute file paths.
 Because the \texttt{DataWork} folder is shared by the whole team,
 its structure is the same in each team member's computer.
 The only difference between machines should be
-the path to the project root folder, i.e. the highest-level shared folder, 
+the path to the project root folder, i.e. the highest-level shared folder,
 which in the context of \texttt{iefolder} is the \texttt{DataWork} folder.
 This is reflected in the master script in such a way that
 the only change necessary to run the entire code from a new computer
-is to change the path to the project folder to reflect the filesystem and username; 
+is to change the path to the project folder to reflect the filesystem and username;
 refer to lines 27-32 of the example do-file.
 The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
 Because writing and maintaining a master script can be challenging as a project grows,
