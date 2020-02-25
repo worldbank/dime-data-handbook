@@ -440,6 +440,48 @@ This increases the chances that at least one of them will have a different sampl
 Doing all variable construction in a single, separate script helps
 avoid this and ensure consistency across different outputs.
 
+\subsection{Integrating different data sources}
+Often, you will combine or merge information from different data sources together
+in order to create the analytical variables you are interested in.
+For example, you may merge administrative data with survey data
+to include demographic information in your analysis,
+or you may want to integrate geographic information
+in order to construct indicators or controls based on the location of observations.
+To do this, you will need to consider several possible linkages.
+In the simplest case, you might be merging two survey or administrative datasets
+at the same unit of response using a consistent numeric ID.
+You might also be combining datasets with the same unit of response,
+but that use an external or string ID such as a name,
+which do not always perfectly match.
+In these cases, you will need to extensively analyse the merging patterns
+and understand what units are present in one dataset but not the other,
+as well as be able to resolve fuzzy or imperfect matching.
+There are some commands such as \texttt{reclink} in Stata
+that can provide some useful utilities,
+but often a large amount of close examination is necessary
+in order to figure out what the matching pattern should be
+and how to accomplish it in practice through your code.
+
+In other cases, different data sources will be describing different levels of observation.
+For example, you might be combining roads data with household data,
+using matching methods such as distances,
+or combining something like household data with individual records
+from another administrative source.
+Sometimes these cases are conceptually straightforward.
+For example, merging a dataset of health care providers
+with a dataset of patients comes with a clear linking relation between the two;
+the challenge usually occurs in correctly defining statistical aggregations
+if the merge is intended to result in a dataset at the provider level.
+However, other cases may not be designed with the intention to be merged together,
+such as a dataset of infrastructure access points such as water pumps or schools
+and a datset of household locations and roads.
+In those cases, a key part of the research contribution is figuring out what
+a useful way to combine the datasets is.
+Since these conceptual constructs are so important
+and so easy to imagine different ways to do,
+it is especially important that these data integrations are not treated mechanically
+and are extensively documented separately from other data construction tasks.
+
 \subsection{Constructing analytical variables}
 New variables created during the construction stage should be added to the data set, instead of overwriting the original information.
 New variables should be assigned functional names.
@@ -531,7 +573,7 @@ There are many existing resources for data analysis, such as
 \textit{A Practical Introduction to Stata};\sidenote{\url{https://scholar.harvard.edu/files/mcgovern/files/practical\_introduction\_to\_stata.pdf}}
 \textit{Mostly Harmless Econometrics};\sidenote{\url{https://www.researchgate.net/publication/51992844\_Mostly\_Harmless\_Econometrics\_An\_Empiricist's\_Companion}}
 and \textit{Causal Inference: The Mixtape}.\sidenote{\url{https://scunning.com/mixtape.html}}
-We focus on how to \textit{code} data analysis, rather than how to conduct specific analyses. 
+We focus on how to \textit{code} data analysis, rather than how to conduct specific analyses.
 
 \subsection{Organizing analysis code}
 
