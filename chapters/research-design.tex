@@ -247,15 +247,27 @@ then the outcome values at that point in time
 already reflect the effect of the treatment.
 If the study is experimental, the treatment and control groups are randomly constructed
 from the population that is eligible to receive each treatment.
-If it is a non-randomized observational study, we present other evidence that a similar equivalence holds.
-In either case, by construction, each unit's receipt of the treatment
+By construction, each unit's receipt of the treatment
 is unrelated to any of its other characteristics
 and the ordinary least squares (OLS) regression
 of outcome on treatment, without any control variables,
 is an unbiased estimate of the average treatment effect.
 
+Cross-sectional designs can also exploit variation in non-experimental data
+to argue that observed correlations do in fact represent causal effects.
+This can be true unconditionally -- which is to say that something random,
+such as winning the lottery, is a true random process and can tell you about the effect
+of getting a large amount of money.\cite{imbens2001estimating}
+It can also be true conditionally -- which is to say that once the
+characteristics that would affect both the likelihood of exposure to a treatment
+and the outcome of interest are controlled for,
+the process is as good as random:
+like arguing that once risk preferences are taken into account,
+exposure to an earthquake is unpredictable and post-event differences
+are causally related to the event itself.\cite{callen2015catastrophes}
+
 For cross-sectional designs, what needs to be carefully maintained in data
-is the treatment randomization process itself,
+is the treatment randomization process itself (whether experimental or not),
 as well as detailed information about differences
 in data quality and loss to follow-up across groups.\cite{athey2017econometrics}
 Only these details are needed to construct the appropriate estimator:
