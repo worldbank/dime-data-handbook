@@ -15,5 +15,5 @@ TYPE 2:
 
 TYPE 3:
 
-* Open the dataset
-    sysuse auto.dta // Built in dataset (This comment is used to document a single line)
+* Open the data set
+    sysuse auto.dta // Built in data set (This comment is used to document a single line)

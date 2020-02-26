@@ -1,4 +1,4 @@
-* Load the auto dataset
+* Load the auto data set
     sysuse auto.dta , clear
 
 * Run a simple regression
