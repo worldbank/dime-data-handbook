@@ -587,11 +587,11 @@ and attrition occurred in the field and how they were implemented and resolved.
 %------------------------------------------------
 \section{Collecting and sharing data securely}
 
-All sensitive data must be handled in a way where there is no risk that anyone who is
+All confidential data must be handled in a way where there is no risk that anyone who is
 not approved by an Institutional Review Board (IRB)\sidenote{
   \url{https://dimewiki.worldbank.org/IRB\_Approval}}
 for the specific project has the ability to access the data.
-Data can be sensitive for multiple reasons, but the two most
+Data can be confidential for multiple reasons, but the two most
 common reasons are that it contains personally identifiable information (PII)\sidenote{
   \url{https://dimewiki.worldbank.org/Personally\_Identifiable\_Information\_(PII)}}
 or that the partner providing the data does not want it to be released.
@@ -655,9 +655,10 @@ Even though your data is therefore usually safe while it is being transmitted,
 it is not automatically secure when it is being stored.
 \textbf{Encryption at rest}\sidenote{
   \url{https://dimewiki.worldbank.org/Encryption\#Encryption\_at\_Rest}}
-is the only way to ensure that PII data remains private when it is stored on a
+is the only way to ensure that confidential data remains private when it is stored on a
 server on the internet.
-You must keep your data encrypted on the data collection server whenever PII data is collected.
+You must keep your data encrypted on the data collection server whenever PII is collected,
+or when this is required by the data sharing agreement.
 If you do not, the raw data will be accessible by
 individuals who are not approved by your IRB,
 such as tech support personnel,
@@ -749,7 +750,7 @@ you just want to know it is there, safe, if you need it.
 \subsection{Sharing data securely}
 You and your team will use your first copy of the raw data
 as the starting point for data cleaning and analysis of the data.
-This raw data set must remain encrypted at all times if it includes PII data,
+This raw data set must remain encrypted at all times if it includes confidential data,
 which is almost always the case.
 As long as the data is properly encrypted,
 it can be shared using insecure modes of communication
@@ -760,19 +761,24 @@ have access to the decryption key and know how to use that key.
 Fortunately, there is a way to simplify the workflow without compromising data security.
 
 To simplify the workflow,
-the PII variables should be removed from your data at the earliest
-possible opportunity creating a de-identified copy of the data.
+the confidential variables should be removed from your data at the earliest possible opportunity.
+This is particularly common in survey data,
+as identifying variables are often only needed during data collection.
+In this case, such variables may be removed as soon as the field work is completed,
+creating a de-identified copy of the data.
 Once the data is de-identified,
 it no longer needs to be encrypted --
 you and you team members can share it directly
 without having to encrypt it and handle decryption keys.
 The next chapter will discuss how to de-identify your data.
-If PII variables are directly required for the analysis itself,
+This may not be so straightforward when access to the data
+is restricted by request of the data owner.
+If confidential information is directly required for the analysis itself,
 it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
 
-The data security standards that apply when receiving PII data also apply when transferring PII data.
-A common example where this is often forgotten is when sending survey information,
-such as sampling lists, to a field partner.
+The data security standards that apply when receiving confidential data also apply when transferring confidential data.
+A common example where this is often forgotten involves sharing survey information,
+such as sampling lists, with a field partner.
 This data is -- by all definitions -- also PII data and must be encrypted.
 A sampling list can often be used to reverse identify a de-identified data set,
 so if you were to share it using an insecure method,

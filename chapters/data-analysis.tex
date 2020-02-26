@@ -70,7 +70,7 @@ face when switching between projects,
 because folders are organized in exactly the same way
 and use the same filepaths, shortcuts, and macro references.\sidenote{
 	\url{https://dimewiki.worldbank.org/DataWork\_Folder}}
-We created \texttt{iefolder} based on our experience with primary data,
+We created \texttt{iefolder} based on our experience with survey data,
 but it can be used for other types of data.
 Other teams may prefer a different scheme, but
 the principle of creating a single unified standard remains.
@@ -181,7 +181,7 @@ at this stage, means stripping the data set of personally identifying informatio
 To do so, you will need to identify all variables that contain
 identifying information.\sidenote{\url{
 		https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
-For primary data collection, where the research team designs the survey instrument,
+For data collection, where the research team designs the survey instrument,
 flagging all potentially identifying variables in the questionnaire design stage
 simplifies the initial de-identification process.
 If you did not do that, or you received original data by another means,
@@ -198,7 +198,7 @@ lists all variables in a data set and exports an Excel sheet
 where you can easily select which variables to keep or drop.\sidenote{
 	\url{https://dimewiki.worldbank.org/Iecodebook}}
 
-Once you have a list of variables that contain PII,
+Once you have a list of variables that contain confidential information,
 assess them against the analysis plan and first ask yourself for each variable:
 \textit{will this variable be needed for the analysis?}
 If not, the variable should be dropped.
@@ -206,9 +206,9 @@ Don't be afraid to drop too many variables the first time,
 as you can always go back and remove variables from the list of variables to be dropped,
 but you can not go back in time and drop a PII variable that was leaked
 because it was incorrectly kept.
-Examples include respondent names, enumerator names, interview dates, and respondent phone numbers.
-For each PII variable that is needed in the analysis, ask yourself:
-\textit{can I encode or otherwise construct a variable that masks the PII, and
+Examples include respondent names and phone numbers, enumerator names, tax payer numbers, and addresses.
+For each confidential variable that is needed in the analysis, ask yourself:
+\textit{can I encode or otherwise construct a variable that masks the confidential component, and
 then drop this variable?}
 This is typically the case for most identifying information.
 Examples include geocoordinates
@@ -219,7 +219,7 @@ If the answer to either of the two questions above is yes,
 all you need to do is write a script to drop the variables that are not required for analysis,
 encode or otherwise mask those that are required,
 and save a working version of the data.
-If PII variables are strictly required for the analysis itself and can not be
+If confidential information strictly required for the analysis itself and can not be
 masked or encoded,
 it will be necessary to keep at least a subset of the data encrypted through
 the data analysis process.
@@ -301,7 +301,7 @@ that categorizes these responses and merges them to the rest of the dataset.
 The main output of data cleaning is the cleaned data set.
 It should contain the same information as the raw data set,
 with identifying variables and data entry mistakes removed.
-Although primary data typically requires more extensive data cleaning than secondary data,
+Although original data typically requires more extensive data cleaning than secondary data,
 you should carefully explore possible issues in any data you are about to use.
 When reviewing raw data, you will inevitably encounter data entry mistakes,
 such as typos and inconsistent values.
@@ -358,7 +358,7 @@ and should be published along with the data.
 Include in the \texttt{Documentation} folder records of any
 corrections made to the data, including to duplicated entries,
 as well as communications where theses issues are reported.
-Be very careful not to include sensitive information in documentation that is not securely stored,
+Be very careful not to include confidential information in documentation that is not securely stored,
 or that you intend to release as part of a replication package or data publication.
 
 Another important component of data cleaning documentation are the results of data exploration.
@@ -485,7 +485,7 @@ If you are subsetting your data,
 drop observations explicitly,
 indicating why you are doing that and how the data set changed.
 
-Finally, primary panel data involves additional timing complexities.
+Finally, creating a panel with survey data involves additional timing complexities.
 It is common to construct indicators soon after receiving data from a new survey round.
 However, creating indicators for each round separately increases the risk of using different definitions every time.
 Having a well-established definition for each constructed variable helps prevent that mistake,
@@ -697,7 +697,7 @@ most of the data work involved in the last step of the research process
 If you used de-identified data for analysis,
 publishing the cleaned data set in a trusted repository will allow you to cite your data.
 Some of the documentation produced during cleaning and construction can be published
-even if your data is too sensitive to be published.
+even if the data cannot due to confidentiality.
 Your analysis code will be organized in a reproducible way,
 so will need to do release a replication package is a last round of code review.
 This will allow you to focus on what matters:
