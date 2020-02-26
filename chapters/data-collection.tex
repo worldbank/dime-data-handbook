@@ -204,7 +204,7 @@ particularly if you are combining various datasets
 that may provide even more information about specific individuals.
 
 %------------------------------------------------
-\section{Collecting primary data using electronic surveys}
+\section{Collecting data using electronic surveys}
 
 If you are collecting data directly from the research subjects yourself,
 you are most likely designing and fielding an electronic survey.
@@ -282,8 +282,8 @@ of the questionnaire.
 Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions,
 as there is no need to factor in costs of re-programming,
 and as a result improves the overall quality of the survey instrument.
-Questionnaires must also include ways to document the reasons for \textbf{attrition},
-treatment \textbf{contamination}, and \textbf{loss to follow-up}.
+Questionnaires must also include ways to document the reasons for \textbf{attrition} and
+treatment \textbf{contamination}.
 \index{attrition}\index{contamination}
 These are essential data components for completing CONSORT records,
 a standardized system for reporting enrollment, intervention allocation, follow-up,
@@ -346,7 +346,7 @@ The generic class requires agreement on the broad categories of interest,
 but allows for much more comprehensible top-line statistics and data quality checks.
 Rigorous field testing is required to ensure that answer categories are comprehensive;
 however, it is best practice to include an \textit{other, specify} option.
-Keep track of those responses in the first few weeks of fieldwork.
+Keep track of those responses in the first few weeks of field work.
 Adding an answer category for a response frequently showing up as \textit{other} can save time,
 as it avoids extensive post-coding.
 
@@ -423,7 +423,7 @@ We developed the \texttt{ietestform} command,\sidenote{
 part of the Stata package \texttt{iefieldkit},
 to implement a form-checking routine for \textbf{SurveyCTO},
 a proprietary implementation of the \textbf{Open Data Kit (ODK)} software.
-Intended for use during questionnaire programming and before fieldwork,
+Intended for use during questionnaire programming and before field work,
 \texttt{ietestform} tests for best practices in coding, naming and labeling, and choice lists.
 Although \texttt{ietestform} is software-specific,
 many of the tests it runs are general and important to consider regardless of software choice.
@@ -533,7 +533,7 @@ It is also possible to automate communication of errors to the field team
 by adding scripts to link the HFCs with a messaging program such as WhatsApp.
 Any of these solutions are possible:
 what works best for your team will depend on such variables as
-cellular networks in fieldwork areas, whether field supervisors have access to laptops,
+cellular networks in field work areas, whether field supervisors have access to laptops,
 internet speed, and coding skills of the team preparing the HFC workflows.
 
 \subsection{Conducting back-checks and data validation}
@@ -541,7 +541,7 @@ internet speed, and coding skills of the team preparing the HFC workflows.
 Careful validation of data is essential for high-quality data.
 Since we cannot control natural measurement error
 that comes from variation in the realization of key outcomes,
-primary data collection provides the opportunity to make sure
+original data collection provides the opportunity to make sure
 that there is no error arising from inaccuracies in the data itself.
 \textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/Back_Checks}} and
 other validation audits help ensure that data collection is following established protocols,
@@ -549,7 +549,7 @@ and that data is not fasified, incomplete, or otherwise suspect.
 For back-checks and validation audits, a random subset of the main data is selected,
 and a subset of information from the full survey is
 verified through a brief targeted survey with the original respondent
-or a cross-referenced data set from another source (if the original data is not a field survey).
+or a cross-referenced dataset from another source (if the original data is not a field survey).
 Design of the back-checks or validations follows the same survey design
 principles discussed above: you should use the analysis plan
 or list of key outcomes to establish which subset of variables to prioritize,
@@ -582,16 +582,16 @@ to questions the field team can provide for any observations that they were unab
 This reporting should be validated and saved alongside the final raw data, and treated the same way.
 This information should be stored as a dataset in its own right
 -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
-and loss to follow-up occurred in the field and how they were implemented and resolved.
+and attrition occurred in the field and how they were implemented and resolved.
 
 %------------------------------------------------
 \section{Collecting and sharing data securely}
 
-All sensitive data must be handled in a way where there is no risk that anyone who is
+All confidential data must be handled in a way where there is no risk that anyone who is
 not approved by an Institutional Review Board (IRB)\sidenote{
   \url{https://dimewiki.worldbank.org/IRB\_Approval}}
 for the specific project has the ability to access the data.
-Data can be sensitive for multiple reasons, but the two most
+Data can be confidential for multiple reasons, but the two most
 common reasons are that it contains personally identifiable information (PII)\sidenote{
   \url{https://dimewiki.worldbank.org/Personally\_Identifiable\_Information\_(PII)}}
 or that the partner providing the data does not want it to be released.
@@ -655,9 +655,10 @@ Even though your data is therefore usually safe while it is being transmitted,
 it is not automatically secure when it is being stored.
 \textbf{Encryption at rest}\sidenote{
   \url{https://dimewiki.worldbank.org/Encryption\#Encryption\_at\_Rest}}
-is the only way to ensure that PII data remains private when it is stored on a
+is the only way to ensure that confidential data remains private when it is stored on a
 server on the internet.
-You must keep your data encrypted on the data collection server whenever PII data is collected.
+You must keep your data encrypted on the data collection server whenever PII is collected,
+or when this is required by the data sharing agreement.
 If you do not, the raw data will be accessible by
 individuals who are not approved by your IRB,
 such as tech support personnel,
@@ -749,7 +750,7 @@ you just want to know it is there, safe, if you need it.
 \subsection{Sharing data securely}
 You and your team will use your first copy of the raw data
 as the starting point for data cleaning and analysis of the data.
-This raw data set must remain encrypted at all times if it includes PII data,
+This raw dataset must remain encrypted at all times if it includes confidential data,
 which is almost always the case.
 As long as the data is properly encrypted,
 it can be shared using insecure modes of communication
@@ -760,21 +761,26 @@ have access to the decryption key and know how to use that key.
 Fortunately, there is a way to simplify the workflow without compromising data security.
 
 To simplify the workflow,
-the PII variables should be removed from your data at the earliest
-possible opportunity creating a de-identified copy of the data.
+the confidential variables should be removed from your data at the earliest possible opportunity.
+This is particularly common in survey data,
+as identifying variables are often only needed during data collection.
+In this case, such variables may be removed as soon as the field work is completed,
+creating a de-identified copy of the data.
 Once the data is de-identified,
 it no longer needs to be encrypted --
 you and you team members can share it directly
 without having to encrypt it and handle decryption keys.
 The next chapter will discuss how to de-identify your data.
-If PII variables are directly required for the analysis itself,
+This may not be so straightforward when access to the data
+is restricted by request of the data owner.
+If confidential information is directly required for the analysis itself,
 it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
 
-The data security standards that apply when receiving PII data also apply when transferring PII data.
-A common example where this is often forgotten is when sending survey information,
-such as sampling lists, to a field partner.
+The data security standards that apply when receiving confidential data also apply when transferring confidential data.
+A common example where this is often forgotten involves sharing survey information,
+such as sampling lists, with a field partner.
 This data is -- by all definitions -- also PII data and must be encrypted.
-A sampling list can often be used to reverse identify a de-identified data set,
+A sampling list can often be used to reverse identify a de-identified dataset,
 so if you were to share it using an insecure method,
 then that would be your weakest link that could render useless all the other steps
 you have taken to ensure the privacy of the respondents.
@@ -788,7 +794,7 @@ VeraCrypt and share that secure folder with the field team.
 Remember that you must always share passwords and keys in a secure way like password managers.
 
 At this point, the raw data securely stored and backed up.
-It can now be transformed into your final analysis data set,
+It can now be transformed into your final analysis dataset,
 through the steps described in the next chapter.
 Once the data collection is over,
 you typically will no longer need to interact with the identified data.

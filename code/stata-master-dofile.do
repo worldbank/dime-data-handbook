@@ -7,7 +7,7 @@
 *                                                                              *
 *   OUTLINE:     PART 1:  Set standard settings and install packages           *
 *                PART 2:  Prepare folder paths and define programs             *
-*                PART 3:  Run do files                                         *
+*                PART 3:  Run do-files                                         *
 *                                                                              *
 ********************************************************************************
   PART 1:  Install user-written packages and harmonize settings
@@ -43,7 +43,7 @@
     global bl_out           "${github}/Baseline/Output"
 
 /*******************************************************************************
-  PART 3: Run do files
+  PART 3: Run do-files
 *******************************************************************************/
 
 /*------------------------------------------------------------------------------

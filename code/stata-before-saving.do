@@ -1,4 +1,4 @@
-* If the data set has ID variables, test if they uniquely identifying the observations.
+* If the dataset has ID variables, test if they uniquely identifying the observations.
 
     local idvars household_ID household_member year
     isid `idvars'

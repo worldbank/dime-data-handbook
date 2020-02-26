@@ -417,19 +417,19 @@ getting as close as possible to opening Stata fresh.
 
 \subsection{Saving data}
 
-There are good practices that should be followed before saving any data set.
-These are to \texttt{sort} and \texttt{order} the data set,
+There are good practices that should be followed before saving any dataset.
+These are to \texttt{sort} and \texttt{order} the dataset,
 dropping intermediate variables that are not needed,
-and compressing the data set to save disk space and network bandwidth.
+and compressing the dataset to save disk space and network bandwidth.
 
 If there is a unique ID variable or a set of ID variables,
 the code should test that they are uniqueally and
-fully identifying the data set.\sidenote{
+fully identifying the dataset.\sidenote{
   \url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
 ID variables are also perfect variables to sort on,
-and to \texttt{order} first in the data set.
+and to \texttt{order} first in the dataset.
 
-The command \texttt{compress} makes the data set smaller in terms of memory usage
+The command \texttt{compress} makes the dataset smaller in terms of memory usage
 without ever losing any information.
 It optimizes the storage types for all variables
 and therefore makes it smaller on your computer
@@ -457,7 +457,7 @@ but \texttt{*} and \texttt{/} should be used inline. For example:
 
 \bigskip\noindent  Make sure your code doesn't print very much to the results window as this is slow.
 This can be accomplished by using \texttt{run file.do} rather than \texttt{do file.do}.
-Interactive commands like \texttt{sum} or \texttt{tab} should be used sparingly in dofiles,
+Interactive commands like \texttt{sum} or \texttt{tab} should be used sparingly in do-files,
 unless they are for the purpose of getting \texttt{r()}-statistics.
 In that case, consider using the \texttt{qui} prefix to prevent printing output.
 It is also faster to get outputs from commands like \texttt{reg} using the \texttt{qui} prefix.
