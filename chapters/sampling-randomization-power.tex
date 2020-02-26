@@ -114,8 +114,8 @@ changing their order will change the result of the process.
 Since the exact order must be unchanged, the underlying data itself must be unchanged as well between runs.
 This means that if you expect the number of observations to change (for example increase during
 ongoing data collection) your randomization will not be stable unless you split your data up into
-smaller fixed data sets where the number of observations does not change. You can combine all
-those smaller data sets after your randomization.
+smaller fixed datasets where the number of observations does not change. You can combine all
+those smaller datasets after your randomization.
 In Stata, the only way to guarantee a unique sorting order is to use
 \texttt{isid [id\_variable], sort}. (The \texttt{sort, stable} command is insufficient.)
 You can additionally use the \texttt{datasignature} command to make sure the
@@ -184,16 +184,16 @@ from a master list of individuals to be included in data collection.\sidenote{
   \url{https://dimewiki.worldbank.org/Sampling_\%26_Power_Calculations}}
   \index{sampling}
 That master list may be called a \textbf{sampling universe}, a \textbf{listing frame}, or something similar.
-We recommend that this list be organized in a \textbf{master data set}\sidenote{
+We recommend that this list be organized in a \textbf{master dataset}\sidenote{
   \url{https://dimewiki.worldbank.org/Master_Data_Set}},
 creating an authoritative source for the existence and fixed
 characteristics of each of the units that may be surveyed.\sidenote{
 	\url{https://dimewiki.worldbank.org/Unit_of_Observation}}
-The master data set indicates how many individuals are eligible for data collection,
+The master dataset indicates how many individuals are eligible for data collection,
 and therefore contains statistical information about the likelihood that each will be chosen.
 
 The simplest form of random sampling is \textbf{uniform-probability random sampling}.
-This means that every observation in the master data set
+This means that every observation in the master dataset
 has an equal probability of being included in the sample.
 The most explicit method of implementing this process
 is to assign random numbers to all your potential observations,
@@ -301,8 +301,8 @@ in a given teacher's classroom, for example.
 Clustering is procedurally straightforward in Stata,
 although it typically needs to be performed manually.
 To cluster a sampling or randomization,
-create or use a data set where each cluster unit is an observation,
-randomize on that data set, and then merge back the results.
+create or use a dataset where each cluster unit is an observation,
+randomize on that dataset, and then merge back the results.
 When sampling or randomization is conducted using clusters,
 the clustering variable should be clearly identified
 since it will need to be used in subsequent statistical analysis.

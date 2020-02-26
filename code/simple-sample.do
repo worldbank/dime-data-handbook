@@ -11,7 +11,7 @@
     sort sample_rand            // Sort based on the random number
 
 * Use the sort order to sample 20% (0.20) of the observations. _N in
-* Stata is the number of observations in the active data set , and _n
+* Stata is the number of observations in the active dataset , and _n
 * is the row number for each observation. The bpwide.dta has 120
 * observations, 120*0.20 = 24, so (_n <= _N * 0.20) is 1 for observations
 * with a row number equal to or less than 24, and 0 for all other
