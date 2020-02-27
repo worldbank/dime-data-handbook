@@ -10,4 +10,4 @@ and is produced by [DIME Analytics](https://www.worldbank.org/en/research/dime/d
 
 ### Full book in PDF-format for download
 [Download from Github](https://github.com/worldbank/d4di/raw/master/mkdocs/docs/bookpdf/Data-for-Development-Impact.pdf)
-<iframe src="./bookpdf/Data-for-Development-Impact.pdf#pagemode=none" width="100%" height="1000px"></iframe>
+<iframe src="https://docs.google.com/gview?url=https://github.com/worldbank/d4di/raw/master/mkdocs/docs/bookpdf/Data-for-Development-Impact.pdf&amp;embedded=true" style="width:100%; height:1000px;"></iframe>
