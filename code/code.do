@@ -5,7 +5,7 @@
     reg price mpg rep78 headroom , coefl
 
 * Transpose and store the output
-    matrix results = `r(table)'
+    matrix results = r(table)'
 
 * Load the results into memory
     clear

@@ -1,4 +1,5 @@
-* This is GOOD
+GOOD:
+
     * Loop over crops
     foreach crop in potato cassava maize {
         * Loop over plot number
@@ -16,7 +17,8 @@
         gen use_sample = 1
     }
 
-* This is BAD
+BAD:
+
     * Loop over crops
     foreach crop in potato cassava maize {
     * Loop over plot number

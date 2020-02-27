@@ -1,7 +1,9 @@
-* These examples are GOOD
-    replace gender_string = "Female" if (gender == 1)
-    replace gender_string = "Male"   if ((gender != 1) & !missing(gender))
+GOOD:
 
-* These examples are BAD
-    replace gender_string = "Female" if gender == 1
-    replace gender_string = "Male"   if (gender ~= 1)
+    replace gender_string = "Woman" if (gender == 1)
+    replace gender_string = "Man"   if ((gender != 1) & !missing(gender))
+
+BAD:
+
+    replace gender_string = "Woman" if gender == 1
+    replace gender_string = "Man"   if (gender ~= 1)

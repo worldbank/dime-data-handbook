@@ -1,15 +1,14 @@
-* Dynamic, absolute file paths
+GOOD:
 
-    * Dynamic (and absolute) - GOOD
-    global myDocs    "C:/Users/username/Documents"
-    global myProject "${myDocs}/MyProject"
-    use "${myProject}/MyDataset.dta"
+    global myDocs    = "C:/Users/username/Documents"
+    global myProject = "${myDocs}/MyProject"
+    use "${myProject}/my-dataset.dta" , clear
 
-* Relative and absolute file paths
+BAD:
 
-    * Relative - BAD
+    RELATIVE PATHS:
     cd "C:/Users/username/Documents/MyProject"
     use MyDataset.dta
 
-    * Absolute but not dynamic - BAD
+    STATIC PATHS:
     use "C:/Users/username/Documents/MyProject/MyDataset.dta"
