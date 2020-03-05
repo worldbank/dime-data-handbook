@@ -7,6 +7,8 @@ to data collection to data analysis to publication.
 It serves as a companion to the [DIME Wiki](https://dimewiki.worldbank.org)
 and is produced by [DIME Analytics](https://www.worldbank.org/en/research/dime/data-and-analytics).
 
+You can download a pdf-version of a the book for free [here](https://worldbank.github.com/d4di).
+
 ## Contributing
 
 If you want to read and/or edit the content of this book, or if you want to render the `.tex` code to a `.pdf` file for easier reading, then clone this repository and open the `/manuscript/manuscript.tex` file in a _LaTeX_ editor of your choice.
