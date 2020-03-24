@@ -117,6 +117,29 @@
 
 %----------------------------------------------------------------------------------------
 
+%--------------------------------------
+%	Add URL to commit on copyright page
+%--------------------------------------
+
+\usepackage{xstring}
+\usepackage{catchfile}
+
+%Set this user input
+\newcommand{\gitfolder}{.git} %relative path to .git folder from .tex doc
+\newcommand{\reponame}{worldbank/d4di} % Name of account and repo be set in URL
+
+%Based on this https://tex.stackexchange.com/questions/455396/how-to-include-the-current-git-commit-id-and-branch-in-my-document
+\CatchFileDef{\headfull}{\gitfolder/HEAD.}{} 				%Get path to head file for checked out branch
+\StrGobbleRight{\headfull}{1}[\head]						%Remove end of line character
+\StrBehind[2]{\head}{/}[\branch]							%Parse out the path only
+\CatchFileDef{\commit}{\gitfolder/refs/heads/\branch.}{}	%Get the content of the branch head
+\StrGobbleRight{\commit}{1}[\commithash]					%Remove end of line characted
+
+%Build the URL to this commit based on the information we now have
+\newcommand{\commiturl}{\url{https://github.com/\reponame/commit/\commithash}}
+
+%----------------------------------------------------------------------------------------
+
 % Reset the sidenote number each chapter
 \let\oldchapter\chapter
 \def\chapter{%
@@ -160,6 +183,8 @@ Copyright \copyright\ \the\year\ \\ \thanklessauthor
 \url{https://creativecommons.org/licenses/by/4.0}
 
 \par\textit{First printing, \monthyear}
+
+\par Compiled from: \commiturl
 \end{fullwidth}
 
 %----------------------------------------------------------------------------------------
