@@ -192,3 +192,57 @@ the part on version control is a bit confusing
 - the same standards apply when sharing data with field teams
 - confidential data can be shared with field teams using symmetric encryption or a data collection server that uses asymmetric encryption
 - link to next chapter
+
+
+## 7 - Publishing collaborative researcher
+
+### Collaborating on technical writing
+- collaborating is easier with dynamic documents
+
+#### Preparing dynamic documents
+- what exactly is a dynamic document
+- static documents get inefficient quickly
+-  LaTeX  is one type of dynamic document
+-  markdown is also useful for short or informal documents
+- other dynamic documents: dropbox paper
+
+#### Technical writing with LaTeX
+- advantages of LaTeX
+- managing references in LaTeX
+- using pandoc to convert LaTeX into word
+- disadvantages of LaTeX: installation, learning the mark-up
+
+### Getting started with LaTeX in the cloud
+Can probably be condensed into a short paragraph, I suggest moving the detailed content to the wiki
+- cloud-based implementations are a good place to start
+- Advantages of cloud-based implementations
+- Disadvantages of cloud-based implementations
+
+### Preparing a complete replication package
+- what are replication packages and what they must contain
+
+#### Publishing data for replication
+- options for when the data cannot be published
+- platforms for publishing data
+- check what you can and cannot publish
+- licensing published data
+- content of data publication: data files, meta data and dcumentation
+
+#### De-identifying data for publication
+- what is final de identification
+- tools for final de-identification: pii_detection, pii-scan, sdcMicro
+- trade-off between accuracy and privacy
+- restricting access of confidential for reproducibility check
+
+#### Publishing code for replication
+- published code must be understandable
+- code licenses
+- ensuring code reproducibility
+- tracking code and outputs
+
+### Releasing a replication package
+- finding a place to publish the package
+- pros and cons of releasing packages on GitHub
+- Other options: data verse, osf, research gate. what to look for before deciding on a home for your project
+- one-sentence paragraph about codeocean
+- releasing pre-prints
