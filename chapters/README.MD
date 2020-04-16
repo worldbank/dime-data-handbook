@@ -52,3 +52,61 @@ Comes after data acquisitions
 - De-identification vs anonymization
 - Initial de-identification: remove direct identifiers
 - final de-identification: evaluate risk of disclosure before publishing
+
+## 2 - Collaborating on code and data
+The contents of this chapter need to be set
+
+### Preparing a collaborative work environment
+- Section overview and objective
+- List of common workflow issues that can be solved across projects
+
+#### Setting up your computer
+- Personal computer security: password protection, disk encryption
+- 3-2-1 rule
+- Finding file paths, naming files
+- File sharing: file syncing, version control and server storage
+
+#### Documenting decisions and tasks
+- communication vs documentation
+- task management and documentation tools
+- GitHub and DropBox paper for task documentation
+
+#### Choosing software
+- why it is important to make a conscious decision about software
+- setting stable code environments
+- choosing a code editor
+
+### Organizing code and data
+- Why we write code
+- Why to think about folder structure
+
+#### Organizing files and folder structures
+the part on version control is a bit confusing
+- what is iefolder and why it's useful
+- iefolder structure
+- create a separate folder for data work
+  - so the data work folder can be version-controlled
+  - What files can be version-controlled
+- why version control is useful
+- why git is the best way to version control code
+- file naming conventions for file used with code and files not used with code
+
+#### Documenting and organizing code
+- introduction: why organizing code is important
+- code documentation: header
+- code documentation: commenting
+- code organization: short scripts, broken in sections
+
+#### Working with a master script
+- what is a master script
+- running code through the master script
+- use globals to link code and folder structure
+- plan for code review
+
+#### Managing outputs
+- why output management should be discussed before outputs are created
+- Where to store outputs: plaintext files in git, binary files in DropBox
+- tracking scripts and their outputs
+- What is LaTeX
+- Why LaTeX is a good option
+- markdown and when to use it 

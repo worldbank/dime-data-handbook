@@ -38,6 +38,7 @@ will be able to locate and work with materials easily.
 
 \section{Preparing a collaborative work environment}
 
+% Section overview and objective
 This section provides a brief introduction to core concepts and tools
 that can help you to organize your data work in an efficient, collaborative and reproducible manner.
 Some of these skills may seem elementary,
@@ -48,6 +49,7 @@ Together, these processes should form a collaborative workflow
 that will greatly accelerate your team's ability to get tasks done
 on every project you take on together.
 
+% List of common workflow issues that can be solved across projects
 Teams often develop their workflows over time,
 solving new challenges as they arise.
 Adaptation is good, of course. But it is important to recognize
@@ -67,6 +69,7 @@ and suggest some common solutions for these tasks.
 % ----------------------------------------------------------------------------------------------
 \subsection{Setting up your computer}
 
+% Personal computer security: password protection, disk encryption
 First things first: turn on your computer.
 Make sure you have fully updated the operating system,
 that it is in good working order,
@@ -85,6 +88,7 @@ which makes individual files unreadable without a specific key.
 As with all critical passwords, your system password should be strong,
 memorable, and backed up in a separate secure location.
 
+% 3-2-1 rule
 Make sure your computer is backed up to prevent information loss.
   \index{backup}
 Follow the \textbf{3-2-1 rule}: maintain 3 copies of all original or irreplaceable data,
@@ -99,6 +103,7 @@ since other users can alter or delete them
 unless you create a specific folder for this purpose that is not shared with anyone else.
   \index{Dropbox}
 
+% Finding file paths, naming files
 Ensure you know how to get the \textbf{absolute file path} for any given file.
 Using the absolute file path, starting from the filesystem root,
 means that the computer will never accidentally load the wrong file.
@@ -116,6 +121,7 @@ Making the structure of your directories a core part of your workflow is very im
 since otherwise you will not be able to reliably transfer the instructions
 for replicating or carrying out your analytical work.
 
+% File sharing: file syncing, version control and server storage
 When you are working with others, you will most likely be using
 some kind of \textbf{file sharing} software.
   \index{file sharing}
@@ -156,6 +162,7 @@ Therefore, choosing the correct sharing service at the outset is essential.
 % ----------------------------------------------------------------------------------------------
 \subsection{Documenting decisions and tasks}
 
+% communication vs documentation
 Once your technical and sharing workspace is set up,
 you need to decide how you are going to communicate with your team.
 The first habit that many teams need to break
@@ -173,6 +180,7 @@ We call these systems collaboration tools, and there are several that are very u
   \url{https://dimewiki.worldbank.org/Collaboration_Tools}}
   \index{collaboration tools}
 
+% task management and documentation tools
 Many collaboration tools are web-based
 so that everyone on your team can access them simultaneously
 and have live discussions about tasks and processes.
@@ -193,6 +201,7 @@ Choosing the right tool for the right needs is essential to being satisfied with
 What is important is that your team chooses its systems and stick to those choices,
 so that decisions, discussions, and tasks are easily reviewable long after they are completed.
 
+% GitHub and DropBox paper for task documentation
 Just like we use different file sharing tools for different types of files,
 we can use different collaboration tools for different types of tasks.
 Our team, for example, uses GitHub Issues for code-related tasks,
@@ -212,6 +221,7 @@ so that the people assigning the tasks are sure to set them up in the appropriat
 % ----------------------------------------------------------------------------------------------
 \subsection{Choosing software}
 
+% why it is important to make a conscious decision about software
 Choosing the right working environments can make your work significantly easier.
   \index{software environments}
 It may be difficult or costly to switch halfway through a project, so
@@ -228,12 +238,13 @@ There are few strictly right or wrong choices for software,
 but what is important is that you have a plan in advance
 and understand how your tools will interact with your work.
 
+% setting stable code environments
 Ultimately, the goal is to ensure that you will be able to hold
 your code environment constant over the lifecycle of a single project.
 While this means you will inevitably have different projects
 with different code environments, each one will be better than the last,
 and you will avoid the extremely costly process of migrating a project
-into a new code enviroment while it is still ongoing.
+into a new code environment while it is still ongoing.
 This can be set up down to the software level:
 you should ensure that even specific versions of software
 and the individual packages you use
@@ -244,6 +255,7 @@ even if their most recent releases contain changes that would break your code.
 provides functionality to support Stata version stability.\sidenote{
   \url{https://dimewiki.worldbank.org/ieboilstart}})
 
+% choosing a code editor
 Next, think about how and where you write and execute code.
 This book is intended to be agnostic to the size or origin of your data,
 but we are going to broadly assume that you are using desktop-sized datasets
@@ -274,6 +286,7 @@ and simultaneous work with other types of files, without leaving the editor.
 % ----------------------------------------------------------------------------------------------
 \section{Organizing code and data}
 
+% Why we write code
 We assume you are going to do nearly all of your analytical work through code.
 Though it is possible to use some statistical software through the user interface
 without writing any code, we strongly advise against it.
@@ -283,14 +296,16 @@ You may do some exploratory tasks by point-and-click or typing directly into the
 but anything that is included in a research output
 must be coded up in an organized fashion so that you can release
 the exact code recipe that goes along with your final results.
+% Why to think about folder structure
 Still, organizing code and data into files and folders is not a trivial task.
 What is intuitive to one person rarely comes naturally to another,
 and searching for files and folders is everybody's least favorite task.
-As often as not, you come up with the wrong one,
+As often as not, you come up with the wrong folder structure,
 and then it becomes very easy to create problems that require complex resolutions later.
 This section will provide basic tips on managing the folder
 that will store your project's data work.
 
+% Why to think about folder structure
 We assume you will be working with code and data throughout your project.
 We further assume you will want all your processes to be recorded
 and easily findable at any point in time.
@@ -311,6 +326,7 @@ and everyone has the same expectations.
 % ----------------------------------------------------------------------------------------------
 \subsection{Organizing files and folder structures}
 
+% what is iefolder and why it's useful
 Agree with your team on a specific directory structure,
 and set it up at the beginning of the research project
 in your root folder (the one over which you can control access permissions).
@@ -334,6 +350,7 @@ across the entire portfolio of projects means that everyone
 can easily move between projects without having to reorient
 themselves to how files and folders are organized.
 
+% iefolder structure
 Our suggested file structure is not for everyone.
 But if you do not already have a standard file structure across projects,
 it is intended to be an easy template to start from.
@@ -355,17 +372,20 @@ written in a plaintext language called \textbf{Markdown}, they also provide an e
 to document the contents of every folder in the structure.
   \index{Markdown}
 
+% create a separate folder for data work
 The \texttt{DataWork} folder may be created either inside
 an existing project-based folder structure, or it may be created separately.
 It is preferable to create the \texttt{DataWork} folder
 separately from the project management materials
 (such as contracts, Terms of Reference, briefs and other administrative or management work).
+% so the data work folder can be version-controlled
 This is so the project folder can be maintained in a synced location like Dropbox,
 while the code folder can be maintained in a version-controlled location like GitHub.
 (Remember, a version-controlled folder \textit{should not}
 be stored in a synced folder that is shared with other people.
 Those two types of collaboration tools function very differently
 and will almost always create undesired functionality if combined.)
+% What files can be version-controlled
 Nearly all code files and raw outputs (not datasets) are best managed this way.
 This is because code files are always \textbf{plaintext} files,
 and non-code-compatiable files are usually \textbf{binary} files.\index{plaintext}\index{binary files}
@@ -377,7 +397,8 @@ to maintain better control of their history and functionality.
 Because of the high degree of dependence between code files depend and file structure,
 you will be able to enforce better practices in a separate code folder than in the project folder.
 
-Setting up the \texttt{DataWork} folder folder in a version-controlled directory
+% why version control is useful
+Setting up the \texttt{DataWork} folder in a version-controlled directory
 also enables you to use Git and GitHub for version control on your code files.
 A \textbf{version control system} is required to manage changes to any code-compatiable file.
 A good version control system tracks who edited each file and when,
@@ -388,7 +409,7 @@ or to understand why the significance level of your estimates has changed.
 Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
 can appreciate how useful such a system can be.
 
-
+% why git is the best way to version control code
 Most syncing services offer some kind of rudimentary version control;
 these are usually enough to manage changes to binary files (such as Word and PowerPoint documents)
 without needing to rely on dreaded filename-based versioning conventions.
@@ -399,6 +420,7 @@ and allows you to go back to previous versions without losing the information on
 It also makes it possible to work on multiple parallel versions of the code,
 so you don't risk breaking the code for other team members as you try something new.
 
+% file naming conventions for file used with code and files not used with code
 Once the \texttt{DataWork} folder's directory structure is set up,
 you should adopt a file naming convention.
 You will generally be working with two types of files:
@@ -415,6 +437,8 @@ to find out what is inside them.\sidenote{\url{https://dimewiki.worldbank.org/wi
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Documenting and organizing code}
+
+% introduction: why organizing code is important
 Once you start a project's data work,
 the number of scripts, datasets, and outputs that you have to manage will grow very quickly.
 This can get out of hand just as quickly,
@@ -430,6 +454,7 @@ to provide a concrete example of the required elements and structure.
 Throughout this section, we refer to lines of the example do-file
 to give concrete examples of the required code elements, organization and structure.
 
+% code documentation: header
 Code documentation is one of the main factors that contribute to readability.
 Start by adding a code header to every file.
 A code header is a long \textbf{comment}\sidenote{
@@ -449,6 +474,7 @@ When you are trying to track down which code creates which dataset, this will be
 While there are other ways to document decisions related to creating code,
 the information that is relevant to understand the code should always be written in the code file.
 
+% code documentation: commenting
 In the script, alongside the code, are two types of comments that should be included.
 The first type of comment describes what is being done;
 refer to line 35 in the example do-file.
@@ -466,6 +492,7 @@ that is not obvious or has not been seen by others before.
 Even you will probably not remember the exact choices that were made in a couple of weeks.
 Therefore, you must document your precise processes in your code.
 
+% code organization: short scripts, broken in sections
 Code organization means keeping each piece of code in an easy-to-find location and naming them in a meaningful way.
   \index{code organization}
 Breaking your code into independently readable ``chunks'' is one good practice on code organization.
@@ -494,6 +521,8 @@ This is an arbitrary limit, just like the common practice of limiting code lines
 it seems to be ``enough but not too much'' for most purposes.
 
 \subsection{Working with a master script}
+
+% what is a master script
 To bring all these smaller code files together, you must maintain a master script.
   \index{master do-file}
 A master script is the map of all your project's data work
@@ -507,6 +536,7 @@ By follow, we mean someone external to the project who has the master script and
 The master script is also where all the settings are established,
 such as versions, folder paths, functions, and constants used throughout the project.
 
+% running code through the master script
 Try to create the habit of running your code from the master script.
 Creating ``section switches'' using macros or objects to run only the codes related to a certain task
 should always be preferred to manually open different scripts to run them in a certain order
@@ -519,6 +549,7 @@ But unless you run both of them when the change is made, it may take time for th
 and when it does, it may take time for you to understand what's causing an error.
 The same applies to changes in datasets and results.
 
+% use globals to link code and folder structure
 To link code, data and outputs,
 the master script reflects the structure of the \texttt{DataWork} folder in code
 through globals (in Stata) or string scalars (in R);
@@ -540,6 +571,7 @@ an important feature of the \texttt{iefolder} is to write master do-files
 and add to them whenever new subfolders are created in the \texttt{DataWork} folder.\sidenote{
 	\url{https://dimewiki.worldbank.org/Master\_Do-files}}
 
+% plan for code review
 In order to maintain well-documented and organized code,
 you should agree with your team on a plan to review code as it is written.
   \index{code review}
@@ -562,6 +594,7 @@ or for release of the code to the general public.
 % ----------------------------------------------------------------------------------------------
 \subsection{Managing outputs}
 
+% why output management should be discussed before outputs are created
 The final task that needs to be discussed with your team is the best way to manage output files.
 A great number of outputs will be created during the course of a project,
 and these will include both raw outputs such as tables and graphs
@@ -569,7 +602,7 @@ and final products such as presentations, papers and reports.
 When the first outputs are being created, agree on where to store them,
 what softwares and formats to use, and how to keep track of them.
 
-% Where to store outputs
+% Where to store outputs: plaintext files in git, binary files in DropBox
 Decisions about storage of outputs are made easier by technical constraints.
 As discussed above, version control systems like Git are a great way to manage
 plaintext files, and sync softwares such as Dropbox are better for binary files.
@@ -583,13 +616,14 @@ the outputs will be overwritten,
 and any changes in coefficients and number of observations, for example,
 will be automatically flagged for you or a reviewer to check.
 
+% tracking scripts and their outputs
 No matter what choices you make,
 you will need to make updates to your outputs quite frequently.
 And anyone who has tried to recreate a graph after a few months probably knows
 that it can be hard to remember where you saved the code that created it.
 Here, naming conventions and code organization play a key role
 in not re-writing scripts again and again.
-It is common for teams to maintain one analyisis file or folder with draft code or ``exploratory analysis'',
+It is common for teams to maintain one analysis file or folder with draft code or ``exploratory analysis'',
 which are pieces of code that are stored only to be found again in the future,
 but not cleaned up to be included in any final outputs yet.
 Once you are happy with a result or output,
@@ -602,7 +636,7 @@ there are a few lines of comments listing
 datasets and functions that are necessary for it to run,
 as well as all outputs created by that script.
 
-% What software to use
+% What is LaTeX
 Compiling the raw outputs from your statistical software into useful formats
 is the final step in producing research outputs for public consumption.
 Though formatted text software such as Word and PowerPoint are still prevalent,
@@ -613,6 +647,7 @@ like documents and presentations using {\LaTeX}\index{{\LaTeX}}.\sidenote{
  {\LaTeX} uses plaintext for all formatting,
 and it is necessary to learn its specific markup convention to use it.
 
+% Why LaTeX is a good option
 The main advantage of using {\LaTeX} is that you can write dynamic documents,
 that import inputs every time they are compiled.
 This means you can skip the copying and pasting whenever an output is updated.
@@ -622,6 +657,7 @@ is great for outputs that focus mainly on text,
 but include small chunks of code and static code outputs.
 This book, for example, was written in {\LaTeX} and managed on GitHub\sidenote{\url{https://github.com/worldbank/d4di}}.
 
+% markdown and when to use it 
 Another option is to use the statistical software's dynamic document engines.
 This means you can write both text (in Markdown) and code in the script,
 and the result will usually be a PDF or HTML file including code, text, and outputs.
