@@ -109,4 +109,86 @@ the part on version control is a bit confusing
 - tracking scripts and their outputs
 - What is LaTeX
 - Why LaTeX is a good option
-- markdown and when to use it 
+- markdown and when to use it
+
+## 5 - Acquiring development data
+
+### Acquiring data
+- Different data sources and their ownership status
+
+#### Data ownership
+- How to ascertain who owns the data
+- How to ascertain data usage rights given the data ownership
+
+#### Data licensing agreements
+- what is data licensing
+- balancing privacy and transparency
+- What to include in a data licensing agreement to receive data from partners
+- What to include in a contract when hiring a vendor to collect novel data
+- What to include in licensing agreements when licensing data you own during publication
+
+#### Receiving data from development partners
+- Transfer data securely
+- How to document the data
+- Processing data into publishable datasets
+
+### Collecting data using electronic surveys
+- Summary and overview of the section
+
+#### Developing a data collection instrument
+- questionnaire design vs questionnaire programming
+- why to create a paper questionnaire
+- first step of questionnaire design: list key outcomes of interest
+- Outline modules, content-focused pilot, measure attrition and contamination
+- content-focused pilot
+
+#### Designing surveys for electronic deployment
+- intro: this section discusses practices, not software
+- using pre-coded response options
+- naming variables
+
+#### Programming electronic questionnaires
+- writing questionnaire pseudocode
+- constraints, checks and other features that help data quality
+- debugging and using ietestform
+- data-focused pilot
+
+### Data quality assurance
+
+#### Implementing high frequency quality checks
+- why to monitor data quality in real time
+- how to set up hfcs
+- important checks: cross-reference with the sample, look for duplicates, track survey completion, compare clusters and enumerators
+- consistency checks
+- communicating issues in real time
+
+#### Conducting back-checks and data validation
+- what are back-checks and audtis, and why they are needed
+- comparing validation data to survey data
+
+#### Finalizing data collection
+- what to include in data collection reports
+
+### Collecting and sharing data securely
+- what makes data confidential
+- what is data encryption
+- keeping passwords safe
+- don't trust encryption that you did not set up (this paragraph is a bit confusing)
+
+#### Collecting data securely
+- survey data is typically encrypted in transit
+- use encryption at rest for confidential data
+- asymmetric encryption must be implemented in survey collection servers
+- store key files safely
+
+#### Storing data securely
+- what is symmetric encryption
+- how to implement symmetric encryption
+- apply 3-2-1 rule to raw data
+
+#### Sharing data securely
+- raw data containing confidential information can be safely shared if encrypted
+- raw data stripped from identifying variables can be shared without using encryption
+- the same standards apply when sharing data with field teams
+- confidential data can be shared with field teams using symmetric encryption or a data collection server that uses asymmetric encryption
+- link to next chapter
