@@ -135,35 +135,35 @@ This chapter includes tasks implemented during research design
 
 #### Randomization
 - what does randomization mean
-% How randomization code differs from sampling code
-% Randomizing in the field
+- How randomization code differs from sampling code
+- Randomizing in the field
 
 ### Clustering and stratification
-% the cases discussed so far are the most simple, but not the most common
+- the cases discussed so far are the most simple, but not the most common
 
 #### Clustering
-% clustering is needed when unit of observation in the data is different from the randomization unit
-% How to implement randomization with clusters
+- clustering is needed when unit of observation in the data is different from the randomization unit
+- How to implement randomization with clusters
 
 #### Stratification
-% what is stratification
-% using randtreat for stratified randomization
-% analyzing stratified experiments
+- what is stratification
+- using randtreat for stratified randomization
+- analyzing stratified experiments
 
 ### Power calculation and randomization inference
-% sampling error, randomization noise and the need for power calcs
+- sampling error, randomization noise and the need for power calcs
 
 #### Power calculations
-% why to do power calculations
-% intuition of power concepts: MDE and minimum sample size
-% stata commands for power calcs
-% why you should do simulations instead
-% wrap up
+- why to do power calculations
+- intuition of power concepts: MDE and minimum sample size
+- stata commands for power calcs
+- why you should do simulations instead
+- wrap up
 
 #### Randomization inference
-% what is randomization inference
-% randomization inference in stata: ritest
-% why you should use randomization inference
+- what is randomization inference
+- randomization inference in stata: ritest
+- why you should use randomization inference
 
 ## 5 - Acquiring development data
 This chapter is its own step in the research process -- which is why it's so long
@@ -248,6 +248,102 @@ This chapter is its own step in the research process -- which is why it's so lon
 - confidential data can be shared with field teams using symmetric encryption or a data collection server that uses asymmetric encryption
 - link to next chapter
 
+## 6 - Analyzing research data
+This chapter is its own step in the research process -- which is why it's so long
+
+### Managing data effectively
+% intro: contents of the section
+
+#### Organizing your folder structure
+% iefolder and why standardizing folder structure is important
+% iefolder structure
+
+#### Breaking down tasks
+% steps: de-identification, data cleaning, variable construction, and data analysis
+% incorporating code review between steps
+
+#### Writing master scripts
+% why you need a master script
+
+#### Implementing version control
+% Why version control is important
+
+### De-identifying research data
+% Storing the raw data
+% The raw data files should never be edited directly
+% Initial de-identification and tools to find direct identifiers (Pii scam sdcMicro, iecodebook)
+% how to de-identify data: encode or drop variable
+% the de-identified data set is the data set that will be used from now on
+
+### Cleaning data for analysis
+% data cleaning tasks
+% explore the data set
+
+#### Identifying the identifier
+% cases when a data set is not uniquely and fully identified
+% id variable and survey key are not the same thing
+
+#### Labeling, annotating, and finalizing clean data
+% labelling, renaming and recoding: use iecodebook
+% best practices for renaming and labeling
+% recoding: survey codes and string variables
+
+#### Preparing a clean dataset
+% characteristics of the cleaned data set: same data as the raw data, but corrected
+% meta data and connection to survey instrument
+% wide and long data sets
+% dropping duration and calculate fields
+% the cleaned data set can be published
+
+#### Documenting data cleaning
+% store the supporting documents used during data cleaning
+% what to include in the documentation folder
+% Create descriptives plots and tables as you explore the data
+
+### Constructing analysis datasets
+% What is construction
+% a project may require multiple constructed data sets
+
+#### Fitting construction into the data workflow
+% why construction is separate from data cleaning
+% why construction is separate from analysis
+
+#### Integrating different data sources
+% when merging is necessary
+% merging data sets with the same unit of observation
+% merging data sets with different units of observation
+% possible issues when merging, reshaping and collapsing
+
+#### Constructing analytical variables
+% what is construction: creation of new indicators
+% check that variables have the same unit before combining them
+% dealing with outliers and missing values
+% maitaining indicator definition across rounds
+
+#### Documenting variable construction
+% why documentation is imporant and how to create it
+
+### Writing data analysis code
+% Intro
+
+#### Organizing analysis code
+% exploratory vs final data analysis
+% write independent analysis scripts
+% writing easy to read analysis code
+% naming analysis code
+
+### Visualizing data
+% useful resources for data visualization
+% writing data viz code
+% Stata visual library
+
+#### Exporting analysis outputs
+% useful ietoolkit functions
+% which outputs should be fully automated and why
+% output formats
+% formatting tables
+% meta data in outputs
+% link to next chapter
 
 ## 7 - Publishing collaborative researcher
 This chapter is the last stage of the research process
