@@ -111,7 +111,62 @@ the part on version control is a bit confusing
 - Why LaTeX is a good option
 - markdown and when to use it
 
+## 4 - Sampling, randomization and power
+This chapter includes tasks implemented during research design
+
+### Random processes
+- what we mean when we talk about randomization
+
+#### Implementing random processes reproducibly in Stata
+- what is means for randomization to be reproducible
+- what Stata is doing when it generates random numbers
+- rule 1: versioning
+- rule 2: sorting
+- rule 3: seeding
+- testing randomization reproducibility
+
+### Sampling and randomization
+- random sampling vs random assignment
+- the intuition behind sampling and randomization
+
+#### Sampling
+- sampling universe: the master data set
+- implement uniform-probability random sampling
+
+#### Randomization
+- what does randomization mean
+% How randomization code differs from sampling code
+% Randomizing in the field
+
+### Clustering and stratification
+% the cases discussed so far are the most simple, but not the most common
+
+#### Clustering
+% clustering is needed when unit of observation in the data is different from the randomization unit
+% How to implement randomization with clusters
+
+#### Stratification
+% what is stratification
+% using randtreat for stratified randomization
+% analyzing stratified experiments
+
+### Power calculation and randomization inference
+% sampling error, randomization noise and the need for power calcs
+
+#### Power calculations
+% why to do power calculations
+% intuition of power concepts: MDE and minimum sample size
+% stata commands for power calcs
+% why you should do simulations instead
+% wrap up
+
+#### Randomization inference
+% what is randomization inference
+% randomization inference in stata: ritest
+% why you should use randomization inference
+
 ## 5 - Acquiring development data
+This chapter is its own step in the research process -- which is why it's so long
 
 ### Acquiring data
 - Different data sources and their ownership status
@@ -195,6 +250,7 @@ the part on version control is a bit confusing
 
 
 ## 7 - Publishing collaborative researcher
+This chapter is the last stage of the research process
 
 ### Collaborating on technical writing
 - collaborating is easier with dynamic documents
