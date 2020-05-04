@@ -445,134 +445,11 @@ so that any further debugging or other revisions to the electronic survey instru
 can be made at the end of each day and tested the following, until no further field errors arise.
 The data-focused pilot should be done in advance of enumerator training.
 
-%------------------------------------------------
-\section{Data quality assurance}
-
-Whether you are acquiring data from a partner or collecting it directly,
-it is important to make sure that data faithfully reflects ground realities.
-Data quality assurance requires a combination of real-time data checks
-and back-checks or validation audits, which often means tracking down
-the people whose information is in the dataset.
-
-\subsection{Implementing high frequency quality checks}
-
-A key advantage of continuous electronic data intake methods,
-as compared to traditional paper surveys and one-time data dumps,
-is the ability to access and analyze the data while the project is ongoing.
-Data issues can be identified and resolved in real-time.
-Designing systematic data checks and running them routinely throughout data intake
-simplifies monitoring and improves data quality.
-As part of data collection preparation,
-the research team should develop a \textbf{data quality assurance plan}\sidenote{
-  \url{https://dimewiki.worldbank.org/Data_Quality_Assurance_Plan}}.
-While data collection is ongoing,
-a research assistant or data analyst should work closely with the field team or partner
-to ensure that the data collection is progressing correctly,
-and set up and perform \textbf{high-frequency checks (HFCs)} with the incoming data.
-
-High-frequency checks (HFCs) should carefully inspect key treatment and outcome variables
-so that the data quality of core experimental variables is uniformly high,
-and that additional effort is centered where it is most important.
-Data quality checks should be run on the data every time it is received from the field or partner
-to flag irregularities in the aquisition progress, in sample completeness, or in response quality.
-\texttt{ipacheck}\sidenote{
-  \url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
-is a very useful command that automates some of these tasks,
-regardless of the source of the data.
-
-It is important to check continuously that the observations in the data match the intended sample.
-In surveys, the software often provides some form of case management features
-through which sampled units are directly assigned to individual enumerators.
-For data recieved from partners, this may be harder to validate,
-since they are the authoritative source of the data,
-so cross-referencing with other data sources may be necessary to validate data.
-Even with careful management, it is often the case that raw data includes duplicate or missing entries,
-which may occur due to data entry errors or failed submissions to data servers.\sidenote{
-  \url{https://dimewiki.worldbank.org/Duplicates_and_Survey_Logs}}
-\texttt{ieduplicates}\sidenote{
-  \url{https://dimewiki.worldbank.org/ieduplicates}}
-provides a workflow for collaborating on the resolution of duplicate entries between you and the provider.
-Then, observed units in the data must be validated against the expected sample:
-this is as straightforward as merging the sample list with the survey data and checking for mismatches.
-Reporting errors and duplicate observations in real-time allows the field team to make corrections efficiently.
-Tracking data collection progress is important for monitoring attrition,
-so that it is clear early on if a change in protocols or additional tracking will be needed.
-It is also important to check data collection completion rate
-and sample compliance by surveyor and survey team, if applicable,
-or compare data missingness across administrative regions,
-to identify any clusters that may be providing data of suspect quality.
-
-High frequency checks should also include content-specific data checks.
-Electronic survey and data entry software often incorporates many quality control features,
-so these checks should focus on issues survey software cannot check automatically.
-As most of these checks are project specific,
-it is difficult to provide general guidance.
-An in-depth knowledge of the questionnaire and a careful examination of the analysis plan
-is the best preparation.
-Examples include verifying consistency across multiple response fields,
-validation of complex calculations like crop yields or medicine stocks (which require unit conversions),
-suspicious patterns in survey timing,
-or atypical response patters from specific data sources or enumerators.\sidenote{
-  \url{https://dimewiki.worldbank.org/Monitoring_Data_Quality}}
-Electronic data entry software typically provides rich metadata,
-which can be useful in assessing data quality.
-For example, automatically collected timestamps show when data was submitted
-and (for surveys) how long enumerators spent on each question,
-and trace histories show how many
-times answers were changed before or after the data was submitted.
-
-High-frequency checks will only improve data quality
-if the issues they catch are communicated to the data collection team.
-There are lots of ways to do this;
-what's most important is to find a way to create actionable information for your team.
-\texttt{ipacheck}, for example, generates a spreadsheet with flagged errors;
-these can be sent directly to the data collection teams.
-Many teams choose other formats to display results,
-such as online dashboards created by custom scripts.
-It is also possible to automate communication of errors to the field team
-by adding scripts to link the HFCs with a messaging program such as WhatsApp.
-Any of these solutions are possible:
-what works best for your team will depend on such variables as
-cellular networks in field work areas, whether field supervisors have access to laptops,
-internet speed, and coding skills of the team preparing the HFC workflows.
-
-\subsection{Conducting back-checks and data validation}
-
-Careful validation of data is essential for high-quality data.
-Since we cannot control natural measurement error
-that comes from variation in the realization of key outcomes,
-original data collection provides the opportunity to make sure
-that there is no error arising from inaccuracies in the data itself.
-\textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/Back_Checks}} and
-other validation audits help ensure that data collection is following established protocols,
-and that data is not fasified, incomplete, or otherwise suspect.
-For back-checks and validation audits, a random subset of the main data is selected,
-and a subset of information from the full survey is
-verified through a brief targeted survey with the original respondent
-or a cross-referenced dataset from another source (if the original data is not a field survey).
-Design of the back-checks or validations follows the same survey design
-principles discussed above: you should use the analysis plan
-or list of key outcomes to establish which subset of variables to prioritize,
-and similarly focus on errors that would be major flags for poor quality data.
-
-Real-time access to the data massively increases the potential utility of validation,
-and both simplifies and improves the rigor of the associated workflows.
-You can use the raw data to draw the back-check or validation sample;
-this ensures that the validation is correctly apportioned across observations.
-As soon as checking is complete, the comparator data can be tested against
-the original data to identify areas of concern in real-time.
-The \texttt{bcstats} command is a useful tool for analyzing back-check data in Stata.\sidenote{
-  \url{https://ideas.repec.org/c/boc/bocode/s458173.html}}
-Some electronic surveys surveys also provide a unique opportunity
-to do audits through audio recordings of the interview,
-typically short recordings triggered at random throughout the questionnaire.
-\textbf{Audio audits} are a useful means to assess whether enumerators are conducting interviews as expected.
-Do note, however, that audio audits must be included in the informed consent for the respondents.
 
 \subsection{Finalizing data collection}
 
 When all data collection is complete, the survey team should prepare a final field report,
-which should report reasons for any deviations between the original sample and the dataset collected.
+which should report reasons for any deviations between the original sample and the data collected.
 Identification and reporting of \textbf{missing data} and \textbf{attrition}
 is critical to the interpretation of survey data.
 It is important to structure this reporting in a way that not only
@@ -585,7 +462,7 @@ This information should be stored as a dataset in its own right
 and attrition occurred in the field and how they were implemented and resolved.
 
 %------------------------------------------------
-\section{Collecting and sharing data securely}
+\section{Secure data handling}
 
 All confidential data must be handled in a way where there is no risk that anyone who is
 not approved by an Institutional Review Board (IRB)\sidenote{
