@@ -1,4 +1,5 @@
 % ----------------------------------------------------------------------------------------------
+% Setting the stage for successful data work
 
 \begin{fullwidth}
 Preparation for collaborative data work begins long before you acquire any data,
@@ -560,86 +561,172 @@ or for release of the code to the general public.
 
 \codeexample{stata-master-dofile.do}{./code/stata-master-dofile.do}
 % ----------------------------------------------------------------------------------------------
-\subsection{Managing outputs}
 
-The final task that needs to be discussed with your team is the best way to manage output files.
-A great number of outputs will be created during the course of a project,
-and these will include both raw outputs such as tables and graphs
-and final products such as presentations, papers and reports.
-When the first outputs are being created, agree on where to store them,
-what softwares and formats to use, and how to keep track of them.
+\section{Ensuring privacy and security in research data}
 
-% Where to store outputs
-Decisions about storage of outputs are made easier by technical constraints.
-As discussed above, version control systems like Git are a great way to manage
-plaintext files, and sync softwares such as Dropbox are better for binary files.
-Outputs will similarly come in these two formats, depending on your software.
-Binary outputs like Excel files, PDFs, PowerPoints, or Word documents can be kept in a synced folder.
-Raw outputs in plaintext formats like \texttt{.tex} and \texttt{.eps}
-can be created from most analytical software and managed with Git.
-Tracking plaintext outputs with Git makes it easier to identify changes that affect results.
-If you are re-running all of your code from the master script,
-the outputs will be overwritten,
-and any changes in coefficients and number of observations, for example,
-will be automatically flagged for you or a reviewer to check.
+Anytime you are working with original data in a development research project,
+you are almost certainly handling data that include \textbf{personally-identifying
+	information (PII)}.\index{personally-identifying information}\index{primary data}\sidenote{
+	\textbf{Personally-identifying information:} any piece or set of information
+	that can be used to identify an individual research subject.
+	\url{https://dimewiki.worldbank.org/De-identification\#Personally\_Identifiable\_Information}}
+PII data contains information that can, without any transformation, be used to identify
+individual people, households, villages, or firms that were part of data collection.
+\index{data collection}
+This includes names, addresses, and geolocations, and extends to personal information
+such as email addresses, phone numbers, and financial information.\index{geodata}\index{de-identification}
+It is important to keep in mind data privacy principles not only for the  respondent 
+but also the PII data of their household members or other individuals who are covered under the survey.
+\index{privacy}
+In some contexts this list may be more extensive --
+for example, if you are working in an environment that is either small, specific,
+or has extensive linkable data sources available to others,
+information like someone's age and gender may be sufficient to identify them
+even though these would not be considered PII in general.
+There is no one-size-fits-all solution to determine what is PII, and you will have to use careful judgment in each case
+to decide which pieces of information fall into this category.\sidenote{
+	\url{https://sdcpractice.readthedocs.io}}
 
-No matter what choices you make,
-you will need to make updates to your outputs quite frequently.
-And anyone who has tried to recreate a graph after a few months probably knows
-that it can be hard to remember where you saved the code that created it.
-Here, naming conventions and code organization play a key role
-in not re-writing scripts again and again.
-It is common for teams to maintain one analyisis file or folder with draft code or ``exploratory analysis'',
-which are pieces of code that are stored only to be found again in the future,
-but not cleaned up to be included in any final outputs yet.
-Once you are happy with a result or output,
-it should be named and moved to a dedicated location.
-It's typically desirable to have the names of outputs and scripts linked,
-so, for example, \texttt{factor-analysis.do} creates \texttt{f1-factor-analysis.eps} and so on.
-Document output creation in the master script that runs these files,
-so that before the line that runs a particular analysis script
-there are a few lines of comments listing
-datasets and functions that are necessary for it to run,
-as well as all outputs created by that script.
+In all cases where this type of information is involved,
+you must make sure that you adhere to several core principles.
+These include ethical approval, participant consent, data security, and participant privacy.
+If you are a US-based researcher, you will become familiar
+with a set of governance standards known as ``The Common Rule''.\sidenote{
+	\url{https://www.hhs.gov/ohrp/regulations-and-policy/regulations/common-rule/index.html}}
+If you interact with European institutions or persons,
+you will also become familiar with the General Data Protection Regulation (GDPR),\sidenote{
+	\url{http://blogs.lshtm.ac.uk/library/2018/01/15/gdpr-for-research-data}}
+a set of regulations governing \textbf{data ownership} and privacy standards.\sidenote{
+	\textbf{Data ownership:} the set of rights governing who may access, alter, use, or share data, regardless of who possesses it.}
+\index{data ownership}
 
-% What software to use
-Compiling the raw outputs from your statistical software into useful formats
-is the final step in producing research outputs for public consumption.
-Though formatted text software such as Word and PowerPoint are still prevalent,
-researchers are increasingly choosing to prepare final outputs
-like documents and presentations using {\LaTeX}\index{{\LaTeX}}.\sidenote{
-  \url{https://www.latex-project.org} and \url{https://github.com/worldbank/DIME-LaTeX-Templates}.}
-{\LaTeX} is a document preparation system that can create both text documents and presentations.
- {\LaTeX} uses plaintext for all formatting,
-and it is necessary to learn its specific markup convention to use it.
+In all settings, you should have a clear understanding of
+who owns your data (it may not be you, even if you collect or possess it),
+the rights of the people whose information is reflected there,
+and the necessary level of caution and risk involved in
+storing and transferring this information.
+Even if your research does not involve PII,
+it is a prerogative of the data owner to determine who may have access to it.
+Therefore, if you are using data that was provided to you by a partner,
+they have the right to request that you hold it to uphold the same data security safeguards as you would to PII.
+For the purposes of this book, 
+we will call all any data that may not be freely accessed for these or other reasons \textbf{confidential data}.
+Given the increasing scrutiny on many organizations
+from recently advanced data rights and regulations,
+these considerations are critically important.
+Check with your organization if you have any legal questions;
+in general, you are responsible for any action that
+knowingly or recklessly ignores these considerations.
 
-The main advantage of using {\LaTeX} is that you can write dynamic documents,
-that import inputs every time they are compiled.
-This means you can skip the copying and pasting whenever an output is updated.
-Because it's written in plaintext, it's also easier to control and document changes using Git.
-Creating documents in {\LaTeX} using an integrated writing environment such as TeXstudio, TeXmaker or LyX
-is great for outputs that focus mainly on text,
-but include small chunks of code and static code outputs.
-This book, for example, was written in {\LaTeX} and managed on GitHub\sidenote{\url{https://github.com/worldbank/d4di}}.
+\subsection{Obtaining ethical approval and consent}
 
-Another option is to use the statistical software's dynamic document engines.
-This means you can write both text (in Markdown) and code in the script,
-and the result will usually be a PDF or HTML file including code, text, and outputs.
-Dynamic document tools are better for including large chunks of code and dynamically created graphs and tables,
-but formatting these can be much trickier and less full-featured than other editors.
-So dynamic documents can be great for creating appendices
-or quick documents with results as you work on them,
-but are not usually considered for final papers and reports.
-RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com}} is the most widely adopted solution in R.
-There are also different options for Markdown in Stata,
-such as \texttt{markstat},\sidenote{\url{https://data.princeton.edu/stata/markdown}}
-Stata 15 dynamic documents,\sidenote{\url{https://www.stata.com/new-in-stata/markdown}}
-\texttt{webdoc},\sidenote{\url{http://repec.sowi.unibe.ch/stata/webdoc}} and
-\texttt{texdoc}.\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc}}
+For almost all data collection and research activities that involve
+human subjects or PII data,
+you will be required to complete some form of \textbf{Institutional Review Board (IRB)} process.\sidenote{
+	\textbf{Institutional Review Board (IRB):} An institution formally responsible for ensuring that research meets ethical standards.}
+\index{Institutional Review Board}
+Most commonly this consists of a formal application for approval of a specific
+protocol for consent, data collection, and data handling.\sidenote{
+	\url{https://dimewiki.worldbank.org/IRB_Approval}}
+Which IRB has sole authority over your project is not always apparent,
+particularly if some institutions do not have their own.
+It is customary to obtain an approval from a university IRB
+where at least one PI is affiliated,
+and if work is being done in an international setting,
+approval is often also required
+from an appropriate local institution subject to the laws of the country where data originates.
 
-Whichever options you choose,
-agree with your team on what tools will be used for what outputs, and
-where they will be stored before you start creating them.
-Take into account ease of use for different team members, but
-keep in mind that learning how to use a new tool may require some
-time investment upfront that will be paid off as your project advances.
+One primary consideration of IRBs
+is the protection of the people about whom information is being collected
+and whose lives may be affected by the research design.
+Some jurisdictions (especially those responsible to EU law) view all personal data
+as intrinsically owned by the persons who they describe.
+This means that those persons have the right to refuse to participate in data collection
+before it happens, as it is happening, or after it has already happened.
+It also means that they must explicitly and affirmatively consent
+to the collection, storage, and use of their information for any purpose.
+Therefore, the development of appropriate consent processes is of primary importance.
+All survey instruments must include a module in which the sampled respondent grants informed consent to participate.
+Research participants must be informed of the purpose of the research, 
+what their participation will entail in terms of duration and any procedures,
+any foreseeable benefits or risks, 
+and how their identity will be protected.\sidenote{
+	\url{https://www.icpsr.umich.edu/icpsrweb/content/datamanagement/confidentiality/conf-language.html}}
+There are special additional protections in place for vulnerable populations,
+such as minors, prisoners, and people with disabilities,
+and these should be confirmed with relevant authorities if your research includes them.
+
+IRB approval should be obtained well before any data is acquired. 
+IRBs may have infrequent meeting schedules
+or require several rounds of review for an application to be approved.
+If there are any deviations from an approved plan or expected adjustments,
+report these as early as possible so that you can update or revise the protocol.
+Particularly at universities, IRBs have the power to retroactively deny
+the right to use data which was not acquired in accordance with an approved plan.
+This is extremely rare, but shows the seriousness of these considerations
+since the institution itself may face legal penalties if its IRB
+is unable to enforce them. As always, as long as you work in good faith,
+you should not have any issues complying with these regulations.
+
+\subsection{Transmitting and storing data securely}
+
+Secure data storage and transfer are ultimately your personal responsibility.\sidenote{
+	\url{https://dimewiki.worldbank.org/Data_Security}}
+There are several precautions needed to ensure that your data is safe.
+First, all online and offline accounts
+-- including personal accounts like computer logins and email --
+need to be protected by strong and unique passwords.
+There are several services that create and store these passwords for you,
+and some provide utilities for sharing passwords with others
+inside that secure environment.
+However, password-protection alone is not sufficient,
+because if the underlying data is obtained through a leak the information itself remains usable.
+Datasets that include confidential information
+\textit{must} therefore be \textbf{encrypted}\sidenote{
+	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked, or any other type of unauthorized access is obtained.
+	\url{https://dimewiki.worldbank.org/Encryption}}
+during data collection, storage, and transfer.\index{encryption}\index{data transfer}\index{data storage}
+
+Most modern data collection software has features that,
+if enabled, make secure transmission straightforward.\sidenote{
+	\url{https://dimewiki.worldbank.org/Encryption\#Encryption\_in\_Transit}}
+Many also have features that ensure data is encrypted when stored on their servers,
+although this usually needs to be actively enabled and administered.\sidenote{
+	\url{https://dimewiki.worldbank.org/Encryption\#Encryption\_at\_Rest}}
+When files are properly encrypted,
+the information they contain will be completely unreadable and unusable
+even if they were to be intercepted my a malicious
+``intruder'' or accidentally made public.
+When the proper data security precautions are taken,
+no one who is not listed on the IRB may have access to the decryption key.
+This means that is it usually not
+enough to rely service providers' on-the-fly encryption as they need to keep a copy
+of the decryption key to make it automatic. When confidential data is stored on a local
+computer it must always remain encrypted, and confidential data may never be sent unencrypted
+over email, WhatsApp, or other chat services. 
+
+The easiest way to reduce the risk of leaking confidential information is to use it as rarely as possible.
+It is often very simple to conduct planning and analytical work
+using a subset of the data that does not include this type of information.
+We encourage this approach, because it is easy.
+However, when confidential data is absolutely necessary to a task,
+such as implementing an intervention
+or submitting survey data,
+you must actively protect that information in transmission and storage.
+
+There are plenty of options available to keep your data safe,
+at different prices, from enterprise-grade solutions to free software.
+It may be sufficient to hold identifying information in an encrypted service,
+or you may need to encrypt information at the file level using a special tool.
+(This is in contrast to using software or services with disk-level or service-level encryption.)
+Data security is important not only for identifying, but all confidential information,
+especially when a worst-case scenario could potentially lead to re-identifying subjects.
+Extremely confidential information may be required to be held in a ``cold'' machine
+which does not have internet access -- this is most often the case with
+government records such as granular tax information.
+What data security protocols you employ will depend on project needs and data sources,
+but agreeing on a protocol from the start of a project will make your life easier.
+Finally, having an end-of-life plan for data is essential:
+you should always know how to transfer access and control to a new person if the team changes,
+and what the expiry of the data and the planned deletion processes are.
+
