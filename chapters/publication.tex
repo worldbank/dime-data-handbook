@@ -57,65 +57,6 @@ improves organization and reduces error,
 such that there is no risk of materials being compiled
 with out-of-date results, or of completed work being lost or redundant.
 
-\subsection{Preparing dynamic documents}
-
-Dynamic documents are a broad class of tools that enable a streamlined, reproducible workflow.
-The term ``dynamic'' can refer to any document-creation technology
-that allows the inclusion of explicitly encoded linkages to raw output files.
-This means that, whenever outputs are updated,
-the next time the document is loaded or compiled, it will automatically include
-all changes made to all outputs without any additional intervention from the user.
-This way, updates will never be accidentally excluded,
-and updating results will not become more difficult
-as the number of inputs grows,
-because they are all managed by a single integrated process.
-
-You will note that this is not possible in tools like Microsoft Office,
-although there are various tools and add-ons that produce similar functionality,
-and we will introduce some later in this book.
-In Word, by default, you have to copy and paste each object individually
-whenever tables, graphs, or other inputs have to be updated.
-This creates complex inefficiency: updates may be accidentally excluded
-and ensuring they are not will become more difficult as the document grows.
-As time goes on, it therefore becomes more and more likely
-that a mistake will be made or something will be missed.
-Therefore this is a broadly unsuitable way to prepare technical documents.
-
-The most widely utilized software
-for dynamically managing both text and results is \LaTeX (pronounced ``lah-tek'').\sidenote{
-	\url{https://github.com/worldbank/DIME-LaTeX-Templates}}
-\index{\LaTeX}
-\LaTeX is a document preparation and typesetting system with a unique syntax.
-While this tool has a significant learning curve,
-its enormous flexibility in terms of operation, collaboration, output formatting, and styling
-make it the primary choice for most large technical outputs.
-In fact, \LaTeX operates behind-the-scenes in many other dynamic document tools (discussed below).
-Therefore, we recommend that you learn to use \LaTeX directly
-as soon as you are able to and provide several resources for doing so in the next section.
-
-There are tools that can generate dynamic documents from within your scripts, 
-such as R's RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com}}
-Stata offers a built-in package for dynamic documents, \texttt{dyndoc}\sidenote{\url{https://www.stata.com/manuals/rptdyndoc.pdf}}, and user-written commands such \texttt{texdoc}\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc}} and \texttt{markstat}\sidenote{\url{https://data.princeton.edu/stata/markdown}} allow for additional functionalities.
-These tools ``knit'' or ``weave'' text and code together,
-and are programmed to insert code outputs in pre-specified locations.
-Documents called ``notebooks'' (such as Jupyter\sidenote{\url{https://jupyter.org}}) work similarly,
-as they also use the underlying analytical software to create the document.
-These tools are usually appropriate for short or informal documents
-because it tends to be difficult to edit the content unless using the tool 
-and often does not have as extensive formatting option as, for example, Word.
-
-There are also simple tools for dynamic documents
-that do not require direct operation of the underlying code or software,
-simply access to the updated outputs.
-An example of this is Dropbox Paper,
-a free online writing tool that allows linkages to files in Dropbox
-which are automatically updated anytime the file is replaced.
-They have limited functionality in terms of version control and formatting,
-and may never include any references to confidential data,
-but can be useful for working on informal outputs, such as blogposts,
-with collaborators who do not code. 
-
-
 \subsection{Technical writing with \LaTeX}
 
 \LaTeX is billed as a ``document preparation system''.
