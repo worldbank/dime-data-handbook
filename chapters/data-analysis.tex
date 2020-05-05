@@ -41,336 +41,8 @@ and how to automate common outputs so that your analysis is fully reproducible.
 
 %------------------------------------------------
 
-\section{Managing data effectively}
-
-The goal of data management is to organize the components of data work
-so the complete process can traced, understood, and revised without massive effort.
-We focus on four key elements to good data management:
-folder structure, task breakdown, master scripts, and version control.
-A good \textbf{folder structure} organizes files so that any material can be found when needed.
-It reflects a \textbf{task breakdown} into steps with well-defined inputs, tasks, and outputs.
-A \textbf{master script} connects folder structure and code.
-It is a one-file summary of your whole project.
-Finally, \textbf{version control} gives you clear file histories and backups,
-which enable the team to edit files without fear of losing information
-and track how each edit affects other files in the project.
-
-\subsection{Organizing your folder structure}
-
-There are many ways to organize research data.
-\index{data organization}
-Our team at DIME Analytics developed the \texttt{iefolder}\sidenote{
-	\url{https://dimewiki.worldbank.org/iefolder}}
-command (part of \texttt{ietoolkit}\sidenote{
-	\url{https://dimewiki.worldbank.org/ietoolkit}})
-to automatize the creation of folders following our preferred scheme and
-to standardize folder structures across teams and projects.
-A standardized structure greatly reduces the costs that PIs and RAs
-face when switching between projects,
-because folders are organized in exactly the same way
-and use the same file paths, shortcuts, and macro references.\sidenote{
-	\url{https://dimewiki.worldbank.org/DataWork\_Folder}}
-We created \texttt{iefolder} based on our experience with survey data,
-but it can be used for other types of data.
-Other teams may prefer a different scheme, but
-the principle of creating a single unified standard remains.
-
-At the top level of the structure created by \texttt{iefolder} are what we call ``round'' folders.\sidenote{
-	\url{https://dimewiki.worldbank.org/DataWork\_Survey\_Round}}
-You can think of a ``round'' as a single source of data,
-which will all be cleaned using a single script.
-Inside each round folder, there are dedicated folders for:
-raw (encrypted) data; de-identified data; cleaned data; and final (constructed) data.
-There is a folder for raw results, as well as for final outputs.
-The folders that hold code are organized in parallel to these,
-so that the progression through the whole project can be followed by anyone new to the team.
-Additionally, \texttt{iefolder} creates \textbf{master do-files}\sidenote{
-	\url{https://dimewiki.worldbank.org/Master\_Do-files}}
-so the structure of all project code is reflected in a top-level script.
-
-\subsection{Breaking down tasks}
-
-We divide the process of transforming raw datasets to research outputs into 
-four steps:
-de-identification, data cleaning, variable construction, and data analysis.
-Though they are frequently implemented concurrently,
-creating separate scripts and datasets prevents mistakes.
-It will be easier to understand this division as we discuss what each stage comprises.
-What you should know for now is that each of these stages has well-defined inputs and outputs.
-This makes it easier to track tasks across scripts,
-and avoids duplication of code that could lead to inconsistent results.
-For each stage, there should be a code folder and a corresponding dataset.
-The names of codes, datasets and outputs for each stage should be consistent,
-making clear how they relate to one another.
-So, for example, a script called \texttt{section-1-cleaning} would create
-a dataset called \texttt{section-1-clean}.
-
-The division of a project in stages also facilitates a review workflow inside your team.
-The code, data and outputs of each of these stages should go through at least one round of code review,
-in which team members read and run each other's codes.
-Reviewing code at each stage, rather than waiting until the end of a project,
-is preferrable as the amount of code to review is more manageable and
-it allows you to correct errors in real-time (e.g. correcting errors in variable construction before analysis begins).
-Code review is a common quality assurance practice among data scientists.
-It helps to keep the quality of the outputs high, and is also a great way to learn and improve your own code.
-
-\subsection{Writing master scripts}
-
-Master scripts allow users to execute all the project code from a single file.
-As discussed in Chapter 2, the master script should briefly describe what each
-section of the code does, and map the files they require and create.
-The master script also connects code and folder structure through macros or objects.
-In short, a master script is a human-readable map of the tasks,
-files, and folder structure that comprise a project.
-Having a master script eliminates the need for complex instructions to replicate results.
-Reading it should be enough for anyone unfamiliar with the project
-to understand what are the main tasks, which scripts execute them,
-and where different files can be found in the project folder.
-That is, it should contain all the information needed to interact with a project's data work.
-
-\subsection{Implementing version control}
-
-Establishing a version control system is an incredibly useful
-and important step for documentation, collaboration and conflict-solving.
-Version control allows you to effectively track code edits,
-including the addition and deletion of files.
-This way you can delete code you no longer need,
-and still recover it easily if you ever need to get back previous work.
-The focus in version control is often code, but changes to analysis outputs should, when possible, be version controlled together with the code edits.
-This way you know which edits in the code led to which changes in the outputs.
-If you are writing code in Git or GitHub,
-you can output plain text files such as \texttt{.tex} tables
-and metadata saved in \texttt{.txt} or \texttt{.csv} to that directory.
-Binary files that compile the tables,
-as well as the complete datasets, on the other hand,
-should be stored in your team's shared folder.
-Whenever data cleaning or data construction codes are edited,
-use the master script to run all the code for your project.
-Git will highlight the changes that were in datasets and results that they entail.
-
-%------------------------------------------------
-
-\section{De-identifying research data}
-
-The starting point for all tasks described in this chapter is the raw dataset,
-which should contain the exact data received, with no changes or additions.
-The raw data will invariably come in a variety of file formats and these files
-should be saved in the raw data folder \textit{exactly as they were
-received}. Be mindful of how and where they are stored as they cannot be
-re-created and nearly always contain confidential data such as
-\textbf{personally-identifying information}\index{personally-identifying information}.
-As described in the previous chapter, confidential data must always be
-encrypted\sidenote{\url{https://dimewiki.worldbank.org/Encryption}} and be
-properly backed up since every other data file you will use is created from the
-raw data. The only datasets that can not be re-created are the raw data
-themselves.
-
-The raw data files should never be edited directly. This is true even in the
-rare case when the raw data cannot be opened due to, for example, incorrect
-encoding where a non-English character is causing rows or columns to break at the
-wrong place when the data is imported. In this scenario, you should create a
-copy of the raw data where you manually remove the special characters and
-securely back up \textit{both} the broken and the fixed copy of the raw data.
-You will only keep working from the fixed copy, but you keep both copies in
-case you later realize that the manual fix was done incorrectly.
-
-The first step in the transformation of raw data to an analysis-ready dataset is de-identification.
-This simplifies workflows, as once you create a de-identified version of the dataset,
-you no longer need to interact directly with the encrypted raw data.
-at this stage, means stripping the dataset of personally identifying information.\sidenote{
-	\url{https://dimewiki.worldbank.org/De-identification}}
-To do so, you will need to identify all variables that contain
-identifying information.\sidenote{\url{
-		https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
-For data collection, where the research team designs the survey instrument,
-flagging all potentially identifying variables in the questionnaire design stage
-simplifies the initial de-identification process.
-If you did not do that, or you received original data by another means,
-there are a few tools to help flag variables with personally-identifying data.
-JPAL's \texttt{PII scan}, as indicated by its name,
-scans variable names and labels for common string patterns associated with identifying information.\sidenote{
-	\url{https://github.com/J-PAL/PII-Scan}}
-The World Bank's \texttt{sdcMicro}
-lists variables that uniquely identify observations,
-as well as allowing for more sophisticated disclosure risk calculations.\sidenote{
-	\url{https://sdctools.github.io/sdcMicro/articles/sdcMicro.html}}
-The \texttt{iefieldkit} command \texttt{iecodebook}
-lists all variables in a dataset and exports an Excel sheet
-where you can easily select which variables to keep or drop.\sidenote{
-	\url{https://dimewiki.worldbank.org/Iecodebook}}
-
-Once you have a list of variables that contain confidential information,
-assess them against the analysis plan and first ask yourself for each variable:
-\textit{will this variable be needed for the analysis?}
-If not, the variable should be dropped.
-Don't be afraid to drop too many variables the first time,
-as you can always go back and remove variables from the list of variables to be dropped,
-but you can not go back in time and drop a PII variable that was leaked
-because it was incorrectly kept.
-Examples include respondent names and phone numbers, enumerator names, taxpayer 
-numbers, and addresses.
-For each confidential variable that is needed in the analysis, ask yourself:
-\textit{can I encode or otherwise construct a variable that masks the confidential component, and
-then drop this variable?}
-This is typically the case for most identifying information.
-Examples include geocoordinates
-(after constructing measures of distance or area,
-drop the specific location)
-and names for social network analysis (can be encoded to secret and unique IDs).
-If the answer to either of the two questions above is yes,
-all you need to do is write a script to drop the variables that are not required for analysis,
-encode or otherwise mask those that are required,
-and save a working version of the data.
-If confidential information strictly required for the analysis itself and can not be
-masked or encoded,
-it will be necessary to keep at least a subset of the data encrypted through
-the data analysis process.
-
-The resulting de-identified data will be the underlying source for all cleaned and constructed data.
-This is the dataset that you will interact with directly during the remaining tasks described in this chapter.
-Because identifying information is typically only used during data collection,
-when teams need to find and confirm the identity of interviewees,
-de-identification should not affect the usability of the data.
-
-\section{Cleaning data for analysis}
-
-Data cleaning is the second stage in the transformation of raw data into data that you can analyze.
-The cleaning process involves (1) making the dataset easy to use and understand,
-and (2) documenting individual data points and patterns that may bias the analysis.
-The underlying data structure does not change.
-The cleaned dataset should contain only the variables collected in the field.
-No modifications to data points are made at this stage, except for corrections of mistaken entries.
-
-Cleaning is probably the most time-consuming of the stages discussed in this chapter.
-You need to acquire an extensive understanding of the contents and structure of the raw data.
-Explore the dataset using tabulations, summaries, and descriptive plots.
-Knowing your dataset well will make it possible to do analysis.
-
-\subsection{Identifying the identifier}
-
-The first step in the cleaning process is to understand the level of observation in the data (what makes a row),
-and what variable or set of variables uniquely identifies each observations.
-Ensuring that observations are uniquely and fully identified\sidenote{\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
-is possibly the most important step in data cleaning.
-It may be the case that the variable expected to be the unique identifier in fact is either incomplete or contains duplicates.
-This could be due to duplicate observations or errors in data entry.
-It could also be the case that there is no identifying variable, or the identifier is a long string, such as a name.
-In this case cleaning begins by carefully creating a variable that uniquely identifies the data.
-As discussed in the previous chapter,
-checking for duplicated entries is usually part of data quality monitoring,
-and is ideally addressed as soon as data is received
-
-Note that while modern survey tools create unique identifiers for each submitted data record,
-that is not the same as having a unique ID variable for each individual in the sample.
-You want to make sure the dataset has a unique ID variable
-that can be cross-referenced with other records, such as the master dataset\sidenote{\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
-and other rounds of data collection.
-\texttt{ieduplicates} and \texttt{iecompdup},
-two Stata commands included in the \texttt{iefieldkit}
-package\index{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
-create an automated workflow to identify, correct and document
-occurrences of duplicate entries.
-
-\subsection{Labeling, annotating, and finalizing clean data}
-
-The last step of data cleaning is to label and annotate the data,
-so that all users have the information needed to interact with it.
-There are three key steps: renaming, labeling and recoding.
-This is a key step to making the data easy to use, but it can be quite repetitive.
-The \texttt{iecodebook} command suite, also part of \texttt{iefieldkit},
-is designed to make some of the most tedious components of this process easier.\sidenote{
-	\url{https://dimewiki.worldbank.org/iecodebook}}
-\index{iecodebook}
-
-First, \textbf{renaming}: for data with an accompanying survey instrument,
-it is useful to keep the same variable names in the cleaned dataset as in the survey instrument.
-That way it's straightforward to link variables to the relevant survey question.
-Second, \textbf{labeling}: applying labels makes it easier to understand your data as you explore it,
-and thus reduces the risk of small errors making their way through into the analysis stage.
-Variable and value labels should be accurate and concise.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Applying\_Labels}}
-
-Third, \textbf{recoding}: survey codes for ``Don't know'', ``Refused to answer'', and
-other non-responses must be removed but records of them should still be kept. In Stata that can elegantly be done using extended missing values.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
-String variables that correspond to categorical variables should be encoded.
-Open-ended responses stored as strings usually have a high risk of being identifiers,
-so they should be encoded into categories as much as possible and raw data points dropped.
-You can use the encrypted data as an input to a construction script
-that categorizes these responses and merges them to the rest of the dataset.
-
-\subsection{Preparing a clean dataset}
-The main output of data cleaning is the cleaned dataset.
-It should contain the same information as the raw dataset,
-with identifying variables and data entry mistakes removed.
-Although original data typically requires more extensive data cleaning than secondary data,
-you should carefully explore possible issues in any data you are about to use.
-When reviewing raw data, you will inevitably encounter data entry mistakes,
-such as typos and inconsistent values.
-These mistakes should be fixed in the cleaned dataset,
-and you should keep a careful record of how they were identified,
-and how the correct value was obtained.\sidenote{\url{
-		https://dimewiki.worldbank.org/Data\_Cleaning}}
-
-The cleaned dataset should always be accompanied by a dictionary or codebook.
-Survey data should be easily traced back to the survey instrument.
-Typically, one cleaned dataset will be created for each data source
-or survey instrument; and each row in the cleaned dataset represents one
-respondent or unit of observation.\cite{tidy-data}
-
-If the raw dataset is very large, or the survey instrument is very complex,
-you may want to break the data cleaning into sub-steps,
-and create intermediate cleaned datasets
-(for example, one per survey module).
-When dealing with complex surveys with multiple nested groups,
-is is also useful to have each cleaned dataset at the smallest unit of observation inside a roster.
-This will make the cleaning faster and the data easier to handle during construction.
-But having a single cleaned dataset will help you with sharing and publishing the data.
-
-Finally, any additional information collected only for quality monitoring purposes,
-such as notes and duration fields, can also be dropped.
-To make sure the cleaned dataset file doesn't get too big to be handled,
-use commands such as \texttt{compress} in Stata to make sure the data
-is always stored in the most efficient format.
-
-Once you have a cleaned, de-identified dataset and the documentation to support it,
-you have created the first data output of your project: a publishable dataset.
-The next chapter will get into the details of data publication.
-For now, all you need to know is that your team should consider submitting this dataset for publication,
-even if it will remain embargoed for some time.
-This will help you organize your files and create a backup of the data,
-and some donors require that the data be filed as an intermediate step of the project.
 
 
-\subsection{Documenting data cleaning}
-Throughout the data cleaning process,
-you will often need extensive inputs from the people responsible for data collection.
-(This could be a survey team, the government ministry responsible for administrative data systems,
-the technology firm that generated remote sensing data, etc.)
-You should acquire and organize all documentation of how the data was generated, such as
-reports from the data provider, field protocols, data collection manuals, survey instruments,
-supervisor notes, and data quality monitoring reports.
-These materials are essential for data documentation.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data\_Documentation}}
-\index{Documentation}
-They should be stored in the corresponding \texttt{Documentation} folder for easy access,
-as you will probably need them during analysis,
-and should be published along with the data.
-
-Include in the \texttt{Documentation} folder records of any
-corrections made to the data, including to duplicated entries,
-as well as communications where theses issues are reported.
-Be very careful not to include confidential information in documentation that is not securely stored,
-or that you intend to release as part of a replication package or data publication.
-
-Another important component of data cleaning documentation are the results of data exploration.
-As you clean your dataset, take the time to explore the variables in it.
-Use tabulations, summary statistics, histograms and density plots to understand the structure of data,
-and look for potentially problematic patterns such as outliers,
-missing values and distributions that may be caused by data entry errors.
-Create a record of what you observe,
-then use it as a basis for discussions of how to address data issues during variable construction.
-This material will also be valuable during exploratory data analysis.
 
 \section{Constructing analysis datasets}
 
@@ -384,7 +56,7 @@ and using the pre-analysis plan as a guide.\index{Pre-analysis plan}
 During this process, the data points will typically be reshaped and aggregated
 so that level of the dataset goes from the unit of observation in the survey 
 to the unit of analysis.\sidenote{\url{
-https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+		https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 
 
 A constructed dataset is built to answer an analysis question.
@@ -403,6 +75,7 @@ Having three separate datasets for each of these three pieces of analysis
 will result in much cleaner do-files than if they all started from the same dataset.
 
 \subsection{Fitting construction into the data workflow}
+
 Construction is done separately from data cleaning for two reasons.
 First, it clearly differentiates correction of data entry errors
 (necessary for all interactions with the data)
@@ -641,7 +314,7 @@ There is a fair amount of learning curve associated with extremely-fine-grained 
 but it is well worth reviewing the graphics manual.\sidenote{\url{https://www.stata.com/manuals/g.pdf}}
 For an easier way around it, Gray Kimbrough's \textit{Uncluttered Stata Graphs}
 code is an excellent default replacement for Stata graphics that is easy to install.\sidenote{
-  \url{https://graykimbrough.github.io/uncluttered-stata-graphs}}
+	\url{https://graykimbrough.github.io/uncluttered-stata-graphs}}
 If you are an R user, the \textit{R Graphics Cookbook}\sidenote{\url{https://r-graphics.org}}
 is a great resource for the its popular visualization package \texttt{ggplot}\sidenote{
 	\url{https://ggplot2.tidyverse.org}}.
@@ -698,9 +371,9 @@ Copying results from a software console is risk-prone,
 even more inefficient, and totally unnecessary.
 There are numerous commands to export outputs from both R and Stata to a myriad of formats.\sidenote{
 	Some examples are \url{http://repec.sowi.unibe.ch/stata/estout}{\texttt{estout}}, \url{https://www.princeton.edu/~otorres/Outreg2.pdf}{\texttt{outreg2}},
-and \url{https://www.benjaminbdaniels.com/stata-code/outwrite}{\texttt{outwrite}} in Stata,
-and \url{https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf}{\texttt{stargazer}}
-and \url{https://ggplot2.tidyverse.org/reference/ggsave.html}{\texttt{ggsave}} in R.}
+	and \url{https://www.benjaminbdaniels.com/stata-code/outwrite}{\texttt{outwrite}} in Stata,
+	and \url{https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf}{\texttt{stargazer}}
+	and \url{https://ggplot2.tidyverse.org/reference/ggsave.html}{\texttt{ggsave}} in R.}
 Save outputs in accessible and, whenever possible, lightweight formats.
 Accessible means that it's easy for other people to open them.
 In Stata, that would mean always using \texttt{graph export} to save images as
@@ -743,5 +416,150 @@ Your analysis code will be organized in a reproducible way,
 so will need to do release a replication package is a last round of code review.
 This will allow you to focus on what matters:
 writing up your results into a compelling story.
+
+\subsection{Managing outputs}
+
+The final task that needs to be discussed with your team is the best way to manage output files.
+A great number of outputs will be created during the course of a project,
+and these will include both raw outputs such as tables and graphs
+and final products such as presentations, papers and reports.
+When the first outputs are being created, agree on where to store them,
+what softwares and formats to use, and how to keep track of them.
+
+% Where to store outputs
+Decisions about storage of outputs are made easier by technical constraints.
+As discussed above, version control systems like Git are a great way to manage
+plaintext files, and sync softwares such as Dropbox are better for binary files.
+Outputs will similarly come in these two formats, depending on your software.
+Binary outputs like Excel files, PDFs, PowerPoints, or Word documents can be kept in a synced folder.
+Raw outputs in plaintext formats like \texttt{.tex} and \texttt{.eps}
+can be created from most analytical software and managed with Git.
+Tracking plaintext outputs with Git makes it easier to identify changes that affect results.
+If you are re-running all of your code from the master script,
+the outputs will be overwritten,
+and any changes in coefficients and number of observations, for example,
+will be automatically flagged for you or a reviewer to check.
+
+No matter what choices you make,
+you will need to make updates to your outputs quite frequently.
+And anyone who has tried to recreate a graph after a few months probably knows
+that it can be hard to remember where you saved the code that created it.
+Here, naming conventions and code organization play a key role
+in not re-writing scripts again and again.
+It is common for teams to maintain one analyisis file or folder with draft code or ``exploratory analysis'',
+which are pieces of code that are stored only to be found again in the future,
+but not cleaned up to be included in any final outputs yet.
+Once you are happy with a result or output,
+it should be named and moved to a dedicated location.
+It's typically desirable to have the names of outputs and scripts linked,
+so, for example, \texttt{factor-analysis.do} creates \texttt{f1-factor-analysis.eps} and so on.
+Document output creation in the master script that runs these files,
+so that before the line that runs a particular analysis script
+there are a few lines of comments listing
+datasets and functions that are necessary for it to run,
+as well as all outputs created by that script.
+
+% What software to use
+Compiling the raw outputs from your statistical software into useful formats
+is the final step in producing research outputs for public consumption.
+Though formatted text software such as Word and PowerPoint are still prevalent,
+researchers are increasingly choosing to prepare final outputs
+like documents and presentations using {\LaTeX}\index{{\LaTeX}}.\sidenote{
+	\url{https://www.latex-project.org} and \url{https://github.com/worldbank/DIME-LaTeX-Templates}.}
+{\LaTeX} is a document preparation system that can create both text documents and presentations.
+{\LaTeX} uses plaintext for all formatting,
+and it is necessary to learn its specific markup convention to use it.
+
+The main advantage of using {\LaTeX} is that you can write dynamic documents,
+that import inputs every time they are compiled.
+This means you can skip the copying and pasting whenever an output is updated.
+Because it's written in plaintext, it's also easier to control and document changes using Git.
+Creating documents in {\LaTeX} using an integrated writing environment such as TeXstudio, TeXmaker or LyX
+is great for outputs that focus mainly on text,
+but include small chunks of code and static code outputs.
+This book, for example, was written in {\LaTeX} and managed on GitHub\sidenote{\url{https://github.com/worldbank/d4di}}.
+
+Another option is to use the statistical software's dynamic document engines.
+This means you can write both text (in Markdown) and code in the script,
+and the result will usually be a PDF or HTML file including code, text, and outputs.
+Dynamic document tools are better for including large chunks of code and dynamically created graphs and tables,
+but formatting these can be much trickier and less full-featured than other editors.
+So dynamic documents can be great for creating appendices
+or quick documents with results as you work on them,
+but are not usually considered for final papers and reports.
+RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com}} is the most widely adopted solution in R.
+There are also different options for Markdown in Stata,
+such as \texttt{markstat},\sidenote{\url{https://data.princeton.edu/stata/markdown}}
+Stata 15 dynamic documents,\sidenote{\url{https://www.stata.com/new-in-stata/markdown}}
+\texttt{webdoc},\sidenote{\url{http://repec.sowi.unibe.ch/stata/webdoc}} and
+\texttt{texdoc}.\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc}}
+
+Whichever options you choose,
+agree with your team on what tools will be used for what outputs, and
+where they will be stored before you start creating them.
+Take into account ease of use for different team members, but
+keep in mind that learning how to use a new tool may require some
+time investment upfront that will be paid off as your project advances.
+
+
+\subsection{Preparing dynamic documents}
+
+Dynamic documents are a broad class of tools that enable a streamlined, reproducible workflow.
+The term ``dynamic'' can refer to any document-creation technology
+that allows the inclusion of explicitly encoded linkages to raw output files.
+This means that, whenever outputs are updated,
+the next time the document is loaded or compiled, it will automatically include
+all changes made to all outputs without any additional intervention from the user.
+This way, updates will never be accidentally excluded,
+and updating results will not become more difficult
+as the number of inputs grows,
+because they are all managed by a single integrated process.
+
+You will note that this is not possible in tools like Microsoft Office,
+although there are various tools and add-ons that produce similar functionality,
+and we will introduce some later in this book.
+In Word, by default, you have to copy and paste each object individually
+whenever tables, graphs, or other inputs have to be updated.
+This creates complex inefficiency: updates may be accidentally excluded
+and ensuring they are not will become more difficult as the document grows.
+As time goes on, it therefore becomes more and more likely
+that a mistake will be made or something will be missed.
+Therefore this is a broadly unsuitable way to prepare technical documents.
+
+The most widely utilized software
+for dynamically managing both text and results is \LaTeX (pronounced ``lah-tek'').\sidenote{
+	\url{https://github.com/worldbank/DIME-LaTeX-Templates}}
+\index{\LaTeX}
+\LaTeX is a document preparation and typesetting system with a unique syntax.
+While this tool has a significant learning curve,
+its enormous flexibility in terms of operation, collaboration, output formatting, and styling
+make it the primary choice for most large technical outputs.
+In fact, \LaTeX operates behind-the-scenes in many other dynamic document tools (discussed below).
+Therefore, we recommend that you learn to use \LaTeX directly
+as soon as you are able to and provide several resources for doing so in the next section.
+
+There are tools that can generate dynamic documents from within your scripts, 
+such as R's RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com}}
+Stata offers a built-in package for dynamic documents, \texttt{dyndoc}\sidenote{\url{https://www.stata.com/manuals/rptdyndoc.pdf}}, and user-written commands such \texttt{texdoc}\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc}} and \texttt{markstat}\sidenote{\url{https://data.princeton.edu/stata/markdown}} allow for additional functionalities.
+These tools ``knit'' or ``weave'' text and code together,
+and are programmed to insert code outputs in pre-specified locations.
+Documents called ``notebooks'' (such as Jupyter\sidenote{\url{https://jupyter.org}}) work similarly,
+as they also use the underlying analytical software to create the document.
+These tools are usually appropriate for short or informal documents
+because it tends to be difficult to edit the content unless using the tool 
+and often does not have as extensive formatting option as, for example, Word.
+
+There are also simple tools for dynamic documents
+that do not require direct operation of the underlying code or software,
+simply access to the updated outputs.
+An example of this is Dropbox Paper,
+a free online writing tool that allows linkages to files in Dropbox
+which are automatically updated anytime the file is replaced.
+They have limited functionality in terms of version control and formatting,
+and may never include any references to confidential data,
+but can be useful for working on informal outputs, such as blogposts,
+with collaborators who do not code. 
+
+
 
 %------------------------------------------------
