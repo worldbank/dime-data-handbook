@@ -66,6 +66,34 @@ Randomization is challenging and its mechanics are unintuitive for the human bra
 which are inherently deterministic.\sidenote{
 	\url{https://www.random.org/randomness}}
 
+% random sampling vs random assignment
+The sampling and randomization processes we choose
+play an important role in determining the size of the confidence intervals
+for any estimates generated from that sample,
+and therefore our ability to draw conclusions.
+Random sampling and random assignment serve different purposes.
+Random \textit{sampling} ensures that you have unbiased population estimates,
+and random \textit{assignment} ensures that you have unbiased treatment estimates.
+If you randomly sample or assign a set number of observations from a set frame,
+there are a large -- but fixed -- number of permutations which you may draw.
+
+% the intuition behind sampling and randomized assignment
+In reality, you have to work with exactly one of them,
+so we put a lot of effort into making sure that one is a good one
+by reducing the probability of the data indicating that results or correlations are true when they are not.
+In large studies, we can use what are called \textbf{asymptotic standard errors}\sidenote{
+	\url{https://stats.stackexchange.com/q/88491}}
+to express how far away from the true population parameters our estimates are likely to be.
+These standard errors can be calculated with only two datapoints:
+the sample size and the standard deviation of the value in the chosen sample.
+They are also typically the best case scenario for the population given the data structure.
+In small studies, such as those we often see in development,
+we have to be much more careful, particularly about practical considerations
+such as determining the representative population
+and fitting any constraints on study and sample design.
+This section introduces universal basic principles for sampling and randomization.
+
+
 \subsection{Implementing random processes reproducibly in Stata}
 
 % what is means for randomization to be reproducible
@@ -154,37 +182,6 @@ are reproducible.
 \codeexample{replicability.do}{./code/replicability.do}
 
 
-
-%-----------------------------------------------------------------------------------------------
-
-\section{Sampling and randomization}
-
-% random sampling vs random assignment
-The sampling and randomization processes we choose
-play an important role in determining the size of the confidence intervals
-for any estimates generated from that sample,
-and therefore our ability to draw conclusions.
-Random sampling and random assignment serve different purposes.
-Random \textit{sampling} ensures that you have unbiased population estimates,
-and random \textit{assignment} ensures that you have unbiased treatment estimates.
-If you randomly sample or assign a set number of observations from a set frame,
-there are a large -- but fixed -- number of permutations which you may draw.
-
-% the intuition behind sampling and randomization
-In reality, you have to work with exactly one of them,
-so we put a lot of effort into making sure that one is a good one
-by reducing the probability of the data indicating that results or correlations are true when they are not.
-In large studies, we can use what are called \textbf{asymptotic standard errors}\sidenote{
-	\url{https://stats.stackexchange.com/q/88491}}
-to express how far away from the true population parameters our estimates are likely to be.
-These standard errors can be calculated with only two datapoints:
-the sample size and the standard deviation of the value in the chosen sample.
-They are also typically the best case scenario for the population given the data structure.
-In small studies, such as those we often see in development,
-we have to be much more careful, particularly about practical considerations
-such as determining the representative population
-and fitting any constraints on study and sample design.
-This section introduces universal basic principles for sampling and randomization.
 
 \subsection{Sampling}
 
