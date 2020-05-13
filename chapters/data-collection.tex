@@ -15,12 +15,12 @@ Much of the recent push toward credibility in the social sciences has focused on
 However, credible development research often depends, first and foremost, on the quality of the raw data.
 For data work to be reproducible, the data acquisition process must be clearly and carefully documented.
 
-This chapter covers the necessary components for securely acquiring all types of data,
+This chapter covers reproducible data acquisition,
 special considerations for generating high-quality survey data, 
-and protocols for safe handling of all types of confidential data. 
-The first section discusses key ethical and legal considerations for data acquisition:
-how to clearly document that you have the right to use the data and publish analytical products. 
-This applies to all development datasets that are not licensed for public use, 
+and protocols for safely and securely handling confidential data. 
+The first section discusses reproducible data acquisition:
+how to establish and document your right to use the data.
+This applies to all development datasets that are not publicly available, 
 whether collected for the first time through surveys or sensors or acquired through a unique partnership.
 The second section goes into detail on ensuring data quality if you are collecting survey data.
 It provides detailed guidance on the electronic survey workflow,
@@ -410,14 +410,14 @@ and attrition occurred in the field and how they were implemented and resolved.
 %------------------------------------------------
 \section{Handling data securely}
 
-All confidential data must be handled in a way such that only people specifically 
+All confidential data must be handled in such a way that only people specifically 
 approved by an Institutional Review Board (IRB)\sidenote{
   \url{https://dimewiki.worldbank.org/IRB\_Approval}}
-for the specific project are able to access the data.
+are able to access the data.
 Data can be confidential for multiple reasons, but the two most
 common reasons are that it contains personally identifiable information (PII)\sidenote{
   \url{https://dimewiki.worldbank.org/Personally\_Identifiable\_Information\_(PII)}}
-or that the partner providing the data has specified restricted access.
+or that the data owner has specified restricted access.
 
 \index{encryption}\textbf{Data encryption} is central to secure data handling. 
 Data encryption is a group of methods that ensure that files are unreadable 
@@ -461,9 +461,9 @@ In all other cases you should follow the steps laid out in this section.
 \subsection{Receiving data from development partners}
 
 Research teams granted access to existing data may receive that data in a number of different ways.
-You may receive access to servers or accounts that already exist.
-You may receive a one-time transfer of a block of data,
-or you may be given access to a restricted area to extract information.
+You may receive access to an existing server, 
+or physical access to extract certain information, 
+or a one-time transfer of a block of data.
 In all cases, you must take action to ensure that data is transferred through 
 secure channels so that confidential data is not compromised.
 Talk to an information-technology specialist,
@@ -473,18 +473,18 @@ in a method that conforms to the relevant level of security.
 Keep in mind that compliance with ethical standards may 
 in some cases require a stricter level of security than initially proposed by the partner agency.
 
-Another important consideration at this stage is 
-proper documentation and cataloging of data and associated metadata.
+At this stage, it is very important to assess
+documentation and cataloging of the data and associated metadata.
 It is not always clear what pieces of information jointly constitute a ``dataset'',
-and many of the sources you receive data from will not be organized for research.
-To help you keep organized and to put some structure on the materials you will be receiving,
-you should always retain the original data as received
+and many of the datasets you receive will not be organized for research.
+You should always retain the original data exactly as received
 alongside a copy of the corresponding ownership agreement or license.
 You should make a simple ``readme'' document noting the date of receipt,
-the source and recipient of the data, and a brief description of what it is.
-All too often data produced by systems is provided as vaguely-named spreadsheets,
-or transferred as electronic communications with non-specific titles,
-and it is not possible to keep track of these kinds of information as data over time.
+the source and recipient of the data, 
+and a brief description of each file received.
+All too often data will be provided as vaguely-named spreadsheets,
+or digital files with non-specific titles, 
+and documentation will be critical for future access and reproducibility.
 Eventually, you will want to make sure that you are creating a collection or object
 that can be properly submitted to a data catalog and given a reference and citation.
 The metadata - documentation about the data - is critical for future use of the data.
@@ -494,7 +494,7 @@ In the case of survey data, this includes the survey instrument and associated m
 the sampling protocols and field adherence to those protocols, and any sampling weights;
 what variable(s) uniquely identify the dataset(s), and how different datasets can be linked;
 and a description of field procedures and quality controls. 
-We use as a standard the Data Documentation Initiative (DDI), which is supported by the 
+DIME uses as a standard the Data Documentation Initiative (DDI), which is supported by the 
 World Bank's Microdata Catalog.\sidenote{\url{https://microdata.worldbank.org}}
 
 As soon as the requisite pieces of information are stored together,
@@ -503,18 +503,16 @@ This is more of an art than a science:
 you want to keep things together that belong together,
 but you also want to keep things apart that belong apart.
 There usually won't be a precise way to answer this question,
-so consult with others about what is the appropriate level of aggregation
-for the data you have endeavored to obtain.
-This is the object you will think about cataloging, releasing, and licensing
-as you move towards the publication part of the research process.
-This may require you to re-check with the provider
-about what portions are acceptable to license,
-particularly if you are combining various datasets
-that may provide even more information about specific individuals.
+the research team will need to decide the appropriate level of aggregation
+for the data obtained.
+This dataset is the object you will think about cataloging, releasing, and licensing
+as you move towards publication.
+You may need to assess disclosure risk and seek clearance from the provider prior to publication,
+particularly if you are integrating various data sources.
 
 \subsection{Collecting data securely}
-
-In field surveys, most common data collection software will automatically encrypt
+Generating data through surveys requires special considerations for data security.
+Most common data collection software will automatically encrypt
 all data in transit (i.e., upload from field or download from server).\sidenote{
   \url{https://dimewiki.worldbank.org/Encryption\#Encryption\_in\_Transit}}
 If this is implemented by the software you are using,
@@ -527,30 +525,28 @@ However, the research team must ensure that all computers, tablets,
 and accounts that are used in data collection have a secure logon
 password and are never left unlocked.
 
-Even though your data is therefore usually safe while it is being transmitted,
-it is not automatically secure when it is being stored.
+Encryption-in-transit means that data is safe while it is being transmitted,
+but it is not automatically secure when it is being stored.
 \textbf{Encryption at rest}\sidenote{
   \url{https://dimewiki.worldbank.org/Encryption\#Encryption\_at\_Rest}}
-is the only way to ensure that confidential data remains private when it is stored on a
-server on the internet.
+is necessary to ensure that confidential data are private when stored on a cloud server.
 You must keep your data encrypted on the data collection server whenever PII is collected,
 or when this is required by the data sharing agreement.
 If you do not, the raw data will be accessible by
 individuals who are not approved by your IRB,
 such as tech support personnel,
 server administrators, and other third-party staff.
-Encryption at rest must be used to make
-data files completely unusable without access to a security key specific to that
-data -- a higher level of security than password-protection.
-Encryption at rest requires active participation from the user,
+Encryption-at-rest must be used to make
+data files completely unusable to anyone without the specific decryption key 
+-- a higher level of security than password-protection.
+Encryption-at-rest requires active participation from the user,
 and you should be fully aware that if your decryption key is lost,
 there is absolutely no way to recover your data.
 
-You should not assume that your data is encrypted at rest by default because of
-the careful protocols necessary.
+You should not assume that your data is encrypted at rest by default.
 In most data collection platforms,
-encryption at rest needs to be explicitly enabled and operated by the user.
-There is no automatic way to implement this protocol,
+encryption-at-rest needs to be explicitly enabled and operated by the user,
+There is no automatic way to implement this,
 because the encryption key that is generated may
 never pass through the hands of a third party,
 including the data storage application.
@@ -576,20 +572,21 @@ Only project team members named in the IRB are allowed access to the private key
 
 \subsection{Storing data securely}
 
-For most analytical needs, you typically need a to store the data somewhere other
-than the survey software's server, for example, on your computer or a cloud drive.
+For analysis, you will need to transfer the data from the data collection software to
+a secure location on your computer or a cloud drive.
 While public/private key encryption is optimal for one-way transfer
 from the data collection device to the data collection server,
 it is not practical once you start interacting with the data.
-Instead, we use \textbf{symmetric encryption}\sidenote{
-  \url{https://dimewiki.worldbank.org/Encryption\#Symmetric\_Encryption}}
-where we create a secure encrypted folder,
+Instead, at this stage you need \textbf{symmetric encryption}\sidenote{
+  \url{https://dimewiki.worldbank.org/Encryption\#Symmetric\_Encryption}}.
+Data should be stored in an encrypted folder,
 using, for example, VeraCrypt.\sidenote{\url{https://www.veracrypt.fr}}
-Here, a single key is used to both encrypt and decrypt the information.
+In this set-up, a single key is used to both encrypt and decrypt the information.
 Since only one key is used, the workflow can be simplified:
-the re-encryption after decrypted access can be done automatically,
+re-encryption after decrypted access can be done automatically,
 and the same secure folder can be used for multiple files.
-These files can be interacted with and modified like any unencrypted file as long as you have the key.
+These files can be interacted with and modified like any unencrypted file,
+ as long as you have the key.
 The following workflow allows you to receive data and store it securely,
 without compromising data security:
 
