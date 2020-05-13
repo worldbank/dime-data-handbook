@@ -406,58 +406,56 @@ This information should be stored as a dataset in its own right
 -- a \textbf{tracking dataset} -- that records all events in which survey substitutions
 and attrition occurred in the field and how they were implemented and resolved.
 
+
 %------------------------------------------------
 \section{Handling data securely}
 
-All confidential data must be handled in a way where there is no risk that anyone who is
-not approved by an Institutional Review Board (IRB)\sidenote{
+All confidential data must be handled in a way such that only people specifically 
+approved by an Institutional Review Board (IRB)\sidenote{
   \url{https://dimewiki.worldbank.org/IRB\_Approval}}
-for the specific project has the ability to access the data.
+for the specific project are able to access the data.
 Data can be confidential for multiple reasons, but the two most
 common reasons are that it contains personally identifiable information (PII)\sidenote{
   \url{https://dimewiki.worldbank.org/Personally\_Identifiable\_Information\_(PII)}}
-or that the partner providing the data does not want it to be released.
+or that the partner providing the data has specified restricted access.
 
-Central to data security is \index{encryption}\textbf{data encryption}, which is a group
-of methods that ensure that files are unreadable even if laptops are stolen, servers
-are hacked, or unauthorized access to the data is obtained in any other way.\sidenote{
+\index{encryption}\textbf{Data encryption} is central to secure data handling. 
+Data encryption is a group of methods that ensure that files are unreadable 
+even if laptops are stolen, serversare hacked, 
+or unauthorized access to the data is obtained in any other way.\sidenote{
   \url{https://dimewiki.worldbank.org/Encryption}}
 Proper encryption is rarely just a single method,
 as the data will travel through many servers, devices, and computers
 from the source of the data to the final analysis.
 Encryption should be seen as a system that is only as secure as its weakest link.
-This section recommends a workflow with as few parts as possible,
+This section recommends a streamlined workflow,
 so that it is easy as possible to make sure the weakest link is still sufficiently secure.
 
 Encrypted data is made readable again using decryption,
 and decryption requires a password or a key.
-You must never share passwords or keys by email,
+It is never secure to share passwords or keys by email,
 WhatsApp or other insecure modes of communication;
-instead you must use a secure password manager.\sidenote{
+instead, use a secure password manager.\sidenote{
   \url{https://lastpass.com} or \url{https://bitwarden.com}}
 In addition to providing a way to securely share passwords,
 password managers also provide a secure location
 for long term storage for passwords and keys, whether they are shared or not.
 
-Many data-sharing software providers you are using will promote their services
-by saying they have on-the-fly encryption and decryption.
-While this is not a bad thing and it makes your data more secure,
-on-the-fly encryption is never secure enough.
-This is because, in order to make it automatic,
+Many data-sharing software providers will promote their services
+by advertising on-the-fly encryption and decryption.
+While useful, on-the-fly encryption is never sufficient for securing confidential data.
+In order to automate on-the-fly encryption,
 the service provider needs to keep a copy of the password or key.
-Since it unlikely that that software provider is included in your IRB,
-this is not secure enough.
-This includes all file syncing software such as Dropbox,
-who, in addition to being able to view your data, may require
-you to give them additional legal usage rights in order to host it on their servers.
+This implies the service provider has access to the data.
+This is the case for all file syncing software such as Dropbox,
+which, in addition to being able to view your data, may require
+additional legal usage rights in order to host it on their servers.
 It is possible, in some enterprise versions of data sharing software,
 to set up appropriately secure on-the-fly encryption.
 However, that setup is advanced, and you should never trust it
-unless you are a cybersecurity expert,
-or a cybersecurity expert within your organization
+unless a cybersecurity expert within your organization
 has specified what it can be used for.
 In all other cases you should follow the steps laid out in this section.
-
 
 
 \subsection{Receiving data from development partners}
