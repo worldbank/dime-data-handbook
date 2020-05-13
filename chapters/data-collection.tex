@@ -571,7 +571,7 @@ they will be asked to provide the key.
 Only project team members named in the IRB are allowed access to the private key.
 
 \subsection{Storing data securely}
-
+% doesn't cover 'big' data
 For analysis, you will need to transfer the data from the data collection software to
 a secure location on your computer or a cloud drive.
 While public/private key encryption is optimal for one-way transfer
@@ -596,19 +596,19 @@ without compromising data security:
 	\item Download data from the data collection server to that secure folder.
 	If you encrypted the data during data collection, you will need \textit{both} the
 	private key used during data collection to be able to download the data,
-	\textit{and} you will need the key used when you created the secure folder to save it there.
+	\textit{and} the key used when you created the secure folder to save it there.
 	This your first copy of your raw data, and the copy you will use in your cleaning and analysis.
-	\item Create a secure folder on a flash drive or a external hard drive that you can keep in your office.
+	\item Create a secure folder on an external drive that you can keep in a secure location.
 x	Copy the data you just downloaded to this second secure	folder.
-	This is your ``master'' copy of your raw data.
+	This is the ``master'' copy of the raw data.
 	(Instead of creating a second secure folder, you can simply copy the first secure folder.)
 	\item Finally, create a third secure folder.
 	Either you can create this on your computer and upload it to a long-term cloud storage service,
-	or you can create it on	an external hard drive that you then store in a separate location,
+	or you can create it on	an external hard drive that you then store in a second location,
 	for example, at another office of your organization.
-	This is your ``golden master'' copy of your raw	data.
-	You should never store the ``golden master'' copy of your raw data in a synced
-	folder, where it is also deleted in the cloud storage if it is deleted on your computer.
+	This is the ``golden master'' copy of the raw	data.
+	You should never store the ``golden master'' copy in a synced folder, 
+	as it would be deleted in the cloud storage if it is deleted on your computer.
 	(Instead of creating a third secure folder, you can simply copy the first secure folder.)
 \end{enumerate}
 
@@ -616,61 +616,44 @@ x	Copy the data you just downloaded to this second secure	folder.
 there are two on-site copies of the data and one off-site copy,
 so the data can never be lost in case of hardware failure.\sidenote{
   \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy}}
+%needs wiki page
 However, you still need to keep track of your encryption keys as without them your data is lost.
 If you remain lucky, you will never have to access your ``master'' or ``golden master'' copies --
 you just want to know it is there, safe, if you need it.
 
 \subsection{Sharing data securely}
-You and your team will use your first copy of the raw data
+The research team will use the first copy of the raw data
 as the starting point for data cleaning and analysis of the data.
-This raw dataset must remain encrypted at all times if it includes confidential data,
-which is almost always the case.
+This raw dataset must remain encrypted at all times if it includes confidential data
+ (which is almost always the case).
 As long as the data is properly encrypted,
 it can be shared using insecure modes of communication
 such as email or third-party syncing services.
 While this is safe from a data security perspective,
 this is a burdensome workflow, as anyone accessing the raw data must be listed on the IRB,
 have access to the decryption key and know how to use that key.
-Fortunately, there is a way to simplify the workflow without compromising data security.
-
-To simplify the workflow,
-the confidential variables should be removed from your data at the earliest possible opportunity.
-This is particularly common in survey data,
-as identifying variables are often only needed during data collection.
-In this case, such variables may be removed as soon as the field work is completed,
-creating a de-identified copy of the data.
-Once the data is de-identified,
-it no longer needs to be encrypted --
-you and you team members can share it directly
+De-identifying the data, or otherwise masking confidential information,
+at the earliest possible opportunity will simplify the workflow without compromising data security.
+Once the data is de-identified, it no longer needs to be encrypted --
+you can share it directly with team members 
 without having to encrypt it and handle decryption keys.
 The next chapter will discuss how to de-identify your data.
 This may not be so straightforward when access to the data
 is restricted by request of the data owner.
+% we should add content about creating / sharing aggregates when individual data is particularly sensitive, e.g. cdr data
+% this is a way to address data owner restrictions and makes this section more applicalbe to non-survey data
 If confidential information is directly required for the analysis itself,
 it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
 
 The data security standards that apply when receiving confidential data also apply when transferring confidential data.
-A common example where this is often forgotten involves sharing survey information,
-such as sampling lists, with a field partner.
-This data is -- by all definitions -- also PII data and must be encrypted.
-A sampling list can often be used to reverse identify a de-identified dataset,
-so if you were to share it using an insecure method,
-then that would be your weakest link that could render useless all the other steps
-you have taken to ensure the privacy of the respondents.
-
 In some survey software, you can use the same encryption that allows you to receive data securely
-from the field, to also send data, such a sampling list, to the field.
-But if you are not sure how that is done, or even can be done,
-in the survey software you are using,
+from the field, to also send data to the field.
+But if you are not sure how to do that in the survey software you are using,
 then you should create a secure folder using, for example,
-VeraCrypt and share that secure folder with the field team.
-Remember that you must always share passwords and keys in a secure way like password managers.
+VeraCrypt, and share that secure folder with the field team.
+Remember that you must always share passwords and keys in a secure way,
+such as through password managers.
 
-At this point, the raw data securely stored and backed up.
-It can now be transformed into your final analysis dataset,
+Once the raw data is securely stored and backed up, 
+it can be transformed into your final analysis dataset
 through the steps described in the next chapter.
-Once the data collection is over,
-you typically will no longer need to interact with the identified data.
-So you should create a working version of it that you can safely interact with.
-This is described in the next chapter as the first task in the data cleaning process,
-but it's useful to get it started as soon as encrypted data is downloaded to disk.
