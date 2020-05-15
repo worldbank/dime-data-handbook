@@ -266,9 +266,11 @@ and simultaneous work with other types of files, without leaving the editor.
 % ----------------------------------------------------------------------------------------------
 \section{Organizing code and data}
 
-We assume you are going to do nearly all of your analytical work through code.
-Though it is possible to use some statistical software through the user interface
-without writing any code, we strongly advise against it.
+We assume you are going to do your analytical work through code,
+and that you want all your processes to be documented and replicable. 
+Though it is possible to interact with some statistical software 
+through the user interface without writing any code, 
+we strongly advise against it.
 Writing code creates a record of every task you performed.
 It also prevents direct interaction with the data files that could lead to non-reproducible steps.
 You may do some exploratory tasks by point-and-click or typing directly into the console,
@@ -280,12 +282,9 @@ What is intuitive to one person rarely comes naturally to another,
 and searching for files and folders is everybody's least favorite task.
 As often as not, you come up with the wrong one,
 and then it becomes very easy to create problems that require complex resolutions later.
-This section will provide basic tips on managing the folder
-that will store your project's data work.
+This section provides basic tips on managing the folder
+that stores your project's data work.
 
-We assume you will be working with code and data throughout your project.
-We further assume you will want all your processes to be recorded
-and easily findable at any point in time.
 Maintaining an organized file structure for data work is the best way
 to ensure that you, your teammates, and others
 are able to easily advance, edit, and replicate your work in the future.
@@ -308,7 +307,8 @@ and set it up at the beginning of the research project
 in your root folder (the one over which you can control access permissions).
 This will prevent future folder reorganizations that may slow down your workflow and,
 more importantly, ensure that your code files are always able to run on any machine.
-To support consistent folder organization, DIME Analytics maintains \texttt{iefolder}\sidenote{
+To support consistent folder organization at DIME, 
+DIME Analytics created \texttt{iefolder}\sidenote{
   \url{https://dimewiki.worldbank.org/iefolder}}
 as a part of our \texttt{ietoolkit} package.\index{\texttt{iefolder}}\index{\texttt{ietoolkit}}
 This Stata command sets up a pre-standardized folder structure
@@ -316,30 +316,23 @@ for what we call the \texttt{DataWork} folder.\sidenote{
   \url{https://dimewiki.worldbank.org/DataWork_Folder}}
 The \texttt{DataWork} folder includes folders for all the steps of a typical project.
   \index{\texttt{DataWork} folder}
-Since each project will always have its own needs,
-we have tried to make it as easy as possible to adapt when that is the case.
-The main advantage of having a universally standardized folder structure
-is that changing from one project to another requires less
-time to get acquainted with a new organization scheme.
-For our group, maintaining a single unified directory structure
-across the entire portfolio of projects means that everyone
-can easily move between projects without having to reorient
-themselves to how files and folders are organized.
+Since each project will always have unique needs,
+we have tried to make the structure easy to adapt.
+Having a universally standardized folder structure 
+across the entire portfolio of projects
+means that everyone can easily move between projects 
+without having to reorient on file and folder organization.
 
-Our suggested file structure is not for everyone.
-But if you do not already have a standard file structure across projects,
-it is intended to be an easy template to start from.
-This system operates by creating a \texttt{DataWork} folder at the project level,
-and within that folder, it provides standardized directory structures
+If you do not already have a standard file structure across projects,
+\texttt{iefolder} is an easy template to start from.
+The command creates a \texttt{DataWork} folder at the project level,
+and within that folder, creates standardized directory structures
 for each data source or survey round.
-For each, \texttt{iefolder} creates folders for raw encrypted data,
+Within each subdirectory, \texttt{iefolder} creates folders for raw encrypted data,
 raw deidentified data, cleaned data, final data, outputs, and documentation.
-In parallel, it creates folders for the code files
+It creates a parallel folder structure for the code files
 that move the data through this progression,
-and for the files that manage final analytical work.
-The command has some flexibility for the addition of
-folders for other types of data sources, although this is less well developed
-as the needs for larger datasets tend to be very specific.
+and for the final analytical outputs.
 The \texttt{ietoolkit} package also includes the \texttt{iegitaddmd} command,
 which can place \texttt{README.md} placeholder files in your folders so that
 your folder structure can be shared using Git. Since these placeholder files are
@@ -348,37 +341,32 @@ to document the contents of every folder in the structure.
   \index{Markdown}
 
 The \texttt{DataWork} folder may be created either inside
-an existing project-based folder structure, or it may be created separately.
-It is preferable to create the \texttt{DataWork} folder
-separately from the project management materials
-(such as contracts, Terms of Reference, briefs and other administrative or management work).
-This is so the project folder can be maintained in a synced location like Dropbox,
-while the code folder can be maintained in a version-controlled location like GitHub.
+an existing project folder, or it may be created as a separate root folder.
+We advise keeping project management materials
+(such as contracts, Terms of Reference, briefs and other administrative or management work) 
+separate from the datawork folder structure.
+It is useful to maintain project management materials in a synced location like Dropbox,
+whereas the code folder should be maintained in a version-controlled location like GitHub.
 (Remember, a version-controlled folder \textit{should not}
 be stored in a synced folder that is shared with other people.
-Those two types of collaboration tools function very differently
-and will almost always create undesired functionality if combined.)
-Nearly all code files and raw outputs (not datasets) are best managed this way.
-This is because code files are always \textbf{plaintext} files,
-and non-code-compatiable files are usually \textbf{binary} files.\index{plaintext}\index{binary files}
-It's also becoming more and more common for written outputs such as reports,
-presentations and documentations to be written using plaintext
-tools such as {\LaTeX} and dynamic documents.\index{{\LaTeX}}\index{dynamic documents}
-Keeping such plaintext files in a version-controlled folder allows you
-to maintain better control of their history and functionality.
-Because of the high degree of dependence between code files depend and file structure,
-you will be able to enforce better practices in a separate code folder than in the project folder.
+Combining these two types of collaboration tools 
+almost always creates undesired functionalities.)
 
-Setting up the \texttt{DataWork} folder folder in a version-controlled directory
-also enables you to use Git and GitHub for version control on your code files.
-A \textbf{version control system} is required to manage changes to any code-compatiable file.
-A good version control system tracks who edited each file and when,
-and additionally provides a protocol for ensuring that conflicting versions are avoided.
+\subsection{Setting up version control}
+We recommend using a \textbf{version control system} to 
+maintain control of file history and functionality.
 This is important, for example, for your team
 to be able to find the version of a presentation that you delivered to a donor,
 or to understand why the significance level of your estimates has changed.
 Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
 can appreciate how useful such a system can be.
+
+Version-control software such as Git are manages changes to all \textbf{plaintext} files.
+This includes all code files, most raw outputs, 
+and written outputs that use plaintext tools such as 
+{\LaTeX} and dynamic documents.\index{{\LaTeX}}\index{dynamic documents} 
+A good version control system tracks who edited each file and when,
+and additionally provides a protocol for ensuring that conflicting versions are avoided.
 
 
 Most syncing services offer some kind of rudimentary version control;
