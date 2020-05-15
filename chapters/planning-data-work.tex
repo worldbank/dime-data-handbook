@@ -531,8 +531,7 @@ or for release of the code to the general public.
 \codeexample{stata-master-dofile.do}{./code/stata-master-dofile.do}
 % ----------------------------------------------------------------------------------------------
 
-\section{Ensuring privacy and security in research data}
-
+\section{Transmitting and storing data securely}
 Anytime you are working with original data in a development research project,
 you are almost certainly handling data that include 
 \textbf{personally-identifying	information (PII)}.\index{personally-identifying information}\sidenote{
@@ -556,65 +555,26 @@ research teams have to use careful judgment in each case to avoid statistical di
 	\url{https://sdcpractice.readthedocs.io}}\index{statistical disclosure}
 	%WIKI need to create wiki page	
 
-\subsection{Transmitting and storing data securely}
-
-Secure data storage and transfer are ultimately your personal responsibility.\sidenote{
+In order to safeguard PII and protect respondent privacy, 
+you must set up secure systems for data transfer and storage from the outset of a project.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data_Security}}
-There are several precautions needed to ensure that your data is safe.
-First, all online and offline accounts
--- including personal accounts like computer logins and email --
-need to be protected by strong and unique passwords.
+There are several components to a secure data system.
+First, you need a system for managing strong and unique passwords for 
+all accounts -- including personal accounts like computer logins and email.
 There are several services that create and store these passwords for you,
-and some provide utilities for sharing passwords with others
-inside that secure environment.
-However, password-protection alone is not sufficient,
-because if the underlying data is obtained through a leak the information itself remains usable.
-Datasets that include confidential information
-\textit{must} therefore be \textbf{encrypted}\sidenote{
+and some provide utilities for securely sharing passwords with others.
+Second, you must encrypt datasets that include confidential information\sidenote{
 	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked, or any other type of unauthorized access is obtained.
 	\url{https://dimewiki.worldbank.org/Encryption}}
 during data collection, storage, and transfer.\index{encryption}\index{data transfer}\index{data storage}
-
-Most modern data collection software has features that,
-if enabled, make secure transmission straightforward.\sidenote{
-	\url{https://dimewiki.worldbank.org/Encryption\#Encryption\_in\_Transit}}
-Many also have features that ensure data is encrypted when stored on their servers,
-although this usually needs to be actively enabled and administered.\sidenote{
-	\url{https://dimewiki.worldbank.org/Encryption\#Encryption\_at\_Rest}}
 When files are properly encrypted,
 the information they contain will be completely unreadable and unusable
 even if they were to be intercepted my a malicious
 ``intruder'' or accidentally made public.
-When the proper data security precautions are taken,
-no one who is not listed on the IRB may have access to the decryption key.
-This means that is it usually not
-enough to rely service providers' on-the-fly encryption as they need to keep a copy
-of the decryption key to make it automatic. When confidential data is stored on a local
-computer it must always remain encrypted, and confidential data may never be sent unencrypted
-over email, WhatsApp, or other chat services. 
 
-The easiest way to reduce the risk of leaking confidential information is to use it as rarely as possible.
-It is often very simple to conduct planning and analytical work
-using a subset of the data that does not include this type of information.
-We encourage this approach, because it is easy.
-However, when confidential data is absolutely necessary to a task,
-such as implementing an intervention
-or submitting survey data,
-you must actively protect that information in transmission and storage.
-
-There are plenty of options available to keep your data safe,
-at different prices, from enterprise-grade solutions to free software.
-It may be sufficient to hold identifying information in an encrypted service,
-or you may need to encrypt information at the file level using a special tool.
-(This is in contrast to using software or services with disk-level or service-level encryption.)
-Data security is important not only for identifying, but all confidential information,
-especially when a worst-case scenario could potentially lead to re-identifying subjects.
-Extremely confidential information may be required to be held in a ``cold'' machine
-which does not have internet access -- this is most often the case with
-government records such as granular tax information.
+There are many encryption options available, from enterprise-grade solutions to free software.
 What data security protocols you employ will depend on project needs and data sources,
 but agreeing on a protocol from the start of a project will make your life easier.
 Finally, having an end-of-life plan for data is essential:
 you should always know how to transfer access and control to a new person if the team changes,
 and what the expiry of the data and the planned deletion processes are.
-
