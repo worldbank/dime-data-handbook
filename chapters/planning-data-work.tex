@@ -302,13 +302,17 @@ and everyone has the same expectations.
 % ----------------------------------------------------------------------------------------------
 \subsection{Organizing files and folder structures}
 
-Agree with your team on a specific directory structure,
-and set it up at the beginning of the research project
-in your root folder (the one over which you can control access permissions).
+Once you start a research project,
+the number of scripts, datasets, and outputs that you have to manage will grow very quickly.
+This can get out of hand just as quickly,
+so it's important to organize your data work and follow best practices from the beginning.
+You should agree with your team on a specific directory structure,
+and set it up at the beginning of the project.
 You should also agree on a file naming convention.\sidenote{
 	\url{https://dimewiki.worldbank.org/wiki/Naming_Conventions}}
 This will help you to easily find project files and 
 ensure that all team members can easily run the same code. 
+
 To support consistent folder organization at DIME, 
 DIME Analytics created \texttt{iefolder}\sidenote{
   \url{https://dimewiki.worldbank.org/iefolder}}
@@ -354,7 +358,7 @@ be stored in a synced folder that is shared with other people.
 Combining these two types of collaboration tools 
 almost always creates undesired functionalities.)
 
-\subsection{Setting up version control}
+\subsection{Setting up a version control system}
 We recommend using a \textbf{version control system} to 
 maintain control of file history and functionality.
 A good version control system tracks who edited each file and when,
@@ -383,12 +387,7 @@ so you don't risk breaking code for other team members as you try something new.
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Documenting and organizing code}
-Once you start a project's data work,
-the number of scripts, datasets, and outputs that you have to manage will grow very quickly.
-This can get out of hand just as quickly,
-so it's important to organize your data work and follow best practices from the beginning.
-Adjustments will always be needed along the way,
-but if the code is well-organized, they will be much easier to make.
+Good code is written in a way that is easily understood and run by others.
 Below we discuss a few crucial steps to code organization.
 They all come from the principle that code is an output by itself,
 not just a means to an end,
@@ -398,7 +397,7 @@ to provide a concrete example of the required elements and structure.
 Throughout this section, we refer to lines of the example do-file
 to give concrete examples of the required code elements, organization and structure.
 
-Code documentation is one of the main factors that contribute to readability.
+To be readable, code must be well-documented.
 Start by adding a code header to every file.
 A code header is a long \textbf{comment}\sidenote{
   \textbf{Comments:} Code components that have no function,
@@ -411,21 +410,22 @@ the purpose of the script and the name of the person who wrote it.
 If you are using a version control software,
 the last time a modification was made and the person who made it will be recorded by that software.
 Otherwise, you should include it in the header.
-You should always track the inputs and outputs of the script, as well as the uniquely identifying variable;
+You should always track the inputs and outputs of the script, 
+as well as the uniquely identifying variable;
 refer to lines 49-51 in the example do-file.
 When you are trying to track down which code creates which dataset, this will be very helpful.
 While there are other ways to document decisions related to creating code,
 the information that is relevant to understand the code should always be written in the code file.
 
-In the script, alongside the code, are two types of comments that should be included.
+Two types of comments should be included in the script itself.
 The first type of comment describes what is being done;
 refer to line 35 in the example do-file.
 This might be easy to understand from the code itself
 if you know the language well enough and the code is clear,
 but often it is still a great deal of work to reverse-engineer the code's intent.
-Writing the task in plain English (or whichever language you communicate with your team in)
-will make it easier for everyone to read and understand the code's purpose
--- and also for you to think about your code as you write it.
+Writing the task in plain English (or whichever language you use to communicate with your team)
+will make it easier for everyone to read and understand the code's purpose.
+It can also help you organize your own work and ensure you are following logical steps.
 The second type of comment explains why the code is performing a task in a particular way.
 As you are writing code, you are making a series of decisions that
 (hopefully) make perfect sense to you at the time.
@@ -434,27 +434,29 @@ that is not obvious or has not been seen by others before.
 Even you will probably not remember the exact choices that were made in a couple of weeks.
 Therefore, you must document your precise processes in your code.
 
-Code organization means keeping each piece of code in an easy-to-find location and naming them in a meaningful way.
+Code files should be stored in an easy-to-find location and named in a meaningful way.
   \index{code organization}
-Breaking your code into independently readable ``chunks'' is one good practice on code organization.
-You should write each functional element as a chunk that can run completely on its own,
-to ensure that each component does not depend on a complex program state
+Breaking your code into independently readable ``chunks'' is good practice for code organization.
+You should write each functional element as a chunk that can run completely on its own.
+This ensures that each code component is independent; 
+it does not rely on a complex program state
 created by other code chunks that are not obvious from the immediate context.
-One way to do this is to create sections where a specific task is completed.
-So, for example, if you want to find the line in your code where a variable was created,
+One way to do this is by creating sections in your script to identify where a specific task is completed.
+For example, if you want to find the line in your code where the directory is set,
 you can go straight to \texttt{PART 2: Prepare folder paths and define programs},
 instead of reading line by line through the entire code.
-RStudio, for example, makes it very easy to create sections,
+RStudio makes it very easy to create sections,
 and it compiles them into an interactive script index for you.
-In Stata, you can use comments to create section headers,
-though they're just there to make the reading easier and don't have functionality;
-refer to line 24 of the example do-file.
-You should also add an index in the code header by copying and pasting section titles;
-refer to lines 8-10 in the example do-file.
+In Stata, you can use comments to create section headers 
+(see line 24 of the example do-file),
+though they're just there to make the reading easier and don't have functionality.
+Since an index is not automated, 
+create this manually in the code header by copying and pasting section titles
+(see lines 8-10 in the example do-file).
 You can then add and navigate through them using the \texttt{find} functionality.
 Since Stata code is harder to navigate, as you will need to scroll through the document,
 it's particularly important to avoid writing very long scripts.
-Therefore, in Stata at least, you should also consider breaking code tasks down
+Therefore, in Stata at least, we recommend breaking code tasks down
 into separate do-files, since there is no limit on how many you can have,
 how detailed their names can be, and no advantage to writing longer files.
 One reasonable rule of thumb is to not write do-files that have more than 200 lines.
