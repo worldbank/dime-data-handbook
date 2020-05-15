@@ -305,8 +305,10 @@ and everyone has the same expectations.
 Agree with your team on a specific directory structure,
 and set it up at the beginning of the research project
 in your root folder (the one over which you can control access permissions).
-This will prevent future folder reorganizations that may slow down your workflow and,
-more importantly, ensure that your code files are always able to run on any machine.
+You should also agree on a file naming convention.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Naming_Conventions}}
+This will help you to easily find project files and 
+ensure that all team members can easily run the same code. 
 To support consistent folder organization at DIME, 
 DIME Analytics created \texttt{iefolder}\sidenote{
   \url{https://dimewiki.worldbank.org/iefolder}}
@@ -355,42 +357,28 @@ almost always creates undesired functionalities.)
 \subsection{Setting up version control}
 We recommend using a \textbf{version control system} to 
 maintain control of file history and functionality.
+A good version control system tracks who edited each file and when,
+allows you to revert to previous versions,
+and provides a protocol for ensuring that conflicting versions are avoided.
 This is important, for example, for your team
 to be able to find the version of a presentation that you delivered to a donor,
 or to understand why the significance level of your estimates has changed.
 Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
 can appreciate how useful such a system can be.
 
-Version-control software such as Git are manages changes to all \textbf{plaintext} files.
-This includes all code files, most raw outputs, 
-and written outputs that use plaintext tools such as 
-{\LaTeX} and dynamic documents.\index{{\LaTeX}}\index{dynamic documents} 
-A good version control system tracks who edited each file and when,
-and additionally provides a protocol for ensuring that conflicting versions are avoided.
-
-
 Most syncing services offer some kind of rudimentary version control;
 these are usually enough to manage changes to binary files (such as Word and PowerPoint documents)
 without needing to rely on dreaded filename-based versioning conventions.
 For code files, however, a more detailed version control system is usually desirable.
-We recommend using Git for all code and all other plaintext files ({\LaTeX} files, .csv/.txt tables etc.).
-Git tracks all the changes you make to your code,
+We recommend using Git for version-control of all data work.
+Git manages changes to all \textbf{plaintext} files, 
+this includes all code files, most raw outputs, 
+and written outputs that use plaintext tools such as 
+{\LaTeX} and dynamic documents.\index{{\LaTeX}}\index{dynamic documents} 
+Git tracks all the changes you make to each plaintext file,
 and allows you to go back to previous versions without losing the information on changes made.
-It also makes it possible to work on multiple parallel versions of the code,
-so you don't risk breaking the code for other team members as you try something new.
-
-Once the \texttt{DataWork} folder's directory structure is set up,
-you should adopt a file naming convention.
-You will generally be working with two types of files:
-``code-compatible'' files, which are those that are accessed by code processes,
-and ``non-code-compatible'' files, which will not be accessed by code processes.
-The former takes precedent: an Excel file is a code-compatible file
-even if it is a field log, because at some point it will be used by code.
-We will not give much emphasis to files that are not linked to code here;
-but you should make sure to name them in an orderly fashion that works for your team.
-These rules will ensure you can find files within folders
-and reduce the amount of time others will spend opening files
-to find out what is inside them.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Naming_Conventions}}
+It also makes it possible to work on multiple parallel versions of the file,
+so you don't risk breaking code for other team members as you try something new.
 
 
 % ----------------------------------------------------------------------------------------------
