@@ -1,20 +1,24 @@
 %------------------------------------------------
 
 \begin{fullwidth}
-For most research projects, completing a manuscript is not the end of the task.
-Academic journals increasingly require submission of a replication package
+Publication typically involves multiple iterations of manuscript,
+code, and data files, with inputs from multiple collaborators.
+This process can quickly become unwieldy.
+It is in nobody's interest for a skilled and busy researcher
+to spend days re-numbering references (and it can take days)
+when a small amount of up-front effort can automate the task.
+Similarly, simultaneous collaboration should not involve
+the repetitive and error-prone task of manually resolving
+sets of tracked-changes documents with conflicting edits.
+Futhermore, for most research projects,
+completing a manuscript is not the end of the task.
+Academic journals often require a ``replication package''
 which contains the code and materials used to create the results.
 These represent an intellectual contribution in their own right,
 because they enable others to learn from your process
 and better understand the results you have obtained.
-Holding code and data to the same standards a written work
+Holding code and data to the same standards as written work
 is a new practice for many researchers.
-Publication typically involves multiple iterations of manuscript, 
-code, and data files, with inputs from multiple collaborators.
-This process can quickly become unwieldy. 
-It is in nobody's interest for a skilled and busy researcher
-to spend days re-numbering references (and it can take days)
-when a small amount of up-front effort can automate the task.
 
 In this chapter, we suggest tools and workflows for efficiently managing collaboration
 and ensuring reproducible outputs.
@@ -22,118 +26,73 @@ First, we discuss how to use dynamic documents to collaborate on technical writi
 Second, we provide guidelines for preparing a functioning and informative replication package.
 If you have organized your analytical work
 according to the general principles outlined in earlier chapters,
-preparing to release materials will not require
+preparing to publish materials will not require
 substantial reorganization of the work you have already done.
-Hence, this step represents the conclusion of the system
+Hence, this process is the conclusion of the system
 of transparent, reproducible, and credible research we introduced
 from the very first chapter of this book.
 We include specific guidance on publishing both code and data files,
-noting that these can be a significant contribution in addition to analytical results.
+noting that these can be a significant contribution in addition to written results.
 In all cases, we note that technology is rapidly evolving
-and that the specific tools noted here may not remain cutting-edge,
+and that specific tools noted here may not remain cutting-edge,
 but the core principles involved in publication and transparency will endure.
 \end{fullwidth}
 
 %------------------------------------------------
 
-\section{Collaborating on technical writing}
+\section{Preparing written documents for publication}
 
 % collaborating is easier with dynamic documents
-Development economics research is increasingly a collaborative effort. 
-This reflects changes in the economics discipline overall: 
-the number of sole-authored papers is decreasing, 
-and the majority of recent papers in top journals have three or more 
+Development research is increasingly a collaborative effort.
+This reflects changes in the economics discipline overall:
+the number of sole-authored papers is decreasing,
+and the majority of recent papers in top journals have three or more
 authors.\sidenote{\url{https://voxeu.org/article/growth-multi-authored-journal-articles-economics}}
 As a consequence, manuscripts typically pass back and forth between several writers
 before they are ready for publication.
 Just as with the preparation of analytical outputs,
-effective collaboration requires the adoption of tools and practices 
+effective collaboration requires the adoption of tools and practices
 that enable version control and simultaneous contribution.
-\textbf{Dynamic documents} are a way to significantly simplify workflows:
-updates to the analytical outputs that appear in these documents, such as tables and figures,
-can be passed on to the final output with a single process,
+As we outlined in the previous chapter,
+\textbf{dynamic documents} are a way to simplify writing workflows:
+updates to analytical outputs that appear in these documents, such as tables and figures,
+can be passed in to the final output with a single process,
 rather than copy-and-pasted or otherwise handled individually.
 Managing the writing process in this way
 improves organization and reduces error,
 such that there is no risk of materials being compiled
 with out-of-date results, or of completed work being lost or redundant.
 
-\subsection{Preparing dynamic documents}
+\subsection{Preparing manuscripts as \LaTeX\ documents}
 
 % what exactly is a dynamic document
-Dynamic documents are a broad class of tools that enable a streamlined, reproducible workflow.
-The term ``dynamic'' can refer to any document-creation technology
-that allows the inclusion of explicitly encoded linkages to raw output files.
-This means that, whenever outputs are updated,
-the next time the document is loaded or compiled, it will automatically include
-all changes made to all outputs without any additional intervention from the user.
-This way, updates will never be accidentally excluded,
-and updating results will not become more difficult
-as the number of inputs grows,
-because they are all managed by a single integrated process.
-
-% static documents get inefficient quickly
-You will note that this is not possible in tools like Microsoft Office,
-although there are various tools and add-ons that produce similar functionality,
-and we will introduce some later in this book.
-In Word, by default, you have to copy and paste each object individually
-whenever tables, graphs, or other inputs have to be updated.
-This creates complex inefficiency: updates may be accidentally excluded
-and ensuring they are not will become more difficult as the document grows.
-As time goes on, it therefore becomes more and more likely
-that a mistake will be made or something will be missed.
-Therefore this is a broadly unsuitable way to prepare technical documents.
-
-% LaTeX  is one type of dynamic document
-The most widely utilized software
-for dynamically managing both text and results is \LaTeX (pronounced ``lah-tek'').\sidenote{
+The most widely used software
+for dynamically managing academic manuscripts is \LaTeX\ (pronounced ``lah-tek'').\sidenote{
 	\url{https://github.com/worldbank/DIME-LaTeX-Templates}}
 \index{\LaTeX}
-\LaTeX is a document preparation and typesetting system with a unique syntax.
+\LaTeX\ is a document preparation and typesetting system with a unique syntax.
 While this tool has a significant learning curve,
 its enormous flexibility in terms of operation, collaboration, output formatting, and styling
 make it the primary choice for most large technical outputs.
-In fact, \LaTeX operates behind-the-scenes in many other dynamic document tools (discussed below).
-Therefore, we recommend that you learn to use \LaTeX directly
-as soon as you are able to and provide several resources for doing so in the next section.
-
-% markdown is also useful for short or informal documents
-There are tools that can generate dynamic documents from within your scripts, 
-such as R's RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com}}
-Stata offers a built-in package for dynamic documents, \texttt{dyndoc}\sidenote{\url{https://www.stata.com/manuals/rptdyndoc.pdf}}, and user-written commands such \texttt{texdoc}\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc}} and \texttt{markstat}\sidenote{\url{https://data.princeton.edu/stata/markdown}} allow for additional functionalities.
-These tools ``knit'' or ``weave'' text and code together,
-and are programmed to insert code outputs in pre-specified locations.
-Documents called ``notebooks'' (such as Jupyter\sidenote{\url{https://jupyter.org}}) work similarly,
-as they also use the underlying analytical software to create the document.
-These tools are usually appropriate for short or informal documents
-because it tends to be difficult to edit the content unless using the tool 
-and often does not have as extensive formatting option as, for example, Word.
-
-% other dynamic documents: dropbox paper
-There are also simple tools for dynamic documents
-that do not require direct operation of the underlying code or software,
-simply access to the updated outputs.
-An example of this is Dropbox Paper,
-a free online writing tool that allows linkages to files in Dropbox
-which are automatically updated anytime the file is replaced.
-They have limited functionality in terms of version control and formatting,
-and may never include any references to confidential data,
-but can be useful for working on informal outputs, such as blogposts,
-with collaborators who do not code. 
-
-
-\subsection{Technical writing with \LaTeX}
+It enables a streamlined collaboration workflow
+that allows explicitly encoded references to raw output files.
+This means that, whenever raw outputs are updated and the document is compiled,
+it will automatically include the latest versions of all outputs.
+This is not possible by default in Microsoft Word,
+although there are add-ons that produce similar functionality.
+In Word, you have to copy and paste each object
+whenever tables, graphs, or other inputs are updated.
+This creates complex inefficiency: updates may be accidentally excluded,
+and ensuring they are not becomes more difficult as the document grows.
+As time goes on, it becomes more and more likely
+that a mistake will be made or something will be missed.
+This is a broadly unsuitable way to prepare technical documents.
 
 % advantages of LaTeX
-{\LaTeX} is billed as a ``document preparation system''.
-What this means is worth unpacking.
-In {\LaTeX}, instead of writing in a ``what-you-see-is-what-you-get'' mode
-as you do in Word or the equivalent,
-you write plain text interlaced with coded instructions for formatting
-(similar in concept to HTML).
-Because it is written in a plain text file format,
-\texttt{.tex} can be version-controlled using Git.
-This is why it has become the dominant ``document preparation system'' in technical writing.
+In {\LaTeX}, instead of writing in a
+``what-you-see-is-what-you-get'' mode as you do in Word,
+you write plain text in a \texttt{.tex} file,
+interlaced with coded instructions for formatting (similar to HTML).
 {\LaTeX} enables automatically-organized documents,
 manages tables and figures dynamically,
 and includes commands for simple markup
@@ -143,26 +102,49 @@ footnotes and endnotes, complex mathematical notation, and automated bibliograph
 It also allows publishers to apply global styles and templates to already-written material,
 allowing them to reformat entire documents in house styles with only a few keystrokes.
 
+% keeping it simple
+To create a \LaTeX\ manuscript,
+you will typically create a new top-level directory for each final output.
+Many projects go so far as to create documents like the main text
+and any appendix text as separate projects.
+For a single output, one convention is to put the manuscript files
+(called \texttt{main.tex} and \texttt{bibliography.bib})
+in the top-level folder,
+and then have the folders \texttt{img} for figures,
+\texttt{tab} for tables, and \texttt{etc} for anything else.
+Your analytical scripts should easily be able to produce outputs
+at the location of your choice using a global path;
+output them here when ready.
+Above all, keep your workflow as simple as possible.
+While \LaTeX\ \texit{can} produce complex formatting,
+this is rarely needed for academic publishing,
+as your manuscript will usually be reformatted in publication any
+based on the style of the publisher.
+Stick to the very basic \LaTeX\ tools:
+the title page, manuscript sections and subsections,
+figures and tables, mathematical equations,
+bolding and italics, footnotes and endnotes,
+and, last but not least, references and citations.
+
 % managing references in LaTeX
-One of the most important tools available in \LaTeX
-is the BibTeX citation and bibliography manager.\sidenote{
-  \url{https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.365.3194&rep=rep1&type=pdf}}
-BibTeX keeps all the references you might use in an auxiliary file,
-then references them using a simple element typed directly in the document: a \texttt{cite} command.
-The same principles that apply to figures and tables are therefore applied here:
-You can make changes to the references in one place (the \texttt{.bib} file),
-and then everywhere they are used they are updated correctly with one process.
-Specifically, \LaTeX inserts references in text using the \texttt{\textbackslash cite\{\}} command.
-Once this is written, \LaTeX automatically pulls all the citations into text
+One of the most important tools available in \LaTeX\
+is the BibTeX citation and bibliography manager.\cite{kopka1995guide}
+BibTeX keeps all the references you might use in an auxiliary \texttt{.bib} file,
+then references them using a simple command typed directly in the document.
+Specifically, \LaTeX\ inserts references in text using the \texttt{\textbackslash cite\{\}} command.
+Once this is written, \LaTeX\ automatically pulls all the citations into text
 and creates a complete bibliography based on the citations you used whenever you compile the document.
 The system allows you to specify exactly how references should be displayed in text
 (such as superscripts, inline references, etc.)
 as well as how the bibliography should be styled and in what order
 (such as Chicago, MLA, Harvard, or other common styles).
-This tool is so widely used that it is natively integrated in Google Scholar.
+The same principles that apply to figures and tables are therefore applied here:
+You can make changes to the references in one place (the \texttt{.bib} file),
+and then everywhere they are used they are updated correctly with one process.
+BibTeX is so widely used that it is natively integrated in Google Scholar.
 To obtain a reference in the \texttt{.bib} format for any paper you find,
 click ``BibTeX'' at the bottom of the Cite window (below the preformatted options).
-Then, copy the code directly from Google Scholar into your \texttt{.bib} file.
+Then, copy the code directly into your \texttt{.bib} file.
 They will look like the following:
 
 \codeexample{sample.bib}{./code/sample.bib}
@@ -171,8 +153,18 @@ They will look like the following:
 
 \codeexample{citation.tex}{./code/citation.tex}
 
-With these tools, you can ensure that references are handled
+With this tool, you can ensure that references are handled
 in a format you can manage and control.\cite{flom2005latex}
+By changing some settings in the document itself,
+you can change the style of inline citations and bibliographical references.
+You can, for example, use superscripts or author names inline,
+and order the bibiliography either by order of appearance or alphabetically.
+All the formatting and numbering will be handled automatically.
+You can also choose to display only the references which are cited in the text,
+or to include every reference in the \texttt{.bib} file.
+Since different publications have different requirements,
+the ability to adapt this and other formatting very quickly,
+including through using publisher-supplied templates where available.
 
 % using pandoc to convert LaTeX into word
 \LaTeX has one more useful trick:
@@ -184,17 +176,37 @@ by running the following code from the command line:
 
 \codeexample{pandoc.sh}{./code/pandoc.sh}
 
-\noindent The last portion after \texttt{csl=} specifies the bibliography style.
+\noindent Conversion to Word is still required for a number of publishers.
+You still don't want to write in Word, though.
+The \texttt{pandoc} utility can only handle relatively simple formatting,
+but it will seamlessly translate all the features we mentioned before
+into the correct native Word styling.
+The bracketed portion after \texttt{csl=} specifies the bibliography style;
+this must be set manually for this conversion to work.
 You can download a CSL (Citation Styles Library) file\sidenote{
   \url{https://github.com/citation-style-language/styles}}
 for nearly any journal and have it applied automatically in this process.
-Therefore, even in the case where you are requested to provide
+Therefore, even in the case where you are required to provide
 \texttt{.docx} versions of materials to others, or tracked-changes versions,
-you can create them effortlessly,
-and use external tools like Word's compare feature
-to generate integrated tracked versions when needed.
+you can create them effortlessly from a \LaTex\ manuscript,
+then use external tools like Word's compare feature
+to generate outputs like integrated track-changes versions when needed.
 
-% disadvantages of LaTeX: installation, learning the mark-up 
+
+\subsection{Getting started with {\LaTeX} as a team}
+
+
+\LaTeX is a challenging tool to get started using,
+but the control it offers over the writing process is invaluable.
+
+
+Because it is written in a plain text file format,
+\texttt{.tex} can be version-controlled using Git.
+
+
+
+
+% cloud-based implementations are a good place to start
 Unfortunately, despite these advantages, \LaTeX can be a challenge to set up and use at first,
 particularly if you are new to working with plain text code and file management.
 It is also unfortunately weak with spelling and grammar checking.
@@ -216,11 +228,6 @@ Cloud-based implementations of {\LaTeX}, discussed in the next section,
 allow teams to take advantage of the features of {\LaTeX},
 without requiring knowledge of the technical details.
 
-\subsection{Getting started with {\LaTeX} in the cloud}
-
-% cloud-based implementations are a good place to start
-\LaTeX is a challenging tool to get started using,
-but the control it offers over the writing process is invaluable.
 In order to make it as easy as possible for your team
 to use \LaTeX without all members having to invest in new skills,
 we suggest using a cloud-based implementation as your first foray into \LaTeX writing.
@@ -286,12 +293,12 @@ and double-checking all datasets for potentially identifying information.
 \subsection{Publishing data for replication}
 
 % options for when the data cannot be published
-Publicly documenting all original data generated as part of a research project 
+Publicly documenting all original data generated as part of a research project
 is an important contribution in its own right.
 Publishing original datasets is a significant contribution that can be made
 in addition to any publication of analysis results.\sidenote{
 	\url{https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-publishing-research-data.pdf}}
-If you are not able to publish the data itself, 
+If you are not able to publish the data itself,
 due to licensing agreements or ethical concerns,
 there are often options to catalog or archive the data.
 These may take the form of metadata catalogs or embargoed releases.
@@ -322,11 +329,11 @@ where researchers can publish data and documentation for their projects.\sidenot
 }
 The Harvard Dataverse\sidenote{
 	\url{https://dataverse.harvard.edu}}
-publishes both data and code. 
-The Datahub for Field Experiments in Economics and Public Policy\sidenote{\url{https://dataverse.harvard.edu/dataverse/DFEEP}} 
-is especially relevant for impact evaluations. 
+publishes both data and code.
+The Datahub for Field Experiments in Economics and Public Policy\sidenote{\url{https://dataverse.harvard.edu/dataverse/DFEEP}}
+is especially relevant for impact evaluations.
 Both the World Bank Microdata Catalog and the Harvard Dataverse
-create data citations for deposited entries. 
+create data citations for deposited entries.
 DIME has its own collection of datasets in the Microdata Catalog,
 where data from our projects is published.\sidenote{\url{
 		https://microdata.worldbank.org/catalog/dime}}
@@ -348,9 +355,9 @@ When you do publish data, you decide how it may be used and what, if any license
 Terms of use available in the World Bank Microdata Catalog include, in order of increasing restrictiveness: open access, direct access, and licensed access.\sidenote{
   \url{https://microdata.worldbank.org/index.php/terms-of-use}}
 Open Access data is freely available to anyone, and simply requires attribution.
-Direct Access data is to registered users who agree to use the data for statistical and scientific research purposes only, 
-to cite the data appropriately, and to not attempt to identify respondents or data providers or link to other datasets that could allow for re-identification. 
-Licensed access data is restricted to bona fide users, who submit a documented application for how they will use the data and sign an agreement governing data use. 
+Direct Access data is to registered users who agree to use the data for statistical and scientific research purposes only,
+to cite the data appropriately, and to not attempt to identify respondents or data providers or link to other datasets that could allow for re-identification.
+Licensed access data is restricted to bona fide users, who submit a documented application for how they will use the data and sign an agreement governing data use.
 The user must be acting on behalf of an organization, which will be held responsible in the case of any misconduct.
 Keep in mind that you may or may not own your data,
 depending on how it was collected,
@@ -411,7 +418,7 @@ and simple measures of the identifiability of records from that.
 There will almost always be a trade-off between accuracy and privacy.
 For publicly disclosed data, you should favor privacy.
 Stripping identifying variables from a dataset may not be sufficient to protect respondent privacy,
-due to the risk of re-identification. 
+due to the risk of re-identification.
 One potential solution is to add noise to data, as the US Census Bureau has proposed.\cite{abowd2018us}
 This makes the trade-off between data accuracy and privacy explicit.
 But there are not, as of yet, established norms for such ``differential privacy'' approaches:
@@ -421,7 +428,7 @@ and privacy protection, and that you should engage with it actively and explicit
 The best thing you can do is make a complete record of the steps that have been taken
 so that the process can be reviewed, revised, and updated as necessary.
 
-% restricting access of confidential for reproducibility check 
+% restricting access of confidential for reproducibility check
 In cases where confidential data is required for analysis,
 we recommend embargoing sensitive or access-restricted variables when publishing the dataset.
 Access to the embargoed data could be granted for specific purposes,
@@ -444,13 +451,13 @@ Code is often not written this way when it is first prepared,
 so it is important for you to review the content and organization
 so that a new reader can figure out what and how your code should do.
 Therefore, whereas your data should already be very clean by publication stage,
-your code is much less likely to be so. 
+your code is much less likely to be so.
 This is often where you need to invest time prior to releasing your replication package.
 
 % code licenses
 Unlike data, code usually has few legal and privacy constraints to publication.
 The research team owns the code in almost all cases,
-and code is unlikely to contain identifying information 
+and code is unlikely to contain identifying information
 (though you must check carefully that it does not).
 Publishing code also requires assigning a license to it;
 in a majority of cases, code publishers like GitHub
@@ -462,7 +469,7 @@ Before releasing the code, make sure it functions identically on a fresh install
 A new user should have no problem getting the code to execute perfectly.
 In either a scripts folder or in the root directory,
 you should include a master script that allows the reviewer to run the entire project
-and re-create all raw outputsby changing only a single line of code: 
+and re-create all raw outputsby changing only a single line of code:
 the one setting the directory path.
 To ensure that your code will run completely on a new computer,
 you must install any required user-written commands in the master script
@@ -487,7 +494,7 @@ Code and outputs which are not used should be removed before publication.
 
 \subsection{Releasing a replication package}
 
-% finding a place to publish the package	
+% finding a place to publish the package
 Once your data and code are polished for public release,
 all you need to do is find a place to publish your materials.
 This is slightly easier said than done,
@@ -532,7 +539,7 @@ and that it can provide a stable, structured URL for your project
 and report exactly what, if any, modifications you have made since initial publication.
 You can even combine more than one tool if you prefer,
 as long as they clearly point to each other.
-For example, one could publish code on GitHub that points to data published on the World Bank MicroData catalog. 
+For example, one could publish code on GitHub that points to data published on the World Bank MicroData catalog.
 
 % one-sentence paragraph about codeocean
 Emerging technologies such as the ``containerization'' approach of Docker or CodeOcean\sidenote{
