@@ -12,7 +12,7 @@ the repetitive and error-prone task of manually resolving
 sets of tracked-changes documents with conflicting edits.
 Futhermore, for most research projects,
 completing a manuscript is not the end of the task.
-Academic journals often require a ``replication package''
+Academic journals often require a ``reproducibility package''
 which contains the code and materials used to create the results.
 These represent an intellectual contribution in their own right,
 because they enable others to learn from your process
@@ -23,7 +23,7 @@ is a new practice for many researchers.
 In this chapter, we suggest tools and workflows for efficiently managing collaboration
 and ensuring reproducible outputs.
 First, we discuss how to use dynamic documents to collaborate on technical writing.
-Second, we provide guidelines for preparing a functioning and informative replication package.
+Second, we provide guidelines for preparing a functioning and informative reproducibility package.
 If you have organized your analytical work
 according to the general principles outlined in earlier chapters,
 preparing to publish materials will not require
@@ -266,7 +266,7 @@ so long as you make sure you are available to troubleshoot minor issues like the
 
 \section{Preparing and publishing data}
 
-% what are replication packages and what they must contain
+% what are reproducibility packages and what they must contain
 While we have focused so far on written materials,
 it is also important to consider how you will publish
 the data you used for your research.
@@ -495,54 +495,63 @@ that constructs any derived measures
 from the raw dataset,
 so that others can learn from your work and adapt it as they like.
 
-\section{Preparing a complete replication package}
+\section{Preparing a complete reproducibility package}
 
 Major journals now often require that,
-in addition to the data that produces your results,
-you provide the code =used to create the results.
+in addition to the data required to obtain your results,
+you provide the code that exactly recreates those results.
 Some even require being able to reproduce the results themselves
 before they will approve a paper for publication.\sidenote{
   \url{https://www.aeaweb.org/journals/policies/data-code}}
 This set of materials, taken together,
-is often referred to as a ``replication package''.
+is often referred to as a ``reproducibility package''.
 If your material has been well-structured throughout the analytical process,
 this will only require a small amount of extra work;
 if not, creating this package may take some time.
-A complete replication package should accomplish several core functions.
-It must provide the exact data and code that is used for a paper,
-all necessary (de-identified) data for the analysis,
-and all code necessary for the analysis.
-The code and data should exactly reproduce
-the raw outputs you have used for the paper,
-and the replication file should only include material for public release.
+When it is completed,
+whoever downloads it should be able
+to understand how your code produces results from your data
+and be able to reproduce them by executing the included master script.
 
-\subsection{Publishing code for replication}
+\subsection{Organizing code for reproducibility}
 
 % published code must be understandable
-Before publishing your code, you should edit it for content and clarity
+Before releasing your code, you should edit it for content and clarity
 just as if it were written material.
 The purpose of releasing code is to allow others to understand
 exactly what you have done in order to obtain your results,
 as well as to apply similar methods in future projects.
-Therefore it should both be functional and readable
-(if you've followed the recommendations in this book
-this should be easy to do!).
+They should also be able to make small adjustments to your code
+and reproduce individual portions of your analysis
+so they can understand the choices and functions you implemented.
+The code should both be functional and readable,
+through the use of clean structure and extensive commenting and documentation.
 Code is often not written this way when it is first prepared,
 so it is important for you to review the content and organization
 so that a new reader can figure out what and how your code should do.
-Therefore, whereas your data should already be very clean by publication stage,
+Whereas your data should already be relatively clean by this stage,
 your code is much less likely to be so.
-This is often where you need to invest time prior to releasing your replication package.
+This is often where you need to invest time prior to releasing your reproducibility package.
 
-% code licenses
-Unlike data, code usually has few legal and privacy constraints to publication.
-The research team owns the code in almost all cases,
-and code is unlikely to contain identifying information
-(though you must check carefully that it does not).
-Publishing code also requires assigning a license to it;
-in a majority of cases, code publishers like GitHub
-offer extremely permissive licensing options by default.
-(If you do not provide a license, nobody can use your code!)
+% reproducibility review
+DIME has adopted several practices and requirements to support the production
+of high-quality reproducibility packages by its researchers.
+The materials for these practices are publicly available,
+so you can use them to check the reproducibility of your own work.
+DIME code must be submitted for a computational reproducibility check
+before publication as a working paper or submission to a journal.
+This reproducibility check is initiated by contacting the DIME Analytics team
+and submitting the Reproducibility Package Checklist.
+In addition to this formal requirement for reproducibility review,
+DIME projects are required to be maintained continuously at high quality.
+These practices must include ensuring that project code is organized
+with a master script so that computational reproducibility is a one-click exercise.
+DIME project are also expected to use Git and GitHub
+to document project work and collaboration,
+and to keep the master branch up-to-date as a working edition.
+Research assistants also participate in quarterly peer code review rounds
+so that they can improve their code and documentation as it is written,
+and not be required to revisit it in a rush near publication time.
 
 % ensuring code reproducibility
 Before releasing the code, make sure it functions identically on a fresh install of your chosen software.
@@ -572,76 +581,101 @@ For example, outputs should clearly correspond by name to an exhibit in the pape
 (Supplying a compiling {\LaTeX} document can support this.)
 Code and outputs which are not used should be removed before publication.
 
-\subsection{Releasing a replication package}
+\subsection{Releasing a reproducibility package}
 
 % finding a place to publish the package
 Once your data and code are polished for public release,
 all you need to do is find a place to publish your materials.
 This is slightly easier said than done,
 as there are a few variables to take into consideration
-and, at the time of writing, no global consensus on the best solution.
+and, at the time of writing, no global consensus on the best solution
+and there are a variety of archives and storage providers
+that cater to different needs.
 The technologies available are likely to change dramatically
 over the next few years;
 the specific solutions we mention here highlight some current approaches
 as well as their strengths and weaknesses.
 
+% code licenses
+Unlike data, code usually has few external constraints to publication.
+The research team owns the code in almost all cases,
+and code is unlikely to contain identifying information
+(though you must check carefully that it does not).
+Publishing code also requires assigning a license to it;
+in a majority of cases, code publishers like GitHub
+offer extremely permissive licensing options by default.
+If you do not provide a license, nobody can use your code.
+You may be required to put your materials into the public domain;
+if not, it is common to only require attribution and citation for their reuse,
+without putting any barriers or restrictions to accessing the code.
+
 % pros and cons of GitHub
-One option is GitHub.
+One option for releasing a reproducibility package is GitHub.
 Making a public GitHub repository is completely free.
 It can hold any file types,
-provide a structured download of your whole project,
+provide a structured, compressed download of your whole project,
 and allow others to look at alternate versions or histories easily.
-It is straightforward to simply upload a fixed directory to GitHub
+It is straightforward to simply upload a fixed directory to GitHub,
 apply a sharing license, and obtain a URL for the whole package.
-(There is a strict size restriction of 100MB per file and
+There is a strict size restriction of 100MB per file and
 a restriction on the size of the repository as a whole,
-so larger projects will need alternative solutions.)
+so larger projects will need alternative solutions.
 However, GitHub is not the ideal platform to release reproducibility packages.
 It is built to version control code, and to facilitate collaboration on it.
-Features to look for in a platform to release such packages and that are not offered by GitHub, include:
+It is not an archive, meaning that it does not guarantee the permanence
+of uploaded materials, it does not guarantee the permanence of the access URL,
+and it does not manage citations or non-code licenses by default.
+
+Features to look for in a platform to release reproducibility packages
+and that are not offered by GitHub, include:
 the possibility to store data and documentation as well as code,
 the creation of a static copy of its content, that cannot be changed or removed,
 and the assignment of a permanent digital object identifier (DOI) link.
+One suggestion is to combine GitHub with the Open Science Framework,\sidenote{
+  \url{https://osf.io}}
+as OSF can easily link to and import material from GitHub and
+apply a permanent URL, DOI, formal citation, general license, and archival services to it.
 
 % Other options: data verse, osf, research gate. what to look for before deciding
-Another option is the Harvard Dataverse,\sidenote{
+Other options include the Harvard Dataverse\sidenote{
   \url{https://dataverse.harvard.edu}}
-which is designed to be a citable data repository.
-The Open Science Framework\sidenote{
-  \url{https://osf.io}}
 and ResearchGate.\sidenote{
   \url{https://https://www.researchgate.net}}
-can also hold both code and data.
-Any of these locations is acceptable --
+Any of these archival services is acceptable --
 the main requirement is that the system can handle
 the structured directory that you are submitting,
 and that it can provide a stable, structured URL for your project
-and report exactly what, if any, modifications you have made since initial publication.
+and report exactly what, if any,
+modifications you have made since initial publication.
 You can even combine more than one tool if you prefer,
-as long as they clearly point to each other.
-For example, one could publish code on GitHub that points to data published on the World Bank MicroData catalog.
-
-% one-sentence paragraph about codeocean
-Emerging technologies such as the ``containerization'' approach of Docker or CodeOcean\sidenote{
+as long as they clearly reference each other.
+For example, one could publish code and the corresponding license on GitHub
+and point to data published on the World Bank Microdata Catalog.
+Emerging technologies such as the ``containerization'' approach of CodeOcean\sidenote{
   \url{https://codeocean.com}}
-offer to store both code and data,
+offer to store both code and data in one repository,
 and also provide an online workspace in which others can execute and modify your code
 without having to download your tools and match your local environment
 when packages and other underlying software may have changed since publication.
+In a similar spirit, attempts to create ``metadata archives''
+that link all the different materials, releases, and publications
+relating to specific research projects or studies
+offer an avenue for improving the organization of these materials in the future.
 
 % pre-prints
 In addition to code and data,
 you may also want to release an author's copy or preprint
 of the article itself along with these raw materials.
 Check with your publisher before doing so;
-not all journals will accept material that has been released.
-Therefore you may need to wait until acceptance is confirmed.
+not all journals will accept material that has been publicly released
+before its formal publication date, although,
+in most development research fields,
+the release of working papers is a fairly common practice.
 This can be done on a number of preprint websites,
 many of which are topic-specific.\sidenote{
   \url{https://en.wikipedia.org/wiki/ArXiv}}
-You can also use GitHub and link to the PDF file directly
-on your personal website or whatever medium you are
-sharing the preprint through.
-Do not use Dropbox or Google Drive for this purpose:
+You can also use GitHub or OSF and link to the PDF file directly
+through your personal website or whatever medium you are sharing the preprint.
+However, do not use Dropbox or Google Drive for this purpose:
 many organizations do not allow access to these tools,
 and staff may be blocked from accessing your material.
