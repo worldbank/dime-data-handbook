@@ -74,12 +74,13 @@ It is important that the completeness of the eligible population in your data ha
 for example missing many poor households, 
 as that bias will then be included in your research design and your results will have the same bias.
 
+
 %%%%% Quasi Experimental 
 
 \textbf{Quasi-experimental} research designs,\sidenote{
 	\url{https://dimewiki.worldbank.org/Quasi-Experimental_Methods}}
-by contrast, are causal inference methods based on events not controlled by the research team. Instead, they rely on ``experiments of nature'',
-in which natural variation can be argued to approximate randomization. 
+by contrast, are based on events not controlled by the research team. Instead, they rely on ``experiments of nature'',
+in which natural variation in treatment can be argued to approximate randomization. 
 
 Unlike carefully planned experimental designs,
 quasi-experimental designs typically require the extra luck
@@ -89,7 +90,6 @@ or having the ability to collect data in a time and place
 where an event that produces causal identification occurred or will occur.
 
 Therefore, these methods often use either secondary data,
-or they use primary data in a cross-sectional retrospective method,
 including administrative data or other new classes of routinely-collected information.
 
 %%%%% Regression discontinuity
@@ -98,31 +98,34 @@ including administrative data or other new classes of routinely-collected inform
 in policy designs to separate a single group of potentially eligible recipients
 into comparable groups of individuals who do and do not receive a treatment.\sidenote{
 	\url{https://dimewiki.worldbank.org/Regression_Discontinuity}} \index{regression discontinuity}
-In an RD design, there is typically some program or event
-that has limited availability due to practical considerations or policy choices
-and is therefore made available only to individuals who meet a certain threshold requirement.
-
-Common examples are test score thresholds and income thresholds.\sidenote{
+Common examples are test score thresholds and income thresholds, 
+where the individuals on one side of that threshold receive a treatment and bot those on the other side do not.\sidenote{
 	\url{https://blogs.worldbank.org/impactevaluations/regression-discontinuity-porn}}
 
-The key assumption here is that the running variable cannot be directly manipulated
-by the potential recipients.
+The intuition is that, on average, a large number of individuals immediately on one side of the threshold
+is \textit{statistically similar} to the individuals on the other side, 
+and the only difference is the treatment. 
+In your data you need a unambiguous way to define which observations were above or below the cut-off.
+Apart from that requirement there is no special need for your data,
+and you can use any type of primary or secondary data in your RD design.
+
 
 %%%%% IV regression
 
 \textbf{Instrumental variables (IV)} designs, unlike the previous approaches,
 assume that the treatment not directly identifiable.
-Instead, similar to regression discontinuity designs,
-IV focus on a subset of the variation in treatment take-up, 
-but whereas regression discontinuity designs are ``sharp'' --
-treatment status is completely determined by which side of a cutoff an individual is on --
+Similar to RD designs,
+IV designs focus on a subset of the variation in treatment take-up, 
+but whereas RD designs have a ``sharp'' or binary cut-off,
 IV designs are ``fuzzy'', meaning that they do not completely determine
-the treatment status but instead influence the \textit{probability} of treatment.
+the treatment status but instead influence the \textit{probability of treatment}.
 
-In practice, there are a variety of packages that can be used
-to analyse data and report results from instrumental variables designs.
-While the built-in Stata command \texttt{ivregress} will often be used
-to create the final results, the built-in packages are not sufficient on their own.
+You will need variables in your data that can be used to estimate the probibality of treatment. 
+These variables are called \textit{instruments}. 
+Testing that a variable is a valid instrument is a non-trivial and important task
+that is outside the scope of this book.
+Additionally, you will have to use special regressions to estimate the effect of the treatment.
+Stata has a built in command called \texttt{ivregress} but a perhaps more popular approach is to use the user-written command \texttt{ivreg2}.
 
 %%%%% Matching
 
