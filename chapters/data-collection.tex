@@ -549,7 +549,7 @@ You should not assume that your data is encrypted at rest by default.
 In most data collection platforms,
 encryption-at-rest needs to be explicitly enabled and operated by the user.
 There is no automatic way to implement this,
-because the encryption key that is generated may
+because the encryption key may
 never pass through the hands of a third party,
 including the data storage application.
 Most survey software implement \textbf{asymmetric encryption}\sidenote{
@@ -560,17 +560,20 @@ and the public key can only be used to encrypt the data.
 It is therefore safe to send the public key
 to the tablet or the browser used to collect the data.
 
-When you enable encryption, the survey software will allow you to create and
+When you enable asymmetric encryption, the survey software will allow you to create and
 download -- once -- the public/private key pair needed to encrypt and decrypt the data.
-You upload the public key when you start a new survey, and all data collected using that
-public key can only be accessed with the private key from that specific public/private key pair.
-You must store the key pair in a secure location, such as a password manager,
+You upload the public key when you start a new survey, 
+and all data encrypted using that public key when collected, 
+can only be accessed with the private key from that specific public/private key pair.
+You must store the key pair in a secure location, 
+such as in a secure note in a password manager,
 as there is no way to access your data if the private key is lost.
-Make sure you store keyfiles with descriptive names to match the survey to which they correspond.
+Make sure you store your keys with descriptive names to match the survey to which they correspond.
 Any time anyone accesses the data --
 either when viewing it in the browser or downloading it to your computer --
 they will be asked to provide the key.
-Only project team members named in the IRB are allowed access to the private key.
+Only project team members named in the IRB are allowed access private keys 
+that can be used to decrypt sensitive data.
 
 \subsection{Storing data securely}
 % doesn't cover 'big' data
@@ -581,12 +584,13 @@ from the data collection device to the data collection server,
 it is not practical once you start interacting with the data.
 Instead, at this stage you need \textbf{symmetric encryption}\sidenote{
   \url{https://dimewiki.worldbank.org/Encryption\#Symmetric\_Encryption}}.
-Data should be stored in an encrypted folder,
-using, for example, VeraCrypt.\sidenote{\url{https://www.veracrypt.fr}}
 In this set-up, a single key is used to both encrypt and decrypt the information.
 Since only one key is used, the workflow can be simplified:
 re-encryption after decrypted access can be done automatically,
 and the same secure folder can be used for multiple files.
+Data should be stored in an encrypted folder,
+using, for example, VeraCrypt.\sidenote{
+	\url{https://www.veracrypt.fr} and \url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
 These files can be interacted with and modified like any unencrypted file,
  as long as you have the key.
 The following workflow allows you to receive data and store it securely,
@@ -595,22 +599,27 @@ without compromising data security:
 \begin{enumerate}
 	\item Create a secure encrypted folder in your project folder.
   This should be on your computer, and could be in a shared folder.
+  
 	\item Download data from the data collection server to that secure folder.
 	If you encrypted the data during data collection, you will need \textit{both} the
 	private key used during data collection to be able to download the data,
 	\textit{and} the key used when you created the secure folder to save it there.
 	This your first copy of your raw data, and the copy you will use in your cleaning and analysis.
+	
 	\item Create a secure folder on an external drive that you can keep in a secure location.
-x	Copy the data you just downloaded to this second secure	folder.
-	This is the ``master'' copy of the raw data.
+	Copy the data you just downloaded to this second secure	folder.
+	This is the ``master'' backup copy of the raw data. 
+	You should never work with this data on a day-to-day basis.
 	(Instead of creating a second secure folder, you can simply copy the first secure folder.)
+	
 	\item Finally, create a third secure folder.
 	Either you can create this on your computer and upload it to a long-term cloud storage service,
 	or you can create it on	an external hard drive that you then store in a second location,
 	for example, at another office of your organization.
-	This is the ``golden master'' copy of the raw	data.
+	This is the ``golden master'' backup copy of the raw data.
 	You should never store the ``golden master'' copy in a synced folder, 
 	as it would be deleted in the cloud storage if it is deleted on your computer.
+	You should also never work with this data on a day-to-day basis.
 	(Instead of creating a third secure folder, you can simply copy the first secure folder.)
 \end{enumerate}
 
