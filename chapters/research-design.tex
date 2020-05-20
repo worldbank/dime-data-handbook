@@ -162,11 +162,11 @@ produces matchings based on a single continuous matching variable.\sidenote{
 \subsection{One observation or multiple observations over time}
 
 Most of the research designs in the previous section can be implemented 
-using data collected only after the treatment, 
+using data collected either only after the treatment, 
 or using data collected at multiple time periods, 
 for example before and after the treatment. 
 The advantage of multiple points in time is 
-that you can control for each observations initial status.
+that you can control for trends and each observations initial status.
 
 A study that observes data in only one time period is called 
 a \textbf{cross-sectional study} is any type of study. 
@@ -175,47 +175,27 @@ you do not need to track individuals across time.
 Instead, the challenge in a cross-sectional study is to
 show that the control group is indeed a valid counterfactual to the treatment group.
 
-A study that observes data in multiple time periods can either be a 
-\textbf{repeated cross-sections study} or a \textbf{panel data study} 
+A study that observes data in multiple time periods is called \text{longitudinal} and
+ can either be a \textbf{repeated cross-sections study} or a \textbf{panel data study} 
 depending on if the same sample is used in the multiple observations.
+In repeated cross-sections, each successive round of data collection use a new random sample
+of observations from the treatment and control groups, 
+but in a panel data study the same observations are tracked and observed each round.
 
-In repeated cross-sections, each successive round of data collection contains a random sample
-of observations from the treatment and control groups;
-as in cross-sectional designs, both the randomization and sampling processes
-are critically important to maintain alongside the data.
+While you can control for both trends 
+and each observation's initial status (only \textbf{panel data studies}), 
+longitudinal data requires you to have a way to track the observations over period of time.
+This is challenging if you are collecting your own data, 
+and will require a lot more effort during field work as detailed tracking records must be kept.
 
-In panel data structures, we attempt to observe the exact same units
-in different points in time, so that we see the same individuals
-both before and after they have received treatment (or not).\sidenote{
-	\url{https://blogs.worldbank.org/impactevaluations/what-are-we-estimating-when-we-estimate-difference-differences}}
-
-When tracking individuals over time for this purpose,
-maintaining sampling and tracking records is especially important,
-because attrition will remove that unit's information
-from all points in time, not just the one they are unobserved in.
-Panel-style studies therefore require a lot more effort in field work
-for studies that use original data.\sidenote{
-	\url{https://www.princeton.edu/~otorres/Panel101.pdf}}
-
-Where cross-sectional designs draw their estimates of treatment effects
-from differences in outcome levels in a single measurement,
-\textbf{differences-in-differences}\sidenote{
-	\url{https://dimewiki.worldbank.org/Difference-in-Differences}}
-designs (abbreviated as DD, DiD, diff-in-diff, and other variants)
-estimate treatment effects from \textit{changes} in outcomes
-between two or more rounds of measurement.
-\index{difference-in-differences}
-In these designs, three control groups are used –
-the baseline level of treatment units,
-the baseline level of non-treatment units,
-and the endline level of non-treatment units.\sidenote{
-	\url{https://www.princeton.edu/~otorres/DID101.pdf}}
-
-ANCOVA?
-
-As with cross-sectional designs, difference-in-differences designs are widespread.
-Therefore there exist a large number of standardized tools for analysis.
-Our \texttt{ietoolkit} Stata package includes the \texttt{ieddtab} command
-which produces standardized tables for reporting results.\sidenote{
-  \url{https://dimewiki.worldbank.org/ieddtab}}
+You must keep track of the attrition rate which is the share of observations not observed in the follow up data.
+It is common that the observations not possible to track can be correlated with the outcome you study,
+for example poorer households live in more informal dwellings,
+patients with worse health conditions might not survive until the follow up etc. 
+If this is the case then your results might only be an effect of your remaining sample
+being a subset of the original sample that were better or worse off from the beginning.
+A balance table could provide insights if your attrition observations were better or worse off 
+originally compared to the rest of the sample, 
+but since the sample sizes in that balance table is likely to be big, 
+it might be difficult to know how to interpret those results.
 
