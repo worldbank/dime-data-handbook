@@ -19,33 +19,40 @@ in order to be able to produce meaningful analytics throughout your projects.
 
 \section{Different research designs different data requirement }
 
+Your project's data needs will differ depending on what research design your project use. 
+There are already many great resources on research design,
+so this chapter will only cover how they impact your data needs and related tools. 
+We assume that the reader have some level of familiarity with the resarch designs mentioned here. 
+If not go and read the appendix XYZ where you have more details and links to even more details.  
 
-All the research designs we discuss here use the potential outcomes framework\cite{athey2017state}
-to compare a group that received some treatment to another, counterfactual group. 
-The key assumption in this frame work is that every
+All research designs discussed here compare a group that received some treatment\sidenote{
+	\textbf{Treatment:} The general word for the event we evaluate the impact of. 
+	That event can be receiving training or cash transfer from a program, experience a natural disaster etc.}
+ to another, counterfactual group.\sidenote{
+	\textbf{Counterfactual:} A statistical description of what would have happened to specific individuals in an alternative scenario,
+	 for example, a different treatment assignment outcome.}
+\index{counterfactual} 
+The key assumption is that every
 person, facility, or village (or whatever the unit of intervention is)
 has two possible states: their outcomes if they do not receive some treatment
-and their outcomes if they do receive that treatment.\sidenote{
-	\textbf{Counterfactual:} A statistical description of what would have happened to specific individuals in an alternative scenario, for example, a different treatment assignment outcome.}
-for the treatment group against which outcomes can be directly compared.
-\index{counterfactual} 
-However, we can never observe the same unit in our data
-in both their treated and untreated states simultaneously,
-so measuring and averaging these effects directly is impossible.\sidenote{
-  \url{https://www.stat.columbia.edu/~cook/qr33.pdf}}
+and their outcomes if they do receive that treatment.
+The impact of the treatment is defined as the difference in these two states
+,however, we can never observe the same unit in our data
+in both their treated and untreated states simultaneously.
 
-Instead, the treated observations are compared to observations that are statistically similar in a \textbf{control} group. Different research designs have different methods for identifying control observations, and in this section we will cover how that affect how you should plan your data work. \sidenote{For more details on the theory of these reserach designs (and links to even more detials) see Appendix A.} 
+Instead, the treated observations are compared to observations
+that are \textit{statistically similar} in a \textbf{control} group. 
+Different research designs have different methods 
+for how the \textit{statistically similar} control observation are identified. 
+You need a PhD in economics to fully navigate this, 
+but this section we will cover how that affect how you should plan your data accordingly.
 
-\textbf{Balance checks}\sidenote{
-	\textbf{Balance checks:} Statistical tests of the similarity of treatment and control groups.}
-are often reported as evidence of an effective randomization
-
- \url{https://dimewiki.worldbank.org/iebaltab}
- 
- 
-However, controls for balance variables are usually unnecessary in RCTs,
-because it is certain that the true data-generating process
-has no correlation between the treatment and the balance factors.
+\textit{Statistically similarity} can be tested using \textbf{balance checks} 
+where the similarity between treatment and control groups can be formally tested. 
+Since this test is so common, 
+we have developed a Stata command called \texttt{iebaltab}\sidenote{
+	\url{https://dimewiki.worldbank.org/iebaltab}}
+ in the package \texttt{ietoolkit} that generates a table of balance checks.
 
 
 \subsection{Identification of control groups in different research designs}
