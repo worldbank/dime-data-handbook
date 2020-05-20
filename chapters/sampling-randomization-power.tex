@@ -37,9 +37,233 @@
 	sampling and randomization designs and to make optimal choices when planning studies.
 	
 	
+	%from old design chapter
+	
+	Research design is the process of defining the methods and data
+	that will be used to answer a specific research question.
+	
+	
+	Thinking through research design before starting data work is important for several reasons. You will save a lot of time by understanding the way
+	your data needs to be organized
+	in order to be able to produce meaningful analytics throughout your projects.
+	
+	
 \end{fullwidth}
 
 %-----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+\section{Different research designs different data requirement }
+
+Your project's data needs will differ depending on what research design your project use. 
+There are already many great resources on research design,
+so this chapter will only cover how they impact your data needs and related tools. 
+We assume that the reader have some level of familiarity with the resarch designs mentioned here. 
+If not go and read the appendix XYZ where you have more details and links to even more details.  
+
+All research designs discussed here compare a group that received some treatment\sidenote{
+	\textbf{Treatment:} The general word for the event we evaluate the impact of. 
+	That event can be receiving training or cash transfer from a program, experience a natural disaster etc.}
+to another, counterfactual group.\sidenote{
+	\textbf{Counterfactual:} A statistical description of what would have happened to specific individuals in an alternative scenario,
+	for example, a different treatment assignment outcome.}
+\index{counterfactual} 
+The key assumption is that every
+person, facility, or village (or whatever the unit of intervention is)
+has two possible states: their outcomes if they do not receive some treatment
+and their outcomes if they do receive that treatment.
+The impact of the treatment is defined as the difference in these two states
+,however, we can never observe the same unit in our data
+in both their treated and untreated states simultaneously.
+
+Instead, the treated observations are compared to observations
+that are \textit{statistically similar} in a \textbf{control} group. 
+Different research designs have different methods 
+for how the \textit{statistically similar} control observation are identified. 
+You need a PhD in economics to fully navigate this, 
+but this section we will cover how that affect how you should plan your data accordingly.
+
+\textit{Statistically similarity} can be tested using \textbf{balance checks} 
+where the similarity between treatment and control groups can be formally tested. 
+Since this test is so common, 
+we have developed a Stata command called \texttt{iebaltab}\sidenote{
+	\url{https://dimewiki.worldbank.org/iebaltab}}
+in the package \texttt{ietoolkit} that generates a table of balance checks.
+
+
+\subsection{Identification of control groups in different research designs}
+
+%%%%% Experimental 
+
+In \textbf{experimental research designs} the research team can control which part of the studied population will get the treatment. 
+This is often done by random assignment\sidenote{For example \textbf{randomized control trial (RCT) --}
+	\url{https://dimewiki.worldbank.org/Randomized_Control_Trials}}
+\index{randomized control trials}
+where a subset of the eligible population is randomized to receive the treatment (see later in this chapter for how to implement randomization). 
+The intuition is that if everyone in the eligible population is assigned group randomly, then they will, on average, be statistically similar.
+
+To randomly assign treatment you need data over all individuals in the eligible population. 
+This can be a census when running a traditional household survey, 
+but it can also be anything from all companies in a country's tax records
+to all Twitter accounts that liked a tweet.
+It is important that the completeness of the eligible population in your data has no bias, 
+for example missing many poor households, 
+as that bias will then be included in your research design and your results will have the same bias.
+
+
+%%%%% Quasi Experimental 
+
+\textbf{Quasi-experimental} research designs,\sidenote{
+	\url{https://dimewiki.worldbank.org/Quasi-Experimental_Methods}}
+by contrast, are based on events not controlled by the research team. Instead, they rely on ``experiments of nature'',
+in which natural variation in treatment can be argued to approximate randomization. 
+
+Unlike carefully planned experimental designs,
+quasi-experimental designs typically require the extra luck
+of having access to data collected at the right times and places
+to exploit events that occurred in the past,
+or having the ability to collect data in a time and place
+where an event that produces causal identification occurred or will occur.
+
+Therefore, these methods often use either secondary data,
+including administrative data or other new classes of routinely-collected information.
+
+%%%%% Regression discontinuity
+
+\textbf{Regression discontinuity (RD)} designs exploit sharp breaks or limits
+in policy designs to separate a single group of potentially eligible recipients
+into comparable groups of individuals who do and do not receive a treatment.\sidenote{
+	\url{https://dimewiki.worldbank.org/Regression_Discontinuity}} \index{regression discontinuity}
+Common examples are test score thresholds and income thresholds, 
+where the individuals on one side of that threshold receive a treatment and bot those on the other side do not.\sidenote{
+	\url{https://blogs.worldbank.org/impactevaluations/regression-discontinuity-porn}}
+
+The intuition is that, on average, a large number of individuals immediately on one side of the threshold
+is \textit{statistically similar} to the individuals on the other side, 
+and the only difference is the treatment. 
+In your data you need a unambiguous way to define which observations were above or below the cut-off.
+Apart from that requirement there is no special need for your data,
+and you can use any type of primary or secondary data in your RD design.
+
+
+%%%%% IV regression
+
+\textbf{Instrumental variables (IV)} designs, unlike the previous approaches,
+assume that the treatment not directly identifiable.
+Similar to RD designs,
+IV designs focus on a subset of the variation in treatment take-up, 
+but whereas RD designs have a ``sharp'' or binary cut-off,
+IV designs are ``fuzzy'', meaning that they do not completely determine
+the treatment status but instead influence the \textit{probability of treatment}.
+
+You will need variables in your data that can be used to estimate the probibality of treatment. 
+These variables are called \textit{instruments}. 
+Testing that a variable is a valid instrument is a non-trivial and important task
+that is outside the scope of this book.
+Additionally, you will have to use special regressions to estimate the effect of the treatment.
+Stata has a built in command called \texttt{ivregress} but a perhaps more popular approach is to use the user-written command \texttt{ivreg2}.
+
+%%%%% Matching
+
+\textbf{Matching}\sidenote{
+	\url{https://dimewiki.worldbank.org/Matching}}
+methods use observable characteristics to construct pairs of treatment and control groups
+so that the observations in each pair is as similar as possible. \index{matching}
+The treatment and control pair can either consist of exactly two observations (one-to-one),
+or it can be a pair of two groups of observations where either both groups have more than one observation (many-to-many),
+or where only one group have more than one observation (one-to-many)
+
+The matching can be done before the random assignment, 
+so that treatment can be randomized within each treatment pair. 
+This is a type of experimental design. 
+If no control observations were identified before the treatment, 
+then matching can be used to ex-post identify a control group, 
+by finding the observations that are the most similar to the treated group.
+It is very difficult to test the validity of an ex-post matching 
+as one would have to prove that the difference in outcome is 
+due to the impact of the treatment and not due to the groups not being similar enough.
+
+A valid matching must be made on data that is not related to the treatment 
+or anything that the treatment could have affected in any way. 
+Many matching algorithms can only match on a single variable, 
+so you first have to turn many variables into a single by using an index or a propensity score.
+The \texttt{iematch} command in the \texttt{ietoolkit} package developed by DIME Analytics 
+produces matchings based on a single continuous matching variable.\sidenote{
+	\url{https://dimewiki.worldbank.org/iematch}}
+
+
+%-----------------------------------------------------------------------------------------------
+
+
+\subsection{One observation or multiple observations over time}
+
+Most of the research designs in the previous section can be implemented 
+using data collected either only after the treatment, 
+or using data collected at multiple time periods, 
+for example before and after the treatment. 
+The advantage of multiple points in time is 
+that you can control for trends and each observations initial status.
+
+A study that observes data in only one time period is called 
+a \textbf{cross-sectional study} is any type of study. 
+This type of data is easy to collect and handle because
+you do not need to track individuals across time. 
+Instead, the challenge in a cross-sectional study is to
+show that the control group is indeed a valid counterfactual to the treatment group.
+
+A study that observes data in multiple time periods is called \texttt{longitudinal} and
+can either be a \textbf{repeated cross-sections study} or a \textbf{panel data study} 
+depending on if the same sample is used in the multiple observations.
+In repeated cross-sections, each successive round of data collection use a new random sample
+of observations from the treatment and control groups, 
+but in a panel data study the same observations are tracked and observed each round.
+
+While you can control for both trends 
+and each observation's initial status (only \textbf{panel data studies}), 
+longitudinal data requires you to have a way to track the observations over period of time.
+This is challenging if you are collecting your own data, 
+and will require a lot more effort during field work as detailed tracking records must be kept.
+
+You must keep track of the attrition rate which is the share of observations not observed in the follow up data.
+It is common that the observations not possible to track can be correlated with the outcome you study,
+for example poorer households live in more informal dwellings,
+patients with worse health conditions might not survive until the follow up etc. 
+If this is the case then your results might only be an effect of your remaining sample
+being a subset of the original sample that were better or worse off from the beginning.
+A balance table could provide insights if your attrition observations were better or worse off 
+originally compared to the rest of the sample, 
+but since the sample sizes in that balance table is likely to be big, 
+it might be difficult to know how to interpret those results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Making random processes reproducible}
 
