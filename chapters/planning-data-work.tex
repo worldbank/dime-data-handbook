@@ -73,18 +73,6 @@ The operating system should be fully updated,
 it should be in good working order,
 and you should have a \textbf{password-protected} login.
   \index{password protection}
-All machines should have \textbf{hard disk encryption} enabled.
-  \index{encryption}
-Disk encryption is available on many modern operating systems;
-you should determine whether your computer implements this
-or whether you need to ensure encryption at the individual file level.
-Disk encryption prevents your files from ever being accessed
-without first entering the system password.
-This is different from file-level encryption,
-which makes individual files unreadable without a specific key.
-(We will address that in more detail in Chapter 4.)
-As with all critical passwords, your system password should be strong,
-memorable, and backed up in a separate secure location.
 
 Make sure your computer is backed up to prevent information loss.
   \index{backup}
@@ -536,7 +524,7 @@ or for release of the code to the general public.
 \codeexample{stata-master-dofile.do}{./code/stata-master-dofile.do}
 % ----------------------------------------------------------------------------------------------
 
-\section{Transmitting and storing data securely}
+\section{Preparing to handle confidential data}
 Anytime you are working with original data in a development research project,
 you are almost certainly handling data that include 
 \textbf{personally-identifying	information (PII)}.\index{personally-identifying information}\sidenote{
@@ -561,23 +549,32 @@ research teams have to use careful judgment in each case to avoid statistical di
 	%WIKI need to create wiki page	
 
 In order to safeguard PII and protect respondent privacy, 
-you must set up secure systems for data transfer and storage from the outset of a project.\sidenote{
+you must set up a secure data system from the outset of a project.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data_Security}}
-There are several components to a secure data system.
+There are several components to this.
 First, you need a system for managing strong and unique passwords for 
 all accounts -- including personal accounts like computer logins and email.
 There are several services that create and store these passwords for you,
 and some provide utilities for securely sharing passwords with others.
-Second, you must encrypt datasets that include confidential information\sidenote{
+Second, all machines should have \textbf{hard disk encryption} enabled.\sidenote{
 	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked, or any other type of unauthorized access is obtained.
 	\url{https://dimewiki.worldbank.org/Encryption}}
+\index{encryption}
+Disk encryption is available on many modern operating systems;
+it prevents your files from ever being accessed
+without first entering the system password.
+As with all critical passwords, your system password should be strong,
+memorable, and backed up in a separate secure location.
+Third, you must encrypt datasets that include confidential information
 during data collection, storage, and transfer.\index{encryption}\index{data transfer}\index{data storage}
 When files are properly encrypted,
 the information they contain will be completely unreadable and unusable
 even if they were to be intercepted my a malicious
 ``intruder'' or accidentally made public.
-
 There are many encryption options available, from enterprise-grade solutions to free software.
+DIME uses Veracrypt for file encryption, 
+our protocols are available on GitHub\sidenote{\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
+
 What data security protocols you employ will depend on project needs and data sources,
 but agreeing on a protocol from the start of a project will make your life easier.
 Finally, having an end-of-life plan for data is essential:
