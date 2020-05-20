@@ -131,11 +131,28 @@ Stata has a built in command called \texttt{ivregress} but a perhaps more popula
 
 \textbf{Matching}\sidenote{
 	\url{https://dimewiki.worldbank.org/Matching}}
- methods use observable characteristics to construct pairs of treatment and control groups so that the observations in each group is as similar as possible. \index{matching}
-This can be done before randomization where the matching group is the unit used in the randomization,
-or it can be done after the treatment is assigned to get a counterfactual observations for each treatment observation.
+methods use observable characteristics to construct pairs of treatment and control groups
+so that the observations in each pair is as similar as possible. \index{matching}
+The treatment and control pair can either consist of exactly two observations (one-to-one),
+or it can be a pair of two groups of observations where either both groups have more than one observation (many-to-many),
+or where only one group have more than one observation (one-to-many)
+  
+The matching can be done before the random assignment, 
+so that treatment can be randomized within each treatment pair. 
+This is a type of experimental design. 
+If no control observations were identified before the treatment, 
+then matching can be used to ex-post identify a control group, 
+by finding the observations that are the most similar to the treated group.
+It is very difficult to test the validity of an ex-post matching 
+as one would have to prove that the difference in outcome is 
+due to the impact of the treatment and not due to the groups not being similar enough.
 
-Matching are often done in one-to-one pair but can also be done in one-to-many or many-to-many groups. DIME's \texttt{iematch} command in the \texttt{ietoolkit} package produces matchings based on a single continuous matching variable.\sidenote{
+A valid matching must be made on data that is not related to the treatment 
+or anything that the treatment could have affected in any way. 
+Many matching algorithms can only match on a single variable, 
+so you first have to turn many variables into a single by using an index or a propensity score.
+The \texttt{iematch} command in the \texttt{ietoolkit} package developed by DIME Analytics 
+produces matchings based on a single continuous matching variable.\sidenote{
 	\url{https://dimewiki.worldbank.org/iematch}}
 
 
