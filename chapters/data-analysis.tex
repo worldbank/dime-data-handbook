@@ -175,10 +175,10 @@ You will only keep working from the fixed copy, but you keep both copies in
 case you later realize that the manual fix was done incorrectly.
 
 The first step in the transformation of raw data to an analysis-ready dataset is de-identification.
+This means stripping the dataset of personally identifying information.\sidenote{
+	\url{https://dimewiki.worldbank.org/De-identification}}
 This simplifies workflows, as once you create a de-identified version of the dataset,
 you no longer need to interact directly with the encrypted raw data.
-at this stage, means stripping the dataset of personally identifying information.\sidenote{
-	\url{https://dimewiki.worldbank.org/De-identification}}
 To do so, you will need to identify all variables that contain
 identifying information.\sidenote{\url{
 		https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
@@ -323,7 +323,7 @@ you may want to break the data cleaning into sub-steps,
 and create intermediate cleaned datasets
 (for example, one per survey module).
 When dealing with complex surveys with multiple nested groups,
-is is also useful to have each cleaned dataset at the smallest unit of observation inside a roster.
+it is also useful to have each cleaned dataset at the smallest unit of observation inside a roster.
 This will make the cleaning faster and the data easier to handle during construction.
 But having a single cleaned dataset will help you with sharing and publishing the data.
 
@@ -689,7 +689,7 @@ Automating them will save you time by the end of the process.
 However, don't spend too much time formatting tables and graphs until you are ready to publish.\sidenote{
 	For a more detailed discussion on this, including different ways to export tables from Stata, see \url{https://github.com/bbdaniels/stata-tables}}
 Polishing final outputs can be a time-consuming process,
-and you want to it as few times as possible.
+and you want to do it as few times as possible.
 
 We cannot stress this enough:
 don't ever set up a workflow that requires copying and pasting results.
@@ -697,10 +697,10 @@ Copying results from Excel to Word is error-prone and inefficient.
 Copying results from a software console is risk-prone,
 even more inefficient, and totally unnecessary.
 There are numerous commands to export outputs from both R and Stata to a myriad of formats.\sidenote{
-	Some examples are \url{http://repec.sowi.unibe.ch/stata/estout}{\texttt{estout}}, \url{https://www.princeton.edu/~otorres/Outreg2.pdf}{\texttt{outreg2}},
-and \url{https://www.benjaminbdaniels.com/stata-code/outwrite}{\texttt{outwrite}} in Stata,
-and \url{https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf}{\texttt{stargazer}}
-and \url{https://ggplot2.tidyverse.org/reference/ggsave.html}{\texttt{ggsave}} in R.}
+  Some examples are \url{http://repec.sowi.unibe.ch/stata/estout} ({\texttt{estout}}), \url{https://www.princeton.edu/~otorres/Outreg2.pdf} ({\texttt{outreg2}}),
+and \url{https://www.benjaminbdaniels.com/stata-code/outwrite} ({\texttt{outwrite}}) in Stata,
+and \url{https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf} ({\texttt{stargazer}})
+and \url{https://ggplot2.tidyverse.org/reference/ggsave.html} ({\texttt{ggsave}}) in R.}
 Save outputs in accessible and, whenever possible, lightweight formats.
 Accessible means that it's easy for other people to open them.
 In Stata, that would mean always using \texttt{graph export} to save images as
@@ -740,7 +740,7 @@ publishing the cleaned dataset in a trusted repository will allow you to cite yo
 Some of the documentation produced during cleaning and construction can be published
 even if the data cannot due to confidentiality.
 Your analysis code will be organized in a reproducible way,
-so will need to do release a replication package is a last round of code review.
+so all you will need to do when releasing a replication package is a last round of code review.
 This will allow you to focus on what matters:
 writing up your results into a compelling story.
 

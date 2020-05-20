@@ -15,7 +15,7 @@
 * is the row number for each observation. The bpwide.dta has 120
 * observations, 120*0.20 = 24, so (_n <= _N * 0.20) is 1 for observations
 * with a row number equal to or less than 24, and 0 for all other
-* observations. Since the sort order is randomized this mean that we
+* observations. Since the sort order is randomized this means that we
 * have randomly assigned 20% of the sample.
     gen sample = (_n <= _N * 0.20)
 
