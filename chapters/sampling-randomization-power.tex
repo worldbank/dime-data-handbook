@@ -43,7 +43,8 @@
 	that will be used to answer a specific research question.
 	
 	
-	Thinking through research design before starting data work is important for several reasons. You will save a lot of time by understanding the way
+	Thinking through research design before starting data work is important for several reasons. 
+	You will save a lot of time by understanding the way
 	your data needs to be organized
 	in order to be able to produce meaningful analytics throughout your projects.
 	
@@ -56,36 +57,40 @@
 
 \section{Planning your data based on your research design}
 
-Your project's data needs will differ depending on what research design your project use. 
+Your project's data requirements will differ depending on what research design your project use. 
+\index{research designs}
 There are already many great resources on research design,
-so this chapter will only cover how they impact your data needs and related tools. 
-We assume that the reader have some level of familiarity with the resarch designs mentioned here. 
-If not go and read the appendix XYZ where you have more details and links to even more details.  
+so this chapter will only focus how they impact your data requirements
+ and data tools related to them. 
+We assume that you have some level of familiarity 
+with the research designs mentioned here. 
+If not go and read the appendix XYZ where you find more details and links to even more details.  
 
 All research designs discussed here compare a group that received some treatment\sidenote{
 	\textbf{Treatment:} The general word for the event we evaluate the impact of. 
 	That event can be receiving training or cash transfer from a program, experience a natural disaster etc.}
 to another, counterfactual group.\sidenote{
-	\textbf{Counterfactual:} A statistical description of what would have happened to specific individuals in an alternative scenario,
+	\textbf{Counterfactual:} A statistical description of what would have happened 
+	to specific individuals in an alternative scenario,
 	for example, a different treatment assignment outcome.}
 \index{counterfactual} 
 The key assumption is that every
 person, facility, or village (or whatever the unit of intervention is)
 has two possible states: their outcomes if they do not receive some treatment
 and their outcomes if they do receive that treatment.
-The impact of the treatment is defined as the difference in these two states
-,however, we can never observe the same unit in our data
+The impact of the treatment is defined as the difference in these two states.
+However, we can never observe the same unit in our data
 in both their treated and untreated states simultaneously.
 
 Instead, the treated observations are compared to observations
-that are \textit{statistically similar} in a \textbf{control} group. 
+that are \textit{statistically similar} in a \textbf{control} group,
+and the impact of the treatment is defined as the average difference between these groups.
 Different research designs have different methods 
-for how the \textit{statistically similar} control observation are identified. 
+for how the statistically similar control observation are identified. 
 You need a PhD in economics to fully navigate this, 
 but this section we will cover how that affect how you should plan your data accordingly.
 
-\textit{Statistically similarity} can be tested using \textbf{balance checks} 
-where the similarity between treatment and control groups can be formally tested. 
+Statistical similarity can be tested using \textbf{balance checks}.
 Since this test is so common, 
 we have developed a Stata command called \texttt{iebaltab}\sidenote{
 	\url{https://dimewiki.worldbank.org/iebaltab}}
@@ -96,12 +101,16 @@ in the package \texttt{ietoolkit} that generates a table of balance checks.
 
 %%%%% Experimental 
 
-In \textbf{experimental research designs} the research team can control which part of the studied population will get the treatment. 
-This is often done by random assignment\sidenote{For example \textbf{randomized control trial (RCT) --}
-	\url{https://dimewiki.worldbank.org/Randomized_Control_Trials}}
-\index{randomized control trials}
-where a subset of the eligible population is randomized to receive the treatment (see later in this chapter for how to implement randomization). 
-The intuition is that if everyone in the eligible population is assigned group randomly, then they will, on average, be statistically similar.
+In \textbf{experimental research designs}\sidenote{
+	For example \textbf{randomized control trial (RCT) --}
+	\url{https://dimewiki.worldbank.org/Randomized\_Control\_Trials}} 
+\index{randomized control trials} \index{experimental research designs}
+the research team can control which part of the studied population will get the treatment. 
+This is often done by random assignment
+where a subset of the eligible population is randomized to receive the treatment 
+(see later in this chapter for how to implement randomization). 
+The intuition is that if everyone in the eligible population is assigned group randomly, 
+then they will, on average, be \textit{statistically similar}.
 
 To randomly assign treatment you need data over all individuals in the eligible population. 
 This can be a census when running a traditional household survey, 
@@ -125,34 +134,35 @@ corresponds to your intended treatment assignment.
 
 %%%%% Quasi Experimental 
 
-\textbf{Quasi-experimental} research designs,\sidenote{
-	\url{https://dimewiki.worldbank.org/Quasi-Experimental_Methods}}
-by contrast, are based on events not controlled by the research team. Instead, they rely on ``experiments of nature'',
+\textbf{Quasi-experimental research designs},\sidenote{
+	\url{https://dimewiki.worldbank.org/Quasi-Experimental\_Methods}}
+\index{quasi-experimental research designs}
+by contrast, are based on events not controlled by the research team. 
+Instead, they rely on ``experiments of nature'',
 in which natural variation in treatment can be argued to approximate randomization. 
 
 Unlike carefully planned experimental designs,
 quasi-experimental designs typically require the extra luck
 of having access to data collected at the right times and places
-to exploit events that occurred in the past,
-or having the ability to collect data in a time and place
-where an event that produces causal identification occurred or will occur.
-
+to exploit events that occurred in the past.
 Therefore, these methods often use either secondary data,
 including administrative data or other new classes of routinely-collected information.
 
 %%%%% Regression discontinuity
 
-\textbf{Regression discontinuity (RD)} designs exploit sharp breaks or limits
+\textbf{Regression discontinuity (RD)}\sidenote{
+	\url{https://dimewiki.worldbank.org/Regression\_Discontinuity}} 
+\index{regression discontinuity}
+designs exploit sharp breaks or limits
 in policy designs to separate a single group of potentially eligible recipients
-into comparable groups of individuals who do and do not receive a treatment.\sidenote{
-	\url{https://dimewiki.worldbank.org/Regression_Discontinuity}} \index{regression discontinuity}
+into comparable groups of individuals who do and do not receive a treatment.
 Common examples are test score thresholds and income thresholds, 
 where the individuals on one side of that threshold receive a treatment and bot those on the other side do not.\sidenote{
 	\url{https://blogs.worldbank.org/impactevaluations/regression-discontinuity-porn}}
 
-The intuition is that, on average, a large number of individuals immediately on one side of the threshold
-is \textit{statistically similar} to the individuals on the other side, 
-and the only difference is the treatment. 
+The intuition is that, on average, individuals immediately on one side of the threshold
+are \textit{statistically similar} to the individuals on the other side, 
+and the only difference is receiving the treatment. 
 In your data you need a unambiguous way to define which observations were above or below the cut-off.
 Apart from that requirement there is no special need for your data,
 and you can use any type of primary or secondary data in your RD design.
@@ -160,7 +170,10 @@ and you can use any type of primary or secondary data in your RD design.
 
 %%%%% IV regression
 
-\textbf{Instrumental variables (IV)} designs, unlike the previous approaches,
+\textbf{Instrumental variables (IV)}\sidenote{
+	\url{https://dimewiki.worldbank.org/Instrumental\_Variables}} 
+\index{instrumental variables}
+designs, unlike the previous approaches,
 assume that the treatment not directly identifiable.
 Similar to RD designs,
 IV designs focus on a subset of the variation in treatment take-up, 
@@ -172,8 +185,9 @@ You will need variables in your data that can be used to estimate the probibalit
 These variables are called \textit{instruments}. 
 Testing that a variable is a valid instrument is a non-trivial and important task
 that is outside the scope of this book.
-Additionally, you will have to use special regressions to estimate the effect of the treatment.
-Stata has a built in command called \texttt{ivregress} but a perhaps more popular approach is to use the user-written command \texttt{ivreg2}.
+Additionally, you will have to use special regressions to estimate the impact of the treatment.
+Stata has a built-in command called \texttt{ivregress},
+but a perhaps more popular approach is to use the user-written command \texttt{ivreg2}.
 
 %%%%% Matching
 
@@ -188,7 +202,7 @@ or where only one group have more than one observation (one-to-many)
 The matching can be done before the random assignment, 
 so that treatment can be randomized within each treatment pair. 
 This is a type of experimental design. 
-If no control observations were identified before the treatment, 
+Furthermore, if no control observations were identified before the treatment, 
 then matching can be used to ex-post identify a control group, 
 by finding the observations that are the most similar to the treated group.
 It is very difficult to test the validity of an ex-post matching 
@@ -198,11 +212,13 @@ due to the impact of the treatment and not due to the groups not being similar e
 A valid matching must be made on data that is not related to the treatment 
 or anything that the treatment could have affected in any way. 
 Many matching algorithms can only match on a single variable, 
-so you first have to turn many variables into a single by using an index or a propensity score.
-The \texttt{iematch} command in the \texttt{ietoolkit} package developed by DIME Analytics 
-produces matchings based on a single continuous matching variable.\sidenote{
+so you first have to turn many variables into a single varaible
+by using an index or a propensity score.\sidenote{
+	\url{https://dimewiki.worldbank.org/Propensity\_Score\_Matching}}
+The \texttt{iematch}\sidenote{
 	\url{https://dimewiki.worldbank.org/iematch}}
-
+command in the \texttt{ietoolkit} package developed by DIME Analytics 
+produces matchings based on a single continuous matching variable.
 
 %-----------------------------------------------------------------------------------------------
 
@@ -214,18 +230,20 @@ using data collected either only after the treatment,
 or using data collected at multiple time periods, 
 for example before and after the treatment. 
 The advantage of multiple points in time is 
-that you can control for trends and each observations initial status.
+that you can control for trends and observations' initial status.
 
 A study that observes data in only one time period is called 
-a \textbf{cross-sectional study} is any type of study. 
-This type of data is easy to collect and handle because
+a \textbf{cross-sectional study}. 
+\index{cross-sectional data}
+This type of data is relatively easy to collect and handle because
 you do not need to track individuals across time. 
 Instead, the challenge in a cross-sectional study is to
 show that the control group is indeed a valid counterfactual to the treatment group.
 
-A study that observes data in multiple time periods is called \texttt{longitudinal} and
+A study that observes data in multiple time periods is called \textbf{longitudinal} and
 can either be a \textbf{repeated cross-sections study} or a \textbf{panel data study} 
-depending on if the same sample is used in the multiple observations.
+\index{longitudinal data} \index{repeated cross-sectional data} \index{panel data} 
+depending on if the same sample is used in the multiple time periods.
 In repeated cross-sections, each successive round of data collection use a new random sample
 of observations from the treatment and control groups, 
 but in a panel data study the same observations are tracked and observed each round.
@@ -233,7 +251,7 @@ but in a panel data study the same observations are tracked and observed each ro
 While you can control for both trends 
 and each observation's initial status (only \textbf{panel data studies}), 
 longitudinal data requires you to have a way to track the observations over period of time.
-This is challenging if you are collecting your own data, 
+If you are collecting your own data, the this is a big challenge
 and will require a lot more effort during field work as detailed tracking records must be kept.
 
 You must keep track of the attrition rate which is the share of observations not observed in the follow up data.
@@ -250,38 +268,38 @@ it might be difficult to know how to interpret those results.
 
 \subsection{Creating a data map}
 
-So far we have only talked about each data set by itself. 
-In most projects however, more than one data set is needed to answer the research question. 
-This can be multiple rounds of the same data set, 
-this can be a combination of admin data, survey data, web scraping and monitor data, 
+So far we have only talked about each dataset by itself. 
+In most projects however, more than one dataset is needed to answer the research question. 
+This can be multiple rounds of the same dataset, 
+this can be a combination of a sampling frame, admin data, survey data, web scraping and monitor data, 
 and a multitude of other complex combinations of data. 
 
 Often you also have different levels of unit of observation. 
 It is common that your unit of observation for your analysis is different from the unit of observation in the treatment assignment.
 A typical examples of that could be that schools are divided into treatment and control, 
 but what we study is the performance of the students. 
-If this is the case then you need to have one data set measuring the performance of the students, 
-and another data set indicating which schools received the treatment. 
-And you need a way to link those two data sets to answer questions about the treatments impact on the students performance.
+If this is the case then you need to have one dataset measuring the performance of the students, 
+and another dataset indicating which schools received the treatment. 
+And you need a way to link those two datasets to answer questions about the treatments impact on the students performance.
 
 You might think that you are able to keep all of these details in your head, and perhaps you are right. 
 But, unless your project has unusually simple data requirements, 
 we know that you are wrong if you think that your whole research team can have the same understanding, 
-at all times, of all the data sets required.
-The only way to make sure that the team has the same share understanding is to write it down, 
+at all times, of all the datasets required.
+The only way to make sure that the full team share the same understanding is to write it down, 
 and that is called a \textbf{data map}.\sidenote{
-	\url{https://dimewiki.worldbank.org/data_map} (TO BE CREATED)} 
+	\url{https://dimewiki.worldbank.org/data\_map} (TO BE CREATED)} 
 \index{data maps}
 
-A data map is more than just a list of data sets. 
-Its purpose is also specify the characteristics of those data sets. 
-Some basic characteristics should filled in
+A data map is more than just a list of datasets. 
+Its purpose is also specify the characteristics of those datasets. 
+Some basic characteristics should filled in during the planning stage.
 Example of those characteristics are: 
-What is the unit of observation? 
-What is the name of the ID variable that uniquely and fully identifies each data set? 
-Should any data sets be possible to merge one-to-one? 
+What is the unit of observation for each dataset? 
+What is the name of the ID variable that uniquely and fully identifies each dataset? 
+Should any datasets be possible to merge one-to-one? 
 And if so, will the have the same unique identifier?
-Should any data sets be possible to merge many-to-one (for example school and student)? 
+Should any datasets be possible to merge many-to-one (for example school and student)? 
 And if so, what identifier will be used?
 Solving all of these questions before you acquire any data, 
 and making sure that the full research team knows where to find this info,
@@ -290,7 +308,8 @@ will save you a ton of time later on.
 Other characteristics should be updated as the project progresses.
 Example of those characteristics are:
 Where will the data be obtain from?
-Where in the project folder are the raw original data stored and where are back ups stored?
+Where in the project folder are the raw original data stored 
+and where are back-ups of the raw data stored?
 See the wiki article linked to above for an template that you can use for your project.
 
 If you have multiple datasets with the same unit-of-observations
@@ -305,12 +324,12 @@ and that dataset should be used when sampling or assigning treatment.
 
 \section{Taking research design into account when planing your data work}
 
-The two most important steps during your projects planning stage,
-to translate the research design of your project into your data work,
+The two most important steps in your data work planning 
+to correctly translate the research design of your project into your data work,
 is sampling and treatment assignment.
 Therefore, understanding and correctly implementing sampling and treatment assignment
-is essential to ensuring that planned experiments
-are correctly carried out in the field, so that your results
+is essential to ensuring that data is acquired properly and that your research
+is correctly carried out in the field, so that your results
 are valid interpretations to your research question given your research design.
 
 Not all projects need to do sampling and treatment assignment. 
@@ -324,27 +343,26 @@ so that you can develop your code on your computer before running it on an expen
 Treatment assignment is only applicable if your research design is experimental,
 and the research team can control which individuals receive the treatment. 
 
-While you might not yet have a population data set to sample from, 
+While you might not yet have a population dataset to sample from, 
 or a complete list of eligible observation to randomize assignment on, 
 this is still the time to understand those task 
-and what you need to think about as you acquire those data sets.
-If you do not need to create a sample or assign treatment, 
+and what you need to think about as you acquire those datasets.
+If you are sure you do not need to create a sample or assign treatment, 
 then you could skip the rest of this chapter.
 
-% what we mean when we talk about randomization
-
-Most representative sampling and experimental treatment assignment rely on randomization.
-There are two distinct random processes referred to here:
-the conceptual process of assigning units to a sample or a treatment arm,
-and the technical process of assigning random numbers in statistical software,
-which is a part of all tasks that include a random component.\sidenote{
-	\url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata}}
+Randomization is used to ensure that a sample is representative and 
+that the treatment and control groups are \textit{statistically similar} in your treatment assignment.
 Randomization in a software is non-trivial and its mechanics are unintuitive for the human brain.
 ``True'' randomization is also nearly impossible to achieve for computers,
 which are inherently deterministic.\sidenote{
 	\url{https://www.random.org/randomness}}
 The principles of randomization we will outline, apply not just to random sampling, random assignment, 
 it applies to all processes that have a random components, for example, simulations and bootstrapping.
+
+The next section discuss how a random number is generated correctly in a reproducible way, 
+and the following sections discuss how you apply that random number to create a sample or assign treatment
+according to your research design.
+We use Stata in our examples but the same principles translate to all other programming languages.
 
 
 
@@ -355,7 +373,8 @@ For statistical programming to be considered reproducible, it must be possible f
 to be re-obtained at a future time.\cite{orozco2018make}
 For our purposes, we will focus on what you need to understand
 in order to produce truly random results for your project using Stata,
-and how you can make sure you can get those exact results again in the future.
+and how you can make sure you can get those exact results again in the future.\sidenote{
+	\url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata}}
 This takes a combination of strict rules, solid understanding, and careful programming.
 This section introduces the strict rules: these are non-negotiable (but thankfully simple). 
 At the end of the section, 
@@ -432,24 +451,25 @@ re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure
 nothing has changed. It is also advisable to let someone else reproduce your
 randomization results on their machine to remove any doubt that your results
 are reproducible.
+Once the results of a randomization is used in the field, there is no way to correct any mistakes.
 
 \codeexample{replicability.do}{./code/replicability.do}
 
 
 
-\subsection{Sampling}
+\subsection{Randomized sampling}
 
-% sampling universe: the master data set
+% sampling universe: the master dataset
 \textbf{Sampling} is the process of randomly selecting units of observation
 from a master list of individuals to be included in data collection.\sidenote{
-	\url{https://dimewiki.worldbank.org/Sampling_\%26_Power_Calculations}}
+	\url{https://dimewiki.worldbank.org/Sample\_Size\_and\_Power\_Calculations}}
 \index{sampling}
 That master list may be called a \textbf{sampling universe}, a \textbf{listing frame}, or something similar.
 We recommend that this list be organized in a \textbf{master dataset}\sidenote{
-	\url{https://dimewiki.worldbank.org/Master_Data_Set}},
+	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}},
 creating an authoritative source for the existence and fixed
 characteristics of each of the units that may be surveyed.\sidenote{
-	\url{https://dimewiki.worldbank.org/Unit_of_Observation}}
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 The master dataset indicates how many individuals are eligible for data collection,
 and therefore contains statistical information about the likelihood that each will be chosen.
 
@@ -461,13 +481,13 @@ The most explicit method of implementing this process
 is to assign random numbers to all your potential observations,
 order them by the number they are assigned,
 and mark as ``sampled'' those with the lowest numbers, up to the desired proportion.
-(In general, we will talk about sampling proportions rather than numbers of observations.
-Sampling specific numbers of observations is complicated and should be avoided,
-because it will make the probability of selection very hard to calculate.)
 There are a number of shortcuts to doing this process,
 but they all use this method as the starting point,
 so you should become familiar with exactly how it works.
 The do-file below provides an example of how to implement uniform-probability sampling in practice. 
+This code uses a Stata built-in example dataset and is fully reproducible,
+so anyone that runs this code in any version of Stata later 13.1 (the version set in this code) 
+will get the exact same randomized results as you.
 
 \codeexample{simple-sample.do}{./code/simple-sample.do}
 
@@ -485,7 +505,7 @@ Ex post changes to the study scope using a sample drawn for a different purpose
 usually involve tedious calculations of probabilities and should be avoided.
 
 
-\subsection{Randomized assignment}
+\subsection{Randomized treatment assignment}
 
 % what does randomized assignment mean
 \textbf{Randomized treatment assignment} is the process of assigning observations into treatment arms.
@@ -501,12 +521,14 @@ the treatment will not be correlated with anything but the impact of that treatm
 
 % How randomization code differs from sampling code
 Just like sampling, the simplest form of randomization is a uniform-probability process.\sidenote{
-	\url{https://dimewiki.worldbank.org/Randomization_in_Stata}}
+	\url{https://dimewiki.worldbank.org/Randomization\_in\_Stata}}
 Sampling typically has only two possible outcomes: observed and unobserved.
-Randomization, by contrast, often involves multiple possible results
+Similarly, a simple random assignment has two outcomes: treatment and control,
+and the logic in the code would be identical to the sampling code example.
+However, random assignment often involves multiple treatment arms
 which each represent different varieties of treatments to be delivered;
-in some cases, multiple treatment assignments are intended to overlap in the same sample.
-Complexity can therefore grow very quickly in randomization
+in some cases, multiple treatment arms are intended to overlap in the same sample.
+Complexity can therefore grow very quickly in random assignment
 and it is doubly important to fully understand the conceptual process
 that is described in the experimental design,
 and fill in any gaps before implementing it in code.
@@ -515,13 +537,13 @@ The do-file below provides an example of how to implement a simple random assign
 \codeexample{simple-multi-arm-randomization.do}{./code/simple-multi-arm-randomization.do}
 
 % Randomizing in the field
-Some types of experimental designs necessitate that randomization results be revealed in the field.
+Some types of experimental designs necessitate that random assignment results be revealed in the field.
 It is possible to do this using survey software or live events, such as a live lottery.
 These methods typically do not leave a record of the randomization,
 so particularly when the experiment is done as part of data collection,
 it is best to execute the randomization in advance and preload the results.
 Even when randomization absolutely cannot be done in advance, it is still useful
-to build a corresponding model of the randomization process in Stata
+to build a corresponding model of the randomization process in your statistical software
 so that you can conduct statistical analysis later
 including checking for irregularities in the field assignment.
 Understanding that process will also improve the ability of the team
@@ -530,7 +552,7 @@ to ensure that the field randomization process is appropriately designed and exe
 
 %-----------------------------------------------------------------------------------------------
 
-\section{Implementing complex research design}
+\section{Advanced topics in research design and randomization}
 
 % the cases discussed so far are the most simple, but not the most common
 For a variety of experimental and theoretical reasons,
@@ -545,17 +567,18 @@ They allow us to control the randomization process with high precision,
 which is often necessary for appropriate inference,
 particularly when samples or subgroups are small.\cite{athey2017econometrics}
 These techniques can be used in any random process;
-their implementation is nearly identical in both sampling and randomization.
+their implementation is nearly identical in both sampling and random assignment.
 
 \subsection{Clustering}
 
 % clustering is needed when unit of observation in the data is different from the randomization unit
 Many studies observe data at a different level than the randomization unit.\sidenote{
-	\url{https://dimewiki.worldbank.org/Unit_of_Observation}}
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 For example, a policy may be implemented at the village level,
 but the outcome of interest for the study is behavior changes at the household level.
 This type of structure is called \textbf{clustering},\sidenote{
 	\url{https://dimewiki.worldbank.org/Multi-stage_(Cluster)_Sampling}}
+\index{clustered randomization}
 and the groups in which units are assigned to treatment are called clusters.
 The same principle extends to sampling:
 it may be be necessary to observe all the children
@@ -564,10 +587,10 @@ in a given teacher's classroom, for example.
 % How to implement randomization with clusters
 Clustering is procedurally straightforward in Stata,
 although it typically needs to be performed manually.
-To cluster a sampling or randomization,
+To cluster a sampling or random assignment,
 create or use a dataset where each cluster unit is an observation,
 randomize on that dataset, and then merge back the results.
-When sampling or randomization is conducted using clusters,
+When sampling or random assignment is conducted using clusters,
 the clustering variable should be clearly identified
 since it will need to be used in subsequent statistical analysis.
 Namely, standard errors for these types of designs must be clustered
@@ -581,11 +604,12 @@ the other members of the clustering group were as well.
 
 % what is stratification
 \textbf{Stratification} is a research design component
+\index{stratification}
 that breaks the full set of observations into a number of subgroups
-before performing randomization within each subgroup.\sidenote{
-	\url{https://dimewiki.worldbank.org/Stratified_Random_Sample}}
+before performing random assignment within each subgroup.\sidenote{
+	\url{https://dimewiki.worldbank.org/Stratified\_Random\_Sample}}
 This has the effect of ensuring that members of each subgroup
-are included in all groups of the randomization process,
+are included in all groups of the random assignment process,
 since it is possible that a global randomization
 would put all the members of a subgroup into just one of the treatment arms.
 In this context, the subgroups are called \textbf{strata}.
@@ -617,14 +641,14 @@ imposes an additional layer of randomization above the specified division.
 \subsection{Assessing validity of data work}
 
 % sampling error, randomization noise and the need for power calcs
-Both sampling and randomization are noisy processes:
+Both sampling and random assignment are noisy processes:
 they are random, after all, so it is impossible to predict the result in advance.
 By design, we know that the exact choice of sample or treatment
 will be uncorrelated with our key outcomes,
 but this lack of correlation is only true ``in expectation'' --
 that is, across a large number of randomizations.
 In any \textit{particular} randomization,
-the correlation between the sampling or randomization and the outcome variable
+the correlation between the sampling or random assignments and the outcome variable
 is guaranteed to be \textit{nonzero}:
 this is called the \textbf{in-sample} or \textbf{finite-sample correlation}.
 
@@ -646,27 +670,24 @@ and we need to assess the likelihood and magnitude of this occurrence.\sidenote{
 	\url{https://davegiles.blogspot.com/2019/04/what-is-permutation-test.html}}
 Power calculation and randomization inference are the two key tools to doing so.
 
-\subsection{Power calculations}
 
 % why to do power calculations
-Power calculations report the likelihood that your experimental design
-will be able to detect the treatment effects you are interested in.
+\textbf{Power calculations} report the likelihood that your experimental design
+\index{power calculations}
+will be able to detect the treatment effects you are interested in.\sidenote{
+	\url{https://dimewiki.worldbank.org/Sample\_Size\_and\_Power\_Calculations}}
 This measure of \textbf{power} can be described in various different ways,
 each of which has different practical uses.\sidenote{
 	\url{https://www.stat.columbia.edu/~gelman/stuff_for_blog/chap20.pdf}}
 The purpose of power calculations is to identify where the strengths and weaknesses
 of your design are located, so you know the relative tradeoffs you will face
 by changing your randomization scheme for the final design.
-They also allow realistic interpretations of evidence:
-low-power studies can be very interesting,
-but they have a correspondingly higher likelihood
+
 
 % intuition of power concets: MDE and minimum sample size
 The classic definition of power
 is the likelihood that a design detects a significant treatment effect,
 given that there is a non-zero treatment effect in reality.
-This definition is useful retrospectively,
-but it can also be re-interpreted to help in experimental design.
 There are two common and useful practical applications
 of that definition that give actionable, quantitative results.
 The \textbf{minimum detectable effect (MDE)}\sidenote{
@@ -685,20 +706,18 @@ which can tell you what resources you would need to avoid that problem.
 
 % wrap up
 Not all studies are capable of achieving traditionally high power.
-This may be especially true for novel or small-scale studies --
-things that have never been tried before may be hard to fund or execute at scale.
 What is important is that every study includes reasonable estimates of its power,
 so that the evidentiary value of its results can be assessed.
 
-\subsection{Randomization inference}
 
 % what is randomization inference
-Randomization inference is used to analyze the likelihood
+\textbf{Randomization inference} is used to analyze the likelihood
+\index{randomization inference}
 that the randomization process, by chance,
 would have created a false treatment effect as large as the one you observed.
 Randomization inference is a generalization of placebo tests,
 because it considers what the estimated results would have been
-from a randomization that did not in fact happen in reality.
+from a random assignment that did not in fact happen in reality.
 Randomization inference is particularly important
 in quasi-experimental designs and in small samples,
 because these conditions usually lead to the situation
