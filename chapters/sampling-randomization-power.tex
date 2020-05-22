@@ -488,21 +488,16 @@ usually involve tedious calculations of probabilities and should be avoided.
 \subsection{Randomized assignment}
 
 % what does randomized assignment mean
-\textbf{Randomization}, in this context, is the process of assigning units into treatment arms.
-Most of the code processes used for randomization are the same as those used for sampling,
-since randomization is also a process of splitting a sample into groups.
+\textbf{Randomized treatment assignment} is the process of assigning observations into treatment arms.
+Most of the code processes used for random assignment are the same as those used for sampling,
+since it is also a process of splitting a a list of observations into groups.
 Where sampling determines whether a particular individual
 will be observed at all in the course of data collection,
-randomization determines if each individual will be observed
-as a treatment unit or used as a counterfactual.
-Randomizing a treatment guarantees that, \textit{on average},
-the treatment will not be correlated with anything but the results of that treatment.\cite{duflo2007using}
-Causal inference from randomization therefore depends on a specific counterfactual:
-that the units who received the treatment program
-could just as well have been randomized into the control group.
-Therefore, controlling the exact probability that each individual receives treatment
-is the most important part of a randomization process,
-and must be carefully worked out in more complex designs.
+random assignment determines if each individual will be observed
+as a treatment observation or used as a counterfactual.
+Randomizing a treatment assignment guarantees that, \textit{on average},
+the treatment will not be correlated with anything but the impact of that treatment.\cite{duflo2007using}
+
 
 % How randomization code differs from sampling code
 Just like sampling, the simplest form of randomization is a uniform-probability process.\sidenote{
@@ -616,26 +611,10 @@ imposes an additional layer of randomization above the specified division.
 
 \codeexample{randtreat-strata.do}{./code/randtreat-strata.do}
 
-% analyzing stratified experiments
-Whenever stratification is used for randomization,
-the analysis of differences within the strata (especially treatment effects)
-requires a control in the form of an indicator variable for all strata (fixed effects).
-This accounts for the fact that randomizations were conducted within the strata,
-comparing units to the others within its own strata by correcting for the local mean.
-Stratification is typically used for sampling
-in order to ensure that individuals with relevant characteristics will be observed;
-no adjustments are necessary as long as the sampling proportion is constant across all strata.
-One common pitfall is to vary the sampling or randomization \textit{probability}
-across different strata (such as ``sample/treat all female heads of household'').
-If this is done, you must calculate and record the exact probability
-of inclusion for every unit, and re-weight observations accordingly.\sidenote{
-	\url{https://blogs.worldbank.org/impactevaluations/tools-of-the-trade-when-to-use-those-sample-weights}}
-The exact formula depends on the analysis being performed,
-but is usually related to the inverse of the likelihood of inclusion.
 
 %-----------------------------------------------------------------------------------------------
 
-\section{Assessing validity of data work}
+\subsection{Assessing validity of data work}
 
 % sampling error, randomization noise and the need for power calcs
 Both sampling and randomization are noisy processes:
@@ -681,7 +660,6 @@ by changing your randomization scheme for the final design.
 They also allow realistic interpretations of evidence:
 low-power studies can be very interesting,
 but they have a correspondingly higher likelihood
-of reporting false positive results.
 
 % intuition of power concets: MDE and minimum sample size
 The classic definition of power
@@ -705,44 +683,8 @@ Conversely, the \textbf{minimum sample size} pre-specifies expected effect sizes
 and tells you how large a study's sample would need to be to detect that effect,
 which can tell you what resources you would need to avoid that problem.
 
-% stata commands for power calcs
-Stata has some commands that can calculate power analytically for
-very simple designs -- \texttt{power} and \texttt{clustersampsi} --
-but they will not answer most of the practical questions
-that complex experimental designs require.\sidenote{
-	\url{https://dimewiki.worldbank.org/Power_Calculations_in_Stata}}
-We suggest doing more advanced power calculations by simulation,
-since the interactions of experimental design,
-sampling and randomization,
-clustering, stratification, and treatment arms
-quickly becomes complex.
-Furthermore, you should use real data on the population of interest whenever it is available,
-or you will have to make assumptions about the distribution of outcomes.
-
-% why you should do simulations instead
-Together, the concepts of minimum detectable effect
-and minimum sample size can help answer a key question
-that typical approaches to power often do not.
-Namely, they can help you determine what trade-offs to make
-in the design of your experiment.
-Can you support another treatment arm?
-Is it better to add another cluster,
-or to sample more units per cluster?
-Simultaneously, planning out the regression structure
-in advance saves a lot of work once the data is in hand,
-and helps you think critically about what you are really testing.
-It also helps you to untangle design issues before they occur.
-Therefore, simulation-based power analysis is often more of a design aid
-than an output for reporting requirements.
-At the end of the day, you will probably have reduced
-the complexity of your experiment significantly.
-For reporting purposes, such as grant writing and registered reports,
-simulation ensures you will have understood the key questions well enough
-to report standard measures of power once your design is decided.
-
 % wrap up
-Not all studies are capable of achieving traditionally high power:
-sufficiently precise sampling or treatment assignments may not be available.
+Not all studies are capable of achieving traditionally high power.
 This may be especially true for novel or small-scale studies --
 things that have never been tried before may be hard to fund or execute at scale.
 What is important is that every study includes reasonable estimates of its power,
@@ -761,49 +703,17 @@ Randomization inference is particularly important
 in quasi-experimental designs and in small samples,
 because these conditions usually lead to the situation
 where the number of possible \textit{randomizations} is itself small.
-It is difficult to draw a firm line on when a study is ``large enough'',
-but even when a treatment effect is real,
-it can take ten or one hundred times more sample size
-than the minimum required power
-to ensure that the average statistically significant estimate
-of the treatment effect is accurate.\cite{schwarzer2015small}
-In those cases, we cannot rely on the usual assertion
-(a consequence of the Central Limit Theorem)
-that the variance of the treatment effect estimate is normal,
-and we therefore cannot use the ``asymptotic'' standard errors from Stata.
-We also don't need to: these methods were developed when it was very costly
-to compute large numbers of combinations using computers,
-and in most cases we now have the ability to do these calculations reasonably quickly.
+Randomization inference has traditionally not been common 
+as it used to be very costly to compute large numbers of combinations using computers.
+Today we have the computational pwoer to do these calculations reasonably quickly,
+and simulate a large variety of possible alternative randomizations.
 
-% randomization inference in stata: ritest
-Instead, we directly simulate a large variety of possible alternative randomizations.
-Specifically, the user-written \texttt{ritest} command\sidenote{
-	\url{http://hesss.org/ritest.pdf}}
-allows us to execute a given randomization repeatedly,
-visualize how the randomization might have gone differently,
-and calculate empirical p-values for the effect size in our sample.
-After analyzing the actual treatment assignment,
-\texttt{ritest} illustrates the distribution of false correlations
-that this randomization could produce by chance
-between outcomes and treatments.
-The randomization-inference p-value is the number of times
-that a false effect was larger than the one you measured,
-and it is interpretable as the probability that a program with no effect
-would have given you a result like the one actually observed.
-These randomization inference\sidenote{
-	\url{https://dimewiki.worldbank.org/Randomization\_Inference}}
-significance levels may be very different
-than those given by asymptotic confidence intervals,
-particularly in small samples (up to several hundred clusters).
 
 % why you should use randomization inference
 Randomization inference can therefore be used proactively during experimental design.
 As long as there is some outcome data usable at this stage,
 you can use the same procedure to examine the potential treatment effects
 that your exact design is likely to produce.
-The range of these effects, again, may be very different
-from those predicted by standard approaches to power calculation,
-and randomization inference further allows visual inspection of results.
 If there is significant heaping at particular result levels,
 or if results seem to depend dramatically on the placement of a small number of individuals,
 randomization inference will flag those issues before the experiment is fielded
