@@ -109,6 +109,92 @@ that record which corrections made and why.
 Even if you are not using this command,
 it is important to include similar records in the \texttt{Documentation} folder.
 
+\subsection{Tidying raw data}
+
+% Is the uniquely identified data tidy?
+Sometimes, making sure that the data is uniquely and fully identified 
+is enough to yield a tidy dataset.
+This happens when a data source or survey instrument
+contains a single unit of observation.
+If you are working with data in this format,
+you lucky enough to be able to skip the tidying process,
+which can become quite intricate.
+In your case, however, the cleaning process will yield a single cleaned dataset.
+
+% Examples of untidy raw data
+The most common case of untidy raw data encountered in development research
+are datasets consisting of multiple units of observation stored in the same table. 
+If your rows include multiple nested observational units,
+having an identifying variable for each row doesn't mean having an identifier for each observation.
+This is the case of our previous example of untidy data:
+a survey that collects both household and household-member level information.
+In this case, 
+the easiest way to handle the data is probably to break it into two tidy datasets:
+one at household level, and one at household-member level.
+You will use these separate datasets for the rest of the data cleaning process,
+and combine them to create analysis datasets.
+
+% How to tidy data
+Creating these two tidy datasets will involve a few different transformations.
+Data collection platforms such as SurveyCTO usually export \textbf{wide datasets},
+where each row represents the highest level of observation,
+and variables observed in nested units are separated into one column per sub-unit,
+such as \texttt{age\_1}, \texttt{gender\_1}, \texttt{age\_2}, \texttt{gender\_2}, etc.
+To create tidy datasets from this data,
+you first need to identify which variables where observed at which levels.
+In our example, the material used in the main house was collected at household level (the higher unit),
+while age and gender where observed at the member sub-unit.
+You should then separate these variables,
+creating a now tidy dataset containing the unique row ID and the household level variables;
+and another dataset containing the unique row ID and the household-member level variables.
+Finally, you need to \textbf{reshape}\sidenote{\textbf{Reshape:}
+	transform a dataset in such a way that the unit of observation represented by a row changes.}
+the household-member dataset to a \textbf{longer} format,
+where there is a new variable indicating the member ID,
+and the \texttt{gender} and \texttt{age} variables are each represented by one column.
+You can do this using \texttt{reshape} in Stata, and \texttt{reshape2} or \texttt{pivot\_longer} in R.
+
+% Polishing tidy data
+Note that, in this example, 
+the household-member level dataset is now uniquely and fully identifiable
+by a combination of two variables:
+the household level row ID \textit{and} the household-member ID inside each household.
+One key aspect in this process is to make sure that these ID variables are consistent across tables.
+This means that if you want to calculate the share of women members in a household,
+and link it back to the household level table, 
+you should be able to do so through the household level row ID.
+Another possible consequence of reshaping to keep in mind is that
+empty observations may be created in the long dataset
+(this is particularly the case in Stata).
+Remember do remove such observations,
+or they may bias aggregated measures -- counts in particular.
+
+% Generalizing
+If each row in the untidy data set represents the lower level of observation,
+the same data point for the higher level of observation will be repeated for all its sub-units.
+After you have separated into two tables containing the variables observed at each level,
+the table that contains the smaller level will already be in a tidy format.
+So all you need to do is make sure that all rows for the larger unit have the same value for each variable.
+The tidying process can get more complex if the instrument includes multiple nested groups.
+In agricultural surveys, it is not uncommon to find household-plot-season-crop level observations,
+as well as different combinations of these level,
+such as household-plot and household-crop-season, in the same dataset.
+That means the steps of identifying the unit of observation of each variable
+and reshaping the separated tables needs to be repeated multiple times.
+In these case, it is particularly important to be mindful of cross-table identifiers,
+as they are often not the same as wide variables suffixes.
+
+% Wrap-up
+Tidying datasets can be a complex process.
+However, the more nested groups a dataset includes,
+the more efficient it is to deal with tidy data as compared to untidy.
+Cleaning and constructing wide datasets, in particular,
+is a repetitive and error-prone process.
+The next step of data cleaning, data quality monitoring,
+may involve comparing different units of observation.
+Aggregating sub-units to compare to a higher unit is much easier with tidy data.
+This is why we suggest getting your data into a tidy format as early as possible in your workflow. 
+ 
 %------------------------------------------------
 \section{Data quality assurance}
 
