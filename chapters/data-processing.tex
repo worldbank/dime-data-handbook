@@ -10,14 +10,18 @@ These files may be received in a variety of formats,
 and they are often not easy to handle using statistical software.
 The data cleaning tasks described in this chapter will prepare the raw data
 for quantitative analysis.
-Their main output is a cleaned dataset, or a set of them.
-Cleaned datasets contain the exact same information as the raw data,
-except for corrections in data entry errors.
+What we call data cleaning in this book is very similar to what data scientists call
+\textit{data wrangling} or \textit{data munging}.
+The main difference is that we consider any addition of information or changes in variables
+that are not direct corrections of data entry errors part of separate step,
+construction, that will be discussed in the next chapter.
+Therefore, the main output of data cleaning, the cleaned dataset,
+contains almost exactly same information as the raw data.
 The main difference between the raw and the cleaned data is that the latter
 has been put into a format that makes it easier to interact with. 
 
 % Chapter overview
-Data cleaning is typically the most time-consuming step in a project's data work.
+Data cleaning is typically the most time-consuming step in a project's data work \citep{dasu2003exploratory}.
 Although original data typically requires more extensive data cleaning than secondary data,
 you should carefully examine and clean any data you are about to use.
 When reviewing raw data, you will inevitably encounter data entry mistakes,
@@ -70,6 +74,40 @@ as observations can be aggregated and linked consistently,
 and easier to clean, as each attribute only needs to be checked once.
 The next two sections will outline steps to check if your data is tidy,
 and to tidy it if it is not.
+
+\subsection{Unique identifiers}
+
+% Uniquely and fully identifying variable
+The first step in tidying you data is to understand the level of observation in the data (what makes a row),
+and what variable or set of variables uniquely identifies each row.
+Ensuring that observations are uniquely and fully identified\sidenote{\url{
+		https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
+is possibly the most important step in data cleaning.
+It may be the case that the variable expected to be the unique identifier in fact is either incomplete or contains duplicates.
+This could be due to duplicate observations or errors in data entry.
+It could also be the case that there is no identifying variable, or the identifier is a long string, such as a name.
+In this case cleaning begins by carefully creating a variable that uniquely identifies the data.
+Checking for duplicated entries is usually part of data quality monitoring,
+and is ideally addressed as soon as data is received
+
+% ID variable vs survey key
+Note that while modern survey tools create unique identifiers for each submitted data record,
+that is not the same as having a unique ID variable for each individual in the sample.
+You want to make sure the dataset has a unique ID variable
+that can be cross-referenced with other records, such as the master dataset\sidenote{\url{
+		https://dimewiki.worldbank.org/Master\_Data\_Set}}
+and other rounds of data collection.
+\texttt{ieduplicates} and \texttt{iecompdup},
+two Stata commands included in the \texttt{iefieldkit}
+package\index{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
+create an automated workflow to identify, correct and document
+occurrences of duplicate entries.
+One advantage of using \texttt{ieduplicates}\sidenote{\url{
+	https://dimewiki.worldbank.org/wiki/ieduplicates}} 
+to correct duplicated entries is that it creates \textit{duplicates reports}
+that record which corrections made and why.
+Even if you are not using this command,
+it is important to include similar records in the \texttt{Documentation} folder.
 
 %------------------------------------------------
 \section{Data quality assurance}
