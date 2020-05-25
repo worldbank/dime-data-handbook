@@ -291,6 +291,38 @@ It is common for cleaning to be the most time-consuming task in a project.
 In this section, we will introduce some concepts and tools to make it more efficient and productive.
 Values make sense with the variable
 
+\subsection{Getting to know your data}
+
+% What to look for when exploring the data
+The first time you interact with your data is during quality checks.
+However, these checks are often programmed before you receive all the data.
+Furthermore, because quality checks are usually time-sensitive, 
+there may not be time to explore the data at length.
+During data cleaning, on the other hand, 
+you will need to inspect each variable closely.
+Use tabulations, summary statistics, histograms and density plots to understand the structure of data,
+and look for irregularities.
+Think critically about what you see:
+are the values shown consistent with the information the variable represents?
+How do distributions look? 
+Are there any outliers, or missing values?
+Could distributional patterns be caused by data entry errors?
+Are variables consistent with each other?
+
+% Document patterns rather than fix them
+At this point, it is more important to document your findings
+than to try to address any irregularities found.
+There is a very limited set of changes that should be made to the raw data during cleaning.
+They are described in the next two sections,
+and are usually applied to each variable as you explore them.
+Most transformation resulting in data points that were not directly observed in the original data
+will be done during \textbf{construction}, a process discussed in the next chapter.
+For now, focus on creating a record of what you observe,
+and save it in the \texttt{Documentation} folder that corresponds to the data being explored.
+You will use this documentation when discussing with your team
+how to address irregularities when you get to the construction stage.
+This material will also be valuable during exploratory data analysis.
+
 %\subsection{Correcting data points}
 
 \subsection{Recoding and annotating data}
@@ -310,7 +342,7 @@ The most common example are string variables:
 categorical variables and open-ended responses are often read as strings.
 However, variables in these format cannot be used for quantitative analysis.
 Therefore, categorical variables must be transformed into easier to use formats,
-such as \texttt{factors} in R and \texttt{labeled integers}\sidenote{https://dimewiki.worldbank.org/wiki/Data_Cleaning#Value_Labels} in Stata.
+such as \texttt{factors} in R and \texttt{labeled integers}\sidenote{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Value\_Labels} in Stata.
 Additionally, open-ended responses stored as strings usually have a high risk of being identifiers, 
 so cleaning them requires extra attention.
 The option names in categorical variables
@@ -332,7 +364,7 @@ that would be lost by this transformation.
 In Stata, this information can be elegantly conserved using extended missing values.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
 
-% Labelling variables
+% Labeling variables
 We recommend that the cleaned data set by kept as similar to the raw data as possible.
 This is particularly important regarding variable names:
 keeping them consistent with the raw data makes data processing and construction more transparent.
@@ -344,7 +376,7 @@ it is often the best dictionary one could ask for.
 But even in this cases, going back-and-forth between files can be inefficient,
 so annotating variables in a dataset is extremely useful.
 In Stata, \textit{variable labels}\sidenote{\url{
-	https://dimewiki.worldbank.org/wiki/Data_Cleaning#Variable_Labels}} must always be present in a cleaned dataset.
+	https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Variable\_Labels}} must always be present in a cleaned dataset.
 They should include a short and clear description of the variable.
 A lengthier description, that may include, for example,
 the exact wording of a question, may be added through \textit{variable notes}.
@@ -352,7 +384,6 @@ In R, it is less common to use variable labels,
 and a separate dataset with a variable dictionary is often preferred,
 but \texttt{dataframe attributes} can be used for the same purpose.
 
-% tools: iecodebook, tidyverse
 Although all these tasks are key to making the data easy to use,
 implementing them can be quite repetitive and create convoluted scripts.
 The \texttt{iecodebook} command suite, part of the \texttt{iefieldkit} Stata package,
