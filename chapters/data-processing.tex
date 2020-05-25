@@ -411,6 +411,20 @@ In R, it is less common to use variable labels,
 and a separate dataset with a variable dictionary is often preferred,
 but \texttt{dataframe attributes} can be used for the same purpose.
 
+% Dropping irrelevant variables
+Finally, any information that is not relevant for analysis may be removed from the dataset.
+In primary data, it is common to collect information for quality monitoring purposes,
+such as notes, duration fields and surveyor IDs.
+Once you are past the quality monitoring phase,
+these variables may be removed from your dataset.
+In fact, to make the data easier to handle,
+you may choose to start from a minimal set of variables,
+and add new ones as you clean them.
+To make sure the cleaned dataset file doesn't get too big to be handled,
+use commands such as \texttt{compress} in Stata to make sure the data
+is always stored in the most efficient format.
+
+% Cleaning tools: iecodebook, tidyverse
 Although all these tasks are key to making the data easy to use,
 implementing them can be quite repetitive and create convoluted scripts.
 The \texttt{iecodebook} command suite, part of the \texttt{iefieldkit} Stata package,
