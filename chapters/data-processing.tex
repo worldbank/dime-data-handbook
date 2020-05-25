@@ -25,6 +25,52 @@ such as typos and inconsistent values.
 This chapter describes the different tasks involved in the cleaning process,
 and outlines the workflow that our team adopts to make it efficient and transparent.
 
+\subsection{What makes data tidy}
+
+% Where these concepts come from
+Before discussing the details of how to clean your data,
+we need to define a few concepts that will be used in this chapter.
+They refer to the structure of the data,
+and have long been discussed in the database management literature.
+However, this section is based on Hadley Wickham's definition of tidy data,\cite{tidy-data}
+which uses a terminology that is more intuitive for users of applied statistics,
+with our own twist based on the jargon of development research.
+
+% Definitions
+Development data is typically acquired in the form of \textbf{tables},
+a two-dimensional or rectangular dataset formed by rows and columns.\sidenote{One
+example of non-rectangular data is text.}
+Each element in this table is a value, or \textbf{data point},
+representing a measure of an attribute.
+For example, in a survey's household roster,
+two of the attributes usually measured are gender and age.
+The measures of gender and age for each household member are different data points.
+A \textbf{variable} is the collection of all data points that measure a given attribute.
+In the example of a household survey,
+each variable will correspond to one survey question.
+Finally, each variable will contain data points for different subjects in a given unit of observation.
+In our example, each household member is a subject, and the unit of observation is a person.
+The collection of all data points for each individual subject is an \textbf{observation}.
+
+% Tidy data
+The ideal format to interact with any table or dataset is when
+each columns represents one variable, each row represents one observation, 
+and all variables in a table have the same unit of observation.
+Datasets in this format are said to be \textbf{tidy}.
+This may seem trivial, but the raw data acquired is frequently untidy.
+A very simple way for our survey example to became untidy is to include
+household-level variables in the same data set,
+such as the material used in the main house.
+In this case, some attributes would be measured at
+household level, and others at household member level,
+and it would not be possible for each column to represent a variable
+\textit{and} each row an observation \textit{at the same time}.
+Tidy data sets are easier to handle,
+as observations can be aggregated and linked consistently,
+and easier to clean, as each attribute only needs to be checked once.
+The next two sections will outline steps to check if your data is tidy,
+and to tidy it if it is not.
+
 %------------------------------------------------
 \section{Data quality assurance}
 
