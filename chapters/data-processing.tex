@@ -187,6 +187,88 @@ before publicly releasing a dataset.\sidenote{
 	\url{https://sdcpractice.readthedocs.io/en/latest/SDC\_intro.html\#need-for-sdc}}
 The following section describes how to implement these processes.
 
+
+\subsection{De-identification in practice}
+
+% Initial de-identification
+To simplify workflows, the raw data should be de-identified as early as possible.
+Once you create a de-identified version of the dataset,
+you no longer need to interact directly with the encrypted raw data.
+During the initial round of de-identification, 
+dataset must be stripped of personally identifying information.\sidenote{
+	\url{https://dimewiki.worldbank.org/De-identification}}
+To do so, you will need to identify all variables that contain
+such information.\sidenote{\url{
+		https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
+For data collection, where the research team designs the survey instrument,
+flagging all potentially identifying variables in the questionnaire design stage
+simplifies the initial de-identification process.
+If you did not do that, or you received original data by another means,
+there are a few tools to help flag variables with personally-identifying data.
+JPAL's \texttt{PII scan}, as indicated by its name,
+scans variable names and labels for common string patterns associated with identifying information.\sidenote{
+	\url{https://github.com/J-PAL/PII-Scan}}
+The World Bank's \texttt{sdcMicro}
+lists variables that uniquely identify observations, 
+but it is less efficient for large datasets.\sidenote{
+	\url{https://sdctools.github.io/sdcMicro/articles/sdcMicro.html}}
+The \texttt{iefieldkit} command \texttt{iecodebook}
+lists all variables in a dataset and exports an Excel sheet
+where you can easily select which variables to keep or drop.\sidenote{
+	\url{https://dimewiki.worldbank.org/Iecodebook}}
+
+% Initial de-identification in practice
+Once you have a list of variables that contain confidential information,
+assess them against the analysis plan and first ask yourself for each variable:
+\textit{will this variable be needed for the analysis?}
+If not, the variable should be dropped.
+Don't be afraid to drop too many variables the first time,
+as you can always go back and remove variables from the list of variables to be dropped,
+but you can not go back in time and drop a PII variable that was leaked
+because it was incorrectly kept.
+Examples include respondent names and phone numbers, enumerator names, taxpayer 
+numbers, and addresses.
+For each confidential variable that is needed in the analysis, ask yourself:
+\textit{can I encode or otherwise construct a variable that masks the confidential component, and
+	then drop this variable?}
+This is typically the case for most identifying information.
+Examples include geocoordinates
+(after constructing measures of distance or area,
+drop the specific location)
+and names for social network analysis (can be encoded to secret and unique IDs).
+If the answer to either of the two questions above is yes,
+all you need to do is write a script to drop the variables that are not required for analysis,
+encode or otherwise mask those that are required,
+and save a working version of the data.
+If confidential information strictly required for the analysis itself and can not be
+masked or encoded,
+it will be necessary to keep at least a subset of the data encrypted through
+the data analysis process.
+
+% Final de-identification: sdcMicro
+The dataset created by the initial de-identification will be the underlying source for all cleaned and constructed data.
+This is the dataset that you will interact with directly during the remaining tasks described in this chapter.
+Because identifying information is typically only used during data collection,
+when teams need to find and confirm the identity of interviewees,
+de-identification should not affect the usability of the data.
+However, access to this data should still be restricted to the research team only,
+as it's possible that combining a group of variables,
+or taking into account information that is not the dataset,
+may lead to the identification of the individuals in the sample.
+It is common, and even desirable, for teams to make data publicly available
+once the tasks discussed in this chapter are concluded.
+This will allow other researchers to conduct additional analysis and to reproduce your finding.
+Before that can be done, however,
+a careful analysis of the risk of disclosure and a final round of de-identification must be conducted.
+The World Bank's \texttt{sdcMicro} allos for sophisticated disclosure risk calculations.\sidenote{
+	\url{https://sdctools.github.io/sdcMicro/articles/sdcMicro.html}}
+There is no clear cut about what is an acceptable level of disclosure,
+so your team must weight the trade-off between transparency and privacy,
+and make a decision that is specific to the data.
+In general, it's preferable to be conservative and include additional layers of security
+to access variable that represent a higher disclosure risk.
+
+
 \section{Cleaning data for analysis}
 
 % What is data cleaning
@@ -207,6 +289,7 @@ So don't rush through this step.
 Explore the dataset using tabulations, summaries, and descriptive plots.
 It is common for cleaning to be the most time-consuming task in a project.
 In this section, we will introduce some concepts and tools to make it more efficient and productive.
+Values make sense with the variable
 
 %\subsection{Correcting data points}
 
