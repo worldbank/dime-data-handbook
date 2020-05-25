@@ -35,7 +35,7 @@ The faster issues are identified, the more likely they are to be solved.
 is a very useful command that automates some of these tasks,
 regardless of the source of the data.
 
-% Completeness and duplicates
+% Completeness
 It is important to check continuously that the observations in the data match the intended sample.
 In surveys, the software often provides some form of case management features
 through which sampled units are directly assigned to individual enumerators.
@@ -78,7 +78,7 @@ and (for surveys) how long enumerators spent on each question,
 and trace histories show how many
 times answers were changed before or after the data was submitted.
 
-% Follow-up on inconsistencies
+% Following up on flagged issues
 High-frequency checks will only improve data quality
 if the issues they catch are communicated to the data provider.
 There are lots of ways to do this;
@@ -128,6 +128,64 @@ to do audits through audio recordings of the interview,
 typically short recordings triggered at random throughout the questionnaire.
 \textbf{Audio audits} are a useful means to assess whether enumerators are conducting interviews as expected.
 Do note, however, that audio audits must be included in the informed consent for the respondents.
+
+\section{De-identifying research data}
+\subsection{Protecting privacy as researcher}
+
+% Dealing with human subjects
+Most of the field research done in development involves human subjects.\sidenote{
+	\url{https://dimewiki.worldbank.org/Human_Subjects_Approval}}
+\index{human subjects}
+As a researcher, you may have access to personal information about your subjects:
+where they live, how rich they are, whether they have committed or been victims of crimes,
+their names, their national identity numbers, among other sensitive data.
+PII data carries strict expectations about data storage and handling,
+and it is the responsibility of the research team to satisfy these expectations.\sidenote{
+	\url{https://dimewiki.worldbank.org/Research\_Ethics}}
+Your donor or employer will most likely require you to hold a certification from a source
+such as Protecting Human Research Participants\sidenote{
+	\url{https://phrptraining.com}}
+or the CITI Program;\sidenote{
+	\url{https://about.citiprogram.org/en/series/human-subjects-research-hsr}}
+and your team will need to present a plan to handle this data securely for IRB approval.
+
+% Options for dealing with PII data: only collect it if extremely necessary, encrypt it, restrict access, de-identify it
+In general, though, you shouldn't need to handle PII data very often
+once the data collection processes are completed.
+You can take simple steps to avoid risks by minimizing the handling of PII.
+First, only collect information that is strictly needed for the research.
+Second, avoid the proliferation of copies of identified data.
+There should never be more than one copy of the raw identified dataset in the project folder,
+and it must always be encrypted.
+Even within the research team,
+access to PII data should be limited to team members who require it for their specific tasks.
+Data analysis that requires identifying information is rare
+and in most cases can be avoided by properly linking identifiers to research information
+such as treatment statuses and weights, then removing identifiers.
+
+% De-identification vs anonymization
+Therefore, once data is securely collected and stored,
+the first thing you will generally do is \textbf{de-identify} it,
+that is, remove direct identifiers of the individuals in the dataset.\sidenote{
+	\url{https://dimewiki.worldbank.org/De-identification}}
+\index{de-identification}
+Note, however, that it is in practice impossible to \textbf{anonymize} data.
+There is always some statistical chance that an individual's identity
+will be re-linked to the data collected about them
+-- even if that data has had all directly identifying information removed --
+by using some other data that becomes identifying when analyzed together.
+For this reason, we recommend de-identification in two stages.
+The \textbf{initial de-identification} process strips the data of direct identifiers
+as early in the process as possible,
+to create a working de-identified dataset that
+can be shared \textit{within the research team} without the need for encryption.
+This simplifies workflows.
+The \textbf{final de-identification} process involves
+making a decision about the trade-off between
+risk of disclosure and utility of the data
+before publicly releasing a dataset.\sidenote{
+	\url{https://sdcpractice.readthedocs.io/en/latest/SDC\_intro.html\#need-for-sdc}}
+The following section describes how to implement these processes.
 
 \section{Cleaning data for analysis}
 
