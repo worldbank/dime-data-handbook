@@ -1,3 +1,31 @@
+%------------------------------------------------
+
+\begin{fullwidth}
+
+% What is data cleaning
+The starting point for all tasks described in this chapter is the raw dataset,
+which contains the exact data received, with no changes or additions.
+Raw data files must never be edited directly.
+These files may be received in a variety of formats, 
+and they are often not easy to handle using statistical software.
+The data cleaning tasks described in this chapter will prepare the raw data
+for quantitative analysis.
+Their main output is a cleaned dataset, or a set of them.
+Cleaned datasets contain the exact same information as the raw data,
+except for corrections in data entry errors.
+The main difference between the raw and the cleaned data is that the latter
+has been put into a format that makes it easier to interact with. 
+
+% Chapter overview
+Data cleaning is typically the most time-consuming step in a project's data work.
+Although original data typically requires more extensive data cleaning than secondary data,
+you should carefully examine and clean any data you are about to use.
+When reviewing raw data, you will inevitably encounter data entry mistakes,
+such as typos and inconsistent values.
+This chapter describes the different tasks involved in the cleaning process,
+and outlines the workflow that our team adopts to make it efficient and transparent.
+
+%------------------------------------------------
 \section{Data quality assurance}
 
 Whether you are acquiring data from a partner or collecting it directly,
@@ -286,7 +314,6 @@ cleaning will also yield extensive documentation describing  it.
 During data cleaning, you will acquire in-depth understanding of the contents and structure of your data.
 This knowledge will be key to correctly construct final indicators and analyze them.
 So don't rush through this step.
-Explore the dataset using tabulations, summaries, and descriptive plots.
 It is common for cleaning to be the most time-consuming task in a project.
 In this section, we will introduce some concepts and tools to make it more efficient and productive.
 Values make sense with the variable
@@ -342,7 +369,7 @@ The most common example are string variables:
 categorical variables and open-ended responses are often read as strings.
 However, variables in these format cannot be used for quantitative analysis.
 Therefore, categorical variables must be transformed into easier to use formats,
-such as \texttt{factors} in R and \texttt{labeled integers}\sidenote{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Value\_Labels} in Stata.
+such as \texttt{factors} in R and \texttt{labeled integers}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Value\_Labels}} in Stata.
 Additionally, open-ended responses stored as strings usually have a high risk of being identifiers, 
 so cleaning them requires extra attention.
 The option names in categorical variables
@@ -394,6 +421,6 @@ It also creates a self-documenting workflow,
 so your data cleaning documentation is created alongside that code,
 with no extra steps.
 As far as we know, there are no similar resources in R.
-However, the \texttt{tidyverse}\sidenote{https://www.tidyverse.org/} packages
+However, the \texttt{tidyverse}\sidenote{\url{https://www.tidyverse.org/}} packages
 compose a consistent and useful grammar to perform the same tasks.
 
