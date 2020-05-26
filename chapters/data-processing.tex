@@ -43,7 +43,6 @@ in a dataset represents one observation.
 This may seem trivial, but should not be taken for granted.
 As you will see, getting to such a format may be harder than expected.
 
-
 \subsection{What makes data tidy}
 
 % Where these concepts come from
@@ -555,7 +554,39 @@ You will use this documentation when discussing with your team
 how to address irregularities when you get to the construction stage.
 This material will also be valuable during exploratory data analysis.
 
-%\subsection{Correcting data points}
+\subsection{Correcting data points}
+
+% Correct or not correct
+As mentioned earlier, 
+corrections to issues identified during data quality monitoring are
+the only changes done to individual data points during the data cleaning stage.
+However, there is a lot of discussion about whether one should modify such data points at all.
+Some argue that follow-ups to the issues identified are costly and add limited value.
+Since it is not possible to check each and every possible data entry error,
+doing so can create a false sense of security from issues identified on a few main variables. 
+Additionally, manually inspected data may suffer from considerable inspector variability.
+Therefore, there's an argument for using data quality monitoring tools
+as a tool to detect completely fraudulent observations and
+revisiting data collection protocols or decisions.
+On the other hand, there is also an argument to be made
+against keeping clear typing errors that have been found or
+collecting data about mistakenly skipped survey modules.
+
+% Documentation
+Whether you decide to modify your data or not,
+a careful record of which data entry mistakes were identified.
+If no data points are modified, 
+it may still be helpful to add flags to observations containing
+potentially problematic values,
+so you can verify how they affect results during analysis.
+If your team decides to follow up on these issues and 
+try to determine what the correct value is,
+the follow-up process must also be thoroughly documented.
+Be very careful not to include confidential information in documentation that is not securely stored,
+or that you intend to release as part of a replication package or data publication.
+Finally, remember not to make changes directly to the raw data.
+Instead, any corrections must be done as part of data cleaning,
+and saved to a new dataset.
 
 \subsection{Recoding and annotating data}
 
