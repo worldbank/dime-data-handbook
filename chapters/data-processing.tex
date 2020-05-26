@@ -3,20 +3,18 @@
 \begin{fullwidth}
 
 % What is data cleaning
-The starting point for all tasks described in this chapter is the raw dataset,
-which contains the exact data received, with no changes or additions.
-Raw data files must never be edited directly.
+The starting point for all tasks described in this chapter is the raw data,
+containing the exact files received, with no changes or additions.
+Be mindful of how and where these files are stored
+as they cannot be re-created and nearly always contain confidential information.
+Raw data files must be never be edited directly.
 These files may be received in a variety of formats, 
-and they are often not easy to handle using statistical software.
+and are often not easy to handle using statistical software.
 The data cleaning tasks described in this chapter will prepare the raw data
 for quantitative analysis.
-What we call data cleaning in this book is very similar to what data scientists call
-\textit{data wrangling} or \textit{data munging}.
-The main difference is that we consider any addition of information or changes in variables
-that are not direct corrections of data entry errors part of separate step,
-construction, that will be discussed in the next chapter.
-Therefore, the main output of data cleaning, the cleaned dataset,
-contains almost exactly same information as the raw data.
+The main output of data cleaning, the cleaned dataset,
+contains almost exactly same information as the raw data,
+with the exception of corrections made to data entry mistakes.
 The main difference between the raw and the cleaned data is that the latter
 has been put into a format that makes it easier to interact with. 
 
@@ -344,7 +342,23 @@ typically short recordings triggered at random throughout the questionnaire.
 \textbf{Audio audits} are a useful means to assess whether enumerators are conducting interviews as expected.
 Do note, however, that audio audits must be included in the informed consent for the respondents.
 
+
 \section{De-identifying research data}
+
+Up to this point, you were probably handling confidential data.
+This is due to the fact that effective data quality monitoring
+frequently requires you to identify the individual observations in your dataset,
+and the people who acquired information about them.
+Having this data will allow you to quickly follow-up on issues identified,
+and verify what caused them.
+Handling confidential data such as \textbf{personally-identifying information}\index{
+	personally-identifying information}
+requires a secure environment and often involves
+decrypting data before accessing it, and encrypting it back afterward.
+De-identifiying the data simplifies this workflow and reduces the risk of harmful leaks.
+This section describes how to perform de-identification of data 
+to be shared within a research team and with a wider audience.
+
 \subsection{Protecting privacy as researcher}
 
 % Dealing with human subjects
@@ -503,7 +517,11 @@ This knowledge will be key to correctly construct final indicators and analyze t
 So don't rush through this step.
 It is common for cleaning to be the most time-consuming task in a project.
 In this section, we will introduce some concepts and tools to make it more efficient and productive.
-Values make sense with the variable
+The section is separated into three topics:
+exploring the data, making corrections, and recoding and annotating.
+They are separated here because they are different in nature.
+In practice, however, they are all done at the same time.
+
 
 \subsection{Getting to know your data}
 
