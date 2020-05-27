@@ -2,49 +2,120 @@
 
 \begin{fullwidth}
 
-% What is data cleaning
-The starting point for all tasks described in this chapter is the raw data,
-containing the exact files received, with no changes or additions.
-Be mindful of how and where these files are stored
-as they cannot be re-created and nearly always contain confidential information.
-Raw data files must be never be edited directly.
-These files may be received in a variety of formats, 
-and are often not easy to handle using statistical software.
-The data cleaning tasks described in this chapter will prepare the raw data
-for quantitative analysis.
-The main output of data cleaning, the cleaned dataset,
-contains almost exactly same information as the raw data,
-with the exception of corrections made to data entry mistakes.
-The main difference between the raw and the cleaned data is that the latter
-has been put into a format that makes it easier to interact with. 
-
 % Chapter overview
-Data cleaning is typically the most time-consuming step in a project's data work \citep{dasu2003exploratory}.
+The tasks described in this chapter are called by many different names.
+Some would say data cleaning, others data munging, or maybe data wrangling.
+It means transforming raw data into a more convenient format for your intended use.
 Although original data typically requires more extensive data cleaning than secondary data,
-you should carefully examine and clean any data you are about to use.
-When reviewing raw data, you will inevitably encounter data entry mistakes,
-such as typos and inconsistent values.
+it is broadly agreed that this is, on average, the most time-consuming step in a project's data work \citep{dasu2003exploratory}.
 This chapter describes the different tasks involved in the cleaning process,
 and outlines the workflow that our team adopts to make it efficient and transparent.
+
+% What is data cleaning
+Implementing the tasks described in this chapter will make data analysis much easier.
+The first section will guide on making your data \textit{tidy},
+so the relationship between rows and columns in a data set is well-defined.
+This includes removing duplicated observations.
+To assert the accuracy of your data, it must then go through quality assurance checks,
+as described in the second section.
+After that, identifying information is typically no longer needed,
+the following section will outline steps to remove direct identifiers.
+Finally, the last section discussed how to explore each variable in your dataset and 
+make sure that it is as well documented and easy to use as possible.
+
 
 \end{fullwidth}
 
 %------------------------------------------------
 
-\section{Identifying the identifier}
+\subsection{Before you get started}
+
+% Don't mess with the raw data
+The starting point for all tasks described in this chapter is the raw data,
+containing the exact files received, with no changes or additions.
+Be mindful of how and where these files are stored
+as they cannot be re-created and nearly always contain confidential information.
+Raw data files must \textit{never} be edited directly.
+If the raw data contains confidential information,
+any tasks that precede de-identification must be carried on encrypted data.
+ 
+% Why cleaning is necessary
+Raw data files may be received in a variety of formats, 
+and are often not easy to handle using statistical software.
+The data cleaning tasks described in this chapter will prepare the raw data
+for quantitative analysis.
+To make this complex process less error-prone,
+we recommend that no changes be made to the content of data at this point
+(with one exception that will be carefully discussed).
+Correcting outliers, imputing values and creating derived indicators
+are all research decisions, and are therefore considered part of analysis.
+Therefore, the main output of data cleaning, the cleaned dataset,
+contains almost exactly same information as the raw data,
+but in a format that is easier to interact with.  
+
+\section{Identifying the identifier(s)}
 
 % Intro
-Raw data is received in a variety of shapes and sizes.
-Not all of them are easy to read or handle.
 The very first step in creating statistical software-friendly data sets
 is understanding the data acquired,
 and translating this understanding into an intuitive format.
 This section discusses what steps may be needed to make sure that each row
 in a dataset represents one observation.
 This may seem trivial, but should not be taken for granted.
-As you will see, getting to such a format may be harder than expected.
+Getting to such a format may be harder than expected,
+and the \textbf{unit of observation}\sidenote{\textbf{Unit of observation:}
+	the unit described by the data. \url{
+		https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
+ may be ambiguous in many raw datasets.
+But having data in a tidy format is the best way to manipulate it, 
+particularly aggregating and cross-referencing.
+You will need to do manipulate data as soon as it is received,
+so you can assure its quality.
+If you are conducting primary data collection,
+you can start coding the data tidying before the data is acquired,
+since you will know in advance in which format it will be received.
 
-\subsection{What makes data tidy}
+\subsection{Unique identifiers}
+
+% Uniquely and fully identifying variable
+The first step in tidying data is to understand its unit of observation (what makes a row),
+and find out which variable or set of variables is the \textbf{unique identifier}\sidenote{\url{
+		https://dimewiki.worldbank.org/ID\_Variable\_Properties}} for each row.
+Ensuring that observations are uniquely and fully identified
+is possibly the most important step in data cleaning.
+It may be the case that the variables expected to be unique identifiers are either incomplete or contain duplicates.
+It is also possible for a data set to have no unique identifier, or for the identifier involves a long string, such as a name.
+In such cases, cleaning begins by carefully creating a variable that uniquely identifies the data.
+Note that while modern survey tools create unique identifiers for each submitted data record,
+that is not the same as having a unique ID variable for each individual in the sample.
+The unique identifier will be used to
+cross-referenced with other records, such as
+other rounds of data collection and
+different data sources.
+Therefore, you must keep a canonical dataset of all observations in your data.
+This \textbf{master dataset}\sidenote{\url{
+		https://dimewiki.worldbank.org/Master\_Data\_Set}}
+should contain a record of all units ever encountered for each relevant level of observation,
+and their corresponding unique identifiers.
+
+
+% Merchand
+Checking for duplicated entries and making sure that each observation has a unique identifier are usually part of data quality monitoring.
+The lack of a unique identifier should be addressed as soon as data is received,
+so you can keep track of observations.
+\texttt{ieduplicates} and \texttt{iecompdup},
+two Stata commands included in the \texttt{iefieldkit}
+package\index{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
+create an automated workflow to identify, correct and document
+occurrences of duplicate entries.
+One advantage of using \texttt{ieduplicates}\sidenote{\url{
+		https://dimewiki.worldbank.org/wiki/ieduplicates}} 
+to correct duplicated entries is that it creates \textit{duplicates reports}
+that record which corrections made and why.
+Even if you are not using this command,
+it is important to include similar records in the \texttt{Documentation} folder.
+
+\subsection{What makes data ``tidy''}
 
 % Where these concepts come from
 Before discussing the details of how to clean your data,
@@ -57,84 +128,71 @@ with our own twist based on the jargon of development research.
 
 % Definitions
 Development data is typically acquired in the form of \textbf{tables},
-a two-dimensional or rectangular dataset formed by rows and columns.\sidenote{One
-example of non-rectangular data is text.}
-Each element in this table is a value, or \textbf{data point},
-representing a measure of an attribute.
-For example, in a survey's household roster,
+two-dimensional datasets formed by rows and columns.\sidenote{\textbf{Table:}
+	a two-dimensional dataset formed by rows and columns. 
+	Also called ``rectangular data''.
+	One example of non-rectangular data is a text.}
+Each element or cell in this table is a \textbf{data point}, that is,
+a value representing a measure of an attribute for one individual unit.\sidenote{\textbf{Data point:}
+a value representing a measure of an attribute for one individual unit.}
+For example, in a household survey,
 two of the attributes usually measured are gender and age.
-The measures of gender and age for each household member are different data points.
-A \textbf{variable} is the collection of all data points that measure a given attribute.
+The measures of gender and age for each household member are data points.
+A \textbf{variable}\sidenote{\textbf{Variable:} the collection of all data points that measure the same attribute.}
+ is the collection of all data points that measure a given attribute.
 In the example of a household survey,
 each variable will correspond to one survey question.
-Finally, each variable will contain data points for different subjects in a given unit of observation.
+Finally, each variable will contain data points for different individuals in a given unit of observation.
 In our example, each household member is a subject, and the unit of observation is a person.
-The collection of all data points for each individual subject is an \textbf{observation}.
+The collection of all data points for each individual subject is an 
+\textbf{observation}.\sidenote{\textbf{Observation:} 
+	the collection of all data points representing attributes of the same individual or unit.}
 
 % Tidy data
 The ideal format to interact with any table or dataset is when
-each columns represents one variable, each row represents one observation, 
+each column represents one variable,
+each row represents one observation, 
 and all variables in a table have the same unit of observation.
-Datasets in this format are said to be \textbf{tidy}.
+Datasets in this format are said to be \textbf{tidy},\sidenote{\textbf{Tidy data:}
+	Datasets where each column represents one variable,
+	each row represents one observation, 
+	and all variables in a table have the same unit of observation.}
+and all others are \textit{untidy}.
 This may seem trivial, but the raw data acquired is frequently untidy.
-A very simple way for our survey example to became untidy is to include
-household-level variables in the same data set,
-such as the material used in the main house.
-In this case, some attributes would be measured at
-household level, and others at household member level,
-and it would not be possible for each column to represent a variable
-\textit{and} each row an observation \textit{at the same time}.
 Tidy data sets are easier to handle,
 as observations can be aggregated and linked consistently,
 and easier to clean, as each attribute only needs to be checked once.
+
+% An example of untidy data
+A very simple way for our survey example to became untidy is to include
+household-level variables in the same data set,
+such as whether the household has a refrigerator.
+In this case, some attributes would be measured at
+household level, and others at household member level,
+and it would not be possible for each column to represent a variable
+\textit{and} for each row to represent an observation \textit{at the same time}.
+Either the household-level variable would be repeated for all its members,
+or member-level variables would be stored in 
+\textbf{wide format}.\sidenote{\textbf{Wide data:}
+	a table where a single variable is divided into multiple columns,
+	for example one for each individual.
+}
+An alternative example is a dataset on transactions that also contains information
+about the parts involved in each transaction on the same table.
 The next two sections will outline steps to check if your data is tidy,
 and to tidy it if it is not.
-
-\subsection{Unique identifiers}
-
-% Uniquely and fully identifying variable
-The first step in tidying you data is to understand the level of observation in the data (what makes a row),
-and what variable or set of variables uniquely identifies each row.
-Ensuring that observations are uniquely and fully identified\sidenote{\url{
-		https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
-is possibly the most important step in data cleaning.
-It may be the case that the variable expected to be the unique identifier in fact is either incomplete or contains duplicates.
-This could be due to duplicate observations or errors in data entry.
-It could also be the case that there is no identifying variable, or the identifier is a long string, such as a name.
-In this case cleaning begins by carefully creating a variable that uniquely identifies the data.
-Checking for duplicated entries is usually part of data quality monitoring,
-and is ideally addressed as soon as data is received
-
-% ID variable vs survey key
-Note that while modern survey tools create unique identifiers for each submitted data record,
-that is not the same as having a unique ID variable for each individual in the sample.
-You want to make sure the dataset has a unique ID variable
-that can be cross-referenced with other records, such as the master dataset\sidenote{\url{
-		https://dimewiki.worldbank.org/Master\_Data\_Set}}
-and other rounds of data collection.
-\texttt{ieduplicates} and \texttt{iecompdup},
-two Stata commands included in the \texttt{iefieldkit}
-package\index{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
-create an automated workflow to identify, correct and document
-occurrences of duplicate entries.
-One advantage of using \texttt{ieduplicates}\sidenote{\url{
-	https://dimewiki.worldbank.org/wiki/ieduplicates}} 
-to correct duplicated entries is that it creates \textit{duplicates reports}
-that record which corrections made and why.
-Even if you are not using this command,
-it is important to include similar records in the \texttt{Documentation} folder.
 
 \subsection{Tidying raw data}
 
 % Is the uniquely identified data tidy?
-Sometimes, making sure that the data is uniquely and fully identified 
+Sometimes, making sure that data is uniquely and fully identified 
 is enough to yield a tidy dataset.
 This happens when a data source or survey instrument
 contains a single unit of observation.
 If you are working with data in this format,
-you lucky enough to be able to skip the tidying process,
+you may skip the tidying process,
 which can become quite intricate.
-In your case, however, the cleaning process will yield a single cleaned dataset.
+In this case the cleaning process will result in a single dataset.
 
 % Examples of untidy raw data
 The most common case of untidy raw data encountered in development research
@@ -144,10 +202,9 @@ having an identifying variable for each row doesn't mean having an identifier fo
 This is the case of our previous example of untidy data:
 a survey that collects both household and household-member level information.
 In this case, 
-the easiest way to handle the data is probably to break it into two tidy datasets:
-one at household level, and one at household-member level.
-You will use these separate datasets for the rest of the data cleaning process,
-and combine them to create analysis datasets.
+the easiest way to handle the data is often to break it into two tidy datasets:
+one at the household level, and one at the member level.
+You will use these separate datasets for the rest of the data cleaning process.
 
 % How to tidy data
 Creating these two tidy datasets will involve a few different transformations.
@@ -156,46 +213,49 @@ where each row represents the highest level of observation,
 and variables observed in nested units are separated into one column per sub-unit,
 such as \texttt{age\_1}, \texttt{gender\_1}, \texttt{age\_2}, \texttt{gender\_2}, etc.
 To create tidy datasets from this data,
-you first need to identify which variables where observed at which levels.
-In our example, the material used in the main house was collected at household level (the higher unit),
+you first need to identify which variables were observed at which levels.
+In our example, the presence of a refrigerator was collected at household level (the higher unit),
 while age and gender where observed at the member sub-unit.
-You should then separate these variables,
-creating a now tidy dataset containing the unique row ID and the household level variables;
-and another dataset containing the unique row ID and the household-member level variables.
-Finally, you need to \textbf{reshape}\sidenote{\textbf{Reshape:}
+These two sets of variables will be separated.
+Create a tidy dataset containing only the unique row ID and the household level variables.
+Then create another dataset containing only the unique row ID and the household-member level variables.
+Note that the household-member dataset is still not tidy.
+It needs to be \textbf{reshaped}\sidenote{\textbf{Reshape:}
 	transform a dataset in such a way that the unit of observation represented by a row changes.}
-the household-member dataset to a \textbf{longer} format,
-where there is a new variable indicating the member ID,
-and the \texttt{gender} and \texttt{age} variables are each represented by one column.
-You can do this using \texttt{reshape} in Stata, and \texttt{reshape2} or \texttt{pivot\_longer} in R.
+to a \textbf{long} format.
+The reshaped data set will have a new variable indicating the member ID,
+and its unique identifier will be the combination of household ID and member ID.
+This is a tidy dataset, where
+the \texttt{gender} and \texttt{age} variables are each represented by one column.
+The reshape can be done using \texttt{reshape} in Stata, and \texttt{reshape2} or \texttt{pivot\_longer} in R.
 
 % Polishing tidy data
-Note that, in this example, 
-the household-member level dataset is now uniquely and fully identifiable
-by a combination of two variables:
-the household level row ID \textit{and} the household-member ID inside each household.
-One key aspect in this process is to make sure that these ID variables are consistent across tables.
+One key aspect in this process is to make sure that ID variables are consistent across tables.
 This means that if you want to calculate the share of women members in a household,
-and link it back to the household level table, 
-you should be able to do so through the household level row ID.
+and link it back to the household-level table, 
+you should be able to do so through the household-level row ID.
 Another possible consequence of reshaping to keep in mind is that
 empty observations may be created in the long dataset
 (this is particularly the case in Stata).
-Remember do remove such observations,
-or they may bias aggregated measures -- counts in particular.
+Remember to remove such observations,
+or they may bias aggregated measures --
+counts and proportions in particular.
 
 % Generalizing
-If each row in the untidy data set represents the lower level of observation,
-the same data point for the higher level of observation will be repeated for all its sub-units.
-After you have separated into two tables containing the variables observed at each level,
-the table that contains the smaller level will already be in a tidy format.
-So all you need to do is make sure that all rows for the larger unit have the same value for each variable.
+Alternatively, if each row in the untidy data set represents the lower level of observation,
+the same data point for each higher level of observation will be repeated in many rows.
+After you have separated the data into two tables containing the variables observed at each level,
+the table that contains the lower level will already be in a tidy format.
+Then all you need to do is make sure that 
+all rows for the same larger unit have the same value for each variable,
+and drop duplicated observations,
+so that there is only one row per unit.
 The tidying process can get more complex if the instrument includes multiple nested groups.
 In agricultural surveys, it is not uncommon to find household-plot-season-crop level observations,
 as well as different combinations of these level,
 such as household-plot and household-crop-season, in the same dataset.
 That means the steps of identifying the unit of observation of each variable
-and reshaping the separated tables needs to be repeated multiple times.
+and reshaping the separated tables need to be repeated multiple times.
 In these case, it is particularly important to be mindful of cross-table identifiers,
 as they are often not the same as wide variables suffixes.
 
@@ -216,6 +276,10 @@ This is why we suggest getting your data into a tidy format as early as possible
 % Intro
 Whether you are acquiring data from a partner or collecting it directly,
 it is important to make sure that data faithfully reflects ground realities.
+Although original data typically requires more extensive checks than secondary data,
+you should carefully examine and clean any data you are about to use.
+When reviewing raw data, you will inevitably encounter data entry mistakes,
+such as typos and inconsistent values.
 Data quality assurance requires a combination of real-time data checks
 and back-checks or validation audits, which often means tracking down
 the people whose information is in the dataset.
