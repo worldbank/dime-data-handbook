@@ -619,23 +619,55 @@ from the field, to also send confidential data,
 such as an identifying list of respondents, to the field.
 
 
-\subsection{Storing data securely}
-% doesn't cover 'big' data
-For analysis, you will need to transfer the data from the data collection software to
-a secure location on your computer or a cloud drive.
-Instead, at this stage you need \textbf{symmetric encryption}\sidenote{
-  \url{https://dimewiki.worldbank.org/Encryption\#Symmetric\_Encryption}}.
-In this set-up, a single key is used to both encrypt and decrypt the information.
-Since only one key is used, the workflow can be simplified:
-re-encryption after decrypted access can be done automatically,
-and the same secure folder can be used for multiple files.
-Data should be stored in an encrypted folder,
-using, for example, VeraCrypt.\sidenote{
-	\url{https://www.veracrypt.fr} and \url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
-These files can be interacted with and modified like any unencrypted file,
- as long as you have the key.
-The following workflow allows you to receive data and store it securely,
-without compromising data security:
+\subsection{Receiving or sharing data securely}
+
+If you receive confidential data from a partner organization 
+or share confidential data with your research team over the internet,
+it must always be encrypted.  
+The best practice to reduce the amount of confidential data shared or transfer.
+If you do not need the confidential information you will simplify your workflow
+by not collecting or reviving confidential data in the first place.
+This should always be your first option when possible.
+
+Usually we need to deal with confidential data at some point in the project, 
+and then the second best practice is create two versions of your data. 
+One version of your data will still have the confidential information,
+and it will need to be encrypted at all times. 
+This version should only be used when the confidential information is actually needed.
+In the second version of the data all confidential data should be removed,
+and this version does not have to be encrypted 
+and should be the data that you use on a day-to-day basis.
+
+The most common reason a data is confidential is that it includes personal identifiers. 
+Removing identifying information is called de-identification,
+and we will discuss how to do that in the next chapter. 
+De-identifying the data, at the earliest possible opportunity 
+will simplify the workflow without compromising data security.
+Another method of making data less confidential is to aggregate the data, 
+meaning that we calculate sums and averages of group of observation and report only those numbers.
+Any of these techniques can be used either before the data is shared with the research team,
+or when creating the second non-confidential version of the data set to be used in the analysis.
+If confidential information is directly required for the analysis itself,
+it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
+The data that is no longer confidential does no longer need to be encrypted when shared.
+
+There are multiple options on how to share data encrypted. 
+If you need to collaborate on a confidential data set 
+then you can create an encrypted folders using VeraCrypt as described above.
+An encrypted folder can be shared the same way you share a normal file
+and it can even be shared shared using insecure modes of communication
+such as email or third-party syncing services.
+Anyone who has access to both the encrypted folder and the encryption key
+can read and collaborate on the encrypted file.
+
+If you only need a one-time transfer of a confidential data set, 
+for example when receving data from a partner organization,
+then the setting up an encrypted folder might not be feasible.
+Instead, for one-time transfers you can send data over password protected end-to-end encrypted file sharing services.\sidenote{
+	One such service at the time of writing is https://send.firefox.com/} 
+
+
+
 
 \begin{enumerate}
 	\item Create a secure encrypted folder in your project folder.
