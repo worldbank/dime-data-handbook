@@ -267,8 +267,13 @@ Cleaning and constructing wide datasets, in particular,
 is a repetitive and error-prone process.
 The next step of data cleaning, data quality monitoring,
 may involve comparing different units of observation.
-Aggregating sub-units to compare to a higher unit is much easier with tidy data.
-This is why we suggest getting your data into a tidy format as early as possible in your workflow. 
+Aggregating sub-units to compare to a higher unit is much easier with tidy data,
+which is why we suggest getting your data into a tidy format as early as possible in your workflow. 
+In addition to that, in the case of survey data,
+tidying datasets will guarantee a one-to-one correspondence
+between questions in the questionnaire and columns in the data.
+Preparing the data for analysis, the last task in this chapter, 
+is much simpler when that is the case. 
  
 %------------------------------------------------
 \section{Data quality assurance}
@@ -303,7 +308,7 @@ and set up and perform \textbf{high-frequency checks (HFCs)} with the incoming d
 
 % Why they should be made in real-time
 High-frequency checks (HFCs) should carefully inspect key treatment and outcome variables
-so that the data quality of core experimental variables is uniformly high,
+so that the data quality of core study variables is uniformly high,
 and that additional effort is centered where it is most important.
 Data quality checks should be run on the data every time it is received from the field or partner
 to flag irregularities in the aquisition progress, in sample completeness, or in response quality.
@@ -328,21 +333,21 @@ which may occur due to data entry errors or failed submissions to data servers.\
 provides a workflow for collaborating on the resolution of duplicate entries between you and the provider.
 Then, observed units in the data must be validated against the expected sample:
 this is as straightforward as merging the sample list with the survey data and checking for mismatches.
-Reporting errors and duplicate observations in real-time allows the field team to make corrections efficiently.
+Reporting errors and duplicate observations in real time allows the field team to make corrections efficiently.
 Tracking data collection progress is important for monitoring attrition,
 so that it is clear early on if a change in protocols or additional tracking will be needed.
-It is also important to check data collection completion rate
-and sample compliance by surveyor and survey team, if applicable,
+It is also important to check data collection completion rates
+and sample compliance by surveyors and survey teams, if applicable,
 or compare data missingness across administrative regions,
 to identify any clusters that may be providing data of suspect quality.
 
 % Consistency
 High frequency checks should also include content-specific data checks.
-Electronic survey and data entry software often incorporates many quality control features,
+Electronic survey and data entry software often incorporate many quality control features,
 so these checks should focus on issues survey software cannot check automatically.
 As most of these checks are project specific,
 it is difficult to provide general guidance.
-An in-depth knowledge of the questionnaire and a careful examination of the analysis plan
+A retailed knowledge of the questionnaire and a careful examination of the analysis plan
 is the best preparation.
 Examples include verifying consistency across multiple response fields or data sources,
 validation of complex calculations like crop yields or medicine stocks (which require unit conversions),
@@ -366,7 +371,7 @@ these can be sent directly to the data collection teams.
 Many teams choose other formats to display results,
 such as online dashboards created by custom scripts.
 It is also possible to automate communication of errors to the field team
-by adding scripts to link the HFCs with a messaging program such as WhatsApp.
+by adding scripts to link the HFCs with a messaging platform.
 Any of these solutions are possible:
 what works best for your team will depend on such variables as
 cellular networks in field work areas, whether field supervisors have access to laptops,
@@ -382,7 +387,7 @@ original data collection provides the opportunity to make sure
 that there is no error arising from inaccuracies in the data itself.
 \textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/Back\_Checks}} and
 other validation audits help ensure that data collection is following established protocols,
-and that data is not fasified, incomplete, or otherwise suspect.
+and that data is not falsified, incomplete, or otherwise suspect.
 For back-checks and validation audits, a random subset of the main data is selected,
 and a subset of information from the full survey is
 verified through a brief targeted survey with the original respondent
@@ -414,12 +419,12 @@ Up to this point, you were probably handling confidential data.
 This is due to the fact that effective data quality monitoring
 frequently requires you to identify the individual observations in your dataset,
 and the people who acquired information about them.
-Having this data will allow you to quickly follow-up on issues identified,
+Having this data will allow you to quickly follow up on issues identified,
 and verify what caused them.
 Handling confidential data such as \textbf{personally-identifying information}\index{
 	personally-identifying information}
 requires a secure environment and often involves
-decrypting data before accessing it, and encrypting it back afterward.
+decrypting data before accessing it.
 De-identifiying the data simplifies this workflow and reduces the risk of harmful leaks.
 This section describes how to perform de-identification of data 
 to be shared within a research team and with a wider audience.
@@ -432,20 +437,20 @@ Most of the field research done in development involves human subjects.\sidenote
 \index{human subjects}
 As a researcher, you may have access to personal information about your subjects:
 where they live, how rich they are, whether they have committed or been victims of crimes,
-their names, their national identity numbers, among other sensitive data.
+their names, their national identity numbers, and other sensitive data.
 PII data carries strict expectations about data storage and handling,
 and it is the responsibility of the research team to satisfy these expectations.\sidenote{
 	\url{https://dimewiki.worldbank.org/Research\_Ethics}}
-Your donor or employer will most likely require you to hold a certification from a source
+Your funder or employer will most likely require you to hold a certification from a source
 such as Protecting Human Research Participants\sidenote{
 	\url{https://phrptraining.com}}
 or the CITI Program;\sidenote{
 	\url{https://about.citiprogram.org/en/series/human-subjects-research-hsr}}
-and your team will need to present a plan to handle this data securely for IRB approval.
+and your team will need to present a plan to handle data securely for IRB approval.
 
 % Options for dealing with PII data: only collect it if extremely necessary, encrypt it, restrict access, de-identify it
 In general, though, you shouldn't need to handle PII data very often
-once the data collection processes are completed.
+once data collection is completed.
 You can take simple steps to avoid risks by minimizing the handling of PII.
 First, only collect information that is strictly needed for the research.
 Second, avoid the proliferation of copies of identified data.
@@ -454,8 +459,8 @@ and it must always be encrypted.
 Even within the research team,
 access to PII data should be limited to team members who require it for their specific tasks.
 Data analysis that requires identifying information is rare
-and in most cases can be avoided by properly linking identifiers to research information
-such as treatment statuses and weights, then removing identifiers.
+and in most cases can be avoided by properly linking masked identifiers to research information
+such as treatment statuses and weights, then removing unmasked identifiers.
 
 % De-identification vs anonymization
 Therefore, once data is securely collected and stored,
@@ -485,25 +490,29 @@ The following section describes how to implement these processes.
 \subsection{De-identification in practice}
 
 % Initial de-identification
-To simplify workflows, the raw data should be de-identified as early as possible.
+To simplify workflows, the data should be de-identified as early as possible.
 Once you create a de-identified version of the dataset,
 you no longer need to interact directly with the encrypted raw data.
+Note that if the raw data contained different units of observation,
+at this point your dataset should consist of set of tidy tables.
+In this case, each of them needs to be de-identified separately, but
+the workflow will be the same for all of them.
+
 During the initial round of de-identification, 
-dataset must be stripped of personally identifying information.\sidenote{
+datasets must be stripped of personally identifying information.\sidenote{
 	\url{https://dimewiki.worldbank.org/De-identification}}
 To do so, you will need to identify all variables that contain
 such information.\sidenote{\url{
 		https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
 For data collection, where the research team designs the survey instrument,
-flagging all potentially identifying variables in the questionnaire design stage
+flagging all potentially identifying variables at questionnaire design stage
 simplifies the initial de-identification process.
 If you did not do that, or you received original data by another means,
 there are a few tools to help flag variables with personally-identifying data.
-JPAL's \texttt{PII scan} and
+JPAL's \texttt{PII-scan} and
 IPA's \texttt{PII\_detection}\sidenote{
 	\url{https://github.com/PovertyAction/PII\_detection}}, 
-as indicated by their names,
-scans variable names and labels for common string patterns associated with identifying information.\sidenote{
+scan variable names and labels for common string patterns associated with identifying information.\sidenote{
 	\url{https://github.com/J-PAL/PII-Scan}}
 The World Bank's \texttt{sdcMicro}
 lists variables that uniquely identify observations, 
@@ -525,6 +534,7 @@ but you can not go back in time and drop a PII variable that was leaked
 because it was incorrectly kept.
 Examples include respondent names and phone numbers, enumerator names, taxpayer 
 numbers, and addresses.
+
 For each confidential variable that is needed in the analysis, ask yourself:
 \textit{can I encode or otherwise construct a variable that masks the confidential component, and
 	then drop this variable?}
@@ -537,14 +547,16 @@ If the answer to either of the two questions above is yes,
 all you need to do is write a script to drop the variables that are not required for analysis,
 encode or otherwise mask those that are required,
 and save a working version of the data.
-If confidential information strictly required for the analysis itself and can not be
+If confidential information is strictly required for the analysis itself and cannot be
 masked or encoded,
 it will be necessary to keep at least a subset of the data encrypted through
 the data analysis process.
 
 % Final de-identification: sdcMicro
-The dataset created by the initial de-identification will be the underlying source for all cleaned and constructed data.
-This is the dataset that you will interact with directly during the remaining tasks described in this chapter.
+After the this step, your dataset will consist of one or multiple tidy, 
+de-identified tables.
+This is the underlying source for all cleaned and constructed data,
+the dataset that you will interact with directly during the remaining tasks described in this chapter.
 Because identifying information is typically only used during data collection,
 when teams need to find and confirm the identity of interviewees,
 de-identification should not affect the usability of the data.
@@ -565,12 +577,15 @@ which will be discussed in more detail in chapter \ref{ch:7}.
 
 % What is data cleaning
 The last step in the data cleaning process involves
-(1) making the dataset easy to use and understand, and 
-(2) carefully exploring each variable to document their distributions 
+making the dataset easy to use and understand, and 
+carefully exploring each variable to document their distributions 
 and identify patterns that may bias the analysis.
 The resulting dataset will contain only the variables collected in the field, and
 no modifications to data points will be made, 
 except for corrections of mistaken entries.
+You may have more tables in your dataset now then originally received,
+and they may have a different \textit{format},
+but the information contained is still the same.
 Apart from the \textbf{cleaned dataset} (or datasets) itself,
 cleaning will also yield extensive documentation describing  it.
 
@@ -596,13 +611,13 @@ there may not be time to explore the data at length.
 During data cleaning, on the other hand, 
 you will need to inspect each variable closely.
 Use tabulations, summary statistics, histograms and density plots to understand the structure of data,
-and look for irregularities.
+and look for patterns or irregularities.
 Think critically about what you see:
 are the values shown consistent with the information the variable represents?
 How do distributions look? 
-Are there any outliers, or missing values?
+Are there any outliers or missing values?
 Could distributional patterns be caused by data entry errors?
-Are variables consistent with each other?
+Are related variables consistent with each other?
 
 % Document patterns rather than fix them
 At this point, it is more important to document your findings
@@ -633,7 +648,7 @@ Therefore, there's an argument for using data quality monitoring tools
 as a tool to detect completely fraudulent observations and
 revisiting data collection protocols or decisions.
 On the other hand, there is also an argument to be made
-against keeping clear typing errors that have been found or
+against keeping clear typing errors that have been found or for
 collecting data about mistakenly skipped survey modules.
 
 % Documentation
