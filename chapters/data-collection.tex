@@ -583,43 +583,40 @@ and instead the data is stored and processed in a cloud environment.
 There are many available cloud storage solutions
 and you need to understand how the data is encrypted and how the keys are handled.
 This is likely another case where a regular research team will have to ask a cybersecurity expert.
+
+\subsection{Collecting data securely in the field}
+
+All common data collection software will automatically encrypt
+all data in transit (i.e., upload from field or download from server).
+However, it is also necessary to ensure that confidential data 
+are private when stored on a cloud server.
 You should not assume that your data is encrypted-at-rest by default.
 In most data collection platforms,
 encryption-at-rest needs to be explicitly enabled and operated by the user.
-There is no automatic way to implement this,
-because the encryption key may
-never pass through the hands of a third party,
-including the data storage application.
-Most survey software implement \textbf{asymmetric encryption}\sidenote{
-  \url{https://dimewiki.worldbank.org/Encryption\#Asymmetric\_Encryption}}
-where there are two keys in a public/private key pair.
-Only the private key can be used to decrypt the encrypted data,
-when the public key is used to encrypt the data.
-It is therefore safe to send the public key
-to the tablet or the browser used to collect the data.
 
-When you enable asymmetric encryption, the survey software will allow you to create and
-download -- once -- the public/private key pair needed to encrypt and decrypt the data.
-You upload the public key when you start a new survey, 
-and all data encrypted using that public key when collected, 
-can only be accessed with the private key from that specific public/private key pair.
-You must store the key pair in a secure location, 
+When collecting data you want the tablets or the browsers used to collect data
+to be able to encrypt all information before submitting it to the server. 
+At the same time you do not want those devices to have any way of decrypting already submitted data.
+This is a perfect use case for \textbf{asymmetric encryption}
+where there are two keys in a public/private key pair.
+The public key can safely be sent to all tablet or the browser to be used for encrypting the data.
+Only the private key in the same key pair can be used to decrypt that data.
+The private key should be kept secret and not be shared with anyone not listed on the IRB.
+Again, you must store the key pair in a secure location, 
 such as in a secure note in a password manager,
 as there is no way to access your data if the private key is lost.
-Make sure you store your keys with descriptive names to match the survey to which they correspond.
-Any time anyone accesses the data --
-either when viewing it in the browser or downloading it to your computer --
-they will be asked to provide the key.
-Only project team members named in the IRB are allowed access private keys 
-that can be used to decrypt sensitive data.
+
+Data secured this way can securely pass through the server owned by the data collection software provider,
+and you should never decrypt it until it is downloaded on your computer.
+If your data collection service allows you to browse data in the browser, 
+then the encryption is only implemented correctly if you are asked for the key each time.
+
+
 
 \subsection{Storing data securely}
 % doesn't cover 'big' data
 For analysis, you will need to transfer the data from the data collection software to
 a secure location on your computer or a cloud drive.
-While public/private key encryption is optimal for one-way transfer
-from the data collection device to the data collection server,
-it is not practical once you start interacting with the data.
 Instead, at this stage you need \textbf{symmetric encryption}\sidenote{
   \url{https://dimewiki.worldbank.org/Encryption\#Symmetric\_Encryption}}.
 In this set-up, a single key is used to both encrypt and decrypt the information.
