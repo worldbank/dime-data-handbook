@@ -676,38 +676,38 @@ so it is important for it to be easily processed by statistical software.
 To make the analysis process smoother, 
 anyone opening it for the first time should have all the information needed to interact with it,
 even if they were not involved in the acquisition or cleaning process.
-This will save them time going back as forward between the dataset and its accompanying documentation. 
+This will save them time going back and forth between the dataset and its accompanying documentation. 
 
 % Encoding variables
 Often times, datasets are not imported into statistical software in the most efficient format.
-The most common example are string variables:
+The most common example is string (text) variables:
 categorical variables and open-ended responses are often read as strings.
-However, variables in these format cannot be used for quantitative analysis.
-Therefore, categorical variables must be transformed into easier to use formats,
+However, variables in this format cannot be used for quantitative analysis.
+Therefore, categorical variables must be transformed into other formats,
 such as \texttt{factors} in R and \texttt{labeled integers}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Value\_Labels}} in Stata.
 Additionally, open-ended responses stored as strings usually have a high risk of being identifiers, 
 so cleaning them requires extra attention.
-The option names in categorical variables
+The choice names in categorical variables
 (called \textit{value labels} in Stata and \textit{levels} in R)
 should be accurate and concise, 
-and correspond exactly to the data collection instrument.
-Adding option names to categorical variables 
+and link directly to the data collection instrument.
+Adding choice names to categorical variables 
 makes it easier to understand your data as you explore it,
 and thus reduces the risk of small errors making their way through into the analysis stage.
 
 % Recoding missing values
 In survey data, it is common for non-responses such as ``Don't know'' and ``Declined to answer''
-to be represented by negative survey codes. 
-The presence of these negative values could bias your analysis,
-since they don't represent actual observations of a variable.
-So they need to be turned into \textit{missing values}.
-However, the fact that a respondent didn't know how to answer a question is also useful information,
-that would be lost by this transformation.
+to be represented by arbitrary survey codes. 
+The presence of these values could bias your analysis,
+since they don't represent actual observations of an attribute.
+They need to be turned into \textit{missing values}.
+However, the fact that a respondent didn't know how to answer a question is also useful information
+that would be lost by simply omitting all information.
 In Stata, this information can be elegantly conserved using extended missing values.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
 
 % Labeling variables
-We recommend that the cleaned data set by kept as similar to the raw data as possible.
+We recommend that the cleaned dataset be kept as similar to the raw data as possible.
 This is particularly important regarding variable names:
 keeping them consistent with the raw data makes data processing and construction more transparent.
 Unfortunately, not all variable names are informative.
@@ -715,7 +715,7 @@ In such cases, one important piece of documentation,
 the variable dictionary, makes the data easier to handle.
 When a data collection instrument is available, 
 it is often the best dictionary one could ask for.
-But even in this cases, going back-and-forth between files can be inefficient,
+But even in this cases, going back and forth between files can be inefficient,
 so annotating variables in a dataset is extremely useful.
 In Stata, \textit{variable labels}\sidenote{\url{
 	https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Variable\_Labels}} must always be present in a cleaned dataset.
@@ -772,9 +772,11 @@ and they should be published along with the data,
 so other researchers may use them for their analysis as well.
 
 Once you have a cleaned, de-identified dataset and the documentation to support it,
-you have created the first data output of your project: a publishable dataset.
-The chapter \ref{ch:7} will get into the details of data publication.
-For now, all you need to know is that your team should consider submitting this dataset for publication,
+you have created the first research output of your project: a dataset.
+Chapter 7 will get into the details of data release.
+For now, all you need to know is that your team 
+should consider submitting this dataset for publication,
+or at least archiving and cataloguing,
 even if it will remain embargoed for some time.
 This will help you organize your files and create a backup of the data,
 and some donors require that the data be filed as an intermediate step of the project.
