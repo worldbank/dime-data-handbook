@@ -553,39 +553,36 @@ In all other cases you should follow the steps laid out in this section,
 where you set up your own encryption where you can be sure who has access to the key.
 
 
-\subsection{Collecting data securely}
-Generating data through surveys requires special considerations for data security.
-Most common data collection software will automatically encrypt
-all data in transit (i.e., upload from field or download from server).\sidenote{
-  \url{https://dimewiki.worldbank.org/Encryption\#Encryption\_in\_Transit}}
-If this is implemented by the software you are using,
-then your data will be encrypted from the time it leaves the device
-(in tablet-assisted data collection) or browser (in web data collection),
-until it reaches the server.
-Therefore, as long as you are using an established survey software,
-this step is largely taken care of.
-However, the research team must ensure that all computers, tablets,
-and accounts that are used in data collection have a secure logon
-password and are never left unlocked.
+\subsection{Storing data securely}
+% doesn't cover 'big' data
+The first thing you need to do before planning how to securely receive data, 
+is to plan how to securely store data after you have received it.
+You can either store your data on your computer or in a cloud storage.
 
-Encryption-in-transit means that data is safe while it is being transmitted,
-but it is not automatically secure when it is being stored.
-\textbf{Encryption-at-rest}\sidenote{
-  \url{https://dimewiki.worldbank.org/Encryption\#Encryption\_at\_Rest}}
-is necessary to ensure that confidential data are private when stored on a cloud server.
-You must keep your data encrypted on the data collection server whenever PII is collected,
-or when this is required by the data sharing agreement.
-If you do not, the raw data will be accessible by
-individuals who are not approved by your IRB,
-such as tech support personnel,
-server administrators, and other third-party staff.
-Encryption-at-rest must be used to make
-data files completely unusable to anyone without the specific decryption key 
--- a higher level of security than password-protection.
-Encryption-at-rest requires active participation from the user,
-and you should be fully aware that if your decryption key is lost,
-there is absolutely no way to recover your data.
+You need to both be able to add data to your secure storage
+and access it when you want to work with it.
+That is a perfect use case for \textbf{symmetric encryption} 
+where the same key is used to both encrypt and decrypt your files.
+Think of this as a physical safe where you have one key 
+used to both add content and access content.
 
+The equivalent to a safe in secure data storage is an encrypted folder,
+and you can set them up using, for example, VeraCrypt.\sidenote{
+	\url{https://www.veracrypt.fr} and
+	\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
+Files in an encrypted folder can be interacted with and modified like any unencrypted file,
+as long as you have the key.
+This is an implementation of encryption-at-rest
+There is absolutely no way to restore your data if you were to lose your key, 
+so we cannot stress enough the importance of using a password manager,
+or equally secure solution, to store your key.
+
+It is becoming more and more common that development research
+is done on data set that is too big to store on a regular computer,
+and instead the data is stored and processed in a cloud environment. 
+There are many available cloud storage solutions
+and you need to understand how the data is encrypted and how the keys are handled.
+This is likely another case where a regular research team will have to ask a cybersecurity expert.
 You should not assume that your data is encrypted-at-rest by default.
 In most data collection platforms,
 encryption-at-rest needs to be explicitly enabled and operated by the user.
