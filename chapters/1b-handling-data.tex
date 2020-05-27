@@ -40,6 +40,7 @@
 
 \section{Ensuring privacy and security in research data}
 
+% What is PII
 Anytime you are working with original data in a development research project,
 you are almost certainly handling data that include \textbf{personally-identifying
 	information (PII)}.\index{personally-identifying information}\index{primary data}\sidenote{
@@ -63,6 +64,7 @@ There is no one-size-fits-all solution to determine what is PII, and you will ha
 to decide which pieces of information fall into this category.\sidenote{
 	\url{https://sdcpractice.readthedocs.io}}
 
+% PII regulation: IRB, consent, data security, participant privacy
 In all cases where this type of information is involved,
 you must make sure that you adhere to several core principles.
 These include ethical approval, participant consent, data security, and participant privacy.
@@ -76,6 +78,7 @@ a set of regulations governing \textbf{data ownership} and privacy standards.\si
 	\textbf{Data ownership:} the set of rights governing who may access, alter, use, or share data, regardless of who possesses it.}
 \index{data ownership}
 
+% Data ownership and confidentiality
 In all settings, you should have a clear understanding of
 who owns your data (it may not be you, even if you collect or possess it),
 the rights of the people whose information is reflected there,
@@ -96,6 +99,7 @@ knowingly or recklessly ignores these considerations.
 
 \subsection{Obtaining ethical approval and consent}
 
+% What is an IRB
 For almost all data collection and research activities that involve
 human subjects or PII data,
 you will be required to complete some form of \textbf{Institutional Review Board (IRB)} process.\sidenote{
@@ -112,6 +116,7 @@ and if work is being done in an international setting,
 approval is often also required
 from an appropriate local institution subject to the laws of the country where data originates.
 
+% Privacy and consent
 One primary consideration of IRBs
 is the protection of the people about whom information is being collected
 and whose lives may be affected by the research design.
@@ -132,6 +137,7 @@ There are special additional protections in place for vulnerable populations,
 such as minors, prisoners, and people with disabilities,
 and these should be confirmed with relevant authorities if your research includes them.
 
+% when to get IRB approval
 IRB approval should be obtained well before any data is acquired.
 IRBs may have infrequent meeting schedules
 or require several rounds of review for an application to be approved.
@@ -146,6 +152,7 @@ you should not have any issues complying with these regulations.
 
 \subsection{Transmitting and storing data securely}
 
+% Password protection and need for encryption of confidential information
 Secure data storage and transfer are ultimately your personal responsibility.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data_Security}}
 There are several precautions needed to ensure that your data is safe.
@@ -163,6 +170,7 @@ Datasets that include confidential information
 	\url{https://dimewiki.worldbank.org/Encryption}}
 during data collection, storage, and transfer.\index{encryption}\index{data transfer}\index{data storage}
 
+% Encryption in transit and at rest: how to deal with confidential data in practice
 Most modern data collection software has features that,
 if enabled, make secure transmission straightforward.\sidenote{
 	\url{https://dimewiki.worldbank.org/Encryption\#Encryption\_in\_Transit}}
@@ -181,6 +189,7 @@ of the decryption key to make it automatic. When confidential data is stored on 
 computer it must always remain encrypted, and confidential data may never be sent unencrypted
 over email, WhatsApp, or other chat services.
 
+% Prefer not using PII data
 The easiest way to reduce the risk of leaking confidential information is to use it as rarely as possible.
 It is often very simple to conduct planning and analytical work
 using a subset of the data that does not include this type of information.
@@ -190,6 +199,7 @@ such as implementing an intervention
 or submitting survey data,
 you must actively protect that information in transmission and storage.
 
+% Tools for data security
 There are plenty of options available to keep your data safe,
 at different prices, from enterprise-grade solutions to free software.
 It may be sufficient to hold identifying information in an encrypted service,
@@ -208,6 +218,7 @@ and what the expiry of the data and the planned deletion processes are.
 
 \subsection{De-identifying data}
 
+% Human subject certificates are usually required for people handling PII
 Most of the field research done in development involves human subjects.\sidenote{
 	\url{https://dimewiki.worldbank.org/Human_Subjects_Approval}}
 \index{human subjects}
@@ -223,6 +234,7 @@ such as Protecting Human Research Participants\sidenote{
 or the CITI Program.\sidenote{
 	\url{https://about.citiprogram.org/en/series/human-subjects-research-hsr}}
 
+% Options for dealing with PII data: only collect it if extremely necessary, don't create multiple copies, encrypt it, restrict access, de-identify it
 In general, though, you shouldn't need to handle PII data very often
 once the data collection processes are completed.
 You can take simple steps to avoid risks by minimizing the handling of PII.
@@ -237,6 +249,7 @@ Analysis that requires PII data is rare
 and can be avoided by properly linking identifiers to research information
 such as treatment statuses and weights, then removing identifiers.
 
+% de-identification vs anonymization
 Therefore, once data is securely collected and stored,
 the first thing you will generally do is \textbf{de-identify} it,
 that is, remove direct identifiers of the individuals in the dataset.\sidenote{
@@ -248,11 +261,13 @@ will be re-linked to the data collected about them
 -- even if that data has had all directly identifying information removed --
 by using some other data that becomes identifying when analyzed together.
 For this reason, we recommend de-identification in two stages.
+% initial de-identification: remove direct identifiers
 The \textbf{initial de-identification} process strips the data of direct identifiers
 as early in the process as possible,
 to create a working de-identified dataset that
 can be shared \textit{within the research team} without the need for encryption.
 This simplifies workflows.
+% final de-identification: evaluate risk of disclosure before publishing
 The \textbf{final de-identification} process involves
 making a decision about the trade-off between
 risk of disclosure and utility of the data
