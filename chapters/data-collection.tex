@@ -533,7 +533,7 @@ as long as you are using well established services.
 Encryption-at-rest protects your data when it is stored on a server or your computer.
 Since the storage time is longer than instantaneous,
 you as a user, need to keep track of the key. 
-Anyone with access to the key has access to the sensitive data.
+Anyone with access to the key has access to the confidential data.
 If you do not, the raw data will be accessible by
 individuals who are not approved by your IRB,
 such as tech support personnel,
@@ -668,24 +668,33 @@ Instead, for one-time transfers you can send data over password protected end-to
 
 
 
+\subsection{Backing up original data}
+
+While encryption is protecting your data from unauthorized access,
+you also need to protect your data from being accidentally over-written or deleted.
+This is done through a back-up protocol. This is an example of such a protocol:
 
 \begin{enumerate}
-	\item Create a secure encrypted folder in your project folder.
-  This should be on your computer, and could be in a shared folder.
-  
-	\item Download data from the data collection server to that secure folder.
+	\item Create a encrypted folder in your project folder.
+	This should be on your computer, and could be in a shared folder.
+	
+	\item Download data from the data collection server to that encrypted folder.
 	If you encrypted the data during data collection, you will need \textit{both} the
 	private key used during data collection to be able to download the data,
-	\textit{and} the key used when you created the secure folder to save it there.
+	\textit{and} the key used when you created the encrypted folder to save it there.
 	This your first copy of your raw data, and the copy you will use in your cleaning and analysis.
 	
-	\item Create a secure folder on an external drive that you can keep in a secure location.
-	Copy the data you just downloaded to this second secure	folder.
+	\item Create a second encrypted folder on an external drive that you can keep in a secure location.
+	Copy the data you just downloaded to this second encrypted folder.
 	This is the ``master'' backup copy of the raw data. 
 	You should never work with this data on a day-to-day basis.
-	(Instead of creating a second secure folder, you can simply copy the first secure folder.)
+	You should not use the same encrypted folder or the same key, 
+	because if you use the same key and lose the key, 
+	then you will have lost access to both encrypted folders. 
+	If you have an physical safe where you can securely store the external drive, 
+	then you do not need to encrypt the data and thereby do not risk losing access by losing an encryption key.
 	
-	\item Finally, create a third secure folder.
+	\item Finally, create a third encrypted folder.
 	Either you can create this on your computer and upload it to a long-term cloud storage service,
 	or you can create it on	an external hard drive that you then store in a second location,
 	for example, at another office of your organization.
@@ -693,13 +702,12 @@ Instead, for one-time transfers you can send data over password protected end-to
 	You should never store the ``golden master'' copy in a synced folder, 
 	as it would be deleted in the cloud storage if it is deleted on your computer.
 	You should also never work with this data on a day-to-day basis.
-	(Instead of creating a third secure folder, you can simply copy the first secure folder.)
 \end{enumerate}
 
 \noindent This handling satisfies the \textbf{3-2-1 rule}:
 there are two on-site copies of the data and one off-site copy,
 so the data can never be lost in case of hardware failure.\sidenote{
-  \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy}}
+	\url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy}}
 %needs wiki page
 However, you still need to keep track of your encryption keys as without them your data is lost.
 If you remain lucky, you will never have to access your ``master'' or ``golden master'' copies --
