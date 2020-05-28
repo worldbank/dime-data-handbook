@@ -121,7 +121,9 @@ is randomly selected to receive the treatment
 later in this chapter for how to implement this).
 The intuition is that if everyone in the eligible population
 is assigned at random to either the treatment or control group,
-then the two groups will, on average, be statistically indistinguishable.
+then the two groups will, on average, be statistically indistinguishable,
+The treatment will therefore not be correlated with anything 
+but the impact of that treatment.\cite{duflo2007using}
 
 To randomly assign treatment you need data
 about all the individuals in the eligible population.
@@ -566,15 +568,14 @@ so long as it is carefully thought through from this perspective.
 \subsection{Randomized treatment assignment}
 
 % what does randomized assignment mean
-\textbf{Randomized treatment assignment} is the process of assigning observations into treatment arms.
+\textbf{Randomized treatment assignment} is the process of assigning observations into treatment arms,
+and this is central to experimental research design.
 Most of the code processes used for random assignment are the same as those used for sampling,
 since it is also a process of splitting a a list of observations into groups.
 Where sampling determines whether a particular individual
 will be observed at all in the course of data collection,
 random assignment determines if each individual will be observed
 as a treatment observation or used as a counterfactual.
-Randomizing a treatment assignment guarantees that, \textit{on average},
-the treatment will not be correlated with anything but the impact of that treatment.\cite{duflo2007using}
 
 
 % How randomization code differs from sampling code
