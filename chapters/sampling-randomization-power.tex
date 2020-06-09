@@ -1,9 +1,9 @@
 %-----------------------------------------------------------------------------------------------
 
 \begin{fullwidth}
-	
+
 	INTRO IS NOT RE-WRITTEN YET AS I WANT US TO FINALIZE CONTENT FIRST
-	
+
 	Sampling and randomized assignment are two core elements of research design.
 	In experimental methods, sampling and randomization directly determine
 	the set of individuals who are going to be observed
@@ -40,6 +40,19 @@
 	sampling and randomization designs and to make optimal choices when planning studies.
 
 
+  This section covers how these different designs
+  determine how you should plan data accordingly.
+  Your project's data requirements will depend on your project's research design.
+  \index{research designs}
+  There are many published resources about research design,
+  so this chapter will focus specifically on how the design impacts data requirements
+  and related tools.
+  We assume you have a working familiarity
+  with the research designs mentioned here.
+  For more details, you can reference Appendix XYZ,
+  where you will find more details and specific sources for each design.
+
+
 	%from old design chapter
 
 	Research design is the process of defining the methods and data
@@ -56,22 +69,136 @@
 
 %-----------------------------------------------------------------------------------------------
 
+\section{Translating research design to master data sets}
+
+This section is about the very first datasets you need to create,
+which are the master datasets for every unit of observation in your study.
+These datasets will serve three key authoritative functions.
+First, they will list all of the units who are eligible for the study,
+and enable you to map data collected or received from the field to the study design.
+Second, they will allow you to define the different groups you intend to study,
+including treatment and control groups and other comparisons of interest.
+Finally, in designs where your team has direct control over interventions or other field work,
+they will allow you to complete sampling and randomization tasks
+before collecting further data from the field.
+
+\subsection{Creating a master dataset and linking it to field data}
+
+Most of the research designs in the previous section can be implemented
+either by using data collected either only after the treatment,
+or by using data collected at multiple time periods,
+for example before and after the treatment.
+The advantage of multiple points in time is
+that you can control for trends and for the initial status of observations.
 
 
-\section{Planning your data based on your research design}
+So far we have only talked about each dataset by itself.
+In most projects however, more than one dataset is needed to answer the research question.
+This could be multiple survey rounds,
+integration of different existing data sources (e.g. administrative data,
+web scraping, implementation monitoring, etc)
+or a multitude of complex combinations of the above.
 
-This section covers how these different designs
-determine how you should plan data accordingly.
-Your project's data requirements will depend on your project's research design.
-\index{research designs}
-There are many published resources about research design,
-so this chapter will focus specifically on how the design impacts data requirements
-and related tools.
-We assume you have a working familiarity
-with the research designs mentioned here.
-For more details, you can reference Appendix XYZ,
-where you will find more details and specific sources for each design.
+Often you will have different levels of units of observation.
+It is common that the unit of observation for analysis
+is different from the unit of observation in the treatment assignment.
+A typical example of this is that a treatment is assigned at the level of a school,
+but data is collected at the level of the students.
+In this case, you need to have one dataset
+measuring student performance
+and another dataset indicating which schools received the treatment.
+You need a way to link those two datasets
+to answer questions about the treatment's impact on student performance.
 
+You might think that you are able to keep all of these details in your head,
+but your whole research team is unlikely to have the same understanding,
+at all times, of all the datasets required.
+The only way to make sure that the full team shares the same understanding
+is to write it down in what is called a \textbf{data map}.\sidenote{
+	\url{https://dimewiki.worldbank.org/data\_map} (TO BE CREATED)}
+\index{data maps}
+
+%% THIS IS A WEIRD 2 PARAGRAPHS WITH JUST A LIST OF QUESTIONS
+A data map is more than just a list of datasets.
+Its purpose is to specify the characteristics and linkages of those datasets.
+Some basic characteristics should filled in during the planning stage.
+Example of those characteristics are:
+What is the unit of observation for each dataset?
+What is the name of the ID variable that uniquely and fully identifies each dataset?
+Should any datasets be possible to merge one-to-one?
+And if so, will the have the same unique identifier?
+Should any datasets be possible to merge many-to-one (for example school and student)?
+And if so, what identifier will be used?
+Solving all of these questions before you acquire any data,
+and making sure that the full research team knows where to find this info,
+will save you a ton of time later on.
+
+Other characteristics should be updated as the project progresses.
+Example of those characteristics are:
+Where will the data be obtain from?
+Where in the project folder are the raw original data stored
+and where are back-ups of the raw data stored?
+See the wiki article linked to above for an template that you can use for your project.
+
+If you have multiple datasets with the same unit of observation
+then you should create a \textbf{master dataset}\sidenote{
+	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
+for each of those units-of-observation\sidenote{
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+and include that in your required datasets.
+The master dataset should include an ID variable
+that can be used to link or merge all datasets with that unit of observation.
+It should also list project wide time-invariant information
+like sampling and treatment status.
+Additionally, any unit of observation
+that will be used in sampling or treatment assignment
+should have a master dataset,
+and that dataset should be used when sampling or assigning treatment.
+
+A study that observes data in only one time period is called
+a \textbf{cross-sectional study}.
+\index{cross-sectional data}
+This type of data is relatively easy to collect and handle because
+you do not need to track individuals across time.
+Instead, the challenge in a cross-sectional study is to
+show that the control group is indeed a valid counterfactual to the treatment group.
+
+A study that observes data in multiple time periods is called \textbf{longitudinal} and
+can either be a \textbf{repeated cross-sections} or a \textbf{panel data} study
+\index{longitudinal data} \index{repeated cross-sectional data} \index{panel data}
+depending on whether the same observations are included in each of the time periods.
+In repeated cross-sections,
+each successive round of data collection uses a new random sample
+of observations from the treatment and control groups,
+but in a panel data study the same observations are tracked and included each round.
+
+While you can control for both trends
+and for each observation's initial status (in \textbf{panel data studies}),
+longitudinal data requires you
+to have a way to track the observations over periods of time.
+If you are collecting your own data, this is a big challenge
+and requires a lot more effort during field work
+as detailed tracking records must be kept.
+
+You must keep track of the attrition rate,
+which is the share of observations not observed in follow-up data.
+It is common that the observations not possible to track
+can be correlated with the outcome you study.
+For example, poorer households may live in more informal dwellings,
+patients with worse health conditions might not survive to follow-up,
+and so on.
+If this is the case, then your results might only be an effect of your remaining sample
+being a subset of the original sample that were better or worse off from the beginning.
+A balance check could provide insights
+as to whether the lost observations were systematically different
+compared to the rest of the sample,
+and there are a variety of methods for estimating treatment effects
+with selective attrition.
+
+\subsection{Defining study comparisons using master data}
+
+Your research design will determine what statistical comparisons you need
+to estimate in your analytical work.
 The research designs discussed here compare a group that received
 some kind of \textbf{treatment}\sidenote{
 	\textbf{Treatment:} The general word for the evaluated intervention or event.
@@ -94,20 +221,6 @@ Instead, the treated group is compared to a control group
 that is statistically indistinguishable,
 which makes the average impact of the treatment
 mathematically equivalent to the difference in averages between the groups.
-Statistical similarity is often defined using \textbf{balance} between two groups.
-This test is so common,
-DIME Analytics created the Stata command \texttt{iebaltab}\sidenote{
-	\url{https://dimewiki.worldbank.org/iebaltab}}
-to generates tables of balance checks
-as part of the package \texttt{ietoolkit}.
-However, different research designs have different methods
-for how the statistically similar control group is identified.
-
-%-----------------------------------------------------------------------------------------------
-
-\subsection{Identification of control groups in different research designs}
-
-%%%%% Experimental
 
 In \textbf{experimental research designs},\sidenote{
 	For example, \textbf{randomized control trials (RCTs) --}
@@ -118,54 +231,26 @@ of the study population will receive the treatment.
 This is typically done by a random assignment process
 in which a subset of the eligible population
 is randomly selected to receive the treatment
-(see the \textit{Randomized treatment assignment} section 
+(see the \textit{Randomized treatment assignment} section
 later in this chapter for how to implement this).
 The intuition is that if everyone in the eligible population
 is assigned at random to either the treatment or control group,
 then the two groups will, on average, be statistically indistinguishable,
-The treatment will therefore not be correlated with anything 
+The treatment will therefore not be correlated with anything
 but the impact of that treatment.\cite{duflo2007using}
-
-To randomly assign treatment you need data
-about all the individuals in the eligible population.
-This can be a census when running a traditional household survey,
-but it can be anything, from all companies in a given country's tax records
-to all of the Twitter accounts that liked a given tweet.
-It is important that the data on the eligible population has no bias in coverage,
-such as systematically excluding poor households,
-as that bias will then be included in your research design
-and the results will only be applicable to the population actually included.
-
-You should never assume that a specific intervention program
-was implemented in reality exactly according to the random assignment.
-The implementation of a treatment is often carried out
-by field counterparts in a more complex reality than the research design.
-This does not need to mean that the implementers are corrupt or have malicious intent,
-but it means that field work will always be more intricate than a pure lab environment,
-and that field counterparts might not be aware
-that their actions are the implementation of a research program
-or how they might affect the quality of the data for research.
-Therefore, in addition to acquiring data on outcomes,
-you must also acquire monitoring data
-that tells you how the treatment assignment in the field
-\index{monitoring data}
-corresponds to the intended treatment assignment.
-
-%%%%% Quasi Experimental
-
 \textbf{Quasi-experimental research designs},\sidenote{
 	\url{https://dimewiki.worldbank.org/Quasi-Experimental\_Methods}}
 \index{quasi-experimental research designs}
 by contrast, are based on events not controlled by the research team.
 Instead, they rely on ``experiments of nature'',
 in which natural variation in treatment can be argued to approximate randomization.
-
 Unlike carefully planned experimental designs,
 quasi-experimental designs typically require the extra luck
 of having access to data collected at the right times and places
 to exploit events that occurred in the past.
 Therefore, these methods often use either secondary data,
 including administrative data or other new classes of routinely-collected information.
+
 
 %%%%% Regression discontinuity
 
@@ -246,130 +331,33 @@ The \texttt{iematch}\sidenote{
 command in the \texttt{ietoolkit} package developed by DIME Analytics
 produces matchings based on a single continuous matching variable.
 
-%-----------------------------------------------------------------------------------------------
+\subsection{Preparing master data for sampling and randomization}
 
+To randomly assign treatment you need data
+about all the individuals in the eligible population.
+This can be a census when running a traditional household survey,
+but it can be anything, from all companies in a given country's tax records
+to all of the Twitter accounts that liked a given tweet.
+It is important that the data on the eligible population has no bias in coverage,
+such as systematically excluding poor households,
+as that bias will then be included in your research design
+and the results will only be applicable to the population actually included.
 
-\subsection{Structuring datasets over multiple time periods}
+Statistical similarity is often defined using \textbf{balance} between two groups.
+This test is so common,
+DIME Analytics created the Stata command \texttt{iebaltab}\sidenote{
+	\url{https://dimewiki.worldbank.org/iebaltab}}
+to generates tables of balance checks
+as part of the package \texttt{ietoolkit}.
+However, different research designs have different methods
+for how the statistically similar control group is identified.
 
-Most of the research designs in the previous section can be implemented
-either by using data collected either only after the treatment,
-or by using data collected at multiple time periods,
-for example before and after the treatment.
-The advantage of multiple points in time is
-that you can control for trends and for the initial status of observations.
-
-A study that observes data in only one time period is called
-a \textbf{cross-sectional study}.
-\index{cross-sectional data}
-This type of data is relatively easy to collect and handle because
-you do not need to track individuals across time.
-Instead, the challenge in a cross-sectional study is to
-show that the control group is indeed a valid counterfactual to the treatment group.
-
-A study that observes data in multiple time periods is called \textbf{longitudinal} and
-can either be a \textbf{repeated cross-sections} or a \textbf{panel data} study
-\index{longitudinal data} \index{repeated cross-sectional data} \index{panel data}
-depending on whether the same observations are included in each of the time periods.
-In repeated cross-sections,
-each successive round of data collection uses a new random sample
-of observations from the treatment and control groups,
-but in a panel data study the same observations are tracked and included each round.
-
-While you can control for both trends
-and for each observation's initial status (in \textbf{panel data studies}),
-longitudinal data requires you
-to have a way to track the observations over periods of time.
-If you are collecting your own data, this is a big challenge
-and requires a lot more effort during field work
-as detailed tracking records must be kept.
-
-You must keep track of the attrition rate,
-which is the share of observations not observed in follow-up data.
-It is common that the observations not possible to track
-can be correlated with the outcome you study.
-For example, poorer households may live in more informal dwellings,
-patients with worse health conditions might not survive to follow-up,
-and so on.
-If this is the case, then your results might only be an effect of your remaining sample
-being a subset of the original sample that were better or worse off from the beginning.
-A balance check could provide insights
-as to whether the lost observations were systematically different
-compared to the rest of the sample,
-and there are a variety of methods for estimating treatment effects
-with selective attrition.
-
-%-----------------------------------------------------------------------------------------------
-
-\subsection{Creating a data map}
-
-So far we have only talked about each dataset by itself.
-In most projects however, more than one dataset is needed to answer the research question.
-This could be multiple survey rounds, 
-integration of different existing data sources (e.g. administrative data,
-web scraping, implementation monitoring, etc)
-or a multitude of complex combinations of the above.
-
-Often you will have different levels of units of observation.
-It is common that the unit of observation for analysis
-is different from the unit of observation in the treatment assignment.
-A typical example of this is that a treatment is assigned at the level of a school,
-but data is collected at the level of the students.
-In this case, you need to have one dataset
-measuring student performance
-and another dataset indicating which schools received the treatment.
-You need a way to link those two datasets
-to answer questions about the treatment's impact on student performance.
-
-You might think that you are able to keep all of these details in your head,
-but your whole research team is unlikely to have the same understanding,
-at all times, of all the datasets required.
-The only way to make sure that the full team shares the same understanding
-is to write it down in what is called a \textbf{data map}.\sidenote{
-	\url{https://dimewiki.worldbank.org/data\_map} (TO BE CREATED)}
-\index{data maps}
-
-%% THIS IS A WEIRD 2 PARAGRAPHS WITH JUST A LIST OF QUESTIONS
-A data map is more than just a list of datasets.
-Its purpose is to specify the characteristics and linkages of those datasets.
-Some basic characteristics should filled in during the planning stage.
-Example of those characteristics are:
-What is the unit of observation for each dataset?
-What is the name of the ID variable that uniquely and fully identifies each dataset?
-Should any datasets be possible to merge one-to-one?
-And if so, will the have the same unique identifier?
-Should any datasets be possible to merge many-to-one (for example school and student)?
-And if so, what identifier will be used?
-Solving all of these questions before you acquire any data,
-and making sure that the full research team knows where to find this info,
-will save you a ton of time later on.
-
-Other characteristics should be updated as the project progresses.
-Example of those characteristics are:
-Where will the data be obtain from?
-Where in the project folder are the raw original data stored
-and where are back-ups of the raw data stored?
-See the wiki article linked to above for an template that you can use for your project.
-
-If you have multiple datasets with the same unit of observation
-then you should create a \textbf{master dataset}\sidenote{
-	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
-for each of those units-of-observation\sidenote{
-	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}} 
-and include that in your required datasets.
-The master dataset should include an ID variable
-that can be used to link or merge all datasets with that unit of observation.
-It should also list project wide time-invariant information
-like sampling and treatment status.
-Additionally, any unit of observation
-that will be used in sampling or treatment assignment
-should have a master dataset,
-and that dataset should be used when sampling or assigning treatment.
 
 %-----------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------
 
 
-\section{Taking research design into account when planing your data work}
+\section{Implementing sampling and randomization designs}
 
 The most important steps in data work planning
 to correctly translate a research design into data work
@@ -421,7 +409,7 @@ but the same principles translate to all other programming languages.
 
 %-----------------------------------------------------------------------------------------------
 
-\subsection{Implementing random processes reproducibly in Stata}
+\subsection{Implementing random processes reproducibly}
 
 % what it means for randomization to be reproducible
 For statistical programming to be considered reproducible,
@@ -527,7 +515,7 @@ there is no way to correct any mistakes.
 
 %-----------------------------------------------------------------------------------------------
 
-\subsection{Randomized sampling}
+\subsection{Performing sampling and randomization}
 
 % sampling universe: the master dataset
 \textbf{Sampling} is the process of randomly selecting units of observation
@@ -570,8 +558,6 @@ Often, data collection can be designed to keep complications to a minimum,
 so long as it is carefully thought through from this perspective.
 
 %-----------------------------------------------------------------------------------------------
-
-\subsection{Randomized treatment assignment}
 
 % what does randomized assignment mean
 \textbf{Randomized treatment assignment} is the process of assigning observations into treatment arms,
@@ -620,7 +606,7 @@ to ensure that the field randomization process is appropriately designed and exe
 
 %-----------------------------------------------------------------------------------------------
 
-\subsection{Advanced topics in research design and randomization}
+\subsection{Clustering or stratifying a sample or randomization}
 
 % the cases discussed so far are the most simple, but not the most common
 For a variety of experimental and theoretical reasons,
@@ -703,7 +689,7 @@ imposes an additional layer of randomization above the specified division.
 
 %-----------------------------------------------------------------------------------------------
 
-\subsection{Assessing validity of data work}
+\subsection{Power calculations for research design}
 
 % sampling error, randomization noise and the need for power calcs
 Both sampling and random assignment are noisy processes:
