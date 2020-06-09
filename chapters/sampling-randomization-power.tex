@@ -52,10 +52,6 @@
 	Research design is the process of defining the methods and data
 	that will be used to answer a specific research question.
 
-
-
-
-
 \end{fullwidth}
 
 %-----------------------------------------------------------------------------------------------
@@ -385,19 +381,11 @@ a simple random assignment of multiple treatment arms.
 
 \subsection{Implementing random processes reproducibly}
 
-The next section discuss how a random number
-is generated correctly in a reproducible way,
-and the following sections discuss how to
-apply that random number to create a sample or assign treatment
-according to the research design.
-We again use Stata in our examples,
-but the same principles translate to all other programming languages.
-
 % what it means for randomization to be reproducible
 For statistical programming to be reproducible,
 you must be able to re-obtain its outputs in the future.\cite{orozco2018make}
 We will focus on what you need to do to produce
-truly random results for your project using Stata,
+truly random results for your project,
 to ensure you can get those exact results again.\sidenote{
 	\url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata}}
 This takes a combination of strict rules, solid understanding, and careful programming.
@@ -411,6 +399,8 @@ we need to be able to fix the sequence of numbers generated
 ensure that the first number is independently randomized.
 In Stata, this is accomplished through three command concepts:
 \textbf{versioning}, \textbf{sorting}, and \textbf{seeding}.
+We again use Stata in our examples,
+but the same principles translate to all other programming languages.
 
 % rule 1: versioning
 \textbf{Versioning} means using the same version of the software each time you run the random process.
