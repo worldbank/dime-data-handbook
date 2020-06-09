@@ -299,17 +299,21 @@ produces matchings based on a single continuous matching variable.
 	In experimental methods, sampling and randomization directly determine
 	the set of individuals who are going to be observed
 	and what their status will be for the purpose of effect estimation.
-	Since we only get one chance to implement a given experiment,
-	we need to have a detailed understanding of how these processes work
-	and how to implement them properly.
 	In quasi-experimental methods, sampling determines what populations the study
 	will be able to make meaningful inferences about,
 	and randomization analyses simulate counterfactual possibilities;
 	what would have happened in the absence of the event.
-	Demonstrating that sampling and randomization were taken into consideration
-	before going to field lends credibility to any research study.
+  Randomization is used to ensure that a sample is representative and
+  that any treatment and control groups are statistically indistinguishable
+  after treatment assignment.
 
-  All random processes introduce statistical noise
+  Randomization in statistical software is non-trivial
+  and its mechanics are unintuitive for the human brain.
+  The principles of randomization we will outline
+  apply not just to random sampling, random assignment,
+  but they apply to all statistical computing processes that have a random components,
+  such as simulations and bootstrapping.
+  Furthermore, all random processes introduce statistical noise
 	or uncertainty into the final estimates of effect sizes.
 	Choosing one sample from all the possibilities produces some probability of
 	choosing a group of units that are not, in fact, representative.
@@ -321,122 +325,15 @@ produces matchings based on a single continuous matching variable.
 	typically conducted well before any actual field work occurs --
 	and often have implications for feasibility, planning, and budgeting.
 
-To randomly assign treatment you need data
-about all the individuals in the eligible population.
-This can be a census when running a traditional household survey,
-but it can be anything, from all companies in a given country's tax records
-to all of the Twitter accounts that liked a given tweet.
-It is important that the data on the eligible population has no bias in coverage,
-such as systematically excluding poor households,
-as that bias will then be included in your research design
-and the results will only be applicable to the population actually included.
-
-Statistical similarity is often defined using \textbf{balance} between two groups.
-This test is so common,
-DIME Analytics created the Stata command \texttt{iebaltab}\sidenote{
-	\url{https://dimewiki.worldbank.org/iebaltab}}
-to generates tables of balance checks
-as part of the package \texttt{ietoolkit}.
-However, different research designs have different methods
-for how the statistically similar control group is identified.
-
-
-
-Randomization is used to ensure that a sample is representative and
-that the treatment and control groups are statistically indistinguishable
-after treatment assignment.
-Randomization in statistical software is non-trivial
-and its mechanics are unintuitive for the human brain.
-``True'' randomization is also nearly impossible to achieve for computers,
-which are inherently deterministic.\sidenote{
-	\url{https://www.random.org/randomness}}
-The principles of randomization we will outline
-apply not just to random sampling, random assignment,
-but they apply to all statistical computing processes that have a random components,
-such as simulations and bootstrapping.
-
-The next section discuss how a random number
-is generated correctly in a reproducible way,
-and the following sections discuss how to
-apply that random number to create a sample or assign treatment
-according to the research design.
-We use Stata in our examples,
-but the same principles translate to all other programming languages.
-
 %-----------------------------------------------------------------------------------------------
 
 \subsection{Performing sampling and randomization}
-
-The most important steps in data work planning
-to correctly translate a research design into data work
-are sampling and treatment assignment.
-Therefore, understanding and correctly implementing sampling and treatment assignment
-is essential to ensuring that data is acquired properly and that research
-is correctly carried out in the field, so that the results
-are valid interpretations of your research question.
-
-Most projects need to do sampling and some projects need to do treatment assignment.
-Sampling is almost always required when you collect your own data,
-as it is often prohibitively expensive to collect data on all individuals.
-However, if the data you use is, for example,
-the tax filings of all companies in a country,
-then you can estimate the treatment effect
-using the full population and not a sample of it.
-Such big data might need a cluster of computers to process,
-so you might still want to know how make a representative sample,
-so that you can develop your code on a local computer
-before running it on an expensive computer cluster.
-
-Treatment assignment is only applicable if your research design is experimental,
-and the research team can control which individuals receive the treatment.
-While you might not yet have a population dataset to sample from,
-or a complete list of eligible observation to randomize assignment on,
-this is still the time to understand those tasks
-and what you need to think about as you acquire those datasets.
 
 % sampling universe: the master dataset
 \textbf{Sampling} is the process of randomly selecting units of observation
 from a list of individuals eligible to be included in data collection.\sidenote{
 	\url{https://dimewiki.worldbank.org/Sample\_Size\_and\_Power\_Calculations}}
 \index{sampling}
-That list units to sample from may be called a \textbf{sampling universe},
-a \textbf{listing frame}, or something similar.
-We recommend that this list is your \textbf{master dataset} discussed above.
-
-% implement uniform-probability random sampling
-The simplest form of random sampling is \textbf{uniform-probability random sampling}.
-This means that every observation in the master dataset
-has an equal probability of being included in the sample.
-The most explicit method of implementing this process
-is to assign random numbers to all your potential observations,
-order them by the number they are assigned,
-and mark as ``sampled'' those with the lowest numbers, up to the desired proportion.
-There are a number of shortcuts to doing this process,
-but they all use this method as the starting point,
-so you should become familiar with exactly how it works.
-The do-file below provides an example of
-how to implement uniform-probability sampling in practice.
-This code uses a Stata built-in example dataset and is fully reproducible,
-so anyone that runs this code in any version of Stata later than 13.1
-(the version set in this code)
-will get the exact same randomized results.
-
-\codeexample{simple-sample.do}{./code/simple-sample.do}
-
-% what to think about before sampling
-Almost all of the relevant considerations for sampling come from two sources:
-deciding what population, if any, a sample is meant to represent (including subgroups);
-and deciding whether different individuals should have different probabilities
-of being included in the sample.
-These should be determined in advance by the research design,
-since otherwise the sampling process will not be clear,
-and the interpretation of measurements is directly linked to who is included in them.
-Often, data collection can be designed to keep complications to a minimum,
-so long as it is carefully thought through from this perspective.
-
-%-----------------------------------------------------------------------------------------------
-
-% what does randomized assignment mean
 \textbf{Randomized treatment assignment} is the process of assigning observations into treatment arms,
 and this is central to experimental research design.
 Most of the code processes used for random assignment are the same as those used for sampling,
@@ -445,12 +342,30 @@ Where sampling determines whether a particular individual
 will be observed at all in the course of data collection,
 random assignment determines if each individual will be observed
 as a treatment observation or used as a counterfactual.
+That list of units to sample or randomize from may be called a \textbf{sampling universe},
+a \textbf{listing frame}, or something similar.
+We recommend that this list is your \textbf{master dataset} discussed above.
 
+% implement uniform-probability random sampling
+The simplest form of randomization or sampling is \textbf{uniform-probability random sampling}.
+This means that every observation in the master dataset
+has an equal probability of being selected.
+The most explicit method of implementing this process
+is to assign random numbers to all your potential observations,
+order them by the number they are assigned,
+and mark as ``sampled'' or ``treated'' those with the lowest numbers, up to the desired proportion.
+There are a number of shortcuts to doing this process,
+but they all use this method as the starting point,
+so you should become familiar with exactly how it works.
+The do-file below provides an example of
+how to implement uniform-probability sampling or randomization in practice.
+This code uses a Stata built-in example dataset and is fully reproducible,
+so anyone that runs this code in any version of Stata later than 13.1
+(the version set in this code)
+will get the exact same randomized results.
 
-% How randomization code differs from sampling code
-Just like sampling, the simplest form of randomization
-is a uniform-probability process.\sidenote{
-	\url{https://dimewiki.worldbank.org/Randomization\_in\_Stata}}
+\codeexample{simple-sample.do}{./code/simple-sample.do}
+
 Sampling typically has only two possible outcomes: observed and unobserved.
 Similarly, a simple random assignment has two outcomes: treatment and control,
 and the logic in the code would be identical to the sampling code example.
@@ -466,23 +381,17 @@ a simple random assignment of multiple treatment arms.
 
 \codeexample{simple-multi-arm-randomization.do}{./code/simple-multi-arm-randomization.do}
 
-% Randomizing in the field
-Some types of experimental designs necessitate
-that random assignment results be revealed in the field.
-It is possible to do this using survey software or live events, such as a live lottery.
-These methods typically do not leave a record of the randomization,
-as such can never be reproducible. If an experiment is done as part of data collection,
-it is best to execute the randomization in advance and preload the results.
-Even when randomization absolutely cannot be done in advance, it is still useful
-to build a corresponding model of the randomization process in your statistical software
-so that you can conduct statistical analysis later
-including checking for irregularities in the field assignment.
-Understanding that process will also improve the ability of the team
-to ensure that the field randomization process is appropriately designed and executed.
-
 %-----------------------------------------------------------------------------------------------
 
 \subsection{Implementing random processes reproducibly}
+
+The next section discuss how a random number
+is generated correctly in a reproducible way,
+and the following sections discuss how to
+apply that random number to create a sample or assign treatment
+according to the research design.
+We again use Stata in our examples,
+but the same principles translate to all other programming languages.
 
 % what it means for randomization to be reproducible
 For statistical programming to be reproducible,
@@ -572,6 +481,19 @@ Once the result of a randomization is used in the field,
 there is no way to correct any mistakes.
 
 \codeexample{replicability.do}{./code/replicability.do}
+
+Some types of experimental designs necessitate
+that random assignment results be revealed in the field.
+It is possible to do this using survey software or live events, such as a live lottery.
+These methods typically do not leave a record of the randomization,
+as such can never be reproducible. If an experiment is done as part of data collection,
+it is best to execute the randomization in advance and preload the results.
+Even when randomization absolutely cannot be done in advance, it is still useful
+to build a corresponding model of the randomization process in your statistical software
+so that you can conduct statistical analysis later
+including checking for irregularities in the field assignment.
+Understanding that process will also improve the ability of the team
+to ensure that the field randomization process is appropriately designed and executed.
 
 %-----------------------------------------------------------------------------------------------
 
