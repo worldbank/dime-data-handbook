@@ -562,7 +562,7 @@ imposes an additional layer of randomization above the specified division.
 
 % sampling error, randomization noise and the need for power calcs
 Both sampling and random assignment are noisy processes:
-they are random, after all, so it is impossible to predict the result in advance.
+they are random, so it is impossible to predict the result in advance.
 By design, we know that the exact choice of sample or treatment
 will be uncorrelated with our key outcomes,
 but this lack of correlation is only true ``in expectation'' --
@@ -590,7 +590,6 @@ and we need to assess the likelihood and magnitude of this occurrence.\sidenote{
 	\url{https://davegiles.blogspot.com/2019/04/what-is-permutation-test.html}}
 Power calculation and randomization inference are the two key tools to doing so.
 
-
 % why to do power calculations
 \textbf{Power calculations} report the likelihood that your experimental design
 \index{power calculations}
@@ -602,17 +601,6 @@ each of which has different practical uses.\sidenote{
 The purpose of power calculations is to identify where the strengths and weaknesses
 of your design are located, so you know the relative tradeoffs you will face
 by changing your randomization scheme for the final design.
-
-
-% intuition of power concets: MDE and minimum sample size
-The classic definition of power
-is the likelihood that a design detects a significant treatment effect,
-given that there is a non-zero treatment effect in reality.
-There are two common and useful practical applications
-of that definition that give actionable, quantitative results.
-Not all studies are capable of achieving traditionally high power.
-What is important is that every study includes reasonable estimates of its power,
-so that the evidentiary value of its results can be assessed.
 
 The \textbf{minimum detectable effect (MDE)}\sidenote{
 	\url{https://dimewiki.worldbank.org/Minimum_Detectable_Effect}}
@@ -628,8 +616,6 @@ Conversely, the \textbf{minimum sample size} pre-specifies expected effect sizes
 and tells you how large a study's sample would need to be to detect that effect,
 which can tell you what resources you would need to avoid that problem.
 
-
-
 % what is randomization inference
 \textbf{Randomization inference} is used to analyze the likelihood
 \index{randomization inference}
@@ -640,20 +626,10 @@ because it considers what the estimated results would have been
 from a random assignment that did not in fact happen in reality.
 Randomization inference is particularly important
 in quasi-experimental designs and in small samples,
-because these conditions usually lead to the situation
 where the number of possible \textit{randomizations} is itself small.
-Randomization inference has traditionally not been common
-as it used to be very costly to compute large numbers of combinations using computers.
-Today we have the computational power to do these calculations reasonably quickly,
-and simulate a large variety of possible alternative randomizations.
-
-
-% why you should use randomization inference
-Randomization inference can therefore be used proactively during experimental design.
-As long as there is some outcome data usable at this stage,
-you can use the same procedure to examine the potential treatment effects
-that your exact design is likely to produce.
+Randomization inference can therefore be used proactively during experimental design,
+to examine the potential spurious treatment effects your exact design is able to produce.
 If there is significant heaping at particular result levels,
-or if results seem to depend dramatically on the placement of a small number of individuals,
+or if results seem to depend dramatically on the outcomes for a small number of individuals,
 randomization inference will flag those issues before the experiment is fielded
 and allow adjustments to the design to be made.
