@@ -4,6 +4,22 @@
 
 	INTRO IS NOT RE-WRITTEN YET AS I WANT US TO FINALIZE CONTENT FIRST
 
+  Thinking through research design before starting data work
+  is important for several reasons.
+	You will save a lot of time by understanding how data needs to be organized
+	in order to be able to produce meaningful analytics throughout your projects.
+  This section is based around creating and using
+  the very first datasets you need to create to achieve this,
+  which are the master datasets for every unit of observation in your study.
+  These datasets will serve three key authoritative functions.
+  First, they will list all of the units who are eligible for the study,
+  and enable you to map data collected or received from the field to the study design.
+  Second, they will allow you to define the different groups you intend to study,
+  including treatment and control groups and other comparisons of interest.
+  Finally, in designs where your team has direct control over interventions or other field work,
+  they will allow you to complete sampling and randomization tasks
+  before collecting further data from the field.
+
 	Sampling and randomized assignment are two core elements of research design.
 	In experimental methods, sampling and randomization directly determine
 	the set of individuals who are going to be observed
@@ -59,10 +75,7 @@
 	that will be used to answer a specific research question.
 
 
-	Thinking through research design before starting data work is important for several reasons.
-	You will save a lot of time by understanding the way
-	your data needs to be organized
-	in order to be able to produce meaningful analytics throughout your projects.
+
 
 
 \end{fullwidth}
@@ -71,16 +84,6 @@
 
 \section{Translating research design to master data sets}
 
-This section is about the very first datasets you need to create,
-which are the master datasets for every unit of observation in your study.
-These datasets will serve three key authoritative functions.
-First, they will list all of the units who are eligible for the study,
-and enable you to map data collected or received from the field to the study design.
-Second, they will allow you to define the different groups you intend to study,
-including treatment and control groups and other comparisons of interest.
-Finally, in designs where your team has direct control over interventions or other field work,
-they will allow you to complete sampling and randomization tasks
-before collecting further data from the field.
 
 \subsection{Creating a master dataset and linking it to field data}
 
@@ -333,6 +336,15 @@ produces matchings based on a single continuous matching variable.
 
 \subsection{Preparing master data for sampling and randomization}
 
+
+
+
+%-----------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
+
+
+\section{Implementing sampling and randomization designs}
+
 To randomly assign treatment you need data
 about all the individuals in the eligible population.
 This can be a census when running a traditional household survey,
@@ -353,11 +365,31 @@ However, different research designs have different methods
 for how the statistically similar control group is identified.
 
 
-%-----------------------------------------------------------------------------------------------
+
+Randomization is used to ensure that a sample is representative and
+that the treatment and control groups are statistically indistinguishable
+after treatment assignment.
+Randomization in statistical software is non-trivial
+and its mechanics are unintuitive for the human brain.
+``True'' randomization is also nearly impossible to achieve for computers,
+which are inherently deterministic.\sidenote{
+	\url{https://www.random.org/randomness}}
+The principles of randomization we will outline
+apply not just to random sampling, random assignment,
+but they apply to all statistical computing processes that have a random components,
+such as simulations and bootstrapping.
+
+The next section discuss how a random number
+is generated correctly in a reproducible way,
+and the following sections discuss how to
+apply that random number to create a sample or assign treatment
+according to the research design.
+We use Stata in our examples,
+but the same principles translate to all other programming languages.
+
 %-----------------------------------------------------------------------------------------------
 
-
-\section{Implementing sampling and randomization designs}
+\subsection{Performing sampling and randomization}
 
 The most important steps in data work planning
 to correctly translate a research design into data work
@@ -385,137 +417,6 @@ While you might not yet have a population dataset to sample from,
 or a complete list of eligible observation to randomize assignment on,
 this is still the time to understand those tasks
 and what you need to think about as you acquire those datasets.
-
-Randomization is used to ensure that a sample is representative and
-that the treatment and control groups are statistically indistinguishable
-after treatment assignment.
-Randomization in statistical software is non-trivial
-and its mechanics are unintuitive for the human brain.
-``True'' randomization is also nearly impossible to achieve for computers,
-which are inherently deterministic.\sidenote{
-	\url{https://www.random.org/randomness}}
-The principles of randomization we will outline
-apply not just to random sampling, random assignment,
-but they apply to all statistical computing processes that have a random components,
-such as simulations and bootstrapping.
-
-The next section discuss how a random number
-is generated correctly in a reproducible way,
-and the following sections discuss how to
-apply that random number to create a sample or assign treatment
-according to the research design.
-We use Stata in our examples,
-but the same principles translate to all other programming languages.
-
-%-----------------------------------------------------------------------------------------------
-
-\subsection{Implementing random processes reproducibly}
-
-% what it means for randomization to be reproducible
-For statistical programming to be considered reproducible,
-it must be possible for the outputs of random processes
-to be re-obtained at a future time.\cite{orozco2018make}
-For our purposes, we will focus on what you need to understand
-in order to produce truly random results for your project using Stata,
-and how to ensure you can get those exact results again in the future.\sidenote{
-	\url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata}}
-This takes a combination of strict rules, solid understanding, and careful programming.
-This section introduces the strict rules:
-these are non-negotiable (but thankfully simple).
-At the end of the section,
-we provide a do-file that provides a concrete example
-of how to implement these principles.
-
-% what Stata is doing when it generates random numbers
-Stata, like most statistical software, uses a \textbf{pseudo-random number generator}.
-Basically, it has a pre-calculated, extremely long, ordered list
-of numbers with the property that
-knowing one gives you precisely zero information about the next one,
-just as if they were truly random numbers.
-Stata uses one number from this list every time it has a task that is non-deterministic.
-In ordinary use, it will cycle through these numbers starting from a fixed point
-every time you restart Stata, and by the time you get to any given script,
-the current state and the subsequent states will be as good as random.\sidenote{
-	\url{https://www.stata.com/manuals14/rsetseed.pdf}}
-However, for truly reproducible randomization, we need two additional properties:
-we need to be able to set the starting point so we can come back to it later;
-and we need to ensure that the starting point is independently random from our process.
-In Stata, this is accomplished through three command concepts:
-\textbf{versioning}, \textbf{sorting}, and \textbf{seeding}.
-
-% rule 1: versioning
-\textbf{Versioning} means using the same version of the software each time you run the random process.
-If anything is different, the underlying list of random numbers may have changed,
-and it will be impossible to recover the original result.
-In Stata, the \texttt{version} command ensures that the list of random numbers is fixed.\sidenote{
-	At the time of writing, we recommend using \texttt{version 13.1} for backward compatibility;
-	the algorithm used to create this list of random numbers was changed after Stata 14 but the improvements do not matter in practice.
-	You will \textit{never} be able to reproduce a randomization in a different software,
-	such as moving from Stata to R or vice versa.}
-The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
-	\url{https://dimewiki.worldbank.org/ieboilstart}}
-We recommend you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
-	\url{https://dimewiki.worldbank.org/Master_Do-files}}
-However, testing your do-files without running them
-via the master do-file may produce different results,
-since Stata's \texttt{version} setting expires after each time you run your do-files.
-
-% rule 2: sorting
-\textbf{Sorting} means that the actual data that the random process is run on is fixed.
-Because random numbers are assigned to each observation row-by-row starting from
-the top row,
-changing their order will change the result of the process.
-In Stata, the only way to guarantee a unique sorting order is to use
-\texttt{isid [id\_variable], sort}.
-(The \texttt{sort, stable} command is insufficient.)
-Since the exact order must be unchanged,
-the underlying data itself must be unchanged as well between runs.
-This means that if you expect the number of observations to change
-(for example to increase during ongoing data collection),
-your randomization will not be stable unless you split your data up into
-smaller fixed datasets where the number of observations does not change.
-You can combine all
-those smaller datasets after your randomization.
-You can additionally use the \texttt{datasignature} command to make sure the
-data is unchanged.
-
-% rule 3: seeding
-\textbf{Seeding} means manually setting the start point in the list of random numbers.
-A seed is just a single number that specifies one of the possible start points.
-It should be at least six digits long and you should use exactly
-one unique, different, and randomly created seed per randomization process.\sidenote{You
-	can draw a uniformly distributed six-digit seed randomly by visiting \url{https://bit.ly/stata-random}.
-	(This link is a just shortcut to request such a random number on \url{https://www.random.org}.)
-	There are many more seeds possible but this is a large enough set for most purposes.}
-In Stata, \texttt{set seed [seed]} will set the generator
-to the start point identified by the seed.
-In R, the \texttt{set.seed} function does the same.
-To be clear: you should not set a single seed once in the master do-file,
-but instead you should set a new seed in code right before each random process.
-The most important thing is that each of these seeds is truly random,
-so do not use shortcuts such as the current date or a seed you have used before.
-You should also describe in your code how the seed was selected.
-
-% testing randomization reproducibility
-Other commands may induce randomness in the data,
-change the sorting order,
-or alter the place of the random generator without you realizing it,
-so carefully confirm exactly how your code runs before finalizing it.\sidenote{
-	\url{https://dimewiki.worldbank.org/Randomization_in_Stata}}
-To confirm that a randomization has worked correctly before finalizing its results,
-save the outputs of the process in a temporary location,
-re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure
-nothing has changed. It is also advisable to let someone else reproduce your
-randomization results on their machine to remove any doubt that your results
-are reproducible.
-Once the result of a randomization is used in the field,
-there is no way to correct any mistakes.
-
-\codeexample{replicability.do}{./code/replicability.do}
-
-%-----------------------------------------------------------------------------------------------
-
-\subsection{Performing sampling and randomization}
 
 % sampling universe: the master dataset
 \textbf{Sampling} is the process of randomly selecting units of observation
@@ -603,39 +504,130 @@ including checking for irregularities in the field assignment.
 Understanding that process will also improve the ability of the team
 to ensure that the field randomization process is appropriately designed and executed.
 
+%-----------------------------------------------------------------------------------------------
+
+\subsection{Implementing random processes reproducibly}
+
+% what it means for randomization to be reproducible
+For statistical programming to be reproducible,
+you must be able to re-obtain its outputs in the future.\cite{orozco2018make}
+We will focus on what you need to do to produce
+truly random results for your project using Stata,
+to ensure you can get those exact results again.\sidenote{
+	\url{https://blog.stata.com/2016/03/10/how-to-generate-random-numbers-in-stata}}
+This takes a combination of strict rules, solid understanding, and careful programming.
+This section introduces the strict rules:
+these are non-negotiable (but thankfully simple).
+Stata, like most statistical software, uses a \textbf{pseudo-random number generator}.
+In ordinary use, by the time you get to any given script, its will be as good as random.\sidenote{
+	\url{https://www.stata.com/manuals14/rsetseed.pdf}}
+However, for reproducible randomization, we need two additional properties:
+we need to be able to fix the sequence of numbers generated
+ensure that the first number is independently randomized.
+In Stata, this is accomplished through three command concepts:
+\textbf{versioning}, \textbf{sorting}, and \textbf{seeding}.
+
+% rule 1: versioning
+\textbf{Versioning} means using the same version of the software each time you run the random process.
+If anything is different, the underlying list of random numbers may have changed,
+and it will be impossible to recover the original result.
+In Stata, the \texttt{version} command ensures that the list of random numbers is fixed.\sidenote{
+	At the time of writing, we recommend using \texttt{version 13.1} for backward compatibility;
+	the algorithm used to create this list of random numbers was changed after Stata 14 but the improvements do not matter in practice.
+	You will \textit{never} be able to reproduce a randomization in a different software,
+	such as moving from Stata to R or vice versa.}
+The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
+	\url{https://dimewiki.worldbank.org/ieboilstart}}
+We recommend you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
+	\url{https://dimewiki.worldbank.org/Master_Do-files}}
+However, testing your do-files without running them
+via the master do-file may produce different results,
+since Stata's \texttt{version} setting expires after each time you run your do-files.
+
+% rule 2: sorting
+\textbf{Sorting} means that the actual data that the random process is run on is fixed.
+Because random numbers are assigned to each observation row-by-row starting from
+the top row,
+changing their order will change the result of the process.
+In Stata, the only way to guarantee a unique sorting order is to use
+\texttt{isid [id\_variable], sort}.
+(The \texttt{sort, stable} command is insufficient.)
+Since the exact order must be unchanged,
+the underlying data itself must be unchanged as well between runs.
+This means that if you expect the number of observations to change
+(for example to increase during ongoing data collection),
+your randomization will not be stable unless you split your data up into
+smaller fixed datasets where the number of observations does not change.
+You can combine all
+those smaller datasets after your randomization.
+You can additionally use the \texttt{datasignature} command to make sure the
+data is unchanged.
+
+% rule 3: seeding
+\textbf{Seeding} means manually setting the start point in the list of random numbers.
+A seed is just a single number that specifies one of the possible start points.
+It should be at least six digits long and you should use exactly
+one unique, different, and randomly created seed per randomization process.\sidenote{You
+	can draw a uniformly distributed six-digit seed randomly by visiting \url{https://bit.ly/stata-random}.
+	(This link is a just shortcut to request such a random number on \url{https://www.random.org}.)
+	There are many more seeds possible but this is a large enough set for most purposes.}
+In Stata, \texttt{set seed [seed]} will set the generator
+to the start point identified by the seed.
+In R, the \texttt{set.seed} function does the same.
+To be clear: you should not set a single seed once in the master do-file,
+but instead you should set a new seed in code right before each random process.
+The most important thing is that each of these seeds is truly random,
+so do not use shortcuts such as the current date or a seed you have used before.
+You should also describe in your code how the seed was selected.
+
+% testing randomization reproducibility
+Other commands may induce randomness in the data,
+change the sorting order,
+or alter the place of the random generator without you realizing it,
+so carefully confirm exactly how your code runs before finalizing it.\sidenote{
+	\url{https://dimewiki.worldbank.org/Randomization_in_Stata}}
+To confirm that a randomization has worked correctly before finalizing its results,
+save the outputs of the process in a temporary location,
+re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure
+nothing has changed. It is also advisable to let someone else reproduce your
+randomization results on their machine to remove any doubt that your results
+are reproducible.
+Once the result of a randomization is used in the field,
+there is no way to correct any mistakes.
+
+\codeexample{replicability.do}{./code/replicability.do}
 
 %-----------------------------------------------------------------------------------------------
 
 \subsection{Clustering or stratifying a sample or randomization}
 
 % the cases discussed so far are the most simple, but not the most common
-For a variety of experimental and theoretical reasons,
-the actual sampling and randomization processes we need to perform
-are rarely as straightforward as a uniform-probability draw.
-We may only be able to implement treatment on a certain group of units
-(such as a school, a firm, or a market)
-or we may want to ensure that specific under-represented groups appear
-either in our sample or in specific treatment groups.
-The most common methods used in research studies
-are \textbf{clustering} and \textbf{stratification}.
-They allow us to control the randomization process with high precision,
-which is often necessary for appropriate inference,
-particularly when samples or subgroups are small.\cite{athey2017econometrics}
-These techniques can be used in any random process;
-their implementation is nearly identical in both sampling and random assignment.
-
-% clustering is needed when unit of observation in the data is different from the randomization unit
-\textbf{Clustering}. Many studies observe data at a different level than the randomization unit.\sidenote{
+For a variety of reasons, actual sampling and randomization
+is rarely as straightforward as a uniform-probability draw.
+The most common variants are \textbf{clustering} and \textbf{stratification}.\cite{athey2017econometrics}
+\textbf{Clustering} occurs when you observe data at a different level
+than the unit of randomization or sampling.\sidenote{
 	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 For example, a policy may be implemented at the village level,
-but the outcome of interest for the study is measured at the household level.
-This type of structure is called \textbf{clustering},\sidenote{
+or you may only be able to send enumerators at a fixed number of villages,
+but the outcomes of interest for the study are measured at the household level.\sidenote{
 	\url{https://dimewiki.worldbank.org/Multi-stage_(Cluster)_Sampling}}
 \index{clustered randomization}
-and the groups in which units are assigned to treatment are called clusters.
-The same principle extends to sampling:
-it may be be necessary to observe all the children
-in a given teacher's classroom, for example.
+The groups in which units are assigned to treatment are called clusters.
+% what is stratification
+\textbf{Stratification} breaks the full set of observations into subgroups
+before performing random assignment within each subgroup.\sidenote{
+	\url{https://dimewiki.worldbank.org/Stratified\_Random\_Sample}}
+\index{stratification}
+The subgroups are called \textbf{strata}.
+This ensures that members of every subgroup
+are included in all groups of the random assignment process,
+or that members of all groups are observed in the sample.
+Without stratification, it is possible that randomization
+would put all the members of a subgroup into just one of the treatment arms,
+or fail to select them into the sample.
+For both clustering and stratification,
+implementation is nearly identical in both sampling and random assignment.
 
 % How to implement randomization with clusters
 Clustering is procedurally straightforward in Stata,
@@ -644,7 +636,7 @@ To cluster a sampling or random assignment,
 create or use a dataset where each cluster unit is an observation,
 randomize on that dataset, and then merge back the results.
 When sampling or random assignment is conducted using clusters,
-the clustering variable should be clearly identified
+the clustering variable should be clearly identified in the master dataset
 since it will need to be used in subsequent statistical analysis.
 Namely, standard errors for these types of designs must be clustered
 at the level at which the randomization was clustered.\sidenote{
@@ -653,39 +645,18 @@ This accounts for the design covariance within the cluster --
 the information that if one individual was observed or treated there,
 the other members of the clustering group were as well.
 
-% what is stratification
-\textbf{Stratification} is a research design component
-\index{stratification}
-that breaks the full set of observations into a number of subgroups
-before performing random assignment within each subgroup.\sidenote{
-	\url{https://dimewiki.worldbank.org/Stratified\_Random\_Sample}}
-This has the effect of ensuring that members of each subgroup
-are included in all groups of the random assignment process,
-since it is possible that a global randomization
-would put all the members of a subgroup into just one of the treatment arms.
-In this context, the subgroups are called \textbf{strata}.
-
 % using randtreat for stratified randomization
-Manually implementing stratified randomization in Stata is prone to error.
-In particular, it is difficult to precisely account
-for the interaction of strata sizes with multiple treatment arms.
-Even for a very simple design, the method of randomly ordering the observations
+By contrast, implementing stratified designs is prone to error.
+Even for a very simple design, the ordinary method of randomly ordering the observations
 will often create very skewed assignments.\sidenote{\url
 	{https://blogs.worldbank.org/impactevaluations/tools-of-the-trade-doing-stratified-randomization-with-uneven-numbers-in-some-strata}}
-This is especially true when a given stratum contains a small number of clusters,
-and when there are a large number of treatment arms,
-since the strata will rarely be exactly divisible by the number of arms.\cite{carril2017dealing}
-The user-written \texttt{randtreat} command properly implements stratification,
-as shown in the do-file below. %% ADD CITATION
-However, the options and outputs (including messages) from the command should be carefully reviewed
+The user-written \texttt{randtreat} command properly implements stratification.\cite{carril2017dealing}
+The options and outputs (including messages) from the command should be carefully reviewed
 so that you understand exactly what has been implemented.
 Notably, it is extremely hard to target precise numbers of observations
 in stratified designs, because exact allocations are rarely round fractions
 and the process of assigning the leftover ``misfit'' observations
 imposes an additional layer of randomization above the specified division.
-
-\codeexample{randtreat-strata.do}{./code/randtreat-strata.do}
-
 
 %-----------------------------------------------------------------------------------------------
 
