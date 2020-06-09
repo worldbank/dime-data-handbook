@@ -20,31 +20,9 @@
   they will allow you to complete sampling and randomization tasks
   before collecting further data from the field.
 
-	Sampling and randomized assignment are two core elements of research design.
-	In experimental methods, sampling and randomization directly determine
-	the set of individuals who are going to be observed
-	and what their status will be for the purpose of effect estimation.
-	Since we only get one chance to implement a given experiment,
-	we need to have a detailed understanding of how these processes work
-	and how to implement them properly.
-	In quasi-experimental methods, sampling determines what populations the study
-	will be able to make meaningful inferences about,
-	and randomization analyses simulate counterfactual possibilities;
-	what would have happened in the absence of the event.
-	Demonstrating that sampling and randomization were taken into consideration
-	before going to field lends credibility to any research study.
 
-	All random processes introduce statistical noise
-	or uncertainty into the final estimates of effect sizes.
-	Choosing one sample from all the possibilities produces some probability of
-	choosing a group of units that are not, in fact, representative.
-	Choosing one final randomization assignment similarly produces some probability of
-	creating groups that are not good counterfactuals for each other.
-	Power calculation and randomization inference
-	are the main methods by which these probabilities of error are assessed.
-	These analytical dimensions are particularly important in the initial phases of development research --
-	typically conducted well before any actual field work occurs --
-	and often have implications for feasibility, planning, and budgeting.
+
+
 
 	In this chapter, we first cover the necessary practices to ensure that random processes are reproducible.
 	We next turn to how to implement sampling and randomized assignment,
@@ -84,119 +62,70 @@
 
 \section{Translating research design to master data sets}
 
-
-\subsection{Creating a master dataset and linking it to field data}
-
-Most of the research designs in the previous section can be implemented
-either by using data collected either only after the treatment,
-or by using data collected at multiple time periods,
-for example before and after the treatment.
-The advantage of multiple points in time is
-that you can control for trends and for the initial status of observations.
-
-
-So far we have only talked about each dataset by itself.
-In most projects however, more than one dataset is needed to answer the research question.
+In most projects, more than one dataset is needed to answer the research question.
 This could be multiple survey rounds,
 integration of different existing data sources (e.g. administrative data,
 web scraping, implementation monitoring, etc)
 or a multitude of complex combinations of the above.
-
-Often you will have different levels of units of observation.
-It is common that the unit of observation for analysis
-is different from the unit of observation in the treatment assignment.
-A typical example of this is that a treatment is assigned at the level of a school,
-but data is collected at the level of the students.
-In this case, you need to have one dataset
-measuring student performance
-and another dataset indicating which schools received the treatment.
-You need a way to link those two datasets
-to answer questions about the treatment's impact on student performance.
-
-You might think that you are able to keep all of these details in your head,
-but your whole research team is unlikely to have the same understanding,
-at all times, of all the datasets required.
-The only way to make sure that the full team shares the same understanding
-is to write it down in what is called a \textbf{data map}.\sidenote{
-	\url{https://dimewiki.worldbank.org/data\_map} (TO BE CREATED)}
-\index{data maps}
-
-%% THIS IS A WEIRD 2 PARAGRAPHS WITH JUST A LIST OF QUESTIONS
-A data map is more than just a list of datasets.
-Its purpose is to specify the characteristics and linkages of those datasets.
-Some basic characteristics should filled in during the planning stage.
-Example of those characteristics are:
-What is the unit of observation for each dataset?
-What is the name of the ID variable that uniquely and fully identifies each dataset?
-Should any datasets be possible to merge one-to-one?
-And if so, will the have the same unique identifier?
-Should any datasets be possible to merge many-to-one (for example school and student)?
-And if so, what identifier will be used?
-Solving all of these questions before you acquire any data,
-and making sure that the full research team knows where to find this info,
-will save you a ton of time later on.
-
-Other characteristics should be updated as the project progresses.
-Example of those characteristics are:
-Where will the data be obtain from?
-Where in the project folder are the raw original data stored
-and where are back-ups of the raw data stored?
-See the wiki article linked to above for an template that you can use for your project.
-
-If you have multiple datasets with the same unit of observation
-then you should create a \textbf{master dataset}\sidenote{
-	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
-for each of those units-of-observation\sidenote{
-	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
-and include that in your required datasets.
-The master dataset should include an ID variable
-that can be used to link or merge all datasets with that unit of observation.
-It should also list project wide time-invariant information
-like sampling and treatment status.
-Additionally, any unit of observation
-that will be used in sampling or treatment assignment
-should have a master dataset,
-and that dataset should be used when sampling or assigning treatment.
-
-A study that observes data in only one time period is called
-a \textbf{cross-sectional study}.
-\index{cross-sectional data}
-This type of data is relatively easy to collect and handle because
-you do not need to track individuals across time.
-Instead, the challenge in a cross-sectional study is to
-show that the control group is indeed a valid counterfactual to the treatment group.
-
+For example, you may have different levels of units of observation,
+or the units of observation you do have (or their subunits)
+may vary from round to round.
 A study that observes data in multiple time periods is called \textbf{longitudinal} and
 can either be a \textbf{repeated cross-sections} or a \textbf{panel data} study
 \index{longitudinal data} \index{repeated cross-sectional data} \index{panel data}
 depending on whether the same observations are included in each of the time periods.
-In repeated cross-sections,
-each successive round of data collection uses a new random sample
-of observations from the treatment and control groups,
-but in a panel data study the same observations are tracked and included each round.
 
-While you can control for both trends
-and for each observation's initial status (in \textbf{panel data studies}),
-longitudinal data requires you
-to have a way to track the observations over periods of time.
-If you are collecting your own data, this is a big challenge
-and requires a lot more effort during field work
-as detailed tracking records must be kept.
+However your study is structured, you need to know how to link all the datasets you obtain
+and analyze the relationships between the units that appear in them
+to answer all your research questions.
+You might think that you are able to keep all of the relevant details in your head,
+but your whole research team is unlikely to have the same understanding,
+at all times, of all the datasets required.
+The only way to make sure that the full team shares the same understanding
+is to create master datasets and a \textbf{data map}.\sidenote{
+	\url{https://dimewiki.worldbank.org/data\_map} (TO BE CREATED)}
+\index{data maps}
 
-You must keep track of the attrition rate,
-which is the share of observations not observed in follow-up data.
-It is common that the observations not possible to track
-can be correlated with the outcome you study.
-For example, poorer households may live in more informal dwellings,
-patients with worse health conditions might not survive to follow-up,
-and so on.
-If this is the case, then your results might only be an effect of your remaining sample
-being a subset of the original sample that were better or worse off from the beginning.
-A balance check could provide insights
-as to whether the lost observations were systematically different
-compared to the rest of the sample,
-and there are a variety of methods for estimating treatment effects
-with selective attrition.
+\subsection{Creating master datasets and a data map}
+
+A master dataset, at the very least,
+details all project-wide time-invariant information
+about all units that could appear in the data
+and their relationship to the study design.
+like sampling and treatment status once those are determined.
+Therefore, any unit of observation
+that will be used in sampling or treatment assignment,
+or that is part of a comparison group for a research question,
+must be included in a master dataset,
+and that dataset -- not field data --
+should be used when sampling or assigning treatment.
+
+You should create a \textbf{master dataset}\sidenote{
+	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
+for each unit of observation\sidenote{
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+that you can predict about your study in advance,
+especially the units of analysis for key research questions.
+The master datasets must include fully unique ID variables.
+
+You also need to record how all datasets with each unit of observation
+will link or merge with each other as needed.
+This linking scheme is called a \textbf{data map}.
+A data map is more than just a list of datasets.
+Its purpose is to specify the characteristics and linkages of those datasets.
+Some basic characteristics should filled in during the planning stage.
+It will define the unit of observation for each dataset,
+and the ID variable that uniquely and fully identifies each unit.
+It will determine whether datasets should merge one-to-one,
+or whether a merge will have missing or duplicated linkages.
+Solving all of these questions before you acquire any data,
+and making sure that the full research team knows where to find this information,
+will save a ton of time later on.
+The data map should also include meta-data about the handling of all information.
+These characteristics may be updated as the project progresses.
+For example, you will need to note the source of each dataset,
+as well as the project folder where raw original data is stored
+and where the back-ups for the each raw dataset are stored.
 
 \subsection{Defining study comparisons using master data}
 
@@ -254,6 +183,34 @@ to exploit events that occurred in the past.
 Therefore, these methods often use either secondary data,
 including administrative data or other new classes of routinely-collected information.
 
+A study that observes data in only one time period is called
+a \textbf{cross-sectional study}.
+\index{cross-sectional data}
+This type of data is relatively easy to collect and handle because
+you do not need to track individuals across time.
+Instead, the challenge in a cross-sectional study is to
+show that the control group is indeed a valid counterfactual to the treatment group.
+
+
+In repeated cross-sections,
+each successive round of data collection uses a new random sample
+of observations from the treatment and control groups,
+but in a panel data study the same observations are tracked and included each round.
+
+You must keep track of the attrition rate,
+which is the share of observations not observed in follow-up data.
+It is common that the observations not possible to track
+can be correlated with the outcome you study.
+For example, poorer households may live in more informal dwellings,
+patients with worse health conditions might not survive to follow-up,
+and so on.
+If this is the case, then your results might only be an effect of your remaining sample
+being a subset of the original sample that were better or worse off from the beginning.
+A balance check could provide insights
+as to whether the lost observations were systematically different
+compared to the rest of the sample,
+and there are a variety of methods for estimating treatment effects
+with selective attrition.
 
 %%%%% Regression discontinuity
 
@@ -334,16 +291,35 @@ The \texttt{iematch}\sidenote{
 command in the \texttt{ietoolkit} package developed by DIME Analytics
 produces matchings based on a single continuous matching variable.
 
-\subsection{Preparing master data for sampling and randomization}
-
-
-
-
 %-----------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------
-
-
 \section{Implementing sampling and randomization designs}
+
+	Sampling and randomized assignment are two core elements of research design.
+	In experimental methods, sampling and randomization directly determine
+	the set of individuals who are going to be observed
+	and what their status will be for the purpose of effect estimation.
+	Since we only get one chance to implement a given experiment,
+	we need to have a detailed understanding of how these processes work
+	and how to implement them properly.
+	In quasi-experimental methods, sampling determines what populations the study
+	will be able to make meaningful inferences about,
+	and randomization analyses simulate counterfactual possibilities;
+	what would have happened in the absence of the event.
+	Demonstrating that sampling and randomization were taken into consideration
+	before going to field lends credibility to any research study.
+
+  All random processes introduce statistical noise
+	or uncertainty into the final estimates of effect sizes.
+	Choosing one sample from all the possibilities produces some probability of
+	choosing a group of units that are not, in fact, representative.
+	Choosing one final randomization assignment similarly produces some probability of
+	creating groups that are not good counterfactuals for each other.
+	Power calculation and randomization inference
+	are the main methods by which these probabilities of error are assessed.
+	These analytical dimensions are particularly important in the initial phases of development research --
+	typically conducted well before any actual field work occurs --
+	and often have implications for feasibility, planning, and budgeting.
 
 To randomly assign treatment you need data
 about all the individuals in the eligible population.
