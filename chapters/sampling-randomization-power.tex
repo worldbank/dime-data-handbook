@@ -65,10 +65,6 @@ For example, you may have different levels of unit-of-observation\sidenote{
 	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}},
 or the units of observation you do have (or their subunits)
 may vary from round to round.
-A study that observes data in multiple time periods is called \textbf{longitudinal} and
-can either be a \textbf{repeated cross-sections} or a \textbf{panel data} study
-depending on whether the same observations are included in each of the time periods.
-\index{longitudinal data}\index{repeated cross-sectional data}\index{panel data}
 
 However your study is structured, you need to know how to link all the datasets you obtain
 and analyze the relationships between the units that appear in them
@@ -198,34 +194,7 @@ to exploit events that occurred in the past.
 Therefore, these methods often use either secondary data,
 including administrative data or other new classes of routinely-collected information.
 
-A study that observes data in only one time period is called
-a \textbf{cross-sectional study}.
-\index{cross-sectional data}
-This type of data is relatively easy to collect and handle because
-you do not need to track individuals across time.
-Instead, the challenge in a cross-sectional study is to
-show that the control group is indeed a valid counterfactual to the treatment group.
 
-
-In repeated cross-sections,
-each successive round of data collection uses a new random sample
-of observations from the treatment and control groups,
-but in a panel data study the same observations are tracked and included each round.
-
-You must keep track of the attrition rate,
-which is the share of observations not observed in follow-up data.
-It is common that the observations not possible to track
-can be correlated with the outcome you study.
-For example, poorer households may live in more informal dwellings,
-patients with worse health conditions might not survive to follow-up,
-and so on.
-If this is the case, then your results might only be an effect of your remaining sample
-being a subset of the original sample that were better or worse off from the beginning.
-A balance check could provide insights
-as to whether the lost observations were systematically different
-compared to the rest of the sample,
-and there are a variety of methods for estimating treatment effects
-with selective attrition.
 
 %%%%% Regression discontinuity
 
@@ -305,6 +274,46 @@ The \texttt{iematch}\sidenote{
 	\url{https://dimewiki.worldbank.org/iematch}}
 command in the \texttt{ietoolkit} package developed by DIME Analytics
 produces matchings based on a single continuous matching variable.
+
+%-----------------------------------------------------------------------------------------------
+\subsection{Other data requirements}
+
+A study that observes data in only one time period is called
+a \textbf{cross-sectional study}.
+\index{cross-sectional data}
+This type of data is relatively easy to collect and handle because
+you do not need to track individuals across time.
+Instead, the challenge in a cross-sectional study is to
+show that the control group is indeed a valid counterfactual to the treatment group.
+
+A study that observes data in multiple time periods is called \textbf{longitudinal} and
+can either be a \textbf{repeated cross-sections} or a \textbf{panel data} study
+depending on whether the same observations are included in each of the time periods.
+\index{longitudinal data}\index{repeated cross-sectional data}\index{panel data}
+
+In repeated cross-sections,
+each successive round of data collection uses a new random sample
+of observations from the treatment and control groups,
+but in a panel data study the same observations are tracked and included each round.
+
+You must keep track of the attrition rate in longitudinal data,
+which is the share of observations not observed in follow-up data.
+It is common that the observations not possible to track
+can be correlated with the outcome you study.
+For example, poorer households may live in more informal dwellings,
+patients with worse health conditions might not survive to follow-up,
+and so on.
+If this is the case, then your results might only be an effect of your remaining sample
+being a subset of the original sample that were better or worse off from the beginning.
+A balance check could provide insights
+as to whether the lost observations were systematically different
+compared to the rest of the sample,
+and there are a variety of methods for estimating treatment effects
+with selective attrition.
+
+
+MONITORING DATA
+
 
 %-----------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------
