@@ -153,10 +153,11 @@ against a counterfactual control group.\sidenote{
 \index{counterfactual}
 The key assumption is that each
 person, facility, or village (or whatever the unit of intervention is)
-had two possible states: their outcome if they did not receive the treatment
-and their outcome if they did receive that treatment.
+had two possible states: their outcome if they did receive the treatment
+and their outcome if they did not receive that treatment.
 The average impact of the treatment is defined as
 the difference between these two states averaged over all units.
+
 However, we can never observe the same unit
 in both the treated and untreated state simultaneously,
 so we cannot calculate these differences directly.
@@ -165,12 +166,21 @@ that is statistically indistinguishable,
 which makes the average impact of the treatment
 mathematically equivalent to the difference in averages between the groups.
 
+The rest of this section covers how the data requirement differs between different research design.
+What does not differ however is that the authoritative source,
+for which unit is a treated unit and which is a control unit,
+should always be one or several variables in your master dataset. 
+You will often have to merge that data to other datasets, 
+but that is an easy task if you created a data map.
+
+%%%%% Experimental design
+
 In \textbf{experimental research designs},\sidenote{
 	For example, \textbf{randomized control trials (RCTs) --}
 	\url{https://dimewiki.worldbank.org/Randomized\_Control\_Trials}}
 \index{randomized control trials} \index{experimental research designs}
-the research team can control which members
-of the study population will receive the treatment.
+the research team is in control which members
+of the studied population will receive the treatment.
 This is typically done by a random assignment process
 in which a subset of the eligible population
 is randomly selected to receive the treatment
@@ -181,19 +191,27 @@ is assigned at random to either the treatment or control group,
 then the two groups will, on average, be statistically indistinguishable,
 The treatment will therefore not be correlated with anything
 but the impact of that treatment.\cite{duflo2007using}
+The random assignment should be done using the master data,
+and the result should be saved there before being merged to other data sets.
+
+%%%%% Quasi-experimental design
+
 \textbf{Quasi-experimental research designs},\sidenote{
 	\url{https://dimewiki.worldbank.org/Quasi-Experimental\_Methods}}
 \index{quasi-experimental research designs}
 by contrast, are based on events not controlled by the research team.
 Instead, they rely on ``experiments of nature'',
 in which natural variation in treatment can be argued to approximate randomization.
+You must have a way to measure this natural variation,
+and how the variation is approximated as randomization should be documented in your master dataset.
 Unlike carefully planned experimental designs,
 quasi-experimental designs typically require the extra luck
 of having access to data collected at the right times and places
 to exploit events that occurred in the past.
 Therefore, these methods often use either secondary data,
-including administrative data or other new classes of routinely-collected information.
-
+including administrative data or other new classes of routinely-collected information,
+and it is important that your data map documents 
+how that data is merged to any other of your data.
 
 
 %%%%% Regression discontinuity
@@ -215,8 +233,9 @@ are statistically indistinguishable from the individuals on the other side,
 and the only difference is receiving the treatment.
 In your data you need an unambiguous way
 to define which observations were above or below the cutoff.
-Apart from that requirement there are no special needs for the data,
-and you can use any type of primary or secondary data in an RD design.
+The cutoff is often a continuous variable 
+that used to divide the sample into two or more groups. 
+These variables should be saved in your master dataset.
 
 %%%%% IV regression
 
@@ -227,8 +246,8 @@ designs, unlike the previous approaches,
 assume that the treatment effect is not directly identifiable.
 Similar to RD designs,
 IV designs focus on a subset of the variation in treatment take-up.
-Where RD designs use a ``sharp'' or binary cutoff,
-IV designs are ``fuzzy'', meaning that the input does not completely determine
+Where RD designs use a \textit{sharp} or binary cutoff,
+IV designs are \textit{fuzzy}, meaning that the input does not completely determine
 the treatment status, but instead influence the \textit{probability of treatment}.
 
 You will need variables in your data
@@ -241,6 +260,10 @@ a special version called two-stage least squares (2SLS) is used
 to estimate the impact of the treatment.
 Stata has a built-in command called \texttt{ivregress},
 and another popular implementation is the user-written command \texttt{ivreg2}.
+In an IV design there is no specific requirement of a variable saved
+to the master dataset, 
+as the probability to treatment is estimated as a part of the analysis.
+
 
 %%%%% Matching
 
@@ -253,6 +276,9 @@ These sets can either consist of exactly one treatment and one control observati
 or it can be a set observations where either
 both groups have more than one observation represented (many-to-many),
 or where only one group has more than one observation included (one-to-many).
+By now you can probably guess that the result of the matching needs to be saved in the master dataset.
+This is best done by assigning an ID to each matching pair, 
+and create a variable in the master dataset with the ID for the pair each unit belongs to.
 
 The matching can even be done before the random assignment,
 so that treatment can be randomized within each matching set.
@@ -350,7 +376,6 @@ typically conducted well before any actual field work occurs --
 and often have implications for feasibility, planning, and budgeting.
 
 %-----------------------------------------------------------------------------------------------
-
 \subsection{Performing sampling and randomization}
 
 % sampling universe: the master dataset
