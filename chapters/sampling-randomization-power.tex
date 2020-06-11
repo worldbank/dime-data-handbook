@@ -181,7 +181,7 @@ In \textbf{experimental research designs},\sidenote{
 \index{randomized control trials} \index{experimental research designs}
 the research team is in control which members
 of the studied population will receive the treatment.
-This is typically done by a random assignment process
+This is typically done by a randomized assignment process
 in which a subset of the eligible population
 is randomly selected to receive the treatment
 (see the \textit{Randomized treatment assignment} section
@@ -191,7 +191,7 @@ is assigned at random to either the treatment or control group,
 then the two groups will, on average, be statistically indistinguishable,
 The treatment will therefore not be correlated with anything
 but the impact of that treatment.\cite{duflo2007using}
-The random assignment should be done using the master data,
+The randomized assignment should be done using the master data,
 and the result should be saved there before being merged to other datasets.
 
 %%%%% Quasi-experimental design
@@ -203,7 +203,8 @@ by contrast, are based on events not controlled by the research team.
 Instead, they rely on ``experiments of nature'',
 in which natural variation in treatment can be argued to approximate randomization.
 You must have a way to measure this natural variation,
-and how the variation is approximated as randomization should be documented in your master dataset.
+and how the variation is categorzied as outcomes of a randomized assignment
+must be documented in your master dataset.
 Unlike carefully planned experimental designs,
 quasi-experimental designs typically require the extra luck
 of having access to data collected at the right times and places
@@ -280,7 +281,7 @@ By now you can probably guess that the result of the matching needs to be saved 
 This is best done by assigning an ID to each matching pair, 
 and create a variable in the master dataset with the ID for the pair each unit belongs to.
 
-The matching can even be done before the random assignment,
+The matching can even be done before the randomized assignment,
 so that treatment can be randomized within each matching set.
 This is a type of experimental design.
 Furthermore, if no control observations were identified before the treatment,
@@ -414,15 +415,15 @@ but it will still give an idea of the validity of your research design assumptio
 
 %-----------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------
-\section{Implementing sampling and randomization designs}
+\section{Implementing sampling and randomized designs}
 
 Sampling and randomized assignment are two core elements of research design.
-In experimental methods, sampling and randomization directly determine
+In experimental methods, sampling and randomized assignment directly determine
 the set of individuals who are going to be observed
 and what their status will be for the purpose of effect estimation.
 In quasi-experimental methods, sampling determines what populations the study
 will be able to make meaningful inferences about,
-and randomization analyses simulate counterfactual possibilities;
+and randomized assignment analyses simulate counterfactual possibilities;
 what would have happened in the absence of the event.
 Randomization is used to ensure that a sample is representative and
 that any treatment and control groups are statistically indistinguishable
@@ -431,14 +432,14 @@ after treatment assignment.
 Randomization in statistical software is non-trivial
 and its mechanics are unintuitive for the human brain.
 The principles of randomization we will outline
-apply not just to random sampling, random assignment,
+apply not just to random sampling, randomized assignment,
 but they apply to all statistical computing processes that have a random components,
 such as simulations and bootstrapping.
 Furthermore, all random processes introduce statistical noise
 or uncertainty into the final estimates of effect sizes.
 Choosing one sample from all the possibilities produces some probability of
 choosing a group of units that are not, in fact, representative.
-Choosing one final randomization assignment similarly produces some probability of
+Choosing one final randomized assignment similarly produces some probability of
 creating groups that are not good counterfactuals for each other.
 \textit{Power calculation} and \textit{randomization inference}
 are the main methods by which these probabilities of error are assessed.
@@ -447,7 +448,7 @@ typically conducted well before any actual field work occurs --
 and often have implications for feasibility, planning, and budgeting.
 
 %-----------------------------------------------------------------------------------------------
-\subsection{Performing sampling and randomization}
+\subsection{Performing sampling and randomized assignment}
 
 % sampling universe: the master dataset
 \textbf{Sampling} is the process of randomly selecting units of observation
@@ -456,18 +457,19 @@ from a list of individuals eligible to be included in data collection.\sidenote{
 \index{sampling}
 \textbf{Randomized treatment assignment} is the process of assigning observations into treatment arms,
 and this is central to experimental research design.
-Most of the code processes used for random assignment are the same as those used for sampling,
+Most of the code processes used for randomized assignment are the same as those used for sampling,
 since it is also a process of splitting a a list of observations into groups.
 Where sampling determines whether a particular individual
 will be observed at all in the course of data collection,
-random assignment determines if each individual will be observed
+randomized assignment determines if each individual will be observed
 as a treatment observation or used as a counterfactual.
 That list of units to sample or randomize from may be called a \textbf{sampling universe},
 a \textbf{listing frame}, or something similar.
 We recommend that this list is your \textbf{master dataset} discussed above.
 
 % implement uniform-probability random sampling
-The simplest form of randomization or sampling is \textbf{uniform-probability random sampling}.
+The simplest form of randomized assignment or sampling is 
+\textbf{uniform-probability random sampling}.
 This means that every observation in the master dataset
 has an equal probability of being selected.
 The most explicit method of implementing this process
@@ -478,7 +480,7 @@ There are a number of shortcuts to doing this process,
 but they all use this method as the starting point,
 so you should become familiar with exactly how it works.
 The do-file below provides an example of
-how to implement uniform-probability sampling or randomization in practice.
+how to implement uniform-probability sampling or randomized assignment in practice.
 This code uses a Stata built-in example dataset and is fully reproducible,
 so anyone that runs this code in any version of Stata later than 13.1
 (the version set in this code)
@@ -487,17 +489,17 @@ will get the exact same randomized results.
 \codeexample{simple-sample.do}{./code/simple-sample.do}
 
 Sampling typically has only two possible outcomes: observed and unobserved.
-Similarly, a simple random assignment has two outcomes: treatment and control,
+Similarly, a simple randomized assignment has two outcomes: treatment and control,
 and the logic in the code would be identical to the sampling code example.
-However, random assignment often involves multiple treatment arms
+However, randomized assignment often involves multiple treatment arms
 which each represent different varieties of treatments to be delivered;
 in some cases, multiple treatment arms are intended to overlap in the same sample.
-Complexity can therefore grow very quickly in random assignment
+Complexity can therefore grow very quickly in randomized assignment
 and it is doubly important to fully understand the conceptual process
 that is described in the experimental design,
 and fill in any gaps before implementing it in code.
 The do-file below provides an example of how to implement
-a simple random assignment of multiple treatment arms.
+a simple randomized assignment of multiple treatment arms.
 
 \codeexample{simple-multi-arm-randomization.do}{./code/simple-multi-arm-randomization.do}
 
@@ -594,7 +596,7 @@ there is no way to correct any mistakes.
 \codeexample{reproducible-randomization.do}{./code/reproducible-randomization.do}
 
 Some types of experimental designs necessitate
-that random assignment results be revealed in the field.
+that randomized assignment results be revealed in the field.
 It is possible to do this using survey software or live events, such as a live lottery.
 These methods typically do not leave a record of the randomization,
 as such can never be reproducible. If an experiment is done as part of data collection,
@@ -608,14 +610,14 @@ to ensure that the field randomization process is appropriately designed and exe
 
 %-----------------------------------------------------------------------------------------------
 
-\subsection{Clustering or stratifying a sample or randomization}
+\subsection{Clustering or stratifying a sample or randomized assignment}
 
 % the cases discussed so far are the most simple, but not the most common
-For a variety of reasons, actual sampling and randomization
+For a variety of reasons, actual sampling and randomized assignment
 is rarely as straightforward as a uniform-probability draw.
 The most common variants are \textbf{clustering} and \textbf{stratification}.\cite{athey2017econometrics}
 \textbf{Clustering} occurs when you observe data at a different level
-than the unit of randomization or sampling.\sidenote{
+than the unit of randomized assignment or sampling.\sidenote{
 	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 For example, a policy may be implemented at the village level,
 or you may only be able to send enumerators at a fixed number of villages,
@@ -625,26 +627,26 @@ but the outcomes of interest for the study are measured at the household level.\
 The groups in which units are assigned to treatment are called clusters.
 % what is stratification
 \textbf{Stratification} breaks the full set of observations into subgroups
-before performing random assignment within each subgroup.\sidenote{
+before performing randomized assignment within each subgroup.\sidenote{
 	\url{https://dimewiki.worldbank.org/Stratified\_Random\_Sample}}
 \index{stratification}
 The subgroups are called \textbf{strata}.
 This ensures that members of every subgroup
-are included in all groups of the random assignment process,
+are included in all groups of the randomized assignment process,
 or that members of all groups are observed in the sample.
-Without stratification, it is possible that randomization
+Without stratification, it is possible that the randomization
 would put all the members of a subgroup into just one of the treatment arms,
-or fail to select them into the sample.
+or fail to select any of them into the sample.
 For both clustering and stratification,
-implementation is nearly identical in both sampling and random assignment.
+implementation is nearly identical in both sampling and randomized assignment.
 
 % How to implement randomization with clusters
 Clustering is procedurally straightforward in Stata,
 although it typically needs to be performed manually.
-To cluster a sampling or random assignment,
+To cluster a sampling or randomized assignment,
 create or use a dataset where each cluster unit is an observation,
 randomize on that dataset, and then merge back the results.
-When sampling or random assignment is conducted using clusters,
+When sampling or randomized assignment is conducted using clusters,
 the clustering variable should be clearly identified in the master dataset
 since it will need to be used in subsequent statistical analysis.
 Namely, standard errors for these types of designs must be clustered
@@ -654,7 +656,7 @@ This accounts for the design covariance within the cluster --
 the information that if one individual was observed or treated there,
 the other members of the clustering group were as well.
 
-% using randtreat for stratified randomization
+% using randtreat for stratified randomized assignment
 By contrast, implementing stratified designs is prone to error.
 Even for a very simple design, the ordinary method of randomly ordering the observations
 will often create very skewed assignments.\sidenote{\url
@@ -672,31 +674,31 @@ imposes an additional layer of randomization above the specified division.
 \subsection{Power calculations for research design}
 
 % sampling error, randomization noise and the need for power calcs
-Both sampling and random assignment are noisy processes:
+Both sampling and randomized assignment are noisy processes:
 they are random, so it is impossible to predict the result in advance.
 By design, we know that the exact choice of sample or treatment
 will be uncorrelated with our key outcomes,
 but this lack of correlation is only true ``in expectation'' --
 that is, across a large number of randomizations.
 In any \textit{particular} randomization,
-the correlation between the sampling or random assignments and the outcome variable
+the correlation between the sampling or randomized assignments and the outcome variable
 is guaranteed to be \textit{nonzero}:
 this is called the \textbf{in-sample} or \textbf{finite-sample correlation}.
 
 Since we know that the true correlation
-(over the ``population'' of potential samples or randomizations)
+(over the ``population'' of potential samples or randomized assignments)
 is zero, we think of the observed correlation as an \textbf{error}.
 In sampling, we call this the \textbf{sampling error},
 and it is defined as the difference between the true population parameter
 and the observed mean due to chance selection of units.\sidenote{
 	\url{https://economistjourney.blogspot.com/2018/06/what-is-sampling-noise.html}}
-In randomization, we call this the \textbf{randomization noise},
+In randomized assignment, we call this the \textbf{randomization noise},
 and define it as the difference between the true treatment effect
 and the estimated effect due to placing units in groups.
 The intuition for both measures is that from any group,
 you can find some possible subsets that have higher-than-average values of some measure;
 similarly, you can find some that have lower-than-average values.
-Your sample or randomization will inevitably fall in one of these categories,
+Your sample or randomized assignment will inevitably fall in one of these categories,
 and we need to assess the likelihood and magnitude of this occurrence.\sidenote{
 	\url{https://davegiles.blogspot.com/2019/04/what-is-permutation-test.html}}
 Power calculation and randomization inference are the two key tools to doing so.
@@ -730,11 +732,11 @@ which can tell you what resources you would need to avoid that problem.
 % what is randomization inference
 \textbf{Randomization inference} is used to analyze the likelihood
 \index{randomization inference}
-that the randomization process, by chance,
+that the randomized assignment process, by chance,
 would have created a false treatment effect as large as the one you observed.
 Randomization inference is a generalization of placebo tests,
 because it considers what the estimated results would have been
-from a random assignment that did not in fact happen in reality.
+from a randomized assignment that did not in fact happen in reality.
 Randomization inference is particularly important
 in quasi-experimental designs and in small samples,
 where the number of possible \textit{randomizations} is itself small.
