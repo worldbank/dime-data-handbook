@@ -452,42 +452,48 @@ and often have implications for feasibility, planning, and budgeting.
 \subsection{Performing sampling and randomized assignment}
 
 % sampling universe: the master dataset
-\textbf{Sampling} is the process of randomly selecting units of observation
-from a list of individuals eligible to be included in data collection.\sidenote{
+\textbf{Sampling} is the process of randomly selecting units-of-observation
+from a list of individuals to create a representative or statistically similar sub-sample.\index{sampling}
+This can, for example, be to when selecting a sub-set from all eligible units
+to be included in data collection as the cost of collecting data on everyone is prohibitive.\sidenote{
 	\url{https://dimewiki.worldbank.org/Sample\_Size\_and\_Power\_Calculations}}
-\index{sampling}
+But it can also be when selecting a sub-sample of your observations to test a computationally heavy process 
+before running it on the full data.
 \textbf{Randomized treatment assignment} is the process of assigning observations into treatment arms,
 and this is central to experimental research design.
 Most of the code processes used for randomized assignment are the same as those used for sampling,
-since it is also a process of splitting a a list of observations into groups.
+since it is also a process of splitting a list of observations into groups.
 Where sampling determines whether a particular individual
 will be observed at all in the course of data collection,
 randomized assignment determines if each individual will be observed
 as a treatment observation or used as a counterfactual.
 That list of units to sample or randomize from may be called a \textbf{sampling universe},
 a \textbf{listing frame}, or something similar.
-We recommend that this list is your \textbf{master dataset} discussed above.
+This list should always be your \textbf{master dataset} when possible.
+The rare exceptions when master datasets can not be used is when sampling must be done in real time,
+for example randomly sample patients as they arrive to a health facility.
 
 % implement uniform-probability random sampling
-The simplest form of randomized assignment or sampling is 
+The simplest form of sampling is 
 \textbf{uniform-probability random sampling}.
-This means that every observation in the master dataset
+This means that every eligible observation in the master dataset
 has an equal probability of being selected.
 The most explicit method of implementing this process
 is to assign random numbers to all your potential observations,
 order them by the number they are assigned,
-and mark as ``sampled'' or ``treated'' those with the lowest numbers, up to the desired proportion.
+and mark as ``sampled'' those with the lowest numbers, up to the desired proportion.
 There are a number of shortcuts to doing this process,
 but they all use this method as the starting point,
 so you should become familiar with exactly how it works.
 The do-file below provides an example of
-how to implement uniform-probability sampling or randomized assignment in practice.
-This code uses a Stata built-in example dataset and is fully reproducible,
+how to implement uniform-probability sampling in practice.
+This code uses a Stata built-in example dataset and is fully reproducible
+(more on reproducible randomization in next section),
 so anyone that runs this code in any version of Stata later than 13.1
 (the version set in this code)
 will get the exact same randomized results.
 
-\codeexample{simple-sample.do}{./code/simple-sample.do}
+\codeexample{simple-uniform-probability-sampling.do}{./code/simple-uniform-probability-sampling.do}
 
 Sampling typically has only two possible outcomes: observed and unobserved.
 Similarly, a simple randomized assignment has two outcomes: treatment and control,
