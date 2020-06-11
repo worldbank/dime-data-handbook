@@ -643,13 +643,13 @@ in your real time in-field randomization.
 For a variety of reasons, actual sampling and randomized assignment
 is rarely as straightforward as a uniform-probability draw.
 The most common variants are \textbf{clustering} and \textbf{stratification}.\cite{athey2017econometrics}
-\textbf{Clustering} occurs when you observe data at a different level
-than the unit of randomized assignment or sampling.\sidenote{
+\textbf{Clustering} occurs when your unit of analysis is different
+than the unit of sampling or unit of treatment assignment.\sidenote{
 	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 For example, a policy may be implemented at the village level,
 or you may only be able to send enumerators at a fixed number of villages,
 but the outcomes of interest for the study are measured at the household level.\sidenote{
-	\url{https://dimewiki.worldbank.org/Multi-stage_(Cluster)_Sampling}}
+	\url{https://dimewiki.worldbank.org/Multi-stage\_(Cluster)\_Sampling}}
 \index{clustered randomization}
 The groups in which units are assigned to treatment are called clusters.
 % what is stratification
@@ -671,10 +671,15 @@ implementation is nearly identical in both sampling and randomized assignment.
 Clustering is procedurally straightforward in Stata,
 although it typically needs to be performed manually.
 To cluster a sampling or randomized assignment,
-create or use a dataset where each cluster unit is an observation,
-randomize on that dataset, and then merge back the results.
+randomize on the master dataset for the unit-of-observation of the cluster,
+and then merge the results to the master dataset for the unit of analysis.
+This is a many-to-one merge and your data map should document
+how those datasets can be merged correctly.
+If you do not have a master dataset yet for the unit-of-observation of the cluster,
+then you first have to create that and update your data map accordingly.
 When sampling or randomized assignment is conducted using clusters,
 the clustering variable should be clearly identified in the master dataset
+for the unit of analysis
 since it will need to be used in subsequent statistical analysis.
 Namely, standard errors for these types of designs must be clustered
 at the level at which the randomization was clustered.\sidenote{
@@ -695,6 +700,7 @@ Notably, it is extremely hard to target precise numbers of observations
 in stratified designs, because exact allocations are rarely round fractions
 and the process of assigning the leftover ``misfit'' observations
 imposes an additional layer of randomization above the specified division.
+Strata variables is another type of variables that must be included in your master datasets.
 
 %-----------------------------------------------------------------------------------------------
 
