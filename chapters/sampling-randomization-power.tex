@@ -302,8 +302,10 @@ command in the \texttt{ietoolkit} package developed by DIME Analytics
 produces matchings based on a single continuous matching variable.
 
 %-----------------------------------------------------------------------------------------------
-\subsection{Other data requirements}
+\subsection{Structuring datasets over multiple time periods}
 
+Your data map and master dataset requirements also depends on
+whether you are using data from one time period or several.
 A study that observes data in only one time period is called
 a \textbf{cross-sectional study}.
 \index{cross-sectional data}
@@ -312,17 +314,18 @@ you do not need to track individuals across time.
 Instead, the challenge in a cross-sectional study is to
 show that the control group is indeed a valid counterfactual to the treatment group.
 
-A study that observes data in multiple time periods is called \textbf{longitudinal} and
-can either be a \textbf{repeated cross-sections} or a \textbf{panel data} study
-depending on whether the same observations are included in each of the time periods.
-\index{longitudinal data}\index{repeated cross-sectional data}\index{panel data}
-
+A study that observes data in multiple time periods is called \textbf{longitudinal}\index{longitudinal data}
+and can either be a \textbf{repeated cross-sections}
+or a \textbf{panel data} study.\index{panel data} \index{repeated cross-sectional data}
 In repeated cross-sections,
 each successive round of data collection uses a new random sample
 of observations from the treatment and control groups,
 but in a panel data study the same observations are tracked and included each round.
+If you are using panel data study,
+then your data map must document how the different rounds will be merged or appended,
+and your master dataset will be the authoritative source of which ID that will be used. 
 
-You must keep track of the attrition rate in longitudinal data,
+You must keep track of the \textit{attrition rate} in longitudinal data,
 which is the share of observations not observed in follow-up data.
 It is common that the observations not possible to track
 can be correlated with the outcome you study.
@@ -331,7 +334,8 @@ patients with worse health conditions might not survive to follow-up,
 and so on.
 If this is the case, then your results might only be an effect of your remaining sample
 being a subset of the original sample that were better or worse off from the beginning.
-A balance check could provide insights
+You should have a variable in your master dataset that indicates attrition.
+A balance check using the attrition variable could provide insights
 as to whether the lost observations were systematically different
 compared to the rest of the sample,
 and there are a variety of methods for estimating treatment effects
