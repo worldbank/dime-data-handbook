@@ -19,5 +19,5 @@
     gen check3 = rnormal()  // Create a third random number after resetting seed
 
 * Visualize randomization results. See how check1 and check3 are identical,
-* but check2 is random relative check1 and check3
+* but check2 is random relative to check1 and check3
     graph matrix check1 check2 check3 , half
