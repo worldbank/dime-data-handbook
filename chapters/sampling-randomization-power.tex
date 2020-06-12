@@ -50,14 +50,15 @@ and how both are important tools to make optimal choices when planning data work
 
 %-----------------------------------------------------------------------------------------------
 
-\section{Translating research design to master datasets}
+\section{Translating research design to master data}
 
 In most projects, more than one dataset is needed to answer the research question.
-This could be multiple survey rounds,
-integration of different existing data sources (e.g. administrative data,
+These could be multiple survey rounds,
+integration of different data sources (e.g. administrative data,
 web scraping, implementation monitoring, etc)
-or a multitude of complex combinations of the above.
-For example, you may have different levels of unit-of-observation\sidenote{
+or complex combinations of the above.
+For example, you may have different levels of \textbf{unit of observation}\sidenote{
+	The \textbf{unit of observation} is the unit at or for which data is collected. See
 	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}},
 or the units of observation you do have (or their subunits)
 may vary from round to round.
@@ -75,64 +76,64 @@ is to create \textit{master datasets} and a \textit{data map}.
 \subsection{Creating master datasets and a data map}
 
 A \textbf{master dataset}\sidenote{
-	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}},
+	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
 \index{master datasets}
-at the very least,
 details all project-wide time-invariant information
 about all units that could appear in the data
 and their relationship to the research design,
 like sampling and treatment status once those are determined.
+Solving all of these questions before you acquire any data,
+and making sure that the full research team knows where to find this information,
+will save a ton of time later on,
+and will increase the quality of your research.
 
 You should create a master dataset
-for each unit-of-observation
+for each unit of observation
 important to the research.
 A unit used for any significant research activity,
 like data collection or data analysis, 
-must always be considered an important unit-of-observation.
+must always be considered an important unit of observation.
 Therefore, any unit
 that will be used in sampling or treatment assignment,
 must have a master dataset,
 and that master dataset -- not field data --
 should be used when sampling or assigning treatment.
 
-You also need to record how all datasets with each unit-of-observation
+You also need to record how all datasets for each unit of observation
 will link or merge with each other as needed.
 This linking scheme is called a \textbf{data map}\sidenote{
 	\url{https://dimewiki.worldbank.org/data\_map} (TO BE CREATED)}.
 \index{data maps} 
 A data map is more than just a list of datasets.
 Its purpose is to specify the characteristics and linkages of those datasets.
-Therefore the master datasets must include fully unique ID variables.\sidenote{
+To link properly, the master datasets must include fully unique ID variables.\sidenote{
 	\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
-The master two datasets should indicate whether datasets should be merge one-to-one,
-for examples merging baseline data and endline data that use the same unit-of-observation.
-Or whether two datasets should be merged many-to-one, 
-for example school admin data merged with student data.
-Your data map must indicate which ID variables can used and how to merge datasets.
-It is common that admin data use IDs 
+The master datasets should indicate whether datasets should be merge one-to-one,
+for example, merging baseline data and endline data that use the same unit of observation,
+or whether two datasets should be merged many-to-one, 
+for example, school administrative data merged with student data.
+Your data map must indicate which ID variables can be used and how to merge datasets.
+It is common that administrative data use IDs 
 that are different than the project IDs, 
-and the linkage between should be clear from your master dataset.
+and the linkage between those should be clear from your master dataset.
 
-Solving all of these questions before you acquire any data,
-and making sure that the full research team knows where to find this information,
-will save a ton of time later on,
-and will increase the quality of your research.
-
-The data map should also include meta-data about the handling of all information.
+The data map should also include metadata about the handling of all information.
 These characteristics may be updated as the project progresses.
-For example, you will need to note the source of each dataset,
-as well as the project folder where raw original data is stored
+For example, you will need to note the original source of each dataset,
+as well as the project folder where 
+the raw original data and codebooks are stored
 and where the back-ups for the each raw dataset are stored.
 
 Some of the characteristics in your master datasets and your data map
 should be filled in during the planning stage,
 but both of them should be active resources 
 that are updated as your project evolves.
-Finally, your master data should not include any missing values. 
+Finally, your master data should not include any unlabeled missing values. 
 If the information is missing for one unit, 
 then the reason should always be indicated with a code.
 An example for such reason could be that a unit was not included in the treatment assignment
-as it was not sampled in the first place.
+as it was not sampled in the first place,
+or was not located in the data collection at a given round.
 
 \subsection{Defining study comparisons using master data}
 
@@ -161,8 +162,8 @@ Instead, the treated group is compared to a control group
 that is statistically indistinguishable,
 which makes the average impact of the treatment
 mathematically equivalent to the difference in averages between the groups.
-
-Statistical similarity is often defined using \textbf{balance} between two groups.	
+Statistical similarity is often defined
+as \textbf{balance} between two or more groups.	
 This test is so common,	
 DIME Analytics created the Stata command \texttt{iebaltab}\sidenote{	
 	\url{https://dimewiki.worldbank.org/iebaltab}}	
@@ -171,9 +172,10 @@ as part of the package \texttt{ietoolkit}.
 However, each research design has its different method	
 for how the statistically similar control group is identified.
 
-The rest of this section covers how the data requirement differs between different research design.
-What does not differ however is that the authoritative source,
-for which unit is a treated unit and which is a control unit,
+The rest of this section covers how the data requirement differs 
+between different research designs.
+What does not differ, however, is that the authoritative source
+for which unit is a treated unit and which is a control unit
 should always be one or several variables in your master dataset. 
 You will often have to merge that data to other datasets, 
 but that is an easy task if you created a data map.
@@ -184,13 +186,12 @@ In \textbf{experimental research designs},\sidenote{
 	For example, \textbf{randomized control trials (RCTs) --}
 	\url{https://dimewiki.worldbank.org/Randomized\_Control\_Trials}}
 \index{randomized control trials} \index{experimental research designs}
-the research team is in control which members
+the research team determines which members
 of the studied population will receive the treatment.
 This is typically done by a randomized assignment process
 in which a subset of the eligible population
 is randomly selected to receive the treatment
-(see the \textit{Randomized treatment assignment} section
-later in this chapter for how to implement this).
+(see later in this chapter for how to implement this).
 The intuition is that if everyone in the eligible population
 is assigned at random to either the treatment or control group,
 then the two groups will, on average, be statistically indistinguishable,
@@ -208,16 +209,16 @@ by contrast, are based on events not controlled by the research team.
 Instead, they rely on ``experiments of nature'',
 in which natural variation in treatment can be argued to approximate randomization.
 You must have a way to measure this natural variation,
-and how the variation is categorzied as outcomes of a randomized assignment
+and how the variation is categorzied as outcomes of a naturally randomized assignment
 must be documented in your master dataset.
 Unlike carefully planned experimental designs,
-quasi-experimental designs typically require the extra luck
+quasi-experimental designs typically require the luck
 of having access to data collected at the right times and places
 to exploit events that occurred in the past.
 Therefore, these methods often use either secondary data,
-including administrative data or other new classes of routinely-collected information,
+including administrative data or other classes of routinely-collected information,
 and it is important that your data map documents 
-how that data is merged to any other of your data.
+how that data is merged to any other data.
 
 
 %%%%% Regression discontinuity
@@ -232,16 +233,17 @@ Common examples are test score thresholds and income thresholds,
 where the individuals on one side of some threshold receive
 a treatment but those on the other side do not.\sidenote{
 	\url{https://blogs.worldbank.org/impactevaluations/regression-discontinuity-porn}}
-
 The intuition is that, on average,
 individuals immediately on one side of the threshold
 are statistically indistinguishable from the individuals on the other side,
 and the only difference is receiving the treatment.
 In your data you need an unambiguous way
 to define which observations were above or below the cutoff.
-The cutoff is often a continuous variable 
+The cutoff determinant, or running variable,
+is often a continuous variable 
 that used to divide the sample into two or more groups. 
-These variables should be saved in your master dataset.
+Both the running variable and a categorical cutoff variable,
+should be saved in your master dataset.
 
 %%%%% IV regression
 
@@ -272,30 +274,25 @@ and another popular implementation is the user-written command \texttt{ivreg2}.
 \textbf{Matching}\sidenote{
 	\url{https://dimewiki.worldbank.org/Matching}}
 methods use observable characteristics to construct
-sets or pairs of treatment and control units
-so that the observations in each set are as similar as possible. \index{matching}
+sets of treatment and control units
+where the observations in each set 
+are as similar as possible. \index{matching}
 These sets can either consist of exactly one treatment and one control observation (one-to-one),
-or it can be a set observations where either
+a set of observations where
 both groups have more than one observation represented (many-to-many),
 or where only one group has more than one observation included (one-to-many).
-By now you can probably guess that the result of the matching needs to be saved in the master dataset.
-This is best done by assigning an ID to each matching pair, 
-and create a variable in the master dataset with the ID for the pair each unit belongs to.
-
+By now you can probably guess that 
+the result of the matching needs to be saved in the master dataset.
+This is best done by assigning an ID to each matching set, 
+and create a variable in the master dataset 
+with the ID for the set each unit belongs to.
 The matching can even be done before the randomized assignment,
 so that treatment can be randomized within each matching set.
 This is a type of experimental design.
 Furthermore, if no control observations were identified before the treatment,
-then matching can be used to ex-post identify a control group,
-by finding the observations that are the most similar to the treated group.
-It is very difficult to test the validity of an ex-post matching
-as one would have to show that the difference in outcome is
-due to the impact of the treatment and not due to the groups not being similar enough.
-
-A valid matching must be made on data that is not related to the treatment
-or anything that the treatment could have affected in any way.
+then matching can be used to ex-post identify a control group.
 Many matching algorithms can only match on a single variable,
-so you first have to turn many variables into a single varaible
+so you first have to turn many variables into a single variable
 by using an index or a propensity score.\sidenote{
 	\url{https://dimewiki.worldbank.org/Propensity\_Score\_Matching}}
 The \texttt{iematch}\sidenote{
@@ -337,7 +334,7 @@ and so on.
 If this is the case, then your results might only be an effect of your remaining sample
 being a subset of the original sample that were better or worse off from the beginning.
 You should have a variable in your master dataset that indicates attrition.
-A balance check using the attrition variable could provide insights
+A balance check using the attrition variable can provide insights
 as to whether the lost observations were systematically different
 compared to the rest of the sample,
 and there are a variety of methods for estimating treatment effects
@@ -354,14 +351,13 @@ assumptions made during the research design corresponds to what is true in reali
 The most typical example is to make sure that, in an experimental design,
 the treatment was implemented according to your treatment assignment.
 
-You should always verify that the treatment was implemented according to your assignment.
 The implementation of your treatment often have to be carried by field counterparts
-that have more incentives than only your research.
-It does not need to mean that they are corrupt or have malicious intent, 
-it only means that field work will always be more intricate than a lab environment, 
+that have more complex realities than only your research.
+Field work will always be more intricate than a lab environment, 
 and the field counterpart might not be aware that their actions are the implementation of your research.
 Therefore, you must acquire monitoring data that tells you how well the treatment assignment in the field
-corresponds to your intended treatment assignment.
+corresponds to your intended treatment assignment,
+for nearly all research designs.
 
 Another example of a research design where monitoring data is important
 are regression discontinuity (RD) designs
@@ -380,17 +376,15 @@ then we need to understand how common that was.
 Otherwise the result of our research will not be helpful
 in evaluating the program.
 
-Monitoring data might be the type of data 
-where merge errors that a data map and master data can prevent,
-are the most common.
+Monitoring data is particularly prone to errors 
+relating to merging with other data set. 
 It is too late to think about how monitoring data will be merged
 with the rest of the data, after the monitoring data is already collected.
 If you send a team to simply record the name of all people attending a training,
 then potentially different spellings of names 
 -- especially when names have to be transcribed from other alphabets to the Latin alphabet --
 will be the biggest source of error in your monitoring activity.
-
-The time to discuss and document how monitor data will be merged with precision
+The time to discuss and document how monitoring data will be merged with precision
 to the rest of your data, is when you are creating your data map.
 The solution is often very simple, it is just a matter of solving it before it is too late.
 An example of a solution is to provide the monitoring teams 
@@ -405,11 +399,9 @@ Add those names to your master datasets,
 as the most complete information possible will help you 
 if you at any point in your project end up without an ID to merge on,
 and will have to compare names when merging data.
-
 Finally, while it is always better to monitor all activities,
 it might be to costly. 
-In those cases you can sample a smaller number of activities
-and monitor them.
+In those cases you can sample a smaller number of critical activities and monitor them.
 This will not be detailed enough to be used as a control in your analysis,
 but it will still give an idea of the validity of your research design assumptions.
 
@@ -671,11 +663,11 @@ implementation is nearly identical in both sampling and randomized assignment.
 Clustering is procedurally straightforward in Stata,
 although it typically needs to be performed manually.
 To cluster a sampling or randomized assignment,
-randomize on the master dataset for the unit-of-observation of the cluster,
+randomize on the master dataset for the unit of observation of the cluster,
 and then merge the results to the master dataset for the unit of analysis.
 This is a many-to-one merge and your data map should document
 how those datasets can be merged correctly.
-If you do not have a master dataset yet for the unit-of-observation of the cluster,
+If you do not have a master dataset yet for the unit of observation of the cluster,
 then you first have to create that and update your data map accordingly.
 When sampling or randomized assignment is conducted using clusters,
 the clustering variable should be clearly identified in the master dataset
