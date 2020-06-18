@@ -43,6 +43,7 @@ sampling and randomization designs and to make optimal choices when planning stu
 
 \section{Random processes}
 
+% what we mean when we talk about randomization
 Most experimental designs rely directly on random processes,
 particularly sampling and randomization, to be executed in code.
 The fundamental econometrics behind impact evaluation
@@ -67,8 +68,9 @@ which are inherently deterministic.\sidenote{
 
 \subsection{Implementing random processes reproducibly in Stata}
 
+% what is means for randomization to be reproducible
 For statistical programming to be considered reproducible, it must be possible for the outputs of random processes
-can be re-obtained at a future time.\cite{orozco2018make}
+to be re-obtained at a future time.\cite{orozco2018make}
 For our purposes, we will focus on what you need to understand
 in order to produce truly random results for your project using Stata,
 and how you can make sure you can get those exact results again in the future.
@@ -77,6 +79,7 @@ This section introduces the strict rules: these are non-negotiable (but thankful
 At the end of the section, 
 we provide a do-file that provides a concrete example of how to implement these principles. 
 
+% what Stata is doing when it generates random numbers
 Stata, like most statistical software, uses a \textbf{pseudo-random number generator}.
 Basically, it has a pre-calculated really long ordered list of numbers with the property that
 knowing the previous one gives you precisely zero information about the next one, i.e. a list of random numbers.
@@ -91,6 +94,7 @@ and we need to ensure that the starting point is independently random from our p
 In Stata, this is accomplished through three command concepts:
 \textbf{versioning}, \textbf{sorting}, and \textbf{seeding}.
 
+% rule 1: versioning
 \textbf{Versioning} means using the same version of the software each time you run the random process.
 If anything is different, the underlying list of random numbers may have changed,
 and it will be impossible to recover the original result.
@@ -107,6 +111,7 @@ However, testing your do-files without running them
 via the master do-file may produce different results,
 since Stata's \texttt{version} setting expires after each time you run your do-files.
 
+% rule 2: sorting
 \textbf{Sorting} means that the actual data that the random process is run on is fixed.
 Because random numbers are assigned to each observation in row-by-row starting from
 the top row,
@@ -121,6 +126,7 @@ In Stata, the only way to guarantee a unique sorting order is to use
 You can additionally use the \texttt{datasignature} command to make sure the
 data is unchanged.
 
+% rule 3: seeding
 \textbf{Seeding} means manually setting the start-point in the list of random numbers.
 The seed is a number that should be at least six digits long and you should use exactly
 one unique, different, and randomly created seed per randomization process.\sidenote{You
@@ -137,6 +143,7 @@ Other commands may induce randomness in the data or alter the seed without you r
 so carefully confirm exactly how your code runs before finalizing it.\sidenote{
   \url{https://dimewiki.worldbank.org/Randomization_in_Stata}}
 
+% testing randomization reproducibility
 To confirm that a randomization has worked well before finalizing its results,
 save the outputs of the process in a temporary location,
 re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure
@@ -152,6 +159,7 @@ are reproducible.
 
 \section{Sampling and randomization}
 
+% random sampling vs random assignment
 The sampling and randomization processes we choose
 play an important role in determining the size of the confidence intervals
 for any estimates generated from that sample,
@@ -162,6 +170,7 @@ and random \textit{assignment} ensures that you have unbiased treatment estimate
 If you randomly sample or assign a set number of observations from a set frame,
 there are a large -- but fixed -- number of permutations which you may draw.
 
+% the intuition behind sampling and randomization
 In reality, you have to work with exactly one of them,
 so we put a lot of effort into making sure that one is a good one
 by reducing the probability of the data indicating that results or correlations are true when they are not.
@@ -179,6 +188,7 @@ This section introduces universal basic principles for sampling and randomizatio
 
 \subsection{Sampling}
 
+% sampling universe: the master data set
 \textbf{Sampling} is the process of randomly selecting units of observation
 from a master list of individuals to be included in data collection.\sidenote{
   \url{https://dimewiki.worldbank.org/Sampling_\%26_Power_Calculations}}
@@ -192,6 +202,7 @@ characteristics of each of the units that may be surveyed.\sidenote{
 The master dataset indicates how many individuals are eligible for data collection,
 and therefore contains statistical information about the likelihood that each will be chosen.
 
+% implement uniform-probability random sampling
 The simplest form of random sampling is \textbf{uniform-probability random sampling}.
 This means that every observation in the master dataset
 has an equal probability of being included in the sample.
@@ -209,6 +220,7 @@ The do-file below provides an example of how to implement uniform-probability sa
 
 \codeexample{simple-sample.do}{./code/simple-sample.do}
 
+% what to think about before sampling
 Almost all of the relevant considerations for sampling come from two sources:
 deciding what population, if any, a sample is meant to represent (including subgroups);
 and deciding that different individuals should have different probabilities
@@ -224,6 +236,7 @@ usually involve tedious calculations of probabilities and should be avoided.
 
 \subsection{Randomization}
 
+% what does randomization mean
 \textbf{Randomization}, in this context, is the process of assigning units into treatment arms.
 Most of the code processes used for randomization are the same as those used for sampling,
 since randomization is also a process of splitting a sample into groups.
@@ -240,6 +253,7 @@ Therefore, controlling the exact probability that each individual receives treat
 is the most important part of a randomization process,
 and must be carefully worked out in more complex designs.
 
+% How randomization code differs from sampling code
 Just like sampling, the simplest form of randomization is a uniform-probability process.\sidenote{
   \url{https://dimewiki.worldbank.org/Randomization_in_Stata}}
 Sampling typically has only two possible outcomes: observed and unobserved.
@@ -254,6 +268,7 @@ The do-file below provides an example of how to implement a simple random assign
 
 \codeexample{simple-multi-arm-randomization.do}{./code/simple-multi-arm-randomization.do}
 
+% Randomizing in the field
 Some types of experimental designs necessitate that randomization results be revealed in the field.
 It is possible to do this using survey software or live events, such as a live lottery.
 These methods typically do not leave a record of the randomization,
@@ -271,6 +286,7 @@ to ensure that the field randomization process is appropriately designed and exe
 
 \section{Clustering and stratification}
 
+% the cases discussed so far are the most simple, but not the most common
 For a variety of experimental and theoretical reasons,
 the actual sampling and randomization processes we need to perform
 are rarely as straightforward as a uniform-probability draw.
@@ -287,6 +303,7 @@ their implementation is nearly identical in both sampling and randomization.
 
 \subsection{Clustering}
 
+% clustering is needed when unit of observation in the data is different from the randomization unit
 Many studies observe data at a different level than the randomization unit.\sidenote{
   \url{https://dimewiki.worldbank.org/Unit_of_Observation}}
 For example, a policy may be implemented at the village level,
@@ -298,6 +315,7 @@ The same principle extends to sampling:
 it may be be necessary to observe all the children
 in a given teacher's classroom, for example.
 
+% How to implement randomization with clusters
 Clustering is procedurally straightforward in Stata,
 although it typically needs to be performed manually.
 To cluster a sampling or randomization,
@@ -315,6 +333,7 @@ the other members of the clustering group were as well.
 
 \subsection{Stratification}
 
+% what is stratification
 \textbf{Stratification} is a research design component
 that breaks the full set of observations into a number of subgroups
 before performing randomization within each subgroup.\sidenote{
@@ -325,6 +344,7 @@ since it is possible that a global randomization
 would put all the members of a subgroup into just one of the treatment arms.
 In this context, the subgroups are called \textbf{strata}.
 
+% using randtreat for stratified randomization
 Manually implementing stratified randomization in Stata is prone to error.
 In particular, it is difficult to precisely account
 for the interaction of strata sizes with multiple treatment arms.
@@ -345,6 +365,7 @@ imposes an additional layer of randomization above the specified division.
 
 \codeexample{randtreat-strata.do}{./code/randtreat-strata.do}
 
+% analyzing stratified experiments
 Whenever stratification is used for randomization,
 the analysis of differences within the strata (especially treatment effects)
 requires a control in the form of an indicator variable for all strata (fixed effects).
@@ -365,6 +386,7 @@ but is usually related to the inverse of the likelihood of inclusion.
 
 \section{Power calculation and randomization inference}
 
+% sampling error, randomization noise and the need for power calcs
 Both sampling and randomization are noisy processes:
 they are random, after all, so it is impossible to predict the result in advance.
 By design, we know that the exact choice of sample or treatment
@@ -396,6 +418,7 @@ Power calculation and randomization inference are the two key tools to doing so.
 
 \subsection{Power calculations}
 
+% why to do power calculations
 Power calculations report the likelihood that your experimental design
 will be able to detect the treatment effects you are interested in.
 This measure of \textbf{power} can be described in various different ways,
@@ -409,6 +432,7 @@ low-power studies can be very interesting,
 but they have a correspondingly higher likelihood
 of reporting false positive results.
 
+% intuition of power concets: MDE and minimum sample size
 The classic definition of power
 is the likelihood that a design detects a significant treatment effect,
 given that there is a non-zero treatment effect in reality.
@@ -430,6 +454,7 @@ Conversely, the \textbf{minimum sample size} pre-specifies expected effect sizes
 and tells you how large a study's sample would need to be to detect that effect,
 which can tell you what resources you would need to avoid that problem.
 
+% stata commands for power calcs
 Stata has some commands that can calculate power analytically for
 very simple designs -- \texttt{power} and \texttt{clustersampsi} --
 but they will not answer most of the practical questions
@@ -443,6 +468,7 @@ quickly becomes complex.
 Furthermore, you should use real data on the population of interest whenever it is available,
 or you will have to make assumptions about the distribution of outcomes.
 
+% why you should do simulations instead
 Together, the concepts of minimum detectable effect
 and minimum sample size can help answer a key question
 that typical approaches to power often do not.
@@ -463,6 +489,7 @@ For reporting purposes, such as grant writing and registered reports,
 simulation ensures you will have understood the key questions well enough
 to report standard measures of power once your design is decided.
 
+% wrap up
 Not all studies are capable of achieving traditionally high power:
 sufficiently precise sampling or treatment assignments may not be available.
 This may be especially true for novel or small-scale studies --
@@ -472,6 +499,7 @@ so that the evidentiary value of its results can be assessed.
 
 \subsection{Randomization inference}
 
+% what is randomization inference
 Randomization inference is used to analyze the likelihood
 that the randomization process, by chance,
 would have created a false treatment effect as large as the one you observed.
@@ -496,6 +524,7 @@ We also don't need to: these methods were developed when it was very costly
 to compute large numbers of combinations using computers,
 and in most cases we now have the ability to do these calculations reasonably quickly.
 
+% randomization inference in stata: ritest
 Instead, we directly simulate a large variety of possible alternative randomizations.
 Specifically, the user-written \texttt{ritest} command\sidenote{
   \url{http://hesss.org/ritest.pdf}}
@@ -516,6 +545,7 @@ significance levels may be very different
 than those given by asymptotic confidence intervals,
 particularly in small samples (up to several hundred clusters).
 
+% why you should use randomization inference
 Randomization inference can therefore be used proactively during experimental design.
 As long as there is some outcome data usable at this stage,
 you can use the same procedure to examine the potential treatment effects

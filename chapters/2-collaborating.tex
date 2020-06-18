@@ -1,0 +1,681 @@
+% ----------------------------------------------------------------------------------------------
+
+\begin{fullwidth}
+Preparation for collaborative data work begins long before you acquire any data,
+and involves planning both the software tools you will use
+and the collaboration platforms and processes for your team.
+In order to be prepared to work on the data you receive with a group,
+you need to structure your workflow in advance.
+This means knowing which datasets and outputs you need at the end of the process,
+how they will stay organized, what types of data you'll acquire,
+and whether the data will require special handling due to size or privacy considerations.
+Identifying these details will help you map out the data needs for your project,
+and give you a sense for how information resources should be organized.
+It's okay to update this data map once the project is underway.
+The point is that everyone knows -- at any given time -- what the plan is.
+
+To do data work effectively in a team environment,
+you will need to prepare collaborative tools and workflows.
+Changing software or protocols halfway through a project can be costly and time-consuming,
+so it's important to plan ahead.
+Seemingly small decisions such as sharing services, folder structures,
+and filenames can be extremely painful to alter down the line in any project.
+Similarly, make sure to set up a self-documenting discussion platform
+and process for version control;
+this makes working together on outputs much easier from the very first discussion.
+This chapter will guide you on preparing a collaborative work environment,
+and structuring your data work to be well-organized and clearly documented.
+It outline hows to set up your working environment
+and prepare to collaborate on technical tasks with others,
+as well as how to document tasks and decisions.
+It then discusses how to keep code, data, and outputs organized so that others
+will be able to locate and work with materials easily.
+
+\end{fullwidth}
+
+% ----------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------
+
+\section{Preparing a collaborative work environment}
+
+% Section overview and objective
+This section provides a brief introduction to core concepts and tools
+that can help you to organize your data work in an efficient, collaborative and reproducible manner.
+Some of these skills may seem elementary,
+but thinking about simple things from a workflow perspective
+can help you make marginal improvements every day you work;
+those add up to substantial gains over the course of multiple years and projects.
+Together, these processes should form a collaborative workflow
+that will greatly accelerate your team's ability to get tasks done
+on every project you take on together.
+
+% List of common workflow issues that can be solved across projects
+Teams often develop their workflows over time,
+solving new challenges as they arise.
+Adaptation is good, of course. But it is important to recognize
+that there are a number of tasks that exist for every project,
+and it is more efficient to agree on the corresponding workflows in advance.
+These include documentation methods, software choices,
+naming schema, organizing folders and outputs, collaborating on code,
+managing revisions to files, and reviewing each other's work.
+These tasks appear in almost every project,
+and their solutions translate well between projects.
+Therefore, there are large efficiency gains over time to
+thinking in advance about the best way to do these tasks,
+instead of throwing together a solution when the task arises.
+This section will outline the main points to discuss within the team,
+and suggest some common solutions for these tasks.
+
+% ----------------------------------------------------------------------------------------------
+\subsection{Setting up your computer}
+
+% Personal computer security: password protection, disk encryption
+First things first: turn on your computer.
+Make sure you have fully updated the operating system,
+that it is in good working order,
+and that you have a \textbf{password-protected} login.
+  \index{password protection}
+All machines should have \textbf{hard disk encryption} enabled.
+  \index{encryption}
+Disk encryption is available on many modern operating systems;
+you should determine whether your computer implements this
+or whether you need to ensure encryption at the individual file level.
+Disk encryption prevents your files from ever being accessed
+without first entering the system password.
+This is different from file-level encryption,
+which makes individual files unreadable without a specific key.
+(We will address that in more detail later.)
+As with all critical passwords, your system password should be strong,
+memorable, and backed up in a separate secure location.
+
+% 3-2-1 rule
+Make sure your computer is backed up to prevent information loss.
+  \index{backup}
+Follow the \textbf{3-2-1 rule}: maintain 3 copies of all original or irreplaceable data,
+on at least 2 different hardware devices you have access to,
+with 1 offsite storage method.\sidenote{
+  \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy}}
+One example of this setup is having one copy on your primary computer,
+one copy on an external hard drive stored in a safe place,
+and one copy in the cloud.
+In this case, Dropbox and other automatic file sync services do not count as a cloud copy,
+since other users can alter or delete them
+unless you create a specific folder for this purpose that is not shared with anyone else.
+  \index{Dropbox}
+
+% Finding file paths, naming files
+Ensure you know how to get the \textbf{absolute file path} for any given file.
+Using the absolute file path, starting from the filesystem root,
+means that the computer will never accidentally load the wrong file.
+  \index{file paths}
+On MacOS this will be something like \path{/users/username/git/project/...},
+and on Windows, \path{C:/users/username/git/project/...}.
+Use forward slashes (\texttt{/}) in file paths for folders,
+and whenever possible use only A-Z (the 26 English characters),
+dashes (\texttt{-}), and underscores (\texttt{\_}) in folder names and filenames.
+For emphasis: \textit{always} use forward slashes (\texttt{/}) in file paths in code,
+just like in internet addresses. Do this even if you are using a Windows machine where
+both forward and backward slashes are allowed, as your code will otherwise break
+if anyone tries to run it on a Mac or Linux machine.
+Making the structure of your directories a core part of your workflow is very important,
+since otherwise you will not be able to reliably transfer the instructions
+for replicating or carrying out your analytical work.
+
+% File sharing: file syncing, version control and server storage
+When you are working with others, you will most likely be using
+some kind of \textbf{file sharing} software.
+  \index{file sharing}
+The exact services you use will depend on your tasks,
+but in general, there are several approaches to file sharing,
+and the three discussed here are the most common.
+\textbf{File syncing} is the most familiar method,
+and is implemented by software like Dropbox and OneDrive.
+  \index{file syncing}
+Sync forces everyone to have the same version of every file at the same time,
+which makes simultaneous editing difficult but other tasks easier.
+They also have some security concerns which we will address later.
+\textbf{Version control} is another method,
+commonly implemented by tools like Git\sidenote{
+	\textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.} and GitHub\sidenote{
+	\textbf{GitHub:} the biggest publicly available platform for hosting Git projects.}.
+  \index{version control}
+Version control allows everyone to access different versions of files at the same time,
+making simultaneous editing easier but some other tasks harder.
+It is also only optimized for specific types of files.
+Finally, \textbf{server storage} is the least-common method,
+because there is only one version of the materials,
+and simultaneous access must be carefully regulated.
+  \index{server storage}
+Server storage ensures that everyone has access
+to exactly the same files and environment, and it also enables
+high-powered computing processes for large and complex data.
+All three file sharing methods are used for collaborative workflows,
+and you should review the types of data work
+that you will be doing, and plan which types of files
+will live in which types of sharing services.
+It is important to note that they are, in general, not interoperable,
+meaning you should not have version-controlled files inside a syncing service,
+or vice versa, without setting up complex workarounds,
+and you cannot shift files between them without losing historical information.
+Therefore, choosing the correct sharing service at the outset is essential.
+
+% ----------------------------------------------------------------------------------------------
+\subsection{Documenting decisions and tasks}
+
+% communication vs documentation
+Once your technical and sharing workspace is set up,
+you need to decide how you are going to communicate with your team.
+The first habit that many teams need to break
+is using instant communication for management and documentation.
+Email is, simply put, not a system. It is not a system for anything. Neither is WhatsApp.\index{email}\index{WhatsApp}
+These tools are developed for communicating ``now'' and this is what they do well.
+They are not structured to manage group membership or to present the same information
+across a group of people, or to remind you when old information becomes relevant.
+They are not structured to allow people to collaborate over a long time or to review old discussions.
+It is therefore easy to miss or lose communications from the past when they have relevance in the present.
+Everything with future relevance that is communicated over e-mail or any other instant medium
+-- such as, for example, decisions about sampling --
+should immediately be recorded in a system that is designed to keep permanent records.
+We call these systems collaboration tools, and there are several that are very useful.\sidenote{
+  \url{https://dimewiki.worldbank.org/Collaboration_Tools}}
+  \index{collaboration tools}
+
+% task management and documentation tools
+Many collaboration tools are web-based
+so that everyone on your team can access them simultaneously
+and have live discussions about tasks and processes.
+Many are based on an underlying system known as ``Kanban''.\sidenote{
+  \url{https://en.wikipedia.org/wiki/Kanban_board}}
+This task-oriented system allows the team to create and assign tasks,
+carry out discussions related to single tasks,
+track task progress across time, and quickly see the overall project state.
+These systems therefore link communication to specific tasks so that
+the records related to decision making on those tasks is permanently recorded
+and easy to find in the future when questions about that task come up.
+One popular and free implementation of this system is found in GitHub project boards.
+Other tools which currently offer similar features (but are not explicitly Kanban-based)
+are GitHub Issues and Dropbox Paper.
+Any specific list of software will quickly be outdated;
+we mention these two as an example of one that is technically-organized and one that is chronological.
+Choosing the right tool for the right needs is essential to being satisfied with the workflow.
+What is important is that your team chooses its systems and stick to those choices,
+so that decisions, discussions, and tasks are easily reviewable long after they are completed.
+
+% GitHub and DropBox paper for task documentation
+Just like we use different file sharing tools for different types of files,
+we can use different collaboration tools for different types of tasks.
+Our team, for example, uses GitHub Issues for code-related tasks,
+and Dropbox Paper for more managerial and office-related tasks.
+GitHub creates incentives for writing down why changes were made
+in response to specific discussions
+as they are completed, creating naturally documented code.
+It is useful also because tasks in Issues can clearly be tied to file versions.
+On the other hand, Dropbox Paper provides a clean interface with task notifications,
+and is very intuitive for people with non-technical backgrounds.
+It is useful because tasks can be easily linked to other documents saved in Dropbox.
+Therefore, it is a better tool for managing non-code-related tasks.
+Neither of these tools require much technical knowledge;
+they merely require an agreement and workflow design
+so that the people assigning the tasks are sure to set them up in the appropriate system.
+
+% ----------------------------------------------------------------------------------------------
+\subsection{Choosing software}
+
+% why it is important to make a conscious decision about software
+Choosing the right working environments can make your work significantly easier.
+  \index{software environments}
+It may be difficult or costly to switch halfway through a project, so
+think ahead about the different software to be used.
+Take into account the different levels of techiness of team members,
+how important it is to access files offline constantly,
+as well as the type of data you will need to access and the security needed.
+Big datasets require additional infrastructure and may overburden
+the traditional tools used for small datasets,
+particularly if you are trying to sync or collaborate on them.
+Also consider the cost of licenses, the time to learn new tools,
+and the stability of the tools.
+There are few strictly right or wrong choices for software,
+but what is important is that you have a plan in advance
+and understand how your tools will interact with your work.
+
+% setting stable code environments
+Ultimately, the goal is to ensure that you will be able to hold
+your code environment constant over the lifecycle of a single project.
+While this means you will inevitably have different projects
+with different code environments, each one will be better than the last,
+and you will avoid the extremely costly process of migrating a project
+into a new code environment while it is still ongoing.
+This can be set up down to the software level:
+you should ensure that even specific versions of software
+and the individual packages you use
+are referenced or maintained so that they can be reproduced going forward
+even if their most recent releases contain changes that would break your code.
+  \index{software versions}
+(For example, our command \texttt{ieboilstart} in the \texttt{ietoolkit} package
+provides functionality to support Stata version stability.\sidenote{
+  \url{https://dimewiki.worldbank.org/ieboilstart}})
+
+% choosing a code editor
+Next, think about how and where you write and execute code.
+This book is intended to be agnostic to the size or origin of your data,
+but we are going to broadly assume that you are using desktop-sized datasets
+in one of the two most popular desktop-based packages: R or Stata.
+(If you are using another language, like Python,
+or working with big data projects on a server installation,
+many of the same principles apply but the specifics will be different.)
+The most visible part of working with code is a code editor,
+since most of your time will be spent writing and re-writing your code.
+This does not need to be the same program as the code runs in,
+and the various members of your team do not need to use the same editor.
+Using an external editor can be preferable since your editor will not crash if your code does,
+and may offer additional features aimed at writing code well.
+If you are working in R, \textbf{RStudio} is the typical choice.\sidenote{
+  \url{https://www.rstudio.com}}
+For Stata, the built-in do-file editor is the most widely adopted code editor,
+but \textbf{Atom}\sidenote{\url{https://atom.io}} and
+\textbf{Sublime}\sidenote{\url{https://www.sublimetext.com}}
+can also be configured to run Stata code externally,
+while offering great code accessibility and quality features.
+(We recommend setting up and becoming comfortable with one of these.)
+For example, these editors can access an entire directory -- rather than a single file --
+which gives you access to directory views and file management actions,
+such as folder management, Git integration,
+and simultaneous work with other types of files, without leaving the editor.
+
+% ----------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------
+\section{Organizing code and data}
+
+% Why we write code
+We assume you are going to do nearly all of your analytical work through code.
+Though it is possible to use some statistical software through the user interface
+without writing any code, we strongly advise against it.
+Writing code creates a record of every task you performed.
+It also prevents direct interaction with the data files that could lead to non-reproducible steps.
+You may do some exploratory tasks by point-and-click or typing directly into the console,
+but anything that is included in a research output
+must be coded up in an organized fashion so that you can release
+the exact code recipe that goes along with your final results.
+% Why to think about folder structure
+Still, organizing code and data into files and folders is not a trivial task.
+What is intuitive to one person rarely comes naturally to another,
+and searching for files and folders is everybody's least favorite task.
+As often as not, you come up with the wrong folder structure,
+and then it becomes very easy to create problems that require complex resolutions later.
+This section will provide basic tips on managing the folder
+that will store your project's data work.
+
+% Why to think about folder structure
+We assume you will be working with code and data throughout your project.
+We further assume you will want all your processes to be recorded
+and easily findable at any point in time.
+Maintaining an organized file structure for data work is the best way
+to ensure that you, your teammates, and others
+are able to easily advance, edit, and replicate your work in the future.
+It also ensures that automated processes from code and scripting tools
+are able to interact well with your work,
+whether they are yours or those of others.
+File organization makes your own work easier as well as more transparent,
+and will make your code easier to combine with tools like version control systems
+that aim to cut down on the amount of repeated tasks you have to perform.
+It is worth thinking in advance about how to store, name, and organize
+the different types of files you will be working with,
+so that there is no confusion down the line
+and everyone has the same expectations.
+
+% ----------------------------------------------------------------------------------------------
+\subsection{Organizing files and folder structures}
+
+% what is iefolder and why it's useful
+Agree with your team on a specific directory structure,
+and set it up at the beginning of the research project
+in your root folder (the one over which you can control access permissions).
+This will prevent future folder reorganizations that may slow down your workflow and,
+more importantly, ensure that your code files are always able to run on any machine.
+To support consistent folder organization, DIME Analytics maintains \texttt{iefolder}\sidenote{
+  \url{https://dimewiki.worldbank.org/iefolder}}
+as a part of our \texttt{ietoolkit} package.\index{\texttt{iefolder}}\index{\texttt{ietoolkit}}
+This Stata command sets up a pre-standardized folder structure
+for what we call the \texttt{DataWork} folder.\sidenote{
+  \url{https://dimewiki.worldbank.org/DataWork_Folder}}
+The \texttt{DataWork} folder includes folders for all the steps of a typical project.
+  \index{\texttt{DataWork} folder}
+Since each project will always have its own needs,
+we have tried to make it as easy as possible to adapt when that is the case.
+The main advantage of having a universally standardized folder structure
+is that changing from one project to another requires less
+time to get acquainted with a new organization scheme.
+For our group, maintaining a single unified directory structure
+across the entire portfolio of projects means that everyone
+can easily move between projects without having to reorient
+themselves to how files and folders are organized.
+
+% iefolder structure
+Our suggested file structure is not for everyone.
+But if you do not already have a standard file structure across projects,
+it is intended to be an easy template to start from.
+This system operates by creating a \texttt{DataWork} folder at the project level,
+and within that folder, it provides standardized directory structures
+for each data source or survey round.
+For each, \texttt{iefolder} creates folders for raw encrypted data,
+raw deidentified data, cleaned data, final data, outputs, and documentation.
+In parallel, it creates folders for the code files
+that move the data through this progression,
+and for the files that manage final analytical work.
+The command has some flexibility for the addition of
+folders for other types of data sources, although this is less well developed
+as the needs for larger datasets tend to be very specific.
+The \texttt{ietoolkit} package also includes the \texttt{iegitaddmd} command,
+which can place \texttt{README.md} placeholder files in your folders so that
+your folder structure can be shared using Git. Since these placeholder files are
+written in a plaintext language called \textbf{Markdown}, they also provide an easy way
+to document the contents of every folder in the structure.
+  \index{Markdown}
+
+% create a separate folder for data work
+The \texttt{DataWork} folder may be created either inside
+an existing project-based folder structure, or it may be created separately.
+It is preferable to create the \texttt{DataWork} folder
+separately from the project management materials
+(such as contracts, Terms of Reference, briefs and other administrative or management work).
+% so the data work folder can be version-controlled
+This is so the project folder can be maintained in a synced location like Dropbox,
+while the code folder can be maintained in a version-controlled location like GitHub.
+(Remember, a version-controlled folder \textit{should not}
+be stored in a synced folder that is shared with other people.
+Those two types of collaboration tools function very differently
+and will almost always create undesired functionality if combined.)
+% What files can be version-controlled
+Nearly all code files and raw outputs (not datasets) are best managed this way.
+This is because code files are always \textbf{plaintext} files,
+and non-code-compatiable files are usually \textbf{binary} files.\index{plaintext}\index{binary files}
+It's also becoming more and more common for written outputs such as reports,
+presentations and documentations to be written using plaintext
+tools such as {\LaTeX} and dynamic documents.\index{{\LaTeX}}\index{dynamic documents}
+Keeping such plaintext files in a version-controlled folder allows you
+to maintain better control of their history and functionality.
+Because of the high degree of dependence between code files depend and file structure,
+you will be able to enforce better practices in a separate code folder than in the project folder.
+
+% why version control is useful
+Setting up the \texttt{DataWork} folder in a version-controlled directory
+also enables you to use Git and GitHub for version control on your code files.
+A \textbf{version control system} is required to manage changes to any code-compatiable file.
+A good version control system tracks who edited each file and when,
+and additionally provides a protocol for ensuring that conflicting versions are avoided.
+This is important, for example, for your team
+to be able to find the version of a presentation that you delivered to a donor,
+or to understand why the significance level of your estimates has changed.
+Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
+can appreciate how useful such a system can be.
+
+% why git is the best way to version control code
+Most syncing services offer some kind of rudimentary version control;
+these are usually enough to manage changes to binary files (such as Word and PowerPoint documents)
+without needing to rely on dreaded filename-based versioning conventions.
+For code files, however, a more detailed version control system is usually desirable.
+We recommend using Git for all code and all other plaintext files ({\LaTeX} files, .csv/.txt tables etc.).
+Git tracks all the changes you make to your code,
+and allows you to go back to previous versions without losing the information on changes made.
+It also makes it possible to work on multiple parallel versions of the code,
+so you don't risk breaking the code for other team members as you try something new.
+
+% file naming conventions for file used with code and files not used with code
+Once the \texttt{DataWork} folder's directory structure is set up,
+you should adopt a file naming convention.
+You will generally be working with two types of files:
+``code-compatible'' files, which are those that are accessed by code processes,
+and ``non-code-compatible'' files, which will not be accessed by code processes.
+The former takes precedent: an Excel file is a code-compatible file
+even if it is a field log, because at some point it will be used by code.
+We will not give much emphasis to files that are not linked to code here;
+but you should make sure to name them in an orderly fashion that works for your team.
+These rules will ensure you can find files within folders
+and reduce the amount of time others will spend opening files
+to find out what is inside them.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Naming_Conventions}}
+
+
+% ----------------------------------------------------------------------------------------------
+\subsection{Documenting and organizing code}
+
+% introduction: why organizing code is important
+Once you start a project's data work,
+the number of scripts, datasets, and outputs that you have to manage will grow very quickly.
+This can get out of hand just as quickly,
+so it's important to organize your data work and follow best practices from the beginning.
+Adjustments will always be needed along the way,
+but if the code is well-organized, they will be much easier to make.
+Below we discuss a few crucial steps to code organization.
+They all come from the principle that code is an output by itself,
+not just a means to an end,
+and should be written thinking of how easy it will be for someone to read it later.
+At the end of this section, we include a template for a master script in Stata,
+to provide a concrete example of the required elements and structure.
+Throughout this section, we refer to lines of the example do-file
+to give concrete examples of the required code elements, organization and structure.
+
+% code documentation: header
+Code documentation is one of the main factors that contribute to readability.
+Start by adding a code header to every file.
+A code header is a long \textbf{comment}\sidenote{
+  \textbf{Comments:} Code components that have no function,
+  but describe in plain language what the code is supposed to do.
+}
+that details the functionality of the entire script;
+refer to lines 5-10 in the example do-file.
+This should include simple things such as
+the purpose of the script and the name of the person who wrote it.
+If you are using a version control software,
+the last time a modification was made and the person who made it will be recorded by that software.
+Otherwise, you should include it in the header.
+You should always track the inputs and outputs of the script, as well as the uniquely identifying variable;
+refer to lines 49-51 in the example do-file.
+When you are trying to track down which code creates which dataset, this will be very helpful.
+While there are other ways to document decisions related to creating code,
+the information that is relevant to understand the code should always be written in the code file.
+
+% code documentation: commenting
+In the script, alongside the code, are two types of comments that should be included.
+The first type of comment describes what is being done;
+refer to line 35 in the example do-file.
+This might be easy to understand from the code itself
+if you know the language well enough and the code is clear,
+but often it is still a great deal of work to reverse-engineer the code's intent.
+Writing the task in plain English (or whichever language you communicate with your team in)
+will make it easier for everyone to read and understand the code's purpose
+-- and also for you to think about your code as you write it.
+The second type of comment explains why the code is performing a task in a particular way.
+As you are writing code, you are making a series of decisions that
+(hopefully) make perfect sense to you at the time.
+These are often highly specialized and may exploit a functionality
+that is not obvious or has not been seen by others before.
+Even you will probably not remember the exact choices that were made in a couple of weeks.
+Therefore, you must document your precise processes in your code.
+
+% code organization: short scripts, broken in sections
+Code organization means keeping each piece of code in an easy-to-find location and naming them in a meaningful way.
+  \index{code organization}
+Breaking your code into independently readable ``chunks'' is one good practice on code organization.
+You should write each functional element as a chunk that can run completely on its own,
+to ensure that each component does not depend on a complex program state
+created by other code chunks that are not obvious from the immediate context.
+One way to do this is to create sections where a specific task is completed.
+So, for example, if you want to find the line in your code where a variable was created,
+you can go straight to \texttt{PART 2: Prepare folder paths and define programs},
+instead of reading line by line through the entire code.
+RStudio, for example, makes it very easy to create sections,
+and it compiles them into an interactive script index for you.
+In Stata, you can use comments to create section headers,
+though they're just there to make the reading easier and don't have functionality;
+refer to line 24 of the example do-file.
+You should also add an index in the code header by copying and pasting section titles;
+refer to lines 8-10 in the example do-file.
+You can then add and navigate through them using the \texttt{find} functionality.
+Since Stata code is harder to navigate, as you will need to scroll through the document,
+it's particularly important to avoid writing very long scripts.
+Therefore, in Stata at least, you should also consider breaking code tasks down
+into separate do-files, since there is no limit on how many you can have,
+how detailed their names can be, and no advantage to writing longer files.
+One reasonable rule of thumb is to not write do-files that have more than 200 lines.
+This is an arbitrary limit, just like the common practice of limiting code lines to 80 characters:
+it seems to be ``enough but not too much'' for most purposes.
+
+\subsection{Working with a master script}
+
+% what is a master script
+To bring all these smaller code files together, you must maintain a master script.
+  \index{master do-file}
+A master script is the map of all your project's data work
+which serves as a table of contents for the instructions that you code.
+Anyone should be able to follow and reproduce all your work from
+raw data to all outputs by simply running this single script.
+By follow, we mean someone external to the project who has the master script and all the input data can
+(i) run all the code and recreate all outputs,
+(ii) have a general understanding of what is being done at every step, and
+(iii) see how codes and outputs are related.
+The master script is also where all the settings are established,
+such as versions, folder paths, functions, and constants used throughout the project.
+
+% running code through the master script
+Try to create the habit of running your code from the master script.
+Creating ``section switches'' using macros or objects to run only the codes related to a certain task
+should always be preferred to manually open different scripts to run them in a certain order
+(see Part 1 of \texttt{stata-master-dofile.do} for an example of how to do this).
+Furthermore, running all scripts related to a particular task through the master whenever one of them is edited
+helps you identify unintended consequences of the changes you made.
+Say, for example, that you changed the name of a variable created in one script.
+This may break another script that refers to this variable.
+But unless you run both of them when the change is made, it may take time for that to happen,
+and when it does, it may take time for you to understand what's causing an error.
+The same applies to changes in datasets and results.
+
+% use globals to link code and folder structure
+To link code, data and outputs,
+the master script reflects the structure of the \texttt{DataWork} folder in code
+through globals (in Stata) or string scalars (in R);
+refer to lines 35-40 of the example do-file.
+These coding shortcuts can refer to subfolders,
+so that those folders can be referenced without repeatedly writing out their absolute file paths.
+Because the \texttt{DataWork} folder is shared by the whole team,
+its structure is the same in each team member's computer.
+The only difference between machines should be
+the path to the project root folder, i.e. the highest-level shared folder,
+which in the context of \texttt{iefolder} is the \texttt{DataWork} folder.
+This is reflected in the master script in such a way that
+the only change necessary to run the entire code from a new computer
+is to change the path to the project folder to reflect the filesystem and username;
+refer to lines 27-32 of the example do-file.
+The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
+Because writing and maintaining a master script can be challenging as a project grows,
+an important feature of the \texttt{iefolder} is to write master do-files
+and add to them whenever new subfolders are created in the \texttt{DataWork} folder.\sidenote{
+	\url{https://dimewiki.worldbank.org/Master\_Do-files}}
+
+% plan for code review
+In order to maintain well-documented and organized code,
+you should agree with your team on a plan to review code as it is written.
+  \index{code review}
+Reading other people's code is the best way to improve your coding skills.
+And having another set of eyes on your code will make you more comfortable with the results you find.
+It's normal (and common) to make mistakes as you write your code.
+Reading it again to organize and comment it as you prepare it to be reviewed will help you identify them.
+Try to have a code review scheduled frequently,
+every time you finish writing a piece of code, or complete a small task.
+If you wait for a long time to have your code reviewed, and it gets too complex,
+preparation and code review will require more time and work,
+and that is usually the reason why this step is skipped.
+One other important advantage of code review is that
+making sure that the code is running properly on other machines,
+and that other people can read and understand the code easily,
+is the easiest way to be prepared in advance for a smooth project handover
+or for release of the code to the general public.
+
+\codeexample{stata-master-dofile.do}{./code/stata-master-dofile.do}
+% ----------------------------------------------------------------------------------------------
+\subsection{Managing outputs}
+
+% why output management should be discussed before outputs are created
+The final task that needs to be discussed with your team is the best way to manage output files.
+A great number of outputs will be created during the course of a project,
+and these will include both raw outputs such as tables and graphs
+and final products such as presentations, papers and reports.
+When the first outputs are being created, agree on where to store them,
+what softwares and formats to use, and how to keep track of them.
+
+% Where to store outputs: plaintext files in git, binary files in DropBox
+Decisions about storage of outputs are made easier by technical constraints.
+As discussed above, version control systems like Git are a great way to manage
+plaintext files, and sync softwares such as Dropbox are better for binary files.
+Outputs will similarly come in these two formats, depending on your software.
+Binary outputs like Excel files, PDFs, PowerPoints, or Word documents can be kept in a synced folder.
+Raw outputs in plaintext formats like \texttt{.tex} and \texttt{.eps}
+can be created from most analytical software and managed with Git.
+Tracking plaintext outputs with Git makes it easier to identify changes that affect results.
+If you are re-running all of your code from the master script,
+the outputs will be overwritten,
+and any changes in coefficients and number of observations, for example,
+will be automatically flagged for you or a reviewer to check.
+
+% tracking scripts and their outputs
+No matter what choices you make,
+you will need to make updates to your outputs quite frequently.
+And anyone who has tried to recreate a graph after a few months probably knows
+that it can be hard to remember where you saved the code that created it.
+Here, naming conventions and code organization play a key role
+in not re-writing scripts again and again.
+It is common for teams to maintain one analysis file or folder with draft code or ``exploratory analysis'',
+which are pieces of code that are stored only to be found again in the future,
+but not cleaned up to be included in any final outputs yet.
+Once you are happy with a result or output,
+it should be named and moved to a dedicated location.
+It's typically desirable to have the names of outputs and scripts linked,
+so, for example, \texttt{factor-analysis.do} creates \texttt{f1-factor-analysis.eps} and so on.
+Document output creation in the master script that runs these files,
+so that before the line that runs a particular analysis script
+there are a few lines of comments listing
+datasets and functions that are necessary for it to run,
+as well as all outputs created by that script.
+
+% What is LaTeX
+Compiling the raw outputs from your statistical software into useful formats
+is the final step in producing research outputs for public consumption.
+Though formatted text software such as Word and PowerPoint are still prevalent,
+researchers are increasingly choosing to prepare final outputs
+like documents and presentations using {\LaTeX}\index{{\LaTeX}}.\sidenote{
+  \url{https://www.latex-project.org} and \url{https://github.com/worldbank/DIME-LaTeX-Templates}.}
+{\LaTeX} is a document preparation system that can create both text documents and presentations.
+ {\LaTeX} uses plaintext for all formatting,
+and it is necessary to learn its specific markup convention to use it.
+
+% Why LaTeX is a good option
+The main advantage of using {\LaTeX} is that you can write dynamic documents,
+that import inputs every time they are compiled.
+This means you can skip the copying and pasting whenever an output is updated.
+Because it's written in plaintext, it's also easier to control and document changes using Git.
+Creating documents in {\LaTeX} using an integrated writing environment such as TeXstudio, TeXmaker or LyX
+is great for outputs that focus mainly on text,
+but include small chunks of code and static code outputs.
+This book, for example, was written in {\LaTeX} and managed on GitHub\sidenote{\url{https://github.com/worldbank/d4di}}.
+
+% markdown and when to use it 
+Another option is to use the statistical software's dynamic document engines.
+This means you can write both text (in Markdown) and code in the script,
+and the result will usually be a PDF or HTML file including code, text, and outputs.
+Dynamic document tools are better for including large chunks of code and dynamically created graphs and tables,
+but formatting these can be much trickier and less full-featured than other editors.
+So dynamic documents can be great for creating appendices
+or quick documents with results as you work on them,
+but are not usually considered for final papers and reports.
+RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com}} is the most widely adopted solution in R.
+There are also different options for Markdown in Stata,
+such as \texttt{markstat},\sidenote{\url{https://data.princeton.edu/stata/markdown}}
+Stata 15 dynamic documents,\sidenote{\url{https://www.stata.com/new-in-stata/markdown}}
+\texttt{webdoc},\sidenote{\url{http://repec.sowi.unibe.ch/stata/webdoc}} and
+\texttt{texdoc}.\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc}}
+
+Whichever options you choose,
+agree with your team on what tools will be used for what outputs, and
+where they will be stored before you start creating them.
+Take into account ease of use for different team members, but
+keep in mind that learning how to use a new tool may require some
+time investment upfront that will be paid off as your project advances.
