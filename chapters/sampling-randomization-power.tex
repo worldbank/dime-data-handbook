@@ -79,9 +79,9 @@ A \textbf{master dataset}\sidenote{
 	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
 \index{master datasets}
 details all project-wide time-invariant information
-about all units that could appear in the data
-and their relationship to the research design,
-like sampling and treatment status once those are determined.
+about all observations encountered,
+as well as their relationship to the research design,
+typically summarized by sampling and treatment status.
 Solving all of these questions before you acquire any data,
 and making sure that the full research team knows where to find this information,
 will save a ton of time later on,
@@ -89,10 +89,9 @@ and will increase the quality of your research.
 
 You should create a master dataset
 for each unit of observation
-important to the research.
-A unit used for any significant research activity,
-like data collection or data analysis, 
-must always be considered an important unit of observation.
+relevant to the research.
+This includes all units used for significant research activity,
+like data collection or data analysis.
 Therefore, any unit
 that will be used in sampling or treatment assignment,
 must have a master dataset,
@@ -158,7 +157,7 @@ the difference between these two states averaged over all units.
 However, we can never observe the same unit
 in both the treated and untreated state simultaneously,
 so we cannot calculate these differences directly.
-Instead, the treated group is compared to a control group
+Instead, the treatment group is compared to a control group
 that is statistically indistinguishable,
 which makes the average impact of the treatment
 mathematically equivalent to the difference in averages between the groups.
@@ -172,29 +171,29 @@ as part of the package \texttt{ietoolkit}.
 However, each research design has its different method	
 for how the statistically similar control group is identified.
 
-The rest of this section covers how the data requirement differs 
+The rest of this section covers how data requirements differ
 between different research designs.
 What does not differ, however, is that the authoritative source
-for which unit is a treated unit and which is a control unit
+for which units are in the treatment group and which are in the control group
 should always be one or several variables in your master dataset. 
 You will often have to merge that data to other datasets, 
 but that is an easy task if you created a data map.
 
 %%%%% Experimental design
 
-In \textbf{experimental research designs},\sidenote{
-	For example, \textbf{randomized control trials (RCTs) --}
+In \textbf{experimental research designs}, 
+such as \textbf{randomized control trials (RCTs),\sidenote{
 	\url{https://dimewiki.worldbank.org/Randomized\_Control\_Trials}}
 \index{randomized control trials} \index{experimental research designs}
 the research team determines which members
 of the studied population will receive the treatment.
-This is typically done by a randomized assignment process
+This is typically done by a randomized process
 in which a subset of the eligible population
-is randomly selected to receive the treatment
+is randomly assigned to receive the treatment
 (see later in this chapter for how to implement this).
 The intuition is that if everyone in the eligible population
 is assigned at random to either the treatment or control group,
-then the two groups will, on average, be statistically indistinguishable,
+then the two groups will, on average, be statistically indistinguishable.
 The treatment will therefore not be correlated with anything
 but the impact of that treatment.\cite{duflo2007using}
 The randomized assignment should be done using the master data,
@@ -209,7 +208,7 @@ by contrast, are based on events not controlled by the research team.
 Instead, they rely on ``experiments of nature'',
 in which natural variation in treatment can be argued to approximate randomization.
 You must have a way to measure this natural variation,
-and how the variation is categorzied as outcomes of a naturally randomized assignment
+and how the variation is categorized as outcomes of a naturally randomized assignment
 must be documented in your master dataset.
 Unlike carefully planned experimental designs,
 quasi-experimental designs typically require the luck
@@ -241,7 +240,7 @@ In your data you need an unambiguous way
 to define which observations were above or below the cutoff.
 The cutoff determinant, or running variable,
 is often a continuous variable 
-that used to divide the sample into two or more groups. 
+that is used to divide the sample into two or more groups. 
 Both the running variable and a categorical cutoff variable,
 should be saved in your master dataset.
 
@@ -314,7 +313,7 @@ show that the control group is indeed a valid counterfactual to the treatment gr
 Observations over multiple time periods, 
 referred to as \textbf{longitudinal data},
 \index{longitudinal data}
-can be either \textbf{repeated cross-sections}
+can consist of either \textbf{repeated cross-sections}
 \index{repeated cross-sectional data}
 or \textbf{panel data}.
 \index{panel data} 
@@ -436,7 +435,7 @@ Randomization in statistical software is non-trivial
 and its mechanics are unintuitive for the human brain.
 The principles of randomization we will outline
 apply not just to random sampling and random assignment,
-but they apply to all statistical computing processes that have a random components
+but to all statistical computing processes that have random components
 such as simulations and bootstrapping.
 Furthermore, all random processes introduce statistical noise
 or uncertainty into estimates of effect sizes.
@@ -454,15 +453,15 @@ and have implications for feasibility, planning, and budgeting.
 \subsection{Randomizing sampling and treatment assignment}
 
 % sampling universe: the master dataset
-\textbf{Sampling} is the process of randomly selecting units-of-observation
+\textbf{Sampling} is the process of randomly selecting observations
 from a list of individuals to create a representative or statistically similar sub-sample.\index{sampling}
-This can, for example, select a subset from all eligible units
+This process can be used, for example, to select a subset from all eligible units
 to be included in data collection when the cost of collecting data on everyone is prohibitive.\sidenote{
 	\url{https://dimewiki.worldbank.org/Sample\_Size\_and\_Power\_Calculations}}
-But it can also select a sub-sample of your observations to test a computationally heavy process 
+But it can also be used to select a sub-sample of your observations to test a computationally heavy process 
 before running it on the full data.
-\textbf{Randomized treatment assignment} is the process of assigning observations into treatment arms,
-and this is central to experimental research design.
+\textbf{Randomized treatment assignment} is the process of assigning observations to different treatment arms.
+This process is central to experimental research design.
 Most of the code processes used for randomized assignment are the same as those used for sampling,
 since it is also a process of splitting a list of observations into groups.
 Where sampling determines whether a particular individual
@@ -472,7 +471,7 @@ as a treatment observation or used as a counterfactual.
 The list of units to sample or assign from may be called a \textbf{sampling universe},
 a \textbf{listing frame}, or something similar.
 This list should always be your \textbf{master dataset} when possible.
-The rare exceptions when master datasets cannot be used is when sampling must be done in real time,
+The rare exceptions when master datasets cannot be used is when sampling must be done in real time --
 for example, randomly sampling patients as they arrive at a health facility.
 
 % implement uniform-probability random sampling
@@ -540,7 +539,7 @@ but the same principles translate to all other programming languages.
 % rule 1: versioning
 \textbf{Versioning} means using the same version of the software each time you run the random process.
 If anything is different, the underlying list of random numbers may have changed,
-and it will be impossible to recover the original result.
+and it may be impossible to recover the original result.
 In Stata, the \texttt{version} command ensures that the list of random numbers is fixed.\sidenote{
 	At the time of writing, we recommend using \texttt{version 13.1} for backward compatibility;
 	the algorithm used to create this list of random numbers was changed after Stata 14 but the improvements do not matter in practice.}
@@ -603,11 +602,11 @@ there is no way to correct any mistakes.
 
 \codeexample{reproducible-randomization.do}{./code/reproducible-randomization.do}
 
-Some types of experimental designs necessitate
+Some types of experimental designs require
 that randomized assignment results be revealed in the field.
 It is possible to do this using survey software or live events, such as a live lottery.
 These methods typically do not leave a record of the randomization,
-as such can never be reproducible. 
+and as such are never reproducible. 
 However, you can often run your randomization in advance 
 even when you do not have list of eligible units in advance.
 Let's say you want to, at various health facilities, 
@@ -641,7 +640,7 @@ This way, you reduce the risk of errors in field randomization.
 \subsection{Clustering or stratifying a random sample or assignment}
 
 % the cases discussed so far are the most simple, but not the most common
-For a variety of reasons, random sampling and rassignment
+For a variety of reasons, random sampling and random treatment assignment
 are rarely as straightforward as a uniform-probability draw.
 The most common variants are \textbf{clustering} and \textbf{stratification}.\cite{athey2017econometrics}
 \textbf{Clustering} occurs when your unit of analysis is different
