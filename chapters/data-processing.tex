@@ -7,7 +7,8 @@ The tasks described in this chapter have many different names.
 Some say data cleaning, others data munging, or maybe data wrangling.
 All mean transforming raw data into a more convenient format for your intended use.
 This is the most time-consuming step of a project's data work, 
-particularly for projects using raw data.
+particularly when primary data is involved.
+It is also essential for data quality. 
 This chapter describes the different tasks involved in the cleaning process,
 and outlines the workflow our team developed to make the process efficient and transparent.
 
@@ -22,13 +23,6 @@ the third section outlines steps to remove direct identifiers.
 Finally, the last section discusses how to explore each variable in your dataset and 
 make sure that the dataset is as well documented and easy to use as possible.
 
-
-\end{fullwidth}
-
-%------------------------------------------------
-
-\subsection{Before you get started}
-
 % Why cleaning is necessary
 Raw data files may be received in a variety of formats, 
 and are often not easy to handle using statistical software.
@@ -42,6 +36,11 @@ are all research decisions, and are therefore considered part of analysis (discu
 Therefore, the main output at this stage, the cleaned dataset,
 contains almost exactly same information as the raw data,
 but in a format that is easier to interact with.  
+
+\end{fullwidth}
+
+%------------------------------------------------
+
 
 \section{Identifying the identifier(s)}
 
@@ -64,7 +63,8 @@ which we call a \textit{tidy} format.
 \subsection{Unique identifiers}
 
 % Uniquely and fully identifying variable
-The first step in tidying data is to understand its unit of observation (what makes a row),
+The first step in tidying data is to understand its unit of observation
+(what makes a row),
 and find out which variable or set of variables is the \textbf{unique identifier}\sidenote{\url{
 		https://dimewiki.worldbank.org/ID\_Variable\_Properties}} for each row.
 Ensuring that observations are uniquely and fully identified
@@ -101,156 +101,100 @@ that record which corrections made and why.
 Even if you are not using this command,
 it is important to include similar records in the \texttt{Documentation} folder.
 
-\subsection{What makes data ``tidy''}
+\subsection{Tidying raw data}
 
-% Where these concepts come from
-Before discussing the details of how to clean your data,
-we need to define a few concepts that will be used in this chapter.
-They refer to the structure of the data,
-and have long been discussed in the database management literature.
-This section is based on Hadley Wickham's definition of tidy data,\cite{tidy-data}
-which uses a terminology that is more intuitive for users of applied statistics,
-we have added our own twist based on the jargon of development research.
-
-% Definitions
-Development data is typically acquired in the form of \textbf{tables},
-two-dimensional datasets formed by rows and columns.\sidenote{\textbf{Table:}
+Though raw data can be acquired in all shapes and sizes,
+development data is most commonly transferred as one or multiple tables.\sidenote{\textbf{Table:}
 	a two-dimensional dataset formed by rows and columns. 
 	Also called ``rectangular data''.
 	Examples of non-rectangular data are a text, or files, such as images.}
-Each element or cell in this table is a \textbf{data point}\sidenote{\textbf{Data point:}
-	a value representing a measure of an attribute for one individual unit.}, that is,
-a value representing a measure of an attribute for one individual unit.
-For example, in a household survey,
-two of the attributes usually measured are gender and age.
-The measures of gender and age for each household member are data points.
-A \textbf{variable}\sidenote{\textbf{Variable:} the collection of all data points that measure the same attribute.}
- is the collection of all data points that measure a given attribute.
-In the example of a household roster,
-each variable will correspond to one survey question.
-Finally, each variable will contain data points for different individuals in a given unit of observation.
-In a household roster, the unit of observation is a person.
-The collection of all data points for each individual unit of observation is an 
-\textbf{observation}.\sidenote{\textbf{Observation:} 
-	the collection of all data points representing attributes of the same individual or unit.}
-
-% Tidy data
-The ideal format to interact with any table or dataset is when
-each column represents one variable,
-each row represents one observation, 
-and all variables in a table have the same unit of observation.
-Datasets in this format are said to be \textbf{tidy},\sidenote{\textbf{Tidy data:}
+Similarly, these tables can organize information in multiple ways,
+and not all of them result in easy-to-handle datasets.
+Fortunately, a vast literature of database management has identified the format
+that makes interacting with the easiest.
+When applied to statistics, we call data in such format \textbf{tidy}.\sidenote{\textbf{Tidy data:}
 	Datasets where each column represents one variable,
 	each row represents one observation, 
 	and all variables in a table have the same unit of observation.}
-and all others are \textit{untidy}.
-This may seem trivial, but the raw data acquired is frequently untidy.
-Tidy data sets are easier to handle,
-as observations can be aggregated and linked consistently,
-and easier to clean, as each attribute only needs to be checked once.
+A dataset is tidy when each column represents one variable,\sidenote{\textbf{Variable:} 
+	the collection of all data points that measure the same attribute.}
+each row represents one observation, 
+and all variables in a table have the same unit of observation.
+Every other format is \textit{untidy} or just \textit{messy}.
+This may seem trivial, but raw data, 
+and raw survey data in particular,
+is rarely received in a tidy format.
+To contribute to the confusion, 
+Stata users typically call each column a ``variable'', 
+and each row an ``observation'',
+even though they are not necessarily the same thing.
 
-% An example of untidy data
-A very simple way for our survey example to became untidy is to include
-household-level variables in the same data set,
-such as whether the household has a refrigerator.
-In this case, some attributes would be measured at
-household level, and others at household member level,
-and it would not be possible for each column to represent a variable
-\textit{and} for each row to represent an observation \textit{at the same time}.
-Either the household-level variable would be repeated for all its members,
-or member-level variables would be stored in 
-\textbf{wide format}.\sidenote{\textbf{Wide data:}
+Every messy dataset is messy in its own way,
+but raw survey datasets are usually messy in a similar way.
+Survey data containing nested units of observation is typically 
+imported from survey platforms in \textbf{wide format}.\sidenote{\textbf{Wide data:}
 	a table where a single variable is divided into multiple columns,
 	for example one for each individual.
 }
-An alternative example is a dataset on transactions that also contains information
-about the parties involved in each transaction on the same table.
-The next two sections will outline steps to check if your data is tidy,
-and how to tidy it if it is not.
+Take, for example, a household survey that includes household-level questions,
+as well as a household member roster.
+The resulting raw dataset usually consists of a single table
+where questions from the household member roster are saved in different columns, 
+one for each member, with a corresponding member suffix,
+and household-level questions are represented by one column each.
+The data is saved in this format because it's the most efficient way to transfer it:
+adding different levels of observation into the same table allows for data to be transferred in a single file.
+However, this leads to the widespread practice of interacting with data in wide format for a large part of a project,
+although this is not the most efficient way to do so.
 
-\subsection{Tidying raw data}
+To understand how dealing with wide data can be complicated,
+just suppose you need to calculate the average age of the respondents in your sample.
+The first thing you will need to do is change the format of your table so that each row represents one individual.
+Tidy data sets, on the other hand, 
+are easier to handle because observations can be aggregated and linked consistently,
+without additional steps.
+They are also easier to clean, 
+as each attribute only needs to be checked once,
+as corresponds directly to one question in the questionnaire.
 
-% Is the uniquely identified data tidy?
-Sometimes, making sure that data is uniquely and fully identified 
-is enough to yield a tidy dataset.
-This happens when a data source or survey instrument
-contains a single unit of observation.
-If you are working with data in this format,
-you may skip the tidying process,
-which can become quite intricate.
-In this case the cleaning process will result in a single dataset.
+We have discussed only wide data so far,
+but as mentioned earlier, there are unlimited ways for data to be untidy.
+An alternative example is a table containing information on transactions
+and on the parties involved in each transaction.
+In this case, the firm-level information will be repeated for all transactions a given firm was involved in.
+Analyzing data in this format would give more weight to firms that conducted more transactions,
+which may not be consistent with your design.
 
-% Examples of untidy raw data
-The most common case of untidy raw data encountered in development research
-are datasets consisting of multiple units of observation stored in the same table. 
-If your rows include multiple nested observational units,
-having an identifying variable for each row doesn't mean having an identifier for each observation.
-This is the case of our previous example of untidy data:
-a survey that collects both household and household-member level information.
-In this case, 
-the easiest way to handle the data is often to break it into two tidy datasets:
-one at the household level, and one at the member level.
-You will use these separate datasets for the rest of the data cleaning process.
+The basic process behind tidying a dataset is simple: 
+first, you need to identify all the variables that were measured at the same level of observation;
+then, create separate tables for each level of observation;
+finally, reshape\sidenote{\textbf{Reshape:}
+	transform a dataset in such a way that the unit of observation represented by a row changes.} 
+the data and remove duplicated rows 
+until each table is uniquely and fully identified by the ID variable 
+that corresponds to its unit of observation.
+In the earlier household survey example,
+household-level variables will be stored in one tidy dataset, 
+and household-member variables are reshaped to member level and stored in another tidy dataset,
+which also contains the household ID for each individual.
+In the transaction data example,
+the result of the tidying process would be one transaction-level dataset, 
+containing variables indicating the ID of all firms involved;
+and one firm-level dataset with a single entry for each firm.
 
-% How to tidy data
-Creating these two tidy datasets will involve a few different transformations.
-Many common survey software export \textbf{wide datasets},
-where each row represents the highest level of observation,
-and variables observed in nested units are separated into one column per sub-unit,
-such as \texttt{age\_1}, \texttt{gender\_1}, \texttt{age\_2}, \texttt{gender\_2}, etc.
-To create tidy datasets from this data,
-you first need to identify which variables were observed at which levels.
-In our example, the presence of a refrigerator was collected at household level (the higher unit),
-while age and gender where observed at the member sub-unit.
-These two sets of variables will be separated.
-Create a tidy dataset containing only the unique row ID and the household level variables.
-Then create another dataset containing only the unique row ID and the household-member level variables.
-Note that the household-member dataset is still not tidy.
-It needs to be \textbf{reshaped}\sidenote{\textbf{Reshape:}
-	transform a dataset in such a way that the unit of observation represented by a row changes.}
-to a \textbf{long} format.
-The reshaped dataset will have a new variable indicating the member ID,
-and its unique identifier will be the combination of household ID and member ID.
-This is a tidy dataset, where
-the \texttt{gender} and \texttt{age} variables are each represented by one column.
-The reshape can be done using \texttt{reshape} in Stata, and \texttt{reshape2} or \texttt{pivot\_longer} in R.
-
-% Polishing tidy data
-One key aspect in this process is to make sure that ID variables are consistent across tables.
-This means that if you want to calculate the share of women members in a household,
-and link it back to the household-level table, 
-you should be able to do so through the household-level row ID.
-Another possible consequence of reshaping to keep in mind is that
-empty observations may be created in the long dataset
-(this is particularly the case in Stata).
-Remember to remove such observations,
-or they may bias aggregated measures --
-counts and proportions in particular.
-
-% Generalizing
-Alternatively, if each row in the untidy dataset represents the lower level of observation,
-the same data point for each higher level of observation will be repeated in many rows.
-After you have separated the data into two tables containing the variables observed at each level,
-the table that contains the lower level will already be in a tidy format.
-Then all you need to do is make sure that 
-all rows for the same larger unit have the same value for each variable,
-and drop duplicated observations,
-so that there is only one row per unit.
-The tidying process can get more complex if the instrument includes multiple nested groups.
-In agricultural surveys, it is not uncommon to find household-plot-season-crop level observations,
-as well as different combinations of these level,
-such as household-plot and household-crop-season, in the same dataset.
+Reshaping tables is the most intricate task in this process,
+so you should be very familiar with commands such at \texttt{reshape} in Stata and \texttt{pivot} in R.
+Another key aspect in this process is to make sure that ID variables are consistent across tables,
+so they can always be linked.
+For each tidy table, you should have a corresponding master dataset in the same unit of observation.
+Note that the tidying process gets more complex as the number of nested groups increases.
 That means the steps of identifying the unit of observation of each variable
 and reshaping the separated tables need to be repeated multiple times.
-In these case, it is particularly important to be mindful of cross-table identifiers,
-as they are often not the same as wide variables suffixes.
-
-% Wrap-up
-Tidying datasets can be a complex process.
 However, the more nested groups a dataset includes,
 the more efficient it is to deal with tidy data as compared to untidy.
 Cleaning and constructing wide datasets, in particular,
 is a repetitive and error-prone process.
+
 The next step of data cleaning, data quality monitoring,
 may involve comparing different units of observation.
 Aggregating sub-units to compare to a higher unit is much easier with tidy data,
