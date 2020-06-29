@@ -2,41 +2,37 @@
 
 \begin{fullwidth}
 
-% Chapter overview
+% What is data cleaning
+Raw data files may be received in a variety of formats, 
+and are often not easy to handle using statistical software.
 The tasks described in this chapter have many different names.
 Some say data cleaning, others data munging, or maybe data wrangling.
-All mean transforming raw data into a more convenient format for your intended use.
+But they all mean the same thing:
+transforming raw data into a more convenient format for your intended use.
 This is the most time-consuming step of a project's data work, 
 particularly when primary data is involved.
 It is also essential for data quality. 
-This chapter describes the different tasks involved in the cleaning process,
-and outlines the workflow our team developed to make the process efficient and transparent.
+This chapter outlines the workflow our team developed to make the process efficient and transparent.
+One key point of this workflow is that no changes be made to the contents of data at this point.
+Creating new variables, imputing values and correcting outliers
+are research decisions.
+To make data processing less error-prone,
+such changes to the data will be made at a separate stage.
+Therefore, the clean dataset,
+which is the main output from the tasks discussed in this chapter,
+contains almost exactly same information as the raw data,
+but in a format that is easier to handle. 
 
-% What is data cleaning
-This chapter describes all tasks needed to make newly acquired data ready for analysis.
-The first section will guide on making your data \textit{tidy},
-so the relationship between rows and columns in a dataset is well-defined.
-This includes removing duplicated observations.
+% Chapter overview
+The following sections describe the different tasks involved in making newly acquired data ready for analysis.
+The first section will show how to make your data \textit{tidy}.
+This means adjusting how the dataset is organized until the relationship between its rows and columns is well-defined.
 The second section describes quality assurance checks, 
 which are necessary to verify the accuracy of your data.
 After that, identifying information is typically no longer needed,
 therefore the third section outlines steps to remove direct identifiers.
 Finally, the last section discusses how to explore each variable in your dataset and 
-make sure that the dataset is as well documented and as easy to use as possible.
-
-% Why cleaning is necessary
-Raw data files may be received in a variety of formats, 
-and are often not easy to handle using statistical software.
-The data cleaning tasks described in this chapter will prepare the raw data
-for quantitative analysis.
-To make this complex process less error-prone,
-we recommend that no changes be made to the content of data at this point
-(with one exception that will be carefully discussed).
-Correcting outliers, imputing values and creating derived indicators
-are all research decisions, and are therefore considered part of analysis (discussed in the next chapter).
-Therefore, the main output at this stage, the cleaned dataset,
-contains almost exactly same information as the raw data,
-but in a format that is easier to interact with.  
+make sure that it is as well documented and as easy to use as possible.
 
 \end{fullwidth}
 
@@ -50,14 +46,18 @@ The very first step in creating analysis-friendly datasets
 is understanding the data acquired,
 and translating this understanding into an intuitive format.
 This section discusses what steps may be needed to make sure that each row
-in a dataset represents one observation.
+in a tabular dataset\sidenote{\textbf{Tabular data:}
+	data that is structured into rows and columns. 
+	Also called ``rectangular data''.
+	Examples of non-rectangular data are a text, or files, such as images.} 
+represents one observation.
 This may seem trivial, but should not be taken for granted.
 Getting to such a format may be harder than expected,
 and the \textbf{unit of observation}\sidenote{\textbf{Unit of observation:}
 	the unit described by the data. In datasets, it is ideally what each row represents. \url{
 		https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
  may be ambiguous in many raw datasets.
-In this session, we will discuss the ideal format to handle data,
+In this section, we will discuss the ideal format to handle data,
 which we call a \textit{tidy} format.
 
 
@@ -107,10 +107,7 @@ it is important to include similar records in the \texttt{Documentation} folder.
 \subsection{Tidying raw data}
 
 Though raw data can be acquired in all shapes and sizes,
-development data is most commonly received as one or multiple tables.\sidenote{\textbf{Table:}
-	a two-dimensional dataset formed by rows and columns. 
-	Also called ``rectangular data''.
-	Examples of non-rectangular data are a text, or files, such as images.}
+development data is most commonly received as one or multiple tables.
 Similarly, these tables can organize information in multiple ways,
 and not all of them result in easy-to-handle datasets.
 Fortunately, a vast literature of database management has identified the format
