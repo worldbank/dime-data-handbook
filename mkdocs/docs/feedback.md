@@ -12,7 +12,7 @@ You can always send us an email with any type of feedback to [dimeanalytics@worl
 
 ### Feedback through GitHub.com
 
-If you are familiar with GitHub you can use the repository [github.com/worldbank/d4di](https://github.com/worldbank/d4di) to provide feedback. You can, for example, create [issues](https://www.github.com/worldbank/d4di/issues) with suggestions for improvement or contribute directly by forking the repository.
+If you are familiar with GitHub you can use the repository [github.com/worldbank/dime-data-handbook](https://github.com/worldbank/dime-data-handbook) to provide feedback. You can, for example, create [issues](https://www.github.com/worldbank/dime-data-handbook/issues) with suggestions for improvement or contribute directly by forking the repository.
 
 ## Already addressed errata
 
