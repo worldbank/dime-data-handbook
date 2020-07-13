@@ -3,9 +3,9 @@ Welcome to \textit{Development Research in Practice}.
 This book is intended to teach all users of development data
 how to handle data effectively, efficiently, and ethically.
 An empirical revolution has changed the face of research economics rapidly over the last decade.
-%had to remove cite {\cite{angrist2017economic}} because of full page width
 Today, especially in the development subfield, working with raw data --
-whether collected through surveys or acquired from ``big'' data sources like sensors, satellites, or call data records --
+whether collected through surveys or acquired from ``big'' data sources
+like sensors, satellites, or call data records --
 is a key skill for researchers and their staff.
 At the same time, the scope and scale of empirical research projects is expanding:
 more people are working on the same data over longer timeframes.
@@ -55,19 +55,6 @@ Finally, DIME invests in public goods (such as this book) to improve the quality
 DIME Analytics was created to take advantage of the concentration and scale of research at DIME to develop and test solutions,
 to ensure high quality data collection and research across the DIME portfolio,
 and to make training and tools publicly available to the larger community of development researchers.
-\textit{Data for Development Impact} compiles the ideas, best practices and software tools Analytics
-has developed while supporting DIME's global impact evaluation portfolio.
-
-The \textbf{DIME Wiki} is one of our flagship products, a free online collection of our resources and best practices.\sidenote{
-\url{https://dimewiki.worldbank.org}}
-This book complements the DIME Wiki by providing a structured narrative of the data workflow for a typical research project.
-We will not give a lot of highly specific details in this text,
-but we will point you to where they can be found.\sidenote{Like this:
-\url{https://dimewiki.worldbank.org/Primary_Data_Collection}}
-Each chapter focuses on one task, providing a primarily narrative account of:
-what you will be doing; where in the workflow this task falls;
-when it should be done; and how to implement it according to best practices.
-
 We will use broad terminology throughout this book to refer to research team members:
 \textbf{principal investigators (PIs)} who are responsible for
 the overall design and stewardship of the study;
@@ -76,10 +63,27 @@ the implementation of the study on the ground;
 and \textbf{research assistants (RAs)} who are responsible for
 handling data processing and analytical tasks.
 
+\textit{Development Research in Practice} compiles the ideas, best practices and software tools
+that the DIME Analytics team
+has developed while supporting DIME's global impact evaluation portfolio.
+Each chapter in this book focuses on one task, providing a primarily narrative account of:
+what you will be doing; where in the workflow this task falls;
+when it should be done; and how to implement it according to best practices.
 
-\section{Adopting reproducible tools}
+We will not always give a lot of highly specific implementation details in this text,
+but will often point you to where they can be found on the \textbf{DIME Wiki}.\sidenote{Like this:
+\url{https://dimewiki.worldbank.org/Primary_Data_Collection}}
+The DIME Wiki is one of DIME Analytics' flagship products,
+a free online collection of our resources and best practices.\sidenote{
+\url{https://dimewiki.worldbank.org}}
+This book complements the DIME Wiki by providing a structured narrative
+of the data workflow for a typical research project.
+The Wiki, by contrast, provides unstructured but detailed information
+on how to complete each task, and links to further practical resources.
 
-We assume througout all of this book
+\section{Adopting reproducible practices through code}
+
+We assume throughout all of this book
 that you are going to do nearly all of your data work though code.
 It may be possible to perform all relevant tasks
 through the user interface in some statistical software,
@@ -99,29 +103,30 @@ and often understand code to be a means to an end rather than an output itself.
 We believe that this must change somewhat:
 in particular, we think that development practitioners
 must begin to think about their code and programming workflows
-just as methodologically as they think about their research workflows.
+just as methodologically as they think about their research workflows,
+and think of code and data as research outputs, just as manuscripts and briefs are.
 
 Most tools have a learning and adaptation process,
 meaning you will become most comfortable with each tool
 only by using it in real-world work.
 To support your process of learning reproducible tools and workflows,
-will reference free and open-source tools wherever possible,
+we reference free and open-source tools wherever possible,
 and point to more detailed instructions when relevant.
 Stata, as a proprietary software, is the notable exception here
 due to its current popularity in development economics.\sidenote{
   \url{https://aeadataeditor.github.io/presentation-20191211/\#9}}
-This book also includes
-the DIME Analytics Stata Style Guide
+This book also includes, as an appendix,
+the \textbf{DIME Analytics Stata Style Guide}
 that we use in our work, which provides
-some new standards for coding so that code styles
+standards for coding in Stata so that code styles
 can be harmonized across teams for easier understanding and reuse of code.
 Stata has relatively few resources of this type available,
-and the ones that we have created and shared here
+and the one that we have created and shared here
 we hope will be an asset to all its users.
 
 
 \section{Writing reproducible code in a collaborative environment}
-Throughout the book, we refer to the importance of good coding practices.
+Throughout this book, we refer to the importance of good coding practices.
 These are the foundation of reproducible and credible data work,
 and a core part of the new data science of development research.
 Code today is no longer a means to an end (such as a research paper),
@@ -130,7 +135,7 @@ in a world where the credibility and transparency of data cleaning and analysis 
 As this is fundamental to the remainder of the book's content,
 we provide here a brief introduction to \textbf{``good'' code} and \textbf{process standardization}.
 
-``Good'' code has two elements: (1) it is correct, i.e. it doesn't produce any errors,
+``Good'' code has two elements: (1) it is correct, in that it doesn't produce any errors,
 and (2) it is useful and comprehensible to someone who hasn't seen it before
 (or even yourself a few weeks, months or years later).
 Many researchers have been trained to code correctly.
@@ -155,8 +160,9 @@ You should think of code in terms of three major elements:
 \textbf{structure}, \textbf{syntax}, and \textbf{style}.
 We always tell people to ``code as if a stranger would read it''
 (from tomorrow, that stranger could be you!).
-The \textbf{structure} is the environment your code lives in:
-good structure means that it is easy to find individual pieces of code that correspond to tasks.
+The \textbf{structure} is the environment and file organization your code lives in:
+good structure means that it is easy to find individual pieces of code
+that correspond to specific tasks and outputs.
 Good structure also means that functional blocks are sufficiently independent from each other
 that they can be shuffled around, repurposed, and even deleted without damaging other portions.
 The \textbf{syntax} is the literal language of your code.
@@ -166,7 +172,8 @@ it should not require arcane reverse-engineering
 to figure out what a code chunk is trying to do.
 \textbf{Style}, finally, is the way that the non-functional elements of your code convey its purpose.
 Elements like spacing, indentation, and naming (or lack thereof) can make your code much more
-(or much less) accessible to someone who is reading it for the first time and needs to understand it quickly and correctly.
+(or much less) accessible to someone who is reading it for the first time
+and needs to understand it quickly and correctly.
 
 As you gain experience in coding
 and get more confident with the way you implement these suggestions,
@@ -182,7 +189,6 @@ How will missing values be treated in this command?
 What would happen if more observations would be added to the dataset?
 Can my code be made more efficient or easier to understand?
 
-\subsection{Code examples}
 For some implementation portions where precise code is particularly important,
 we will provide minimal code examples either in the book or on the DIME Wiki.
 All code guidance is software-agnostic, but code examples are provided in Stata.
@@ -201,43 +207,45 @@ We will comment the code generously (as you should),
 but you should reference Stata help-files by writing \texttt{help [command]}
 whenever you do not understand the command that is being used.
 We hope that these snippets will provide a foundation for your code style.
-Providing some standardization to Stata code style is also a goal of this team;
-we provide our guidance on this in the Stata Style Guide in the Appendix.
+Providing some standardization to Stata code style is also a goal of this team.
 
 \section{Outline of this book}
 
 This book covers each stage of an empirical research project, from design to publication.
 We start with ethical principles to guide empirical research,
-focusing on research transparency and the right to privacy.
-In Chapter 1, we outline a set of practices that help to ensure
-research participants are appropriately protected and
-research consumers can be confident in the conclusions reached.
-Chapter 2 will teach you to structure your data work to be efficient,
-collaborative and reproducible.
-It discusses the importance of planning data work at the outset of the research project --
+focusing on research reproducibility, transparency, and credibility.
+In Chapter 1, we outline a set of practices that help to ensure that
+research consumers can be confident in the conclusions reached,
+and research work can be assumed and verified to be reliable.
+Chapter 2 will teach you to structure your data work to be organized
+and collaborative, while ensuring the privacy and security of research participants.
+It discusses the importance of planning these data tools and structures work at the outset of the research project --
 long before any data is acquired -- and provides suggestions for collaborative workflows and tools.
-In Chapter 3, we turn to research design,
-focusing specifically on how to measure treatment effects
-and structure data for common experimental and quasi-experimental research methods.
-We provide an overview of research designs frequently used for
-causal inference, and consider implications for data structure.
-Chapter 4 concerns sampling and randomization:
-how to implement both simple and complex designs reproducibly,
-and how to use power calculations and randomization inference
-to critically and quantitatively assess
-sampling and randomization to make optimal choices when planning studies.
+In Chapter 3, we turn to establishing a measurement framework,
+focusing specifically on how to translate research design to master datasets, create documentation of the structure of your data,
+and how to implement both simple and complex randomized designs reproducibly.
 
-Chapter 5 covers data acquisition. We start with
+Chapter 4 covers data acquisition. We start with
 the legal and institutional frameworks for data ownership and licensing,
 dive in depth on collecting high-quality survey data,
 and finally discuss secure data handling during transfer, sharing, and storage.
-Chapter 6 teaches reproducible and transparent workflows for data processing and analysis,
-and provides guidance on de-identification of personally-identified data,
-focusing on how to organize data work so that it is easy to code the desired analysis.
-In Chapter 7, we turn to publication. You will learn
+Chapter 5 teaches workflows for data processing.
+It details how to construct ``tidy'' data at the appropriate units of analysis,
+how to ensure uniquely identified datasets, and
+how to routinely incorporate data quality checks into the workflow.
+It also provides guidance on de-identification and cleaning of personally-identified data,
+focusing on how to understand and structure data
+so that it is ready for indicator construction and analytical work.
+Chapter 6 discusses data analysis.
+It begins with data construction, or the creation of new variables
+from the raw information collected or obtained in the field.
+It also introduces core principles for writing analytical code
+and creating, exporting, and storing research outputs such as figures and tables reproducibily with dynamic documents.
+In Chapter 7, we turn to publication.
+This chapter discusses
 how to effectively collaborate on technical writing,
 how and why to publish data,
-and guidelines for preparing functional and informative replication packages.
+and guidelines for preparing functional and informative reproducibility packages.
 
 
 While adopting the workflows and mindsets described in this book requires an up-front cost,
