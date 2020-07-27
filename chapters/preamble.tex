@@ -129,10 +129,10 @@
 \newcommand{\reponame}{worldbank/dime-data-handbook} % Name of account and repo be set in URL
 
 %Based on this https://tex.stackexchange.com/questions/455396/how-to-include-the-current-git-commit-id-and-branch-in-my-document
-\CatchFileDef{\headfull}{\gitfolder/HEAD.}{} 				%Get path to head file for checked out branch
+\CatchFileDef{\headfull}{\gitfolder/HEAD}{} 				%Get path to head file for checked out branch
 \StrGobbleRight{\headfull}{1}[\head]						%Remove end of line character
 \StrBehind[2]{\head}{/}[\branch]							%Parse out the path only
-\CatchFileDef{\commit}{\gitfolder/refs/heads/\branch.}{}	%Get the content of the branch head
+\CatchFileDef{\commit}{\gitfolder/refs/heads/\branch}{}	%Get the content of the branch head
 \StrGobbleRight{\commit}{1}[\commithash]					%Remove end of line characted
 
 %Build the URL to this commit based on the information we now have
@@ -176,15 +176,18 @@ Copyright \copyright\ \the\year\ \\ \thanklessauthor
 
 \bigskip\par\smallcaps{Published by \thanklesspublisher}
 
-\par\smallcaps{\url{https://worldbank.github.com/d4di}}
+\par\smallcaps{\url{https://worldbank.github.com/dime-data-handbook}}
 
-\par Released under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.
+\par Compiled from commit: \newline
+\vspace{-0.5cm}
+\commiturl
 
+\par Released under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.\newline
+\vspace{-0.5cm}
 \url{https://creativecommons.org/licenses/by/4.0}
 
 \par\textit{First printing, \monthyear}
 
-\par Compiled from: \commiturl
 \end{fullwidth}
 
 %----------------------------------------------------------------------------------------
