@@ -40,6 +40,26 @@ can draw a blueprint that can be understood and used by everyone in your trade.
 
 \section{Using the code examples in this book}
 
+For some implementation portions where precise code is particularly important,
+we provided minimal code examples either in the book or on the DIME Wiki.
+All code guidance is software-agnostic, but code examples are provided in Stata.
+In the book, code examples are presented like the following:
+
+\codeexample{code.do}{./code/code.do}
+
+We ensure that each code block runs independently, is well-formatted,
+and uses built-in functions as much as possible.
+We will point to user-written functions when they provide important tools.
+In particular, we point to two suites of Stata commands developed by DIME Analytics,
+\texttt{ietoolkit}\sidenote{\url{https://dimewiki.worldbank.org/ietoolkit}} and
+\texttt{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
+which standardize our core data collection, management, and analysis workflows.
+We will comment the code generously (as you should),
+but you should reference Stata help-files by writing \texttt{help [command]}
+whenever you do not understand the command that is being used.
+We hope that these snippets will provide a foundation for your code style.
+Providing some standardization to Stata code style is also a goal of this team.
+
 You can access the raw code used in examples in this book in several ways.
 We use GitHub to version control everything in this book, the code included.
 To see the code on GitHub, go to: \url{https://github.com/worldbank/d4di/tree/master/code}.
@@ -58,7 +78,36 @@ If you want to download all code used in this book, you can do that at:
 with all the content used in writing this book, including the \LaTeX{} code used for the book itself. After
 extracting the .zip-file you will find all the code in a folder called \texttt{/code/}.
 
-\subsection{Understanding Stata code}
+\subsection{Writing and Understanding Stata code}
+
+``Good'' code has two elements: (1) it is correct, in that it doesn't produce any errors,
+and (2) it is useful and comprehensible to someone who hasn't seen it before
+(or even yourself a few weeks, months or years later).
+Many researchers have been trained to code correctly.
+However, when your code runs on your computer and you get the correct results,
+you are only half-done writing \textit{good} code.
+Good code is easy to read and replicate, making it easier to spot mistakes.
+Good code reduces sampling, randomization, and cleaning errors.
+Good code can easily be reviewed by others before it's published and replicated afterwards.
+
+You should think of code in terms of three major elements:
+\textbf{structure}, \textbf{syntax}, and \textbf{style}.
+We always tell people to ``code as if a stranger would read it''
+(from tomorrow, that stranger could be you!).
+The \textbf{structure} is the environment and file organization your code lives in:
+good structure means that it is easy to find individual pieces of code
+that correspond to specific tasks and outputs.
+Good structure also means that functional blocks are sufficiently independent from each other
+that they can be shuffled around, repurposed, and even deleted without damaging other portions.
+The \textbf{syntax} is the literal language of your code.
+Good syntax means that your code is readable
+in terms of how its mechanics implement ideas --
+it should not require arcane reverse-engineering
+to figure out what a code chunk is trying to do.
+\textbf{Style}, finally, is the way that the non-functional elements of your code convey its purpose.
+Elements like spacing, indentation, and naming conventions (or lack thereof) can make your code much more
+(or much less) accessible to someone who is reading it for the first time
+and needs to understand it quickly and correctly.
 
 Whether you are new to Stata or have used it for decades,
 you will always run into commands that
