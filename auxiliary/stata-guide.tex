@@ -24,7 +24,7 @@ and that includes more than being able to compute the correct numbers.
 This appendix begins with a section on some general and language agnostic
 principles on how to write ``good'' code. 
 Good code is code that both generates the correct result \textit{and} 
-is easily read by other professionals in our field.
+is easily read by other professionals.
 The second section in this appendix contains instructions
 on how to access and use the code examples shared in this book.
 The last section contains the DIME Analytics Stata Style Guide.
@@ -41,7 +41,7 @@ can draw a blueprint that can be understood and used by everyone in your trade.
 
 %------------------------------------------------
 
-\section{Writing code that is both correct and good}
+\section{Writing good code}
 
 ``Good'' code has two elements: (1) it is correct, in that it doesn't produce any errors,
 and (2) it is useful and comprehensible to someone who hasn't seen it before
@@ -56,7 +56,7 @@ Good code can easily be reviewed by others before it's published and replicated 
 You should think of code in terms of three major elements:
 \textbf{structure}, \textbf{syntax}, and \textbf{style}.
 We always tell people to ``code as if a stranger would read it''
-(from tomorrow, that stranger is most likely the future you!).
+(and, tomorrow, we are strangers even to our past selves).
 The \textbf{structure} is the environment and file organization your code lives in:
 good structure means that it is easy to find individual pieces of code
 that correspond to specific tasks and outputs.
@@ -72,19 +72,19 @@ Elements like spacing, indentation, and naming conventions (or lack thereof) can
 (or much less) accessible to someone who is reading it for the first time
 and needs to understand it quickly and correctly.
 
-Whether you are new to the programming language you are suing,
-(Stata, R, Python etc.)
+Whether you are new to the programming language you are using,
+(Stata, R, Python, or one of the many others)
 or have used it for decades,
 you will always run into commands that
-you have not seen before or whose function you do not remember.
+you have not seen before or whose functionality you do not remember.
 Every time that happens,
 you should always look up the help file for that command.
 We often encounter the conception that help files are only for beginners.
-We could not disagree with that conception more,
-as the only way to get better at the programming language you use
+We could not disagree with that conception more.
+The only way to get better at the programming language you use
 is to constantly read help files.
-(Whether you are new or not, you should frequently revisit the most common commands --
-often you will learn they can do something you never realized.)
+Whether you are new or not, you should frequently revisit the most common commands --
+often you will learn they can do something you never realized.
 We cannot emphasize enough how important it is
 that you get into the habit of reading help files.
 Most of us have a help file window open at all times.
@@ -97,8 +97,8 @@ is well-formatted,
 and uses built-in commands as much as possible.
 We hope that these snippets will provide a foundation for your code style.
 Providing some standardization to Stata code style is also a goal of our team.
-Our code examples are commented generously (as you should),
-but you should reference Stata help-files by writing \texttt{help [command]}
+We try to comment code examples generously (as you should),
+and you should reference Stata help files by writing \texttt{help [command]}
 whenever you do not understand the command that is being used.
 For example, if you are not familiar with \texttt{isid},
  then write \texttt{help isid},
@@ -112,10 +112,9 @@ In the book, code examples are presented like the following:
 \codeexample{code.do}{./code/code.do}
 
 You can access the raw code used in examples in this book in several ways.
-We use GitHub to version control all content of this book,
+We use GitHub to version control all the content of this book,
 including the code examples.
-To see the code examples on GitHub, go to: \url{https://github.com/worldbank/d4di/tree/master/code}.
-If you are familiar with GitHub you can fork the repository and clone your fork.
+To see the code examples on GitHub, go to: \url{https://github.com/worldbank/dime-data-handbook/tree/master/code}.
 We only use Stata's built-in datasets in our code examples,
 so you do not need to download any data.
 If you have Stata installed on your computer, 
@@ -123,23 +122,22 @@ then you will already have the data files used in the code.
 
 A less technical way to access the code is to click the individual file in the URL above, then click
 the button that says \textbf{Raw}. You will then get to a page that looks like the one at:
-\url{https://raw.githubusercontent.com/worldbank/d4di/master/code/code.do}.
+\url{https://raw.githubusercontent.com/worldbank/dime-data-handbook/master/code/code.do}.
 There, you can copy the code from your browser window to your do-file editor with the formatting intact.
-This method is only practical for a single file at the time.
+This method is only practical for a single file at a time.
 If you want to download all code used in this book, you can do that at:
-\url{https://github.com/worldbank/d4di/archive/master.zip}. 
+\url{https://github.com/worldbank/dime-data-handbook/archive/master.zip}. 
 That link downloads a \texttt{.zip} file 
 with all the content used in writing this book, 
 including the \LaTeX{} code used for the book itself. 
 After extracting the .zip-file you will find all the code in a folder called \texttt{/code/}.
 
-While we try to refer to built-in commands as much as possible in this book,
-we point to user-written functions when they provide important tools.
+While we use built-in commands as much as possible in this book,
+we point to user-written commands when they provide important new functionality.
 In particular, we point to two suites of Stata commands developed by DIME Analytics,
 \texttt{ietoolkit}\sidenote{\url{https://dimewiki.worldbank.org/ietoolkit}} and
 \texttt{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
 which standardize our core data collection, management, and analysis workflows.
-In our code examples use \texttt{randtreat} or \texttt{ieboilstart}.
 
 When you encounter code that employs user-written commands,
 you will not be able to run them or read their help files 
@@ -417,9 +415,9 @@ Stata's do-file editor and other code editors provide a visible guide line.
 Around that length, start a new line using \texttt{///}.
 Using \texttt{///} breaks the line in the code editor,
 while telling Stata that the same line of code continues on the next line.
-Recent version of the Stata do-file editor --
+Recent versions of the Stata do-file editor --
 and many other code editors --
-automatically wraps code lines that are too long,
+automatically wrap code lines that are too long,
 but you should still use \texttt{///} 
 to make sure that the lines breaks are placed 
 where they are the most readable.
