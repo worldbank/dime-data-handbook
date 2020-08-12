@@ -91,7 +91,7 @@ means that the computer will never accidentally load the wrong file.
 On MacOS this will be something like \path{/users/username/git/project/...},
 and on Windows, \path{C:/users/username/git/project/...}.
 Use forward slashes (\texttt{/}) in file paths for folders,
-and whenever possible use only A-Z (the 26 English characters),
+and whenever possible use only a-z (the 26 English characters),
 dashes (\texttt{-}), and underscores (\texttt{\_}) in folder names and filenames.
 For emphasis: \textit{always} use forward slashes (\texttt{/}) in file paths in code,
 just like in internet addresses. Do this even if you are using a Windows machine where
@@ -138,6 +138,10 @@ meaning you should not have version-controlled files inside a syncing service,
 or vice versa, without setting up complex workarounds,
 and you cannot shift files between them without losing historical information.
 Therefore, choosing the correct sharing service at the outset is essential.
+
+At DIME we typically use file syncing for all project administrative files and data,
+version control in git for or code,
+and server storage for back up and/or large scale computations when needed.
 
 % ----------------------------------------------------------------------------------------------
 \subsection{Documenting decisions and tasks}
@@ -236,12 +240,11 @@ using an external editor can be preferable since your editor will not crash if y
 and the editor may offer additional features aimed at writing code well.
 If you are working in R, \textbf{RStudio} is the typical choice.\sidenote{
   \url{https://www.rstudio.com}}
-For Stata, the built-in do-file editor is the most widely adopted code editor,
-but we recommend using an external editor such as
+For Stata, the built-in do-file editor is the most widely adopted code editor.
+You might also consider using an external editor for your R or Stata code, such as
 \textbf{Atom}\sidenote{\url{https://atom.io}} or
 \textbf{Sublime}\sidenote{\url{https://www.sublimetext.com}}.
-These editors can be configured to run Stata code externally
-and offer great accessibility and quality features.
+These editors offer great accessibility and quality features.
 For example, they can access an entire directory -- rather than a single file --
 which gives you directory-level views and file management actions,
 such as folder management, Git integration,
@@ -364,7 +367,7 @@ these are usually enough to manage changes to binary files (such as Word and Pow
 without needing to rely on dreaded filename-based versioning conventions.
 For code files, however, a more detailed version control system is usually desirable.
 We recommend using Git for version-control of all data work.
-Git manages changes to all \textbf{plaintext} files,
+Git documents changes to all \textbf{plaintext} files,
 this includes all code files, most raw outputs,
 and written outputs that use plaintext tools such as
 {\LaTeX} and dynamic documents.\index{{\LaTeX}}\index{dynamic documents}
@@ -381,16 +384,17 @@ Below we discuss a few crucial steps to code organization.
 They all come from the principle that code is an output by itself,
 not just a means to an end,
 and should be written thinking of how easy it will be for someone to read it later.
-At the end of this section, we include a template for a master script in Stata,
+At the end of this section, we include a template for a master script do-file in Stata,
 to provide a concrete example of the required elements and structure.
-Throughout this section, we refer to lines of the example do-file
+Throughout this section, we refer to lines of this example do-file
 to give concrete examples of the required code elements, organization and structure.
 
 To be readable, code must be well-documented.
 Start by adding a code header to every file.
 A code header is a long \textbf{comment}\sidenote{
-  \textbf{Comments:} Code components that have no function,
-  but describe in plain language what the code is supposed to do.
+  \textbf{Comments:} Code components that have no function to the computer,
+  but describe in plain language for humans to read
+  what the code is supposed to do.
 }
 that details the functionality of the entire script;
 refer to lines 5-10 in the example do-file.
@@ -401,14 +405,13 @@ the last time a modification was made and the person who made it will be recorde
 Otherwise, you should include it in the header.
 You should always track the inputs and outputs of the script,
 as well as the uniquely identifying variable;
-refer to lines 49-51 in the example do-file.
+refer to lines 52-54 in the example do-file.
 When you are trying to track down which code creates which dataset, this will be very helpful.
 While there are other ways to document decisions related to creating code,
 the information that is relevant to understand the code should always be written in the code file.
 
 Two types of comments should be included in the script itself.
-The first type of comment describes what is being done;
-refer to line 35 in the example do-file.
+The first type of comment describes what is being done.
 This might be easy to understand from the code itself
 if you know the language well enough and the code is clear,
 but often it is still a great deal of work to reverse-engineer the code's intent.
@@ -437,7 +440,7 @@ instead of reading line by line through the entire code.
 RStudio makes it very easy to create sections,
 and it compiles them into an interactive script index for you.
 In Stata, you can use comments to create section headers
-(see line 24 of the example do-file),
+(see line 27 of the example do-file),
 though they're just there to make the reading easier and don't have functionality.
 Since an index is not automated,
 create this manually in the code header by copying and pasting section titles
@@ -482,18 +485,22 @@ The same applies to changes in datasets and results.
 To link code, data and outputs,
 the master script reflects the structure of the \texttt{DataWork} folder in code
 through globals (in Stata) or string scalars (in R);
-refer to lines 35-40 of the example do-file.
+refer to lines 38-43 of the example do-file.
 These coding shortcuts can refer to subfolders,
 so that those folders can be referenced without repeatedly writing out their absolute file paths.
 Because the \texttt{DataWork} folder is shared by the whole team,
 its structure is the same in each team member's computer.
 The only difference between machines should be
-the path to the project root folder, i.e. the highest-level shared folder,
-which in the context of \texttt{iefolder} is the \texttt{DataWork} folder.
+the path to the project root folders, i.e. the highest-level shared folder.
+Depending on your software environment you may have multiple root folders.
+In a typical DIME project we have one GitHub root folder for our code, 
+one sync software root folder for our de-identified data,
+and a third for our encrypted data.
 This is reflected in the master script in such a way that
-the only change necessary to run the entire code from a new computer
-is to change the path to the project folder to reflect the filesystem and username;
-refer to lines 27-32 of the example do-file.
+the only change necessary to run the entire code for a new team member
+is to change the path to the project root folders
+to reflect the file system and username;
+refer to lines 30-35 of the example do-file.
 The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
 Because writing and maintaining a master script can be challenging as a project grows,
 an important feature of the \texttt{iefolder} is to write sub-master do-files
@@ -532,7 +539,23 @@ PII is information which can, without any transformation or linkage,
 be used to identify individual people, households, villages,
 or firms (or other units) that were part of a data collection.
 \index{data collection}
-In all cases where this type of information is involved,
+Some examples of PII variables include names, addresses, and geolocations,
+email addresses, phone numbers,
+and bank accounts or other financial details.\index{geodata}\index{de-identification}
+If you are working in a context or population that is either small, specific,
+or has extensive linkable data sources available to others,
+information like someone's age and gender may be sufficient to
+disclose their identify, even though those variables would not be considered PII in general.
+
+There is no one-size-fits-all solution to determine what is PII,
+research teams have to use careful judgment in each case to avoid statistical disclosure.\sidenote{
+	\url{https://sdcpractice.readthedocs.io}}\index{statistical disclosure}
+%WIKI need to create wiki page
+It is important to keep in mind that data privacy principles apply
+not only for the respondent giving you the information
+but also for their household members or other individuals who are included in the data.
+
+In all cases where confidential information is involved,
 you must make sure that you adhere to several core principles.
 These include ethical approval, participant consent,
 data security, and participant privacy.
@@ -612,54 +635,72 @@ you should not have any issues complying with these regulations.
 
 \subsection{Ensuring privacy and security in research data}
 
-In order to safeguard PII and protect respondent privacy,
-you must set up a secure data system from the outset of a project.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data_Security}}
+In order to safeguard PII data and protect respondent privacy,
+you must set up a secure data system from the outset of a project.
+Secure data storage and transfer are ultimately your personal responsibility.\sidenote{
+	\url{https://dimewiki.worldbank.org/Data\_Security}}
+Later chapters will discuss how to properly protect your data depending on
+which method you are using to acquire, store or share data.
+This section will only cover the computer setup you will need for any project.
 There are several components to this.
+
 First, you need a system for managing strong and unique passwords for
 all accounts -- including personal accounts like computer logins and email.
-There are several services that create and store these passwords for you,
-and some provide utilities for securely sharing passwords with others.
-Second, all machines should have \textbf{hard disk encryption} enabled.\sidenote{
+This means that all your passwords should be long (preferable more than 15 characters), 
+not use common words and should not be reused for multiple accounts.
+The only way to make that practically feasible is to use a password manager.\sidenote{
+	See DIME's guide to password managers -
+	\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/password-manager-guidelines.md}}
+Most password managers also allows you to securely share passwords
+for shared accounts with your colleagues.
+
+Second, all machines that stores confidential data 
+should have \textbf{hard disk encryption} enabled,
+if available in the operative system used.\sidenote{
 	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked, or any other type of unauthorized access is obtained.
 	\url{https://dimewiki.worldbank.org/Encryption}}
 \index{encryption}
-Disk encryption is available on many modern operating systems;
-it prevents your files from ever being accessed
-without first entering the system password.
-As with all critical passwords, your system password should be strong,
-memorable, and backed up in a separate secure location.
-Third, you must encrypt datasets that include confidential information
-during data collection, storage, and transfer.\index{encryption}\index{data transfer}\index{data storage}
+Most hard disk encryption use your computer login password to 
+prevent your files from ever being read by anyone but you.
+It is important to note that password-protection alone is not sufficient.
+Password protection only make it more difficult for someone else to gain access to your files,
+but only encryption properly protects your data if someone manage to access your files anyways.
+Hard disk encryption is sometimes only supported in enterprise versions of operative systems, 
+the most notable example of this being Microsoft's Windows.
+To properly secure your data you should have the habit of
+signing out from your computer when you leave it,
+no matter how briefly.
+
+Third, you must make sure that data that include confidential information
+remains encrypted at all times during data collection, storage, and transfer.\index{data transfer}\index{data storage}
 When files are properly encrypted,
 the information they contain will be completely unreadable and unusable
 even if they were to be intercepted my a malicious
 ``intruder'' or accidentally made public.
-There are many encryption options available, from enterprise-grade solutions to free software.
-DIME uses Veracrypt for file encryption,
-our protocols are available on GitHub\sidenote{\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
+We will discuss implementations of encryption 
+specific to different stages of data work in chapter 4, 
+but when setting up a software environment for you and your team, 
+make sure that you have a solution for creating encrypted folders on your computers.  
+DIME uses Veracrypt for encrypted folders,
+our protocols are available on in the DIME Research Standards.\sidenote{\url{
+		https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
 
-The easiest way to reduce the risk of leaking confidential information
-is to use it as rarely as possible.
+Handling confidential data properly will always add to your work load.
+The easiest way to reduce that work load is to 
+handle it as rarely as possible.
+Whenever our research design allows us to,
+we should simple not work with confidential data at all,
+and not collect it or ask for it in the first place. 
+Even when we do need confidential data for some aspect of our research,
+it is almost never the case that we need it for \textit{all} aspect of our data.
 It is often very simple to conduct planning and analytical work
 using a subset of the data that does not include this type of information.
 \index{privacy}
-Some examples of PII variables include names, addresses, and geolocations,
-email addresses, phone numbers,
-and bank accounts or other financial details.\index{geodata}\index{de-identification}
-If you are working in a context or population that is either small, specific,
-or has extensive linkable data sources available to others,
-information like someone's age and gender may be sufficient to
-disclose their identify, even though those variables would not be considered PII in general.
-There is no one-size-fits-all solution to determine what is PII,
-research teams have to use careful judgment in each case to avoid statistical disclosure.\sidenote{
-	\url{https://sdcpractice.readthedocs.io}}\index{statistical disclosure}
-	%WIKI need to create wiki page
-It is important to keep in mind that data privacy principles apply
-not only for the respondent giving you the information
-but also for their household members or other individuals who are included in the data.
+Therefore we are recommending all projects to plan a work flow 
+with a version of the data where confidential data has been removed 
+and always use that dataset when possible.
 
-It is in practice impossible to \textbf{anonymize} data.
+However, it is in practice impossible to \textbf{anonymize} data.
 There is always some statistical chance that an individual's identity
 will be re-linked to the data collected about them
 -- even if that data has had all directly identifying information removed --
@@ -669,31 +710,17 @@ The \textbf{initial de-identification} process strips the data of direct identif
 as early in the process as possible,
 to create a working de-identified dataset that
 can be shared \textit{within the research team} without the need for encryption.
-This simplifies workflows.
+This data set should always be used when possible.
 The \textbf{final de-identification} process involves
 making a decision about the trade-off between
 risk of disclosure and utility of the data
 before publicly releasing a dataset.\sidenote{
 	\url{https://sdcpractice.readthedocs.io/en/latest/SDC\_intro.html\#need-for-sdc}}
 
-Secure data storage and transfer are ultimately your personal responsibility.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data_Security}}
-There are several precautions needed to ensure that your data is safe.
-First, all online and offline accounts
--- including personal accounts like computer logins and email --
-need to be protected by strong and unique passwords.
-There are several services that create and store these passwords for you,
-and some provide utilities for sharing passwords with others
-inside that secure environment.
-However, password-protection alone is not sufficient,
-because if the underlying data is obtained through a leak the information itself remains usable.
-Datasets that include confidential information
-\textit{must} therefore be \textbf{encrypted}\sidenote{
-	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked, or any other type of unauthorized access is obtained.
-	\url{https://dimewiki.worldbank.org/Encryption}}
-during data collection, storage, and transfer.\index{encryption}\index{data transfer}\index{data storage}
-What data security protocols you employ will depend on project needs and data sources,
-but agreeing on a protocol from the start of a project will make your life easier.
-Finally, having an end-of-life plan for data is essential:
-you should always know how to transfer access and control to a new person if the team changes,
-and what the expiry of the data and the planned deletion processes are.
+Finally, it is essential to have an end-of-life plan for data even before it is acquired.
+This includes plans for how to transfer access and control to a new person joining the team,
+and how to revoke that access when someone is leaving the team.
+It should also include a plan for how the confidential data should be deleted. 
+All data should have an expiration data and after a project is completed and
+de-identified data has been made public as a part of your publication,
+there is no need for research teams to sit on confidential data indefinitely.
