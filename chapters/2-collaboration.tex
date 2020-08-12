@@ -193,19 +193,27 @@ and is very intuitive for people with non-technical backgrounds.
 Therefore, it is a useful tool for managing non-code-related tasks.
 
 % ----------------------------------------------------------------------------------------------
-\subsection{Choosing software}
+\subsection{Setting up a productive code environment}
 
-Choosing the right software environments can make your work significantly easier.
-  \index{software environments}
-It may be difficult or costly to switch halfway through a project, so
-think ahead about the various software your team will use.
+Taking time early in your project to choose a programming language for your project and
+setting up a productive code environments for that language
+will make your work significantly easier.
+  \index{code environments}
+Setting up a productive code environment means that 
+you make sure that the programming language and all other software your code requires
+will run smoothly on all the computers (laptop, servers etc.) 
+that you need it to run on.
+It also means that you have a productive way of interacting with your code,
+and that the code has an seamless way of accessing the data.
+
+It may be difficult or costly to switch programming language halfway through a project,
+so think ahead about the various software your team will use.
 Take into account the technical abilities of team members,
-how important it is to access files offline constantly,
+what type of internet access the software will need,
 the type of data you will need to access,
 and the level of security required.
 Big datasets require additional infrastructure and may overburden
-the tools commonly used for small datasets,
-particularly if you are trying to sync or collaborate on them.
+the tools commonly used for small datasets.
 Also consider the cost of licenses, the time to learn new tools,
 and the stability of the tools.
 There are few strictly right or wrong choices for software,
@@ -217,16 +225,22 @@ over the lifecycle of a single project.
 While this means you will inevitably have different projects
 with different code environments, each one will be better than the last,
 and you will avoid the costly process of migrating an ongoing project
-into a new code enviroment.
-Code environment should be constant down to the software level:
-the specific versions of software and the individual packages you use
+into a new code environment.
+Code environments should be documented as precise as possible.
+The specific version number of the programming languages and the individual packages you use
 should be referenced or maintained so that they can be reproduced going forward,
 even if different releases contain changes that would break your code
 or change your results.
   \index{software versions}
 DIME Analytics developed the command \texttt{ieboilstart} in the \texttt{ietoolkit} package
-to support Stata version stability.\sidenote{
+to support version and settings stability in Stata.\sidenote{
   \url{https://dimewiki.worldbank.org/ieboilstart}}
+If your project requires more than one programming language,
+for example if you analyze your data in one language but visualize your results in another,
+then make sure to make an as clear division between the two as possible. 
+This means that you first complete all tasks done in one language, 
+before the completing the rest of the tasks in the other language.
+Frequently swapping back and forth between languages is a reproducibility nightmare.
 
 Next, think about how and where you write and execute code.
 This book is intended to be agnostic to the size or origin of your data,
@@ -235,9 +249,6 @@ one of the two most popular statistical software packages: R or Stata.
 (If you are using another language, like Python,
 many of the same principles apply but the specifics will be different.)
 Most of your code work will be done in a code editor.
-This does not need to be the same program the code runs in;
-using an external editor can be preferable since your editor will not crash if your code does,
-and the editor may offer additional features aimed at writing code well.
 If you are working in R, \textbf{RStudio} is the typical choice.\sidenote{
   \url{https://www.rstudio.com}}
 For Stata, the built-in do-file editor is the most widely adopted code editor.
@@ -249,6 +260,8 @@ For example, they can access an entire directory -- rather than a single file --
 which gives you directory-level views and file management actions,
 such as folder management, Git integration,
 and simultaneous work with other types of files, without leaving the editor.
+Using an external editor can also be preferable since your editor will not crash
+if the execution of your code makes Stata or R to crash.
 
 % ----------------------------------------------------------------------------------------------
 % ----------------------------------------------------------------------------------------------
