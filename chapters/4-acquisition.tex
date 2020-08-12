@@ -548,8 +548,7 @@ Encryption-at-rest protects your data when it is stored somewhere,
 for example on a server or on your computer.
 In contrast to encryption-in-transit, 
 you as a user, need to keep track of the key. 
-Only people listed on your IRB is allowed to have access to this file.
-If you do not, the raw data will be accessible by
+Only people listed on your IRB should be allowed to have access to this file.
 
 Many data-sharing and data-storage software providers will promote their services
 by advertising on-the-fly encryption and decryption.
@@ -623,7 +622,9 @@ Only the private key in the same key pair can then be used to decrypt that data.
 The private key should be kept secret and should not be shared with anyone not listed on the IRB.
 Again, you must store the key pair in a secure location, 
 such as in a secure note in a password manager,
-as there is no way to access your data if the private key is lost.
+as there is no way to access your data if the private key is lost.\sidenote{
+DIME's guidelines for encryption in SurveyCTO/ODK -
+\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/surveycto-encryption-guidelines.md}}
 
 Data encrypted this way can securely pass through the server owned by the data collection software provider,
 and you should never decrypt it until it is downloaded on your computer.
@@ -658,7 +659,7 @@ In the second version of your data all confidential data should be removed.
 This version does not have to be encrypted 
 and should be what you use on a day-to-day basis.
 
-The most common reason a data is confidential is that it includes personal identifiers. 
+The most common reason data is confidential is that it includes personal identifiers. 
 Removing identifying information is called de-identification,
 and we will discuss how to do that in the next chapter. 
 De-identifying the data at the earliest possible opportunity 
@@ -676,9 +677,11 @@ There are multiple options for sharing encrypted data.
 If you need to collaborate on a confidential data set 
 then you can create an encrypted folder, for example using VeraCrypt (as described above).
 An encrypted folder can safely be shared using insecure modes of communication 
-such as email or third-party syncing services.
+such as email or third-party syncing services,
+as long as you only share the key using a secure service like a password manager.
 Anyone who has access to both the encrypted folder and the encryption key
-can read and collaborate on the encrypted file.
+can read and collaborate on the encrypted file,
+but it is impossible to know anything about your data if you only have access to one of them.
 
 If you only need a one-time transfer of confidential information,
 such as to receive a data set from a partner organization, 
@@ -733,7 +736,7 @@ so the data can never be lost in case of hardware failure.
 %needs wiki page
 However, you still need to keep track of your encryption keys as without them your data is lost.
 If you remain lucky, you will never have to access your ``master'' or ``golden master'' copies --
-you just want to know it is there, safe, if you need it.
+you just want to know it is there, safe, if you one day end up needing it.
 
 Once the raw data is securely stored and backed up, 
 it can be transformed into your final analysis dataset
