@@ -653,23 +653,37 @@ The only way to make that practically feasible is to use a password manager.\sid
 	\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/password-manager-guidelines.md}}
 Most password managers also allows you to securely share passwords
 for shared accounts with your colleagues.
+
+Second, all machines that stores confidential data 
+should have \textbf{hard disk encryption} enabled,
+if available in the operative system used.\sidenote{
 	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked, or any other type of unauthorized access is obtained.
 	\url{https://dimewiki.worldbank.org/Encryption}}
 \index{encryption}
-Disk encryption is available on many modern operating systems;
-it prevents your files from ever being accessed
-without first entering the system password.
-As with all critical passwords, your system password should be strong,
-memorable, and backed up in a separate secure location.
-Third, you must encrypt datasets that include confidential information
-during data collection, storage, and transfer.\index{encryption}\index{data transfer}\index{data storage}
+Most hard disk encryption use your computer login password to 
+prevent your files from ever being read by anyone but you.
+It is important to note that password-protection alone is not sufficient.
+Password protection only make it more difficult for someone else to gain access to your files,
+but only encryption properly protects your data if someone manage to access your files anyways.
+Hard disk encryption is sometimes only supported in enterprise versions of operative systems, 
+the most notable example of this being Microsoft's Windows.
+To properly secure your data you should have the habit of
+signing out from your computer when you leave it,
+no matter how briefly.
+
+Third, you must make sure that data that include confidential information
+remains encrypted at all times during data collection, storage, and transfer.\index{data transfer}\index{data storage}
 When files are properly encrypted,
 the information they contain will be completely unreadable and unusable
 even if they were to be intercepted my a malicious
 ``intruder'' or accidentally made public.
-There are many encryption options available, from enterprise-grade solutions to free software.
-DIME uses Veracrypt for file encryption,
-our protocols are available on GitHub\sidenote{\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
+We will discuss implementations of encryption 
+specific to different stages of data work in chapter 4, 
+but when setting up a software environment for you and your team, 
+make sure that you have a solution for creating encrypted folders on your computers.  
+DIME uses Veracrypt for encrypted folders,
+our protocols are available on in the DIME Research Standards.\sidenote{\url{
+		https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
 
 The easiest way to reduce the risk of leaking confidential information
 is to use it as rarely as possible.
