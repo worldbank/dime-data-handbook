@@ -61,83 +61,107 @@ as providing some standardization for Stata code is also a goal of this team.
 
 You can access the raw code used in examples in this book in several ways.
 We use GitHub to version control everything in this book, the code included.
-To see the code on GitHub, go to: \url{https://github.com/worldbank/d4di/tree/master/code}.
-If you are familiar with GitHub you can fork the repository and clone your fork.
+To see the code on GitHub, go to: \url{https://github.com/worldbank/dime-data-handbook/tree/master/code}.
+If you are familiar with GitHub you can fork or clone the repository.
 We only use Stata's built-in datasets in our code examples,
 so you do not need to download any data.
-If you have Stata installed on your computer, then you will already have the data files used in the code.
+If you have Stata installed on your computer,
+you will already have the data files used in the code.
 
 A less technical way to access the code is to click the individual file in the URL above, then click
 the button that says \textbf{Raw}. You will then get to a page that looks like the one at:
-\url{https://raw.githubusercontent.com/worldbank/d4di/master/code/code.do}.
+\url{https://raw.githubusercontent.com/worldbank/dime-data-handbook/master/code/code.do}.
 There, you can copy the code from your browser window to your do-file editor with the formatting intact.
 This method is only practical for a single file at the time.
 If you want to download all code used in this book, you can do that at:
-\url{https://github.com/worldbank/d4di/archive/master.zip}. That link offers a \texttt{.zip} file download
-with all the content used in writing this book, including the \LaTeX{} code used for the book itself. After
-extracting the .zip-file you will find all the code in a folder called \texttt{/code/}.
+\url{https://github.com/worldbank/dime-data-handbook/archive/master.zip}.
+That link offers a \texttt{.zip} file download
+with all the content used in writing this book,
+including the \LaTeX{} code used for the book itself.
+After extracting the .zip-file you will find all the code in a folder called \texttt{/code/}.
 
-\subsection{Writing and Understanding Stata code}
+\subsection{Writing and understanding Stata code}
 
-``Good'' code has two elements: (1) it is correct, in that it doesn't produce any errors,
-and (2) it is useful and comprehensible to someone who hasn't seen it before
-(or even yourself a few weeks, months or years later).
-Many researchers have been trained to code correctly.
-However, when your code runs on your computer and you get the correct results,
-you are only half-done writing \textit{good} code.
+Each of our code examples and products is our best attempt
+at accomplishing a specific technical task using ``good'' code.
+Good code is more than simply clever code
+or statistically correct code that produces the right results.
+Good code it is useful and comprehensible to someone who hasn't seen it before
+(or even yourself a few weeks, months or years later)
+because it enables a new reader to determing what it is intending to do
+and how it is doing it.
+It is very easy to write code that produces correct results
+but is completely impossible for another person to read or edit.
+Many researchers have been trained to code in this way.
+Therefore, when your code runs on your computer and you get the correct results,
+you are only half-done writing \textit{good} code:
+you then have to annotate and adapt it for someone else's understanding.
 Good code is easy to read and replicate, making it easier to spot mistakes.
 Good code reduces sampling, randomization, and cleaning errors.
 Good code can easily be reviewed by others before it's published and replicated afterwards.
 
-You should think of code in terms of three major elements:
+You should think of good code in terms of three major elements:
 \textbf{structure}, \textbf{syntax}, and \textbf{style}.
-We always tell people to ``code as if a stranger would read it''
-(from tomorrow, that stranger could be you!).
 The \textbf{structure} is the environment and file organization your code lives in:
-good structure means that it is easy to find individual pieces of code
-that correspond to specific tasks and outputs.
-Good structure also means that functional blocks are sufficiently independent from each other
-that they can be shuffled around, repurposed, and even deleted without damaging other portions.
+good structure means that it is easy to find which individual pieces of code
+correspond to specific tasks and outputs,
+both across and within each file and folder,
+and including documentation such as \texttt{README} files.
+Good structure also means that functional code blocks in each file
+are sufficiently independent from each other
+that they can be shuffled around, repurposed,
+and even deleted without affecting other portions.
+
 The \textbf{syntax} is the literal language of your code.
 Good syntax means that your code is readable
 in terms of how its mechanics implement ideas --
 it should not require arcane reverse-engineering
 to figure out what a code chunk is trying to do.
-\textbf{Style}, finally, is the way that the non-functional elements of your code convey its purpose.
-Elements like spacing, indentation, and naming conventions (or lack thereof) can make your code much more
+You should use common or built-in commands whenever possible
+and build tasks using standard and explicit approaches
+so that a reader can see exactly how work is build up.
+
+\textbf{Style}, finally, is the way that the
+non-functional elements of your code convey its purpose.
+Elements like spacing, indentation,
+and naming conventions (or lack thereof) can make your code much more
 (or much less) accessible to someone who is reading it for the first time
 and needs to understand it quickly and correctly.
+We always tell staff to ``code as if a stranger would read it'',
+and we implement code review processes so that a stranger does.
 
-Whether you are new to Stata or have used it for decades,
-you will always run into commands that
-you have not seen before or whose function you do not remember.
-(Whether you are new or not, you should frequently revisit the most common commands --
-often you will learn they can do something you never realized.\sidenote{
-  \url{https://www.stata.com/manuals13/u27.pdf}})
-Every time that happens,
-you should always look up the help file for that command.
+To do this well in Stata, you will have to get used to reading the help files.
 We often encounter the conception that help files are only for beginners.
 We could not disagree with that conception more,
 as the only way to get better at Stata is to constantly read help files.
+Most of us have a help file window open at all times.
+Whether you are new to Stata or have used it for decades,
+you will always run into commands that
+you have not seen before or whose function you do not remember.
+Every time that happens,
+you should always look up the help file for that command.
 So if there is a command that you do not understand in any of our code examples,
 for example \texttt{isid}, then write \texttt{help isid},
 and the help file for the command \texttt{isid} will open.
 We cannot emphasize enough how important it is
-that you get into the habit of reading help files.
-Most of us have a help file window open at all times.
+that you get into the habit of constantly reading help files.
+Whether you are new or not, you should frequently revisit help files for
+the most common commands used by yourself and others --
+often, you will learn they can do something you never realized.\sidenote{
+  \url{https://www.stata.com/manuals13/u27.pdf}}
 
-Sometimes, you will encounter code that employs user-written commands,
+Sometimes you will encounter code that employs user-written commands,
 and you will not be able to read their help files until you have installed the commands.
 Two examples of these in our code are \texttt{randtreat} or \texttt{ieboilstart}.
 The most common place to distribute user-written commands for Stata
 is the Boston College Statistical Software Components (SSC) archive.\sidenote{
 \url{https://ideas.repec.org/s/boc/bocode.html}}
-In our code examples, we only use either Stata's built-in commands or commands available from the
-SSC archive.
-So, if your installation of Stata does not recognize a command in our code, for example
-\texttt{randtreat}, then type \texttt{ssc install randtreat} in Stata.
+In our code examples, we only use either Stata's built-in commands
+or commands available from the SSC archive.
+So, if your installation of Stata does not recognize a command in our code,
+for example \texttt{randtreat}, then type \texttt{ssc install randtreat} in Stata.
 
-Some commands on SSC are distributed in packages.
+Some commands on SSC are distributed in \textbf{packages}.
 This is the case, for example, of \texttt{ieboilstart}.
 That means that you will not be able to install it using \texttt{ssc install ieboilstart}.
 If you do, Stata will suggest that you instead use \texttt{findit ieboilstart},
@@ -156,11 +180,13 @@ so that the user does not have to search for packages manually.
 
 \subsection{Why we use a Stata style guide}
 
-Programming languages used in computer science always have style guides associated with them.
-Sometimes they are official guides that are universally agreed upon, such as PEP8 for
-Python.\sidenote{\url{https://www.python.org/dev/peps/pep-0008}} More commonly, there are well-recognized but
-non-official style guides like the JavaScript Standard Style\sidenote{\url{https://standardjs.com/\#the-rules}} for
-JavaScript or Hadley Wickham's style guide for R.\sidenote{\url{https://style.tidyverse.org/syntax.html}}
+Programming languages used in computer science
+always have style guides associated with them.
+Sometimes they are official guides that are universally agreed upon,
+such as PEP8 for Python.\sidenote{\url{https://www.python.org/dev/peps/pep-0008}}
+More commonly, there are well-recognized but
+non-official style guides like the JavaScript Standard Style\sidenote{\url{https://standardjs.com/\#the-rules}}
+for JavaScript or Hadley Wickham's style guide for R.\sidenote{\url{https://style.tidyverse.org/syntax.html}}
 Google, for example, maintains style guides for all languages
 that are used in its projects.\sidenote{
   \url{https://github.com/google/styleguide}}
@@ -171,9 +197,11 @@ there are plenty of guides to Stata's extensive functionality.\sidenote{
   \url{https://scholar.harvard.edu/files/mcgovern/files/practical_introduction_to_stata.pdf}}
 The important function is to allow programmers who are likely to work together
 to share conventions and understandings of what the code is doing.
-Style guides therefore help improve the quality of the code
+In other words, a style guide is an agreement on some components of good code.
+Style guides therefore help improve the compatibility of the code
 in that language that is produced by all programmers in a community.
-It is through a shared style that newer programmers can learn from more experienced programmers
+It is through a shared style that newer programmers
+can learn from more experienced programmers
 how certain coding practices are more or less error-prone.
 Broadly-accepted style conventions make it easier to borrow solutions
 from each other and from examples online
@@ -184,7 +212,8 @@ problems and to collaborate or move from project to project, and from team to te
 There is room for personal preference in style guides,
 but style guides are first and foremost about quality and standardization --
 especially when collaborating on code.
-We believe that a commonly used Stata style guide would improve the quality of all code written in Stata,
+We believe that a commonly used Stata style guide
+would improve the quality of all code written in Stata,
 which is why we have begun the one included here.
 You do not necessarily need to follow our style guide precisely.
 We encourage you to write your own style guide if you disagree with us.
