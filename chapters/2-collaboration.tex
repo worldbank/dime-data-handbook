@@ -113,14 +113,15 @@ and is implemented by software like Dropbox and OneDrive.
 Sync forces everyone to have the same version of every file at the same time,
 which makes simultaneous editing difficult but other tasks easier.
 They also have some security concerns which we will address later.
-\textbf{Version control} is another method,
-commonly implemented by tools like Git\sidenote{
+\textbf{Distributed version control} is another method,
+commonly implemented through systems like GitHub, GitLab, and Bitbucket
+that interact with Git\sidenote{
 	\textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.} and GitHub\sidenote{
 	\textbf{GitHub:} the biggest publicly available platform for hosting Git projects.}.
   \index{version control}
-Version control allows everyone to access different versions of files at the same time,
-making simultaneous editing easier but some other tasks harder.
-It is also only optimized for specific types of files
+Distributed version control allows everyone
+to access different versions of files at the same time.
+It is only optimized for specific types of files
 (for example, any type of code files).
 Finally, \textbf{server storage} is the least-common method,
 because there is only one version of the materials,
@@ -199,9 +200,9 @@ Taking time early in your project to choose a programming language for your proj
 setting up a productive code environments for that language
 will make your work significantly easier.
   \index{code environments}
-Setting up a productive code environment means that 
+Setting up a productive code environment means that
 you make sure that the programming language and all other software your code requires
-will run smoothly on all the computers (laptop, servers etc.) 
+will run smoothly on all the computers (laptop, servers etc.)
 that you need it to run on.
 It also means that you have a productive way of interacting with your code,
 and that the code has an seamless way of accessing the data.
@@ -237,8 +238,8 @@ to support version and settings stability in Stata.\sidenote{
   \url{https://dimewiki.worldbank.org/ieboilstart}}
 If your project requires more than one programming language,
 for example if you analyze your data in one language but visualize your results in another,
-then make sure to make an as clear division between the two as possible. 
-This means that you first complete all tasks done in one language, 
+then make sure to make an as clear division between the two as possible.
+This means that you first complete all tasks done in one language,
 before the completing the rest of the tasks in the other language.
 Frequently swapping back and forth between languages is a reproducibility nightmare.
 
@@ -506,7 +507,7 @@ its structure is the same in each team member's computer.
 The only difference between machines should be
 the path to the project root folders, i.e. the highest-level shared folder.
 Depending on your software environment you may have multiple root folders.
-In a typical DIME project we have one GitHub root folder for our code, 
+In a typical DIME project we have one GitHub root folder for our code,
 one sync software root folder for our de-identified data,
 and a third for our encrypted data.
 This is reflected in the master script in such a way that
@@ -659,7 +660,7 @@ There are several components to this.
 
 First, you need a system for managing strong and unique passwords for
 all accounts -- including personal accounts like computer logins and email.
-This means that all your passwords should be long (preferable more than 15 characters), 
+This means that all your passwords should be long (preferable more than 15 characters),
 not use common words and should not be reused for multiple accounts.
 The only way to make that practically feasible is to use a password manager.\sidenote{
 	See DIME's guide to password managers -
@@ -667,18 +668,18 @@ The only way to make that practically feasible is to use a password manager.\sid
 Most password managers also allows you to securely share passwords
 for shared accounts with your colleagues.
 
-Second, all machines that stores confidential data 
+Second, all machines that stores confidential data
 should have \textbf{hard disk encryption} enabled,
 if available in the operative system used.\sidenote{
 	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked, or any other type of unauthorized access is obtained.
 	\url{https://dimewiki.worldbank.org/Encryption}}
 \index{encryption}
-Most hard disk encryption use your computer login password to 
+Most hard disk encryption use your computer login password to
 prevent your files from ever being read by anyone but you.
 It is important to note that password-protection alone is not sufficient.
 Password protection only make it more difficult for someone else to gain access to your files,
 but only encryption properly protects your data if someone manage to access your files anyways.
-Hard disk encryption is sometimes only supported in enterprise versions of operative systems, 
+Hard disk encryption is sometimes only supported in enterprise versions of operative systems,
 the most notable example of this being Microsoft's Windows.
 To properly secure your data you should have the habit of
 signing out from your computer when you leave it,
@@ -690,27 +691,27 @@ When files are properly encrypted,
 the information they contain will be completely unreadable and unusable
 even if they were to be intercepted my a malicious
 ``intruder'' or accidentally made public.
-We will discuss implementations of encryption 
-specific to different stages of data work in chapter 4, 
-but when setting up a software environment for you and your team, 
-make sure that you have a solution for creating encrypted folders on your computers.  
+We will discuss implementations of encryption
+specific to different stages of data work in chapter 4,
+but when setting up a software environment for you and your team,
+make sure that you have a solution for creating encrypted folders on your computers.
 DIME uses Veracrypt for encrypted folders,
 our protocols are available on in the DIME Research Standards.\sidenote{\url{
 		https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
 
 Handling confidential data properly will always add to your work load.
-The easiest way to reduce that work load is to 
+The easiest way to reduce that work load is to
 handle it as rarely as possible.
 Whenever our research design allows us to,
 we should simple not work with confidential data at all,
-and not collect it or ask for it in the first place. 
+and not collect it or ask for it in the first place.
 Even when we do need confidential data for some aspect of our research,
 it is almost never the case that we need it for \textit{all} aspect of our data.
 It is often very simple to conduct planning and analytical work
 using a subset of the data that does not include this type of information.
 \index{privacy}
-Therefore we are recommending all projects to plan a work flow 
-with a version of the data where confidential data has been removed 
+Therefore we are recommending all projects to plan a work flow
+with a version of the data where confidential data has been removed
 and always use that dataset when possible.
 
 However, it is in practice impossible to \textbf{anonymize} data.
@@ -733,7 +734,7 @@ before publicly releasing a dataset.\sidenote{
 Finally, it is essential to have an end-of-life plan for data even before it is acquired.
 This includes plans for how to transfer access and control to a new person joining the team,
 and how to revoke that access when someone is leaving the team.
-It should also include a plan for how the confidential data should be deleted. 
+It should also include a plan for how the confidential data should be deleted.
 All data should have an expiration data and after a project is completed and
 de-identified data has been made public as a part of your publication,
 there is no need for research teams to sit on confidential data indefinitely.
