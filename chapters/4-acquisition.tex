@@ -2,7 +2,7 @@
 
 \begin{fullwidth}
 High-quality data is essential to most modern development research.
-Many research questions require novel data, 
+Many research questions require the team to collect original data, 
 because no source of publicly available data addresses the 
 inputs or outcomes of interest for the relevant population.
 Data acquisition can take many forms, including: 
@@ -13,9 +13,12 @@ primary data capture by unmanned aerial vehicles or other types of remote sensin
 or novel integration of various types of datasets, e.g. combining survey and sensor data.
 Much of the recent push toward credibility in the social sciences has focused on analytical practices.
 However, credible development research often depends, first and foremost, on the quality of the raw data.
-For data work to be reproducible, the data acquisition process must be clearly and carefully documented.
+For data work to be reproducible, 
+in the sense that other researchers would be able to make
+equally informed decisions about analytical choices,
+the data acquisition process must be clearly and carefully documented.
 
-This chapter covers reproducible data acquisition,
+This chapter covers data acquisition,
 special considerations for generating high-quality survey data, 
 and protocols for safely and securely handling confidential data. 
 The first section discusses reproducible data acquisition:
@@ -36,12 +39,12 @@ ethical agreements that allow  access to personal information for research purpo
 \end{fullwidth}
 
 %------------------------------------------------
-\section{Acquiring data}
+\section{Acquiring development data}
+
 Clearly establishing and documenting data access is critical for reproducible research.  
 This section provides guidelines for receiving data from development partners,
 establishing data ownership, 
 and documenting the research team's right to use the data. 
-
 It is the researchers' responsibility to respect the rights
 of people who own the data and the people who are described by it;
 but also to make sure that information is as available and accessible as possible.
@@ -65,19 +68,17 @@ in some cases require a stricter level of security than initially proposed by th
 
 At this stage, it is very important to assess
 documentation and cataloging of the data and associated metadata.
-It is not always clear what pieces of information jointly constitute a ``dataset'',
+It is not always clear what pieces of information will jointly constitute a ``dataset'',
 and many of the datasets you receive will not be organized for research.
 You should always retain the original data exactly as received
 alongside a copy of the corresponding ownership agreement or license.
-You should make a simple ``readme'' document noting the date of receipt,
+You should maintain a simple \texttt{README} document noting the date of receipt,
 the source and recipient of the data, 
 and a brief description of each file received.
 All too often data will be provided as vaguely-named spreadsheets,
 or digital files with non-specific titles, 
 and documentation will be critical for future access and reproducibility.
-Eventually, you will want to make sure that you are creating a set of documents
-that can be properly submitted to a data catalog and given a reference and citation.
-The metadata -- documentation about the data -- is critical for future use of the data.
+This metadata -- the documentation about the data -- is critical for future use of the data.
 Metadata should include documentation of how the data was created, 
 what they measure, and how they are to be used.
 In the case of survey data, this includes the survey instrument and associated manuals; 
@@ -95,16 +96,17 @@ but you also want to keep things apart that belong apart.
 There usually won't be a precise way to answer this question,
 the research team will need to decide the appropriate level of aggregation
 for the data obtained.
-This dataset is the object you will think about cataloging, releasing, and licensing
+Soon, you will begin to build datasets from this set of information,
+and these will become your original raw data.
+These datasets are the objects you will think about cataloging, releasing, and licensing
 as you move towards publication.
 You may need to assess disclosure risk and seek clearance from the provider prior to publication,
 particularly if you are integrating various data sources.
 
-
 \subsection{Data ownership}
-Except in the case of primary surveys funded by the research team, 
-the data is typically not owned by the research team. 
-Rather, they must enter into data licensing agreements 
+Except in the case of primary surveys conducted by the research team, 
+such data is typically not owned by the research team. 
+Rather, the team must enter into data licensing agreements 
 to access the data and publish research outputs based on it. 
 These agreements should make clear from the outset whether the 
 research team can make the original data, any portion thereof, or derivatives\sidenote{
@@ -112,12 +114,11 @@ research team can make the original data, any portion thereof, or derivatives\si
 	visualizations etc. created from the original data.} 
 of the data, public. 
 
-Data ownership\sidenote{need to add DIME Wiki page} can be challenging to establish,
-as many jurisdictions have differing laws regarding data and information,
-and the research team may be subject to multiple conflicting regulations.
-In some countries, data is implicitly owned by the people who it is about.
+Data ownership\sidenote{need to add DIME Wiki page} can sometimes be challenging to establish,
+as various jurisdictions have differing laws regarding data and information,
+and the research team may have their own information regulations.
+In some, data is implicitly owned by the people who it is about.
 In others, it is owned by the people who collected it.
-In still more, it is highly unclear and there are varying norms.
 The best approach is always to consult with a local partner, 
 and enter into specific legal agreements establishing ownership, 
 access, and publication rights.
@@ -135,79 +136,87 @@ for example, if a government, private company, or research partner is doing the 
 make sure that you have an explicit agreement
 about who owns the resulting data. 
 The contract for data collection should include specific terms 
-as to the rights and responsibilities of each stakeholder.
-It must clearly stipulate which party owns the data produced, 
-and that the research team maintains full intellectual property rights. 
+as to the rights and responsibilities of each party.
+It must clearly stipulate who owns the data produced. 
 The contract should also explicitly indicate that the contracted firm
 is responsible for protecting respondent privacy, 
 that the data collection will not be delegated to any third parties,
 and that the data will not be used by the firm or subcontractors for any purpose not expressly stated in the contract,
 before, during or after the assignment. 
-The contract should also stipulate that the vendor is required to comply with 
+The contract should stipulate that the vendor is required to comply with 
 ethical standards for social science research, 
 and adhere to the specific terms of agreement with the relevant 
 Institutional Review Board (IRB)\sidenote{
 	\url{https://dimewiki.worldbank.org/IRB\_Approval}} 
-or applicable local authority.
-Finally, it should include policies on reuse, storage, and retention or destruction of data. 
+and any applicable local authority.
+Finally, it should include policies on reuse, storage, 
+and retention or destruction of data. 
 
-Research teams that generate their own data must also consider data ownership downstream,
-the terms they will use to release that data to other researchers or to the general public. 
-Will the team publicly release the data in full (removing personal identifiers)?
-Would the team be okay with it being stored on servers anywhere in the world,
-even ones that are owned by corporations or governments in other countries?
-Would the team prefer to decide permission on a case-by-case basis, dependent on specific proposed uses? 
-Would the team expect that users of your data cite you or give you credit,
-or require users in turn to release
-their derivative datasets or publications under similar licenses?
+Research teams that generate their own data 
+should consider future data licensing,
+through the terms they will use to release that data 
+to other researchers or to the general public. 
+One option is to publicly release the data in full, 
+after removing personal identifiers.
+The team should consider whether it will be acceptable for data to 
+be stored anywhere in the world,
+even places that are owned by corporations or governments in other countries.
+The team could alternatively opt to decide permission on a case-by-case basis, 
+dependent on specific proposed uses.
+The license could require that users of your data cite or credit you,
+or could require users in turn to release
+their derivative datasets or publications under similar licenses.
 Whatever your answers are to these questions,
 make sure the agreement or contract
 you use to acquire the data
+and the license you issue to accompany its release
 specifically details those requirements.
 
-\subsection{Data licensing agreements}
-Data licensing is the formal act of the dataset owner giving some data rights to a specific user,
+\subsection{Data licensing}
+Data licensing is the formal act of the dataset owner 
+giving some data rights to a specific user,
 while retaining ownership of the dataset.
 If you are not the owner of the dataset you want to analyze,
 you must enter into a licensing agreement to access it for research purposes.
 Similarly, when you own a dataset,
 you must consider whether you will make the dataset accessible to other researchers,
-and what terms-of-use you require. 
+and what terms of use you require. 
 
-If the research team requires access to existing data for novel research,
+If the research team requires access to existing data for research,
 terms of use should be agreed on with the data owner, 
 typically through a data licensing agreement\sidenote{need to add a DIME wiki page}.
-Keep in mind that the data owner is likely not familiar
+Keep in mind that the data owner is likely not highly familiar
 with the research process, and therefore may be surprised
 at some of the things you want to do if you are not clear up front.
-You will typically want intellectual property rights to all research outputs developed used the data,
-a license for all uses of derivative works, including public distribution 
-(unless ethical considerations contraindicate this).
-This is important to allow the research team to store, catalog, and publish, in whole or in part,
+You will typically want intellectual property rights 
+to all research outputs developed used the data,
+a license for use of derivative datasets, 
+and potentially permission for public release or specific redistribution.
+This is important to allow the research team 
+to store, catalog, and publish, in whole or in part,
 either the original licensed dataset or datasets derived from the original.
 Make sure that the license you obtain from the data owner allows these uses,
-and that you consult with the owner if you foresee exceptions with specific portions of the data.
+and that you consult with the owner 
+if you foresee exceptions with specific portions of the data.
 
-The World Bank has a template Data License Agreement which DIME follows.\sidenote{ \url{https://worldbankgroup.sharepoint.com/teams/ddh/SiteAssets/SitePages/ddh/DataLicenseAgreementTemplate_v4.pdf?cid=68a54269-bbff-4b47-846d-cab248ad7de1}}
+The World Bank has a template Data License Agreement which DIME follows.\sidenote{\url{https://worldbankgroup.sharepoint.com/teams/ddh/SiteAssets/SitePages/ddh/DataLicenseAgreementTemplate_v4.pdf?cid=68a54269-bbff-4b47-846d-cab248ad7de1}}
 The template specifies the specific objectives of the data sharing, 
-and whether the data can be used only for the established purpose or for other objectives 
-consistent with the mandates of the signatory organizations. 
-It establishes classifies the data into four access categories, depending on who can access it, and whether case-by-case authorization is needed.
-The data provider may impose similar restrictions to sharing derivative works and any or all of the metadata. 
+and whether the data can be used only for the established purpose or for other objectives. 
+It classifies the data into one of four access categories, 
+depending on who can access it, 
+and whether case-by-case authorization is needed.
+The data provider may impose similar restrictions 
+to sharing derivative works and any or all of the metadata. 
 The template also specifies the required citation for the data. 
-While you do not need to use the World Bank's template or its categories if you do not work on a World Bank project,
+While you do not need to use the World Bank's template 
+or its categories if you do not work on a World Bank project,
 we still think it is important that you use this information in two ways.
-First, while you do not have to use the World Bank's template,
-make sure to base your Data License Agreement using some template. 
-Second, we strongly recommend you to categorize using the categories above,
+First, while you do not have to use the World Bank template,
+make sure to base your Data License Agreement on some template. 
+Second, we strongly recommend you use the World Bank access categories,
 or some variation of it. 
 Then you should have different procedures for each category,
 or use one procedure appropriate for the strictest category for all your data.
-In addition to what we are suggesting here, 
-the data provider you work with may impose similar restrictions to sharing derivative works
-and any or all of the metadata. 
-
-
 
 %------------------------------------------------
 \section{Collecting data using electronic surveys}
