@@ -678,12 +678,14 @@ Usually we need to deal with confidential data at some point in the project,
 and then the second best practice is create two versions of your data. 
 One version of your data will still have the confidential information,
 and it will need to be encrypted at all times. 
-This version should only be used when the confidential information is actually needed.
+This version should only be used 
+when the confidential information is actually needed.
 In the second version of your data all confidential data should be removed.
 This version does not have to be encrypted 
 and should be what you use on a day-to-day basis.
 
-The most common reason data is confidential is that it includes personal identifiers. 
+The most common reason data is confidential 
+is that it includes direct personal identifiers. 
 Removing identifying information is called de-identification,
 and we will discuss how to do that in the next chapter. 
 De-identifying the data at the earliest possible opportunity 
@@ -692,20 +694,26 @@ as de-identified data no longer needs to be encrypted.
 Another method to protect confidential data is to aggregate the data, 
 meaning that sums and averages of group of observations are calculated
 and only those numbers are reported.
-Any of these techniques can be used either before the data is shared with the research team,
-or when creating the second non-confidential version of the data set to be used in the analysis.
+Any of these techniques can be used either 
+before the data is shared with the research team,
+or when creating the second non-confidential version 
+of the data set to be used in the analysis.
 If confidential information is directly required for the analysis,
-it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
+it will be necessary to keep at least a subset of the data 
+encrypted through the data analysis process.
 
 There are multiple options for sharing encrypted data. 
 If you need to collaborate on a confidential data set 
-then you can create an encrypted folder, for example using VeraCrypt (as described above).
+then you can create an encrypted folder, 
+for example using VeraCrypt as described above.
 An encrypted folder can safely be shared using insecure modes of communication 
 such as email or third-party syncing services,
-as long as you only share the key using a secure service like a password manager.
+as long as you only share the key 
+using a secure service like a password manager.
 Anyone who has access to both the encrypted folder and the encryption key
 can read and collaborate on the encrypted file,
-but it is impossible to know anything about your data if you only have access to one of them.
+but it is impossible to know anything about your data 
+if you only have access to one of them.
 
 If you only need a one-time transfer of confidential information,
 such as to receive a data set from a partner organization, 
@@ -714,44 +722,48 @@ Instead, for one-time transfers we recommend sending data over password-protecte
 end-to-end encrypted file sharing services.\sidenote{
 	One such service at the time of writing is \url{https://send.firefox.com/}}
 
-
-
 \subsection{Backing up original data}
 
 While encryption is protecting your data from unauthorized access,
-you also need to protect your data from being accidentally over-written or deleted.
-This is done through a back-up protocol. This is an example of such a protocol:
+you also need to protect your data 
+from being accidentally overwritten or deleted.
+This is done through a back-up protocol. 
+Here is an example of such a protocol:
 
 \begin{enumerate}
 	\item Create an encrypted folder in your project folder.
-	This should be on your computer, and could be in a shared folder.
+	This should be on your computer, and could be in a synced folder.
 	
-	\item Download your original data from your data source to that encrypted folder.
+	\item Download the original data from your data source to that encrypted folder.
 	If your data source is a survey and the data was encrypted during data collection,
 	then you will need \textit{both} the
 	private key used during data collection to be able to download the data,
 	\textit{and} the key used when you created the encrypted folder to save it there.
-	This your first copy of your raw data, and the copy you will use in your cleaning and analysis.
+	This the working copy of your raw data, and the copy you will source for all cleaning and analysis.
 	
-	\item Create a second encrypted folder on an external drive that you can keep in a secure location.
+	\item Create a second encrypted folder on an external drive or another computer that you can keep in a secure location on-site.
 	Copy the data you just downloaded to this second encrypted folder.
-	This is the ``master'' backup copy of the raw data. 
+	This is the local backup copy of the raw data
+	that you can access quickly if the data on your local machine is deleted or corrupted.
 	You should never work with this data on a day-to-day basis.
 	You should not use the same encrypted folder or the same key as above, 
 	because if you use the same key and lose the key, 
 	then you will have lost access to both encrypted folders. 
-	If you have an physical safe where you can securely store the external drive, 
+	If you have a physical safe where you can securely store the external drive, 
 	then you do not need to encrypt the data
 	and thereby do not risk losing access by losing an encryption key.
 	
 	\item Finally, create a third encrypted folder.
-	Either you can create this on your computer and upload it to a long-term cloud storage service,
-	or you can create it on	an external hard drive that you then store in a second location,
+	Either you can create this on your computer and upload it to a long-term cloud storage service (not a sync software),
+	or you can create it on	another external hard drive or computer that you then store in a second location,
 	for example, at another office of your organization.
-	This is the ``golden master'' backup copy of the raw data.
+	This is the ``golden master'' backup copy of the raw data,
+	because it can recover your data even in the event of
+	total loss of access to your office or its contents.
 	You should never store the ``golden master'' copy in a synced folder, 
 	as it would be deleted in the cloud storage if it is deleted on your computer.
-	You should also never work with this data on a day-to-day basis.
+	You should also never work with this data;
+	it exists only for recovery purposes.
 \end{enumerate}
 
 \noindent This handling satisfies the \textbf{3-2-1 rule}:
@@ -761,7 +773,7 @@ so the data can never be lost in case of hardware failure.
 However, you still need to keep track of your encryption keys as without them your data is lost.
 If you remain lucky, you will never have to access your ``master'' or ``golden master'' copies --
 you just want to know it is there, safe, if you one day end up needing it.
-
-Once the raw data is securely stored and backed up, 
-it can be transformed into your final analysis dataset
+Once the original raw data is securely stored and backed up, 
+it can be processed into your de-identified raw data
+and your final analysis datasets
 through the steps described in the next chapter.
