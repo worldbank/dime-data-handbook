@@ -590,7 +590,7 @@ The first thing you need to do before planning how to securely receive data,
 is to plan how to securely store data after you have received it.
 Typically, you want to store your data so that you can decrypt and access it, 
 interact with it and then decrypt it again. 
-That is a perfect use case for \textbf{symmetric encryption} 
+That is a perfect use case for \textbf{symmetric encryption}, 
 where the same key is used to both encrypt and decrypt your files.
 Think of this as a physical safe where you have one key 
 used to both add content and access content.
@@ -599,61 +599,69 @@ The equivalent to a safe in secure data storage is an encrypted folder,
 which you can set up using, for example, VeraCrypt.\sidenote{
 	\url{https://www.veracrypt.fr} and
 	\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
-You can interact with files in an encrypted folder, and modify themlike any unencrypted file,
-as long as you have the key.
+You can interact with files in an encrypted folder 
+as long as you have that key.
 This is an implementation of encryption-at-rest.
-There is absolutely no way to restore your data if you were to lose your key, 
+There is absolutely no way to restore your data if you lose your key, 
 so we cannot stress enough the importance of using a password manager,
-or equally secure solution, to store your keys.
+or equally secure solution, to store these encryption keys.
 
-It is becoming more and more common that development research
-is done on data set that is too big to store on a regular computer,
+It is becoming more common that development research
+is done using data sets that are too big to store on a regular computer,
 and instead the data is stored and processed in a cloud environment. 
 There are many available cloud storage solutions
-and you need to understand how the data is encrypted and how the keys are handled.
-This is likely another case where a regular research team will have to ask a cybersecurity expert.
-After someone have helped you to set up a secure cloud storage, 
-if you were to download a sample of the data --
-for example to develop your code on --
-then you need to remember to encrypt the data when stored on your computer.
+and you need to understand how the data is encrypted 
+and how the keys are handled.
+This is another case where a typical research team 
+will have to consult a cybersecurity expert.
 
 \subsection{Collecting data securely in the field}
 
 All common data collection software will automatically encrypt
-all data in transit (i.e., upload from field or download from server).
+data in transit (i.e., upload from field or download from server).
 However, it is also necessary to ensure that confidential data 
-are protected when stored on a server owned by the data collection software provider.
-You should not assume that your data is encrypted-at-rest by default.
+are protected when stored on a server that can be accessed 
+by the data collection software provider or by your local IT team.
+You should not assume that your data is encrypted at rest there by default.
 In most data collection platforms,
 encryption-at-rest needs to be explicitly enabled and operated by the user.
 
-When collecting data you want the tablets or the browsers used for data collection
+When collecting data, you want the tablets or browsers used for data collection
 to be able to encrypt all information before submitting it to the server. 
-At the same time you do not want those devices to have any way of decrypting already submitted data.
-This is a perfect use case for \textbf{asymmetric encryption}
-where there are two keys, forming a public/private key pair.
-The public key can safely be sent to all tablets or browsers so it can be used for encrypting the data before it is submitted to a server.
-Only the private key in the same key pair can then be used to decrypt that data 
+At the same time, you do not want those devices to have any way of decrypting already submitted data.
+This is a use case for \textbf{asymmetric encryption},
+where there are two keys that together make a public/private key pair.
+The \textit{public} key can only be used for encrypting data before it is submitted to a server, 
+so it can safely be sent to all tablets or browsers as part of the survey program.
+The \textit{private} key in the pair can only be used to decrypt that data 
 so it can be accessed after it has been received.
-The private key should be kept secret and should not be shared with anyone not listed on the IRB.
+The private key is therefore requested with data access.
+It should be securely stored 
+and may not be shared with anyone not listed on the IRB.
 Again, you must store the key pair in a secure location, 
 such as a secure note in a password manager,
-as there is no way to access your data if the private key is lost.\sidenote{
-DIME's guidelines for encryption in SurveyCTO/ODK -
+as there is no way to recover your data if the private key is lost.\sidenote{
+See the DIME guidelines for encryption in SurveyCTO/ODK at 
 \url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/surveycto-encryption-guidelines.md}}
 
-Data encrypted this way can securely pass through the server owned by the data collection software provider,
+Data encrypted this way can securely pass 
+through a server accessible by the data collection software provider
+or by your local IT team,
 and you should never decrypt it until it is downloaded on your computer.
-If your data collection service allows you to browse data in the browser, 
-then the encryption is only implemented correctly if you are asked for the key each time.
+If your data collection service allows you 
+to browse data while it remains on the server, 
+then the encryption is only implemented correctly 
+if you are asked for the key each time
+or if it specifically enables the creation of ``publishable''
+fields which are not subject to the encryption.
 
-Finally, the data security standards that apply when receiving confidential data from the field
+Finally, the data security standards that apply 
+when receiving confidential data from the field
 also apply when transferring confidential data to the field.
 In some survey software, 
 you can use the same encryption that allows you to receive data securely
 from the field, to also send confidential data,
 such as an identifying list of respondents, to the field.
-
 
 \subsection{Receiving or sharing data securely}
 
