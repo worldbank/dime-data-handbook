@@ -220,11 +220,14 @@ or use one procedure appropriate for the strictest category for all your data.
 
 %------------------------------------------------
 \section{Collecting data using electronic surveys}
-In this section, we detail specific considerations for acquiring high-quality data through surveys.
-There are many survey software options available to researchers, and the market is rapidly evolving.
+In this section, we detail specific considerations 
+for acquiring high-quality data through surveys.
+There are many survey software options available to researchers, 
+and the market is rapidly evolving.
 There are also many excellent resources on questionnaire design and field supervision,
 but few covering the particular challenges and opportunities presented by electronic surveys.
-Therefore, we focus on specific workflow considerations for digitally-generated data, and on primary concepts rather than software-specific tools.
+Therefore, we focus on specific workflow considerations for digitally-collected data, 
+and on basic concepts rather than software-specific tools.
 If you are collecting data directly from the research subjects yourself,
 you are most likely designing and fielding an electronic survey.
 These types of data collection technologies
@@ -243,7 +246,8 @@ no matter the scale.
 \subsection{Developing a data collection instrument}
 
 A well-designed questionnaire results from careful planning,
-consideration of analysis and indicators, close review of existing questionnaires,
+consideration of analysis and indicators, 
+close review of existing questionnaires,
 survey pilots, and research team and stakeholder review.
 There are many excellent resources on questionnaire design,
 such as from the World Bank's Living Standards Measurement Survey.\cite{glewwe2000designing}
@@ -258,25 +262,29 @@ Although most surveys are now collected electronically, by tablet, mobile phone 
 \url{https://dimewiki.worldbank.org/Questionnaire\_Programming}} (functionality development)
 should be seen as two strictly separate tasks.
 Therefore, the research team should agree on all questionnaire content
-and design a paper version of the survey before beginning to program the electronic version.
+and design a version of the survey on paper 
+before beginning to program the electronic version.
 This facilitates a focus on content during the design process
 and ensures teams have a readable, printable version of their questionnaire.
-Most importantly, it means the research, not the technology, drives the questionnaire design.
+Most importantly, it means the research, not the technology, 
+drives the questionnaire design.
 
 We recommend this approach because an easy-to-read paper questionnaire
-is especially useful for training data collection staff,
-by focusing on the survey content and structure before diving into the technical component.
-It is much easier for enumerators to understand the range of possible participant responses
+is very useful for training data collection staff,
+because it focuses on the survey content and structure 
+before diving into the technical components.
+It is much easier for enumerators to understand 
+the range of possible participant responses
 and how to handle them correctly on a paper survey than on a tablet,
-and it is much easier for them to translate that logic to digital functionality later.
+and it is easier to translate that logic to digital functionality later.
 Finalizing this version of the questionnaire before beginning any programming
-also avoids version control concerns that arise from concurrent work
+avoids version control concerns that arise from concurrent work
 on paper and electronic survey instruments.
 Finally, a readable paper questionnaire is a necessary component of data documentation,
 since it is difficult to work backwards from the survey program to the intended concepts.
 
-The workflow for designing a questionnaire will feel much like writing an essay, or writing pseudocode:
-begin from broad concepts and slowly flesh out the specifics.\sidenote{
+The workflow for designing a questionnaire will feel much like writing an essay or writing pseudocode:
+it begins from broad concepts and slowly fleshes out the specifics.\sidenote{
   \url{https://iriss.stanford.edu/sites/g/files/sbiybj6196/f/questionnaire\_design\_1.pdf}}
 It is essential to start with a clear understanding of the
 \textbf{theory of change}\sidenote{
@@ -289,19 +297,25 @@ The ideal starting point for this is a \textbf{pre-analysis plan}.\sidenote{
 
 Use the list of key outcomes to create an outline of questionnaire \textit{modules}.
 Do not number the modules; instead use a short prefix 
-as numbers quickly get outdated when modules are reordered.
+as section numbers quickly become outdated when modules are reordered.
 For each module, determine if the module is applicable to the full sample,
-an appropriate respondent, and whether or how often the module should be repeated.
-A few examples: a module on maternal health only applies to household with a woman who has children,
-a household income module should be answered by the person responsible for household finances,
-and a module on agricultural production might be repeated for each crop the household cultivated.
-Each module should then be expanded into specific indicators to observe in the field.\sidenote{
+or only to specific respondents, 
+and whether or how often the module should be repeated.
+A few examples: 
+a module on maternal health only applies 
+to households with a woman who has children,
+a household income module should be answered 
+by the person responsible for household finances,
+and a module on agricultural production 
+might be repeated for each crop the household cultivated.
+Each module should then be expanded 
+into specific indicators to observe in the field.\sidenote{
   \url{https://dimewiki.worldbank.org/Literature\_Review\_for\_Questionnaire}}
 At this point, it is useful to do a  \textbf{content-focused pilot}\sidenote{
   \url{https://dimewiki.worldbank.org/Piloting\_Survey\_Content}}
 of the questionnaire.
 Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions,
-as there is no need to factor in costs of re-programming,
+as there is no need to factor in time costs of re-programming,
 and as a result improves the overall quality of the survey instrument.
 Questionnaires must also include ways to document the reasons for \textbf{attrition} and
 treatment \textbf{contamination}.\index{attrition}\index{contamination}
@@ -316,7 +330,8 @@ using the paper forms to finalize questionnaire design and detect any content is
 A content-focused pilot\sidenote{
   \url{https://dimewiki.worldbank.org/Piloting\_Survey\_Content}}
 is best done on pen and paper, before the questionnaire is programmed,
-because changes at this point may be deep and structural, which are hard to adjust in code.
+because changes at this point may be deep and structural, 
+which are hard to adjust in code.
 The objective is to improve the structure and length of the questionnaire,
 refine the phrasing and translation of specific questions,
 and confirm coded response options are exhaustive.\sidenote{
@@ -330,27 +345,34 @@ it is time to move on to implementing it electronically.
 
 \subsection{Designing surveys for electronic deployment}
 
-Electronic data collection has great potential to simplify survey implementation and improve data quality.
-Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets)
-or a software-specific form builder, all of which are accessible even to novice users.\sidenote{
+Electronic data collection has great potential 
+to simplify survey implementation and improve data quality.
+Electronic questionnaires are typically created 
+in a spreadsheet (e.g. Excel or Google Sheets)
+or a software-specific form builder, 
+all of which are accessible even to novice users.\sidenote{
   \url{https://dimewiki.worldbank.org/Questionnaire\_Programming}}
 We will not address software-specific form design in this book;
 rather, we focus on coding conventions that are important to follow
 for electronic surveys regardless of software choice.\sidenote{
   \url{https://dimewiki.worldbank.org/SurveyCTO\_Coding\_Practices}}
 Survey software tools provide a wide range of features
-designed to make implementing even highly complex surveys easy, scalable, and secure.
-However, these are not fully automatic: you need to actively design and manage the survey.
+designed to make implementing even highly complex surveys 
+easy, scalable, and secure.
+However, these are not fully automatic: 
+you need to actively design and manage the survey.
 Here, we discuss specific practices that you need to follow
 to take advantage of electronic survey features
-and ensure that the exported data is compatible with your analysis software.
+and ensure that the exported data 
+is compatible with your statistical software.
 
 From a data perspective, questions with pre-coded response options
 are always preferable to open-ended questions.
 The content-based pilot is an excellent time to ask open-ended questions
 and refine fixed responses for the final version of the questionnaire --
 do not count on coding up lots of free text after a full survey.
-Coding responses helps to ensure that the data will be useful for quantitative analysis.
+Coding responses helps to ensure that the data 
+will be useful for quantitative analysis.
 Two examples help illustrate the point.
 First, instead of asking ``How do you feel about the proposed policy change?'',
 use techniques like \textbf{Likert scales}\sidenote{
@@ -359,7 +381,7 @@ Second, if collecting data on medication use or supplies, you could collect:
 the brand name of the product; the generic name of the product; the coded compound of the product;
 or the broad category to which each product belongs (antibiotic, etc.).
 All four may be useful for different reasons,
-but the latter two are likely to be the most useful for data analysis.
+but the latter two are likely to be the most useful for rapid data analysis.
 The coded compound requires providing a translation dictionary to field staff,
 but enables automated rapid recoding for analysis with no loss of information.
 The generic class requires agreement on the broad categories of interest,
@@ -373,9 +395,10 @@ as it avoids extensive post-coding.
 It is essential to name the fields in your questionnaire
 in a way that will also work in your data analysis software.
 Most survey programs will not enforce this by default,
-since limits vary by software,
-and surveys will subtly encourage you to use long sentences
-and detailed descriptions of choice options.
+since limits vary across statistical software,
+and survey software will encourage you 
+to use long sentences as question labels
+and detailed descriptions as choice options.
 This is what you want for the enumerator-respondent interaction,
 but you should already have analysis-compatible labels programmed in the background
 so the resulting data can be rapidly imported in analytical software.
@@ -385,11 +408,14 @@ but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
 We recommend using descriptive names with clear prefixes so that variables
 within a module stay together when sorted alphabetically.\sidenote{
   \url{https://medium.com/@janschenk/variable-names-in-survey-research-a18429d2d4d8}}
-Variable names should never include spaces or mixed cases
-(we prefer all-lowercase naming).
-Take special care with the length: very long names will be cut off in some softwares,
-which could result in a loss of uniqueness and lots of manual work to restore compatibility.
-We further discourage explicit question numbering,
+Variable names should stick to simple structures, 
+using English characters and numbers;
+we prefer all-lowercase naming with underscores.
+Take special care with the length: 
+very long names will be cut off in some softwares,
+which could result in a loss of uniqueness 
+and lots of manual work to restore compatibility.
+We also discourage explicit question numbering,
 at least at first, as it discourages re-ordering questions,
 which is a common recommended change after the pilot.
 In the case of follow-up surveys, numbering can quickly become convoluted,
