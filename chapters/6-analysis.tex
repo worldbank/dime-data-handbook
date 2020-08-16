@@ -85,13 +85,14 @@ a single analysis dataset that constantly needs to be transformed.
 \subsection{Fitting construction into the data workflow}
 
 % Why construction is separate from data cleaning
-Construction is done after from data cleaning for two reasons.
+Construction is done after from data cleaning and from analysis for two reasons.
 First, to clearly differentiate correction of data entry errors
 (necessary for all interactions with the data)
 from creation of analysis indicators (necessary only for specific analyses).
-Second, to ensure that variable definitions are consistent across.
+Second, to ensure that variable definitions are consistent across files.
 Construction can create many outputs combining many inputs,
-and, unlike in data cleaning, output datasets should be parsimonious rather than exhaustive.
+and, unlike in data cleaning, 
+output datasets should be parsimonious rather than exhaustive.
 For example, take a project that has a baseline and an endline survey.
 Unless the two data collection instruments are exactly the same,
 which is preferable but often not the case,
@@ -119,7 +120,8 @@ you should always do the two in separate scripts.
 If every script that creates a table starts by loading a dataset,
 subsetting it, and manipulating variables,
 any edits to construction need to be replicated in all scripts.
-This increases the chances that at least one of them will have a different sample or variable definition.
+This increases the chances that at least one of them 
+will have a different sample or variable definition.
 Doing all variable construction and data transformation
 in a unified script, separate from the analysis code, helps
 avoid this and ensures consistency across different outputs.
@@ -127,7 +129,7 @@ avoid this and ensures consistency across different outputs.
 \subsection{Integrating different data sources}
 
 % When merging is necessary and how to start thinking about it
-Combining or merging information from different data sources is often times necessary
+Combining or merging information from different data sources is often necessary
 to create the analysis dataset.
 For example, you may merge administrative data with survey data
 to include demographic information in your analysis,
@@ -152,7 +154,7 @@ The simplest case is when the datasets have the same unit of observation
 and use a consistent, uniquely and fully identifying ID variable. 
 For example, in the case of administrative data for firms,
 you may merge data from different years using the firm taxpayer code
-(or, preferably, a deidentified version of it).
+(or, preferably, a de-identified version of it).
 In such cases, the main source of unexpected results are unmatched observations.
 Fortunately, it is straightforward to avoid mistakes in this setting:
 before writing code to combine the datasets,
@@ -160,12 +162,12 @@ write pseudocode to understand which observations you expect to be
 matched or not, and why.
 When possible, determine exactly which and how many 
 matched and unmatched observations should result from the merge.
-For example, first that were created in the second year should not be
+For example, firms that were created in the second year should not be
 present in the first year's data, 
 and firms that closed during the first year should not be observed in the second year's data. 
 Then think carefully about whether you want to keep matched and unmatched
 observations, or only specific matching outcomes,
- for example, to create a balanced panel,
+for example, to create a balanced panel,
 and add that to your pseudocode as well.
 Now you can merge the datasets, 
 and test that the outcome matches your expectations.
@@ -206,8 +208,8 @@ On the other hand, you may have asked farmers what quantity they harvested of di
 and need to reshape these observations to the crop level to merge with data on crop prices.
 Both operations should always be done with great care. 
 Two issues to pay extra attention are missing values and dropped observations.
-Make sure to read about how each command treats missing observations:
-are unmatched observations dropped? Are missing values turned treated as zero when aggregated?
+Make sure to read about how each command treats these observations:
+are unmatched observations dropped? Are missing values treated as zeros when aggregated?
 Whenever possible, add automated checks in the script that throw an error message 
 if the result is different than what you expect.
 If you are subsetting your data, prefer to drop observations explicitly,
@@ -217,7 +219,7 @@ indicating why you are doing so and how the data set changed.
 % -------------------------------------------------------------------------
 
 % Data integration
-Note, however, that not all merges of data with different units of observation 
+Not all merges of data with different units of observation 
 are as conceptually straightforward.
 More complex cases may arise if you are looking to overlay road location data with household data,
 using a spatial match;
@@ -240,36 +242,44 @@ Once you have assembled variables from different sources into a single working d
 with the right raw information and observations,
 it's time to create the derived indicators of interest for analysis. 
 Before constructing new indicators,
-you must check and double-check units, scales and value assignment of each variable that will be used.
-This is when you will use the knowledge of the data and the documentation developed during cleaning the most.
-First, check that all categorical variables have the same value assignment, i.e.,
-that labels and levels have the same correspondence across variables that use the same options.
+you must check and double-check units, scales, and value assignment of each variable that will be used.
+This is when you will use the knowledge 
+of the data and the documentation developed during cleaning the most.
+First, check that all categorical variables have the same value assignment,
+such that labels and levels have the same correspondence across variables that use the same options.
 For example, it's possible that in one question \texttt{0} means ``no'' and \texttt{1} means ``yes'',
 while in another one the same answers were coded as \texttt{1} and \texttt{2}.
 (We recommend coding binary questions as either \texttt{1} and \texttt{0} or \texttt{TRUE} and \texttt{FALSE},
 so they can be used numerically as frequencies in means and as dummies in regressions.
-Note that this implies re-expressing categorical variables like \texttt{gender} to binary variables like \texttt{woman}.)
-Second, make sure that any numeric variables you are comparing are converted to the same scale or unit of measure:
+This often implies re-expressing categorical variables like \texttt{gender} to binary variables like \texttt{woman}.)
+Second, make sure that any numeric variables you are comparing 
+are converted to the same scale or unit of measure:
 you cannot add one hectare and two acres and get a meaningful number.
 New variables should be assigned functional names, 
 and the dataset ordered such that related variables are together.
 Adding notes to each variable will make your dataset more user-friendly.
 
 % Dealing with outliers and missing values
-At this point, you will also need to decide how to handle any outliers or unusual values identified during data cleaning. 
+At this point, you will also need to decide 
+how to handle any outliers or unusual values identified during data cleaning. 
 How to treat outliers is a research question.
 There are multiple possible approaches, 
-and the best choice for a particular case will depend on the objectives of the analysis.
-Whatever your team decides, make sure to explicitly note what the decision was and how it was made.
+and the best choice for a particular case 
+will depend on the objectives of the analysis.
+Whatever your team decides, make sure to explicitly note 
+what the decision was and how it was made.
 Results can be sensitive to the treatment of outliers,
-so keeping the original variable in the dataset will allow you to test how much it affects the estimates.
+so keeping the original variable in the dataset 
+pwill allow you to test how much it affects the estimates.
 All these points also apply to imputation of missing values and other distributional patterns.
 As a general rule, never overwrite or delete original data during the construction process.
+Always create derived indicators with new names
+(or rename the original information as \texttt{[varname]_raw}).
 
 % Maintaining indicator definition across rounds
 Finally, creating a panel with survey data involves additional timing complexities.
 It is common to construct indicators soon after receiving data from a new survey round.
-However, creating indicators for each round separately increases the risk of using different definitions every time.
+However, creating indicators for each round separately increases the risk of using different definitions each time.
 Having a well-established definition for each constructed variable helps prevent that mistake,
 but the best way to guarantee it won't happen is to create the indicators for all rounds in the same script.
 Say you constructed some analysis variables after baseline, and are now receiving midline data.
@@ -379,7 +389,11 @@ It also prevents you from accidentally writing pieces of analysis code that depe
 or that require manual instructions for all necessary chunks of code to be run in the right order.
 IT also encourages you to rewrite each task so it is completely independent of all other code,
 except for the master script.
-You could go as far as coding every output in a separate script.
+You could go as far as coding every output in a separate script,
+although this is not usually required
+unless there are complex calculations and table constructions,
+or one part of the script runs very slowly
+and you want to avoid running it repeatedly.
 
 % Writing easy to read analysis code
 There is nothing wrong with code files being short and simple.
@@ -411,7 +425,8 @@ Code files such as \path{spatial-diff-in-diff.do},
 are clear indicators of what each file is doing, and allow you to find code quickly.
 If you intend to numerically order the script files 
 to correspond to exhibits as they appear in a paper or report,
-leave this to near publication time.
+leave this to near publication time,
+as you will constantly re-order them during analytical work.
 
 \subsection{Visualizing data}
 
@@ -522,8 +537,8 @@ will be automatically flagged for you or a reviewer to check.
 Tracking changes to binary files such as images is a bit more cumbersome, as they use more space.
 This may cause your syncing to the cloud to be slower.
 But it is still a good way to know when changes in the code affect outputs,
-depending on the git client you are using.
-GitHub desktop, for example, displays changes in images files in an accessible manner.
+depending on the Git client you are using.
+GitHub Desktop, for example, displays changes in images files in an accessible manner.
 
 % Tracking scripts and their outputs
 Independently of your storage decisions,
@@ -587,7 +602,7 @@ but you will inevitably need to make changes to the output,
 and automating them will save you time by the end of the process.
 On the other hand, don't spend much time formatting tables and graphs until 
 you have come to a decision about which will be used for your final product.\sidenote{
-	For a more detailed discussion on this, including different ways to export tables from Stata, see \url{https://github.com/bbdaniels/stata-tables}}
+	For a more detailed discussion on this, including different ways to export tables from Stata, see \url{https://blogs.worldbank.org/impactevaluations/nice-and-fast-tables-stata}}
 Polishing final outputs can be a time-consuming process,
 and you want to do it as few times as possible.
 
