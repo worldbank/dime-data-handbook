@@ -4,34 +4,34 @@
 
 % What is data cleaning
 Raw data files may be received in a variety of formats, 
-and are often not easy to handle using statistical software.
-The tasks described in this chapter have many different names.
-Some say data cleaning, others data munging, or maybe data wrangling.
+and are often not immediately suited for use with statistical software.
+This chapter describes the workflow of preparing newly-acquired data for analysis.
+The tasks described in this chapter have many different names:
+data cleaning, data munging, data wrangling.
 But they all mean the same thing:
 transforming raw data into a more convenient format for your intended use.
 This is the most time-consuming step of a project's data work, 
-particularly when primary data is involved.
-It is also essential for data quality. 
+particularly when primary data is involved;
+it is also essential for data quality. 
 This chapter outlines the workflow our team developed to make the process efficient and transparent.
-One key point of this workflow is that no changes be made to the contents of data at this point.
-Creating new variables, imputing values and correcting outliers
-are research decisions.
-To make data processing less error-prone,
-such changes to the data will be made at a separate stage.
+One key point of this chapter is that no changes are made to the contents of data at this point.
+We consider creating new variables, imputing values and correcting outliers
+to be research decision, and will discuss those in the next chapter. 
 Therefore, the clean dataset,
-which is the main output from the tasks discussed in this chapter,
-contains almost exactly same information as the raw data,
-but in a format that is easier to handle. 
+which is the main output from the workflow discussed in this chapter,
+contains almost exactly the same information as the raw data,
+but in a format that is ready for use with statistical software. 
 
 % Chapter overview
-The following sections describe the different tasks involved in making newly acquired data ready for analysis.
+This chapter describes the various tasks involved in making newly-acquired data ready for analysis.
 The first section will show how to make your data \textit{tidy}.
-This means adjusting how the dataset is organized until the relationship between its rows and columns is well-defined.
+This means adjusting how the dataset is organized 
+until the relationship between its rows and columns is well-defined.
 The second section describes quality assurance checks, 
 which are necessary to verify the accuracy of your data.
-After that, identifying information is typically no longer needed,
+After that, identifying information is typically no longer needed;
 therefore the third section outlines steps to remove direct identifiers.
-Finally, the last section discusses how to explore each variable in your dataset and 
+Finally, the last section discusses how to examine each variable in your dataset and 
 make sure that it is as well documented and as easy to use as possible.
 
 \end{fullwidth}
@@ -42,9 +42,9 @@ make sure that it is as well documented and as easy to use as possible.
 \section{Identifying the identifier(s)}
 
 % Intro
-The very first step in creating analysis-friendly datasets
+The very first step in creating an analysis-friendly dataset
 is understanding the data acquired,
-and translating this understanding into an intuitive format.
+and using this understanding to translate the data into an intuitive format.
 This section discusses what steps may be needed to make sure that each row
 in a tabular dataset\sidenote{\textbf{Tabular data:}
 	data that is structured into rows and columns. 
@@ -56,64 +56,60 @@ Getting to such a format may be harder than expected,
 and the \textbf{unit of observation}\sidenote{\textbf{Unit of observation:}
 	the unit described by the data. In datasets, it is ideally what each row represents. \url{
 		https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
- may be ambiguous in many raw datasets.
+ may be ambiguous in the raw dataset.
 In this section, we will discuss the ideal format to handle data,
 which we call a \textit{tidy} format.
 
 
 \subsection{Unique identifiers}
-
 % Uniquely and fully identifying variable
-The first step in tidying data is to understand its unit of observation
+The first step in tidying data is to understand the unit of observation
 (what makes a row),
 and find out which variable or set of variables is the \textbf{unique identifier}\sidenote{\url{
 		https://dimewiki.worldbank.org/ID\_Variable\_Properties}} for each observation in your dataset.
 Ensuring that observations are uniquely and fully identified
 is arguably the most important step in data cleaning.
-It may be the case that the variables expected to be unique identifiers are either incomplete or contain duplicates.
-It is also possible for a dataset to have no unique identifier, 
-or that the identifier involves a long string that is difficult to work with, such as a full name.
+It may be the case that the variables expected to uniquely identify 
+the data contain either missing or duplicate values.
+It is also possible for a dataset to not include a variable that uniquely identifies all observations, 
+or that the identifying variable is a long string that is difficult to work with, such as a full name.
 In such cases, cleaning begins by carefully creating a variable that uniquely identifies the data.
 Note that while digital survey tools create unique identifiers for each data submission,
 that is not the same as having a unique ID variable for each observation in the sample,
 as there can be multiple submissions for the same observation.
 The unique identifier will be used to link data on observations in one dataset 
 with data on the same observations in other datasets, 
-such as other rounds of data collection and different data sources.
-Therefore, you must keep a canonical dataset of all observations in your data.
+such as other rounds of data collection or different data sources.
+Therefore, as we discussed in Chapter 3, 
+you must keep a canonical dataset of all observations in your data.
 This \textbf{master dataset}\sidenote{\url{
 		https://dimewiki.worldbank.org/Master\_Data\_Set}}
-is discussed in detail in Chapter 3, 
-and contains a record of all units ever encountered for each relevant level of observation,
+contains a record of all units ever encountered for each relevant level of observation,
 as well as their corresponding unique identifiers.
 
-
-% Merchand
+DIME Analytics created an automated workflow to identify, correct and document
+occurrences of duplicate entries:
 \texttt{ieduplicates} and \texttt{iecompdup},
 two Stata commands included in the \texttt{iefieldkit}
-package\index{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
-create an automated workflow to identify, correct and document
-occurrences of duplicate entries.
+package\index{iefieldkit}.\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}} 
 One advantage of using \texttt{ieduplicates}\sidenote{\url{
 		https://dimewiki.worldbank.org/wiki/ieduplicates}} 
 to correct duplicated entries is that it creates \textit{duplicates reports}
-that record which corrections made and why.
+which records each corrections made and documents the reason.
 Even if you are not using this command,
-it is important to keep a record of all cases of duplicated IDs encountered.
+it is important to keep a record of all cases of duplicated IDs encountered
+ and how they were resolved.
+
 
 \subsection{Tidying raw data}
-
 Though raw data can be acquired in all shapes and sizes,
-development data is most commonly received as one or multiple tables.
-Similarly, these tables can organize information in multiple ways,
+it is most commonly received as one or multiple tables.
+These tables can organize information in multiple ways,
 and not all of them result in easy-to-handle datasets.
 Fortunately, a vast literature of database management has identified the format
 that makes interacting with the data as easy as it can be.
 In database management this is called \textit{normalization},
-but when applied to statistics, we call data in such format \textbf{tidy}.\sidenote{\textbf{Tidy data:}
-	Datasets where each column represents one variable,
-	each row represents one observation, 
-	and all variables in a table have the same unit of observation.}
+but when applied to statistics, we call data in such format \textbf{tidy}.
 A dataset is tidy when each column represents one variable,\sidenote{\textbf{Variable:} 
 	the collection of all data points that measure the same attribute.}
 each row represents one observation, 
@@ -125,11 +121,11 @@ is rarely received in a tidy format.
 To contribute to the confusion, 
 in Stata each column is called a ``variable'', 
 and each row an ``observation'',
-even though they are not necessarily the same thing.
+even though these do not necessarily immediately equate.
 
 Every untidy dataset is untidy in its own way,
 but the most common case of untidy raw data encountered in development research
-are datasets consisting of multiple units of observation stored in the same table. 
+is a dataset consisting of multiple units of observation stored in the same table. 
 If your rows include multiple nested observational units,
 having an identifying variable for each row doesn't mean having an identifier for each observation.
 Survey data containing nested units of observation is typically 
@@ -143,38 +139,38 @@ The resulting raw dataset usually consists of a single table
 where questions from the household member roster are saved in different columns, 
 one for each member, with a corresponding member suffix,
 and household-level questions are represented by one column each.
-So you have one column called \texttt{ownsmotorcycle},
-but a few columns of the format \texttt{gender\_1}, \texttt{gender\_2}, etc.
+So, for example, you may have one column called \texttt{ownsmotorcycle},
+but a few columns of the format \texttt{sex\_1}, \texttt{sex\_2}, etc.
 The data is saved in this format because it's the most efficient way to transfer it:
 adding different levels of observation into the same table allows for data to be transferred in a single file.
-However, this leads to the widespread practice of interacting with data in wide format for a large part of a project,
-although this is not the most efficient way to do so.
+However, this leads to the widespread practice of interacting with data in wide format,
+although doing so is often inefficient and error-prone.
 
 To understand how dealing with wide data can be complicated,
-just suppose you need to calculate the share of women in your sample using the dataset described above.
+imagine you need to calculate the share of women in your sample using the dataset described above.
 The first thing you will need to do is change the format of your table so that each row represents one individual.
 Tidy datasets, on the other hand, 
 are easier to handle because observations can be aggregated and linked consistently,
 without additional steps.
 They are also easier to clean, 
 as each attribute only needs to be checked once,
-as corresponds directly to one question in the questionnaire.
+and each column corresponds directly to each question in the questionnaire.
 
-The only example of untidy formats we mentioned so far is wide data,
-but as mentioned earlier, there are unlimited ways for data to be untidy.
-An alternative example is a table containing information on transactions
+Wide format is only one way in which data can be untidy.
+As mentioned earlier, there are unlimited ways for data to be untidy.
+Another example is a table containing both information on transactions
 and on the firms involved in each transaction.
 In this case, the firm-level information will be repeated for all transactions a given firm was involved in.
 Analyzing data in this format would give more weight to firms that conducted more transactions,
-which may not be consistent with your research design.
+which may not be consistent with the research design.
 
 The basic process behind tidying a dataset is simple: 
-first, you need to identify all the variables that were measured at the same level of observation;
-then, create separate tables for each level of observation;
-finally, reshape\sidenote{\textbf{Reshape:}
+first, identify all the variables that were measured at the same level of observation;
+second, create separate tables for each level of observation;
+and third, reshape\sidenote{\textbf{Reshape:}
 	transform a dataset in such a way that the unit of observation represented by a row changes.} 
 the data and remove duplicated rows 
-until each table is uniquely and fully identified by the ID variable 
+until each table is uniquely and fully identified by the identifying variable 
 that corresponds to its unit of observation.
 In the earlier household survey example,
 household-level variables will be stored in one tidy dataset, 
@@ -186,10 +182,10 @@ the result of the tidying process would be one transaction-level dataset,
 containing variables indicating the ID of all firms involved;
 and one firm-level dataset with a single entry for each firm.
 
-Reshaping tables is the most intricate task in this process,
-so you should be very familiar with commands such as \texttt{reshape} in Stata and \texttt{pivot} in R.
-Another key aspect in this process is to make sure that ID variables are consistent across tables,
-so they can always be linked.
+Reshaping tables is the most intricate task in data cleaning;
+you should be very familiar with commands such as \texttt{reshape} in Stata and \texttt{pivot} in R.
+You must be sure that identifying variables are consistent across tables,
+so the tables can always be linked.
 There must be a clear way to connect each tidy table to a master dataset.
 Note that the tidying process gets more complex as the number of nested groups increases.
 That means the steps of identifying the unit of observation of each variable
@@ -202,10 +198,10 @@ is a repetitive and error-prone process.
 The next step of data cleaning, data quality monitoring,
 may involve comparing different units of observation.
 Aggregating sub-units to compare to a higher unit is much easier with tidy data,
-which is why we suggest getting your data into a tidy format as early as possible in your workflow. 
+which is why we suggest tidying data as the first step in the cleaning workflow. 
 If you are conducting primary data collection,
 you can start coding the data tidying before the data is acquired,
-since you will know in advance in which format it will be received.
+since you will know in advance in exactly what format it will be received.
 In the case of survey data,
 tidying datasets will guarantee a one-to-one correspondence
 between questions in the questionnaire and columns in the data.
@@ -218,16 +214,14 @@ is much simpler when that is the case.
 % Intro
 Whether you are acquiring data from a partner or collecting it directly,
 it is important to make sure that data faithfully reflects ground realities.
-Although original data typically requires more extensive checks than secondary data,
-you should carefully examine and clean any data you are about to use.
+You should carefully examine and clean any data you are about to use.
 When reviewing raw data, you will inevitably encounter data entry mistakes,
 such as typos and inconsistent values.
 Data quality assurance requires a combination of real-time data checks
 and back-checks or validation audits, which often means tracking down
-the people whose information is in the dataset.
+the people whose information is included in the dataset.
 
 \subsection{Implementing high frequency quality checks}
-
 % What are HFCs
 A key advantage of continuous electronic data intake methods,
 as compared to traditional paper surveys and one-time data dumps,
@@ -235,72 +229,76 @@ is the ability to access and analyze the data while the project is ongoing.
 Data issues can be identified and resolved in real-time.
 Designing systematic data checks and running them routinely throughout data intake
 simplifies monitoring and improves data quality.
-As part of data acquisition preparation,
+To prepare for data acquisition,
 the research team should develop a \textbf{data quality assurance plan}\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Quality\_Assurance\_Plan}}.
-While data acquisition is ongoing,
+While data is being acquired,
 a research assistant or data analyst should work closely with the field team or partner
-to ensure that the data collection is progressing correctly,
-and set up and perform \textbf{high-frequency checks (HFCs)} with the incoming data.
+to ensure that the data is flowing as expected,
+and to set up and perform \textbf{high-frequency checks (HFCs)} with the incoming data.
 
 % Why they should be made in real-time
 High-frequency checks (HFCs) should carefully inspect key treatment and outcome variables
-so that the data quality of core study variables is uniformly high,
+to ensure that the data quality of core study variables is uniformly high,
 and that additional effort is centered where it is most important.
-Data quality checks should be run on the data every time it is received from the field or partner
+Data quality checks should be run every time data is received 
 to flag irregularities in the aquisition progress, in sample completeness, or in response quality.
 The faster issues are identified, the more likely they are to be solved.
 \texttt{ipacheck}\sidenote{
 	\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
 is a very useful command that automates some of these tasks,
-regardless of the source of the data.
+regardless of the data source.
 
 % Completeness
-It is important to check continuously that the observations in the data match the intended sample.
-In surveys, the software often provides some form of case management features
+It is important to check continuously that the observations received match the intended sample.
+In surveys, electronic survey software often provides case management features
 through which sampled units are directly assigned to individual enumerators.
-For data received from partners, this may be harder to validate,
-since they are the authoritative source of the data,
-so cross-referencing with other data sources may be necessary to ensure completeness of the data.
-Even with careful management, it is often the case that raw data includes duplicate or missing entries,
-which may occur due to data entry errors or failed submissions to data servers.\sidenote{
+For data received from partners, such as administrative data,
+this may be harder to validate.
+In these cases, cross-referencing with other data sources can help to check completeness.
+It is often the case that raw data includes duplicate or missing entries,
+which may occur due to typos, failed submissions to data servers, 
+or other mistakes.\sidenote{
 	\url{https://dimewiki.worldbank.org/Duplicates_and_Survey_Logs}}
 \texttt{ieduplicates}\sidenote{
 	\url{https://dimewiki.worldbank.org/ieduplicates}}
-provides a workflow for collaborating on the resolution of duplicate entries between you and the provider.
-Then, observed units in the data must be validated against the expected sample:
-this is as straightforward as merging the sample list with the survey data and checking for mismatches.
-Reporting errors and duplicate observations in real time allows the field team to make corrections efficiently.
-Tracking data collection progress is important for monitoring attrition,
+provides a workflow for resolving duplicate entries with the data provider.
+
+% match to sample
+Once data completeness is confirmed, 
+observed units must be validated against the expected sample:
+this is as straightforward as merging the sample list 
+with the data received and checking for mismatches.
+Reporting errors and duplicate observations in real time allows for efficient corrections.
+For surveys, it is also important to track data collection progress to  monitor attrition,
 so that it is clear early on if a change in protocols or additional tracking will be needed.
-It is also important to check data collection completion rates
-and sample compliance by surveyors and survey teams, if applicable,
-or compare data missingness across administrative regions,
+It is also important to check survey completion rates
+and sample compliance by surveyors and survey teams,
+and compare data missingness across administrative regions,
 to identify any clusters that may be providing data of suspect quality.
 
 % Consistency
-High frequency checks should also include content-specific data checks.
-Electronic survey and data entry software often incorporate many quality control features,
-so these checks should focus on issues survey software cannot check automatically.
-As most of these checks are project specific,
-it is difficult to provide general guidance.
-A retailed knowledge of the questionnaire and a careful examination of the analysis plan
-is the best preparation.
-Examples include verifying consistency across multiple response fields or data sources,
-validation of complex calculations like crop yields or medicine stocks (which require unit conversions),
-suspicious patterns in survey timing,
-or atypical response patters from specific data sources or enumerators.\sidenote{
+High frequency checks should also include checks of response quality and consistency.
+For example, whether the values for each variable fall within the expected range and
+the answers provided by the same household are consistent across all survey modules.\sidenote{
 	\url{https://dimewiki.worldbank.org/Monitoring_Data_Quality}}
-Electronic data entry software typically provides rich metadata,
-which can be useful in assessing data quality.
-For example, automatically collected timestamps show when data was submitted
-and (for surveys) how long enumerators spent on each question,
-and trace histories show how many
-times answers were changed before or after the data was submitted.
+Electronic survey and data entry software often incorporate many quality control features,
+such as range restrictions and logical flows.
+Data received from systems that do not include such controls should be checked more carefully.
+Response consistency should be checked across all datasets, as this is much harder to automate. 
+Consistency checks are project specific, so it is difficult to provide general guidance.
+A detailed knowledge of the questionnaire and a careful examination of the analysis plan
+is the best way to prepare.
+Analysis of metadata and paradata can also useful in assessing data quality.
+For example, electronic survey software generates
+automatically collected timestamps and trace histories,
+showing when data was submitted, how long enumerators spent on each question,
+and how man times answers were changed before or after the data was submitted.
 
 % Following up on flagged issues
 High-frequency checks will only improve data quality
-if the issues they catch are communicated to the data provider.
+if the issues they catch are communicated to the data provider
+and corrections are documented and applied to the data.
 There are lots of ways to do this;
 what's most important is to find a way to create actionable information for your team.
 \texttt{ipacheck}, for example, generates a spreadsheet with flagged errors;
@@ -310,7 +308,7 @@ such as online dashboards created by custom scripts.
 It is also possible to automate communication of errors to the field team
 by adding scripts to link the HFCs with a messaging platform.
 Any of these solutions are possible:
-what works best for your team will depend on such variables as
+what works best for your team will depend on such factors as
 cellular networks in field work areas, whether field supervisors have access to laptops,
 internet speed, and coding skills of the team preparing the HFC workflows.
 
