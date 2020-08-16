@@ -26,8 +26,7 @@ but in a format that is easier to handle.
 % Chapter overview
 The following sections describe the different tasks involved in making newly acquired data ready for analysis.
 The first section will show how to make your data \textit{tidy}.
-This means adjusting how the dataset is organized 
-until the relationship between its rows and columns is well-defined.
+This means adjusting how the dataset is organized until the relationship between its rows and columns is well-defined.
 The second section describes quality assurance checks, 
 which are necessary to verify the accuracy of your data.
 After that, identifying information is typically no longer needed,
@@ -50,14 +49,14 @@ This section discusses what steps may be needed to make sure that each row
 in a tabular dataset\sidenote{\textbf{Tabular data:}
 	data that is structured into rows and columns. 
 	Also called ``rectangular data''.
-	Examples of non-rectangular data are written text or files such as images.} 
+	Examples of non-rectangular data are a text, or files, such as images.} 
 represents one observation.
 This may seem trivial, but should not be taken for granted.
 Getting to such a format may be harder than expected,
 and the \textbf{unit of observation}\sidenote{\textbf{Unit of observation:}
 	the unit described by the data. In datasets, it is ideally what each row represents. \url{
 		https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
-may be ambiguous in many raw datasets.
+ may be ambiguous in many raw datasets.
 In this section, we will discuss the ideal format to handle data,
 which we call a \textit{tidy} format.
 
@@ -71,10 +70,9 @@ and find out which variable or set of variables is the \textbf{unique identifier
 		https://dimewiki.worldbank.org/ID\_Variable\_Properties}} for each observation in your dataset.
 Ensuring that observations are uniquely and fully identified
 is arguably the most important step in data cleaning.
-It may be the case that the variables expected to be unique identifiers 
-are either incomplete or contain duplicates.
+It may be the case that the variables expected to be unique identifiers are either incomplete or contain duplicates.
 It is also possible for a dataset to have no unique identifier, 
-or that the identifier involves a long string that is difficult to work with, such as a person's name.
+or that the identifier involves a long string that is difficult to work with, such as a full name.
 In such cases, cleaning begins by carefully creating a variable that uniquely identifies the data.
 Note that while digital survey tools create unique identifiers for each data submission,
 that is not the same as having a unique ID variable for each observation in the sample,
@@ -88,6 +86,7 @@ This \textbf{master dataset}\sidenote{\url{
 is discussed in detail in Chapter 3, 
 and contains a record of all units ever encountered for each relevant level of observation,
 as well as their corresponding unique identifiers.
+
 
 % Merchand
 \texttt{ieduplicates} and \texttt{iecompdup},
@@ -181,17 +180,11 @@ In the earlier household survey example,
 household-level variables will be stored in one tidy dataset, 
 and household-member variables are reshaped to member level and stored in another tidy dataset,
 which also contains the household ID for each individual.
-The household ID is intentionally duplicated in the household members table
-to allow it to be linked to the household data table,
-but this dataset is only appropriate for analysis at the person level.
+So the household ID is intentionally duplicated in the household members table.
 In the transaction data example,
 the result of the tidying process would be one transaction-level dataset, 
 containing variables indicating the ID of all firms involved;
 and one firm-level dataset with a single entry for each firm.
-Then, firm-level analysis is easily done 
-by calculating appropriate statistics in the transactions dataset
-(in Stata, often through \texttt{collapse})
-and then merging or joining those results to the firms table.
 
 Reshaping tables is the most intricate task in this process,
 so you should be very familiar with commands such as \texttt{reshape} in Stata and \texttt{pivot} in R.
@@ -233,13 +226,13 @@ Data quality assurance requires a combination of real-time data checks
 and back-checks or validation audits, which often means tracking down
 the people whose information is in the dataset.
 
-\subsection{Implementing high-frequency quality checks}
+\subsection{Implementing high frequency quality checks}
 
 % What are HFCs
 A key advantage of continuous electronic data intake methods,
 as compared to traditional paper surveys and one-time data dumps,
 is the ability to access and analyze the data while the project is ongoing.
-Data issues can then be identified and resolved in real-time.
+Data issues can be identified and resolved in real-time.
 Designing systematic data checks and running them routinely throughout data intake
 simplifies monitoring and improves data quality.
 As part of data acquisition preparation,
@@ -360,7 +353,7 @@ Do note, however, that audio audits must be included in the informed consent for
 \section{De-identifying research data}
 
 Up to this point, you were probably handling confidential data.
-This is due to the fact that effective data collection and quality monitoring
+This is due to the fact that effective data quality monitoring
 frequently requires you to identify the individual observations in your dataset,
 and the people who acquired information about them.
 Having this data will allow you to quickly follow up on issues identified,
@@ -398,7 +391,7 @@ once data collection is completed.
 You can take simple steps to avoid risks by minimizing the handling of PII.
 First, only collect information that is strictly needed for the research.
 Second, avoid the proliferation of copies of identified data.
-There should never be more than one copy of the raw identified dataset in the working project folder,
+There should never be more than one copy of the raw identified dataset in the project folder,
 and it must always be encrypted.
 Even within the research team,
 access to PII data should be limited to team members who require it for their specific tasks.
@@ -483,11 +476,10 @@ For each confidential variable that is needed in the analysis, ask yourself:
 \textit{can I encode or otherwise construct a variable that masks the confidential component, and
 	then drop this variable?}
 This is typically the case for most identifying information.
-Examples include geocoordinates or village names
+Examples include geocoordinates
 (after constructing measures of distance or area,
 drop the specific location)
-and names for social network analysis 
-(which can be encoded to secret and unique IDs).
+and names for social network analysis (can be encoded to secret and unique IDs).
 If the answer to either of the two questions above is yes,
 all you need to do is write a script to drop the variables that are not required for analysis,
 encode or otherwise mask those that are required,
@@ -532,7 +524,7 @@ You may have more tables in your dataset now then originally received,
 and they may have a different \textit{format},
 but the information contained is still the same.
 Apart from the \textbf{cleaned dataset} (or datasets) itself,
-cleaning will also yield extensive documentation describing it.
+cleaning will also yield extensive documentation describing  it.
 
 % Section overview
 During data cleaning, you will acquire in-depth understanding of the contents and structure of your data.
