@@ -52,19 +52,17 @@ in a tabular dataset\sidenote{\textbf{Tabular data:}
 	Examples of non-rectangular data are written text or files such as images.} 
 represents one observation.
 This may seem trivial, but should not be taken for granted.
-Getting to such a format may be harder than expected,
-and the \textbf{unit of observation}\sidenote{\textbf{Unit of observation:}
-	the unit described by the data. In datasets, it is ideally what each row represents. \url{
-		https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
-may be ambiguous in many raw datasets.
 In this section, we will discuss the ideal format to handle data,
 which we call a \textit{tidy} format.
 
 
 \subsection{Unique identifiers}
 % Uniquely and fully identifying variable
-The first step in tidying data is to understand the unit of observation
-(what makes a row),
+An important step before starting to tidy a dataset is
+to understand the \textbf{unit of observation}\sidenote{
+	\textbf{Unit of observation:} the unit described by the data. 
+	In datasets, it is ideally what each row represents. \url{
+		https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}}
 and find out which variable or set of variables is the \textbf{unique identifier}\sidenote{\url{
 		https://dimewiki.worldbank.org/ID\_Variable\_Properties}} for each observation in your dataset.
 Ensuring that observations are uniquely and fully identified
@@ -73,19 +71,26 @@ It may be the case that the variables expected to uniquely identify
 the data contain either missing or duplicate values.
 It is also possible for a dataset to not include a variable that uniquely identifies all observations, 
 or that the identifier involves a long string that is difficult to work with, such as a person's name.
-In such cases, cleaning begins by carefully creating a variable that uniquely identifies the data.
+In such cases, cleaning begins by either carefully creating a variable that uniquely identifies the data,
+or carefully merging the ID variable from the master dataset using other identifying information.
 Note that while digital survey tools create unique identifiers for each data submission,
 that is not the same as having a unique ID variable for each observation in the sample,
 as there can be multiple submissions for the same observation.
-The unique identifier will be used to link data on observations in one dataset 
-with data on the same observations in other datasets, 
-such as other rounds of data collection or different data sources.
-Therefore, as we discussed in Chapter 3, 
-you must keep a canonical dataset of all observations in your data.
-This \textbf{master dataset}\sidenote{\url{
-		https://dimewiki.worldbank.org/Master\_Data\_Set}}
-contains a record of all units ever encountered for each relevant level of observation,
-as well as their corresponding unique identifiers.
+
+As discussed in Chapter 3, 
+the unique identifier will be used to link observations in this dataset
+to data in other data sources according to the \textbf{data linkage table},\sidenote{
+	\url{https://dimewiki.worldbank.org/ LINK TO WIKI}}
+and all observation must be listed in the \textbf{master dataset}.\sidenote{
+	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
+A part of understanding the unique identifier during data cleaning,
+includes making sure that each observation in your dataset
+is represented in the master dataset with a unique identifier.
+Any observation that you encounter that is not listed in the master dataset
+should be given a unique ID and be added to the master dataset.
+Always convince yourself beyond reasonable doubt that the new observation 
+is indeed a new observation, 
+and not an already listed observation only identified differently.
 
 DIME Analytics created an automated workflow to identify, correct and document
 occurrences of duplicate entries:
