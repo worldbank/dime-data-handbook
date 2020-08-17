@@ -5,34 +5,37 @@
 % Intro ----------------------------------------
 
 % Motivation
-Transforming raw data into a substantial contribution to scientific knowledge
+Transforming raw data into a contribution to scientific knowledge
 requires a mix of subject expertise, programming skills,
 and statistical and econometric knowledge.
+In this chapter, we discuss the process of transforming 
+cleaned raw data into the final analysis dataset(s).
 The process of data analysis is typically
 a back-and-forth discussion between people
 with differing skill sets.
 An essential part of the process is translating the
-data originally acquired into economically meaningful indicators.
+raw data into economically meaningful indicators.
 To effectively do this in a team environment,
 data, code and outputs must be well-organized,
 with a clear system for version control,
 and analytical scripts structured such that any member of the research team can run them.
 Putting in time upfront to structure the data analysis workflow
-pays substantial dividends throughout the process.
+in this way pays substantial dividends throughout the process.
 
 % Chapter overview
 In this chapter, we suggest an analytical workflow
 starting from clean raw data.
-We first cover variable construction:
-this is when the clean data is transformed
-into the actual indicators that will be used for analysis.
-We emphasize the importance of transparently documenting research choices made during construction.
-We then turn to analysis itself.
+The first step is variable construction:
+creating the actual outcomes of interest for analysis.
+We emphasize the importance of transparently documenting research choices made during indicator construction.
+The second step is the analysis itself.
 We do not offer instructions on how to conduct specific analyses,
-as that is determined by research design;
-rather, we discuss how to structure analysis code
-to make sure it is easy to follow and understand.
-Finally, we discuss options to automate common outputs
+as that is determined by research design,
+and there are many excellent existing guides.
+Rather, we discuss how to structure analysis code
+so that it is easy to follow and understand,
+for both the full research team members and a public audience.
+Finally, we discuss ways to automate common outputs
 so that your work is fully reproducible.
 
 \end{fullwidth}
@@ -44,10 +47,8 @@ so that your work is fully reproducible.
 % What is construction
 For this chapter, we assume you are starting from one or multiple tidy,\cite{hadley2017R}\sidenote{\url{Available at 
 	https://vita.had.co.nz/papers/tidy-data.pdf}}
-well-documented datasets that have gone through thorough quality checks,
+well-documented, datasets that have gone through thorough quality checks,
 and that incorporate any corrections needed.
-No matter where you received your data from, and how well-structured it was,
-in the previous chapter you can find all the steps needed to make sure it is now easy to use.
 The next step is to \textbf{construct}\sidenote{\textbf{Data construction}:
 The process of transforming cleaned data into analysis data by
 creating the derived indicators that will be analyzed.}
@@ -55,21 +56,19 @@ the dataset, or datasets, you will use for analysis;
 that is, to transform the cleaned data into analysis-ready data.
 This is accomplished by integrating different datasets and creating derived variables 
 (dummies, indices, and interactions, to name a few).
-The derived indicator you need to construct should be
-planned during research design\index{Research design},
-so the pre-analysis plan can serve as a guide.\index{Pre-analysis plan}
-During this process, the data will typically be 
+The derived indicators you will construct should be
+planned during research design\index{Research design};
+the pre-analysis plan should serve as your guide at this stage.\index{Pre-analysis plan}
+During construction, data will typically be 
 reshaped, merged, and aggregated to change the level of the data points
 from the unit of \textit{observation} in the original data 
-to the unit of \textit{analysis} in the constructed data.\sidenote{\url{
+to the unit of \textit{analysis}.\sidenote{\url{
 		https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 
 % A project may require multiple purpose-built data sets
 A constructed dataset is built to answer an analysis question.
-Since different pieces of analysis may require different sub-samples,
-or even different units of observation,
-you may have one or many constructed datasets,
-depending on your analysis plan.
+If the sub-samples and units of observation vary for different pieces of the analysis
+you may have many constructed datasets.
 You often cannot create a single ``canonical'' analysis dataset.
 It is common to have many purpose-built analysis datasets.
 For a concrete example of what this means,
@@ -79,17 +78,16 @@ The research team may want to run household-level regressions on income,
 test for plot-level productivity gains,
 and check if village characteristics are balanced.
 Having three separate datasets for each of these three pieces of analysis
-will result in much cleaner do-files than if they all started from 
-a single analysis dataset that constantly needs to be transformed.
+will result in cleaner and more efficient analytical code than if 
+you started from a single analysis dataset and repeatedly transformed it.
 
 \subsection{Fitting construction into the data workflow}
 
 % Why construction is separate from data cleaning
-Construction is done after from data cleaning for two reasons.
-First, to clearly differentiate correction of data entry errors
-(necessary for all interactions with the data)
+Construction follows data cleaning for two reasons.
+First, this helps to clearly differentiate error corrections (necessary for all data uses)
 from creation of analysis indicators (necessary only for specific analyses).
-Second, to ensure that variable definitions are consistent across.
+Second, it helps to ensures that variable definitions are consistent across datasets.
 Construction can create many outputs combining many inputs,
 and, unlike in data cleaning, output datasets should be parsimonious rather than exhaustive.
 For example, take a project that has a baseline and an endline survey.
@@ -107,14 +105,12 @@ while forgetting to update the other.
 
 % Why construction is separate from analysis
 Construction of analysis data should be done right 
-data cleaning and before data analysis,
-according to the analysis plan.\index{Pre-analysis plan}
+after data cleaning and before data analysis,
+in accordance with the pre-analysis plan.\index{Pre-analysis plan}
 In practice, however, as you analyze the data,
-different constructed variables often become necessary,
-as well as different subsets of the sample
-and other transformations of the data.
-So you will need to adjust the analysis data accordingly.
-But even if construction and analysis are done concurrently,
+it is often useful to revisit construction,
+and explore different subsets of the same and other transformations of the data.
+Even if construction and analysis are done concurrently,
 you should always do the two in separate scripts.
 If every script that creates a table starts by loading a dataset,
 subsetting it, and manipulating variables,
@@ -127,10 +123,10 @@ avoid this and ensures consistency across different outputs.
 \subsection{Integrating different data sources}
 
 % When merging is necessary and how to start thinking about it
-Combining or merging information from different data sources is often times necessary
-to create the analysis dataset.
+To create the analysis dataset,
+it is typically necessary to combine or merge information from different data sources.
 For example, you may merge administrative data with survey data
-to include demographic information in your analysis,
+in order to include demographic information in your analysis,
 or you may want to integrate geographic information
 in order to include location-specific controls.\sidenote{Such 
 	operations are commonly called ``merges'' in Stata, and
@@ -143,7 +139,7 @@ Merges are common sources of missing values,
 and can also result in observations being dropped.
 To avoid unintentional changes to your data,
 pay close attention to merge results,
-and add checks to your code verifying that they match what you expect.
+and add checks to your code to very that they match what you expect.
 
 % Merging data sets with the same unit of observation 
 If the datasets you need to merge have the same unit of observation,
@@ -152,7 +148,7 @@ The simplest case is when the datasets have the same unit of observation
 and use a consistent, uniquely and fully identifying ID variable. 
 For example, in the case of administrative data for firms,
 you may merge data from different years using the firm taxpayer code
-(or, preferably, a deidentified version of it).
+(or, preferably, a de-identified version of it).
 In such cases, the main source of unexpected results are unmatched observations.
 Fortunately, it is straightforward to avoid mistakes in this setting:
 before writing code to combine the datasets,
@@ -160,13 +156,12 @@ write pseudocode to understand which observations you expect to be
 matched or not, and why.
 When possible, determine exactly which and how many 
 matched and unmatched observations should result from the merge.
-For example, first that were created in the second year should not be
+For example, firms that were created in the second year should not be
 present in the first year's data, 
 and firms that closed during the first year should not be observed in the second year's data. 
 Then think carefully about whether you want to keep matched and unmatched
-observations, or only specific matching outcomes,
- for example, to create a balanced panel,
-and add that to your pseudocode as well.
+observations, or only specific matching outcomes (e.g. to create a balanced panel).
+Add these details to your pseudocode as well.
 Now you can merge the datasets, 
 and test that the outcome matches your expectations.
 Add comments to explain any exceptions, 
@@ -177,10 +172,10 @@ This approach can be extended to other types of merges between two related datas
 % ------------------------------------------------------------------------------------
 
 % Fuzzy matching
-Even when matching data sets with the same unit of observations, however,
-more complex cases may arise.
-Datasets at the same unit of observation may not use a consistent identifier.
-One common example is for dataset identifiers to be come in the form of names, 
+Even when merging data sets with the same unit of observations, however,
+complex cases may arise.
+Datasets with the same unit of observation may not have a consistent identifying variable.
+One common example is for dataset identifiers to be in the form of names, 
 which are often spelled differently in different data sources. 
 In these cases, you will need to do a \textbf{fuzzy match}, 
 to link observations that have similar identifiers. 
@@ -217,20 +212,19 @@ indicating why you are doing so and how the data set changed.
 % -------------------------------------------------------------------------
 
 % Data integration
-Note, however, that not all merges of data with different units of observation 
-are as conceptually straightforward.
-More complex cases may arise if you are looking to overlay road location data with household data,
-using a spatial match;
-to combine school administrative data, such as attendance records and test scores,
-with household demographic characteristics from a survey;
-or link a dataset of infrastructure access points, such as water pumps or schools,
-and a dataset of household locations.
-In these cases, a key part of the research contribution is figuring out what
-a useful way to combine the datasets is.
+Some merges of data with different units of observation 
+are more conceptually complex.
+Some examples include: overlaying road location data with household data,
+using a spatial match; combining school administrative data, such as attendance records and test scores,
+with student demographic characteristics from a survey;
+or linking a dataset of infrastructure access points, such as water pumps or schools,
+with a dataset of household locations.
+In these cases, a key part of the research contribution is figuring out 
+a useful way to combine the datasets.
 Since the conceptual constructs that link observations from the two data sources
-are so important and can take many possible forms,
+are important and can take many possible forms,
 it is especially important for the data integration to not be treated mechanically,
-and to be extensively documented separately from other data construction tasks.
+and to be extensively documented, separately from other data construction tasks.
 
 
 \subsection{Creating analysis variables}
@@ -280,7 +274,7 @@ Our team created \texttt{iefieldkit}'s \texttt{iecodebook append} subcommand
 % \sidenote{\url{STATA JORUNAL ARTICLE}}
 % -------------------------------------------------------------------------
 to help you reconcile and append data from cleaned survey rounds.
-This is done by filling an Excel sheet to indicate what changes in
+This is done by completing an Excel sheet to indicate what changes in
 names, value assignments and value labels should be made so the data is consistent across rounds.
 By doing so, you are also creating helpful documentation about your data work.
 % to-do % --------------------------------------------------------
@@ -314,10 +308,9 @@ listing analysis variables and their definitions.
 The development of construction documentation is a good opportunity to have 
 a wider discussion with your team about creating protocols for variable definition,
 which will guarantee that indicators are defined consistently across projects.
-Whether you do that or not,
-make sure to have a detailed account of how variables are created.
+You must have a detailed account of how variables are created.
 This will be implemented in your code, but you should still
-add comments to it explaining in human language what you are doing and why.
+add comments explaining in human language what you are doing and why.
 This is a crucial step both to prevent mistakes and to guarantee transparency.
 To make sure that these comments can be more easily navigated,
 it is wise to start writing a variable dictionary as soon as you begin making changes to the data.
