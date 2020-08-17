@@ -327,7 +327,7 @@ internet speed, and coding skills of the team preparing the HFC workflows.
 \subsection{Conducting back-checks and data validation}
 
 % Conducting back-checks
-Careful validation of data is essential for high-quality data.
+Careful validation of data is essential for high-quality original data.
 While we cannot control natural measurement error,
 which comes from variation in the realization of key outcomes,
 there is often an opportunity to reduce error arising from inaccuracies in the data generation process.
@@ -363,7 +363,7 @@ and the recordings will need to be assessed by specially trained staff.
 
 \section{De-identifying research data}
 
-Up to this point, you were probably handling confidential data.
+The steps discussed up to this point, are likely to handle confidential data.
 Effective data quality monitoring
 frequently requires you to identify the individual observations in your dataset,
 and the people or other entities who provided the information.
@@ -371,7 +371,7 @@ Using identified data allows you to quickly follow up on and resolve identified 
 Handling confidential data such as \textbf{personally-identifying information}\index{
 	personally-identifying information}
 requires a secure environment and, typically, decryption.
-De-identifiying the data will allow you to simplify that workflow, 
+De-identifying the data will allow you to simplify that workflow, 
 and will also reduces the risk of harmful leaks.
 This section describes how to de-identify data in order to share it with a wider audience.
 
@@ -379,7 +379,7 @@ This section describes how to de-identify data in order to share it with a wider
 
 % Dealing with human subjects
 Most development data involves human subjects.\sidenote{
-	\url{https://dimewiki.worldbank.org/Human_Subjects_Approval}}
+	\url{https://dimewiki.worldbank.org/Human\_Subjects\_Approval}}
 \index{human subjects}
 As a researcher, you may have access to personal information about your subjects:
 where they live, how much income they have, 
@@ -431,7 +431,7 @@ careful consideration of the trade-offs between
 risk of identifying individuals and the utility of the data,
 and typically requires the removal of a further level of indirect identifiers.\sidenote{
 	\url{https://sdcpractice.readthedocs.io/en/latest/SDC\_intro.html\#need-for-sdc}}
-The following section describes how to implement 
+The rest of this section describes how to implement 
 both the initial and the final de-identification processes.
 
 
@@ -440,7 +440,7 @@ both the initial and the final de-identification processes.
 % Initial de-identification
 Initial de-identification reduces risk and simplifies workflows.
 Once you create a de-identified version of the dataset,
-you no longer need to interact directly with the encrypted raw data.
+you no longer need to interact directly with the encrypted data.
 Note that if the data tidying resulted in multiple raw tables,
 each will need to be de-identified separately, but
 the workflow will be the same for all of them.
@@ -457,8 +457,8 @@ simplifies the initial de-identification process.
 If you did not do that, or you received original data by another means,
 there are a few tools to help flag variables with personally-identifying data.
 JPAL's \texttt{PII-scan} and
-IPA's \texttt{PII\_detection}\sidenote{
-	\url{https://github.com/PovertyAction/PII\_detection}}, 
+IPA's \texttt{PII\_detection},\sidenote{
+	\url{https://github.com/PovertyAction/PII\_detection}}
 scan variable names and labels for common string patterns associated with identifying information.\sidenote{
 	\url{https://github.com/J-PAL/PII-Scan}}
 The World Bank's \texttt{sdcMicro}
@@ -513,7 +513,7 @@ This will allow other researchers to conduct additional analysis and to reproduc
 Before that can be done, however,
 you should further consider whether your data can be re-identified,
 in a process we call \textbf{final de-identification},
-which will be discussed in more detail in chapter \ref{ch:7}.
+which will be discussed in more detail in Chapter 7.
 
 
 \section{Preparing data for analysis}
@@ -526,7 +526,7 @@ and identify patterns that may bias the analysis.
 The resulting dataset will contain only the variables collected in the field, and
 no modifications to data points will be made, 
 except for corrections of mistaken entries.
-You may have more tables in your dataset now then originally received,
+You may have more data tables in your dataset now then originally received,
 and they may have a different \textit{format},
 but the information contained is still the same.
 Apart from the \textbf{cleaned dataset} (or datasets) itself,
@@ -540,7 +540,8 @@ It is common for cleaning to be the most time-consuming task in a project.
 In this section, we introduce some concepts and tools to make it more efficient and productive.
 The section is separated into three subtopics:
 exploring the data, making corrections, and recoding and annotating.
-They are separated here because they are different in nature.
+They are separated here because they are different in nature,
+and should be kept separated in your code.
 In practice, however, they are all done at the same time.
 
 
@@ -623,7 +624,8 @@ The most common example is string (text) variables:
 categorical variables and open-ended responses are often read as strings.
 However, variables in this format cannot be used for quantitative analysis.
 Therefore, categorical variables must be transformed into other formats,
-such as \texttt{factors} in R and \texttt{labeled integers}\sidenote{\url{https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Value\_Labels}} in Stata.
+such as \texttt{factors} in R and \texttt{labeled integers}\sidenote{\url{
+		https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Value\_Labels}} in Stata.
 Additionally, open-ended responses stored as strings usually have a high risk of including identifying information, 
 so cleaning them requires extra attention.
 The choice names in categorical variables
@@ -652,7 +654,7 @@ keeping them consistent with the raw data makes data processing and construction
 Unfortunately, not all variable names are informative.
 In such cases, one important piece of documentation,
 the variable dictionary, makes the data easier to handle.
-When a data collection instrument is available, 
+When a data collection instrument (for example a questionnaire) is available, 
 it is often the best dictionary one could ask for.
 But even in this cases, going back and forth between files can be inefficient,
 so annotating variables in a dataset is extremely useful.
@@ -688,7 +690,7 @@ is designed to make some of the most tedious components of this process more eff
 It also creates a self-documenting workflow,
 so your data cleaning documentation is created alongside that code,
 with no extra steps.
-As far as we know, there are no similar resources in R.
+As far as we know, currently there are no similar resources in R.
 However, the \texttt{tidyverse}\sidenote{\url{https://www.tidyverse.org/}} packages
 compose a consistent and useful grammar to perform the same tasks.
 
