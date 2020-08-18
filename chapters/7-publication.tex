@@ -340,7 +340,9 @@ you may not be able to publicly release any data at all.
 You will still be expected to catalog and cite your data,
 even if you cannot release it publicly.
 In practice, this may mean publishing only a catalog entry
-providing descriptive information about the dataset but indicating it is not available for general publication.
+providing information about the contents of the datasets
+and how future users might request permission to access them
+(even if you are not the person to grant that permission).
 In some cases, it may be possible to release the dataset but 
 embargoing specific variables that are required for the analysis but cannot be released publicly.
 It may be necessary to grant access to the embargoed data for specific purposes,
@@ -350,35 +352,25 @@ if done under careful data security protocols and approved by an IRB.
 \subsection{Publishing raw and constructed datasets}
 
 % options for when the data cannot be published
-Publicly documenting all original data generated as part of a research project
+Publicly documenting all original data acquired as part of a research project
 is an important contribution in its own right.
 Cataloging and/or archiving original datasets
-is a significant contribution that can be made
-in addition to any publication of analysis results.\sidenote{
+is a significant contribution in addition to any publication of analysis results.\sidenote{
 	\url{https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-publishing-research-data.pdf}}
-If you are not able to publish the data itself,
-due to licensing agreements or ethical concerns,
-there are often options to catalog or archive the data.
-These may take the form of metadata catalog entries or embargoed releases.
-Such setups allow you to hold an archival version of your data
-which your publication can reference,
-and provide information about the contents of the datasets
-and how future users might request permission to access them
-(even if you are not the person to grant that permission).
-They can also provide for timed future releases of datasets
-once the need for exclusive access has ended.
-In all cases, you should choose a method that allows you
-to obtain a digital object identifier (DOI)
-and a formal citation for your data to use in your publication.
-
-% platforms for publishing data
 Publicly releasing data allows other researchers
 to validate the mechanical construction of your results,
 investigate what other results might be obtained from the same population,
 and test alternative approaches or answer other questions.
 This fosters collaboration and may enable researchers to explore variables and
 questions that you do not have time to focus on otherwise.
-There are different options for public data release.
+
+% platforms for publishing data
+First, you should choose the platform where you will publish your data.
+A variety of options exist; 
+most important is to choose one that allows you to obtain a digital object identifier (DOI)
+and a formal citation for your data, to use in your publication.
+Two common platforms for development data are the World Bank's Development Data Hub 
+and Harvard University's Dataverse.
 The World Bank's Development Data Hub\sidenote{
 	\url{https://datacatalog.worldbank.org}}
 includes a Microdata Catalog\sidenote{
@@ -387,8 +379,7 @@ and a Geospatial Catalog,
 where researchers can publish data and documentation for their projects.\sidenote{
 \url{https://dimewiki.worldbank.org/Microdata\_Catalog}
 \newline
-\url{https://dimewiki.worldbank.org/Checklist:\_Microdata\_Catalog\_submission}
-}
+\url{https://dimewiki.worldbank.org/Checklist:\_Microdata\_Catalog\_submission}}
 The Harvard Dataverse\sidenote{
 	\url{https://dataverse.harvard.edu}}
 publishes both data and code.
@@ -401,36 +392,31 @@ where data from our projects is published.\sidenote{\url{
 		https://microdata.worldbank.org/catalog/dime}}
 
 % check what you can and cannot publish
-Raw de-identified data can and should be published
-as an independent entity with its own license.
-It should be named according to the data collection effort
-or the project that supported its collection,
-rather than tied to a specific research output.
-This makes it easy for you or others to access and cite that dataset.
-However, even when your raw data is owned by someone else,
-or for any other reason you are not able to publicly release it,
-you will often still retain the rights to release derived and constructed data,
-even if they contain only the indicators you created and their documentation.\sidenote{
+Once you have chosen a platform, you need to determine exactly what data you will publish.
+As mentioned earlier, there are typically two different types of data releases for a research project:
+complete (de-identified) original datasets and derivative datasets used for specific research outputs.
+Whether you can publish the original dataset depends on data ownership and licensing agreements.
+If the data was acquired through a survey that was contracted by the research team:
+the data belongs to the research team, 
+and therefore the team has full publication rights for both the original and derivative data. 
+If data was acquired from a partner through a licensing agreement, 
+the terms of the license will determine publication rights. 
+These datasets should match the survey instrument or source documentation as closely as possible,
+and do not include indicators constructed by the research team. 
+Even if you do not have rights to publish the original data, 
+you typically can publish derivative datasets prepared by the research team.
+These datasets typically contains only the constructed indicators and associated documentation.\sidenote{
   \url{https://guide-for-data-archivists.readthedocs.io}}
-Regardless of what may be done with the raw data,
-you will therefore typically be able to separately license or publish
-the derived dataset and the indicators needed for analysis
-as citable supporting materials for any publication.
-Many of the resources above will support this type of release.
-The OSF offers a useful functionality to self-publish materials of this form,
-and some publishers (such as the AEA) offer in-house handling of these materials.
-If you have questions about your rights over original or derived materials,
-check with the legal team at your organization or with the data provider.
-Make sure you understand the rights associated with any data release
-and communicate them to any future users of the data.
+This is typically the dataset included in the replication package.
 
 % licensing published data
-When you do publish data that you own,
-you will decide how it may be used and what license,
-if any, you will assign to it.\sidenote{
+When publishing data,
+you will decide how the data may be used and what license you will assign to it.\sidenote{
   \url{https://iatistandard.org/en/guidance/preparing-organisation/organisation-data-publication/how-to-license-your-data}}
-In all cases, material without a license may never be reused;
-you should prefer to offer a license that is explicit
+Make sure you understand the rights associated with any data release
+and communicate them to any future users of the data.
+Material without a license may never be reused.
+You should prefer to offer a license that is explicit
 and details whether and how specific individuals may access the data.
 Terms of use available in the World Bank Microdata Catalog include,
 in order of increasing restrictiveness:
@@ -467,21 +453,19 @@ so that others can learn from your work and adapt it as they like.
 
 \section{Preparing a complete reproducibility package}
 
-Major journals now often require that,
-in addition to the data required to obtain your results,
-you provide the code that exactly recreates those results.
+Major journals now often require that you provide both the data and code required to recreate your results.
 Some even require being able to reproduce the results themselves
 before they will approve a paper for publication.\sidenote{
   \url{https://www.aeaweb.org/journals/policies/data-code}}
 This set of materials, taken together,
 is often referred to as a \textbf{reproducibility package}.
-If your material has been well-structured throughout the analytical process,
-this will only require a small amount of extra work;
-if not, creating this package may take some time.
-When it is completed,
+If you have followed the workflows described in this book,
+preparing the replication package will only require a small amount of extra work.
+If not, creating this package may take some time.
+When the replication package is completed,
 whoever downloads it should be able
 to understand how your code produces results from your data
-and be able to reproduce them by executing the included master script.
+and be able to reproduce them exactly by executing the included master script.
 
 \subsection{Organizing code for reproducibility}
 
@@ -490,46 +474,43 @@ Before releasing your code, you should edit it for content and clarity
 just as if it were written material.
 The purpose of releasing code is to allow others to understand
 exactly what you have done in order to obtain your results,
-as well as to apply similar methods in future projects.
-They should also be able to make small adjustments to your code
-and reproduce individual portions of your analysis
-so they can understand the choices and functions you implemented.
+and enable others to apply similar methods in future projects.
+Others should be able to reproduce individual portions of your analysis
+by making only small adjustments to your code.
+In either a scripts folder or in the root directory,
+you should include a master script that allows someone else to run the entire project
+and re-create all raw outputs by changing only a single line of code:
+the one setting the directory path.
 The code should both be functional and readable,
-through the use of clean structure and extensive commenting and documentation.
+through the use of clean structure and extensive commenting.
 Code is often not written this way when it is first prepared,
 so it is important for you to review the content and organization
-so that a new reader can figure out what and how your code should do.
-Whereas your data should already be relatively clean by this stage,
-your code is much less likely to be so.
-This is often where you need to invest time prior to releasing your reproducibility package.
+so that a new reader can figure out what your code should do and how it does it.
+Making code clean and readable is often where you need to invest time prior to releasing your reproducibility package.
 
 % reproducibility review
-DIME has adopted several practices and requirements to support the production
-of high-quality reproducibility packages by its researchers.
+DIME requires all academic outputs to successfully pass a computational reproducibility check 
+before being submitted for publication. 
+We have adopted several practices and requirements to support the production
+of high-quality reproducibility packages.
 The materials for these practices are publicly available,
 so you can use them to check the reproducibility of your own work.
-DIME code must be submitted for a computational reproducibility check
-before publication as a working paper or submission to a journal.
-This reproducibility check is initiated by contacting the DIME Analytics team
-and submitting the Reproducibility Package Checklist.
-In addition to this formal requirement for reproducibility review,
-DIME projects are required to be maintained continuously at high quality.
-These practices must include ensuring that project code is organized
-with a master script so that computational reproducibility is a one-click exercise.
+This reproducibility check is initiated by submitting the Reproducibility Package Checklist.
+% add link!
+DIME projects are required to organize code
+with a master script, to facilitate handovers across team members 
+and make the computational reproducibility check a one-click exercise.
+Compliance with these and other coding standards at DIME is monitored through
+quarterly peer code review rounds, which allow research assistants to improve their code and documentation as it is written,
+rather than revisiting it in a rush near publication time.
 DIME projects are also expected to use Git and GitHub
 to document project work and collaboration,
 and to keep the master branch up-to-date as a working edition.
-Research assistants also participate in quarterly peer code review rounds
-so that they can improve their code and documentation as it is written,
-and not be required to revisit it in a rush near publication time.
+% link to DIME standards
 
 % ensuring code reproducibility
-Before releasing the code, make sure it functions identically on a fresh install of your chosen software.
-A new user should have no problem getting the code to execute perfectly.
-In either a scripts folder or in the root directory,
-you should include a master script that allows the reviewer to run the entire project
-and re-create all raw outputsby changing only a single line of code:
-the one setting the directory path.
+Before publicly releasing a reproducibility package,
+it is essential to make sure that the code executes perfectly on a fresh install of your chosen software.
 To ensure that your code will run completely on a new computer,
 you must install any required user-written commands in the master script
 (for example, in Stata using \texttt{ssc install} or \texttt{net install}
@@ -541,24 +522,22 @@ Make sure system settings like \texttt{version}, \texttt{matsize}, and \texttt{v
 
 % tracking code and outputs
 Finally, make sure that code inputs and outputs are clearly identified.
-A new user should, for example, be able to easily find and remove
-any files created by the code so that they can be recreated quickly.
-They should also be able to quickly map all the outputs of the code
-to the locations where they are placed in the associated published material,
-so ensure that the raw components of figures or tables are clearly identified.
+A new user should, for example, be able to easily find and quickly recreate
+any files generated by the code.
+Readers should also be able to quickly map all the outputs of the code
+to where they appear in the associated published material,
+so you must ensure ensure that the raw components of figures or tables are clearly identified.
 Documentation in the master script is often used to indicate this information.
 For example, outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
 (Supplying a compiling {\LaTeX} document can support this.)
-Code and outputs which are not used should be removed before publication.
+Code and outputs which are not used in the final paper should be removed before publication.
 
 \subsection{Releasing a reproducibility package}
 
 % finding a place to publish the package
-Once your data and code are polished for public release,
-all you need to do is find a place to publish your materials.
-This is slightly easier said than done,
-as there are a few variables to take into consideration
-and, at the time of writing, no global consensus on the best solution
+Once your replication package is prepared for public release,
+you need to find a place to publish your materials.
+At the time of writing, there is no consensus on the best solution for publishing code,
 and there are a variety of archives and storage providers
 that cater to different needs.
 The technologies available are likely to change dramatically
@@ -570,14 +549,17 @@ as well as their strengths and weaknesses.
 Unlike data, code usually has few external constraints to publication.
 The research team owns the code in almost all cases,
 and code is unlikely to contain identifying information
-(though you must check carefully that it does not).
+(though you must carefully verify that it does not).
 Publishing code also requires assigning a license to it;
-in a majority of cases, code publishers like GitHub
-offer extremely permissive licensing options by default.
-If you do not provide a license, nobody can use your code.
-You may be required to put your materials into the public domain;
-if not, it is common to only require attribution and citation for their reuse,
+most code publishers offer extremely permissive licensing options by default (GitHub is a good example).
+Note that f you do not provide a license, no one can use your code.
+It is common to only require attribution and citation for code reuse,
 without putting any barriers or restrictions to accessing the code.
+
+Features to look for in a platform to release reproducibility packages include:
+the possibility to store data and documentation as well as code,
+the creation of a static copy of its content, that cannot be changed or removed,
+and the assignment of a permanent digital object identifier (DOI) link.
 
 % pros and cons of GitHub
 One option for releasing a reproducibility package is GitHub.
@@ -590,16 +572,11 @@ apply a sharing license, and obtain a URL for the whole package.
 There is a strict size restriction of 100MB per file and
 a restriction of 100GB on the size of the repository as a whole,
 so larger projects will need alternative solutions.
-However, GitHub is not the ideal platform to release reproducibility packages.
+However, GitHub is not the ideal platform on which to release reproducibility packages.
 It is built to version control code, and to facilitate collaboration on it.
 It is not an archive, meaning that it does not guarantee the permanence
 of uploaded materials, it does not guarantee the permanence of the access URL,
 and it does not manage citations or non-code licenses by default.
-
-Features to look for in a platform to release reproducibility packages include:
-the possibility to store data and documentation as well as code,
-the creation of a static copy of its content, that cannot be changed or removed,
-and the assignment of a permanent digital object identifier (DOI) link.
 One suggestion is to combine GitHub with the Open Science Framework,\sidenote{
   \url{https://osf.io}}
 as OSF can easily link to and import material from GitHub and
@@ -624,8 +601,8 @@ Emerging technologies such as the ``containerization'' approach of CodeOcean\sid
   \url{https://codeocean.com}}
 offer to store both code and data in one repository,
 and also provide an online workspace in which others can execute and modify your code
-without having to download your tools and match your local environment
-when packages and other underlying software may have changed since publication.
+without having to download your tools and match your local environment. 
+This is particularly useful over time, as packages and other underlying software may have changed since publication.
 In a similar spirit, attempts to create ``metadata archives''
 that link all the different materials, releases, and publications
 relating to specific research projects or studies
