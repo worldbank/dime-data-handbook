@@ -145,7 +145,7 @@ The resulting raw dataset usually consists of a single table
 where questions from the household member roster are saved in different columns, 
 one for each member, with a corresponding member suffix,
 and household-level questions are represented by one column each.
-So, for example, you may have one column called \texttt{ownsmotorcycle},
+So it would have, for instance, one column called \texttt{ownsfridge},
 but a few columns of the format \texttt{sex\_1}, \texttt{sex\_2}, etc.
 The data is saved in this format because it's the most efficient way to transfer it:
 adding different levels of observation into the same table allows for data to be transferred in a single file.
@@ -160,7 +160,7 @@ are easier to handle because observations can be aggregated and linked consisten
 without additional steps.
 They are also easier to clean, 
 as each attribute only needs to be checked once,
-and each column corresponds directly to each question in the questionnaire.
+and each column corresponds directly to one question in the questionnaire.
 
 Wide format is only one way in which data can be untidy.
 As mentioned earlier, there are unlimited ways for data to be untidy.
@@ -184,7 +184,8 @@ and household-member variables are reshaped to member level and stored in anothe
 which also contains the household ID for each individual.
 The household ID is intentionally duplicated in the household members table
 to allow it to be linked to the household data table,
-but this dataset is only appropriate for analysis at the person level.
+while a household member ID will be this tables' unique identifier.
+Note that such dataset is only appropriate for analysis at the person level.
 In the transaction data example,
 the result of the tidying process would be one transaction-level dataset, 
 containing variables indicating the ID of all firms involved;
