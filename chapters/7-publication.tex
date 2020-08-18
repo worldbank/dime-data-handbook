@@ -1,7 +1,7 @@
 %------------------------------------------------
 
 \begin{fullwidth}
-Publication typically involves multiple iterations of manuscript,
+Publication typically involves many iterations of manuscript,
 code, and data files, with inputs from multiple collaborators.
 This process can quickly become unwieldy.
 It is in nobody's interest for a skilled and busy researcher
@@ -12,13 +12,12 @@ the repetitive and error-prone task of manually resolving
 sets of tracked-changes documents with conflicting edits.
 Furthermore, for most research projects,
 completing a manuscript is not the end of the task.
-Academic journals often require a ``reproducibility package''
+Academic journals increasingly require a ``reproducibility package''
 which contains the code and materials used to create the results.
-These represent an intellectual contribution in their own right,
+Preparation of a reproducibility package is a pre-requisite to publication at DIME.
+Replication packages represent an intellectual contribution in their own right,
 because they enable others to learn from your process
 and better understand the results you have obtained.
-Holding code and data to the same standards as written work
-is a new practice for many researchers.
 
 In this chapter, we suggest tools and workflows for efficiently managing collaboration
 and ensuring reproducibility.
@@ -52,7 +51,7 @@ As a consequence, manuscripts typically pass back and forth between several writ
 before they are ready for publication.
 Just as with the preparation of analytical outputs,
 effective collaboration requires the adoption of tools and practices
-that enable version control and simultaneous contribution.
+that enable version control and simultaneous contributions.
 As we outlined in the previous chapter,
 \textbf{dynamic documents} are a way to simplify writing workflows:
 updates to analytical outputs that appear in these documents, such as tables and figures,
@@ -67,13 +66,14 @@ with out-of-date results, or of completed work being lost or redundant.
 
 % what exactly is a dynamic document
 As we discussed in Chapter 6, the most widely used software
-for dynamically managing academic manuscripts is {\LaTeX} (pronounced ``lah-tek'').
+for dynamically managing academic manuscripts is {\LaTeX}.
 \index{\LaTeX}
-It requires explicitly encoded references to the latest versions of all outputs.
+{\LaTeX} uses explicitly encoded references to inputs (e.g. tables and figures),
+which helps ensure that the most up-to-date version is always included.
 This is not possible by default in Microsoft Word.
 There, you have to copy and paste each object
 whenever tables, graphs, or other inputs are updated.
-As time goes on, it becomes more and more likely
+As time goes on, it becomes increasingly likely
 that a mistake will be made or something will be missed.
 In {\LaTeX}, instead of writing in a
 ``what-you-see-is-what-you-get'' mode as you do in Word,
@@ -90,15 +90,14 @@ allowing them to reformat entire documents in house styles with only a few keyst
 % keeping it simple
 To create a {\LaTeX} manuscript,
 you will typically create a new top-level directory for each final output.
-Many projects go so far as to create documents like the main text
+Many projects go so far as to create the main paper
 and any appendix text as separate projects.
-For a single output, one convention is to put the manuscript files
+For a single research output, we recommend putting the manuscript files
 (such as \texttt{main.tex} and \texttt{bibliography.bib})
 in the top-level folder,
-and then have the folders for figures, tables, and other inputs.
-Your analytical scripts should easily be able to produce outputs
-at the location of your choice by adjusting paths in the master script;
-output them here when ready.
+and then have subfolders for figures, tables, and other inputs.
+Your analytical scripts should be set up such that it is easy to output files
+at the location of your choice by adjusting paths in the master script.
 Above all, keep your workflow as simple as possible.
 While {\LaTeX} \textit{can} produce complex formatting,
 this is rarely needed for academic publishing,
@@ -146,8 +145,8 @@ and order the bibiliography either by order of appearance or alphabetically.
 All the formatting and numbering will be handled automatically.
 You can also choose to display only the references which are cited in the text,
 or to include every reference in the \texttt{.bib} file.
-Since different publications have different requirements,
-the ability to adapt this and other formatting very quickly,
+Since different publishers have different requirements,
+it is quite useful to be able to adapt this and other formatting very quickly,
 including through using publisher-supplied templates where available.
 
 % using pandoc to convert LaTeX into word
@@ -160,8 +159,9 @@ by running the following code from the command line:
 
 \codeexample{pandoc.sh}{./code/pandoc.sh}
 
-\noindent Conversion to Word is still required for a number of publishers.
-You still don't want to write in Word, though.
+\noindent Even though conversion to Word is required for a number of publishers,
+we do not recommend using Word to prepare the manuscript. 
+Rather, you should export it to Word only at the final stage, when submitting for publication.
 The \texttt{pandoc} utility can only handle relatively simple formatting,
 but it will seamlessly translate all the features we mentioned before
 into the correct native Word styling.
@@ -196,22 +196,19 @@ and \texttt{atom-latex}\sidenote{
 offer the most flexibility to work with {\LaTeX} in teams.
 
 % cloud-based implementations are a good place to start
-Unfortunately, despite these advantages, setting up {\LaTeX} is not always simple,
+Although ultimately worth it, setting up {\LaTeX} is not always simple,
 particularly if you are new to working with plain text code and file management.
 This is because {\LaTeX} requires that all formatting be done in its special code language,
 and it is not particularly informative when you do something wrong.
 This can be off-putting very quickly for people
-who simply want to get to writing, like senior researchers.
-They can require a lot of troubleshooting at a basic level at first,
+who simply want to get to writing, 
 and staff not used to programming may not easily acquire the necessary knowledge.
 
-In order to make it as easy as possible for your team
-to use {\LaTeX} without all members having to invest in new skills,
-we suggest using a cloud-based implementation such as Overleaf\sidenote{\url{
-https://www.overleaf.com/
-}}
-as your first foray into {\LaTeX} writing.
-Some teams even adopt these tools as a permanent solution.
+Cloud-based implementations of {\LaTeX} can make it easier for your team to use
+{\LaTeX} without all members having to invest in new skills, 
+and can be particularly useful for first forays into {\LaTeX} writing. 
+One example of this is Overleaf.\sidenote{\url{
+https://www.overleaf.com/}}
 Most such sites offer a subscription feature
 with useful extensions and various sharing permissions,
 and some offer free-to-use versions with basic tools that are sufficient
@@ -245,9 +242,10 @@ and updating figures and tables requires a bulk file upload that is tough to aut
 They vary dramatically in their ability to integrate
 with file systems where you store your code and outputs,
 and so you will need to practice an integrated workflow depending what is available to you.
-Despite this, we believe that with minimal learning and workflow adjustments,
-cloud-based implementations are often the easiest way to allow coauthors to write and edit in {\LaTeX},
-so long as you make sure you are available to troubleshoot minor issues like these.
+Some teams adopt cloud-based tools as a permanent solution,
+though others shift to desktop interfaces such as TexStudio\sidenote{\url{
+		https://www.texstudio.org/}} 
+as members become increasingly comfortable writing directly in {\LaTeX}.
 
 %----------------------------------------------------
 
