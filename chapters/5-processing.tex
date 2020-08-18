@@ -429,7 +429,7 @@ the next task is typically to \textbf{de-identify} the data,
 by removing or masking all personally-identifying variables.\sidenote{
 	\url{https://dimewiki.worldbank.org/De-identification}}
 \index{de-identification}
-Note, that it is in practice impossible to \textbf{anonymize} data.
+Note that it is in practice impossible to \textbf{anonymize} data.
 There is always some statistical chance that an individual's identity
 will be re-linked to the stored data
 -- even if that data has had all directly identifying information removed --
@@ -477,7 +477,8 @@ scan variable names and labels for common string patterns associated with identi
 	\url{https://github.com/J-PAL/PII-Scan}}
 The World Bank's \texttt{sdcMicro}
 lists variables that uniquely identify observations, 
-but it is less efficient for large datasets.\sidenote{
+but its more refined method and 
+higher processing capacity requirement make it better suited for final de-identification.\sidenote{
 	\url{https://sdctools.github.io/sdcMicro/articles/sdcMicro.html}}
 The \texttt{iefieldkit} command \texttt{iecodebook}
 lists all variables in a dataset and exports an Excel sheet
@@ -491,7 +492,7 @@ assess them against the analysis plan and first ask yourself for each variable:
 If not, the variable should be dropped.
 Don't be afraid to drop too many variables the first time,
 as you can always go back and extract additional variables from the raw data,
-but you can not go back in time and drop a PII variable that was leaked.
+but you cannot go back in time and drop a PII variable that was leaked.
 
 For each confidential variable that is needed in the analysis, ask yourself:
 \textit{can I encode or otherwise construct a variable that masks the confidential component, and
@@ -518,9 +519,9 @@ de-identified tables.
 This is the dataset that you will interact with 
 during the remaining tasks described in this chapter.
 Initial de-identification should not affect the usability of the data.
-However, access to the initially de-identified data 
+Note that access to the initially de-identified data 
 should still be restricted to the research team only,
-as indirect identifiers still present risk.
+as indirect identifiers may still present a high risk if disclosure.
 It is common, and even desirable, for teams to make data publicly available
 once the tasks discussed in this chapter are concluded.
 This will allow other researchers to conduct additional analysis and to reproduce your finding.
