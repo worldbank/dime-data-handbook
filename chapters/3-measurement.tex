@@ -376,32 +376,36 @@ based on this single continuous variable: \texttt{iematch}\sidenote{
 part of the \texttt{ietoolkit} package.
 
 %-----------------------------------------------------------------------------------------------
-\subsection{Structuring complex data}
+\subsection{Time periods and data plans}
 
-Your data map and master dataset requirements also depends on
+Your data plan should also take into consideration 
 whether you are using data from one time period or several.
 A study that observes data in only one time period is called
 a \textbf{cross-sectional study}.
 \index{cross-sectional data}
 This type of data is relatively easy to collect and handle because
-you do not need to track individuals across time.
+you do not need to track individuals across time,
+and therefore requires no additional information in your data plan.
 Instead, the challenge in a cross-sectional study is to
 show that the control group is indeed a valid counterfactual to the treatment group.
 
 Observations over multiple time periods, 
-referred to as \textbf{longitudinal data},
-\index{longitudinal data}
-can consist of either \textbf{repeated cross-sections}
-\index{repeated cross-sectional data}
-or \textbf{panel data}.
-\index{panel data} 
+referred to as \textbf{longitudinal data}\index{longitudinal data},
+can consist of either \textbf{repeated cross-sections}\index{repeated cross-sectional data}
+or \textbf{panel data}\index{panel data}.
 In repeated cross-sections,
 each successive round of data collection uses a new random sample
 of observations from the treatment and control groups,
 but in a panel data study the same observations are tracked and included each round.
-If you are using panel data,
-then your data map must document how the different rounds will be merged or appended,
-and your master dataset will be the authoritative source of which ID that will be used. 
+If each round of data collection is a separate activity,
+they should be treated as a separate source of data 
+and get their own row in the data linkage table. 
+If the data is continuously collected,
+or at frequent intervals,
+then it can be treated as a single data source.
+The data linkage table must document 
+how the different rounds will be merged or appended
+when panel data collected in separate activities.
 
 You must keep track of the \textit{attrition rate} in panel data,
 which is the share of observations not observed in follow-up data.
