@@ -81,7 +81,7 @@ You will, in general, need one data flow chart per analysis dataset
 but if two analysis datasets are very similar,
 they can be included in the same chart.
 
-\index{Master datasets}\textbf{Master datasets} serve three key functions.
+
 \subsection{Creating a data plan}
 
 The components of the data plan is the best tool a research team has for
@@ -108,88 +108,64 @@ Something very labor expensive to fix and a big source of error,
 is when a research team ends up with a dataset they do not have an 
 unambiguous way to link to other data sources.
 The data linkage table is also a great place to list other type of meta data,
-such as the source of your data, and backup location.
-First, they list all the units that are eligible for the study,
-and enable you to map the data to the research design.
-Second, in designs where your team has direct control over interventions or other field work,
-they allow you to plan sampling and treatment assignment before going to the field.
-Finally, they constitute the single unambiguous location where all information 
-related to the implementation and validity of your research is stored,
-as well as all information needed to correctly identify any observation in any of your project's datasets.
-The \textbf{data map} diagrams each data source the project will use, 
-the unit of response, frequency of measurement, 
-and the level(s) at which it can be linked to other datasets within the framework. 
+such as the source of your data, and backup locations etc.
 
+You should have one \textbf{master dataset} for each \textbf{unit of observation}\sidenote{
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+used in any significant research activity.
+Examples of such activities are data collection, data analysis, 
+sampling or treatment assignment.
+The master dataset should include and be the authoritative source of
+all \textbf{research variables}\sidenote{
+	\textbf{Research variables:} Research related meta data that identifies observations
+	and maps research design information those observation.
+	Research variables are time-invariant and 
+	often, but not always, controlled by the research team.
+	Examples include
+	ID variables, sampling status, treatment status, treatment uptake.} 
+but not include any \textbf{measurement variables}\sidenote{
+	\textbf{Measurement variables:} Data that corresponds to observations of the real world. Research variables are not controlled by the research team and often vary over time.
+	Examples include characteristics of the research subject, outcome variables, input variables among many others.}.
+Research variables and measurement variables often come from the same source,
+but should not be stored in the same way.
+For example, if you are shared administrative data that both includes 
+information on eligibility to be included in the study (research variable) 
+and information on outcome on the topic of your study (measurement variable) 
+you should first decide which variables are research variables, 
+remove them during the data cleaning (see Chapter 6) 
+and instead store them in your master dataset. 
+It is common that you will have to update 
+your master datasets throughout your project.
+Examples of research variables 
+that you cannot know when you initially set up your master dataset 
+are treatment uptake and attrition variables.
 
-\subsection{Creating master datasets and a data map}
+The most important function of the master dataset 
+is to be the authoritative source of identifiers,
+and all observations listed should have a unique project ID\sidenote{
+	\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}.
+You should also list all other identifiers your project interact with, 
+such as names, addresses and other ID values used by your partner organization,
+and serve as the linkage between those identifiers and the project ID.
+Because of this, there are very few cases where your master datasets 
+does not need to be encrypted.
+Even when a partner organization have a unique identifier, 
+you should always create a project ID specific to your project only, 
+as you are otherwise not in control over who can re-identify your de-identified dataset. 
+You should include all observations ever encountered,
+even if they are not eligible for your study,
+because if you ever end up needed to do a fuzzy match, 
+you will do fewer errors the more information you have.
+If you acquire any data without your project ID, 
+you should always start by understanding how that data
+ can be linked to the master dataset,
+and then merge the project IDs to the new data, 
+before you do anything with that dataset.
+With the master datasets as an up to date authoritative source 
+of the project IDs and all research variables,
+you have an unambiguous method of mapping
+the observations in your study to your research design.
 
-A \textbf{master dataset}\sidenote{
-	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
-\index{master datasets}
-details all project-wide time-invariant information
-about all observations encountered,
-as well as their relationship to the research design,
-typically summarized by sampling and treatment status.
-Having a plan for how to get the raw data into analysis shape 
-before you acquire it,
-and making sure that the full research team knows where to find this information,
-will save you a ton of time during the course of the project
-and increase the quality of your research.
-
-You should create a master dataset
-for each unit of observation
-relevant to the research.
-This includes all units used for significant research activity,
-like data collection or data analysis.
-Therefore, any unit
-that will be used in sampling or treatment assignment,
-must have a master dataset,
-and that master dataset -- not field data --
-should be used when sampling or assigning treatment.
-Master data sets are often created from field data,
-but master data sets should be treated differently
-as there can be several field datasets,
-but only one authoritative master dataset.
-Master data sets should be created as soon as you
-start to get information about units.
-For example, when receiving a type of administrative data set for the first time,
-or after doing a respondent listing before a survey.
-
-You also need to record how all datasets for each unit of observation
-will link or merge with each other as needed.
-This linking scheme is called a \textbf{data map}\sidenote{
-	\url{https://dimewiki.worldbank.org/data\_map} (TO BE CREATED)}.
-\index{data maps} 
-A data map is more than just a list of datasets.
-Its purpose is to specify the characteristics and linkages of those datasets.
-To link properly, the master datasets must include fully unique ID variables.\sidenote{
-	\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
-The master datasets should indicate whether datasets should be merge one-to-one,
-for example, merging baseline data and endline data that use the same unit of observation,
-or whether two datasets should be merged many-to-one, 
-for example, school administrative data merged with student data.
-Your data map must indicate which ID variables can be used and how to merge datasets.
-It is common that administrative data use IDs 
-that are different than the project IDs, 
-and the linkage between those should be clear from your master dataset.
-
-The data map should also include metadata about the handling of all information.
-These characteristics may be updated as the project progresses.
-For example, you will need to note the original source of each dataset,
-as well as the project folder where 
-the raw original data and codebooks are stored
-and where the back-ups for the each raw dataset are stored.
-
-Some of the characteristics in your master datasets and your data map
-should be filled in during the planning stage,
-but both of them should be active resources 
-that are updated as your project evolves.
-Finally, your master data should not include any unlabeled missing values. 
-If the information is missing for one unit, 
-then the reason should always be indicated with a code.
-An example for such reason could be that a unit was not included in the treatment assignment
-as it was not sampled in the first place,
-or was not located in the data collection at a given round.
 
 \subsection{Defining study comparisons using master data}
 
