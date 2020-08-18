@@ -481,16 +481,17 @@ is mainly a result of a fuzzy link between your monitor data and the rest of you
 
 %-----------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------
-\section{Implementing random sampling and treatment assignments}
+\section{Randomized creation of research variables}
 
-Random sampling and treatment assignment are two core elements of research design.
+Random sampling and treatment assignment are two research variables 
+often created by the research team that are core elements of research design.
 In experimental methods, random sampling and treatment assignment directly determine
 the set of individuals who are going to be observed
 and what their status will be for the purpose of effect estimation.
 In quasi-experimental methods, random sampling determines what populations the study
 will be able to make meaningful inferences about,
 and random treatment assignment creates counterfactuals.
-Randomization\sidenote{
+\textbf{Randomization}\sidenote{
 	\textbf{Randomization} is often used interchangeably to mean random treatment assignment.
 	In this book however, \textit{randomization} will only be used to describe the process of generating
 	a sequence of unrelated numbers, i.e. a random process. 
@@ -540,11 +541,15 @@ randomized assignment determines if each individual will be observed
 as a treatment observation or used as a counterfactual.
 The list of units to sample or assign from may be called a \textbf{sampling universe},
 a \textbf{listing frame}, or something similar.
-This list should always be your \textbf{master dataset} when possible.
-The rare exceptions when master datasets cannot be used is when sampling must be done in real time --
+This list should always be your \textbf{master dataset} when possible,
+and the result should always be saved in the master dataset before merged to any other data.
+The rare exceptions when master datasets cannot be used is 
+when sampling must be done in real time --
 for example, randomly sampling patients as they arrive at a health facility.
 In those cases, it is important that you collect enough data during the real time sampling,
-such that you can create a master dataset over these individuals afterwards.
+such that you can add these individuals, 
+and the result of the sampling, 
+to your master dataset afterwards.
 
 % implement uniform-probability random sampling
 The simplest form of sampling is 
