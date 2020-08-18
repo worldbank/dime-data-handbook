@@ -243,9 +243,7 @@ They vary dramatically in their ability to integrate
 with file systems where you store your code and outputs,
 and so you will need to practice an integrated workflow depending what is available to you.
 Some teams adopt cloud-based tools as a permanent solution,
-though others shift to desktop interfaces such as TexStudio\sidenote{\url{
-		https://www.texstudio.org/}} 
-as members become increasingly comfortable writing directly in {\LaTeX}.
+though others shift to integrated editing and compiling tools such as {\LaTeX} and Atom. 
 
 %----------------------------------------------------
 
@@ -253,96 +251,76 @@ as members become increasingly comfortable writing directly in {\LaTeX}.
 
 % what are reproducibility packages and what they must contain
 While we have focused so far on written materials,
-it is also important to consider how you will publish
+you must also consider how you will publish
 the data you used for your research.
 The open science community at large sees data publication
 both as a citable output and as a necessary transparency measure.
-Fortunately, it is a conceptually simple task for you to produce
-and archive or catalog the required materials.
-Beginning from the raw data that you collected,
-you should be prepared to catalog two separate collections.
+Fortunately, it is a conceptually simple task to produce
+and catalog the required materials.
+You should be prepared to catalog two separate collections.
 First, you should catalog the unaltered (de-identified) data
 with all variables corresponding directly
-to fields in the original dataset or data collection instrument.
+to fields in the original dataset or data collection instrument
+(this may not be necessary if you are working with secondary data that is published elsewhere in this format).
 If you follow the steps outlined in Chapter 5,
 when you get to the publication stage you will have
 a cleaned data set and supporting documentation ready.
-If you follow the steps outlined in Chapter 5,
-when you get to the publication stage you will have
-a cleaned data set and supporting documentation ready.
-Second, you should separately catalog (as supporting material)
+Second, you should separately catalog 
 the analytical dataset used for the output you are publishing.
-This release should include the data construction scripts
+This is typically included in the replication package. 
+The package should also include the data construction scripts
 that create transformed and derived indicators,
-as well as project-specific information
+project-specific information
 such as treatment assignment and other indicators
-that were not directly acquired during fieldwork.
-Here, following the recommendations from Chapter 6
-will ensure that this material is at hand.
+generated directly by the research team (another example is constructed record linkages).
+If you followed the workflow recommended in Chapter 6,
+by the time you reach publication stage you will already have all necessary 
+files and documentation at hand.
 
 \subsection{De-identifying data for publication}
 
 % what is final de identification
 Before publishing data,
 you should carefully perform a \textbf{final de-identification}.
-Its objective is to reduce the risk of disclosing confidential information in the published dataset.
-If you are following the steps outlined in this book,
-you should have already removed direct identifiers after collecting the data.
-Direct identifiers are data elements that are keyed to the identity of a respondent,
-such as names, phone numbers, official identification numbers like government IDs.
-They further include all information that may easily be linked to public records,
-such as dates of birth, job titles, marital records, and other personal vital statistics.
-
-At this stage, however, you should additionally remove
+The objective of de-identification is to reduce the risk of disclosing confidential information in the published dataset.
+If you are following the workflow outlined in this book,
+you should have already removed direct identifiers as a first step after acquiring the data
+(see the discussion of initial de-identification in Chapter 5).
+For the final de-identification, you should additionally remove
 indirect identifiers, and assess the statistical disclosure risk of your data.\sidenote{
 	\textbf{Disclosure risk:} the likelihood that a released data record can be associated with an individual or organization.}\index{statistical disclosure}
 Unlike direct identifiers, for which a link (or lack thereof) to public information is verifiable,
 indirect identifiers require an assessment of the likelihood
 that an individual can be singled out in the data
-and then linked to public information in complex combinations.
-For example, with sufficiently small population groups like US ZIP codes,
-the age and gender of a respondent may be enough to identify them.
-This will also often be the case in development work,
-where information such as the size of a household,
+and then linked to public information using combinations of available data.
+For example, seemingly innocuous variables such as US zip code, 
+gender, and date of birth uniquely identify approximately 87\% of the US population.\cite{Sweeney2000}. 
+% full citation is: L. Sweeney, Simple Demographics Often Identify People Uniquely. Carnegie Mellon University, Data Privacy Working Paper 3. Pittsburgh 2000. https://dataprivacylab.org/projects/identifiability/paper1.pdf
+In development data, information such as the size of a household,
 the ages and marital statuses of the household members,
 and the types of work or schooling they engage in
 may be more than enough to identify a person or family
 from a sufficiently small group.
 
-It also requires an assessment of the potential risk to the individual
-that could be caused by disclosure of their identity or personal information.
-This will vary widely depending on the types of information
-you are collecting and the overall vulnerability of the population.
-In extreme cases, where the population is highly vulnerable
-and combinations of information are highly specific,
-you may not be able to publicly release any data at all.
-You will still be expected to catalog and cite your data,
-even if you will not be expected to archive it outside your approved internal system.
-To the extent required to ensure reasonable privacy,
-potentially identifying variables must be further masked or removed.
-
 % tools for final de-identification: pii_detection, pii-scan, sdcMicro
-There are a number of tools developed to help researchers de-identify data
-and which you should use as appropriate at that stage of data collection,
-as discussed in Chapter 5.
-Out of those, the World Bank's \texttt{sdcMicro} tool,\sidenote{
+A number of tools have been developed to help researchers de-identify data.
+At this stage, the World Bank's \texttt{sdcMicro} tool,\sidenote{
 	\url{https://sdcpractice.readthedocs.io/en/latest/sdcMicro.html}}
-in particular, has a feature
+has a useful feature
 that allows you to assess the uniqueness of the records in your data.
 It produces simple measures of the identifiability of records from
 the combination of potentially indirectly identifying variables,
 and allows you to apply common information masking algorithms,
 such as binning, top-coding, and jittering data prior to release.
-You should determine how sensitive your results are to these transformations
-if you need to release data from which your exact results
-cannot be reproduced for this reason.
+You should determine how sensitive your results are to these transformations;
+it may be the case that this data cannot be used for your reproducibility package.
 
 % trade-off between accuracy and privacy
 There will almost always be a trade-off between accuracy and privacy.
 For publicly disclosed data, you should favor privacy.
 Stripping identifying variables from a dataset may not be sufficient to protect respondent privacy,
 due to the risk of re-identification.
-One potential solution is to add noise to data, as the US Census Bureau has proposed.\cite{abowd2018us}
+One solution is to add noise to data, as the US Census Bureau has proposed.\cite{abowd2018us}
 This makes the trade-off between data accuracy and privacy explicit.
 But there are not, as of yet, established norms for such ``differential privacy'' approaches:
 most approaches fundamentally rely on judging ``how harmful'' information disclosure would be.
@@ -351,15 +329,21 @@ and privacy protection, and that you should engage with it actively and explicit
 The best thing you can do is make a complete record of the steps that have been taken
 so that the process can be reviewed, revised, and updated as necessary.
 
-% restricting access of confidential for reproducibility check
-In cases where confidential data is required for analysis,
-we recommend embargoing sensitive or access-restricted variables when publishing the dataset.
-In practice, if you have a secure repository from your
-home institution, funding institution, or other collaborator,
-you can store the data there
-and publish only a catalog entry
-indicating that the data is not available for general publication.
-Access to the embargoed data could be granted for specific purposes,
+Removing variables results in loss of information, so the de-identification process
+requires careful assessment of the potential risk to the individual
+that could be caused by disclosure of their identity or personal information.
+This will vary widely depending on the types of information
+you are collecting and the overall vulnerability of the population.
+In extreme cases, where the population is highly vulnerable
+and combinations of information are highly specific,
+you may not be able to publicly release any data at all.
+You will still be expected to catalog and cite your data,
+even if you cannot release it publicly.
+In practice, this may mean publishing only a catalog entry
+providing descriptive information about the dataset but indicating it is not available for general publication.
+In some cases, it may be possible to release the dataset but 
+embargoing specific variables that are required for the analysis but cannot be released publicly.
+It may be necessary to grant access to the embargoed data for specific purposes,
 such as a computational reproducibility check required for publication,
 if done under careful data security protocols and approved by an IRB.
 
