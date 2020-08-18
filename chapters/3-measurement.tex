@@ -9,11 +9,7 @@ There are many published resources about
 the theories behind different research designs.
 This chapter will instead focus on how the design 
 impacts a project's data requirements.
-We assume you have a working familiarity
-with the research designs mentioned here.
-If needed, you can reference \textcolor{red}{Appendix XYZ},
-where you will find more details 
-and specific references for common impact evaluation methods.
+
 
 Planning data requirements is more than just listing key outcome variables. 
 It requires understanding how to structure the project's data to best answer the research questions, 
@@ -199,10 +195,19 @@ However, we recommend that the charts are created in a digital tool
 so that new versions can easily be created 
 once you learn new things about your research throughout your project.
 
-\subsection{Defining study comparisons using master data}
+\subsection{Defining research variables related to your research design}
 
-Your research design will determine what statistical comparisons you need
-to estimate in your analytical work.
+After you have set up your data plan 
+you need to carefully think about your research design 
+and which research variables you will need 
+to make inferences about differences in measurements variables 
+in relation to your research design.
+We assume you have a working familiarity
+with the research designs mentioned here.
+If needed, you can reference \textcolor{red}{Appendix XYZ},
+where you will find more details 
+and specific references for common impact evaluation methods.
+
 The research designs discussed here compare a group that received
 some kind of \textbf{treatment}\sidenote{
 	\textbf{Treatment:} The general word for the evaluated intervention or event.
@@ -239,23 +244,25 @@ standardize and automate the creation of nicely-formatted balance tables:
 \texttt{iebaltab}\sidenote{
 	\url{https://dimewiki.worldbank.org/iebaltab}}.
 Each research design has a different method	for identifying the statistically-similar control group. 
-for how the statistically similar control group is identified.
 
 The rest of this section covers how data requirements differ
 between different research designs.
-What does not differ, however, is that the authoritative source
-for which units are in the treatment group and which are in the control group
-should always be one or several variables in your master dataset. 
+What does not differ, however, 
+is that these data requirements are all research variables.
+The source for this data requirements varies
+between research design and between projects, 
+but the authoritative source for that type of data should
+always be the master datasets.
 You will often have to merge that data to other datasets, 
-but that is an easy task if you created a data map.
+but that is an easy task if you created a data linkage table.
 
 
 %%%%% Experimental design
 
 In \textbf{experimental research designs}, 
-such as \textbf{randomized control trials (RCTs)},\sidenote{
+such as\index{randomized control trials}\index{experimental research designs}
+\textbf{randomized control trials (RCTs)},\sidenote{
 	\url{https://dimewiki.worldbank.org/Randomized\_Control\_Trials}}
-\index{randomized control trials} \index{experimental research designs}
 the research team determines which members
 of the studied population will receive the treatment.
 This is typically done by a randomized process
@@ -287,8 +294,8 @@ of having access to data collected at the right times and places
 to exploit events that occurred in the past.
 Therefore, these methods often use either secondary data,
 including administrative data or other classes of routinely-collected information,
-and it is important that your data map documents 
-how that data is merged to any other data.
+and it is important that your data linkage table documents 
+how this data is linked to the rest of the data in your project.
 
 
 %%%%% Regression discontinuity
@@ -330,11 +337,11 @@ the treatment status, but instead influence the \textit{probability of treatment
 You will need variables in your data
 that can be used to estimate the probability of treatment for each unit.
 These variables are called \textbf{instruments}.
-In IV designs, instead of the ordinary regression estimator,
-a special version called two-stage least squares (2SLS) is used
-to estimate the impact of the treatment.
-Stata has a built-in command called \texttt{ivregress},
-and another popular implementation is the user-written command \texttt{ivreg2}.
+Instrument variables is a rare example of research variables that might vary over time,
+as your probability of being treated might change. 
+In these cases your research design should 
+ex-ante clearly indicate what point of time this will be recorded, 
+and this should be clearly documented in your master dataset.
 
 
 %%%%% Matching
@@ -351,10 +358,10 @@ both groups have more than one observation represented (many-to-many),
 or where only one group has more than one observation included (one-to-many).
 By now you can probably guess that 
 the result of the matching needs to be saved in the master dataset.
-This is best done by assigning an ID to each matching set, 
+This is best done by assigning a matching ID to each matched set, 
 and create a variable in the master dataset 
 with the ID for the set each unit belongs to.
-The matching can even be done before the randomized assignment,
+The matching can also be done before the randomized assignment,
 so that treatment can be randomized within each matching set.
 This is a type of experimental design.
 Furthermore, if no control observations were identified before the treatment,
