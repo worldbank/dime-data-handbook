@@ -253,7 +253,7 @@ though others shift to integrated editing and compiling tools such as {\LaTeX} a
 % what are reproducibility packages and what they must contain
 While we have focused so far on written materials,
 you must also consider how you will publish
-the data you used for your research.
+the data used in your research.
 The open science community at large sees data publication
 both as a citable output and as a necessary transparency measure.
 Fortunately, it is a conceptually simple task to produce
@@ -366,10 +366,10 @@ This fosters collaboration and may enable researchers to explore variables and
 questions that you do not have time to focus on otherwise.
 
 % platforms for publishing data
-First, you should choose the platform where you will publish your data.
+The first step toward data publication is choosing the platform where you will publish your data.
 A variety of options exist; 
-most important is to choose one that allows you to obtain a digital object identifier (DOI)
-and a formal citation for your data, to use in your publication.
+it is important to choose one that allows you to obtain a digital object identifier (DOI)
+and a formal citation for your data, so you can reference it in other research outputs.
 Two common platforms for development data are the World Bank's Development Data Hub 
 and Harvard University's Dataverse.
 The World Bank's Development Data Hub\sidenote{
@@ -397,25 +397,25 @@ Once you have chosen a platform, you need to determine exactly what data you wil
 As mentioned earlier, there are typically two different types of data releases for a research project:
 complete (de-identified) original datasets and derivative datasets used for specific research outputs.
 Whether you can publish the original dataset depends on data ownership and licensing agreements.
-If the data was acquired through a survey that was contracted by the research team:
+If the data was acquired through a survey that was contracted by the research team,
 the data belongs to the research team, 
 and therefore the team has full publication rights for both the original and derivative data. 
 If data was acquired from a partner through a licensing agreement, 
 the terms of the license will determine publication rights. 
 These datasets should match the survey instrument or source documentation as closely as possible,
-and do not include indicators constructed by the research team. 
+and should not include indicators constructed by the research team. 
 Even if you do not have rights to publish the original data, 
-you typically can publish derivative datasets prepared by the research team.
-These datasets typically contains only the constructed indicators and associated documentation.\sidenote{
+you can typically publish derivative datasets prepared by the research team.
+These datasets usually contain only the constructed indicators and associated documentation,\sidenote{
   \url{https://guide-for-data-archivists.readthedocs.io}}
-This is typically the dataset included in the replication package.
+and should also be included in the replication package.
 
 % licensing published data
 When publishing data,
 you will decide how the data may be used and what license you will assign to it.\sidenote{
   \url{https://iatistandard.org/en/guidance/preparing-organisation/organisation-data-publication/how-to-license-your-data}}
 Make sure you understand the rights associated with any data release
-and communicate them to any future users of the data.
+and communicate them to its future users.
 Material without a license may never be reused.
 You should prefer to offer a license that is explicit
 and details whether and how specific individuals may access the data.
@@ -475,15 +475,15 @@ Before releasing your code, you should edit it for content and clarity
 just as if it were written material.
 The purpose of releasing code is to allow others to understand
 exactly what you have done in order to obtain your results,
-and enable others to apply similar methods in future projects.
-Others should be able to reproduce individual portions of your analysis
+and enable them to apply similar methods in future projects.
+Other researchers should be able to reproduce individual portions of your analysis
 by making only small adjustments to your code.
 In either a scripts folder or in the root directory,
 you should include a master script that allows someone else to run the entire project
 and re-create all raw outputs by changing only a single line of code:
 the one setting the directory path.
 The code should both be functional and readable,
-through the use of clean structure and extensive commenting.
+through the use of a clear structure and extensive commenting.
 Code is often not written this way when it is first prepared,
 so it is important for you to review the content and organization
 so that a new reader can figure out what your code should do and how it does it.
@@ -496,18 +496,18 @@ We have adopted several practices and requirements to support the production
 of high-quality reproducibility packages.
 The materials for these practices are publicly available,
 so you can use them to check the reproducibility of your own work.
-This reproducibility check is initiated by submitting the Reproducibility Package Checklist.
-% add link!
+This reproducibility check is initiated by submitting the Reproducibility Package Checklist.\sidenote{
+	\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/checklists/reproducibility-package-checklist.pdf}}
 DIME projects are required to organize code
 with a master script, to facilitate handovers across team members 
 and make the computational reproducibility check a one-click exercise.
 Compliance with these and other coding standards at DIME is monitored through
-quarterly peer code review rounds, which allow research assistants to improve their code and documentation as it is written,
+quarterly peer code review rounds, which allows research assistants to improve their code and documentation as it is written,
 rather than revisiting it in a rush near publication time.
 DIME projects are also expected to use Git and GitHub
 to document project work and collaboration,
-and to keep the master branch up-to-date as a working edition.
-% link to DIME standards
+and to keep the master branch up-to-date as a working edition.\sidenote{
+	\url{https://github.com/worldbank/dime-standards/tree/master/dime-research-standards/pillar-3-research-reproducibility}}
 
 % ensuring code reproducibility
 Before publicly releasing a reproducibility package,
@@ -515,17 +515,19 @@ it is essential to make sure that the code executes perfectly on a fresh install
 To ensure that your code will run completely on a new computer,
 you must install any required user-written commands in the master script
 (for example, in Stata using \texttt{ssc install} or \texttt{net install}
-and in R include code giving users the option to install packages,
+and in R adding code that gives users the option to install packages,
 including selecting a specific version of the package if necessary).
 In many cases you can even directly provide the underlying code
 for any user-installed packages that are needed to ensure forward-compatibility.
-Make sure system settings like \texttt{version}, \texttt{matsize}, and \texttt{varabbrev} are set.
+Make sure system settings like software version and memory settings are defined.
+The \texttt{ieboilstart} command in \texttt{ietoolkit} defines and applies these settings 
+for a chosen Stata version.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Ieboilstart}}  
 
 % tracking code and outputs
 Finally, make sure that code inputs and outputs are clearly identified.
 A new user should, for example, be able to easily find and quickly recreate
 any files generated by the code.
-Readers should also be able to quickly map all the outputs of the code
+Readers should also be able to easily map all the outputs of the code
 to where they appear in the associated published material,
 so you must ensure ensure that the raw components of figures or tables are clearly identified.
 Documentation in the master script is often used to indicate this information.
