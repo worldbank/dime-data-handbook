@@ -386,13 +386,17 @@ and not loading a fresh constructed dataset before each analysis task.
 To avoid mistakes, it's important to take the time
 to organize the code that you want to keep, that is,
 the final analysis code, in a clean manner.
-The result is a curated set of polished scripts that will be part of a reproducibility package.
+The result is a curated set of polished scripts that
+will be part of a reproducibility package.
 A well-organized analysis script starts with a completely fresh workspace
 and, for each output it creates, explicitly loads data before analyzing it.
 This setup encourages data manipulation to be done earlier in the workflow
 (that is, in separate cleaning and construction scripts).
-It also prevents you from accidentally writing pieces of analysis code that depend on one another
-or that require manual instructions for all necessary chunks of code to be run in the right order.
+This also prevents that one of your analysis scripts 
+is dependent on another analysis script to have been run before.
+Such dependencies tend to require manual instructions 
+for all necessary chunks of code to be run in the right order,
+which is a nightmare for reproducibility.
 It encourages you to write each task so it is completely independent of all other code,
 except for the master script.
 You can go as far as coding every output in a separate script.
