@@ -416,7 +416,7 @@ based on this single continuous variable: \texttt{iematch}\sidenote{
 part of the \texttt{ietoolkit} package.
 
 %-----------------------------------------------------------------------------------------------
-\subsection{Time periods and data plans}
+\subsection{Time periods in data plans}
 
 Your data plan should also take into consideration 
 whether you are using data from one time period or several.
@@ -431,21 +431,23 @@ show that the control group is indeed a valid counterfactual to the treatment gr
 
 Observations over multiple time periods, 
 referred to as \textbf{longitudinal data}\index{longitudinal data},
-can consist of either \textbf{repeated cross-sections}\index{repeated cross-sectional data}
+can consist of either 
+\textbf{repeated cross-sections}\index{repeated cross-sectional data}
 or \textbf{panel data}\index{panel data}.
 In repeated cross-sections,
 each successive round of data collection uses a new random sample
 of observations from the treatment and control groups,
-but in a panel data study the same observations are tracked and included each round.
+but in a panel data study
+the same observations are tracked and included each round.
 If each round of data collection is a separate activity,
-they should be treated as a separate source of data 
+then they should be treated as a separate source of data 
 and get their own row in the data linkage table. 
 If the data is continuously collected,
 or at frequent intervals,
 then it can be treated as a single data source.
 The data linkage table must document 
 how the different rounds will be merged or appended
-when panel data collected in separate activities.
+when panel data is collected in separate activities.
 
 You must keep track of the \textit{attrition rate} in panel data,
 which is the share of observations not observed in follow-up data.
@@ -454,11 +456,15 @@ can be correlated with the outcome you study.
 For example, poorer households may live in more informal dwellings,
 patients with worse health conditions might not survive to follow-up,
 and so on.
-If this is the case, then your results might only be an effect of your remaining sample
-being a subset of the original sample that were better or worse off from the beginning.
-You should have a variable in your master dataset that indicates attrition.
-A balance check using the attrition variable can provide insights
-as to whether the lost observations were systematically different
+If this is the case, 
+then your results might only be an effect of your remaining sample
+being a subset of the original sample 
+that were better or worse off from the beginning.
+You should have a variable in your master dataset
+ that indicates attrition.
+A balance check using the attrition variable
+can provide insights as to whether the lost observations 
+were systematically different
 compared to the rest of the sample.
 
 %-----------------------------------------------------------------------------------------------
@@ -467,10 +473,11 @@ compared to the rest of the sample.
 For any study with an ex-ante design, 
 \textbf{monitoring data}\index{monitoring data}\sidenote{\url{
 		https://dimewiki.worldbank.org/Monitoring\_Data}}
-is very important for understanding whether field realities match the research design.
-Monitoring data is used to understand if the
-assumptions made during the research design corresponds to what is true in reality.
-The most typical example is to make sure that, in an experimental design,
+is very important for understanding if the
+assumptions made during the research design 
+corresponds to what is true in reality.
+The most typical example is to make sure that, 
+in an experimental design,
 the treatment was implemented according to your treatment assignment.
 While it is always better to monitor all activities,
 it might be to costly. 
@@ -486,56 +493,65 @@ might not be aware that their actions are the implementation of your research.
 Therefore, you must acquire monitoring data that 
 tells you how well the treatment assignment in the field
 corresponds to your intended treatment assignment,
-for nearly all research designs.
+for nearly all experimental research designs.
 
-Another example of a research design where monitoring data is important
+An example of a non-experimental research design
+for which monitoring data also is important
 are regression discontinuity (RD) designs
-where the discontinuity is a cutoff for eligibility of the treatment. 
+where he discontinuity is 
+a cutoff for eligibility of the treatment. 
 For example, 
-let's say your project studies the impact of a program for students that scored under 50\% at a test.
+let's say your project studies the impact of a program
+for students that scored under 50\% at a test.
 We might have the exact results of the tests for all students, 
 and therefore know who should be offered the program, 
 however that is not the same as knowing who attended the program. 
 A teacher might offer the program to someone that scored 51\% at the test,
 and someone that scored 49\% at the might decline to participate in the program.
-We should not pass judgment on a teacher that offers a program to a student
-they think can benefit from it, 
-but if that was not inline with our research assumptions,
-then we need to understand how common that was.
+We need to understand how common this was, 
+and if one case was more common than the other.
 Otherwise the result of our research will not be helpful
 in evaluating the program.
 
 Monitoring data is particularly prone to errors 
-relating to correctly linking this data with the rest of the data in your project.
+when linking it with the rest of the data in your project.
 Often monitoring activities is done by 
 sending a team to simply record the name of all people attending a training,
 or by a partner organization share their administrative data.
 In both those cases it can be difficult to make sure that
-the same identifiers we have in our master datasets are using to record who is who.
+the project ID or any other unambiguous identifiers in our master datasets
+is used to record who is who.
 Planning ahead for this, 
 already when the monitoring activity is added to the data linkage table,
-is the best protection you have from ending up with poor correlation 
-between treatment uptake and your expectations that
-is mainly a result of a fuzzy link between your monitor data and the rest of your data.
+is the best protection from ending up with poor correlation 
+between treatment uptake and treatment assignment,
+without a way to tell if the poor correlation is just
+a result of a fuzzy link between your monitor data and the rest of your data.
 
 
 %-----------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------
-\section{Randomized creation of research variables}
+\section{Research variables created by randomization}
 
-Random sampling and treatment assignment are two research variables 
-often created by the research team that are core elements of research design.
-In experimental methods, random sampling and treatment assignment directly determine
+Random sampling and treatment assignment are two research activities  
+at the core elements of research design, 
+that generated research variables.
+In experimental methods, 
+random sampling and treatment assignment directly determine
 the set of individuals who are going to be observed
 and what their status will be for the purpose of effect estimation.
-In quasi-experimental methods, random sampling determines what populations the study
+In quasi-experimental methods, 
+random sampling determines what populations the study
 will be able to make meaningful inferences about,
 and random treatment assignment creates counterfactuals.
 \textbf{Randomization}\sidenote{
-	\textbf{Randomization} is often used interchangeably to mean random treatment assignment.
-	In this book however, \textit{randomization} will only be used to describe the process of generating
+	\textbf{Randomization} is often used interchangeably 
+	to mean random treatment assignment.
+	In this book however, \textit{randomization} will only 
+	be used to describe the process of generating
 	a sequence of unrelated numbers, i.e. a random process. 
-	\textit{Randomization} will never be used to mean the process of assigning units in treatment and control groups,
+	\textit{Randomization} will never be used to mean 
+	the process of assigning units in treatment and control groups,
 	that will always be called \textit{random treatment assignment},
 	or a derivative thereof.} 
 is used to ensure that a sample is representative and
@@ -557,7 +573,7 @@ creating groups that are not good counterfactuals.
 \textit{Power calculation} and \textit{randomization inference}
 are the main methods by which these probabilities of error are assessed.
 These analyses are particularly important in the initial phases of development research --
-typically conducted before any actual field work occurs --
+typically conducted before any data acquisition or field work occurs --
 and have implications for feasibility, planning, and budgeting.
 
 %-----------------------------------------------------------------------------------------------
@@ -579,14 +595,20 @@ Where sampling determines whether a particular individual
 will be observed at all in the course of data collection,
 randomized assignment determines if each individual will be observed
 as a treatment observation or used as a counterfactual.
+
 The list of units to sample or assign from may be called a \textbf{sampling universe},
 a \textbf{listing frame}, or something similar.
 This list should always be your \textbf{master dataset} when possible,
-and the result should always be saved in the master dataset before merged to any other data.
-The rare exceptions when master datasets cannot be used is 
+and the result should always be saved in the master dataset
+before merged to any other data.
+One example of the rare exceptions 
+when master datasets cannot be used is 
 when sampling must be done in real time --
-for example, randomly sampling patients as they arrive at a health facility.
-In those cases, it is important that you collect enough data during the real time sampling,
+for example, randomly sampling patients 
+as they arrive at a health facility.
+In those cases, 
+it is important that you collect enough data
+during the real time sampling,
 such that you can add these individuals, 
 and the result of the sampling, 
 to your master dataset afterwards.
