@@ -619,7 +619,7 @@ the particular circumstances or each research project.
 
 % Documentation
 Whether you decide to modify your data or not,
-you must keep a careful record of all mistakes that you identify.
+you must keep a careful record of all issues that you identify.
 If no data points are modified, 
 it may still be helpful to add flags to observations containing
 potentially problematic values,
@@ -630,7 +630,7 @@ Be very careful not to include confidential information in documentation that is
 or that you intend to release as part of a replication package or data publication.
 Finally, remember not to make changes directly to the raw data.
 Instead, any corrections must be done as part of data cleaning,
-and saved to a new dataset.
+applied through code, and saved to a new dataset.
 
 \subsection{Recoding and annotating data}
 
@@ -639,7 +639,7 @@ The cleaned dataset is the starting point of data analysis.
 It will be extensively manipulated to construct analysis indicators,
 so it is important for it to be easily processed by statistical software.
 To make the analysis process smoother, 
-anyone opening it for the first time should have all the information needed to interact with it,
+anyone opening this dataset for the first time should have all the information needed to interact with it,
 even if they were not involved in the acquisition or cleaning process.
 This will save them time going back and forth between the dataset and its accompanying documentation. 
 
@@ -677,20 +677,21 @@ We recommend that the cleaned dataset be kept as similar to the raw data as poss
 This is particularly important regarding variable names:
 keeping them consistent with the raw data makes data processing and construction more transparent.
 Unfortunately, not all variable names are informative.
-In such cases, one important piece of documentation,
-the variable dictionary, makes the data easier to handle.
+In such cases, one important piece of documentation
+ makes the data easier to handle: the variable dictionary.
 When a data collection instrument (for example a questionnaire) is available, 
 it is often the best dictionary one could ask for.
-But even in this cases, going back and forth between files can be inefficient,
+But even in these cases, going back and forth between files can be inefficient,
 so annotating variables in a dataset is extremely useful.
 In Stata, \textit{variable labels}\sidenote{\url{
-	https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Variable\_Labels}} must always be present in a cleaned dataset.
+	https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Variable\_Labels}}
+must always be present in a cleaned dataset.
 They should include a short and clear description of the variable.
 A lengthier description, that may include, for example,
 the exact wording of a question, may be added through \textit{variable notes}.
 In R, it is less common to use variable labels,
 and a separate dataset with a variable dictionary is often preferred,
-but \texttt{dataframe attributes} can be used for the same purpose.
+but \texttt{data frame attributes} can be used for the same purpose.
 
 % Dropping irrelevant variables
 Finally, any information that is not relevant for analysis may be removed from the dataset.
@@ -701,8 +702,8 @@ these variables may be removed from your dataset.
 In fact, to make the data easier to handle,
 you may choose to start from a minimal set of variables,
 and add new ones as you clean them.
-To make sure the cleaned dataset file doesn't get too big to be handled,
-use commands such as \texttt{compress} in Stata to make sure the data
+To ensure the cleaned dataset file doesn't get too big to be handled,
+use commands such as \texttt{compress} in Stata so the data
 is always stored in the most efficient format.
 
 % Cleaning tools: iecodebook, tidyverse
@@ -710,8 +711,7 @@ Although all these tasks are key to making the data easy to use,
 implementing them can be quite repetitive and create convoluted scripts.
 The \texttt{iecodebook} command suite, part of the \texttt{iefieldkit} Stata package,
 is designed to make some of the most tedious components of this process more efficient.\sidenote{
-	\url{https://dimewiki.worldbank.org/iecodebook}}
-\index{iecodebook}
+	\url{https://dimewiki.worldbank.org/iecodebook}}\index{iecodebook}
 It also creates a self-documenting workflow,
 so your data cleaning documentation is created alongside that code,
 with no extra steps.
@@ -745,5 +745,13 @@ or at least archiving and cataloguing,
 even if it will remain embargoed for some time.
 This will help you organize your files and create a backup of the data,
 and some donors require that the data be filed as an intermediate step of the project.
+However, the reason why you acquired and cleaned this data
+was a research question.
+Though data cleaning is typically the most time-consuming process in the data work,
+the reason why it is done is preparing data to be analyzed.
+In chapter 6, you will see what are the last few steps needed to finally run the
+regressions originally specified in your analysis plan
+and find an answer to your research question --
+or perhaps to find out you now have even more questions.
 
 %--------------------------------------------------------------
