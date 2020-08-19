@@ -13,7 +13,7 @@ sets of tracked-changes documents with conflicting edits.
 Furthermore, for most research projects,
 completing a manuscript is not the end of the task.
 Academic journals increasingly require a ``reproducibility package''
-which contains the code and materials used to create the results.
+which contains the data, code and supporting materials used to create the results.
 Preparation of a reproducibility package is a pre-requisite to publication at DIME.
 Replication packages represent an intellectual contribution in their own right,
 because they enable others to learn from your process
@@ -55,7 +55,7 @@ that enable version control and simultaneous contributions.
 As we outlined in the previous chapter,
 \textbf{dynamic documents} are a way to simplify writing workflows:
 updates to analytical outputs that appear in these documents, such as tables and figures,
-can be passed in to the final output with a single process,
+can be passed in to the final output in a single click,
 rather than copy-and-pasted or otherwise handled individually.
 Managing the writing process in this way
 improves organization and reduces error,
@@ -68,8 +68,8 @@ with out-of-date results, or of completed work being lost or redundant.
 As we discussed in Chapter 6, the most widely used software
 for dynamically managing academic manuscripts is {\LaTeX}.
 \index{\LaTeX}
-{\LaTeX} uses explicitly encoded references to inputs (e.g. tables and figures),
-which helps ensure that the most up-to-date version is always included.
+{\LaTeX} uses explicit references to the file path of each input (e.g. tables and figures),
+which are reloaded from these locations every time the final document is compiled.
 This is not possible by default in Microsoft Word.
 There, you have to copy and paste each object
 whenever tables, graphs, or other inputs are updated.
@@ -78,18 +78,19 @@ that a mistake will be made or something will be missed.
 In {\LaTeX}, instead of writing in a
 ``what-you-see-is-what-you-get'' mode as you do in Word,
 you write plain text in a \texttt{.tex} file,
-interlaced with coded instructions for formatting and exhibits (similar to HTML).
+interlaced with coded instructions formatting the document and linking to exhibits (similar to HTML).
 {\LaTeX} manages tables and figures dynamically
 and includes commands for simple markup
 like font styles, paragraph formatting, section headers and the like.
 It includes special controls for
 footnotes and endnotes, mathematical notation, and bibliography preparation.
 It also allows publishers to apply global styles and templates to already-written material,
-allowing them to reformat entire documents in house styles with only a few keystrokes.
+reformatting entire documents in house styles with only a few keystrokes.
 
 % keeping it simple
 To create a {\LaTeX} manuscript,
-you will typically create a new top-level directory for each final output.
+you will typically start from a new top-level directory for each final output,
+such as a paper or report.
 Many projects go so far as to create the main paper
 and any appendix text as separate projects.
 For a single research output, we recommend putting the manuscript files
@@ -174,7 +175,7 @@ Therefore, even in the case where you are required to provide
 \texttt{.docx} versions of materials to others, or tracked-changes versions,
 you can create them effortlessly from a {\LaTeX} manuscript,
 then use external tools like Word's compare feature
-to generate outputs like integrated track-changes versions when needed.
+to generate integrated track-changes versions when needed.
 
 
 \subsection{Getting started with {\LaTeX} as a team}
@@ -226,7 +227,7 @@ so that different writers do not create conflicted or out-of-sync copies,
 or need to deal with Git themselves to maintain that sync.
 Third, they typically allow collaborators to edit documents simultaneously,
 though different services vary the number of collaborators and documents allowed at each tier.
-Fourth, and most usefully, some implementations provide a ``rich text'' editor
+Fourth, some implementations provide a ``rich text'' editor
 that behaves pretty similarly to familiar tools like Word,
 so that collaborators can write text directly into the document without worrying too much
 about the underlying {\LaTeX} coding.
