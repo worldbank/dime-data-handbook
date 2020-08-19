@@ -1,33 +1,38 @@
 %------------------------------------------------
 
 \begin{fullwidth}
-Publication typically involves many iterations of manuscript,
-code, and data files, with inputs from multiple collaborators.
+Publication of any research product typically involves many iterations of
+outputs, code, and data files, with inputs from multiple collaborators.
 This process can quickly become unwieldy.
 It is in nobody's interest for a skilled and busy researcher
-to spend days re-numbering references (and it can take days)
-when a small amount of up-front effort can automate the task.
+to spend days re-numbering figures, tables, or references (and it can take days)
+when a reasonable amount of up-front effort can automate the task.
 Similarly, simultaneous collaboration should not involve
 the repetitive and error-prone task of manually resolving
 sets of tracked-changes documents with conflicting edits.
-Furthermore, for most research projects,
-completing a manuscript is not the end of the task.
-Academic journals increasingly require a ``reproducibility package''
-which contains the data, code and supporting materials used to create the results.
-Preparation of a reproducibility package is a pre-requisite to publication at DIME.
-Replication packages represent an intellectual contribution in their own right,
+Furthermore, for most development data projects,
+completing a research output is not the end of the task.
+Academic journals and policy notes are more commonly supported by
+reproducibility packages which contain the data, code, and supporting materials
+needed to recreate the results.
+Preparation of a reproducibility package is a pre-requisite
+to formal publication at DIME,
+and extensive reproducibility packages are now required at many major academic outlets.
+Replication materials represent an intellectual contribution in their own right,
 because they enable others to learn from your process
 and better understand the results you have obtained.
 
-In this chapter, we suggest tools and workflows for efficiently managing collaboration
-and ensuring reproducibility.
-First, we discuss how to use dynamic documents to collaborate on technical writing.
-Second, we provide guidelines for preparing a functioning and informative reproducibility package.
+In this chapter, we suggest tools and workflows for
+efficiently managing collaboration on research and policy outputs
+and ensuring reproducibility of their results.
+First, we discuss how to use dynamic documents to collaborate on writing.
+Second, we provide guidelines for preparing
+functioning and informative reproducibility packages.
 If you have organized your analytical process
 according to the general principles outlined in earlier chapters,
 preparing to publish materials will not require
 substantial reorganization of the work you have already done.
-Hence, publication is the conclusion of the system
+Hence, publication of outputs is the conclusion of the system
 of transparent, reproducible, and credible research we introduced
 from the very first chapter of this book.
 We include specific guidance on publishing both code and data files,
@@ -44,11 +49,11 @@ but the core principles involved in publication and transparency will endure.
 % collaborating is easier with dynamic documents
 Development research is increasingly a collaborative effort.
 This reflects changes in the economics discipline overall:
-the number of sole-authored papers is decreasing,
+the number of sole-authored research outputs is decreasing,
 and the majority of recent papers in top journals have three or more
 authors.\sidenote{\url{https://voxeu.org/article/growth-multi-authored-journal-articles-economics}}
-As a consequence, manuscripts typically pass back and forth between several writers
-before they are ready for publication.
+As a consequence, outputs typically pass back and forth between several writers
+before they are ready for publication or release.
 Just as with the preparation of analytical outputs,
 effective collaboration requires the adoption of tools and practices
 that enable version control and simultaneous contributions.
@@ -62,15 +67,18 @@ improves organization and reduces error,
 such that there is no risk of materials being compiled
 with out-of-date results, or of completed work being lost or redundant.
 
-\subsection{Preparing manuscripts as {\LaTeX} documents}
+\subsection{Preparing formal outputs as {\LaTeX} documents}
 
 % what exactly is a dynamic document
 As we discussed in Chapter 6, the most widely used software
-for dynamically managing academic manuscripts is {\LaTeX}.
+for dynamically managing formal manuscripts and policy outputs is {\LaTeX}.
+It is also becoming more popular for shorter outputs,
+such as policy briefs,
+with the proliferation of skills and templates for these kinds of products.
 \index{\LaTeX}
 {\LaTeX} uses explicit references to the file path of each input (e.g. tables and figures),
 which are reloaded from these locations every time the final document is compiled.
-This is not possible by default in Microsoft Word.
+This is not possible by default in, for example, Microsoft Word.
 There, you have to copy and paste each object
 whenever tables, graphs, or other inputs are updated.
 As time goes on, it becomes increasingly likely
@@ -88,24 +96,24 @@ It also allows publishers to apply global styles and templates to already-writte
 reformatting entire documents in house styles with only a few keystrokes.
 
 % keeping it simple
-To create a {\LaTeX} manuscript,
-you will typically start from a new top-level directory for each final output,
-such as a paper or report.
-Many projects go so far as to create the main paper
-and any appendix text as separate projects.
-For a single research output, we recommend putting the manuscript files
+To create a {\LaTeX} document,
+you will typically start from a new top-level directory for each final output.
+For a single output, we recommend putting the core document files
 (such as \texttt{main.tex} and \texttt{bibliography.bib})
 in the top-level folder,
 and then have subfolders for figures, tables, and other inputs.
-Your analytical scripts should be set up such that it is easy to output files
+Your analysis scripts should be set up such that it is easy to output files
 at the location of your choice by adjusting paths in the master script.
 Above all, keep your workflow as simple as possible.
 While {\LaTeX} \textit{can} produce complex formatting,
 this is rarely needed for academic publishing,
-as your manuscript will usually be reformatted
+as academic manuscripts will usually be reformatted
 based on the style of the publisher.
-So it's rarely worth the investment to go beyond basic {\LaTeX} tools:
-the title page, manuscript sections and subsections,
+(By contrast, policy and other self-produced documents may desire
+extensive typesetting and investments in custom templates and formatting.)
+So, in academia at least,
+it's rarely worth the investment to go beyond basic {\LaTeX} tools:
+the title page, sections and subsections,
 figures and tables, mathematical equations,
 bolding and italics, footnotes and endnotes,
 and, last but not least, references and citations.
@@ -160,9 +168,10 @@ by running the following code from the command line:
 
 \codeexample{pandoc.sh}{./code/pandoc.sh}
 
-\noindent Even though conversion to Word is required for a number of publishers,
-we do not recommend using Word to prepare the manuscript. 
-Rather, you should export it to Word only at the final stage, when submitting for publication.
+\noindent Even though conversion to Word is required
+for a number of academic publishers and can even be preferred for some policy outpts,
+we still recommend using {\LaTeX} to prepare these outputs when possible.
+You should export to Word only at the final stage, when submitting materials.
 The \texttt{pandoc} utility can only handle relatively simple formatting,
 but it will seamlessly translate all the features we mentioned before
 into the correct native Word styling.
@@ -173,7 +182,7 @@ You can download a CSL (Citation Styles Library) file\sidenote{
 for nearly any journal and have it applied automatically in this process.
 Therefore, even in the case where you are required to provide
 \texttt{.docx} versions of materials to others, or tracked-changes versions,
-you can create them effortlessly from a {\LaTeX} manuscript,
+you can create them effortlessly from a {\LaTeX} document,
 then use external tools like Word's compare feature
 to generate integrated track-changes versions when needed.
 
@@ -202,12 +211,12 @@ particularly if you are new to working with plain text code and file management.
 This is because {\LaTeX} requires that all formatting be done in its special code language,
 and it is not particularly informative when you do something wrong.
 This can be off-putting very quickly for people
-who simply want to get to writing, 
+who simply want to get to writing,
 and staff not used to programming may not easily acquire the necessary knowledge.
 
 Cloud-based implementations of {\LaTeX} can make it easier for your team to use
-{\LaTeX} without all members having to invest in new skills, 
-and can be particularly useful for first forays into {\LaTeX} writing. 
+{\LaTeX} without all members having to invest in new skills,
+and can be particularly useful for first forays into {\LaTeX} writing.
 One example of this is Overleaf.\sidenote{\url{
 https://www.overleaf.com/}}
 Most such sites offer a subscription feature
@@ -244,7 +253,7 @@ They vary dramatically in their ability to integrate
 with file systems where you store your code and outputs,
 and so you will need to practice an integrated workflow depending what is available to you.
 Some teams adopt cloud-based tools as a permanent solution,
-though others shift to integrated editing and compiling tools such as {\LaTeX} and Atom. 
+though others shift to integrated editing and compiling tools such as {\LaTeX} and Atom.
 
 %----------------------------------------------------
 
@@ -266,16 +275,16 @@ to fields in the original dataset or data collection instrument
 If you follow the steps outlined in Chapter 5,
 when you get to the publication stage you will have
 a cleaned data set and supporting documentation ready.
-Second, you should separately catalog 
+Second, you should separately catalog
 the analytical dataset used for the output you are publishing.
-This is typically included in the replication package. 
+This is typically included in the replication package.
 The package should also include the data construction scripts
 that create transformed and derived indicators,
 project-specific information
 such as treatment assignment and other indicators
 generated directly by the research team (another example is constructed record linkages).
 If you followed the workflow recommended in Chapter 6,
-by the time you reach publication stage you will already have all necessary 
+by the time you reach publication stage you will already have all necessary
 files and documentation at hand.
 
 \subsection{De-identifying data for publication}
@@ -294,8 +303,8 @@ Unlike direct identifiers, for which a link (or lack thereof) to public informat
 indirect identifiers require an assessment of the likelihood
 that an individual can be singled out in the data
 and then linked to public information using combinations of available data.
-For example, seemingly innocuous variables such as US zip code, 
-gender, and date of birth uniquely identify approximately 87\% of the US population.\cite{Sweeney2000}. 
+For example, seemingly innocuous variables such as US zip code,
+gender, and date of birth uniquely identify approximately 87\% of the US population.\cite{Sweeney2000}.
 % full citation is: L. Sweeney, Simple Demographics Often Identify People Uniquely. Carnegie Mellon University, Data Privacy Working Paper 3. Pittsburgh 2000. https://dataprivacylab.org/projects/identifiability/paper1.pdf
 In development data, information such as the size of a household,
 the ages and marital statuses of the household members,
@@ -344,7 +353,7 @@ In practice, this may mean publishing only a catalog entry
 providing information about the contents of the datasets
 and how future users might request permission to access them
 (even if you are not the person to grant that permission).
-In some cases, it may be possible to release the dataset but 
+In some cases, it may be possible to release the dataset but
 embargoing specific variables that are required for the analysis but cannot be released publicly.
 It may be necessary to grant access to the embargoed data for specific purposes,
 such as a computational reproducibility check required for publication,
@@ -367,10 +376,10 @@ questions that you do not have time to focus on otherwise.
 
 % platforms for publishing data
 The first step toward data publication is choosing the platform where you will publish your data.
-A variety of options exist; 
+A variety of options exist;
 it is important to choose one that allows you to obtain a digital object identifier (DOI)
 and a formal citation for your data, so you can reference it in other research outputs.
-Two common platforms for development data are the World Bank's Development Data Hub 
+Two common platforms for development data are the World Bank's Development Data Hub
 and Harvard University's Dataverse.
 The World Bank's Development Data Hub\sidenote{
 	\url{https://datacatalog.worldbank.org}}
@@ -398,13 +407,13 @@ As mentioned earlier, there are typically two different types of data releases f
 complete (de-identified) original datasets and derivative datasets used for specific research outputs.
 Whether you can publish the original dataset depends on data ownership and licensing agreements.
 If the data was acquired through a survey that was contracted by the research team,
-the data belongs to the research team, 
-and therefore the team has full publication rights for both the original and derivative data. 
-If data was acquired from a partner through a licensing agreement, 
-the terms of the license will determine publication rights. 
+the data belongs to the research team,
+and therefore the team has full publication rights for both the original and derivative data.
+If data was acquired from a partner through a licensing agreement,
+the terms of the license will determine publication rights.
 These datasets should match the survey instrument or source documentation as closely as possible,
-and should not include indicators constructed by the research team. 
-Even if you do not have rights to publish the original data, 
+and should not include indicators constructed by the research team.
+Even if you do not have rights to publish the original data,
 you can typically publish derivative datasets prepared by the research team.
 These datasets usually contain only the constructed indicators and associated documentation,\sidenote{
   \url{https://guide-for-data-archivists.readthedocs.io}}
@@ -490,8 +499,8 @@ so that a new reader can figure out what your code should do and how it does it.
 Making code clean and readable is often where you need to invest time prior to releasing your reproducibility package.
 
 % reproducibility review
-DIME requires all academic outputs to successfully pass a computational reproducibility check 
-before being submitted for publication. 
+DIME requires all academic outputs to successfully pass a computational reproducibility check
+before being submitted for publication.
 We have adopted several practices and requirements to support the production
 of high-quality reproducibility packages.
 The materials for these practices are publicly available,
@@ -499,7 +508,7 @@ so you can use them to check the reproducibility of your own work.
 This reproducibility check is initiated by submitting the Reproducibility Package Checklist.\sidenote{
 	\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/checklists/reproducibility-package-checklist.pdf}}
 DIME projects are required to organize code
-with a master script, to facilitate handovers across team members 
+with a master script, to facilitate handovers across team members
 and make the computational reproducibility check a one-click exercise.
 Compliance with these and other coding standards at DIME is monitored through
 quarterly peer code review rounds, which allows research assistants to improve their code and documentation as it is written,
@@ -520,8 +529,8 @@ including selecting a specific version of the package if necessary).
 In many cases you can even directly provide the underlying code
 for any user-installed packages that are needed to ensure forward-compatibility.
 Make sure system settings like software version and memory settings are defined.
-The \texttt{ieboilstart} command in \texttt{ietoolkit} defines and applies these settings 
-for a chosen Stata version.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Ieboilstart}}  
+The \texttt{ieboilstart} command in \texttt{ietoolkit} defines and applies these settings
+for a chosen Stata version.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Ieboilstart}}
 
 % tracking code and outputs
 Finally, make sure that code inputs and outputs are clearly identified.
@@ -535,7 +544,7 @@ For example, outputs should clearly correspond by name to an exhibit in the pape
 (Supplying a compiling {\LaTeX} document can support this.)
 Code and outputs which are not used in the final paper should be removed from the final replication package,
 but still archived for transparency.
-One way to do this is keeping them on a separate GitHub branch 
+One way to do this is keeping them on a separate GitHub branch
 
 \subsection{Releasing a reproducibility package}
 
@@ -605,7 +614,7 @@ Emerging technologies such as the ``containerization'' approach of CodeOcean\sid
   \url{https://codeocean.com}}
 offer to store both code and data in one repository,
 and also provide an online workspace in which others can execute and modify your code
-without having to download your tools and match your local environment. 
+without having to download your tools and match your local environment.
 This is particularly useful over time, as packages and other underlying software may have changed since publication.
 In a similar spirit, attempts to create ``metadata archives''
 that link all the different materials, releases, and publications
@@ -626,7 +635,7 @@ many of which are topic-specific.\sidenote{
   \url{https://arxiv.org/}}
 You can also use GitHub or OSF and link to the PDF file directly
 through your personal website or whatever medium you are sharing the preprint.
-We recommend against using file sharing services such as 
+We recommend against using file sharing services such as
 Dropbox or Google Drive for this purpose,
-as their access is more restrictive, 
+as their access is more restrictive,
 and organizations limit access to platforms other than the one officially adopted.
