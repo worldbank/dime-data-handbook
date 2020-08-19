@@ -46,7 +46,6 @@ These could be multiple survey rounds,
 data acquired from different  partners (e.g. administrative data,
 web scraping, implementation monitoring, etc)
 or complex combinations of these.
-
 However your study is structured, you need to know how to link data from all sources
 and analyze the relationships between the units that appear in them
 to answer all your research questions.
@@ -64,58 +63,61 @@ and one or several \textit{data flow charts}.\index{Data flowchart}
 A \textbf{data linkage table}\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Linkage\_Table}}
 lists all the datasets that will be used in the project.
-Its most important function is to indicate how all those datasets can be be linked when
+Its most important function is to indicate 
+how all those datasets can be be linked when
 combining information from multiple data sources.
 \textbf{Master datasets}\sidenote{
 	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
-list all observations your project ever encounter. 
-The master dataset is the authoritative source for all research meta information
+list all observations your project ever encounter
+are the authoritative source for all research data
 such as ID values, sampling and treatment status, etc.
 \textbf{Data flow charts}\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Flow\_Chart}}
 list all datasets that are needed to create each analysis dataset,
 and how they should be created by merging, appending 
 or in any other way link different datasets.
-You will, in general, need one data flow chart per analysis dataset 
-but if two or more analysis datasets are created very similarly,
-they can be included in the same chart.
 
 \subsection{Creating a data plan}
 
-The components of the data plan is the best tool a research team has for
+The components of the data plan is the best tools a research team has for
 the lead researchers to communicate their vision for the data work, 
 and for the research assistants to communicate their understanding of that vision.
 While the time to create the data plan is before any data has been acquired,
 it should be a dynamic documentation, 
 that you should keep up to date as the project evolves.
 
-To create a \textbf{data linkage table} you simply start by listing 
+To create a data plan according to DIME's template, first,
+start by creating a \textbf{data linkage table} by listing 
 all the datasets you know that you will use in a spreadsheet.
 If one source of data will results in two different dataset, 
-then list each dataset on a new row.
-Then for each dataset list the unit of observation,
-and the name of the ID variable for that unit of observation.
-Your project should only have one main ID variable per unit of observation, 
-so make sure that all datasets with the same unit of observation
-have the same ID variable.
-The data linkage table should indicate whether datasets should be merge one-to-one,
-for example, merging baseline data and endline data that use the same unit of observation,
+then list each dataset on a their own row.
+Then for each dataset list the \textbf{unit of observation}\sidenote{
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}},
+and the name of the main ID variable for that unit of observation.
+Your project should only have one main ID variable per unit of observation,
+called the project ID. 
+When you list a dataset in the data linkage table --
+which should be done before that dataset is acquired --
+you should always make sure that the dataset will
+be fully identified by the project ID, 
+or make a plan for how 
+the new dataset will be linked to the project ID.
+It is very labor expensive to work with a dataset that
+do not have an unambiguous way to link to the project ID, 
+and it is a big source of error.
+
+The data linkage table should indicate whether 
+datasets should be merge one-to-one, for example, 
+merging baseline data and endline data that use the same unit of observation,
 or whether two datasets should be merged many-to-one, 
 for example, school administrative data merged with student data.
-Your data map must indicate which ID variables can be used and how to merge datasets.
-
-Make sure that before acquiring any data,
-you have listed the dataset in the data linkage table, 
-and have a plan for how you will make sure that the data
-is identified using your main ID variable.
-Something very labor expensive to fix and a big source of error, 
-is when a research team ends up with a dataset they do not have an 
-unambiguous way to link to other data sources.
+Your data map must indicate which ID variables 
+can be used and how when marging datasets.
 The data linkage table is also a great place to list other type of meta data,
-such as the source of your data, and backup locations etc.
+such as the source of your data, backup locations, etc.
 
-You should have one \textbf{master dataset} for each \textbf{unit of observation}\sidenote{
-	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+Second, you should then create one \textbf{master dataset} 
+for each unit of observation
 used in any significant research activity.
 Examples of such activities are data collection, data analysis, 
 sampling or treatment assignment.
@@ -131,10 +133,13 @@ but not include any \textbf{measurement variables}\sidenote{
 	\textbf{Measurement variables:} Data that 
 	corresponds to direct observations of the real world, 
 	recorded sentiments of the subjects of the research 
-	or any other aspect we are trying to measure. 
-	Research variables are not controlled by the research team and often vary over time.
-	Examples include characteristics of the research subject, outcome variables, input variables among many others.}.
-Research variables and measurement variables often come from the same source,
+	or any other aspect your project is studying. 
+	Research variables are not controlled by the research team
+	and often vary over time.
+	Examples include characteristics of the research subject, 
+	outcome variables, input variables among many others.}.
+Research variables and measurement variables 
+often come from the same source,
 but should not be stored in the same way.
 For example, if you are shared administrative data that both includes 
 information on eligibility to be included in the study (research variable) 
@@ -144,34 +149,39 @@ remove them during the data cleaning (see Chapter 6)
 and instead store them in your master dataset. 
 It is common that you will have to update 
 your master datasets throughout your project.
-Examples of research variables 
-that you cannot know when you initially set up your master dataset 
-are treatment uptake and attrition variables.
 
 The most important function of the master dataset 
-is to be the authoritative source of identifiers,
-and all observations listed should have a unique project ID\sidenote{
-	\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}.
-You should also list all other identifiers your project interact with, 
-such as names, addresses and other ID values used by your partner organization,
-and serve as the linkage between those identifiers and the project ID.
-Because of this, there are very few cases where your master datasets 
-does not need to be encrypted.
+is to be the authoritative source of for the project ID.
+This means that all observations listed 
+should have a uniquely and fully identified by the project ID.\sidenote{
+	\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
+You should also list all other identifiers used in your project, 
+such as names, addresses and other IDs used by your partner organizations,
+and the master datasets serves as 
+the linkage between those identifiers and the project ID.
+Because of this, master datasets must, 
+with very few exceptions, always be encrypted.
 Even when a partner organization have a unique identifier, 
 you should always create a project ID specific to your project only, 
-as you are otherwise not in control over who can re-identify your de-identified dataset. 
-You should include all observations ever encountered,
-even if they are not eligible for your study,
-because if you ever end up needed to do a fuzzy match, 
+as you are otherwise not in control over 
+who can re-identify your de-identified dataset. 
+
+You should include all observations ever encountered 
+in your master datasets,
+even if they are not eligible for your study.
+Because if you ever need to do a fuzzy match,
+on string variables like proper names, 
 you will do fewer errors the more information you have.
-If you acquire any data without your project ID, 
-you should always start by understanding how that data
- can be linked to the master dataset,
-and then merge the project IDs to the new data, 
-before you do anything with that dataset.
-With the master datasets as an up to date authoritative source 
-of the project IDs and all research variables,
-you have an unambiguous method of mapping
+If you ever need to do a fuzzy match,
+you should always do that between the master dataset
+and the dataset without an unambiguous identifier.
+You should not do anything with that dataset until
+you have successfully merged
+the project IDs from the master dataset.
+
+With the master datasets as an authoritative source 
+of the project ID and all research variables,
+it serves as an unambiguous method of mapping
 the observations in your study to your research design.
 
 The third and final component of the data plan is the \textbf{data flow charts}.
@@ -189,11 +199,12 @@ You should also list which ID variable or set of ID variables
 should be used in these operations,
 and if the operation results in a new variable or set of variable
 that identifies the data.
-Once you have the data used in the flow chart, 
-you can also start listing the number of observations the datasets
-should have before and after each observation. 
-This is a great tool to track attrition and to make sure that
-the operations used to combined dataset did not create unwanted duplicates
+Once you have acquired the datasets listed in the flow chart, 
+you can also start listing the number of observations that both
+the starting point dataset should start with and
+the combined datasets should have after each operation. 
+This is a great method to track attrition and to make sure that
+the operations used to combine datasets did not create unwanted duplicates
 or incorrectly dropped any observations.
 
 A data flow chart can be created in a flow chart drawing tool
