@@ -219,9 +219,9 @@ once you learn new things about your research throughout your project.
 
 After you have set up your data plan 
 you need to carefully think about your research design 
-and which research variables you will need 
-to make inferences about differences in measurements variables 
-in relation to your research design.
+and which research variables you will need in the data analysis
+to infer the relation between differences in measurements variables 
+and your research design.
 We assume you have a working familiarity
 with the research designs mentioned here.
 If needed, you can reference \textcolor{red}{Appendix XYZ},
@@ -229,16 +229,20 @@ where you will find more details
 and specific references for common impact evaluation methods.
 
 The research designs discussed here compare a group that received
-some kind of \textbf{treatment}\sidenote{
+some kind of \textbf{treatment}\index{Treatment}\sidenote{
 	\textbf{Treatment:} The general word for the evaluated intervention or event.
-	This includes being offered training or cash transfer from a program, experiencing a natural disaster etc.}
-against a counterfactual control group.\sidenote{
-	\textbf{Counterfactual:} A statistical description of what would have happened
+	This includes being offered training
+	or cash transfer from a program, 
+	experiencing a natural disaster etc.}
+against a counterfactual control group\index{Counterfactual}.\sidenote{
+	\textbf{Counterfactual:} A statistical description of 
+	what would have happened
 	to specific individuals in an alternative scenario,
 	for example, a different treatment assignment outcome.}
-\index{counterfactual}
+
 The key assumption is that each
-person, facility, or village (or whatever the unit of intervention is)
+person, facility, or village 
+(or whatever the unit of treatment is)
 had two possible states: their outcome if they did receive the treatment
 and their outcome if they did not receive that treatment.
 The average impact of the treatment, or the ATE\sidenote{
@@ -255,7 +259,8 @@ so we cannot calculate these differences directly.
 Instead, the treatment group is compared to a control group
 that is statistically indistinguishable,
 which makes the average impact of the treatment
-mathematically equivalent to the difference in averages between the groups.
+mathematically equivalent to 
+the difference in averages between the groups.
 Statistical similarity is often defined
 as \textbf{balance} between two or more groups.	
 Since balance tests are commonly run for impact evaluations,
@@ -263,18 +268,21 @@ DIME Analytics created a Stata command to
 standardize and automate the creation of nicely-formatted balance tables:
 \texttt{iebaltab}\sidenote{
 	\url{https://dimewiki.worldbank.org/iebaltab}}.
-Each research design has a different method	for identifying the statistically-similar control group. 
 
-The rest of this section covers how data requirements differ
-between different research designs.
+Each research design has a different method	for
+identifying the statistically-similar control group. 
+The rest of this section covers how research data requirements 
+differ between those different methods.
 What does not differ, however, 
 is that these data requirements are all research variables.
-The source for this data requirements varies
-between research design and between projects, 
+The source for the required research variables varies
+between research designs and between projects, 
 but the authoritative source for that type of data should
-always be the master datasets.
-You will often have to merge that data to other datasets, 
-but that is an easy task if you created a data linkage table.
+always be a master dataset.
+You will often have to merge 
+the research variables to other datasets, 
+but that is an easy task 
+if you created a data linkage table.
 
 
 %%%%% Experimental design
@@ -294,8 +302,10 @@ is assigned at random to either the treatment or control group,
 then the two groups will, on average, be statistically indistinguishable.
 The treatment will therefore not be correlated with anything
 but the impact of that treatment.\cite{duflo2007using}
-The randomized assignment should be done using the master data,
-and the result should be saved there before being merged to other datasets.
+The randomized assignment should be done 
+using data from the master dataset,
+and the result should be saved back to the master dataset,
+before being merged to other datasets.
 
 %%%%% Quasi-experimental design
 
@@ -315,7 +325,7 @@ to exploit events that occurred in the past.
 Therefore, these methods often use either secondary data,
 including administrative data or other classes of routinely-collected information,
 and it is important that your data linkage table documents 
-how this data is linked to the rest of the data in your project.
+how this data can be linked to the rest of the data in your project.
 
 
 %%%%% Regression discontinuity
@@ -341,6 +351,16 @@ is often a continuous variable
 that is used to divide the sample into two or more groups. 
 Both the running variable and a categorical cutoff variable,
 should be saved in your master dataset.
+The running variable is one of the exceptions where
+a research variable in the master dataset
+may vary over time,
+and an observation may be on different sides of the cutoff, 
+depending on when you make the cutoff.
+In these cases your research design should 
+ex-ante clearly indicate what point in time 
+the running variable will be recorded, 
+and this should be clearly documented in your master dataset.
+
 
 %%%%% IV regression
 
@@ -357,12 +377,12 @@ the treatment status, but instead influence the \textit{probability of treatment
 You will need variables in your data
 that can be used to estimate the probability of treatment for each unit.
 These variables are called \textbf{instruments}.
-Instrument variables is a rare example of research variables that might vary over time,
+Instrument variables are another example of research variables 
+that might vary over time,
 as your probability of being treated might change. 
-In these cases your research design should 
+Again, in these cases your research design should 
 ex-ante clearly indicate what point of time this will be recorded, 
 and this should be clearly documented in your master dataset.
-
 
 %%%%% Matching
 
@@ -383,7 +403,7 @@ and create a variable in the master dataset
 with the ID for the set each unit belongs to.
 The matching can also be done before the randomized assignment,
 so that treatment can be randomized within each matching set.
-This is a type of experimental design.
+This would then be a type of experimental design.
 Furthermore, if no control observations were identified before the treatment,
 then matching can be used to ex-post identify a control group.
 Many matching algorithms can only match on a single variable,
