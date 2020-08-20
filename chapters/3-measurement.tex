@@ -358,13 +358,25 @@ In \textbf{instrumental variables (IV)}\sidenote{
 	\url{https://dimewiki.worldbank.org/Instrumental\_Variables}}
 \index{instrumental variables}
 designs, the \textbf{instruments} influence the \textit{probability} of treatment.
-These research variables should be collected and stored in master data.
+These research variables should be collected
+and stored in the master dataset.
+Both the running variable in RD designs
+and the instruments in IV designs,
+are among the rare examples of research variables
+that may vary over time.
+In such cases your research design should
+ex-ante clearly indicate what point of time they will be recorded,
+and this should be clearly documented in your master dataset.
+
 In \textbf{matching} designs, observations are often grouped
 by a strata, grouping, index, or propensity score.\sidenote{
 	\url{https://dimewiki.worldbank.org/Matching}}
-While you need not include the undelying variables in master data,
-the match information itself is part of the experimental design
-and should usually be recorded there.
+Like all research variables, the matching results
+should be stored in the master dataset.
+This is best done by assigning a matching ID
+to each matched pair or group,
+and create a variable in the master dataset
+with the matching ID each unit belongs to.
 In all these cases, fidelity to the design is important to note as well.
 A program intended for students that scored under 50\% on a test
 might have some cases where the program is offered to someone that scored 51\% at the test,
