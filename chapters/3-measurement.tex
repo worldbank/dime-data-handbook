@@ -1,58 +1,59 @@
 %-----------------------------------------------------------------------------------------------
 
 \begin{fullwidth}
-	
-	In this chapter we will show how you can save a lot of time
-	and increase the quality of your research by 
-	planning your project's data requirements in advance.
-	Planning data requirements should be more than
-	just a listing of the key outcome variables. 
-	It requires understanding how to structure the project's data
-	to best answer the research questions, 
-	and creating the tools to share this understanding across your team.
-	
-	The first section of this chapter discusses how to 
-	determine the data needs of the project, 
-	and introduces DIME's data plan template that is composed of 
-	one data linkage table,
-	one or several master datasets and
-	one or several data flow charts. 
-	These three tools should be the way data requirements are communicated
-	both across the team and across time.
-	This section also discusses what specific research data you need 
-	based on your project's research design,
-	and how those data needs are documented in the data plan.
-	
-	The second section of this chapter covers two activities where 
-	research data is created by the research team 
-	instead of being observed in the real world.
-	Those two activities are random sampling and random assignment.
-	Special focus is spent on how to ensure that 
-	these and other random processes are reproducible,
-	which is critical for the credibility of your research.
-	
-	The chapter concludes with a discussion of power calculations and randomization inference,
-	and how both are important tools to make optimal choices when planning data work.
-	
-	
+
+In this chapter we will show how you can save a lot of time
+and increase the quality of your research by 
+planning your project's data requirements in advance.
+Planning data requirements requires more than
+simply listing the key outcome variables. 
+You need to understand how to structure the project's data
+to best answer the research questions, 
+and create the tools to share this understanding across your team.
+
+The first section of this chapter discusses how to 
+determine your project's data needs, 
+and introduces DIME's data plan template. 
+The template includes: 
+one data linkage table,
+one or several master datasets, and
+one or several data flow charts. 
+These three tools will help to communicate the project's data requirements
+both across the team and across time.
+This section also discusses what specific research data you need 
+based on your project's research design,
+and how to document those data needs in the data plan.
+
+The second section of this chapter covers two activities where 
+research data is created by the research team 
+instead of being observed in the real world.
+Those two activities are random sampling and random assignment.
+Special focus is spent on how to ensure that 
+these and other random processes are reproducible,
+which is critical for the credibility of your research.
+
+The chapter concludes with a discussion of power calculations and randomization inference,
+and how both are important tools to make optimal choices when planning data work.
+
+
 \end{fullwidth}
 
 %-----------------------------------------------------------------------------------------------
 
 \section{Translating research design to a data plan}
 
+In most projects, more than one data source is needed to answer the research question.
 These could be data from multiple survey rounds,
 data acquired from different partners (such as administrative data, implementation data, sensor data),
 web scraping, 
 or complex combinations of these and other sources. 
-Most projects require data source to answer all their research questions.
 However your study is structured, you need to know how to link data from all sources
-and analyze the relationship between their units
-to manage its data successfully.
+and analyze the relationships between the units that appear in them
+to answer all your research questions.
 You might think that you are able to keep all the relevant details in your head,
 but your whole research team is unlikely to have the same understanding,
 at all times, of all the datasets required.
-The only way to make sure that the whole team shares the same understanding
+The only way to make sure that the full team shares the same understanding
 is to create a \textbf{data plan}\index{Data plan}.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Plan}}
 DIME's data plan template has three components:
@@ -68,14 +69,16 @@ how all those datasets can be be linked when
 combining information from multiple data sources.
 \textbf{Master datasets}\sidenote{
 	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
-list all observations at your project ever encountered
+list all observations your project ever encounter
 and are the authoritative source for all research data
-such as ID values, sampling and treatment statuses, and so on.
+such as unique identifiers, sample status and treatment assignment 
+(the following two sections of this chapter discuss how to generate these variables). 
 \textbf{Data flow charts}\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Flow\_Chart}}
 list all datasets that are needed to create each analysis dataset,
-and how they should be created by merging, appending,
-or in any other way linking different data tables.
+and what manipulation of these data sources is necessary 
+to get to the final analysis dataset(s), 
+such as merging, appending, or other linkages. 
 
 \subsection{Creating a data plan}
 
@@ -103,7 +106,7 @@ be fully and uniquely identified by the project ID,
 or make a plan for how 
 the new dataset will be linked to the project ID.
 It is very labor intensive to work with a dataset that
-cannot be unambiguously linked to the project ID, 
+do not have an unambiguous way to link to the project ID, 
 and it is a major source of error.
 
 The data linkage table should indicate whether 
@@ -123,22 +126,20 @@ for each unit of observation
 that will be used in any significant research activity.
 Examples of such activities are data collection, data analysis, 
 sampling, and treatment assignment.
-The master dataset is the authoritative source of
+The master dataset should include and be the authoritative source of
 all \textbf{research variables}\sidenote{
 	\textbf{Research variables:} Research data that identifies observations
-	and maps research design information to them.
+	and maps research design information to those observations.
 	Research variables are time-invariant and 
 	often, but not always, controlled by the research team.
 	Examples include
-	ID variables, sampling status, treatment status, and treatment uptake.},
-and therefore all such variables should be present,
-unlike \textbf{measurement variables}\sidenote{
+	ID variables, sampling status, treatment status, and treatment uptake.} 
+but not include any \textbf{measurement variables}\sidenote{
 	\textbf{Measurement variables:} Data that 
 	corresponds to direct observations of the real world, 
 	recorded sentiments of the subjects of the research 
 	or any other aspect your project is studying. 
 	Measurement variables are not controlled by the research team
-	These variables are not controlled by the research team
 	and often vary over time.
 	Examples include characteristics of the research subject, 
 	outcome variables, input variables among many others.}.
@@ -147,8 +148,8 @@ often come from the same source,
 but should not be stored in the same way.
 For example, if you acquire administrative data that both includes 
 information on eligibility to be included in the study (research variable) 
-and information on your outcome or interest (measurement variable),
-you should first identify research variables, 
+and information on outcome on the topic of your study (measurement variable) 
+you should first decide which variables are research variables, 
 remove them during the data cleaning (see Chapter 6) 
 and instead store them in your master dataset. 
 It is common that you will have to update 
@@ -161,7 +162,7 @@ should be uniquely and fully identified by the included project ID variable.\sid
 	\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
 You should also list all other identifiers used in your project, 
 such as names, addresses, or other IDs used by partner organizations,
-and the master datasets can then serve as 
+and the master datasets will then serve as 
 the linkage between those identifiers and the project ID.
 Because of this, master datasets must, 
 with very few exceptions, always be encrypted.
@@ -466,7 +467,7 @@ then your results might only be an effect of your remaining sample
 being a subset of the original sample 
 that were better or worse off from the beginning.
 You should have a variable in your master dataset
-that indicates attrition.
+ that indicates attrition.
 A balance check using the attrition variable
 can provide insights as to whether the lost observations 
 were systematically different
