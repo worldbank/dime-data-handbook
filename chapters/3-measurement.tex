@@ -385,6 +385,58 @@ Differences between assignments and realizations
 should also be recorded in the master datasets.
 
 %-----------------------------------------------------------------------------------------------
+\subsection{Time periods in data maps}
+
+Your data map should also take into consideration
+whether you are using data from one time period or several.
+A study that observes data in only one time period is called
+a \textbf{cross-sectional study}.
+\index{cross-sectional data}
+This type of data is relatively easy to collect and handle because
+you do not need to track individuals across time,
+and therefore requires no additional information in your data map.
+Instead, the challenge in a cross-sectional study is to
+show that the control group is indeed a valid counterfactual to the treatment group.
+
+Observations over multiple time periods,
+referred to as \textbf{longitudinal data}\index{longitudinal data},
+can consist of either
+\textbf{repeated cross-sections}\index{repeated cross-sectional data}
+or \textbf{panel data}\index{panel data}.
+In repeated cross-sections,
+each successive round of data collection uses a new random sample
+of observations from the treatment and control groups,
+but in a panel data study
+the same observations are tracked and included each round.
+If each round of data collection is a separate activity,
+then they should be treated as separate sources of data
+and get their own row in the data linkage table.
+If the data is continuously collected,
+or at frequent intervals,
+then it can be treated as a single data source.
+The data linkage table must document
+how the different rounds will be merged or appended
+when panel data is collected in separate activities.
+
+You must keep track of the \textit{attrition rate} in panel data,
+which is the share of observations not observed in follow-up data.
+It is common that the observations not possible to track
+can be correlated with the outcome you study.
+For example, poorer households may live in more informal dwellings,
+patients with worse health conditions might not survive to follow-up,
+and so on.
+If this is the case,
+then your results might only be an effect of your remaining sample
+being a subset of the original sample
+that were better or worse off from the beginning.
+You should have a variable in your master dataset
+ that indicates attrition.
+A balance check using the attrition variable
+can provide insights as to whether the lost observations
+were systematically different
+compared to the rest of the sample.
+
+%-----------------------------------------------------------------------------------------------
 \subsection{Monitoring data}
 
 For any study with an ex-ante design,
