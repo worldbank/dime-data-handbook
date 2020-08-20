@@ -5,23 +5,24 @@
 In this chapter we will show how you can save a lot of time
 and increase the quality of your research by 
 planning your project's data requirements in advance.
-Planning data requirements should be more than
-just a listing of the key outcome variables. 
-It requires understanding how to structure the project's data
+Planning data requirements requires more than
+simply listing the key outcome variables. 
+You need to understand how to structure the project's data
 to best answer the research questions, 
 and creating the tools to share this understanding across your team.
 
 The first section of this chapter discusses how to 
-determine the data needs of the project, 
-and introduces DIME's data plan template that is composed of 
+determine your project's data needs, 
+and introduces DIME's data plan template. 
+The template includes: 
 one data linkage table,
-one or several master datasets and
+one or several master datasets, and
 one or several data flow charts. 
-These three tools should be the way data requirements are communicated
+These three tools will help to communicate the project's data requirements
 both across the team and across time.
 This section also discusses what specific research data you need 
 based on your project's research design,
-and how those data needs are documented in the data plan.
+and how to document those data needs in the data plan.
 
 The second section of this chapter covers two activities where 
 research data is created by the research team 
@@ -42,10 +43,10 @@ and how both are important tools to make optimal choices when planning data work
 \section{Translating research design to a data plan}
 
 In most projects, more than one data source is needed to answer the research question.
-These could be multiple survey rounds,
-data acquired from different partners (such as administrative data,
-web scraping, implementation monitoring, and so on)
-or complex combinations of these.
+These could be data from multiple survey rounds,
+data acquired from different partners (such as administrative data, implementation data, sensor data),
+web scraping, 
+or complex combinations of these and other sources. 
 However your study is structured, you need to know how to link data from all sources
 and analyze the relationships between the units that appear in them
 to answer all your research questions.
@@ -55,7 +56,7 @@ at all times, of all the datasets required.
 The only way to make sure that the full team shares the same understanding
 is to create a \textbf{data plan}\index{Data plan}.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Plan}}
-DIME's data plan template has three components; 
+DIME's data plan template has three components:
 one \textit{data linkage table},\index{Data linkage table}
 one or several \textit{master datasets}\index{Master datasets}
 and one or several \textit{data flow charts}.\index{Data flowchart} 
@@ -70,25 +71,28 @@ combining information from multiple data sources.
 	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
 list all observations your project ever encounter
 and are the authoritative source for all research data
-such as ID values, sampling and treatment statuses, and so on.
+such as unique identifiers, sample status and treatment assignment 
+(the following two sections of this chapter discuss how to generate these variables). 
 \textbf{Data flow charts}\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Flow\_Chart}}
 list all datasets that are needed to create each analysis dataset,
-and how they should be created by merging, appending,
-or in any other way linking different datasets.
+and what manipulation of these data sources is necessary 
+to get to the final analysis dataset(s), 
+such as merging, appending, or other linkages. 
 
 \subsection{Creating a data plan}
 
 The data plan is the best tool a research team has for
 the lead researchers to communicate their vision for the data work, 
 and for the research assistants to communicate their understanding of that vision.
-While the time to create the data plan is before any data has been acquired,
-it should be a piece of documentation that is 
-continuously updated as the project evolves.
+The data plan should be drafted at the outset of a project, 
+before any data is acquired, 
+but it is not a static document;
+it will need to be updated as the project evolves.
 
-To create a data plan according to DIME's template, first,
-start by creating a \textbf{data linkage table} by listing 
-all the datasets you know you will use in a spreadsheet.
+To create a data plan according to DIME's template, 
+the first step is to create a \textbf{data linkage table} by listing
+all the data sources you know you will use in a spreadsheet.
 If one source of data will result in two different datasets, 
 then list each dataset on its own row.
 For each dataset, list the \textbf{unit of observation}\sidenote{
@@ -106,18 +110,20 @@ do not have an unambiguous way to link to the project ID,
 and it is a major source of error.
 
 The data linkage table should indicate whether 
-datasets should be merge one-to-one, for example, 
-merging baseline data and endline data that use the same unit of observation,
-or whether two datasets should be merged many-to-one, 
-for example, school administrative data merged with student data.
+datasets can be merged one-to-one (for example, 
+merging baseline and endline datasets 
+that use the same unit of observation),
+or whether two datasets need to be merged many-to-one
+(for example, school administrative data merged with student data).
 Your data map must indicate which ID variables 
 can be used -- and how -- when merging datasets.
-The data linkage table is also a great place to list other types of metadata,
-such as the source of your data, its backup locations, and so on.
+The data linkage table is also a great place to list other metadata,
+such as the source of your data, its backup locations, 
+the nature of the data license, and so on.
 
-Second, you should then create one \textbf{master dataset} 
+The second step in creating a data plan is to create one \textbf{master dataset} 
 for each unit of observation
-used in any significant research activity.
+that will be used in any significant research activity.
 Examples of such activities are data collection, data analysis, 
 sampling, and treatment assignment.
 The master dataset should include and be the authoritative source of
@@ -133,14 +139,14 @@ but not include any \textbf{measurement variables}\sidenote{
 	corresponds to direct observations of the real world, 
 	recorded sentiments of the subjects of the research 
 	or any other aspect your project is studying. 
-	Research variables are not controlled by the research team
+	Measurement variables are not controlled by the research team
 	and often vary over time.
 	Examples include characteristics of the research subject, 
 	outcome variables, input variables among many others.}.
 Research variables and measurement variables 
 often come from the same source,
 but should not be stored in the same way.
-For example, if you are shared administrative data that both includes 
+For example, if you acquire administrative data that both includes 
 information on eligibility to be included in the study (research variable) 
 and information on outcome on the topic of your study (measurement variable) 
 you should first decide which variables are research variables, 
@@ -178,41 +184,42 @@ You should not do anything with that dataset until
 you have successfully merged
 the project IDs from the master dataset.
 
-With the master datasets as an authoritative source 
+Since the master datasets is the authoritative source 
 of the project ID and all research variables,
 it serves as an unambiguous method of mapping
 the observations in your study to your research design.
 
-The third and final component of the data plan is the \textbf{data flow charts}.
+The third and final step in creating the data plan is to create \textbf{data flow charts}.
 Each analysis dataset
 (see Chapter 6 for discussion on why you likely need multiple analysis datasets)
-should have a data flow chart that is a diagram 
+should have a data flow chart showing how it was created. 
+The flow chart is a diagram 
 where each starting point is either a master dataset 
 or a dataset listed in the data linkage table.
 The data flow chart should include instructions on how 
-all datasets should be combined to create the analysis dataset.
-The operations used to combine the data could, for example, be
+the datasets can be combined to create the analysis dataset.
+The operations used to combine the data could include:
 appending, one-to-one merging, 
 many-to-one or one-to-many merging, collapsing, or a broad variety of others.
 You must list which ID variable or set of ID variables
-should be used in these operations,
-and if the operation creates a new variable or combination of variables
-that identifies the newly linked data.
+should be used in each operation,
+and note whether the operation creates a new variable or combination of variables
+to identify the newly linked data.
 Once you have acquired the datasets listed in the flow chart, 
-you can also start listing the number of observations that both
-the starting point dataset should start with and
-the combined datasets should have after each operation. 
+you can add to the data flow charts the number of observations that 
+the starting point dataset has
+and the number of observation each resulting datasets
+should have after each operation. 
 This is a great method to track attrition and to make sure that
 the operations used to combine datasets did not create unwanted duplicates
 or incorrectly drop any observations.
 
 A data flow chart can be created in a flow chart drawing tool
-(there are many free alternatives online),
-by using shapes in Microsoft PowerPoint,
-or simply by drawing on a piece of paper and taking a photo.
-However, we recommend that the charts are created in a digital tool
-so that new versions can easily be created 
-once you learn new things about your research throughout your project.
+(there are many free alternatives online) or
+by using shapes in Microsoft PowerPoint. 
+You can also do this simply by drawing on a piece of paper and taking a photo,
+but we recommend a digital tool
+so that flow charts can easily be updated over time. 
 
 \subsection{Defining research variables related to your research design}
 
