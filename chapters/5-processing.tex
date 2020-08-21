@@ -235,7 +235,42 @@ and one firm-level data table with a single entry for each firm.
 Then, firm-level analysis is easily done
 by calculating appropriate statistics in the transactions data table
 (in Stata, often through \texttt{collapse})
-and then merging or joining those results to the firms table.
+and then merging or joining those results to the firms data table.
+
+In both examples above, your dataset is made up of two data tables,
+each saved in a separate file.
+In a tidy workflow, your dataset is a set of one or more data tables,
+where each data table is a file in your data storage.
+There must also be a clear way to connect each
+tidy data table to a master dataset,
+and thereby also to all other datasets.
+This is done by deciding which data table is the main data table,
+and that data table's unit of observation is
+the main unit of observation of your dataset.
+The main unit of observation must have a master dataset,
+and be listed in the data linkage table.
+All other data tables in your dataset must have
+an unambiguous way to merge with the main data table.
+This way, all data points in your dataset
+will be possible to link to
+all data points in all datasets in your project.
+We recommend that you save your datasets as a folder,
+where the main data table share the same name as the folder,
+and the name of all other data tables start with the same name,
+but are suffixed with the unit of observation for that data table.
+
+In the household dataset example, 
+the household data table would be the main table.
+This means that there must be a master dataset for households.
+You may have a master dataset for household members as well,
+if you think it is important for your research,
+but based on the information provided here,
+it is not required.
+In the firm and transaction dataset example
+it is not as obvious which is the main unit of observation.
+It will depend on your research or how the data was collected.
+Simply pick the one that makes cleaning your data the easiest,
+and make sure it is made clear which one you picked.
 
 The tidying process gets more complex as the number of nested groups increases.
 That means the steps of identifying the unit of observation of each variable
