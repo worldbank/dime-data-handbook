@@ -143,43 +143,57 @@ even though these do not necessarily equate.
 
 Every untidy dataset is untidy in its own way,
 but the most common case of untidy raw data encountered in development research
-is a dataset consisting of multiple units of observation stored in the same table.
-If your rows include multiple nested observational units,
-having an identifying variable for each row doesn't mean having an identifier for each observation.
-Survey data containing nested units of observation is typically
-imported from survey platforms in \textbf{wide format}.\sidenote{\textbf{Wide data:}
-	a table where a single variable is divided into multiple columns,
-	for example one for each individual in a household.
-}
+is a dataset consisting of multiple units of observations stored in the same data table.
 Take, for example, a household survey that includes household-level questions,
 as well as a household member roster.
 Such raw datasets usually consists of a single data table
 where questions from the household member roster are saved in different columns,
 one for each member, with a corresponding member suffix,
 and household-level questions are represented by one column each.
-So it would have, for instance, one column called \texttt{ownsfridge},
-but a few columns of the format \texttt{sex\_1}, \texttt{sex\_2}, etc.
-The data is saved in this format because it's the most efficient way to transfer it:
-adding different levels of observation into the same table allows for data to be transferred in a single file.
+When your rows include multiple nested observational units,
+then the identifying variable does not identify all observations on that row,
+as there is more than one unit of observation on the same row.
+Survey data containing nested units of observation is typically
+imported from survey platforms in this format,
+which is called \textbf{wide format}.\sidenote{\textbf{Wide data:}
+	a data table where a single variable is divided into multiple columns,
+	for example one for each individual in a household.
+}
+Wide data could have, for instance,
+one column for the household variable called \texttt{ownsfridge},
+but a few columns for the household member variables \texttt{sex\_1}, \texttt{sex\_2}, etc.
+Raw data is often saved in this format because it's the most efficient way to transfer it:
+adding different levels of observation into the same data table
+allows for data to be transferred in a single file.
 However, this leads to the widespread practice of interacting with data in wide format,
 although doing so is often inefficient and error-prone.
 
 To understand how dealing with wide data can be complicated,
-imagine you need to calculate the share of women in your sample using the dataset described above.
-The first thing you will need to do is change the format of your table so that each row represents one individual.
-Tidy datasets, on the other hand,
-are easier to handle because observations can be aggregated and linked consistently,
-without additional steps.
-They are also easier to clean,
+imagine you need to calculate the share of women
+in each household using the household level data described above.
+In a wide data table you will either have to program a loop that
+counts the number of women and
+divide that number with the total number of household members,
+or you will have to transform the data to a different format.
+In a tidy data table, however, where each row is a household member,
+you can easily aggregate the share of women by household,
+without additional steps,
+and then merge the result to the household data table.
+Tidy data tables are also easier to clean,
 as each attribute only needs to be checked once,
 and each column corresponds directly to one question in the questionnaire.
+Finally, as you will see in Chapter 6,
+summary statistics and distributions are much simpler
+to generate from tidy data tables.
 
 Wide format is only one way in which data can be untidy.
 As mentioned earlier, there are unlimited ways for data to be untidy.
 Another example is a data table containing both information on transactions
 and on the firms involved in each transaction.
-In this case, the firm-level information will be repeated for all transactions a given firm was involved in.
-Analyzing data in this format would give more weight to firms that conducted more transactions,
+In this case, the firm-level information will be repeated
+for all transactions a given firm was involved in.
+Analyzing data in this format would give more weight
+to firms that conducted more transactions,
 which may not be consistent with the research design.
 
 The basic process behind tidying a data table is simple:
