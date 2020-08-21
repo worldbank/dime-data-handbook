@@ -3,35 +3,35 @@
 \begin{fullwidth}
 
 % What is data cleaning
-Raw data files may be received in a variety of formats, 
+Raw data files may be received in a variety of formats,
 and are often not immediately suited for use with statistical software.
 This chapter describes the workflow of preparing newly-acquired data for analysis.
 The tasks described in this chapter have many different names:
 data cleaning, data munging, data wrangling.
 But they all mean the same thing --
 transforming raw data into a more convenient and less error prone format for your intended use.
-This is the most time-consuming step of a project's data work, 
+This is the most time-consuming step of a project's data work,
 particularly when primary data is involved;
-it is also essential for data quality. 
+it is also essential for data quality.
 This chapter outlines the workflow our team developed to make the process efficient and transparent.
 One key point of this chapter is that no changes are made to the contents of data at this point.
 We consider creating new variables, imputing values and correcting outliers
-to be research decisions, and will discuss those in the next chapter. 
+to be research decisions, and will discuss those in the next chapter.
 Therefore, the clean dataset,
 which is the main output from the workflow discussed in this chapter,
 contains almost exactly the same information as the raw data,
-but in a format that is ready for use with statistical software. 
+but in a format that is ready for use with statistical software.
 
 % Chapter overview
 This chapter describes the various tasks involved in making newly-acquired data ready for analysis.
 The first section will show how to make your data \textit{tidy}.
-This means adjusting how the dataset is organized 
+This means adjusting how the dataset is organized
 until the relationship between its rows and columns is well-defined.
-The second section describes quality assurance checks, 
+The second section describes quality assurance checks,
 which are necessary to verify the accuracy of your data.
 After that, identifying information is typically no longer needed;
 therefore the third section outlines steps to remove direct identifiers.
-Finally, the last section discusses how to examine each variable in your dataset and 
+Finally, the last section discusses how to examine each variable in your dataset and
 make sure that it is as well documented and as easy to use as possible.
 
 \end{fullwidth}
@@ -47,9 +47,9 @@ is understanding the data acquired,
 and using this understanding to translate the data into an intuitive format.
 This section discusses what steps may be needed to make sure that each row
 in a \textbf{tabular dataset}\sidenote{\textbf{Tabular data:}
-	data that is structured into rows and columns. 
+	data that is structured into rows and columns.
 	Also called ``rectangular data''.
-	Examples of non-rectangular data are written text or files such as images.} 
+	Examples of non-rectangular data are written text or files such as images.}
 represents one observation.
 This may seem trivial, but should not be taken for granted.
 This section will also present what we call a \textit{tidy} data format,
@@ -60,20 +60,20 @@ which is, in our experience, the ideal format to handle tabular datasets.
 % Uniquely and fully identifying variable
 An important step before starting to tidy a dataset is
 to understand the \textbf{unit of observation}\sidenote{
-	\textbf{Unit of observation:} the unit described by the data. 
+	\textbf{Unit of observation:} the unit described by the data.
 	In datasets, it is ideally what each row represents. \url{
 		https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}}
 and find out which variable or set of variables is the \textbf{unique identifier}\sidenote{\url{
 		https://dimewiki.worldbank.org/ID\_Variable\_Properties}} for each observation in your dataset.
 Ensuring that observations are uniquely and fully identified
 is arguably the most important step in data cleaning.
-It may be the case that the variables expected to uniquely identify 
+It may be the case that the variables expected to uniquely identify
 the raw data contain either missing or duplicate values.\sidenote{
 	Throughout this book, we use the expression \textbf{raw data}
 	to refer to data in the state it was originally received by the research team.
-	This applies to data acquired from partners as well as originally collected data. 
+	This applies to data acquired from partners as well as originally collected data.
 }
-It is also possible for a raw dataset to not include a variable that uniquely identifies all observations, 
+It is also possible for a raw dataset to not include a variable that uniquely identifies all observations,
 or that the identifier involves a long string that is difficult to work with, such as a person's name.
 In such cases, cleaning begins by either carefully creating a variable that uniquely identifies the data,
 or carefully merging the ID variable from the master dataset using other identifying information.
@@ -81,7 +81,7 @@ Note that while digital survey tools create unique identifiers for each data sub
 that is not the same as having a unique ID variable for each observation in the sample,
 as there can be multiple submissions for the same observation.
 
-As discussed in Chapter 3, 
+As discussed in Chapter 3,
 the unique identifier will be used to link observations in this dataset
 to data in other data sources according to the \textbf{data linkage table},\sidenote{
 	\textcolor{red}{\url{https://dimewiki.worldbank.org/ LINK TO WIKI}}}
@@ -92,17 +92,17 @@ and finding or creating its unique identifier is to
 make sure that each observation is represented in the master dataset by a unique ID value.
 If you encounter any observations that are not listed in the master dataset,
 you should assign them a unique ID and add them to the master dataset.
-Always convince yourself beyond reasonable doubt that the new observation 
-is indeed a new observation, 
+Always convince yourself beyond reasonable doubt that the new observation
+is indeed a new observation,
 and not one that is already listed, only with a different ID value.
 
 DIME Analytics created an automated workflow to identify, correct and document
 occurrences of duplicated entries for a dataset's unique identifier using
 \texttt{ieduplicates} and \texttt{iecompdup},
 two Stata commands included in the \texttt{iefieldkit}
-package\index{iefieldkit}.\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}} 
+package\index{iefieldkit}.\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
 One advantage of using \texttt{ieduplicates}\sidenote{\url{
-		https://dimewiki.worldbank.org/wiki/ieduplicates}} 
+		https://dimewiki.worldbank.org/wiki/ieduplicates}}
 to correct duplicated entries is that it creates \textit{duplicates reports}
 which records each corrections made and documents the reason for it.
 Even if you are not using this command,
@@ -120,25 +120,25 @@ Fortunately, a vast literature of database management has identified the format
 that makes interacting with the data as easy as it can be.
 In database management this is called \textit{normalization},
 but when applied to statistics, we call data in such format \textbf{tidy}.
-A dataset is tidy when each column represents one variable,\sidenote{\textbf{Variable:} 
+A dataset is tidy when each column represents one variable,\sidenote{\textbf{Variable:}
 	the collection of all data points that measure the same attribute.}
-each row represents one observation, 
+each row represents one observation,
 and all variables in a table have the same unit of observation.
 Every other format is \textit{untidy}.
-This may seem trivial, but raw data, 
+This may seem trivial, but raw data,
 and raw survey data in particular,
 is rarely received in a tidy format.
-To contribute to the confusion, 
-in Stata each column is called a ``variable'', 
+To contribute to the confusion,
+in Stata each column is called a ``variable'',
 and each row an ``observation'',
 even though these do not necessarily equate.
 
 Every untidy dataset is untidy in its own way,
 but the most common case of untidy raw data encountered in development research
-is a dataset consisting of multiple units of observation stored in the same table. 
+is a dataset consisting of multiple units of observation stored in the same table.
 If your rows include multiple nested observational units,
 having an identifying variable for each row doesn't mean having an identifier for each observation.
-Survey data containing nested units of observation is typically 
+Survey data containing nested units of observation is typically
 imported from survey platforms in \textbf{wide format}.\sidenote{\textbf{Wide data:}
 	a table where a single variable is divided into multiple columns,
 	for example one for each individual in a household.
@@ -146,7 +146,7 @@ imported from survey platforms in \textbf{wide format}.\sidenote{\textbf{Wide da
 Take, for example, a household survey that includes household-level questions,
 as well as a household member roster.
 The resulting raw dataset usually consists of a single table
-where questions from the household member roster are saved in different columns, 
+where questions from the household member roster are saved in different columns,
 one for each member, with a corresponding member suffix,
 and household-level questions are represented by one column each.
 So it would have, for instance, one column called \texttt{ownsfridge},
@@ -159,10 +159,10 @@ although doing so is often inefficient and error-prone.
 To understand how dealing with wide data can be complicated,
 imagine you need to calculate the share of women in your sample using the dataset described above.
 The first thing you will need to do is change the format of your table so that each row represents one individual.
-Tidy datasets, on the other hand, 
+Tidy datasets, on the other hand,
 are easier to handle because observations can be aggregated and linked consistently,
 without additional steps.
-They are also easier to clean, 
+They are also easier to clean,
 as each attribute only needs to be checked once,
 and each column corresponds directly to one question in the questionnaire.
 
@@ -174,16 +174,16 @@ In this case, the firm-level information will be repeated for all transactions a
 Analyzing data in this format would give more weight to firms that conducted more transactions,
 which may not be consistent with the research design.
 
-The basic process behind tidying a dataset is simple: 
+The basic process behind tidying a dataset is simple:
 first, identify all the variables that were measured at the same level of observation;
 second, create separate tables for each level of observation;
 and third, reshape\sidenote{\textbf{Reshape:}
-	transform a dataset in such a way that the unit of observation represented by a row changes.} 
-the data and remove duplicated rows 
-until each table is uniquely and fully identified by the identifying variable 
+	transform a dataset in such a way that the unit of observation represented by a row changes.}
+the data and remove duplicated rows
+until each table is uniquely and fully identified by the identifying variable
 that corresponds to its unit of observation.
 In the earlier household survey example,
-household-level variables will be stored in one tidy dataset, 
+household-level variables will be stored in one tidy dataset,
 and household-member variables are reshaped to member level and stored in another tidy dataset,
 which also contains the household ID for each individual.
 The household ID is intentionally duplicated in the household members table
@@ -191,10 +191,10 @@ to allow it to be linked to the household data table,
 while a household member ID will be this tables' unique identifier.
 Note that such dataset is only appropriate for analysis at the person level.
 In the transaction data example,
-the result of the tidying process would be one transaction-level dataset, 
+the result of the tidying process would be one transaction-level dataset,
 containing variables indicating the ID of all firms involved;
 and one firm-level dataset with a single entry for each firm.
-Then, firm-level analysis is easily done 
+Then, firm-level analysis is easily done
 by calculating appropriate statistics in the transactions dataset
 (in Stata, often through \texttt{collapse})
 and then merging or joining those results to the firms table.
@@ -215,16 +215,16 @@ is a repetitive and error-prone process.
 The next step of data cleaning, data quality monitoring,
 may involve comparing different units of observation.
 Aggregating sub-units to compare to a higher unit is much easier with tidy data,
-which is why we suggest tidying data as the first step in the cleaning workflow. 
+which is why we suggest tidying data as the first step in the cleaning workflow.
 If you are conducting primary data collection,
 you can start preparing or coding the data tidying even before the data is acquired,
 since you will know in advance the exact format in which the data will be received.
 In the case of survey data,
 tidying datasets will guarantee a one-to-one correspondence
 between questions in the questionnaire and columns in the data.
-Preparing the data for analysis, the last task in this chapter, 
-is much simpler when that is the case. 
- 
+Preparing the data for analysis, the last task in this chapter,
+is much simpler when that is the case.
+
 %------------------------------------------------
 \section{Data quality assurance}
 
@@ -259,7 +259,7 @@ and to set up and perform \textbf{high-frequency checks (HFCs)} with the incomin
 High-frequency checks should carefully inspect key treatment and outcome variables
 to ensure that the data quality of core study variables is uniformly high,
 and that additional effort is centered where it is most important.
-Data quality checks should be run every time data is received 
+Data quality checks should be run every time data is received
 to flag irregularities in the aquisition progress, in sample completeness, or in response quality.
 The faster issues are identified, the more likely they are to be solved.
 \texttt{ipacheck}\sidenote{
@@ -275,7 +275,7 @@ For data received from partners, such as administrative data,
 this may be harder to validate.
 In these cases, cross-referencing with other data sources can help to ensure completeness.
 It is often the case that raw data includes duplicate or missing entries,
-which may occur due to typos, failed submissions to data servers, 
+which may occur due to typos, failed submissions to data servers,
 or other mistakes.\sidenote{
 	\url{https://dimewiki.worldbank.org/Duplicates_and_Survey_Logs}}
 Issues with data transmission often result in missing observations,
@@ -286,9 +286,9 @@ and comparing it to the data received as soon as transmission is complete
 reduces the risk of noticing that data is missing when it is no longer possible to recover it.
 
 % match to sample
-Once data completeness is confirmed, 
+Once data completeness is confirmed,
 observed units must be validated against the expected sample:
-this is as straightforward as merging the sample list 
+this is as straightforward as merging the sample list
 with the data received and checking for mismatches.
 Reporting errors and duplicate observations in real time allows for efficient corrections.
 \texttt{ieduplicates}\sidenote{
@@ -309,7 +309,7 @@ the answers provided by the same household are consistent across all survey modu
 Electronic survey and data entry software often incorporate many quality control features,
 such as range restrictions and logical flows.
 Data received from systems that do not include such controls should be checked more carefully.
-Response consistency should be checked across all datasets, as this is much harder to automate. 
+Response consistency should be checked across all datasets, as this is much harder to automate.
 Consistency checks are project specific, so it is difficult to provide general guidance.
 A detailed knowledge of the variables in the dataset and a careful examination of the analysis plan
 is the best way to prepare.
@@ -360,7 +360,7 @@ Real-time access to the data massively increases the potential utility of valida
 and both simplifies and improves the rigor of the associated workflows.
 You can use the raw data to draw the back-check or validation sample;
 this ensures that the validation is correctly apportioned across observations.
-As soon as high frequency checks are complete, 
+As soon as high frequency checks are complete,
 the validation data can be tested against
 the original data to identify areas of concern in real-time.
 The \texttt{bcstats} command is a useful tool for analyzing back-check data in Stata.\sidenote{
@@ -368,7 +368,7 @@ The \texttt{bcstats} command is a useful tool for analyzing back-check data in S
 Some electronic surveys surveys also provide a unique opportunity
 to do audits through audio recordings of the interview,
 typically short recordings triggered at random throughout the questionnaire.
-\textbf{Audio audits}\sidenote{\url{https://dimewiki.worldbank.org/Random\_Audio\_Audits}} 
+\textbf{Audio audits}\sidenote{\url{https://dimewiki.worldbank.org/Random\_Audio\_Audits}}
 are a useful means to assess whether enumerators are conducting interviews as expected.
 Do note, however, that audio audits must be included in the informed consent for the respondents,
 and the recordings will need to be assessed by specially trained staff.
@@ -385,7 +385,7 @@ Using identified data allows you to quickly follow up on and resolve identified 
 Handling confidential data such as \textbf{personally-identifying information}\index{
 	personally-identifying information}
 requires a secure environment and, typically, decryption.
-De-identifying the data will allow you to simplify that workflow, 
+De-identifying the data will allow you to simplify that workflow,
 and will also reduces the risk of harmful leaks.
 This section describes how to de-identify data in order to share it with a wider audience.
 
@@ -396,7 +396,7 @@ Most development data involves human subjects.\sidenote{
 	\url{https://dimewiki.worldbank.org/Human\_Subjects\_Approval}}
 \index{human subjects}
 As a researcher, you may have access to personal information about your subjects:
-where they live, how much income they have, 
+where they live, how much income they have,
 whether they have committed or been victims of crimes,
 their names, their national identity numbers, and other sensitive data.
 There are strict requirements for safely storing and handling personally-identifying data,
@@ -406,7 +406,7 @@ Everyone working with human subjects research should participate in an ethics tr
 Protecting Human Research Participants\sidenote{
 	\url{https://phrptraining.com}}
 and the CITI Program;\sidenote{
-	\url{https://about.citiprogram.org/en/series/human-subjects-research-hsr}} 
+	\url{https://about.citiprogram.org/en/series/human-subjects-research-hsr}}
 are common options.
 A plan for secure data handling is typically also required for IRB approval.
 
@@ -435,7 +435,7 @@ will be re-linked to the stored data
 -- even if that data has had all directly identifying information removed --
 by using some other data that becomes identifying when integrated.
 For this reason, we typically recommend de-identification in two stages.
-The \textbf{initial de-identification} process, 
+The \textbf{initial de-identification} process,
 performed as soon as data is acquired, strips the data of direct identifiers,
 to create a working de-identified dataset that
 can be shared \textit{within the research team} without the need for encryption.
@@ -445,7 +445,7 @@ careful consideration of the trade-offs between
 risk of identifying individuals and the utility of the data,
 and typically requires the removal of a further level of indirect identifiers.\sidenote{
 	\url{https://sdcpractice.readthedocs.io/en/latest/SDC\_intro.html\#need-for-sdc}}
-The rest of this section describes how to implement 
+The rest of this section describes how to implement
 both the initial and the final de-identification processes.
 
 
@@ -459,7 +459,7 @@ Note that if the data tidying resulted in multiple raw tables,
 each will need to be de-identified separately, but
 the workflow will be the same for all of them.
 
-During the initial round of de-identification, 
+During the initial round of de-identification,
 datasets must be stripped of personally identifying information.\sidenote{
 	\url{https://dimewiki.worldbank.org/De-identification}}
 To do so, you will need to identify all variables that contain
@@ -476,8 +476,8 @@ IPA's \texttt{PII\_detection},\sidenote{
 scan variable names and labels for common string patterns associated with identifying information.\sidenote{
 	\url{https://github.com/J-PAL/PII-Scan}}
 The World Bank's \texttt{sdcMicro}
-lists variables that uniquely identify observations, 
-but its more refined method and 
+lists variables that uniquely identify observations,
+but its more refined method and
 higher processing capacity requirement make it better suited for final de-identification.\sidenote{
 	\url{https://sdctools.github.io/sdcMicro/articles/sdcMicro.html}}
 The \texttt{iefieldkit} command \texttt{iecodebook}
@@ -504,22 +504,22 @@ encode or otherwise mask those that are required,
 and save a working version of the data.
 For example:
 after constructing measures of distance or area,
-drop the specific geolocations in the data; 
-after constructing and verifying numeric identifiers in 
-a social network module, drop all names. 
+drop the specific geolocations in the data;
+after constructing and verifying numeric identifiers in
+a social network module, drop all names.
 If confidential information is strictly required for the analysis and cannot be
 masked or encoded,
 it will be necessary to keep at least a subset of the data encrypted through
 the data analysis process.
 
 % Final de-identification: sdcMicro
-After initial de-identification is complete, 
-your dataset will consist of one or multiple tidy, 
+After initial de-identification is complete,
+your dataset will consist of one or multiple tidy,
 de-identified tables.
-This is the dataset that you will interact with 
+This is the dataset that you will interact with
 during the remaining tasks described in this chapter.
 Initial de-identification should not affect the usability of the data.
-Note that access to the initially de-identified data 
+Note that access to the initially de-identified data
 should still be restricted to the research team only,
 as indirect identifiers may still present a high risk if disclosure.
 It is common, and even desirable, for teams to make data publicly available
@@ -535,11 +535,11 @@ which will be discussed in more detail in Chapter 7.
 
 % What is data cleaning
 The last step in the data cleaning process involves
-making the dataset easy to use and understand, and 
-carefully examining each variable to document distributions 
+making the dataset easy to use and understand, and
+carefully examining each variable to document distributions
 and identify patterns that may bias the analysis.
 The resulting dataset will contain only the variables collected in the field, and
-no modifications to data points will be made, 
+no modifications to data points will be made,
 except for corrections of mistaken entries.
 You may have more data tables in your dataset now then originally received,
 and they may have a different \textit{format},
@@ -564,15 +564,15 @@ In practice, however, they may all done at the same time.
 
 % What to look for when exploring the data
 The first time you interact with the data is during quality checks.
-However, these checks are are usually time-sensitive, 
+However, these checks are are usually time-sensitive,
 and there may not be time to explore the data at length.
-During data cleaning, on the other hand, 
+During data cleaning, on the other hand,
 you will need to inspect each variable closely.
 Use tabulations, summary statistics, histograms and density plots to understand the structure of data,
 and look for patterns or irregularities.
 Think critically about what you see:
 are the values shown consistent with the information the variable represents?
-How do distributions look? 
+How do distributions look?
 Are there any outliers or missing values?
 Could distributional patterns be caused by data entry errors,
 particularly in primary data?
@@ -595,16 +595,16 @@ This material will also be valuable during exploratory data analysis.
 \subsection{Correcting data points}
 
 % Correct or not correct
-As mentioned earlier, 
+As mentioned earlier,
 corrections to issues identified during data quality monitoring are
 the only changes done to individual data points during the data cleaning stage.
 However, there is a lot of discussion about whether one should modify such data points at all.
 Some argue that follow-ups to the issues identified are costly and add limited value.
 Since it is not possible to check each and every possible data entry error,
-doing so can create a false sense of security from issues identified on a few main variables. 
+doing so can create a false sense of security from issues identified on a few main variables.
 Additionally, manually-inspected data may suffer from considerable inspector variability.
-In many cases, the main purpose of data quality checks 
-is to detect fraud and identify problems with data collection protocols. 
+In many cases, the main purpose of data quality checks
+is to detect fraud and identify problems with data collection protocols.
 On the other hand, there is also an argument to be made
 against keeping clear typing errors or not correcting missing values.
 We recommend correcting any entries that are clearly identified as errors.
@@ -620,7 +620,7 @@ the particular circumstances or each research project.
 % Documentation
 Whether you decide to modify your data or not,
 you must keep a careful record of all issues that you identify.
-If no data points are modified, 
+If no data points are modified,
 it may still be helpful to add flags to observations containing
 potentially problematic values,
 so you can verify how they affect results during analysis.
@@ -638,10 +638,10 @@ applied through code, and saved to a new dataset.
 The cleaned dataset is the starting point of data analysis.
 It will be extensively manipulated to construct analysis indicators,
 so it is important for it to be easily processed by statistical software.
-To make the analysis process smoother, 
+To make the analysis process smoother,
 anyone opening this dataset for the first time should have all the information needed to interact with it,
 even if they were not involved in the acquisition or cleaning process.
-This will save them time going back and forth between the dataset and its accompanying documentation. 
+This will save them time going back and forth between the dataset and its accompanying documentation.
 
 % Encoding variables
 Often times, datasets are not imported into statistical software in the most efficient format.
@@ -651,19 +651,19 @@ However, variables in this format cannot be used for quantitative analysis.
 Therefore, categorical variables must be transformed into other formats,
 such as \texttt{factors} in R and \texttt{labeled integers}\sidenote{\url{
 		https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Value\_Labels}} in Stata.
-Additionally, open-ended responses stored as strings usually have a high risk of including identifying information, 
+Additionally, open-ended responses stored as strings usually have a high risk of including identifying information,
 so cleaning them requires extra attention.
 The choice names in categorical variables
 (called \textit{value labels} in Stata and \textit{levels} in R)
-should be accurate, concise, 
+should be accurate, concise,
 and directly linked to the data collection instrument.
-Adding choice names to categorical variables 
+Adding choice names to categorical variables
 makes it easier to understand your data as you explore it,
 and thus reduces the risk of small errors making their way through into the analysis stage.
 
 % Recoding missing values
 In survey data, it is common for non-responses such as ``Don't know'' and ``Declined to answer''
-to be represented by arbitrary survey codes. 
+to be represented by arbitrary survey codes.
 The presence of these values could bias your analysis,
 since they don't represent actual observations of an attribute.
 They need to be turned into \textit{missing values}.
@@ -679,7 +679,7 @@ keeping them consistent with the raw data makes data processing and construction
 Unfortunately, not all variable names are informative.
 In such cases, one important piece of documentation
  makes the data easier to handle: the variable dictionary.
-When a data collection instrument (for example a questionnaire) is available, 
+When a data collection instrument (for example a questionnaire) is available,
 it is often the best dictionary one could ask for.
 But even in these cases, going back and forth between files can be inefficient,
 so annotating variables in a dataset is extremely useful.
@@ -719,19 +719,27 @@ As far as we know, currently there are no similar resources in R.
 However, the \texttt{tidyverse}\sidenote{\url{https://www.tidyverse.org/}} packages
 compose a consistent and useful grammar to perform the same tasks.
 
-
+%--------------------------------------------------------------
 \subsection{Documenting data cleaning}
+
 Throughout the data cleaning process,
 you will often need extensive inputs from the people responsible for data collection.
-(This could be a survey team, the government ministry responsible for administrative data systems,
-the technology firm that generated remote sensing data, etc.)
-You should acquire and organize all documentation of how the data was generated, such as
-reports from the data provider, field protocols, data collection manuals, survey instruments,
-supervisor notes, and data quality monitoring reports.
-These materials are essential data documentation,\sidenote{
+Sometimes this is your research team, but often it will be someone else.
+It could be a survey team, the government ministry responsible for administrative data systems,
+the technology firm that generated remote sensing data, etc.
+Regardless of who originally collected the data,
+you should acquire and organize all documentation of how the data was generated.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Documentation}}
 \index{Documentation}
-and should be stored alongside your data dictionary and codebooks.
+What type of documentation that is available depends on how the data was collected.
+For original data collection, this should include
+field protocols, data collection manuals, survey instruments,
+supervisor notes, and data quality monitoring reports.
+For secondary data, you should try to get the same type of information,
+but that is often not possible unless
+the data source is a well managed data publication.
+The data documentation should be stored
+alongside your data dictionary and codebooks.
 You will probably need these files during analysis,
 and they should be published along with the data,
 so other researchers may use them for their analysis as well.
@@ -739,7 +747,7 @@ so other researchers may use them for their analysis as well.
 Once you have a cleaned, de-identified dataset and the documentation to support it,
 you have created the first research output of your project: a dataset.
 Chapter 7 will get into the details of data release.
-For now, all you need to know is that your team 
+For now, all you need to know is that your team
 should consider submitting this dataset for publication,
 or at least archiving and cataloguing,
 even if it will remain embargoed for some time.
