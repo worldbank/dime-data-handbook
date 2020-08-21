@@ -626,7 +626,7 @@ you will need a more advanced solution.
 The first step is to understand exactly how the data is encrypted
 and how the keys are handled for the particular cloud storage option you choose.
 A typical research team
-will have to consult a cybersecurity expert to ensure adequate data security protocols are in place.
+will need to consult a cybersecurity expert to ensure adequate data security protocols are in place.
 
 \subsection{Collecting data securely in the field}
 
@@ -639,8 +639,8 @@ You should not assume that your data is encrypted at rest there by default.
 In most data collection platforms,
 encryption-at-rest needs to be explicitly enabled and operated by the user.
 
-When collecting data, you want the tablets or browsers used for data collection
-to be able to encrypt all information before submitting it to the server.
+When collecting data, you want the mobile phones, tablets or browsers used for data collection
+to encrypt all information before submitting it to the server.
 At the same time, you do not want those devices to have any way of decrypting already submitted data.
 This is a use case for \textbf{asymmetric encryption},
 where there are two keys that together make a public/private key pair.
@@ -682,63 +682,31 @@ If you receive confidential data from a partner organization
 or share confidential data with your research team over the internet,
 it must always be encrypted.
 The best practice is to reduce the amount of confidential data
-needed to be shared or transfer.
-If you do not need the confidential information you will simplify your workflow
-by collecting or receiving data without any confidential information in the first place.
-This should always be your first option when possible.
+that is shared or transfer.
+If you do not need the confidential information, you will simplify your workflow
+by acquiring or sharing data without any confidential information in the first place.
+Removing confidential information, for example through de-identifying the data
+(which we will discuss in detail in Chapter 5), should always be your first preference.
 
-Usually we need to deal with confidential data at some point in the project,
-and then the second best practice is create two versions of your data.
-One version of your data will still have the confidential information,
-and it will need to be encrypted at all times.
-This version should only be used
-when the confidential information is actually needed.
-In the second version of your data all confidential data should be removed.
-This version does not have to be encrypted
-and should be what you use on a day-to-day basis.
-
-The most common reason data is confidential
-is that it includes direct personal identifiers.
-Removing identifying information is called de-identification,
-and we will discuss how to do that in the next chapter.
-De-identifying the data at the earliest possible opportunity
-will simplify the workflow without compromising data security,
-as de-identified data no longer needs to be encrypted.
-Another method to protect confidential data is to aggregate the data,
-meaning that sums and averages of group of observations are calculated
-and only those numbers are reported.
-Any of these techniques can be used either
-before the data is shared with the research team,
-or when creating the second non-confidential version
-of the data set to be used in the analysis.
-If confidential information is directly required for the analysis,
-it will be necessary to keep at least a subset of the data
-encrypted through the data analysis process.
-
+However, some amount of confidential data usually needs to be transferred at some point in the project.
 There are multiple options for sharing encrypted data.
 If you need to collaborate on a confidential data set
-then you can create an encrypted folder,
-for example using VeraCrypt as described above.
+then you can create an encrypted folder, as described above.
 An encrypted folder can safely be shared using insecure modes of communication
 such as email or third-party syncing services,
 as long as you only share the key
 using a secure service like a password manager.
-Anyone who has access to both the encrypted folder and the encryption key
-can read and collaborate on the encrypted file,
-but it is impossible to know anything about your data
-if you only have access to one of them.
-
+Anyone who has access to both the encrypted folder \textit{and} the encryption key
+can read and collaborate on the encrypted file.
 If you only need a one-time transfer of confidential information,
-such as to receive a data set from a partner organization,
-then setting up a permanent encrypted folder may be unnecessary.
-Instead, for one-time transfers we recommend sending data over password-protected
+for example to receive a data set from a partner organization,
+setting up a permanent encrypted folder may be unnecessary.
+Instead, we recommend sending data over password-protected
 end-to-end encrypted file sharing services.\sidenote{
 	One such service at the time of writing is \url{https://send.firefox.com/}}
 
 \subsection{Backing up original data}
-
-While encryption is protecting your data from unauthorized access,
-you also need to protect your data
+In addition to encrypting your data, you must protect it 
 from being accidentally overwritten or deleted.
 This is done through a back-up protocol.
 Here is an example of such a protocol:
@@ -779,14 +747,14 @@ Here is an example of such a protocol:
 	it exists only for recovery purposes.
 \end{enumerate}
 
-\noindent This handling satisfies the \textbf{3-2-1 rule}:
+\noindent This handling satisfies the \textbf{3-2-1 rule} described in Chapter 2:
 there are two on-site copies of the data and one off-site copy,
 so the data can never be lost in case of hardware failure.
 %needs wiki page
-However, you still need to keep track of your encryption keys as without them your data is lost.
 If you remain lucky, you will never have to access your ``master'' or ``golden master'' copies --
 you just want to know it is there, safe, if you one day end up needing it.
+
+
 Once the original raw data is securely stored and backed up,
-it can be processed into your de-identified raw data
-and your final analysis datasets
+it can be processed into a de-identified, clean dataset
 through the steps described in the next chapter.
