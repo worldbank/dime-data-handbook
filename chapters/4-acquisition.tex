@@ -540,21 +540,20 @@ and attrition occurred in the field and how they were implemented and resolved.
 All confidential data must be handled in such a way that only people specifically
 approved by an Institutional Review Board (IRB)
 are able to access the data.
-Data can be confidential for multiple reasons, but the two most
-common reasons are that it contains personally identifiable information (PII)\sidenote{
+Data can be confidential for multiple reasons; two 
+very common reasons are that the data contains personally identifiable information (PII)\sidenote{
   \url{https://dimewiki.worldbank.org/Personally\_Identifiable\_Information\_(PII)}}
 or that the data owner has specified restricted access.
 
 
 \subsection{Encryption}
 
-\index{encryption}\textbf{Data encryption}
-is a group of methods that ensure that files are unreadable
+\index{encryption}\textbf{Data encryption} is the best way to protect confidential data.\sidenote{
+	\url{https://dimewiki.worldbank.org/Encryption}} 
+Data encryption is a group of methods that ensure that files are unreadable
 even if laptops are stolen, servers are hacked,
-or unauthorized access to the data is obtained in another way.\sidenote{
-  \url{https://dimewiki.worldbank.org/Encryption}}
-Proper encryption is central to secure data handling,
-and can rarely be condensed into a single method,
+or unauthorized access to the data is obtained in another way.
+Proper encryption can rarely be condensed into a single method,
 as the data will travel through many servers, devices, and computers
 from the source of the data to the final analysis.
 Encryption should be seen as a system
@@ -563,27 +562,26 @@ This section recommends a streamlined workflow,
 so that it is easy as possible to make sure
 the weakest link is still sufficiently secure.
 
-Data that has been encrypted is made readable again using decryption,
-and decryption requires a password or a key.
-Encryption makes data files completely unusable
-to anyone without the specific decryption key,
-which is a higher level of security than password-protection.
-It is never secure to share passwords or keys by email,
+Authorized members of the research team can access encrypted data by decrypting it,
+making the data readable again by entering a specific key. 
+Without the specific decryption key,
+encrypted data files are completely unusable. 
+This is a higher level of security than password-protection.
+It is never secure to share decryption keys (or passwords) by email,
 instant messaging, or other common modes of communication;
 instead, use a secure password manager.\sidenote{
 	\url{https://lastpass.com} or \url{https://bitwarden.com}
-	among many others. See the DIME Analytics guide to password managers: \url{
+	are common, but there are many options that provide similar services. See the DIME Analytics guide to password managers: \url{
 		https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/password-manager-guidelines.md
 }}
 In addition to providing a way to securely share passwords,
 password managers also provide a secure location
 for long term storage of passwords and keys,
 whether they are shared or not.
-Make sure you store your keys with descriptive names
-to match the encryption to which they correspond,
-as you will typically need to use them together far into the future.
+Make sure you store your keys with descriptive names,
+as they will be needed over the lifetime of a project.
 
-There are two contexts for encryption you should be aware of;
+There are two methods of encryption you should be aware of;
 \textbf{encryption-in-transit}\sidenote{
 	\url{https://dimewiki.worldbank.org/Encryption\#Encryption\_in\_Transit}}
 and \textbf{encryption-at-rest}\sidenote{
@@ -591,46 +589,44 @@ and \textbf{encryption-at-rest}\sidenote{
 Encryption-in-transit protects your data when in transit over the internet.
 It is easy to implement encryption-in-transit such that no input from the user is required,
 since the server and browser can keep track of the key for the short duration of the connection.
-All well-established services have this implemented and you rarely have to worry about it.
-However, if you were to use a less well-known service,
+All well-established data transfer services have this implemented and you rarely have to worry about it.
+However, if you are setting up a custom solution,
 it is important that you verify that it use encryption-in-transit,
 as without it, your data and credentials are very vulnerable.
 Encryption-at-rest protects your data when it is stored somewhere,
 for example on a server or on your computer.
 In contrast to encryption-in-transit,
-you as a user, need to keep track of the key.
+you as a user need to keep track of the decryption key.
 Only people listed on your IRB should be allowed to have access to this file.
 
 \subsection{Storing data securely}
 % doesn't cover 'big' data
-The first thing you need to do before planning how to securely receive data,
-is to plan how to securely store data after you have received it.
+Before acquiring any data, you must plan how you will securely store that data after you have received it.
 Typically, you want to store your data so that you can decrypt and access it,
-interact with it and then decrypt it again.
+interact with it, and then encrypt it again.
 That is a perfect use case for \textbf{symmetric encryption},
 where the same key is used to both encrypt and decrypt your files.
 Think of this as a physical safe where you have one key
-used to both add content and access content.
+used to both add and remove content.
 
-The equivalent to a safe in secure data storage is an encrypted folder,
-which you can set up using, for example, VeraCrypt.\sidenote{
-	\url{https://www.veracrypt.fr} and
-	\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
-You can interact with files in an encrypted folder
-as long as you have that key.
-This is an implementation of encryption-at-rest.
+If the data you are working with is an appropriate size to be stored on your computer,
+you can use an encrypted folder for the equivalent of a safe.
+If you have the decryption key, you can interact with the files in an encrypted folder as usual (after entering the key).
+\sidenote{One software option for encrypting folders is VeraCrypt
+	\url{https://www.veracrypt.fr}. DIME guidelines for VeraCrypt use:
+	\url{https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}.}
+An encrypted folder is an implementation of encryption-at-rest.
 There is absolutely no way to restore your data if you lose your key,
 so we cannot stress enough the importance of using a password manager,
 or equally secure solution, to store these encryption keys.
 
-It is becoming more common that development research
-is done using data sets that are too big to store on a regular computer,
-and instead the data is stored and processed in a cloud environment.
-There are many available cloud storage solutions
-and you need to understand how the data is encrypted
-and how the keys are handled.
-This is another case where a typical research team
-will have to consult a cybersecurity expert.
+If, on the other hand, the data you are working with is too big to store on a regular computer,
+and instead the data is stored and processed in a cloud environment,
+you will need a more advanced solution. 
+The first step is to understand exactly how the data is encrypted
+and how the keys are handled for the particular cloud storage option you choose.
+A typical research team
+will have to consult a cybersecurity expert to ensure adequate data security protocols are in place.
 
 \subsection{Collecting data securely in the field}
 
