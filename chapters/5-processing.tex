@@ -217,14 +217,17 @@ in a tidy workflow,
 instead of transforming the data for each operation,
 this transformation is done once for all data during cleaning,
 making all subsequent operations much easier.
+
 In the earlier household survey example,
-household-level variables will be stored in one tidy dataset,
-and household-member variables are reshaped to member level and stored in another tidy dataset,
+household-level variables will be stored in one tidy data table,
+and household-member variables are reshaped to member level
+and stored in another tidy data table,
 which also contains the household ID for each individual.
-The household ID is intentionally duplicated in the household members table
-to allow it to be linked to the household data table,
-while a household member ID will be this tables' unique identifier.
-Note that such dataset is only appropriate for analysis at the person level.
+The household ID is intentionally duplicated in the household members data table
+to allow one or several household members to be linked to the same household data.
+The household members data will be uniquely identified by
+either a single household member ID or
+a combination of household ID and household member ID.
 In the transaction data example,
 the result of the tidying process would be one transaction-level data table,
 containing variables indicating the ID of all firms involved;
