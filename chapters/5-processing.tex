@@ -76,13 +76,12 @@ the raw data contain either missing or duplicate values.\sidenote{
 	to refer to data in the state it was originally received by the research team.
 	This applies to data acquired from partners as well as originally collected data.
 }
-It is also possible for a raw dataset to not include an identifier
-that uniquely identifies all observations,
-or that the identifier involves a long string
+It is also possible for a raw dataset to not include an unique identifier,
+or for the identifier to involve a long string
 that is difficult to work with, such as a person's name.
 In such cases, cleaning begins by either carefully creating a variable
 that uniquely identifies the data,
-or carefully merging the ID variable from the master dataset
+or merging the ID variable from the master dataset
 using other identifying information.
 Note that while digital survey tools create unique identifiers for each data submission,
 that is not the same as having a unique ID variable for each observation in the sample,
@@ -131,7 +130,7 @@ A data table is tidy when each column represents one variable,\sidenote{
   \textbf{Variable:} the collection of all data points
 	that measure the same attribute.}
 each row represents one observation,
-and all variables in a data table have the same unit of observation.
+and all variables in it have the same unit of observation.
 Every other format is \textit{untidy}.
 This may seem trivial, but raw data,
 and raw survey data in particular,
@@ -143,7 +142,7 @@ even though these do not necessarily equate.
 
 Every untidy dataset is untidy in its own way,
 but the most common case of untidy raw data encountered in development research
-is a dataset consisting of multiple units of observations stored in the same data table.
+is a dataset with multiple units of observations stored in the same data table.
 Take, for example, a household survey that includes household-level questions,
 as well as a household member roster.
 Such raw datasets usually consists of a single data table
@@ -171,14 +170,14 @@ although doing so is often inefficient and error-prone.
 To understand how dealing with wide data can be complicated,
 imagine you need to calculate the share of women
 in each household using the household level data described above.
-In a wide data table you will either have to program a loop that
-counts the number of women and
-divide that number with the total number of household members,
+In a wide data table you will either have to first create variables counting
+the number of women and the total number of household members,
+and then calculate the share,
 or you will have to transform the data to a different format.
 In a tidy data table, however, where each row is a household member,
 you can easily aggregate the share of women by household,
 without additional steps,
-and then merge the result to the household data table.
+and then merge the result to the other data tables.
 Tidy data tables are also easier to clean,
 as each attribute only needs to be checked once,
 and each column corresponds directly to one question in the questionnaire.
@@ -251,9 +250,8 @@ The main unit of observation must have a master dataset,
 and be listed in the data linkage table.
 All other data tables in your dataset must have
 an unambiguous way to merge with the main data table.
-This way, all data points in your dataset
-will be possible to link to
-all data points in all datasets in your project.
+This way, it will be possible to link
+all data points in all your project's datasets to each other.
 We recommend that you save your datasets as a folder,
 where the main data table share the same name as the folder,
 and the name of all other data tables start with the same name,
