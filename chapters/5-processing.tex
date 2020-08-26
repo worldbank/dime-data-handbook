@@ -158,14 +158,13 @@ When your rows include multiple nested observational units,
 then the identifying variable does not identify all observations on that row,
 as there is more than one unit of observation on the same row.
 Survey data containing nested units of observation is typically
-imported from survey platforms in this format,
-which is called \textbf{wide format}.\sidenote{\textbf{Wide data:}
+imported from survey platforms in \textbf{wide format}.\sidenote{\textbf{Wide data:}
 	a data table where a single variable is divided into multiple columns,
 	for example one for each individual in a household.
 }
-Wide data could have, for instance,
-one column for the household variable called \texttt{ownsfridge},
-but a few columns for the household member variables \texttt{sex\_1}, \texttt{sex\_2}, etc.
+Wide format data could have, for instance,
+one column for a household-level variable (for example \texttt{ownsfridge}),
+and a few columns for household member-level variables (for example \texttt{sex\_1}, \texttt{sex\_2}).
 Raw data is often saved in this format because it's the most efficient way to transfer it:
 adding different levels of observation into the same data table
 allows for data to be transferred in a single file.
@@ -182,7 +181,7 @@ or you will have to transform the data to a different format.
 In a tidy data table, however, where each row is a household member,
 you can easily aggregate the share of women by household,
 without additional steps,
-and then merge the result to the other data tables.
+and then merge the result to the household-level data tables.
 Tidy data tables are also easier to clean,
 as each attribute only needs to be checked once,
 and each column corresponds directly to one question in the questionnaire.
@@ -190,8 +189,8 @@ Finally, as you will see in Chapter 6,
 summary statistics and distributions are much simpler
 to generate from tidy data tables.
 
-Wide format is only one way in which data can be untidy.
-As mentioned earlier, there are unlimited ways for data to be untidy.
+As mentioned earlier, there are unlimited ways for data to be untidy; 
+wide format is only one of those ways.
 Another example is a data table containing both information on transactions
 and on the firms involved in each transaction.
 In this case, the firm-level information will be repeated
@@ -224,12 +223,12 @@ making all subsequent operations much easier.
 
 In the earlier household survey example,
 household-level variables will be stored in one tidy data table,
-and household-member variables are reshaped to member level
-and stored in another tidy data table,
+and household-member variables are reshaped
+and stored in a separate, member-level, tidy data table,
 which also contains the household ID for each individual.
 The household ID is intentionally duplicated in the household members data table
 to allow one or several household members to be linked to the same household data.
-The household members data will be uniquely identified by
+The unique identifier for the household member-level data data will be
 either a single household member ID or
 a combination of household ID and household member ID.
 In the transaction data example,
@@ -245,11 +244,11 @@ In both examples above, your dataset is made up of two data tables,
 each saved in a separate file.
 In a tidy workflow, your dataset is a set of one or more data tables,
 where each data table is a file in your data storage.
-There must also be a clear way to connect each
+There must be a clear way to connect each
 tidy data table to a master dataset,
 and thereby also to all other datasets.
-This is done by deciding which data table is the main data table,
-and that data table's unit of observation is
+To implement this, you need to decide which data table is the main data table;
+that data table's unit of observation will be
 the main unit of observation of your dataset.
 The main unit of observation must have a master dataset,
 and be listed in the data linkage table.
@@ -258,12 +257,12 @@ an unambiguous way to merge with the main data table.
 This way, it will be possible to link
 all data points in all your project's datasets to each other.
 We recommend that you save your datasets as a folder,
-where the main data table share the same name as the folder,
+in which the main data table shares the same name as the folder,
 and the name of all other data tables start with the same name,
 but are suffixed with the unit of observation for that data table.
 
 In the household dataset example, 
-the household data table would be the main table.
+the household-level data table would be the main table.
 This means that there must be a master dataset for households.
 You may have a master dataset for household members as well,
 if you think it is important for your research,
