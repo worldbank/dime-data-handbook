@@ -1,9 +1,3 @@
-BAD:
-
-* Loop over crops
-foreach i in potato cassava maize {
-   * do something to `i'
-}
 
 GOOD:
 
@@ -22,3 +16,10 @@ local crops potato cassava maize
           * do something to `crop' in `plot_num'
         } // End plot loop
   } // End crop loop
+
+BAD:
+
+  * Loop over crops
+  foreach i in potato cassava maize {
+     * do something to `i'
+  }
