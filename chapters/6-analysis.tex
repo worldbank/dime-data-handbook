@@ -51,16 +51,18 @@ For this chapter, we assume you are starting from
 one or multiple well-documented tidy\cite{hadley2017R}\sidenote{
 	\url{Available at
 	https://vita.had.co.nz/papers/tidy-data.pdf}}
-datasets that have gone through thorough quality checks,
-and that incorporate any corrections needed.
+datasets.
+We also assume that these datasets
+have gone through thorough quality checks,
+and incorporate any corrections needed.
 The next step is to \textbf{construct}\sidenote{
 	\textbf{Data construction}:
 	The process of transforming cleaned data into analysis data by
 	creating the derived indicators that will be analyzed.}
 the dataset, or datasets, you will use for analysis;
 that is, to transform the cleaned data into analysis-ready data.
-Some data might have been acquired analysis-ready,
-otherwise, this is accomplished by integrating different datasets
+It's possible data the acquired data is ready for analysis,
+but in most cases it needs to be prepared by integrating different datasets
 and creating derived variables
 (dummies, indices, and interactions, to name a few).
 The derived indicators you will construct should be
@@ -69,7 +71,7 @@ the pre-analysis plan should serve as your guide
 at this stage.\index{Pre-analysis plan}
 During construction, data will typically be
 reshaped, merged, and aggregated to change the level of the data points
-from the \textbf{unit of \textit{observation}} in the original data
+from the \textbf{unit of \textit{observation}} in the raw data
 to the \textbf{unit of \textit{analysis}}.\sidenote{\url{
 		https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 
@@ -77,11 +79,9 @@ to the \textbf{unit of \textit{analysis}}.\sidenote{\url{
 A constructed dataset is built to answer an analysis question.
 If the sub-samples and units of observation 
 vary for different pieces of the analysis
-you may need many constructed datasets.
-It is often not a good practice
-to create a single ``canonical'' analysis dataset.
-It is often better practice to have 
-many purpose-built analysis datasets.
+you may need to construct many purpose-built analysis datasets.
+In such cases, it is not good practice
+to try to create a single ``canonical'' analysis dataset.
 For a concrete example of what this means,
 think of an agricultural intervention 
 that was randomized across villages
@@ -91,7 +91,7 @@ run household-level regressions on income,
 test for plot-level productivity gains,
 and check if village characteristics are balanced.
 Having three separate datasets for each of these three pieces of analysis
-will result in cleaner and more efficient analytical code than if
+will result in cleaner, more efficient, and less error-prone analytical code than if
 you started from a single analysis dataset and repeatedly transformed it.
 
 \subsection{Fitting construction into the data workflow}
@@ -122,9 +122,9 @@ accidentally make changes to an indicator from one round
 while forgetting to update the other.
 
 % Why construction is separate from analysis
-Construction of analysis data should be done right
-after data cleaning and before data analysis,
-in accordance with the pre-analysis plan.\index{Pre-analysis plan}
+When we visualize the research workflow,
+variable construction precedes data analysis,
+as derivative variables need to be created before they are analyzed.
 In practice, however, as you analyze the data,
 it is often useful to revisit construction,
 and explore different subsets of the same and other transformations of the data.
@@ -159,7 +159,7 @@ Merges are common sources of missing values,
 and can also result in observations being dropped.
 To avoid unintentional changes to your data,
 pay close attention to merge results,
-and add checks to your code to very that they match what you expect.
+and add checks to your code to verify that they match what you expect.
 
 % Merging data sets with the same unit of observation
 If the datasets you need to merge have the same unit of observation,
@@ -212,8 +212,8 @@ in order to figure out what the matching pattern should be
 and how to accomplish it in practice through your code.
 
 % Merging data sets with different units of observation
-Integrating datasets with different units of observation may involve changing the structure of the data.
-This often involves changing the unit of observation through aggregation or reshapes.
+Integrating datasets with different units of observation often involve changing the structure of the data,
+such as transforming the unit of observation through aggregation or reshapes.
 For example, you may have data on individual students in a school,
 and wish to create a summary of the student-level data set to merge to the school data,
 including variables such as gender proportions or average family income.
@@ -234,7 +234,7 @@ indicating why you are doing so and how the data set changed.
 % Data integration
 Some merges of data with different units of observation
 are more conceptually complex.
-Some examples include: overlaying road location data with household data,
+Examples include: overlaying road location data with household data,
 using a spatial match; combining school administrative data, such as attendance records and test scores,
 with student demographic characteristics from a survey;
 or linking a dataset of infrastructure access points, such as water pumps or schools,
