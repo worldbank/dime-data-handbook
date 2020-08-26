@@ -16,7 +16,7 @@
 	In this framework, it is useful to think of research as a public service
   that requires researchers as a group to be accountable to their methods.
 	This means acting to collectively protect the credibility of development research
-	by following modern practices for research planning and documentation.
+	by following modern practices for research planning, transparency, and reproducibility.
 
   Across the social sciences, the open science movement has been fueled
   by concerns about the proliferation of low-quality research practices,
@@ -25,14 +25,17 @@
 	and in some cases even outright fraud.
   While the development research community has not yet
   experienced any major scandals,
-  it has become clear that there are necessary improvements to make
-	in the way that code and data are handled as part of research.
+  it has become clear that there are necessary improvements
+	in the way that code and data are handled as part of open research.
   As a community, having common standards and practices
   for creating and sharing materials, code, and data with others
   will improve the value of the work we do.
 	In this chapter, we outline principles and practices that help to ensure
 	research consumers can be confident in the conclusions reached.
 We discuss each of the three components - credibility, transparency, and reproducibility - in turn.
+  We share our experience implementing best practices in open science research at DIME,
+  and focus on practical guidance tested on projects across our portfolio.
+
 
 \end{fullwidth}
 
@@ -41,9 +44,14 @@ We discuss each of the three components - credibility, transparency, and reprodu
 \section{Developing a credible research project}
 
 % Why development researchers should care about transparency
-The evidentiary value of research is traditionally a function of design choices,\cite{angrist2010credibility,ioannidis2005most}
-such as powered through sampling and randomization,
-and robustness to alternative specifications and definitions.
+The evidentiary value of research is traditionally a function of design choices.\cite{angrist2010credibility,ioannidis2005most}
+Was the research design sufficiently powered through its sampling and randomization?
+Were the key research outcomes pre-specified or chosen ex-post?
+How sensitive were the results to changes in specifications or definitions?
+Reproducible and transparent methods are key to maintaining credibility
+in these choices and avoiding serious errors.\cite{christensen2019transparent}
+This is especially relevant for research that relies on original data sources,
+from innovative big data sources to unique surveys.
 One frequent target for critics of such research\cite{ioannidis2017power}
 is the fact that most researchers have a lot of leeway
 in selecting the projects, results, or outcomes they focus on
@@ -51,10 +59,6 @@ in selecting the projects, results, or outcomes they focus on
 or collecting data in the field,
 which increases the likelihood of finding ``false positive''
 results that are not true outside carefully-selected data.
-Credible research design methods are key to maintaining credibility
-in these choices and avoiding serious errors.\cite{christensen2019transparent}
-This is especially relevant for research that relies on original data sources,
-from innovative big data sources to unique surveys.
 Development researchers should take these concerns seriously.
 Such flexibility can be a significant issue for the quality of evidence overall,
 particularly if researchers believe that certain types of results
@@ -64,18 +68,17 @@ This section presents three popular methods
 for researchers to commit to particular research questions or methods,
 and to avoid potential criticisms of cherry-picking results for publication:
 registration, pre-analysis plans, and registered reports.
-Each of these methods involves documenting specific research design components,
-ideally before carrying out the analytical component or extensively exploring the data.
-Study registration provides formal notice that a study is being attempted 
-and creates a hub for materials and updates about the study results.
+Each of these methods involves documenting all or part of a research study,
+ideally before carrying out the study.
+Registering studies provides notice that a study was attempted (even if never completed).
 Pre-analysis plans are a more formal commitment
 to use specific methods on particular questions.
 Writing and releasing a pre-analysis plan
-in advance of working with data is used to protect the credibility
+in advance of working with data is therefore often used to protect the credibility
 of approaches that have a high likelihood of returning false results if decided ex post.
 Finally, registered reports allow researchers to approach research planning itself
 as a process at the level of a full peer review.
-Registered reports enable close scrutiny of a research design,
+Registered reports enable close scrutiny of a project design,
 a feedback and improvement process,
 and a commitment from a publisher to publish the study
 based on the credibility of the design, rather than the specific results.
@@ -83,19 +86,16 @@ based on the credibility of the design, rather than the specific results.
 % Pre-registration
 \subsection{Registering research studies}
 
-Registration of research studies is an increasingly common practice,
-and more journals are beginning to require
-the registration of studies they publish.\cite{vilhuber2020report}
-Study registration intended to ensure that a complete record of research inquiry is easily available.\sidenote{
+Registration of research studies is a common practice
+intended to ensure that a complete record of research inquiry is easily available.\sidenote{
 	\url{https://dimewiki.worldbank.org/Pre-Registration}}
 Registering research studies ensures that future scholars can quickly
 find out what work has been carried out on a given question,
 even if some or all of the work done never results in formal publication.
 Registration of studies is increasingly required by publishers
-and can be done before, during, or after the study
-with essential information about the study purpose.
-Some currently popular registries are operated by the 
-\textbf{AEA},\sidenote{\url{https://www.socialscienceregistry.org}}
+and can be done very quickly before, during, or after the study
+with only basic information about the study purpose.
+Some common registries at the time of writing this book are operated by the \textbf{AEA},\sidenote{\url{https://www.socialscienceregistry.org}}
 \textbf{3ie},\sidenote{\url{https://ridie.3ieimpact.org}}
 \textbf{eGAP},\sidenote{\url{https://egap.org/content/registration}}
 and \textbf{OSF},\sidenote{\url{https://osf.io/registries}}.
@@ -103,29 +103,27 @@ They all have different target audiences and features,
 so select one that is appropriate to your work.
 \index{pre-registration}
 
-Pre-registering studies \textit{before they start} is an extension of this principle.\cite{nosek2018preregistration}
-Registration of a study before it goes to implementation or data acquisition,
+Pre-registering studies \textit{before they start} is a further extension of this principle.\cite{nosek2018preregistration}
+Registration of a study before it goes to field,
 particularly when specific hypotheses are included in the registration,
 provides a simple and low-effort way for researchers
 to conclusively demonstrate that a particular line of inquiry
 was not generated by the process of data collection or analysis itself.
 Pre-registrations need not provide exhaustive details about how
 a particular hypothesis will be approached; only that it will be.\sidenote{\url{https://datacolada.org/12}}
-This can be highly valuable for the credibility of the research
-and requires only minor time investment or administrative effort.
-For this reason, the DIME team requires pre-registration of all studies
+This can be highly valuable and requires very little additional investment.
+As a result, the DIME team requires pre-registration of all studies
 in a public database with at least some primary hypotheses prespecified,
 prior to providing funding for impact evaluation research.
 
 % Pre-analysis plans
 \subsection{Writing pre-analysis plans}
 
-If a research team has a large amount of flexibility
+If a researcher has a large amount of flexibility
 to define how they approach a particular hypothesis,
 study registration may not be sufficient to avoid the criticism of
 ``hypothesizing after the results are known'', or HARKing.\cite{kerr1998harking}
-Examples of such flexibility include a broad range 
-of concrete measures that could be argued to measure to an abstract concept;
+Examples of such flexibility include a diverse set of measures of an abstract concept;
 future choices about sample inclusion or exclusion;
 or decisions about how to construct derived indicators.
 When the researcher is collecting a large amount of information
@@ -139,8 +137,7 @@ by fully specifying some set of analyses the researchers intend to conduct.\side
 The pre-analysis plan should be written up in detail
 for areas that are known to provide a large amount of leeway
 for researchers to make later decisions,
-particularly for things like interaction effects or subgroup analysis.\sidenote{
-  \url{https://www.bitss.org/wp-content/uploads/2015/12/Pre-Analysis-Plan-Template.pdf}}
+particularly for things like interaction effects or subgroup analysis.
 Pre-analysis plans shoud not, however, be viewed as binding the researcher's hands.\cite{olken2015promises}
 Depending on what is known about the study at the time of writing,
 pre-analysis plans can vary widely in the amount of detail they should include.\sidenote{
@@ -149,7 +146,7 @@ The core function of a PAP is to carefully and explicitly describe
 one or more specific data-driven inquiries,
 as specific formulations are often very hard to justify in retrospect
 with data or projects that potentially provide many avenues to approach
-a single theoretical question.\cite{ofosu2019pre}
+a single theoretical question.
 Anything outside the original plan is just as interesting and valuable
 as it would have been if the the plan was never published;
 but having pre-committed to the details of a particular inquiry makes its results
@@ -164,15 +161,14 @@ immune to a wide range of criticisms of specification searching or multiple test
 take the process of pre-specifying a complex research design
 to the level of a formal publication.
 In a registered report, a journal or other publisher
-will peer review and conditionally accept a specific study for publication,
+will accept a particular format of study description for publication,
 typically then guaranteeing the acceptance of a later publication
 that carries out the analysis described in the registered report.
 While far stricter and more complex to carry out than
 ordinary study registration or pre-analysis planning,
 the registered report has the added benefit
-of peer review and expert feedback
-on the design and structure of the proposed study.\sidenote{
-  \url{https://www.elsevier.com/__data/promis_misc/JDE_RR_Author_Guidelines.pdf}}
+of soliciting peer review and expert feedback
+on the design and structure of the proposed study.
 
 This process is in part meant to combat the ``file-drawer problem'',\cite{simonsohn2014p}
 and ensure that researchers are transparent in the sense that
@@ -248,16 +244,13 @@ New decisions are always being made as the plan begins contact with reality,
 and there is nothing wrong with sensible adaptation so long as it is recorded and disclosed.
 
 % Tools for transparency: GitHub, OSF
-Email, however, is \textit{not} a documentation service, because communications are rarely well-ordered,
-can be easily deleted, and are not available for future team members.
-There are various software solutions for building proper documentation over time.
+There are various software solutions for building documentation over time.
 Some work better for field records such as implementation decisions,
 research design, and survey development;
 others work better for recording data work and code development.
 The \textbf{Open Science Framework}\sidenote{\url{https://osf.io}} provides one such solution,\index{Open Science Framework}
 with integrated file storage, version histories, and collaborative wiki pages.
-\textbf{GitHub}\sidenote{\url{https://github.com}} provides a transparent documentation system
-through commit messages, issues, \texttt{README} files, and pull requests,\sidenote{
+\textbf{GitHub}\sidenote{\url{https://github.com}} provides a transparent documentation system,\sidenote{
 	\url{https://dimewiki.worldbank.org/Getting_started_with_GitHub}}\index{task management}\index{GitHub}
 in addition to version histories and wiki pages.
 Such services offer multiple different ways
@@ -273,14 +266,16 @@ Each project has specific requirements for data, code, and documentation managem
 and the exact transparency tools to use will depend on the team's needs,
 but they should be agreed upon prior to project launch.
 This way, you can start building a project's documentation as soon as you start making decisions.
+(Email, however, is \textit{not} a documentation service, because communications are rarely well-ordered,
+can be easily deleted, and are not available for future team members.)
 
 % Documenting survey instrument and survey code
 \subsection{Cataloging and archiving data}
 
 Data and data collection methods should be fully cataloged, archived, and documented,
-whether you are collecting data yourself or receiving it from an outside partner.
-In some cases this is as simple as uploading
-a survey instrument or an index of datasets and a codebook to an archive.
+whether you are collecting data yourself or recieving it from an outside partner.
+In some cases this is as simple as uploading a PDF survey instrument or data catalog
+and a coded survey definition form or codebook to an archive.
 In other cases this will be more complex.
 Proper documentation of data collection will often require
 a detailed description of the overall sampling procedure.
@@ -293,37 +288,31 @@ it is often necessary to collate these materials
 for an appendix for publication in any case.
 
 % Preparing an initial catalog and release of data
-When data is recieved from partners or collected in the field,
-the original (including corrections) 
-should be immediately placed in a secure permanent storage system.
-Before analytical work begins, you should create a ``for-publication''
-copy of the original dataset by removing potentially identifying information.
-This will become the canonical raw data, and must be
-placed in an archival repository where it can be cited.\cite{vilhuber2020report}
-This can initially be done under embargo or with limited release,
-in order to protect your data and future work.
-This type of data depositing or archiving
-precedes publishing or releasing any data:
-data at this stage may still need to be embargoed
-or have other, potentially permanent, access restrictions,
-so you can instruct the archive to formally release the data later.
-
+The raw dataset that comes in from the field should be immediately archived and cataloged.
 Some project funders
-provide specific repositories in which they require the deposit of data they funded,\sidenote{For example, \url{https://data.usaid.gov}}
+provide specific respositories in which they require the deposit of data they funded,\sidenote{For example, \url{https://data.usaid.gov}}
 and you should take advantage of these when possible.
 If this is not provided, you must be aware of privacy issues
 with directly identifying data and questions of data ownership
 before uploading raw data to any third-party server, whether public or not;
 this is a legal question for your home organization.
-Regardless of these consideration, all data repositories,
-such as DIME's standard, the World Bank Microdata Library\sidenote{
-  \url{https://microdata.worldbank.org}}
-and the World Bank Data Catalog,\sidenote{
-  \url{https:/datacatalog.worldbank.org}}
-should create a record of the data's existence
-and provide instructions on how access might be obtained by another researcher.
+This type of data depositing or archiving
+is different from publishing or releasing the data:
+data at this stage may still need to be embargoed
+or have other, potentially permanent, access restrictions.
+Similarly, data catalogs (such as the World Bank Data Catalog\sidenote{\url{https://datacatalog.worldbank.org}})
+do not necessarily make data accessible: they simply create a record of its existence
+and provide instructions on how access would be obtained.
+
+Archiving and cataloging data does not resolve
+the need to create an authoritative, citable, \textit{published} data set
+in a publicly accessible first- or third-party archive,
+even if access restrictions are still required.
 For more on the steps required to prepare and publish a de-identified dataset,
 you can refer to Chapter 6 and Chapter 7 of this book.
+You should use a tool such as a Dataverse or the OSF
+to upload and store de-identified and publishable versions of your data,
+after archiving the complete data in an institution-approved location.
 Data publication should create a data citation and a digital object identifier (DOI),
 or some other persistent index that you can use in your future work
 to unambiguously indicate the location of your data.
@@ -334,73 +323,72 @@ as well as complete human-readable codebooks for all the variables there.
 \section{Preparing for reproducible analysis}
 
 % What is reproducibility
-
-Development research is rapidly moving in the direction of requiring strict adherence
+Reproducible research makes it easy
+for others to apply your techniques to new data
+or to implement a similar research design in a different context.
+Development research is rapidly moving in the direction of requiring adherence
 to specific reproducibility guidelines.\cite{christensen2018transparency}
 Major publishers and funders, most notably the American Economic Association,
 have taken steps to require that code and data
-are accurately reported, cited, and preserved as outputs in themselves.\sidenote{
+are accurately reported, cited, and preserved as research outputs
+that can be accessed and verified by others.\sidenote{
 	\url{https://www.aeaweb.org/journals/policies/data-code}}
-Common research standards from journals and funders feature both ex ante
-(or ``regulation'') and ex post (or ``verification'') policies.\cite{stodden2013toward}
-Ex ante policies require that authors
-provide replication materials before publication
+Making research reproducible in this way is a public good.\sidenote{
+	\url{https://dimewiki.worldbank.org/Reproducible_Research}}
+It enables other researchers to re-use code and processes
+to do their own work more easily and effectively in the future.
+Regardless of what is formally required,
+your code should be written neatly with clear instructions.
+It should be easy to read and understand.
+The corresponding analysis data should also be made accessible
+to the greatest legal and ethical extent that it can be.\sidenote{
+	\url{https://dimewiki.worldbank.org/Publishing_Data}}
+
+Common research standards from journals and funders feature both
+regulation and and verification policies.\cite{stodden2013toward}
+Regulation policies require that authors
+provide reproducibility packages before publication
 which are then reviewed by the journal for completeness.
-Ex post policies require that authors make certain materials available to the public,
+Verification policies require that authors
+make certain materials available to the public,
 but their completeness is not a precondition for publication.
-Other journals have adopted ``guidance'' policies that offer checklists
+Other journals have adopted guidance that offer checklists
 for reporting on whether and how various practices were implemented,
 without specifically requiring any.\cite{nosek2015promoting}
-Documentation on data processing and additional hypotheses tested
-will be expected in the supplemental materials to any publication.
+As a pure public good, providing this documentation is nearly costless.
+If you are personally or professionally motivated by citations,
+producing these kinds of resources can lead to that as well.
 
-At DIME, all research outputs are required to be reproducible.
+\subsection{Completing a reproducibility package}
+% What is transparency and how it makes research better
+At DIME, all research outputs are required to satisfy \textbf{computational reproducibility},
+which it is an increasingly common requirement for publication.\sidenote{
+\url{https://www.nap.edu/resource/25303/R&R.pdf}}.
 Before releasing a working paper,
-a research team is required to submit
-a reproducible analysis package with de-identified data,
-DIME Analytics then verifies computational reproducibility:
-does the provided package produce exactly the same results that appear in the paper?
-In addition, the team checks whether the package includes sufficient documentation.
-Additionally, the team organizes frequent peer code review of works in progress,
+the research team submits a reproducibility package with de-identified data,
+and DIME Analytics verifies that the package produces
+exactly the same results that appear in the paper.\sidenote{
+  \url{https://blogs.worldbank.org/impactevaluations/what-development-economists-talk-about-when-they-talk-about-reproducibility}}
+The team also comments on whether the package includes sufficient documentation.
+The Analytics team organizes frequent peer code review for works in progress,
 and our general recommendation is to ensure that projects
-are \textit{always} externally reproducible
-instead of waiting until the final stages to prepare this material.
+are \textit{always} reproducible instead of waiting
+until the final stages to enable reproducibility.
 Once the computational reproducibility check is complete,
 the team receives a completed reproducibility certificate
 that also lists any publicly available materials to accompany the package,
 for use as an appendix to the publication.
 
-\subsection{Preparing a reproducibility package}
-% What is transparency and how it makes research better
-Another researcher should be able to reuse the same code on the same data
-and get the exact same results as in your research outputs.\sidenote{
-  \url{https://blogs.worldbank.org/impactevaluations/what-development-economists-talk-about-when-they-talk-about-reproducibility}}
-This is a standard known as \textbf{computational reproducibility},
-and it is an increasingly common requirement for publication.\sidenote{
-\url{https://www.nap.edu/resource/25303/R&R.pdf}}
-DIME requires that authors verify computational reproducibility 
-when submitting a paper for publication.
-This is done by someone who is not on the original research team, 
+It is best practice to verify computational reproducibility
+before submitting a paper for publication.
+This should be done by someone who is not on your research team,
 on a different computer,
-using exactly the package of code and data files 
-submitted with the paper.
+using exactly the package of code and data files
+you plan to submit with your paper.
 As we will discuss in Chapter 5,
-code that is well-organized into a master script, 
+code that is well-organized into a master script,
 and written to be easily run by others,
 makes this task simpler.
-
-Making research reproducible is also a public good.\sidenote{
-	\url{https://dimewiki.worldbank.org/Reproducible_Research}}
-It enables other researchers to re-use your code and processes
-to do their own work more easily and effectively in the future.
-This may mean applying your techniques to their data
-or implementing a similar structure in a different context.
-As a pure public good, this is nearly costless.
-The useful tools and standards you create will have high value to others.
-If you are personally or professionally motivated by citations,
-producing these kinds of resources can lead to that as well.
-Therefore, your code should be written neatly with clear instructions and published openly,
-and should be easy to read and understand in terms of structure, style, and syntax.
 
 % Open data is necessary for reproducibility
 For research to be reproducible,
