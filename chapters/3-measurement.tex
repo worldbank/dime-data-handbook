@@ -175,13 +175,13 @@ but also your \textbf{project ID}.\sidenote{
 	\textbf{Project ID:} The main ID used in your project to identify
 	observations. 
 	You should never have multiple project IDs for the same unit of observation.
-	The project ID must be uniquely and fully identified all observations in the project.
+	The project ID must uniquely and fully identify all observations in the project.
 	See \url{https://dimewiki.worldbank.org/ID\_Variable\_Properties} for more details.}
-The project ID should be the ID variable used in the data linkage table,
+The project ID is the ID variable used in the data linkage table,
 and is therefore how observations are linked across datasets.
-Your master dataset may list alternative IDs used,
+Your master dataset may list alternative IDs that are used,
 for example, by a partner organization.
-However, you should not use such an ID as your project ID,
+However, you must not use such an ID as your project ID,
 as you would then not be in control over 
 who can re-identify data that you publish.
 The project ID must be created by the project team, 
@@ -194,20 +194,20 @@ as a part of your de-identification (see Chapters 5 and 7).
 Your master dataset serves as the linkage between
 all other identifying information and your project ID.
 Since your master dataset is full of identifying information,
-it must always be stored encrypted.
+it must always be encrypted.
 
-While the master dataset starting point often is a sampling frame 
-(more on sampling frames later in this chapter),
-you should continuously update it with 
+The starting point for the master dataset is typically a sampling frame 
+(more on sampling frames later in this chapter).
+However, you should continuously update the master dataset with 
 all observations ever encountered in your project,
-even if those observations are not eligible for your study.
+even if those observations are not eligible for the study.
 Examples include new observations listed during monitoring activities
-or observations that respondents in your study mention in,
-for example, a social network module.
-This is because, 
+or observations that are connected to respondents in the study,
+for example in a social network module.
+This is useful because, 
 if you ever need to perform a record linkage such as a fuzzy match
 on string variables like proper names,
-you will make fewer errors the more information you have.
+the more information you have the fewer errors you are likely to make
 If you ever need to do a fuzzy match,
 you should always do that between the master dataset
 and the dataset without an unambiguous identifier.
