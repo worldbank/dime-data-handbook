@@ -18,4 +18,4 @@
 * Save data
 
     save    "${myProject}/myDataFile.dta" , replace // The folder global is set in master do-file
-    saveold "${myProject}/myDataFile-13.dta" , replace v(13) // For users with older versions of Stata
+    saveold "${myProject}/myDataFile-13.dta" , replace v(13) // For others
