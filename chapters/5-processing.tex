@@ -78,8 +78,8 @@ It may be the case that the variables expected to uniquely identify
 the raw data contain either missing or duplicate values.\sidenote{
 	Throughout this book, we use the expression \textbf{raw data}
 	to refer to data in the state it was originally received by the research team.
-	This applies to data acquired from partners as well as 
-	original data  collected by the research team. 
+	This applies to data acquired from partners as well as
+	original data  collected by the research team.
 }
 It is also possible for a raw dataset to not include an unique identifier,
 or for the identifier to involve a long string
@@ -189,7 +189,7 @@ Finally, as you will see in Chapter 6,
 summary statistics and distributions are much simpler
 to generate from tidy data tables.
 
-As mentioned earlier, there are unlimited ways for data to be untidy; 
+As mentioned earlier, there are unlimited ways for data to be untidy;
 wide format is only one of those ways.
 Another example is a data table containing both information on transactions
 and on the firms involved in each transaction.
@@ -213,9 +213,9 @@ you should be very familiar with commands such as
 You must be sure that identifying variables are consistent across data tables,
 so they can always be linked.
 Reshaping is the type of transformation we referred to
-in the example of how you calculate 
-the share of women in a wide data set. 
-The important difference is that 
+in the example of how you calculate
+the share of women in a wide data set.
+The important difference is that
 in a tidy workflow,
 instead of transforming the data for each operation,
 this transformation is done once for all data during cleaning,
@@ -242,7 +242,6 @@ and then merging or joining those results to the firms data table.
 
 In a tidy workflow, your clean dataset is a set of one or more tidy data tables.
 In both examples above, your clean dataset is made up of two tidy data tables.
-
 There must be a clear way to connect each
 tidy data table to a master dataset,
 and thereby also to all other datasets.
@@ -260,12 +259,19 @@ in which the main data table shares the same name as the folder,
 and the name of all other data tables start with the same name,
 but are suffixed with the unit of observation for that data table.
 
-In the household dataset example, 
+In the household dataset example,
 the household-level data table would be the main table.
 This means that there must be a master dataset for households.
 (You may have a master dataset for household members as well
 if you think it is important for your research,
 but it is not strictly required).
+The household data set would then be stored in a folder called,
+for example, \texttt{hh-survey/}.
+In that folder you would save both
+the household-level data table with the same name as the folder,
+for example \texttt{hh-survey.csv},
+and the household member-level data named on the same format but with a suffix,
+for example \texttt{hh-survey-hhmember.csv}.
 
 The tidying process gets more complex as the number of nested groups increases.
 That means the steps of identifying the unit of observation of each variable
@@ -808,7 +814,7 @@ You will probably need these files during analysis,
 and they should be published along with the data,
 so other researchers may use them for their analysis as well.
 
-Once you have a cleaned, 
+Once you have a cleaned,
 de-identified dataset with one or several data tables,
 and the documentation to support it,
 you have created the first research output of your project: a dataset.
