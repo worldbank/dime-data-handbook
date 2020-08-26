@@ -107,7 +107,7 @@ Second, it helps to ensures that variable definitions are
 consistent across datasets.
 Construction can create many outputs combining many inputs,
 and, unlike in data cleaning,
-output datasets should be concise rather than exhaustive.
+resulting datasets should be concise rather than exhaustive.
 For example, take a project that has a baseline and an endline survey.
 Unless the two data collection instruments are exactly the same,
 which is preferable but often not the case,
@@ -144,7 +144,8 @@ avoid this and ensures consistency across different outputs.
 % When merging is necessary and how to start thinking about it
 To create the analysis dataset,
 it is typically necessary to combine or merge information
-from different data sources.
+from different data sources.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Data_Integration}}
 For example, you may merge administrative data with survey data
 in order to include demographic information in your analysis,
 or you may want to integrate geographic information
@@ -155,81 +156,45 @@ in order to include location-specific controls.\sidenote{Such
 To understand how to perform such operations,
 you will need to consider the unit of observation for each dataset,
 and their respective identifying variables.
-Merges are common sources of missing values,
-and can also result in observations being dropped.
-To avoid unintentional changes to your data,
-pay close attention to merge results,
-and add checks to your code to verify that they match what you expect.
+Merges are frequent and complex operations,
+which makes them a common source of error.
+Whichever statistical software you are using,
+take the time to read through the help file of merge commands
+and make sure you understand their options and outputs.
 
-% Merging data sets with the same unit of observation
-If the datasets you need to merge have the same unit of observation,
-merging may be straightforward.
-The simplest case is when the datasets have the same unit of observation
-and use a consistent, uniquely and fully identifying ID variable.
-For example, in the case of administrative data for firms,
-you may merge data from different years using the firm taxpayer code
-(or, preferably, a de-identified version of it).
-In such cases, the main source of unexpected results are unmatched observations.
-Fortunately, it is straightforward to avoid mistakes in this setting:
-before writing code to combine the datasets,
+% How to think about merges
+Chapter 3 discussed how to merge datasets
+based on their units of observation and identifying variables.
+When writing the code to implement merge operations,
+a few steps can help avoid mistakes.
+First, before writing code to combine the datasets,
 write pseudocode to understand which observations you expect to be
 matched or not, and why.
 When possible, determine exactly which and how many
 matched and unmatched observations should result from the merge.
-For example, firms that were created in the second year should not be
-present in the first year's data,
-and firms that closed during the first year should not be observed in the second year's data.
-Then think carefully about whether you want to keep matched and unmatched
-observations, or only specific matching outcomes (e.g. to create a balanced panel).
-Add that to your pseudocode as well.
-Now you can merge the datasets,
-and test that the outcome matches your expectations.
+Second, think carefully about whether you want to keep matched and unmatched observations, 
+or only specific matching outcomes (e.g. to create a balanced panel),
+and add that to the pseudocode as well.
+Finally, run the code to merge the datasets,
+and compare outcome to your expectations.
 Add comments to explain any exceptions,
 and make it so the code will return an error in case unexpected results show up in future runs.
-This approach can be extended to other types of merges between two related datasets.
-% to-do % ----------------------------------------------------------------------------
-% See XXX for an example of a Stata do-file that implements these practices -- Cami's code from TUP
-% ------------------------------------------------------------------------------------
 
-% Fuzzy matching
-Even when merging data sets with the same unit of observations, however,
-complex cases may arise.
-Datasets with the same unit of observation may not have a consistent identifying variable.
-One common example is for dataset identifiers to be in the form of names,
-which are often spelled differently in different data sources.
-In these cases, you will need to do a \textbf{fuzzy match},
-to link observations that have similar identifiers.
-You will need to analyze the merging patterns extensively,
-understand what units are present in one dataset but not the other,
-and investigate unmatched observations to resolve imperfect matching.
-There are some commands, such as \texttt{matchit}\sidenote{\url{
-		https://ideas.repec.org/c/boc/bocode/s457992.html}} in Stata
-and \texttt{agrep}\sidenote{\url{
-		https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/agrep}} in R,
-that can provide useful utilities.
-However, more often than not, a large amount of manual examination is necessary
-in order to figure out what the matching pattern should be
-and how to accomplish it in practice through your code.
-
-% Merging data sets with different units of observation
-Integrating datasets with different units of observation often involve changing the structure of the data,
-such as transforming the unit of observation through aggregation or reshapes.
-For example, you may have data on individual students in a school,
-and wish to create a summary of the student-level data set to merge to the school data,
-including variables such as gender proportions or average family income.
-On the other hand, you may have asked farmers what quantity they harvested of different crops,
-and need to reshape these observations to the crop level to merge with data on crop prices.
-Both operations should always be done with great care.
-Two issues to pay extra attention are missing values and dropped observations.
+% Common mistakes
+To avoid unintentional changes to your data,
+pay close attention to merge results.
+Two issues to pay extra attention to are missing values and dropped observations.
 Make sure to read about how each command treats missing observations:
-are unmatched observations dropped? Are missing values treated as zeros when aggregated?
+are unmatched observations dropped, or are they kept with missing values?
 Whenever possible, add automated checks in the script that throw an error message
-if the result is different than what you expect.
-If you are subsetting your data, prefer to drop observations explicitly,
-indicating why you are doing so and how the data set changed.
-% to-do % -----------------------------------------------------------------
-% See XXX for an example of a Stata do-file that implements these practices
-% -------------------------------------------------------------------------
+if the result is different than what you expect,
+or you may not changes in the outcome running large portions of code.
+Document changes in the number of observations in your comments,
+and explain why they are happening.
+If your are subsetting your data by keeping only matched observations,
+write down the reason why the observation differ across datasets,
+as well as why you are only interested in those that matched.
+The same applies when you are adding new observations from the merged dataset.
 
 % Data integration
 Some merges of data with different units of observation
@@ -274,7 +239,8 @@ Adding notes to each variable will make your dataset more user-friendly.
 % Dealing with outliers and missing values
 At this point, you will also need to decide
 how to handle any outliers or unusual values identified during data cleaning.
-How to treat outliers is a research question.
+How to treat outliers is a research question.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Variable_Construction\#Dealing_with_outliers}}
 There are multiple possible approaches,
 and the best choice for a particular case
 will depend on the objectives of the analysis.
