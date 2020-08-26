@@ -166,20 +166,34 @@ It is common that you will have to update
 your master datasets throughout your project.
 
 The most important function of the master dataset
-is to be the authoritative source for the project ID.
-This means that all observations listed
-should be uniquely and fully identified by the included project ID variable.\sidenote{
-	\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
-You should also list all other identifiers used in your project,
-such as names, addresses, or other IDs used by partner organizations,
-and the master datasets will then serve as
-the linkage between those identifiers and the project ID.
-Because of this, master datasets must,
-with very few exceptions, always be encrypted.
-Even when a partner organization has a unique identifier,
-you should always create a project ID specific to your project only,
-as you are otherwise not in control over
-who can re-identify your de-identified dataset.
+is to be the authoritative source 
+for how all observations are identified.
+This means that the master datasets should include
+identifying information such as names, contact information,
+but also your \textbf{project ID}.\sidenote{
+	\textbf{Project ID:} The main ID used in your project to identify
+	observations. 
+	You should never have multiple project IDs for the same unit of observation.
+	The project ID must be uniquely and fully identified all observations in the project.
+	See \url{https://dimewiki.worldbank.org/ID\_Variable\_Properties} for more details.}
+The project ID should be the ID variable used in the data linkage table,
+and is therefore how observations are linked across datasets.
+Your master dataset may list alternative IDs used,
+for example, by a partner organization.
+However, you should not use such an ID as your project ID,
+as you would then not be in control over 
+who can re-identify data that you publish.
+The project ID must be created by the project team, 
+and the linkage to direct identifiers 
+should only be known to people listed on the IRB.
+If you receive a dataset with an alternative ID,
+you should immediately replaced it with your project ID,
+and the alternative ID should be dropped 
+as a part of your de-identification (see Chapters 5 and 7).
+Your master dataset serves as the linkage between
+all other identifying information and your project ID.
+Since your master dataset is full of identifying information,
+it must always be stored encrypted.
 
 While the master dataset starting point often is a sampling frame 
 (more on sampling frames later in this chapter),
@@ -199,6 +213,7 @@ and the dataset without an unambiguous identifier.
 You should not do anything with that dataset until
 you have successfully merged
 the project IDs from the master dataset.
+Any new observations that you
 
 Since the master datasets is the authoritative source
 of the project ID and all research variables,
