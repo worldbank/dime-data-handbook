@@ -69,13 +69,20 @@ The operating system should be fully updated,
 it should be in good working order,
 and you should have a \textbf{password-protected} login.
   \index{password protection}
+
 Make sure your computer is backed up to prevent information loss.
   \index{backup}
 Follow the \textbf{3-2-1 rule}: maintain 3 copies of all original or irreplaceable data,
 on at least 2 different hardware devices you have access to,
 with 1 offsite storage method.\sidenote{
   \url{https://www.backblaze.com/blog/the-3-2-1-backup-strategy}}
-Chapter 4 provides a protocol for implementing this.
+One example of this setup is having one copy on your primary computer,
+one copy on an external hard drive stored in a safe place,
+and one copy in the cloud.
+In this case, Dropbox and other automatic file sync services do not count as a cloud copy,
+since other users can alter or delete them
+unless you create a specific folder for this purpose that is not shared with anyone else.
+  \index{Dropbox}
 
 Ensure you know how to get the \textbf{absolute file path} for any given file.
 Using the absolute file path, starting from the filesystem root,
@@ -84,14 +91,11 @@ means that the computer will never accidentally load the wrong file.
 On MacOS this will be something like \path{/users/username/git/project/...},
 and on Windows, \path{C:/users/username/git/project/...}.
 Use forward slashes (\texttt{/}) in file paths for folders,
-and whenever possible use only a-z (the 26 English characters), numbers,
+and whenever possible use only a-z (the 26 English characters),
 dashes (\texttt{-}), and underscores (\texttt{\_}) in folder names and filenames.
-For emphasis: \textit{always} use forward slashes (\texttt{/}) 
-in file paths in code,
-just like in internet addresses. 
-Do this even if you are using a Windows machine where
-both forward and backward slashes are allowed, 
-as your code will otherwise break
+For emphasis: \textit{always} use forward slashes (\texttt{/}) in file paths in code,
+just like in internet addresses. Do this even if you are using a Windows machine where
+both forward and backward slashes are allowed, as your code will otherwise break
 if anyone tries to run it on a Mac or Linux machine.
 Making the structure of your directories a core part of your workflow is very important,
 since otherwise you will not be able to reliably transfer the instructions
@@ -109,15 +113,14 @@ and is implemented by software like Dropbox and OneDrive.
 Sync forces everyone to have the same version of every file at the same time,
 which makes simultaneous editing difficult but other tasks easier.
 They also have some security concerns which we will address later.
-\textbf{Distributed version control} is another method,
-commonly implemented through systems like GitHub, GitLab, and Bitbucket
-that interact with Git\sidenote{
+\textbf{Version control} is another method,
+commonly implemented by tools like Git\sidenote{
 	\textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.} and GitHub\sidenote{
 	\textbf{GitHub:} the biggest publicly available platform for hosting Git projects.}.
   \index{version control}
-Distributed version control allows everyone
-to access different versions of files at the same time.
-It is only optimized for specific types of files
+Version control allows everyone to access different versions of files at the same time,
+making simultaneous editing easier but some other tasks harder.
+It is also only optimized for specific types of files
 (for example, any type of code files).
 Finally, \textbf{server storage} is the least-common method,
 because there is only one version of the materials,
@@ -126,7 +129,6 @@ and simultaneous access must be carefully regulated.
 Server storage ensures that everyone has access
 to exactly the same files and environment, and it also enables
 high-powered computing processes for large and complex data.
-
 All three file sharing methods are used for collaborative workflows,
 and you should review the types of data work
 that you will be doing, and plan which types of files
@@ -136,6 +138,7 @@ meaning you should not have version-controlled files inside a syncing service,
 or vice versa, without setting up complex workarounds,
 and you cannot shift files between them without losing historical information.
 Therefore, choosing the correct sharing service for each of your team's needs at the outset is essential.
+
 At DIME we typically use file syncing for all project administrative files and data,
 version control in git for or code,
 and server storage for back up and/or large scale computations when needed.
@@ -190,27 +193,19 @@ and is very intuitive for people with non-technical backgrounds.
 Therefore, it is a useful tool for managing non-code-related tasks.
 
 % ----------------------------------------------------------------------------------------------
-\subsection{Setting up a productive code environment}
+\subsection{Choosing software}
 
-Taking time early in your project to choose a programming language for your project and
-setting up a productive code environment for that language
-will make your work significantly easier.
-  \index{code environments}
-Setting up a productive code environment means that
-you make sure that the programming language and all other software your code requires
-will run smoothly on all the computers (laptop, servers etc.)
-that you need it to run on.
-It also means that you have a productive way of interacting with your code,
-and that the code has a seamless method to access your data.
-
-It may be difficult or costly to switch programming language halfway through a project,
-so think ahead about the various software your team will use.
+Choosing the right software environments can make your work significantly easier.
+  \index{software environments}
+It may be difficult or costly to switch halfway through a project, so
+think ahead about the various software your team will use.
 Take into account the technical abilities of team members,
-what type of internet access the software will need,
+how important it is to access files offline constantly,
 the type of data you will need to access,
 and the level of security required.
 Big datasets require additional infrastructure and may overburden
-the tools commonly used for small datasets.
+the tools commonly used for small datasets,
+particularly if you are trying to sync or collaborate on them.
 Also consider the cost of licenses, the time to learn new tools,
 and the stability of the tools.
 There are few strictly right or wrong choices for software,
@@ -222,22 +217,16 @@ over the lifecycle of a single project.
 While this means you will inevitably have different projects
 with different code environments, each one will be better than the last,
 and you will avoid the costly process of migrating an ongoing project
-into a new code environment.
-Code environments should be documented as precisely as possible.
-The specific version number of the programming languages and the individual packages you use
+into a new code enviroment.
+Code environment should be constant down to the software level:
+the specific versions of software and the individual packages you use
 should be referenced or maintained so that they can be reproduced going forward,
 even if different releases contain changes that would break your code
 or change your results.
   \index{software versions}
 DIME Analytics developed the command \texttt{ieboilstart} in the \texttt{ietoolkit} package
-to support version and settings stability in Stata.\sidenote{
+to support Stata version stability.\sidenote{
   \url{https://dimewiki.worldbank.org/ieboilstart}}
-If your project requires more than one programming language,
-for example if you analyze your data in one language but visualize your results in another,
-then make sure to make an as clear division between the two as possible.
-This means that you first complete all tasks done in one language,
-before the completing the rest of the tasks in the other language.
-Frequently swapping back and forth between languages is a reproducibility nightmare.
 
 Next, think about how and where you write and execute code.
 This book is intended to be agnostic to the size or origin of your data,
@@ -246,6 +235,9 @@ one of the two most popular statistical software packages: R or Stata.
 (If you are using another language, like Python,
 many of the same principles apply but the specifics will be different.)
 Most of your code work will be done in a code editor.
+This does not need to be the same program the code runs in;
+using an external editor can be preferable since your editor will not crash if your code does,
+and the editor may offer additional features aimed at writing code well.
 If you are working in R, \textbf{RStudio} is the typical choice.\sidenote{
   \url{https://www.rstudio.com}}
 For Stata, the built-in do-file editor is the most widely adopted code editor.
@@ -257,8 +249,6 @@ For example, they can access an entire directory -- rather than a single file --
 which gives you directory-level views and file management actions,
 such as folder management, Git integration,
 and simultaneous work with other types of files, without leaving the editor.
-Using an external editor can also be preferable since your editor will not crash
-if the execution of your code causes your statistical software to crash.
 
 % ----------------------------------------------------------------------------------------------
 % ----------------------------------------------------------------------------------------------
@@ -273,9 +263,8 @@ Writing code creates a record of every task you performed.
 It also prevents direct interaction with the data files that could lead to non-reproducible steps.
 You may do some exploratory tasks by point-and-click or typing directly into the console,
 but anything that is included in a research output
-must be coded in an organized fashion so that you can release
-the exact code that produces your final results --
-up to and including individual statistics in text.
+must be coded up in an organized fashion so that you can release
+the exact code recipe that goes along with your final results.
 Still, organizing code and data into files and folders is not a trivial task.
 What is intuitive to one person rarely comes naturally to another,
 and searching for files and folders is everybody's least favorite task.
@@ -286,7 +275,7 @@ that stores your project's data work.
 
 Maintaining an organized file structure for data work is the best way
 to ensure that you, your teammates, and others
-are able to easily edit and replicate your work in the future.
+are able to easily advance, edit, and replicate your work in the future.
 It also ensures that automated processes from code and scripting tools
 are able to interact well with your work,
 whether they are yours or those of others.
@@ -302,11 +291,9 @@ and everyone has the same expectations.
 \subsection{Organizing files and folder structures}
 
 Once you start a research project,
-the number of scripts, datasets, and outputs 
-that you have to manage will grow very quickly.
+the number of scripts, datasets, and outputs that you have to manage will grow very quickly.
 This can get out of hand just as quickly,
-so it's important to organize your data work 
-and follow best practices from the beginning.
+so it's important to organize your data work and follow best practices from the beginning.
 You should agree with your team on a specific directory structure,
 and set it up at the beginning of the project.
 You should also agree on a file naming convention.\sidenote{
@@ -486,7 +473,7 @@ such as versions, folder paths, functions, and constants used throughout the pro
 Try to create the habit of running your code from the master script.
 Creating ``section switches'' using macros or objects to run only the codes related to a certain task
 should always be preferred to manually open different scripts to run them in a certain order
-(see the \texttt{if (0)} switches in Part 3 of \texttt{stata-master-dofile.do} for one way of how to do this).
+(see Part 1 of \texttt{stata-master-dofile.do} for an example of how to do this).
 Furthermore, running all scripts related to a particular task through the master whenever one of them is edited
 helps you identify unintended consequences of the changes you made.
 Say, for example, that you changed the name of a variable created in one script.
@@ -506,7 +493,7 @@ its structure is the same in each team member's computer.
 The only difference between machines should be
 the path to the project root folders, i.e. the highest-level shared folder.
 Depending on your software environment you may have multiple root folders.
-In a typical DIME project we have one GitHub root folder for our code,
+In a typical DIME project we have one GitHub root folder for our code, 
 one sync software root folder for our de-identified data,
 and a third for our encrypted data.
 This is reflected in the master script in such a way that
@@ -659,7 +646,7 @@ There are several components to this.
 
 First, you need a system for managing strong and unique passwords for
 all accounts -- including personal accounts like computer logins and email.
-This means that all your passwords should be long (preferable more than 15 characters),
+This means that all your passwords should be long (preferable more than 15 characters), 
 not use common words and should not be reused for multiple accounts.
 The only way to make that practically feasible is to use a password manager.\sidenote{
 	See DIME's guide to password managers -
@@ -667,18 +654,18 @@ The only way to make that practically feasible is to use a password manager.\sid
 Most password managers also allows you to securely share passwords
 for shared accounts with your colleagues.
 
-Second, all machines that stores confidential data
+Second, all machines that stores confidential data 
 should have \textbf{hard disk encryption} enabled,
 if available in the operative system used.\sidenote{
 	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked, or any other type of unauthorized access is obtained.
 	\url{https://dimewiki.worldbank.org/Encryption}}
 \index{encryption}
-Most hard disk encryption use your computer login password to
+Most hard disk encryption use your computer login password to 
 prevent your files from ever being read by anyone but you.
 It is important to note that password-protection alone is not sufficient.
 Password protection only make it more difficult for someone else to gain access to your files,
 but only encryption properly protects your data if someone manage to access your files anyways.
-Hard disk encryption is sometimes only supported in enterprise versions of operative systems,
+Hard disk encryption is sometimes only supported in enterprise versions of operative systems, 
 the most notable example of this being Microsoft's Windows.
 To properly secure your data you should have the habit of
 signing out from your computer when you leave it,
@@ -690,27 +677,27 @@ When files are properly encrypted,
 the information they contain will be completely unreadable and unusable
 even if they were to be intercepted my a malicious
 ``intruder'' or accidentally made public.
-We will discuss implementations of encryption
-specific to different stages of data work in chapter 4,
-but when setting up a software environment for you and your team,
-make sure that you have a solution for creating encrypted folders on your computers.
+We will discuss implementations of encryption 
+specific to different stages of data work in chapter 4, 
+but when setting up a software environment for you and your team, 
+make sure that you have a solution for creating encrypted folders on your computers.  
 DIME uses Veracrypt for encrypted folders,
 our protocols are available on in the DIME Research Standards.\sidenote{\url{
 		https://github.com/worldbank/dime-standards/blob/master/dime-research-standards/pillar-4-data-security/data-security-resources/veracrypt-guidelines.md}}
 
 Handling confidential data properly will always add to your work load.
-The easiest way to reduce that work load is to
+The easiest way to reduce that work load is to 
 handle it as rarely as possible.
 Whenever our research design allows us to,
 we should simple not work with confidential data at all,
-and not collect it or ask for it in the first place.
+and not collect it or ask for it in the first place. 
 Even when we do need confidential data for some aspect of our research,
 it is almost never the case that we need it for \textit{all} aspect of our data.
 It is often very simple to conduct planning and analytical work
 using a subset of the data that does not include this type of information.
 \index{privacy}
-Therefore we are recommending all projects to plan a work flow
-with a version of the data where confidential data has been removed
+Therefore we are recommending all projects to plan a work flow 
+with a version of the data where confidential data has been removed 
 and always use that dataset when possible.
 
 However, it is in practice impossible to \textbf{anonymize} data.
@@ -733,7 +720,7 @@ before publicly releasing a dataset.\sidenote{
 Finally, it is essential to have an end-of-life plan for data even before it is acquired.
 This includes plans for how to transfer access and control to a new person joining the team,
 and how to revoke that access when someone is leaving the team.
-It should also include a plan for how the confidential data should be deleted.
+It should also include a plan for how the confidential data should be deleted. 
 All data should have an expiration data and after a project is completed and
 de-identified data has been made public as a part of your publication,
 there is no need for research teams to sit on confidential data indefinitely.
