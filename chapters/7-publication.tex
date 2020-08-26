@@ -2,7 +2,7 @@
 
 \begin{fullwidth}
 Publication of any research product typically involves many iterations of
-outputs, code, and data files, with inputs from multiple collaborators.
+data, code, and code output files, with inputs from multiple collaborators.
 This process can quickly become unwieldy.
 It is in nobody's interest for a skilled and busy researcher
 to spend days re-numbering figures, tables, or references (and it can take days)
@@ -28,11 +28,11 @@ and ensuring reproducibility of their results.
 First, we discuss how to use dynamic documents to collaborate on writing.
 Second, we provide guidelines for preparing
 functioning and informative reproducibility packages.
-If you have organized your analytical process
+If you have organized your analysis process
 according to the general principles outlined in earlier chapters,
 preparing to publish materials will not require
 substantial reorganization of the work you have already done.
-Hence, publication of outputs is the conclusion of the system
+Hence, publication is the conclusion of the system
 of transparent, reproducible, and credible research we introduced
 from the very first chapter of this book.
 We include specific guidance on publishing both code and data files,
@@ -52,17 +52,17 @@ This reflects changes in the economics discipline overall:
 the number of sole-authored research outputs is decreasing,
 and the majority of recent papers in top journals have three or more
 authors.\sidenote{\url{https://voxeu.org/article/growth-multi-authored-journal-articles-economics}}
-As a consequence, outputs typically pass back and forth between several writers
+As a consequence, documents typically pass back and forth between several writers
 before they are ready for publication or release.
-Just as with the preparation of analytical outputs,
+As in all other stages of the research process,
 effective collaboration requires the adoption of tools and practices
 that enable version control and simultaneous contributions.
 This book, for example, was written in {\LaTeX} and managed on GitHub.\sidenote{\url{
 		https://github.com/worldbank/d4di}}
 As we outlined in the previous chapter,
 \textbf{dynamic documents} are a way to simplify writing workflows:
-updates to analytical outputs that appear in these documents, such as tables and figures,
-can be passed in to the final output in a single click,
+updates to code outputs that appear in these documents, such as tables and figures,
+can be passed in to the final research output in a single click,
 rather than copy-and-pasted or otherwise handled individually.
 Managing the writing process in this way
 improves organization and reduces error,
@@ -74,7 +74,7 @@ with out-of-date results, or of completed work being lost or redundant.
 % what exactly is a dynamic document
 As we discussed in Chapter 6, the most widely used software
 for dynamically managing formal manuscripts and policy outputs is {\LaTeX}.
-It is also becoming more popular for shorter outputs,
+It is also becoming more popular for shorter documents,
 such as policy briefs,
 with the proliferation of skills and templates for these kinds of products.
 \index{\LaTeX}
@@ -99,7 +99,7 @@ reformatting entire documents in house styles with only a few keystrokes.
 
 % keeping it simple
 To create a {\LaTeX} document,
-you will typically start from a new top-level directory for each final output.
+you will typically start from a new top-level directory for each research output.
 For a single output, we recommend putting the core document files
 (such as \texttt{main.tex} and \texttt{bibliography.bib})
 in the top-level folder,
@@ -167,8 +167,8 @@ you can convert the raw document into Word
 or a number of other formats
 using utilities such as \texttt{pandoc}.\sidenote{\url{https://pandoc.org}}
 Even though conversion to Word is required
-for a number of academic publishers and can even be preferred for some policy outpts,
-we still recommend using {\LaTeX} to prepare these outputs when possible.
+for a number of academic publishers and can even be preferred for some policy outputs,
+we still recommend using {\LaTeX} to prepare these when possible.
 You should export to Word only at the final stage, when submitting materials.
 You can also use a CSL (Citation Styles Library) file\sidenote{
   \url{https://github.com/citation-style-language/styles}}
@@ -187,7 +187,7 @@ Because it is written in a plain text file format,
 \texttt{.tex} can be version-controlled using Git.
 This makes it possible to set up a dedicated GitHub repository for each output
 and manage contributions and version histories
-using the same system we recommend for analytical work.
+using the same system we recommend for data work.
 DIME Analytics has created a variety of templates and resources
 that you can adapt for your own team.\sidenote{
 	\url{https://github.com/worldbank/DIME-LaTeX-Templates}}
@@ -242,7 +242,7 @@ There is still some up-front learning required, unless you're using the rich tex
 Continuous access to the Internet is necessary,
 and updating figures and tables requires a bulk file upload that is tough to automate.
 They vary dramatically in their ability to integrate
-with file systems where you store your code and outputs,
+with file systems where you store your code and code outputs,
 and so you will need to practice an integrated workflow depending what is available to you.
 Some teams adopt cloud-based tools as a permanent solution,
 though our recommendation is to eventually shift to
@@ -269,7 +269,7 @@ If you follow the steps outlined in Chapter 5,
 when you get to the publication stage you will have
 a cleaned data set and supporting documentation ready.
 Second, you should separately catalog
-the analysis dataset used for the output you are publishing.
+the analysis dataset used for the research output you are publishing.
 This is typically included in the replication package.
 The package should also include the data construction scripts
 that create transformed and derived indicators,
@@ -449,7 +449,7 @@ Additionally, you should also release PDF or code versions of
 the data collection instrument or survey questionnaire
 so that readers can understand which data components are
 collected directly in the field and which are derived.
-With your analytical dataset,
+With your analysis dataset,
 you should also release the code
 that constructs any derived measures
 from the raw dataset,
@@ -483,7 +483,7 @@ Other researchers should be able to reproduce individual portions of your analys
 by making only small adjustments to your code.
 In either a scripts folder or in the root directory,
 you should include a master script that allows someone else to run the entire project
-and re-create all raw outputs by changing only a single line of code:
+and re-create all raw code outputs by changing only a single line of code:
 the one setting the directory path.
 The code should both be functional and readable,
 through the use of a clear structure and extensive commenting.
@@ -537,9 +537,9 @@ Readers should also be able to easily map all the outputs of the code
 to where they appear in the associated published material,
 so you must ensure ensure that the raw components of figures or tables are clearly identified.
 Documentation in the master script is often used to indicate this information.
-For example, outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
+For example, code outputs should clearly correspond by name to an exhibit in the paper, and vice versa.
 (Supplying a compiling {\LaTeX} document can support this.)
-Code and outputs which are not used in the final paper should be removed from the final replication package,
+Code and code outputs which are not used in the final paper should be removed from the final replication package,
 but still archived for transparency.
 One way to do this is keeping them on a separate GitHub branch
 
@@ -573,7 +573,7 @@ without putting any barriers or restrictions to accessing the code.
 
 % pros and cons of GitHub
 One option for releasing a reproducibility package is GitHub.
-Making a public GitHub repository is completely free.
+Making a public GitHub is completely free.
 It can hold any file types,
 provide a structured, compressed download of your whole project,
 and allow others to look at alternate versions or histories easily.
