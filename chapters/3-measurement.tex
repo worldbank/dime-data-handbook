@@ -74,12 +74,13 @@ lists all the datasets that will be used in the project.
 Its most important function is to indicate
 how all those datasets can be be linked when
 combining information from multiple data sources.
-\textbf{Master datasets}\sidenote{
+Each \textbf{master dataset}\sidenote{
 	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
-list all observations your project ever encounter
+list all observations relevant to the project
+for a \textbf{unit of observation}\sidenote{
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 and are the authoritative source for all research data
-such as unique identifiers, sample status and treatment assignment
-(the following two sections of this chapter discuss how to generate these variables).
+such as unique identifiers, sample status and treatment assignment.
 \textbf{Data flowcharts}\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Flow\_Chart}}
 list all data sources that are needed to create each analysis dataset,
@@ -104,8 +105,7 @@ the first step is to create a \textbf{data linkage table} by listing
 all the data sources you know you will use in a spreadsheet.
 If one source of data will result in two different datasets,
 then list each dataset on its own row.
-For each dataset, list the \textbf{unit of observation}\sidenote{
-	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}},
+For each dataset, list the , unit of observation
 and the name of the project ID variable for that unit of observation.
 Your project should only have one project ID variable per unit of observation.
 When you list a dataset in the data linkage table --
@@ -181,10 +181,16 @@ you should always create a project ID specific to your project only,
 as you are otherwise not in control over
 who can re-identify your de-identified dataset.
 
-You should include all observations ever encountered
-in your master datasets,
-even if they are not eligible for your study.
-This is because, if you ever need to perform a record linkage such as a fuzzy match
+While the master dataset starting point often is a sampling frame 
+(more on sampling frames later in this chapter),
+you should continuously update it with 
+all observations ever encountered in your project,
+even if those observations are not eligible for your study.
+Examples includes new observations listed during monitoring activities
+or observations that respondents in your study mention in,
+for example, a social network module.
+This is because, 
+if you ever need to perform a record linkage such as a fuzzy match
 on string variables like proper names,
 you will make fewer errors the more information you have.
 If you ever need to do a fuzzy match,
