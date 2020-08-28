@@ -2,6 +2,8 @@
 
 \begin{fullwidth}
 High-quality data is essential to most modern development research.
+Many research questions require the team to collect original data,
+because no source of publicly available data measures the
 Many research questions require novel data,
 because no source of publicly available data addresses the
 inputs or outcomes of interest for the relevant population.
@@ -13,8 +15,14 @@ primary data capture by unmanned aerial vehicles or other types of remote sensin
 or novel integration of various types of datasets, e.g. combining survey and sensor data.
 Much of the recent push toward credibility in the social sciences has focused on analytical practices.
 However, credible development research often depends, first and foremost, on the quality of the raw data.
-For data work to be reproducible, the data acquisition process must be clearly and carefully documented.
+For data work to be reproducible,
+in the sense that other researchers would be able to make
+equally informed decisions about analytical choices,
+the data acquisition process must be clearly and carefully documented.
 
+This chapter covers data acquisition,
+special considerations for generating high-quality survey data,
+and protocols for safely and securely handling confidential data.
 This chapter covers reproducible data acquisition,
 special considerations for generating high-quality survey data,
 and protocols for safely and securely handling confidential data.
@@ -54,8 +62,8 @@ It is the researchers' responsibility to respect the rights
 of people who own the data and the people who are described by it;
 but also to make sure that information is as available and accessible as possible.
 These twin responsibilities can and do come into tension,
-so it is important to be fully informed about what others are doing
-and to fully inform others of what you are doing.
+so it is important to be fully informed about what other researchers are doing
+and to fully inform other researchers of what you are doing.
 Writing down and agreeing to specific details is a good way of doing that.
 
 \subsection{Receiving data from development partners}
@@ -73,7 +81,7 @@ in some cases require a stricter level of security than initially proposed by th
 
 At this stage, it is very important to assess
 documentation and cataloging of the data and associated metadata.
-It is not always clear what pieces of information jointly constitute a ``dataset'',
+It is not always clear what pieces of information will jointly constitute a ``dataset'',
 and many of the datasets you receive will not be organized for research.
 You should always retain the original data exactly as received
 alongside a copy of the corresponding ownership agreement or license.
@@ -95,19 +103,27 @@ and a description of field procedures and quality controls.
 DIME uses as a standard the Data Documentation Initiative (DDI), which is supported by the
 World Bank's Microdata Catalog.\sidenote{\url{https://microdata.worldbank.org}}
 
-As soon as the requisite pieces of information are stored together,
+As soon as the desired pieces of information are stored together,
 think about which ones are the components of what you would call a dataset.
-This is more of an art than a science:
-you want to keep things together that belong together,
-but you also want to keep things apart that belong apart.
-There usually won't be a precise way to answer this question,
-the research team will need to decide the appropriate level of aggregation
-for the data obtained.
-This dataset is the object you will think about cataloging, releasing, and licensing
-as you move towards publication.
-You may need to assess disclosure risk and seek clearance from the provider prior to publication,
-particularly if you are integrating various data sources.
-
+Often, when you are recieving ``data'' from a partner,
+even highly-structured materials such as registers or records
+are not, as recieved, equivalent to a research dataset,
+and require initial cleaning, restructuring, or recombination
+to reach the stage we would consider a raw research dataset.
+This is as much an art than a science:
+you want to keep information together that is best contextualized together,
+but you also want to information granular as much as possible,
+particularly when there are varying units of observation.
+There usually won't be a single correct way to answer this question,
+and the research team will need to decide how the materials recieved.
+Soon, you will begin to build datasets from this set of information,
+and these will become your original raw data,
+which will be the material published, released, and cited as your raw dataset.
+These first datasets created from the recieved materials
+are the objects you need to catalog, release, and license.
+Now is a good time to being assessing disclosure risk
+and/or seek publication licenses in collaboration with data providers,
+while you are in close contact with them.
 
 \subsection{Data ownership}
 Except in the case of primary surveys funded by the research team,
@@ -120,10 +136,10 @@ research team can make the original data, any portion thereof, or derivatives\si
 	visualizations etc. created from the original data.}
 of the data, public.
 
-Data ownership\sidenote{need to add DIME Wiki page} can be challenging to establish,
-as many jurisdictions have differing laws regarding data and information,
-and the research team may be subject to multiple conflicting regulations.
-In some countries, data is implicitly owned by the people who it is about.
+Data ownership\sidenote{need to add DIME Wiki page} can sometimes be challenging to establish,
+as various jurisdictions have differing laws regarding data and information,
+and the research team may have their own information regulations.
+In some, data is implicitly owned by the people who it is about.
 In others, it is owned by the people who collected it.
 In still more, it is highly unclear and there are varying norms.
 The best approach is always to consult with a local partner,
@@ -171,10 +187,12 @@ their derivative datasets or publications under similar licenses?
 Whatever your answers are to these questions,
 make sure the agreement or contract
 you use to acquire the data
+and the license you issue to accompany its release
 specifically details those requirements.
 
-\subsection{Data licensing agreements}
-Data licensing is the formal act of the dataset owner giving some data rights to a specific user,
+\subsection{Data licensing}
+Data licensing is the formal act of the dataset owner
+giving some data rights to a specific user,
 while retaining ownership of the dataset.
 If you are not the owner of the dataset you want to analyze,
 you must enter into a licensing agreement to access it for research purposes.
@@ -185,7 +203,7 @@ and what terms-of-use you require.
 If the research team requires access to existing data for novel research,
 terms of use should be agreed on with the data owner,
 typically through a data licensing agreement\sidenote{need to add a DIME wiki page}.
-Keep in mind that the data owner is likely not familiar
+Keep in mind that the data owner is likely not highly familiar
 with the research process, and therefore may be surprised
 at some of the things you want to do if you are not clear up front.
 You will typically want intellectual property rights to all research outputs developed used the data,
@@ -194,7 +212,8 @@ a license for all uses of derivative works, including public distribution
 This is important to allow the research team to store, catalog, and publish, in whole or in part,
 either the original licensed dataset or datasets derived from the original.
 Make sure that the license you obtain from the data owner allows these uses,
-and that you consult with the owner if you foresee exceptions with specific portions of the data.
+and that you consult with the owner
+if you foresee exceptions with specific portions of the data.
 
 The World Bank has a template Data License Agreement which DIME follows.\sidenote{
   \url{https://dimewiki.worldbank.org/Data_License_Agreement}}
@@ -218,11 +237,14 @@ and any or all of the metadata.
 
 %------------------------------------------------
 \section{Collecting data using electronic surveys}
-In this section, we detail specific considerations for acquiring high-quality data through surveys.
-There are many survey software options available to researchers, and the market is rapidly evolving.
+In this section, we detail specific considerations
+for acquiring high-quality data through surveys.
+There are many survey software options available to researchers,
+and the market is rapidly evolving.
 There are also many excellent resources on questionnaire design and field supervision,
 but few covering the particular challenges and opportunities presented by electronic surveys.
-Therefore, we focus on specific workflow considerations for digitally-generated data, and on primary concepts rather than software-specific tools.
+Therefore, we focus on specific workflow considerations for digitally-collected data,
+and on basic concepts rather than software-specific tools.
 If you are collecting data directly from the research subjects yourself,
 you are most likely designing and fielding an electronic survey.
 These types of data collection technologies
@@ -241,7 +263,8 @@ no matter the scale.
 \subsection{Developing a data collection instrument}
 
 A well-designed questionnaire results from careful planning,
-consideration of analysis and indicators, close review of existing questionnaires,
+consideration of analysis and indicators,
+close review of existing questionnaires,
 survey pilots, and research team and stakeholder review.
 There are many excellent resources on questionnaire design,
 such as from the World Bank's Living Standards Measurement Survey.\cite{glewwe2000designing}
@@ -256,19 +279,23 @@ Although most surveys are now collected electronically, by tablet, mobile phone 
   \url{https://dimewiki.worldbank.org/Questionnaire\_Programming}}
 (functionality development) should be seen as two strictly separate tasks.
 Therefore, the research team should agree on all questionnaire content
-and design a paper version of the survey before beginning to program the electronic version.
+and design a version of the survey on paper
+before beginning to program the electronic version.
 This facilitates a focus on content during the design process
 and ensures teams have a readable, printable version of their questionnaire.
-Most importantly, it means the research, not the technology, drives the questionnaire design.
+Most importantly, it means the research, not the technology,
+drives the questionnaire design.
 
 We recommend this approach because an easy-to-read paper questionnaire
-is especially useful for training data collection staff,
-by focusing on the survey content and structure before diving into the technical component.
-It is much easier for enumerators to understand the range of possible participant responses
+is very useful for training data collection staff,
+because it focuses on the survey content and structure
+before diving into the technical components.
+It is much easier for enumerators to understand
+the range of possible participant responses
 and how to handle them correctly on a paper survey than on a tablet,
-and it is much easier for them to translate that logic to digital functionality later.
+and it is easier to translate that logic to digital functionality later.
 Finalizing this version of the questionnaire before beginning any programming
-also avoids version control concerns that arise from concurrent work
+avoids version control concerns that arise from concurrent work
 on paper and electronic survey instruments.
 Finally, a readable paper questionnaire is a necessary component of data documentation,
 since it is difficult to work backwards from the survey program to the intended concepts.
@@ -289,17 +316,23 @@ Use the list of key outcomes to create an outline of questionnaire \textit{modul
 Do not number the modules; instead use a short prefix
 as numbers quickly get outdated when modules are reordered.
 For each module, determine if the module is applicable to the full sample,
-an appropriate respondent, and whether or how often the module should be repeated.
-A few examples: a module on maternal health only applies to household with a woman who has children,
-a household income module should be answered by the person responsible for household finances,
-and a module on agricultural production might be repeated for each crop the household cultivated.
-Each module should then be expanded into specific indicators to observe in the field.\sidenote{
+or only to specific respondents,
+and whether or how often the module should be repeated.
+A few examples:
+a module on maternal health only applies
+to households with a woman who has children,
+a household income module should be answered
+by the person responsible for household finances,
+and a module on agricultural production
+might be repeated for each crop the household cultivated.
+Each module should then be expanded
+into specific indicators to observe in the field.\sidenote{
   \url{https://dimewiki.worldbank.org/Literature\_Review\_for\_Questionnaire}}
 At this point, it is useful to do a  \textbf{content-focused pilot}\sidenote{
   \url{https://dimewiki.worldbank.org/Piloting\_Survey\_Content}}
 of the questionnaire.
 Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions,
-as there is no need to factor in costs of re-programming,
+as there is no need to factor in time costs of re-programming,
 and as a result improves the overall quality of the survey instrument.
 Questionnaires must also include ways to document the reasons for \textbf{attrition} and
 treatment \textbf{contamination}.\index{attrition}\index{contamination}
@@ -307,48 +340,66 @@ These are essential data components for completing CONSORT records,
 a standardized system for reporting enrollment, intervention allocation, follow-up,
 and data analysis through the phases of a randomized trial.\cite{begg1996improving}
 
-Once the content of the survey is drawn up,
-the team should conduct a small \textbf{survey pilot}\sidenote{
-  \url{https://dimewiki.worldbank.org/Survey\_Pilot}}
-using the paper forms to finalize questionnaire design and detect any content issues.
-A content-focused pilot\sidenote{
-  \url{https://dimewiki.worldbank.org/Piloting\_Survey\_Content}}
-is best done on pen and paper, before the questionnaire is programmed,
-because changes at this point may be deep and structural, which are hard to adjust in code.
-The objective is to improve the structure and length of the questionnaire,
-refine the phrasing and translation of specific questions,
-and confirm coded response options are exhaustive.\sidenote{
-  \url{https://dimewiki.worldbank.org/index.php?title=Checklist:\_Refine\_the\_Questionnaire\_(Content)}}
-In addition, it is an opportunity to test and refine all survey protocols,
-such as how units will be sampled or pre-selected units identified.
+A comprehensive survey pilot is a critical stage in survey design.\sidenote{
+	\url{https://dimewiki.worldbank.org/Survey\_Pilot}} 
 The pilot must be done out-of-sample,
 but in a context as similar as possible to the study sample.
-Once the team is satisfied with the content and structure of the survey,
-it is time to move on to implementing it electronically.
+The survey pilot includes three steps: 
+a \textbf{pre-pilot}, a \textbf{content-focused pilot}, and a \textbf{data-focused pilot}.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Structuring\_a\_Survey\_Pilot}} 
+The first step is a pre-pilot. 
+The pre-pilot is a qualitative exercise, done early in the questionnaire design process.
+The objective is to answer broad questions about how to measure key outcome variables,
+and gather qualitative information relevant to any of the planned survey modules.  
+A pre-pilot is particularly important when designing new survey instruments.
+The second step is a content-focused pilot\sidenote{
+  \url{https://dimewiki.worldbank.org/Piloting\_Survey\_Content}}.
+The objectives at this stage are to improve the structure and length of the questionnaire,
+refine the phrasing and translation of specific questions,
+and confirm coded response options are exhaustive.\sidenote{
+	\url{https://dimewiki.worldbank.org/index.php?title=Checklist:\_Refine\_the\_Questionnaire\_(Content)}}
+In addition, it is an opportunity to test and refine all survey protocols,\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Piloting\_Survey_Protocols}}
+such as how units will be sampled or pre-selected units identified.
+The content-focused pilot is best done on pen and paper, before the questionnaire is programmed,
+because changes at this point may be deep and structural,
+which are hard to adjust in code.
+The final stage is a data-focused pilot.
+The objective at this stage is to refine the questionnaire programming; this is discussed in more detail in the following section.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Timeline\_of\_Survey\_Pilot}}
+
 
 \subsection{Designing surveys for electronic deployment}
-
-Electronic data collection has great potential to simplify survey implementation and improve data quality.
-Electronic questionnaires are typically created in a spreadsheet (e.g. Excel or Google Sheets)
-or a software-specific form builder, all of which are accessible even to novice users.\sidenote{
+Once the team is satisfied with the content and structure of the survey,
+it is time to move on to implementing it electronically.
+Electronic data collection has great potential
+to simplify survey implementation and improve data quality.
+Electronic questionnaires are typically created
+in a spreadsheet (e.g. Excel or Google Sheets)
+or a software-specific form builder,
+all of which are accessible even to novice users.\sidenote{
   \url{https://dimewiki.worldbank.org/Questionnaire\_Programming}}
 We will not address software-specific form design in this book;
 rather, we focus on coding conventions that are important to follow
 for electronic surveys regardless of software choice.\sidenote{
   \url{https://dimewiki.worldbank.org/SurveyCTO\_Coding\_Practices}}
 Survey software tools provide a wide range of features
-designed to make implementing even highly complex surveys easy, scalable, and secure.
-However, these are not fully automatic: you need to actively design and manage the survey.
+designed to make implementing even highly complex surveys
+easy, scalable, and secure.
+However, these are not fully automatic:
+you need to actively design and manage the survey.
 Here, we discuss specific practices that you need to follow
 to take advantage of electronic survey features
-and ensure that the exported data is compatible with your analysis software.
+and ensure that the exported data
+is compatible with your statistical software.
 
 From a data perspective, questions with pre-coded response options
 are always preferable to open-ended questions.
 The content-based pilot is an excellent time to ask open-ended questions
 and refine fixed responses for the final version of the questionnaire --
 do not count on coding up lots of free text after a full survey.
-Coding responses helps to ensure that the data will be useful for quantitative analysis.
+Coding responses helps to ensure that the data
+will be useful for quantitative analysis.
 Two examples help illustrate the point.
 First, instead of asking ``How do you feel about the proposed policy change?'',
 use techniques like \textbf{Likert scales}\sidenote{
@@ -358,7 +409,7 @@ the brand name of the product; the generic name of the product; the coded compou
 or the broad category to which each product belongs (antibiotic, etc.).\sidenote{
   See \citet{wafula2017examining} for an example.}
 All four may be useful for different reasons,
-but the latter two are likely to be the most useful for data analysis.
+but the latter two are likely to be the most useful for rapid data analysis.
 The coded compound requires providing a translation dictionary to field staff,
 but enables automated rapid recoding for analysis with no loss of information.
 The generic class requires agreement on the broad categories of interest,
@@ -372,9 +423,10 @@ as it avoids extensive post-coding.
 It is essential to name the fields in your questionnaire
 in a way that will also work in your data analysis software.
 Most survey programs will not enforce this by default,
-since limits vary by software,
-and surveys will subtly encourage you to use long sentences
-and detailed descriptions of choice options.
+since limits vary across statistical software,
+and survey software will encourage you
+to use long sentences as question labels
+and detailed descriptions as choice options.
 This is what you want for the enumerator-respondent interaction,
 but you should already have analysis-compatible labels programmed in the background
 so the resulting data can be rapidly imported in analytical software.
@@ -397,53 +449,62 @@ too often resulting in uninformative variables names like
 
 \subsection{Programming electronic questionnaires}
 
-The starting point for questionnaire programming is a complete paper version of the questionnaire,
+The starting point for questionnaire programming
+is a complete paper version of the questionnaire,
 piloted for content and translated where needed.
-Doing so reduces version control issues that arise from making significant changes
+Doing so reduces version control issues
+that arise from making significant changes
 to concurrent paper and electronic survey instruments.
-Changing structural components of the survey after programming has been started
+Changing structural components of the survey
+after programming has been started
 often requires the coder to substantially re-work the entire code.
 This is because the more efficient way to code surveys is non-linear.
 When programming, we do not start with the first question and proceed through to the last question.
 Instead, we code from high level to small detail,
 following the same questionnaire outline established at design phase.
-The outline provides the basis for pseudocode,
+The outline provides the basis for survey pseudocode,
 allowing you to start with high level structure and work down to the level of individual questions.
 This will save time and reduce errors,
-particularly where sections or field are interdependent or repeated in complex ways.
+particularly where sections or fields
+are interdependent or repeated in complex ways.
 
-Electronic surveys are more than simply a paper questionnaire displayed on a mobile device or web browser.
-All common survey software allow you to automate survey logic
-and add in hard and soft constraints on survey responses.
+Electronic surveys are more than simply
+a paper questionnaire displayed on a mobile device or web browser.
+All common survey software allows you to automate survey logic
+and include hard or soft constraints on survey responses.
 These features make enumerators' work easier,
-and they create the opportunity to identify and resolve data issues in real-time,
+and they create the opportunity to identify and resolve
+data issues in real time,
 simplifying data cleaning and improving response quality.
-Well-programmed questionnaires should include most or all of the following features:
+Well-programmed questionnaires should include
+most or all of the following features:
 
 \begin{itemize}
-  \item{\textbf{Localizations}}: the survey instrument should display full text questions and responses in the survey language, and it should also have English and code-compatible versions of all text and labels.
+  \item{\textbf{Localization}}: the survey instrument should display full-text questions and responses in all potential survey languages, and it should also have English and code-compatible versions of all text and labels.
 	\item{\textbf{Survey logic}}: built-in tests should be included for all logic connections between questions, so that only relevant questions appear, rather than relying on enumerators to follow complex survey logic. This covers simple skip codes, as well as more complex interdependencies (e.g., a child health module is only asked to households that report the presence of a child under 5).
-	\item{\textbf{Range checks}}:  add range checks for all numeric variables to catch data entry mistakes (e.g. age must be less than 120).
-	\item{\textbf{Confirmation of key variables}}: require double entry of essential information (such as a contact phone number in a survey with planned phone follow-ups), with automatic validation that the two entries match.
+	\item{\textbf{Range checks}}: add range checks for all numeric variables to catch data entry mistakes (e.g. \texttt{age} must be less than 120).
+	\item{\textbf{Confirmation of key variables}}: require double entry of essential information (such as a contact phone number in a survey with planned phone follow-ups), with automatic validation that the two entries match and rejection and re-entry otherwise.
 	\item{\textbf{Multimedia}}: electronic questionnaires facilitate collection of images, video, and geolocation data directly during the survey, using the camera and GPS built into the tablet or phone.
-	\item{\textbf{Preloaded data}}: data from previous rounds or related surveys can be used to prepopulate certain sections of the questionnaire, and validated during the interview.
-	\item{\textbf{Filtered response options}}: filters reduce the number of response options dynamically (e.g. filtering the cities list based on the state provided).
+	\item{\textbf{Preloaded data}}: data from previous rounds or related surveys can be used to prepopulate certain sections of the questionnaire, and validated during the survey.
+	\item{\textbf{Filtered response options}}: filters reduce the number of response options dynamically (e.g. filtering a ``cities'' choice list based on the state selected).
 	\item{\textbf{Location checks}}: enumerators submit their actual location using in-built GPS, to confirm they are in the right place for the interview.
 	\item{\textbf{Consistency checks}}: check that answers to related questions align, and trigger a warning if not so that enumerators can probe further (e.g., if a household reports producing 800 kg of maize, but selling 900 kg of maize from their own production).
 	\item{\textbf{Calculations}}: make the electronic survey instrument do all math, rather than relying on the enumerator or asking them to carry a calculator.
 \end{itemize}
 
 All established survey software include debugging and test options
-to correct syntax errors and make sure that the survey instruments will successfully compile.
+to correct syntax errors and make sure that
+the survey instruments will successfully compile.
 This is not sufficient, however, to ensure that the resulting dataset
 will load without errors in your data analysis software of choice.
-We developed the \texttt{ietestform} command,\sidenote{
+DIME Analytics developed the \texttt{ietestform} command,\sidenote{
   \url{https://dimewiki.worldbank.org/ietestform}}
 part of the Stata package \texttt{iefieldkit},
 to implement a form-checking routine for \textbf{SurveyCTO},
 a proprietary implementation of the open source \textbf{Open Data Kit (ODK)} software.
 Intended for use during questionnaire programming and before field work,
-\texttt{ietestform} tests for best practices in coding, naming and labeling, and choice lists.
+\texttt{ietestform} tests for best practices
+in coding, naming and labeling, and choice lists.
 Although \texttt{ietestform} is software-specific,
 many of the tests it runs are general and important to consider regardless of software choice.
 To give a few examples, \texttt{ietestform} tests that no variable names exceed
@@ -453,21 +514,21 @@ It checks whether ranges are included for numeric variables.
 \texttt{ietestform} also removes all leading and trailing blanks from response lists,
 which could be handled inconsistently across software.
 
-A second survey pilot should be done after the questionnaire is programmed.
+The final stage of survey piloting, the data-focused pilot, should be done at this stage (after the questionnaire is programmed).
 The objective of this \textbf{data-focused pilot}\sidenote{
   \url{https://dimewiki.worldbank.org/index.php?title=Checklist:\_Refine\_the\_Questionnaire\_(Data)}}
 is to validate the programming and export a sample dataset.
 Significant desk-testing of the instrument is required to debug the programming
 as fully as possible before going to the field.
 It is important to plan for multiple days of piloting,
-so that any further debugging or other revisions to the electronic survey instrument
+so that any debugging or other revisions to the electronic survey instrument
 can be made at the end of each day and tested the following, until no further field errors arise.
 The data-focused pilot should be done in advance of enumerator training.
 
-
 \subsection{Finalizing data collection}
 
-When all data collection is complete, the survey team should prepare a final field report,
+When all data collection is complete,
+the survey team should prepare a final field report,
 which should report reasons for any deviations between the original sample and the data collected.
 Identification and reporting of \textbf{missing data} and \textbf{attrition}
 is critical to the interpretation of survey data.
@@ -488,8 +549,8 @@ and attrition occurred in the field and how they were implemented and resolved.\
 All confidential data must be handled in such a way that only people specifically
 approved by an Institutional Review Board (IRB)
 are able to access the data.
-Data can be confidential for multiple reasons, but the two most
-common reasons are that it contains personally identifiable information (PII)\sidenote{
+Data can be confidential for multiple reasons; two 
+very common reasons are that the data contains personally identifiable information (PII)\sidenote{
   \url{https://dimewiki.worldbank.org/Personally\_Identifiable\_Information\_(PII)}}
 or that the data owner has specified restricted access.
 
@@ -503,9 +564,11 @@ or unauthorized access to the data is obtained in any other way.\sidenote{
 Proper encryption is central to secure data handling, and can rarely be condensed into a single method,
 as the data will travel through many servers, devices, and computers
 from the source of the data to the final analysis.
-Encryption should be seen as a system that is only as secure as its weakest link.
+Encryption should be seen as a system
+that is only as secure as its weakest link.
 This section recommends a streamlined workflow,
-so that it is easy as possible to make sure the weakest link is still sufficiently secure.
+so that it is easy as possible to make sure
+the weakest link is still sufficiently secure.
 
 Data that has been encrypted is made readable again using decryption,
 and decryption requires a password or a key.
@@ -519,8 +582,10 @@ instead, use a secure password manager.\sidenote{
   on the DIME Standards site: \url{https://github.com/worldbank/dime-standards/}}
 In addition to providing a way to securely share passwords,
 password managers also provide a secure location
-for long term storage for passwords and keys, whether they are shared or not.
-Make sure you store your keys with descriptive names to match the encryption to which they correspond.
+for long term storage of passwords and keys,
+whether they are shared or not.
+Make sure you store your keys with descriptive names,
+as they will be needed over the lifetime of a project.
 
 There are two main types of encryption algorithms and they are called
 \textbf{symmetric encryption}\sidenote{
@@ -543,8 +608,8 @@ and \textbf{encryption-at-rest}\sidenote{
 Encryption-in-transit protects your data when in transit over the internet.
 It is easy to implement encryption-in-transit such that no input from the user is required,
 since the server and browser can keep track of the key for the short duration of the connection.
-All well established services have this implemented and you rarely have to worry about it.
-However, if you were to use a less well-known service,
+All well-established data transfer services have this implemented and you rarely have to worry about it.
+However, if you are setting up a custom solution,
 it is important that you verify that it use encryption-in-transit,
 as without it, your data and credentials are very vulnerable.
 Encryption-at-rest protects your data when it is stored somewhere,
@@ -592,7 +657,7 @@ as long as you have the key.
 This is an implementation of encryption-at-rest.
 There is absolutely no way to restore your data if you were to lose your key,
 so we cannot stress enough the importance of using a password manager,
-or equally secure solution, to store your keys.
+or equally secure solution, to store these encryption keys.
 
 It is becoming more and more common that development research
 is done on data set that is too big to store on a regular computer,
@@ -630,18 +695,20 @@ as there is no way to access your data if the private key is lost.\sidenote{
   DIME guidelines for encryption in SurveyCTO/ODK are part of the DIME Standards:
   \url{https://github.com/worldbank/dime-standards/}}
 
-Data encrypted this way can securely pass through the server owned by the data collection software provider,
+Data encrypted this way can securely pass
+through a server accessible by the data collection software provider
+or by your local IT team,
 and you should never decrypt it until it is downloaded on your computer.
 If your data collection service allows you to browse data in the browser,
 then the encryption is only implemented correctly if you are asked for the key each time.
 
-Finally, the data security standards that apply when receiving confidential data from the field
+Finally, the data security standards that apply
+when receiving confidential data from the field
 also apply when transferring confidential data to the field.
 In some survey software,
 you can use the same encryption that allows you to receive data securely
 from the field, to also send confidential data,
 such as an identifying list of respondents, to the field.
-
 
 \subsection{Receiving or sharing data securely}
 
@@ -649,10 +716,11 @@ If you receive confidential data from a partner organization
 or share confidential data with your research team over the internet,
 it must always be encrypted.
 The best practice is to reduce the amount of confidential data
-needed to be shared or transfer.
-If you do not need the confidential information you will simplify your workflow
-by collecting or receiving data without any confidential information in the first place.
-This should always be your first option when possible.
+that is shared or transfer.
+If you do not need the confidential information, you will simplify your workflow
+by acquiring or sharing data without any confidential information in the first place.
+Removing confidential information, for example through de-identifying the data
+(which we will discuss in detail in Chapter 5), should always be your first preference.
 
 Usually we need to deal with confidential data at some point in the project,
 and then the second best practice is create two versions of your data.
@@ -682,11 +750,10 @@ If you need to collaborate on a confidential data set
 then you can create an encrypted folder, for example using VeraCrypt (as described above).
 An encrypted folder can safely be shared using insecure modes of communication
 such as email or third-party syncing services,
-as long as you only share the key using a secure service like a password manager.
-Anyone who has access to both the encrypted folder and the encryption key
-can read and collaborate on the encrypted file,
-but it is impossible to know anything about your data if you only have access to one of them.
-
+as long as you only share the key
+using a secure service like a password manager.
+Anyone who has access to both the encrypted folder \textit{and} the encryption key
+can read and collaborate on the encrypted file.
 If you only need a one-time transfer of confidential information,
 such as to receive a data set from a partner organization,
 then setting up a permanent encrypted folder may be unnecessary.
@@ -694,13 +761,11 @@ Instead, for one-time transfers we recommend sending data over password-protecte
 end-to-end encrypted file sharing services.\sidenote{
 	One such service at the time of writing is \url{https://send.firefox.com/}}
 
-
-
 \subsection{Backing up original data}
-
-While encryption is protecting your data from unauthorized access,
-you also need to protect your data from being accidentally over-written or deleted.
-This is done through a back-up protocol. This is an example of such a protocol:
+In addition to encrypting your data, you must protect it 
+from being accidentally overwritten or deleted.
+This is done through a back-up protocol.
+Here is an example of such a protocol:
 
 \begin{enumerate}
 	\item Create an encrypted folder in your project folder.
@@ -725,20 +790,20 @@ This is done through a back-up protocol. This is an example of such a protocol:
 	and thereby do not risk losing access by losing an encryption key.
 
 	\item Finally, create a third encrypted folder.
-	Either you can create this on your computer and upload it to a long-term cloud storage service,
-	or you can create it on	an external hard drive that you then store in a second location,
+	Either you can create this on your computer and upload it to a long-term cloud storage service (not a sync software),
+	or you can create it on	another external hard drive or computer that you then store in a second location,
 	for example, at another office of your organization.
 	This is the ``golden master'' backup copy of the raw data.
 	You should never store the ``golden master'' copy in a synced folder,
 	as it would be deleted in the cloud storage if it is deleted on your computer.
-	You should also never work with this data on a day-to-day basis.
+	You should also never work with this data;
+	it exists only for recovery purposes.
 \end{enumerate}
 
-\noindent This handling satisfies the \textbf{3-2-1 rule}:
+\noindent This handling satisfies the \textbf{3-2-1 rule} described in Chapter 2:
 there are two on-site copies of the data and one off-site copy,
 so the data can never be lost in case of hardware failure.
 %needs wiki page
-However, you still need to keep track of your encryption keys as without them your data is lost.
 If you remain lucky, you will never have to access your ``master'' or ``golden master'' copies --
 you just want to know it is there, safe, if you one day end up needing it.
 
