@@ -167,13 +167,13 @@ It is common that you will have to update
 your master datasets throughout your project.
 
 The most important function of the master dataset
-is to be the authoritative source 
+is to be the authoritative source
 for how all observations are identified.
 This means that the master datasets should include
 identifying information such as names, contact information,
 but also your \textbf{project ID}.\sidenote{
 	\textbf{Project ID:} The main ID used in your project to identify
-	observations. 
+	observations.
 	You should never have multiple project IDs for the same unit of observation.
 	The project ID must uniquely and fully identify all observations in the project.
 	See \url{https://dimewiki.worldbank.org/ID\_Variable\_Properties} for more details.}
@@ -182,29 +182,29 @@ and is therefore how observations are linked across datasets.
 Your master dataset may list alternative IDs that are used,
 for example, by a partner organization.
 However, you must not use such an ID as your project ID,
-as you would then not be in control over 
+as you would then not be in control over
 who can re-identify data that you publish.
-The project ID must be created by the project team, 
-and the linkage to direct identifiers 
+The project ID must be created by the project team,
+and the linkage to direct identifiers
 should only be known to people listed on the IRB.
 If you receive a dataset with an alternative ID,
 you should immediately replace it with your project ID,
-and the alternative ID should be dropped 
+and the alternative ID should be dropped
 as a part of your de-identification (see Chapters 5 and 7).
 Your master dataset serves as the linkage between
 all other identifying information and your project ID.
 Since your master dataset is full of identifying information,
 it must always be encrypted.
 
-The starting point for the master dataset is typically a sampling frame 
+The starting point for the master dataset is typically a sampling frame
 (more on sampling frames later in this chapter).
-However, you should continuously update the master dataset with 
+However, you should continuously update the master dataset with
 all observations ever encountered in your project,
 even if those observations are not eligible for the study.
 Examples include new observations listed during monitoring activities
 or observations that are connected to respondents in the study,
 for example in a social network module.
-This is useful because, 
+This is useful because,
 if you ever need to perform a record linkage such as a fuzzy match
 on string variables like proper names,
 the more information you have the fewer errors you are likely to make
@@ -240,7 +240,7 @@ should be used in each operation,
 and note whether the operation creates a new variable or combination of variables
 to identify the newly linked data.
 These variables should be project IDs when possible.
-Examples of exception are time variables in longitudinal data, 
+Examples of exception are time variables in longitudinal data,
 and sub-units like farm plots that belong to farmers with project IDs.
 Once you have acquired the datasets listed in the flowchart,
 you can add to the data flowcharts the number of observations that
@@ -471,8 +471,8 @@ compared to the rest of the sample.
 \subsection{Monitoring data}
 
 For any study with an ex-ante design,
-\textbf{monitoring data}\index{monitoring data}\sidenote{\url{
-		https://dimewiki.worldbank.org/Monitoring\_Data}}
+\textbf{monitoring data}\index{monitoring data}\sidenote{
+		\url{https://dimewiki.worldbank.org/Monitoring\_Data}}
 is very important for understanding if the
 assumptions made during the research design
 corresponds to what is true in reality.
@@ -812,8 +812,8 @@ the other members of the clustering group were as well.
 % using randtreat for stratified randomized assignment
 By contrast, implementing stratified designs in statistical software is prone to error.
 Even for a typical multi-armed design, the basic method of randomly ordering the observations
-will often create very skewed assignments.\sidenote{\url
-	{https://blogs.worldbank.org/impactevaluations/tools-of-the-trade-doing-stratified-randomization-with-uneven-numbers-in-some-strata}}
+will often create very skewed assignments.\sidenote{
+	\url{https://blogs.worldbank.org/impactevaluations/tools-of-the-trade-doing-stratified-randomization-with-uneven-numbers-in-some-strata}}
 The user-written \texttt{randtreat} command properly implements stratification.\cite{carril2017dealing}
 The options and outputs (including messages) from the command should be carefully reviewed
 so that you understand exactly what has been implemented.
@@ -845,7 +845,7 @@ is zero, we think of the observed correlation as an \textbf{error}.
 In sampling, we call this the \textbf{sampling error},
 and it is defined as the difference between a true population parameter
 and the observed mean due to chance selection of units.\sidenote{
-	\url{https://economistjourney.blogspot.com/2018/06/what-is-sampling-noise.html}}
+	\url{https://dimewiki.worldbank.org/Sampling}}
 In randomized assignment, we call this the \textbf{randomization noise},
 and define it as the difference between a true treatment effect
 and the estimated effect due to placing units in groups.
@@ -854,7 +854,7 @@ you can find some possible subsets that have higher-than-average values of some 
 similarly, you can find some that have lower-than-average values.
 Your random sample or treatment assignment will fall in one of these categories,
 and we need to assess the likelihood and magnitude of this occurrence.\sidenote{
-	\url{https://davegiles.blogspot.com/2019/04/what-is-permutation-test.html}}
+	\url{https://dimewiki.worldbank.org/Sample_Size_and_Power_Calculations}}
 \textit{Power calculation} and \textit{randomization inference} are the two key tools to doing so.
 
 % why to do power calculations
@@ -864,8 +864,7 @@ will be able to detect the treatment effects you are interested in
 given these sources of noise.\sidenote{
 	\url{https://dimewiki.worldbank.org/Sample\_Size\_and\_Power\_Calculations}}
 This measure of \textbf{power} can be described in various different ways,
-each of which has different practical uses.\sidenote{
-	\url{https://www.stat.columbia.edu/~gelman/stuff\_for\_blog/chap20.pdf}}
+each of which has different practical uses.
 The purpose of power calculations is to identify where the strengths and weaknesses
 of your design are located, so you know the relative tradeoffs you will face
 by changing your randomization scheme for the final design.
