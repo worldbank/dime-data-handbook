@@ -17,8 +17,8 @@
     foreach command of local user_commands {
         cap which `command'
         if _rc == 111 ssc install `command'
-    }	
-	
+    }
+
 	*Harmonize settings accross users as much as possible
     ieboilstart, v(13.1)
     `r(version)'
@@ -34,7 +34,6 @@
         global encrypted   "M:/DataWork/EncryptedData"
     }
 
-
     * Baseline folder globals
     global bl_encrypt       "${encrypted}/Round Baseline Encrypted"
     global bl_dt            "${dropbox}/Baseline/DataSets"
@@ -48,33 +47,29 @@
 
 /*------------------------------------------------------------------------------
     PART 3.1:  De-identify baseline data
---------------------------------------------------------------------------------
- REQUIRES:   ${bl_encrypt}/Raw Identified Data/D4DI_baseline_raw_identified.dta
- CREATES:    ${bl_dt}/Raw Deidentified/D4DI_baseline_raw_deidentified.dta
- IDS VAR:    hhid
+    REQUIRES:   ${bl_encrypt}/Raw Identified Data/D4DI_baseline_raw_identified.dta
+    CREATES:    ${bl_dt}/Raw Deidentified/D4DI_baseline_raw_deidentified.dta
+    IDS VAR:    hhid
 ----------------------------------------------------------------------------- */
-    if (0) { //Change the 0 to 1 to run the baseline de-identification dofile
-        do "${bl_do}/Cleaning/deidentify.do"
-	}
+    *Change the 0 to 1 to run the baseline de-identification dofile
+    if (0) do "${bl_do}/Cleaning/deidentify.do"
+
 /*------------------------------------------------------------------------------
     PART 3.2:  Clean baseline data
---------------------------------------------------------------------------------
-  REQUIRES:   ${bl_dt}/Raw Deidentified/D4DI_baseline_raw_deidentified.dta
-  CREATES:    ${bl_dt}/Final/D4DI_baseline_clean.dta
-              ${bl_doc}/Codebook baseline.xlsx
-  IDS VAR:    hhid
+    REQUIRES:   ${bl_dt}/Raw Deidentified/D4DI_baseline_raw_deidentified.dta
+    CREATES:    ${bl_dt}/Final/D4DI_baseline_clean.dta
+                ${bl_doc}/Codebook baseline.xlsx
+    IDS VAR:    hhid
 ----------------------------------------------------------------------------- */
-    if (0) { //Change the 0 to 1 to run the baseline cleaning dofile
-        do "${bl_do}/Cleaning/cleaning.do"
-	}
+    *Change the 0 to 1 to run the baseline cleaning dofile
+    if (0) do "${bl_do}/Cleaning/cleaning.do"
+
 /*-----------------------------------------------------------------------------
     PART 3.3:  Construct income indicators
---------------------------------------------------------------------------------
-  REQUIRES:   ${bl_dt}/Final/D4DI_baseline_clean.dta
-  CREATES:    ${bl_out}/Raw/D4DI_baseline_income_distribution.png
-              ${bl_dt}/Intermediate/D4DI_baseline_constructed_income.dta
-  IDS VAR:    hhid
+    REQUIRES:   ${bl_dt}/Final/D4DI_baseline_clean.dta
+    CREATES:    ${bl_out}/Raw/D4DI_baseline_income_distribution.png
+                ${bl_dt}/Intermediate/D4DI_baseline_constructed_income.dta
+    IDS VAR:    hhid
 ----------------------------------------------------------------------------- */
-    if (0) { //Change the 0 to 1 to run the baseline variable construction dofile
-        do "${bl_do}/Construct/construct_income.do"
-	}
+    *Change the 0 to 1 to run the baseline variable construction dofile
+    if (0) do "${bl_do}/Construct/construct_income.do"
