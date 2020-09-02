@@ -1,0 +1,717 @@
+% ----------------------------------------------------------------------------------------------
+% Setting the stage for successful data work
+
+\begin{fullwidth}
+Preparation for collaborative data work begins long before you acquire any data,
+and involves planning both software tools and collaboration platforms and processes for your team.
+In order to be prepared to do effective data work in a team environment,
+you need to structure your workflow in advance.
+This means knowing what types of data you'll acquire,
+whether the data will require special handling due to size or privacy considerations,
+which datasets and outputs you will need at the end of the process,
+and how all data files and versions will stay organized throughout.
+It's important to plan data workflows in advance because
+changing software or protocols halfway through a project can be costly and time-consuming.
+Seemingly small decisions such as sharing services, folder structures,
+and filenames can be extremely painful to alter down the line in any project.
+
+This chapter will guide you in setting up an effective environment for collaborative data work,
+structuring your data work to be well-organized and clearly documented,
+and setting up processes to handle confidential data securely.
+The first section outlines hows to set up your working environment
+to effectively collaborate on technical tasks with others,
+and how to document tasks and decisions.
+The second section discusses how to organize your code and data so that others
+will be able to understand and interact with it easily.
+The third section provides guidelines for ensuring
+privacy and security when working with confidential data.
+
+\end{fullwidth}
+
+% ----------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------
+
+\section{Preparing a collaborative work environment}
+
+This section introduces the core concepts and tools
+for organizing data work in an efficient, collaborative and reproducible manner.
+Some of these skills may seem elementary,
+but thinking about simple things from a workflow perspective
+can help you make marginal improvements every day you work;
+those add up to substantial gains over the course of multiple years and projects.
+Together, these processes form a collaborative workflow
+that will greatly accelerate your team's ability to get tasks done
+on all your projects.
+
+Teams often develop workflows in an ad hoc fashion,
+solving new challenges as they arise.
+Adaptation is good, of course.
+But it is important to recognize
+that there are a number of tasks that exist for every project,
+and it is more efficient to agree on the corresponding workflows in advance.
+For example, documentation, naming schema, folder and output organization,
+coding, managing revisions to files, and reviewing each other's work.
+These tasks are common to almost every project,
+and solutions translate well between projects.
+Therefore, there are large efficiency gains to
+thinking in advance about the best way to do these tasks,
+instead of throwing together a solution when the task arises.
+This section outlines the main points to discuss within the team,
+and suggests best practice solutions for these tasks.
+
+% ----------------------------------------------------------------------------------------------
+\subsection{Setting up your computer}
+
+First things first:
+almost all your data work will be done on your computer,
+so make sure it's set up for success.
+The operating system should be fully updated,
+it should be in good working order,
+and you should have a \textbf{password-protected} login.
+  \index{password protection}
+Make sure your computer is backed up to prevent information loss.
+  \index{backup}
+Follow the \textbf{3-2-1 rule}: maintain 3 copies of all original or irreplaceable data,
+on at least 2 different hardware devices you have access to,
+with 1 offsite storage method.\sidenote{
+  \url{https://dimewiki.worldbank.org/wiki/Data_Storage}}
+Chapter 4 discusses this in more detail.
+
+Ensure you know how to get the \textbf{absolute file path} for any given file.
+Using the absolute file path, starting from the filesystem root,
+means that the computer will never accidentally load the wrong file.
+  \index{file paths}
+On MacOS this will be something like \path{/users/username/git/project/...},
+and on Windows, \path{C:/users/username/git/project/...}.
+Use forward slashes (\texttt{/}) in file paths for folders,
+and whenever possible use only a-z (the 26 English characters),
+dashes (\texttt{-}), and underscores (\texttt{\_}) in folder names and filenames.
+For emphasis: \textit{always} use forward slashes (\texttt{/})
+in file paths in code,
+just like in internet addresses.
+Do this even if you are using a Windows machine where
+both forward and backward slashes are allowed,
+as your code will otherwise break
+if anyone tries to run it on a Mac or Linux machine.
+Making the structure of your directories a core part of your workflow is very important,
+since otherwise you will not be able to reliably transfer the instructions
+for replicating or carrying out your analytical work.
+
+When you are working with others, you will most likely be using
+some kind of \textbf{file sharing} software.
+  \index{file sharing}
+The exact services you use will depend on your tasks,
+but in general, there are several approaches to file sharing,
+and the three discussed here are the most common.
+\textbf{File syncing} is the most familiar method,
+and is implemented by software like Dropbox and OneDrive.
+  \index{file syncing}
+Sync forces everyone to have the same version of every file at the same time,
+which makes simultaneous editing difficult but other tasks easier.
+They also have some security concerns which we will address later.
+\textbf{Version control} is another method,
+commonly implemented by tools like Git\sidenote{
+	\textbf{Git:} a multi-user version control system for collaborating on and tracking changes to code as it is written.} and GitHub\sidenote{
+	\textbf{GitHub:} the biggest publicly available platform for hosting Git projects.}.
+  \index{version control}
+Version control allows everyone to access different versions of files at the same time,
+making simultaneous editing easier but some other tasks harder.
+It is also only optimized for specific types of files
+(for example, any type of code files).
+Finally, \textbf{server storage} is the least-common method,
+because there is only one version of the materials,
+and simultaneous access must be carefully regulated.
+  \index{server storage}
+Server storage ensures that everyone has access
+to exactly the same files and environment, and it also enables
+high-powered computing processes for large and complex data.
+All three file sharing methods are used for collaborative workflows,
+and you should review the types of data work
+that you will be doing, and plan which types of files
+will live in which types of sharing services.
+It is important to note that they are, in general, not interoperable,
+meaning you should not have version-controlled files inside a syncing service,
+or vice versa, without setting up complex workarounds,
+and you cannot shift files between them without losing historical information.
+Therefore, choosing the correct sharing service for each of your team's needs at the outset is essential.
+
+At DIME we typically use file syncing for all project administrative files and data,
+version control in git for or code,
+and server storage for back up and/or large scale computations when needed.
+
+% ----------------------------------------------------------------------------------------------
+\subsection{Documenting decisions and tasks}
+
+Once your technical and sharing workspace is set up,
+you need to decide how you are going to communicate with your team.
+The first habit that many teams need to break
+is using instant communication for management and documentation.
+Email is, simply put, not a system. It is not a system for anything. Neither is WhatsApp.\index{email}\index{WhatsApp}
+These tools are developed for communicating ``now'' and that is what they do well.
+They are not structured to manage group membership or to present the same information
+across a group of people, or to remind you when old information becomes relevant.
+They are not structured to allow people to collaborate over a long time or to review old discussions.
+It is therefore easy to miss or lose communications from the past when they have relevance in the present.
+Everything with future relevance that is communicated over e-mail or any other instant medium
+-- such as, for example, decisions about sampling --
+should immediately be recorded in a system that is designed to keep permanent records.
+We call these systems collaboration tools, and there are several that are very useful.\sidenote{
+  \url{https://dimewiki.worldbank.org/Collaboration_Tools}}
+  \index{collaboration tools}
+
+Good collaboration tools are task-oriented systems
+that allow the team to create and assign tasks,
+carry out discussions related to single tasks,
+track task progress across time, and quickly see the overall project status.
+They are web-based so that everyone on your team can access them simultaneously
+and have live discussions about tasks and processes.
+Such systems link communication to specific tasks so that
+related decisions are permanently recorded
+and easy to find in the future when questions about that task come up.
+Choosing the right tool for your team's needs is essential to designing an effective workflow.
+What is important is that your team chooses a system and commits to using it,
+so that decisions, discussions, and tasks are easily reviewable long after they are completed.
+
+Some popular and free collaboration tools that meet these criteria are
+GitHub project boards, GitHub issues and Dropbox Paper.
+Any specific list of software will quickly be outdated;
+we mention these as examples that have worked for our team.
+Different collaboration tools can be used different types of tasks.
+Our team, for example, uses GitHub Issues for code-related tasks,
+and Dropbox Paper for more managerial and office-related tasks.
+GitHub creates incentives for writing down why changes were made
+in response to specific discussions
+as they are completed, creating naturally documented code.
+It is useful also because tasks in Issues can clearly be tied to file versions.
+On the other hand, Dropbox Paper provides a clean interface with task notifications,
+assignments, and deadlines,
+and is very intuitive for people with non-technical backgrounds.
+Therefore, it is a useful tool for managing non-code-related tasks.
+
+% ----------------------------------------------------------------------------------------------
+\subsection{Choosing software}
+
+Choosing the right software environments can make your work significantly easier.
+  \index{software environments}
+It may be difficult or costly to switch halfway through a project, so
+think ahead about the various software your team will use.
+Take into account the technical abilities of team members,
+how important it is to access files offline constantly,
+the type of data you will need to access,
+and the level of security required.
+Big datasets require additional infrastructure and may overburden
+the tools commonly used for small datasets,
+particularly if you are trying to sync or collaborate on them.
+Also consider the cost of licenses, the time to learn new tools,
+and the stability of the tools.
+There are few strictly right or wrong choices for software,
+but what is important is that you plan in advance
+and understand how the chosen tools will interact with your workflows.
+
+Ultimately, the goal is to hold your code environment constant
+over the lifecycle of a single project.
+While this means you will inevitably have different projects
+with different code environments, each one will be better than the last,
+and you will avoid the costly process of migrating an ongoing project
+into a new code enviroment.
+Code environment should be constant down to the software level:
+the specific versions of software and the individual packages you use
+should be referenced or maintained so that they can be reproduced going forward,
+even if different releases contain changes that would break your code
+or change your results.
+  \index{software versions}
+DIME Analytics developed the command \texttt{ieboilstart} in the \texttt{ietoolkit} package
+to support Stata version stability.\sidenote{
+  \url{https://dimewiki.worldbank.org/ieboilstart}}
+
+Next, think about how and where you write and execute code.
+This book is intended to be agnostic to the size or origin of your data,
+but we are going to broadly assume that you are using
+one of the two most popular statistical software packages: R or Stata.
+(If you are using another language, like Python,
+many of the same principles apply but the specifics will be different.)
+Most of your code work will be done in a code editor.
+This does not need to be the same program the code runs in;
+using an external editor can be preferable since your editor will not crash if your code does,
+and the editor may offer additional features aimed at writing code well.
+If you are working in R, \textbf{RStudio} is the typical choice.\sidenote{
+  \url{https://www.rstudio.com}}
+For Stata, the built-in do-file editor is the most widely adopted code editor.
+You might also consider using an external editor for your R or Stata code.\sidenote{\url{https://dimewiki.worldbank.org/wiki/Stata_Coding_Practices}}
+These editors offer great accessibility and quality features.
+For example, they can access an entire directory -- rather than a single file --
+which gives you directory-level views and file management actions,
+such as folder management, Git integration,
+and simultaneous work with other types of files, without leaving the editor.
+
+% ----------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------
+\section{Organizing code and data}
+
+We assume you are going to do your analytical work through code,
+and that you want all your processes to be documented and replicable.
+Though it is possible to interact with some statistical software
+through the user interface without writing any code,
+we strongly advise against it.
+Writing code creates a record of every task you performed.
+It also prevents direct interaction with the data files that could lead to non-reproducible steps.
+You may do some exploratory tasks by point-and-click or typing directly into the console,
+but anything that is included in a research output
+must be coded up in an organized fashion so that you can release
+the exact code recipe that goes along with your final results.
+Still, organizing code and data into files and folders is not a trivial task.
+What is intuitive to one person rarely comes naturally to another,
+and searching for files and folders is everybody's least favorite task.
+As often as not, you come up with the wrong one,
+and then it becomes very easy to create problems that require complex resolutions later.
+This section provides basic tips on managing the folder
+that stores your project's data work.
+
+Maintaining an organized file structure for data work is the best way
+to ensure that you, your teammates, and others
+are able to easily advance, edit, and replicate your work in the future.
+It also ensures that automated processes from code and scripting tools
+are able to interact well with your work,
+whether they are yours or those of others.
+File organization makes data work easier as well as more transparent,
+and facilitates integration with tools like version control systems
+that aim to cut down on the amount of repeated tasks you have to perform.
+It is worth thinking in advance about how to store, name, and organize
+the different types of files you will be working with,
+so that there is no confusion down the line
+and everyone has the same expectations.
+
+% ----------------------------------------------------------------------------------------------
+\subsection{Organizing files and folder structures}
+
+Once you start a research project,
+the number of scripts, datasets, and outputs
+that you have to manage will grow very quickly.
+This can get out of hand just as quickly,
+so it's important to organize your data work
+and follow best practices from the beginning.
+You should agree with your team on a specific directory structure,
+and set it up at the beginning of the project.
+You should also agree on a file naming convention.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Naming_Conventions}}
+This will help you to easily find project files and
+ensure that all team members can easily run the same code.
+
+To support consistent folder organization at DIME,
+DIME Analytics created \texttt{iefolder}\sidenote{
+  \url{https://dimewiki.worldbank.org/iefolder}}
+as a part of our \texttt{ietoolkit} package.\index{\texttt{iefolder}}\index{\texttt{ietoolkit}}
+This Stata command sets up a pre-standardized folder structure
+for what we call the \texttt{DataWork} folder.\sidenote{
+  \url{https://dimewiki.worldbank.org/DataWork_Folder}}
+The \texttt{DataWork} folder includes folders for all the steps of a typical project.
+  \index{\texttt{DataWork} folder}
+Since each project will always have unique needs,
+we have tried to make the structure easy to adapt.
+Having a universally standardized folder structure
+across the entire portfolio of projects
+means that everyone can easily move between projects
+without having to reorient on file and folder organization.
+
+If you do not already have a standard file structure across projects,
+\texttt{iefolder} is an easy template to start from.
+The command creates a \texttt{DataWork} folder at the project level,
+and within that folder, creates standardized directory structures
+for each data source or survey round.
+Within each subdirectory, \texttt{iefolder} creates folders for raw encrypted data,
+raw deidentified data, cleaned data, final data, outputs, and documentation.
+It creates a parallel folder structure for the code files
+that move the data through this progression,
+and for the final analytical outputs.
+The \texttt{ietoolkit} package also includes the \texttt{iegitaddmd} command,
+which can place \texttt{README.md} placeholder files in your folders so that
+your folder structure can be shared using Git.\sidenote{
+	Git only tracks files, so empty folders
+	-- which most folders are in the beginning of a project --
+	are ignored if placeholder files are not used,
+	leading to only parts of the folder structure being shared across the team.}
+Since these placeholder files are written in a plaintext language called \textbf{Markdown},
+they also provide an easy way to document the contents of every folder in the structure.
+  \index{Markdown}
+
+The \texttt{DataWork} folder may be created either inside
+an existing project folder, or it may be created as a separate root folder.
+We advise keeping project management materials
+(such as contracts, Terms of Reference, briefs and other administrative or management work)
+separate from the datawork folder structure.
+It is useful to maintain project management materials in a synced location like Dropbox,
+whereas the code folder should be maintained in a version-controlled location like GitHub.
+(Remember, a version-controlled folder \textit{should not}
+be stored in a synced folder that is shared with other people.
+Combining these two types of collaboration tools
+almost always creates undesired functionalities.)
+
+\subsection{Setting up a version control system}
+We recommend using a \textbf{version control system} to
+maintain control of file history and functionality.
+A good version control system tracks who edited each file and when,
+allows you to revert to previous versions,
+and provides a protocol for ensuring that conflicting versions are avoided.
+This is important, for example, for your team
+to be able to find the version of a presentation that you delivered to a donor,
+or to understand why the significance level of your estimates has changed.
+Everyone who has ever encountered a file named something like \texttt{final\_report\_v5\_LJK\_KLE\_jun15.docx}
+can appreciate how useful such a system can be.
+
+Most syncing services offer some kind of rudimentary version control;
+these are usually enough to manage changes to binary files (such as Word and PowerPoint documents)
+without needing to rely on dreaded filename-based versioning conventions.
+For code files, however, a more detailed version control system is usually desirable.
+We recommend using Git for version-control of all data work.
+Git documents changes to all \textbf{plaintext} files,
+this includes all code files, most raw outputs,
+and written outputs that use plaintext tools such as
+{\LaTeX} and dynamic documents.\index{{\LaTeX}}\index{dynamic documents}
+Git tracks all the changes you make to each plaintext file,
+and allows you to go back to previous versions without losing the information on changes made.
+It also makes it possible to work on multiple parallel versions of a file,
+so you don't risk breaking code for other team members as you try something new.
+
+
+% ----------------------------------------------------------------------------------------------
+\subsection{Documenting and organizing code}
+Good code is written in a way that is easily understood and run by others.
+Below we discuss a few crucial steps to code organization.
+They all come from the principle that code is an output by itself,
+not just a means to an end,
+and should be written thinking of how easy it will be for someone to read it later.
+At the end of this section, we include a template for a master script do-file in Stata,
+to provide a concrete example of the required elements and structure.
+Throughout this section, we refer to lines of this example do-file
+to give concrete examples of the required code elements, organization and structure.
+
+To be readable, code must be well-documented.
+Start by adding a code header to every file.
+A code header is a long \textbf{comment}\sidenote{
+  \textbf{Comments:} Code components that have no function to the computer,
+  but describe in plain language for humans to read
+  what the code is supposed to do.
+}
+that details the functionality of the entire script;
+refer to lines 5-10 in the example do-file.
+This should include simple things such as
+the purpose of the script and the name of the person who wrote it.
+If you are using a version control software,
+the last time a modification was made and the person who made it will be recorded by that software.
+Otherwise, you should include it in the header.
+You should always track the inputs and outputs of the script,
+as well as the uniquely identifying variable;
+refer to lines 52-54 in the example do-file.
+When you are trying to track down which code creates which dataset, this will be very helpful.
+While there are other ways to document decisions related to creating code,
+the information that is relevant to understand the code should always be written in the code file.
+
+Two types of comments should be included in the script itself.
+The first type of comment describes what is being done.
+This might be easy to understand from the code itself
+if you know the language well enough and the code is clear,
+but often it is still a great deal of work to reverse-engineer the code's intent.
+Writing the task in plain English (or whichever language you use to communicate with your team)
+will make it easier for everyone to read and understand the code's purpose.
+It can also help you organize your own work and ensure you are following logical steps.
+The second type of comment explains why the code is performing a task in a particular way.
+As you are writing code, you are making a series of decisions that
+(hopefully) make perfect sense to you at the time.
+These are often highly specialized and may exploit a functionality
+that is not obvious or has not been seen by others before.
+Even you will probably not remember the exact choices that were made in a couple of weeks.
+Therefore, you must document your precise processes in your code.
+
+Code files should be stored in an easy-to-find location and named in a meaningful way.
+  \index{code organization}
+Breaking your code into independently readable ``chunks'' is good practice for code organization.
+You should write each functional element as a chunk that can run completely on its own.
+This ensures that each code component is independent;
+it does not rely on a complex program state
+created by other code chunks that are not obvious from the immediate context.
+One way to do this is by creating sections in your script to identify where a specific task is completed.
+For example, if you want to find the line in your code where the directory is set,
+you can go straight to \texttt{PART 2: Prepare folder paths and define programs},
+instead of reading line by line through the entire code.
+RStudio makes it very easy to create sections,
+and it compiles them into an interactive script index for you.
+In Stata, you can use comments to create section headers
+(see line 27 of the example do-file),
+though they're just there to make the reading easier and don't have functionality.
+Since an index is not automated,
+create this manually in the code header by copying and pasting section titles
+(see lines 8-10 in the example do-file).
+You can then add and navigate through them using the \texttt{find} functionality.
+Since Stata code is harder to navigate, as you will need to scroll through the document,
+it's particularly important to avoid writing very long scripts.
+Therefore, in Stata at least, we recommend breaking code tasks down
+into separate do-files, since there is no limit on how many you can have,
+how detailed their names can be, and no advantage to writing longer files.
+One reasonable rule of thumb is to not write do-files that have more than 200 lines.
+This is an arbitrary limit, just like the common practice of limiting code lines to 80 characters:
+it seems to be ``enough but not too much'' for most purposes.
+
+\subsection{Working with a master script}
+To bring all these smaller code files together, you must maintain a master script.\sidenote{
+	\url{https://dimewiki.worldbank.org/Master\_Do-files}}
+  \index{master do-file}
+A master script is the map of all your project's data work
+which serves as a table of contents for the instructions that you code.
+Anyone should be able to follow and reproduce all your work from
+raw data to all outputs by simply running this single script.
+By follow, we mean someone external to the project who has the master script and all the input data can
+(i) run all the code and recreate all outputs,
+(ii) have a general understanding of what is being done at every step, and
+(iii) see how codes and outputs are related.
+The master script is also where all the settings are established,
+such as versions, folder paths, functions, and constants used throughout the project.
+
+Try to create the habit of running your code from the master script.
+Creating ``section switches'' using macros or objects to run only the codes related to a certain task
+should always be preferred to manually open different scripts to run them in a certain order
+(see Part 1 of \texttt{stata-master-dofile.do} for an example of how to do this).
+Furthermore, running all scripts related to a particular task through the master whenever one of them is edited
+helps you identify unintended consequences of the changes you made.
+Say, for example, that you changed the name of a variable created in one script.
+This may break another script that refers to this variable.
+But unless you run both of them when the change is made, it may take time for that to happen,
+and when it does, it may take time for you to understand what's causing an error.
+The same applies to changes in datasets and results.
+
+To link code, data and outputs,
+the master script reflects the structure of the \texttt{DataWork} folder in code
+through globals (in Stata) or string scalars (in R);
+refer to lines 38-43 of the example do-file.
+These coding shortcuts can refer to subfolders,
+so that those folders can be referenced without repeatedly writing out their absolute file paths.
+Because the \texttt{DataWork} folder is shared by the whole team,
+its structure is the same in each team member's computer.
+The only difference between machines should be
+the path to the project root folders, i.e. the highest-level shared folder.
+Depending on your software environment you may have multiple root folders.
+In a typical DIME project we have one GitHub root folder for our code, 
+one sync software root folder for our de-identified data,
+and a third for our encrypted data.
+This is reflected in the master script in such a way that
+the only change necessary to run the entire code for a new team member
+is to change the path to the project root folders
+to reflect the file system and username;
+refer to lines 30-35 of the example do-file.
+The code in \texttt{stata-master-dofile.do} shows how folder structure is reflected in a master do-file.
+Because writing and maintaining a master script can be challenging as a project grows,
+an important feature of the \texttt{iefolder} is to write sub-master do-files
+and add to them whenever new subfolders are created in the \texttt{DataWork} folder.
+
+In order to maintain well-documented and organized code,
+you should agree with your team on a plan to review code as it is written.
+  \index{code review}
+Reading other people's code is the best way to improve your coding skills.
+And having another set of eyes on your code will make you more comfortable with the results you find.
+It's normal (and common) to make mistakes as you write your code.
+Reading it again to organize and comment it as you prepare it to be reviewed will help you identify them.
+Try to have a code review scheduled frequently,
+every time you finish writing a piece of code, or complete a small task.
+If you wait for a long time to have your code reviewed, and it gets too complex,
+preparation and code review will require more time and work,
+and that is usually the reason why this step is skipped.
+One other important advantage of code review is that
+making sure that the code is running properly on other machines,
+and that other people can read and understand the code easily,
+is the easiest way to be prepared in advance for a smooth project handover
+or for release of the code to the general public.
+
+\codeexample{stata-master-dofile.do}{./code/stata-master-dofile.do}
+% ----------------------------------------------------------------------------------------------
+
+\section{Preparing to handle confidential data}
+
+Anytime you are working with original data in a development research project,
+you are almost certainly handling data that include
+\textbf{personally-identifying	information (PII)}.\index{personally-identifying information}\sidenote{
+	\textbf{Personally-identifying information:} any piece or set of information
+	that can be used to identify an individual research subject.
+	\url{https://dimewiki.worldbank.org/De-identification}}
+PII is information which can, without any transformation or linkage,
+be used to identify individual people, households, villages,
+or firms (or other units) that were part of a data collection.
+\index{data collection}
+Some examples of PII variables include names, addresses, and geolocations,
+email addresses, phone numbers,
+and bank accounts or other financial details.\index{geodata}\index{de-identification}
+If you are working in a context or population that is either small, specific,
+or has extensive linkable data sources available to others,
+information like someone's age and gender may be sufficient to
+disclose their identify, even though those variables would not be considered PII in general.
+
+There is no one-size-fits-all solution to determine what is PII,
+research teams have to use careful judgment in each case to avoid statistical disclosure.\sidenote{
+	\url{https://sdcpractice.readthedocs.io}}\index{statistical disclosure}
+%WIKI need to create wiki page
+It is important to keep in mind that data privacy principles apply
+not only for the respondent giving you the information
+but also for their household members or other individuals who are included in the data.
+
+In all cases where confidential information is involved,
+you must make sure that you adhere to several core principles.
+These include ethical approval, participant consent,
+data security, and participant privacy.
+If you are a US-based researcher, you will become familiar
+with a set of governance standards known as ``The Common Rule''.\cite{bierer2017revised}
+If you interact with European institutions or persons,
+you will also become familiar with the General Data Protection Regulation (GDPR),\sidenote{
+	\url{https://gdpr-info.eu}}
+a set of regulations governing \textbf{data ownership} and privacy standards.
+No matter who you are or what exact legal requirements you face,
+the core principles and practices you need to consider will always be similar.
+
+\subsection{Obtaining ethical approval and consent}
+
+Most of the field research done in development involves human subjects.\sidenote{
+	\url{https://dimewiki.worldbank.org/Human_Subjects_Approval}}
+\index{human subjects}
+As a researcher, you are asking people to trust you with personal information about themselves:
+where they live, how rich they are, whether they have committed or been victims of crimes,
+their names, their national identity numbers, and all sorts of other data.
+PII data carries strict expectations about data storage and handling,
+and it is the responsibility of the research team to satisfy these expectations.\sidenote{
+	\url{https://dimewiki.worldbank.org/Research_Ethics}}
+Your donor or employer will most likely require you to hold a certification from a respsected source.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Protecting_Human_Research_Subjects}}
+
+For almost all such data collection and research activities,
+you will be required to complete some form of \textbf{Institutional Review Board (IRB)} process.\sidenote{
+	\textbf{Institutional Review Board (IRB):} An institution formally responsible for ensuring that research meets ethical standards.}
+\index{Institutional Review Board}
+Most commonly this consists of a formal application for approval of a specific
+protocol for consent, data collection, and data handling.\sidenote{
+  \url{https://dimewiki.worldbank.org/IRB_Approval}}
+Which IRB has sole authority over your project is not always apparent,
+particularly if some institutions do not have their own.
+It is customary to obtain an approval from a university IRB
+where at least one PI is affiliated,
+and if work is being done in an international setting,
+approval is often also required
+from an appropriate local institution subject to the laws of the country where data originates.
+
+One primary consideration of IRBs
+is the protection of the people about whom information is being collected
+and whose lives may be affected by the research design.
+Some jurisdictions (especially those who respond to EU law) view all personal data
+as intrinsically owned by the persons who they describe.
+This means that those persons have the right to refuse to participate in data collection
+before it happens, as it is happening, or after it has already happened.
+It also means that they must explicitly and affirmatively consent
+to the collection, storage, and use of their information for any purpose.
+Therefore, the development of appropriate consent processes is of primary importance.
+All survey instruments must include a module in which the sampled respondent grants informed consent to participate.
+Research participants must be informed of the purpose of the research,
+what their participation will entail in terms of duration and any procedures,
+any foreseeable benefits or risks,
+and how their identity will be protected.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Informed_Consent}}
+There are special additional protections in place for vulnerable populations,
+such as minors, prisoners, and people with disabilities,
+and these should be confirmed with relevant authorities if your research includes them.
+
+IRB approval should be obtained well before any data is acquired.
+IRBs may have infrequent meeting schedules
+or require several rounds of review for an application to be approved.
+If there are any deviations from an approved plan or expected adjustments,
+report these as early as possible so that you can update or revise the protocol.
+Particularly at universities, IRBs have the power to retroactively deny
+the right to use data which was not acquired in accordance with an approved plan.
+This is extremely rare, but shows the seriousness of these considerations
+since the institution itself may face legal penalties if its IRB
+is unable to enforce them. As always, as long as you work in good faith,
+you should not have any issues complying with these regulations.
+
+\subsection{Ensuring privacy and security in research data}
+
+In order to safeguard PII data and protect respondent privacy,
+you must set up a secure data system from the outset of a project.
+Secure data storage and transfer are ultimately your personal responsibility.\sidenote{
+	\url{https://dimewiki.worldbank.org/Data\_Security}}
+Later chapters will discuss how to properly protect your data depending on
+which method you are using to acquire, store or share data.
+This section will only cover the computer setup you will need for any project.
+There are several components to this.
+
+First, you need a system for managing strong and unique passwords for
+all accounts -- including personal accounts like computer logins and email.
+This means that all your passwords should be long (preferable more than 15 characters), 
+not use common words and should not be reused for multiple accounts.
+The only way to make that practically feasible is to use a password manager.
+Most password managers also allows you to securely share passwords
+for shared accounts with your colleagues.
+
+Second, all machines that stores confidential data 
+should have \textbf{hard disk encryption} enabled,
+if available in the operative system used.\sidenote{
+	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked, or any other type of unauthorized access is obtained.
+	\url{https://dimewiki.worldbank.org/Encryption}}
+\index{encryption}
+Most hard disk encryption use your computer login password to 
+prevent your files from ever being read by anyone but you.
+It is important to note that password-protection alone is not sufficient.
+Password protection makes it more difficult for someone else to gain access to your files,
+but only encryption properly protects your data if someone manages to access your files anyway.
+Hard disk encryption ensures that all your local files are protected,
+but it may only be supported in enterprise versions of operative systems, 
+the most notable example of this being Microsoft's Windows.
+To properly secure your data you should have the habit of
+signing out from your computer when you leave it,
+no matter how briefly.
+
+Third, you must make sure that data including confidential information
+remains encrypted at all times during data collection, storage, and transfer.\index{data transfer}\index{data storage}
+When files are properly encrypted,
+the information they contain will be completely unreadable and unusable
+even if they were to be intercepted my a malicious
+``intruder'' or accidentally made public.
+We will discuss implementations of encryption 
+specific to different stages of data work in chapter 4, 
+but when setting up a software environment for you and your team, 
+make sure that you have a solution for creating encrypted folders on your computers.  
+DIME uses Veracrypt for encrypted folders,
+our protocols are available as part of the DIME Research Standards.\sidenote{\url{
+		https://github.com/worldbank/dime-standards}}
+
+Handling confidential data properly will always add to your work load.
+The easiest way to reduce that work load is to 
+handle it as rarely as possible.
+Whenever our research design allows us to,
+we should simple not work with confidential data at all,
+and not collect it or ask for it in the first place. 
+Even when we do need confidential data for some aspect of our research,
+it is almost never the case that we need it for \textit{all} aspect of our data.
+It is often very simple to conduct planning and analytical work
+using a subset of the data that does not include this type of information.
+\index{privacy}
+Therefore we are recommending all projects to plan a work flow 
+with a version of the data where confidential data has been removed 
+and always use that dataset when possible.
+
+Note that it is in practice impossible to \textbf{anonymize} data.
+There is always some statistical chance that an individual's identity
+will be re-linked to the data collected about them
+-- even if that data has had all directly identifying information removed --
+by using some other data that becomes identifying when analyzed together.
+For this reason, we recommend de-identification in two stages.
+The \textbf{initial de-identification} process strips the data of direct identifiers
+as early in the process as possible,
+to create a working de-identified dataset that
+can be shared \textit{within the research team} without the need for encryption.
+This data set should always be used when possible.
+The \textbf{final de-identification} process involves
+making a decision about the trade-off between
+risk of disclosure and utility of the data
+before publicly releasing a dataset.\sidenote{
+	\url{https://sdcpractice.readthedocs.io/}}
+
+Finally, it is essential to have an end-of-life plan for data even before it is acquired.
+This includes plans for how to transfer access and control to a new person joining the team,
+and how to revoke that access when someone is leaving the team.
+It should also include a plan for how the confidential data should be deleted. 
+All data should have an expiration data and after a project is completed and
+de-identified data has been made public as a part of your publication,
+there is no need for research teams to sit on confidential data indefinitely.

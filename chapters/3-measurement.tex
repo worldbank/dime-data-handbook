@@ -1,0 +1,906 @@
+%-----------------------------------------------------------------------------------------------
+
+\begin{fullwidth}
+
+In this chapter we will show how you can save a lot of time
+and increase the quality of your research by
+planning your project's data requirements in advance.
+Planning data requirements requires more than
+simply listing the key outcome variables.
+You need to understand how to structure the project's data
+to best answer the research questions,
+and create the tools to share this understanding across your team.
+
+The first section of this chapter discusses how to
+determine your project's data needs,
+and introduces \textit{DIME's Data Map} template.
+The template includes:
+one data linkage table,
+one or several master datasets, and
+one or several data flowcharts.
+These three tools will help to communicate the project's data requirements
+both across the team and across time.
+This section also discusses what specific research data you need
+based on your project's research design,
+and how to document those data needs in the data map.
+We will discuss two types of variables:
+variables that tie your research design
+to the observations in the  data
+which we call \textbf{research variables};
+and variables that correspond to observations of the real world,
+which we call \textbf{measurement variables}.
+The project's data map needs to account for both.
+
+The second section of this chapter covers two activities where
+research data is created by the research team
+instead of being observed in the real world.
+Those two activities are random sampling and random assignment.
+Special focus is spent on how to ensure that
+these and other random processes are reproducible,
+which is critical for the credibility of your research.
+
+The chapter concludes with a discussion of power calculations and randomization inference,
+and how both are important tools to make optimal choices when planning data work.
+
+
+\end{fullwidth}
+
+%-----------------------------------------------------------------------------------------------
+
+\section{Creating a data map}
+
+In most projects, more than one data source is needed to answer the research question.
+These could be data from multiple survey rounds,
+data acquired from different partners (such as administrative data, implementation data, sensor data),
+web scraping,
+or complex combinations of these and other sources.
+However your study is structured, you need to know how to link data from all sources
+and analyze the relationships between the units that appear in them
+to answer all your research questions.
+You might think that you are able to keep all the relevant details in your head,
+but your whole research team is unlikely to have the same understanding,
+at all times, of all the datasets required.
+The only way to make sure that the full team shares the same understanding
+is to create a \textbf{data map}\index{Data map}.\sidenote{
+	\url{https://dimewiki.worldbank.org/Data\_Map}}
+DIME's data map template has three components:
+one \textit{data linkage table},\index{Data linkage table}
+one or several \textit{master datasets}\index{Master datasets}
+and one or several \textit{data flowcharts}.\index{Data flowchart}
+
+A \textbf{data linkage table}\sidenote{
+	\url{https://dimewiki.worldbank.org/Data\_Linkage\_Table}}
+lists all the datasets that will be used in the project.
+Its most important function is to indicate
+how all those datasets can be be linked when
+combining information from multiple data sources.
+Each \textbf{master dataset}\sidenote{
+	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
+lists all observations relevant to the project
+for a \textbf{unit of observation}\sidenote{
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+and is the authoritative source for all research data
+about that unit of observation
+including unique identifiers, sample status, and treatment assignment.
+\textbf{Data flowcharts}\sidenote{
+	\url{https://dimewiki.worldbank.org/Data\_Flow\_Chart}}
+list all data sources that are needed to create each analysis dataset,
+and what manipulation of these data sources is necessary
+to get to the final analysis dataset(s),
+such as merging, appending, or other linkages.
+
+The process of drafting the data map is itself useful,
+as it is an opportunity for the principal investigators
+to communicate their vision of the data environment,
+and for research assistants to communicate
+their understanding of that vision.
+The data map should be drafted at the outset of a project,
+before any data is acquired,
+but it is not a static document;
+it will need to be updated as the project evolves.
+
+\subsection{Data linkage table}
+
+To create a data map according to DIME's template,
+the first step is to create a \textbf{data linkage table} by listing
+all the data sources you know you will use in a spreadsheet.
+If one source of data will result in two different datasets,
+then list each dataset on its own row.
+For each dataset, list the unit of observation
+and the name of the project ID variable for that unit of observation.
+Your project should only have one project ID variable per unit of observation.
+When you list a dataset in the data linkage table --
+which should be done before that dataset is acquired --
+you should always make sure that the dataset will
+be fully and uniquely identified by the project ID,
+or make a plan for how
+the new dataset will be linked to the project ID.
+It is very labor intensive to work with a dataset that
+do not have an unambiguous way to link to the project ID,
+and it is a major source of error.
+
+The data linkage table should indicate whether
+datasets can be merged one-to-one (for example,
+merging baseline and endline datasets
+that use the same unit of observation),
+or whether two datasets need to be merged many-to-one
+(for example, school administrative data merged with student data).
+Your data map must indicate which ID variables
+can be used -- and how -- when merging datasets.
+The data linkage table is also a great place to list other metadata,
+such as the source of your data, its backup locations,
+the nature of the data license, and so on.
+
+\subsection{Master datasets}
+
+The second step in creating a data map is to create one \textbf{master dataset}
+for each unit of observation
+that will be used in any significant research activity.
+Examples of such activities are data collection, data analysis,
+sampling, and treatment assignment.
+The master dataset should include and be the authoritative source of
+all \textbf{research variables}\sidenote{
+	\textbf{Research variables:} Research data that identifies observations
+	and maps research design information to those observations.
+	Research variables are time-invariant and
+	often, but not always, controlled by the research team.
+	Examples include
+	ID variables, sampling status, treatment status, and treatment uptake.}
+but not include any \textbf{measurement variables}.\sidenote{
+	\textbf{Measurement variables:} Data that
+	measures attributes or records responses of research subjects.
+	Measurement variables are not controlled by the research team
+	and often vary over time.
+	Examples include characteristics of the research subject,
+	outcome variables, and control variables among many others.}
+Research variables and measurement variables
+often come from the same source,
+but should not be stored in the same way.
+For example, if you acquire administrative data that both includes
+information on eligibility for the study (research variable)
+and data on the topic of your study (measurement variable)
+you should first decide which variables are research variables,
+and store them in the master dataset,
+while storing the measurement variables in a cleaned dataset
+as described in Chapter 5.
+It is common that you will have to update
+your master datasets throughout your project.
+
+The most important function of the master dataset
+is to be the authoritative source 
+for how all observations are identified.
+This means that the master datasets should include
+identifying information such as names, contact information,
+but also your \textbf{project ID}.\sidenote{
+	\textbf{Project ID:} The main ID used in your project to identify
+	observations. 
+	You should never have multiple project IDs for the same unit of observation.
+	The project ID must uniquely and fully identify all observations in the project.
+	See \url{https://dimewiki.worldbank.org/ID\_Variable\_Properties} for more details.}
+The project ID is the ID variable used in the data linkage table,
+and is therefore how observations are linked across datasets.
+Your master dataset may list alternative IDs that are used,
+for example, by a partner organization.
+However, you must not use such an ID as your project ID,
+as you would then not be in control over 
+who can re-identify data that you publish.
+The project ID must be created by the project team, 
+and the linkage to direct identifiers 
+should only be known to people listed on the IRB.
+If you receive a dataset with an alternative ID,
+you should immediately replace it with your project ID,
+and the alternative ID should be dropped 
+as a part of your de-identification (see Chapters 5 and 7).
+Your master dataset serves as the linkage between
+all other identifying information and your project ID.
+Since your master dataset is full of identifying information,
+it must always be encrypted.
+
+The starting point for the master dataset is typically a sampling frame 
+(more on sampling frames later in this chapter).
+However, you should continuously update the master dataset with 
+all observations ever encountered in your project,
+even if those observations are not eligible for the study.
+Examples include new observations listed during monitoring activities
+or observations that are connected to respondents in the study,
+for example in a social network module.
+This is useful because, 
+if you ever need to perform a record linkage such as a fuzzy match
+on string variables like proper names,
+the more information you have the fewer errors you are likely to make
+If you ever need to do a fuzzy match,
+you should always do that between the master dataset
+and the dataset without an unambiguous identifier.
+You should not do anything with that dataset until
+you have successfully merged
+the project IDs from the master dataset.
+Any new observations that you
+
+Since the master datasets is the authoritative source
+of the project ID and all research variables,
+it serves as an unambiguous method of mapping
+the observations in your study to your research design.
+
+\subsection{Data flowcharts}
+
+The third and final step in creating the data map is to create \textbf{data flowcharts}.
+Each analysis dataset
+(see Chapter 6 for discussion on why you likely need multiple analysis datasets)
+should have a data flowchart showing how it was created.
+The flowchart is a diagram
+where each starting point is either a master dataset
+or a dataset listed in the data linkage table.
+The data flowchart should include instructions on how
+the datasets can be combined to create the analysis dataset.
+The operations used to combine the data could include:
+appending, one-to-one merging,
+many-to-one or one-to-many merging, collapsing, or a broad variety of others.
+You must list which variable or set of variables
+should be used in each operation,
+and note whether the operation creates a new variable or combination of variables
+to identify the newly linked data.
+These variables should be project IDs when possible.
+Examples of exception are time variables in longitudinal data, 
+and sub-units like farm plots that belong to farmers with project IDs.
+Once you have acquired the datasets listed in the flowchart,
+you can add to the data flowcharts the number of observations that
+the starting point dataset has
+and the number of observation each resulting datasets
+should have after each operation.
+This is a great method to track attrition and to make sure that
+the operations used to combine datasets did not create unwanted duplicates
+or incorrectly drop any observations.
+
+A data flowchart can be created in a flowchart drawing tool
+(there are many free alternatives online) or
+by using shapes in Microsoft PowerPoint.
+You can also do this simply by drawing on a piece of paper and taking a photo,
+but we recommend a digital tool
+so that flowcharts can easily be updated over time.
+
+\section{Relate research design to a data map}
+
+After you have set up your data map,
+you need to carefully think about your research design
+and which research variables you will need in the data analysis
+to infer the relation between differences in measurement variables
+and your research design.
+We assume you have a working familiarity
+with the research designs mentioned here.
+If needed, you can reference \textcolor{red}{Appendix XYZ},
+where you will find more details
+and specific references for common impact evaluation methods.
+
+\subsection{Defining research variables related to your research design}
+
+As DIME primarily works on impact evaluations,
+we focus our discussion here on research designs
+that compare a group that received
+some kind of \textbf{treatment}\index{Treatment}\sidenote{
+	\textbf{Treatment:} The general word for the evaluated intervention or event.
+	This includes things like being offered a training,
+	a cash transfer from a program,
+	or experiencing a natural disaster, among many others.}
+against a counterfactual control group\index{Counterfactual}.\sidenote{
+	\textbf{Counterfactual:} A statistical description of
+	what would have happened
+	to specific individuals in an alternative scenario,
+	for example, a different treatment assignment outcome.}
+
+The key assumption is that each
+person, facility, or village
+(or whatever the unit of treatment is)
+had two possible states: their outcome if they did receive the treatment
+and their outcome if they did not receive that treatment.
+The average impact of the treatment, or the ATE\sidenote{
+	The \textbf{average treatment effect (ATE)}
+	is the expected average change in outcome
+	that untreated units would have experienced
+	had they been treated.},
+is defined as the difference
+between these two states averaged over all units.
+
+However, we can never observe the same unit
+in both the treated and untreated state simultaneously,
+so we cannot calculate these differences directly.
+Instead, the treatment group is compared to a control group
+that is statistically indistinguishable,
+which makes the average impact of the treatment
+mathematically equivalent to
+the difference in averages between the groups.
+Statistical similarity is often defined
+as \textbf{balance} between two or more groups.
+Since balance tests are commonly run for impact evaluations,
+DIME Analytics created a Stata command to
+standardize and automate the creation of nicely-formatted balance tables:
+\texttt{iebaltab}\sidenote{
+	\url{https://dimewiki.worldbank.org/iebaltab}}.
+
+Each research design has a different method for
+identifying the statistically-similar control group.
+The rest of this section covers how research data requirements
+differ between those different methods.
+What does not differ, however,
+is that these data requirements are all research variables.
+And that the research variables discussed below
+should always be included in the master dataset.
+You will often have to merge
+the research variables to other datasets,
+but that is an easy task
+if you created a data linkage table.
+
+
+%%%%% Experimental design
+
+In \textbf{experimental research designs},
+such as\index{randomized control trials}\index{experimental research designs}
+\textbf{randomized control trials (RCTs)},\sidenote{
+	\url{https://dimewiki.worldbank.org/Randomized\_Control\_Trials}}
+the research team determines which members
+of the studied population will receive the treatment.
+This is typically done by a randomized process
+in which a subset of the eligible population
+is randomly assigned to receive the treatment
+(see later in this chapter for how to implement this).
+The intuition is that if everyone in the eligible population
+is assigned at random to either the treatment or control group,
+then the two groups will, on average, be statistically indistinguishable.
+The treatment will therefore not be correlated with anything
+but the impact of that treatment.\cite{duflo2007using}
+The randomized assignment should be done
+using data from the master dataset,
+and the result should be saved back to the master dataset,
+before being merged to other datasets.
+
+%%%%% Quasi-experimental design
+
+\textbf{Quasi-experimental research designs},\sidenote{
+	\url{https://dimewiki.worldbank.org/Quasi-Experimental\_Methods}}
+\index{quasi-experimental research designs}
+by contrast, are based on events not controlled by the research team.
+Instead, they rely on ``experiments of nature'',
+in which natural variation in treatment can be argued to approximate randomization.
+You must have a way to measure this natural variation,
+and how the variation is categorized as outcomes of a naturally randomized assignment
+must be documented in your master dataset.
+Unlike carefully planned experimental designs,
+quasi-experimental designs typically require the luck
+of having access to data collected at the right times and places
+to exploit events that occurred in the past.
+Therefore, these methods often use either secondary data,
+including administrative data or other classes of routinely-collected information,
+and it is important that your data linkage table documents
+how this data can be linked to the rest of the data in your project.
+
+
+%%%%% Research variables
+
+No matter the design, you should be very clear about
+which data points you observe or collect are research variables.
+For example,
+\textbf{regression discontinuity (RD)}\sidenote{
+	\url{https://dimewiki.worldbank.org/Regression\_Discontinuity}}
+\index{regression discontinuity}
+designs exploit sharp breaks or limits
+in policy designs.
+The cutoff determinant, or running variable,
+should be saved in your master dataset.
+In \textbf{instrumental variables (IV)}\sidenote{
+	\url{https://dimewiki.worldbank.org/Instrumental\_Variables}}
+\index{instrumental variables}
+designs, the \textbf{instruments} influence the \textit{probability} of treatment.
+These research variables should be collected
+and stored in the master dataset.
+Both the running variable in RD designs
+and the instruments in IV designs,
+are among the rare examples of research variables
+that may vary over time.
+In such cases your research design should
+ex-ante clearly indicate what point of time they will be recorded,
+and this should be clearly documented in your master dataset.
+
+In \textbf{matching} designs, observations are often grouped
+by a strata, grouping, index, or propensity score.\sidenote{
+	\url{https://dimewiki.worldbank.org/Matching}}
+Like all research variables, the matching results
+should be stored in the master dataset.
+This is best done by assigning a matching ID
+to each matched pair or group,
+and create a variable in the master dataset
+with the matching ID each unit belongs to.
+In all these cases, fidelity to the design is important to note as well.
+A program intended for students that scored under 50\% on a test
+might have some cases where the program is offered to someone that scored 51\% at the test,
+or someone that scored 49\% at the might decline to participate in the program.
+Differences between assignments and realizations
+should also be recorded in the master datasets.
+
+%-----------------------------------------------------------------------------------------------
+\subsection{Time periods in data maps}
+
+Your data map should also take into consideration
+whether you are using data from one time period or several.
+A study that observes data in only one time period is called
+a \textbf{cross-sectional study}.
+\index{cross-sectional data}
+This type of data is relatively easy to collect and handle because
+you do not need to track individuals across time,
+and therefore requires no additional information in your data map.
+Instead, the challenge in a cross-sectional study is to
+show that the control group is indeed a valid counterfactual to the treatment group.
+
+Observations over multiple time periods,
+referred to as \textbf{longitudinal data}\index{longitudinal data},
+can consist of either
+\textbf{repeated cross-sections}\index{repeated cross-sectional data}
+or \textbf{panel data}\index{panel data}.
+In repeated cross-sections,
+each successive round of data collection uses a new random sample
+of observations from the treatment and control groups,
+but in a panel data study
+the same observations are tracked and included each round.
+If each round of data collection is a separate activity,
+then they should be treated as separate sources of data
+and get their own row in the data linkage table.
+If the data is continuously collected,
+or at frequent intervals,
+then it can be treated as a single data source.
+The data linkage table must document
+how the different rounds will be merged or appended
+when panel data is collected in separate activities.
+
+You must keep track of the \textit{attrition rate} in panel data,
+which is the share of observations not observed in follow-up data.
+It is common that the observations not possible to track
+can be correlated with the outcome you study.
+For example, poorer households may live in more informal dwellings,
+patients with worse health conditions might not survive to follow-up,
+and so on.
+If this is the case,
+then your results might only be an effect of your remaining sample
+being a subset of the original sample
+that were better or worse off from the beginning.
+You should have a variable in your master dataset
+ that indicates attrition.
+A balance check using the attrition variable
+can provide insights as to whether the lost observations
+were systematically different
+compared to the rest of the sample.
+
+%-----------------------------------------------------------------------------------------------
+\subsection{Monitoring data}
+
+For any study with an ex-ante design,
+\textbf{monitoring data}\index{monitoring data}\sidenote{\url{
+		https://dimewiki.worldbank.org/Monitoring\_Data}}
+is very important for understanding if the
+assumptions made during the research design
+corresponds to what is true in reality.
+The most typical example is to make sure that,
+in an experimental design,
+the treatment was implemented according to your treatment assignment.
+While it is always better to monitor all activities,
+it might be to costly.
+In those cases you can sample a smaller number of critical activities and monitor them.
+This will not be detailed enough to be used as a control in your analysis,
+but it will still give a way to
+estimate the validity of your research design assumptions.
+
+Treatment implementation is often carried out by partners,
+and field realities may be more complex realities than foreseen during research design.
+Furthermore, the field staff of your partner organization,
+might not be aware that their actions are the implementation of your research.
+Therefore, you must acquire monitoring data that
+tells you how well the treatment assignment in the field
+corresponds to your intended treatment assignment,
+for nearly all experimental research designs.
+
+Monitoring data is particularly prone to errors
+when linking it with the rest of the data in your project.
+Often monitoring activities are done by
+sending a team to simply record the name of all people attending a training,
+or by a partner organization sharing their administrative data,
+which is rarely maintained in the same format or structure as your research data.
+In both those cases it can be difficult to make sure that
+the project ID or any other unambiguous identifiers in our master datasets
+is used to record who is who.
+Planning ahead for this when the monitoring activity is added to the data linkage table
+is the best protection from ending up with poor correlation
+between treatment uptake and treatment assignment,
+without a way to tell if the poor correlation is just
+a result of a fuzzy link between monitoring data and the rest of your data.
+
+
+%-----------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
+\section{Research variables created by randomization}
+
+Random sampling and treatment assignment are two research activities
+at the core elements of research design,
+that generated research variables.
+In experimental methods,
+random sampling and treatment assignment directly determine
+the set of individuals who are going to be observed
+and what their status will be for the purpose of effect estimation.
+In quasi-experimental methods,
+random sampling determines what populations the study
+will be able to make meaningful inferences about,
+and random treatment assignment creates counterfactuals.
+\textbf{Randomization}\sidenote{
+	\textbf{Randomization} is often used interchangeably
+	to mean random treatment assignment.
+	In this book however, \textit{randomization} will only
+	be used to describe the process of generating
+	a sequence of unrelated numbers, i.e. a random process.
+	\textit{Randomization} will never be used to mean
+	the process of assigning units in treatment and control groups,
+	that will always be called \textit{random treatment assignment},
+	or a derivative thereof.}
+is used to ensure that a sample is representative and
+that any treatment and control groups are statistically indistinguishable
+after treatment assignment.
+
+Randomization in statistical software is non-trivial
+and its mechanics are unintuitive for the human brain.
+The principles of randomization we will outline
+apply not just to random sampling and random assignment,
+but to all statistical computing processes that have random components
+such as simulations and bootstrapping.
+Furthermore, all random processes introduce statistical noise
+or uncertainty into estimates of effect sizes.
+Choosing one random sample from all the possibilities produces some probability of
+choosing a group of units that are not, in fact, representative.
+Similarly, choosing one random assignment produces some probability of
+creating groups that are not good counterfactuals.
+\textit{Power calculation} and \textit{randomization inference}
+are the main methods by which these probabilities of error are assessed.
+These analyses are particularly important in the initial phases of development research --
+typically conducted before any data acquisition or field work occurs --
+and have implications for feasibility, planning, and budgeting.
+
+%-----------------------------------------------------------------------------------------------
+\subsection{Randomizing sampling and treatment assignment}
+
+% sampling universe: the master dataset
+\textbf{Sampling} is the process of randomly selecting observations
+from a list of individuals to create a representative or statistically similar sub-sample.\index{sampling}
+This process can be used, for example, to select a subset from all eligible units
+to be included in data collection when the cost of collecting data on everyone is prohibitive.\sidenote{
+	\url{https://dimewiki.worldbank.org/Sample\_Size\_and\_Power\_Calculations}}
+But it can also be used to select a sub-sample of your observations to test a computationally heavy process
+before running it on the full data.
+\textbf{Randomized treatment assignment} is the process of assigning observations to different treatment arms.
+This process is central to experimental research design.
+Most of the code processes used for randomized assignment are the same as those used for sampling,
+since it is also a process of randomly splitting a list of observations into groups.
+Where sampling determines whether a particular individual
+will be observed at all in the course of data collection,
+randomized assignment determines if each individual will be observed
+as a treatment observation or used as a counterfactual.
+
+The list of units to sample or assign from may be called a \textbf{sampling universe},
+a \textbf{listing frame}, or something similar.
+This list should always be your \textbf{master dataset} when possible,
+and the result should always be saved in the master dataset
+before merged to any other data.
+One example of the rare exceptions
+when master datasets cannot be used is
+when sampling must be done in real time --
+for example, randomly sampling patients
+as they arrive at a health facility.
+In those cases,
+it is important that you collect enough data
+during the real time sampling,
+such that you can add these individuals,
+and the result of the sampling,
+to your master dataset afterwards.
+
+% implement uniform-probability random sampling
+The simplest form of sampling is
+\textbf{uniform-probability random sampling}.
+This means that every eligible observation in the master dataset
+has an equal probability of being selected.
+The most explicit method of implementing this process
+is to assign random numbers to all your potential observations,
+order them by the number they are assigned,
+and mark as ``sampled'' those with the lowest numbers, up to the desired proportion.
+There are a number of shortcuts to doing this process,
+but they all use this method as the starting point,
+so you should become familiar with exactly how it works.
+The do-file below provides an example of
+how to implement uniform-probability sampling in practice.
+This code uses a Stata built-in dataset and is fully reproducible
+(more on reproducible randomization in next section),
+so anyone that runs this code in any version of Stata later than 13.1
+(the version set in this code)
+will get the exact same, but still random, results.
+
+\codeexample{simple-uniform-probability-sampling.do}{./code/simple-uniform-probability-sampling.do}
+
+Sampling typically has only two possible outcomes: observed and unobserved.
+Similarly, a simple randomized assignment has two outcomes: treatment and control,
+and the logic in the code would be identical to the sampling code example.
+However, randomized assignment often involves multiple treatment arms
+which each represent different varieties of treatments to be delivered;
+in some cases, multiple treatment arms are intended to overlap in the same sample.
+Complexity can therefore grow very quickly in randomized assignment
+and it is doubly important to fully understand the conceptual process
+that is described in the experimental design,
+and fill in any gaps before implementing it in code.
+The do-file below provides an example of how to implement
+a randomized assignment with multiple treatment arms.
+
+\codeexample{simple-multi-arm-randomization.do}{./code/simple-multi-arm-randomization.do}
+
+%-----------------------------------------------------------------------------------------------
+
+\subsection{Programming reproducible random processes}
+
+% what it means for randomization to be reproducible
+For statistical programming to be reproducible,
+you must be able to re-obtain its exact outputs in the future.\cite{orozco2018make}
+We will focus on what you need to do to produce
+truly random results for your project,
+to ensure you can get those results again.
+This takes a combination of strict rules, solid understanding, and careful programming.
+This section introduces strict rules:
+these are non-negotiable (but thankfully simple).
+Stata, like most statistical software, uses a \textbf{pseudo-random number generator}
+which, in ordinary research use,
+produces sequences of number that are as good as random.\sidenote{
+	\url{https://dimewiki.worldbank.org/Randomization\_in\_Stata}}
+However, for \textit{reproducible} randomization, we need two additional properties:
+we need to be able to fix the sequence of numbers generated and
+we need to ensure that the first number is independently randomized.
+In Stata, this is accomplished through three concepts:
+\textbf{versioning}, \textbf{sorting}, and \textbf{seeding}.
+We again use Stata in our examples,
+but the same principles translate to all other programming languages.
+
+% rule 1: versioning
+\textbf{Versioning} means using the same version of the software each time you run the random process.
+If anything is different, the underlying list of random numbers may have changed,
+and it may be impossible to recover the original result.
+In Stata, the \texttt{version} command ensures that the list of random numbers is fixed.\sidenote{
+	At the time of writing, we recommend using \texttt{version 13.1} for backward compatibility;
+	the algorithm used to create this list of random numbers was changed after Stata 14 but the improvements do not matter in practice.}
+The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
+	\url{https://dimewiki.worldbank.org/ieboilstart}}
+We recommend you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
+	\url{https://dimewiki.worldbank.org/Master\_Do-files}}
+However, testing your do-files without running them
+via the master do-file may produce different results,
+since Stata's \texttt{version} setting expires after each time you run your do-files.
+
+% rule 2: sorting
+\textbf{Sorting} means that the actual data that the random process is run on is fixed.
+Because random numbers are assigned to each observation row-by-row starting from
+the top row,
+changing their order will change the result of the process.
+In Stata, the only way to guarantee a unique sorting order is to use
+\texttt{isid [id\_variable], sort}.
+(The \texttt{sort, stable} command is insufficient.)
+Since the exact order must be unchanged,
+the underlying data itself must be unchanged as well between runs.
+This means that if you expect the number of observations to change
+(for example to increase during ongoing data collection),
+your randomization will not be reproducible unless you split your data up into
+smaller fixed datasets where the number of observations does not change.
+You can combine all
+those smaller datasets after your randomization.
+
+
+% rule 3: seeding
+\textbf{Seeding} means manually setting the start point in the list of random numbers.
+A seed is just a single number that specifies one of the possible start points.
+It should be at least six digits long and you should use exactly
+one unique, different, and randomly created seed per randomization process.\sidenote{You
+	can draw a uniformly distributed six-digit seed randomly by visiting \url{https://bit.ly/stata-random}.
+	(This link is a just shortcut to request such a random number on \url{https://www.random.org}.)
+	There are many more seeds possible but this is a large enough set for most purposes.}
+In Stata, \texttt{set seed [seed]} will set the generator
+to the start point identified by the seed.
+In R, the \texttt{set.seed} function does the same.
+To be clear: you should not set a single seed once in the master do-file,
+but instead you should set a new seed in code right before each random process.
+The most important thing is that each of these seeds is truly random,
+so do not use shortcuts such as the current date or a seed you have used before.
+You should also describe in your code how the seed was selected.
+
+% testing randomization reproducibility
+Other commands may induce randomness in the data,
+change the sorting order,
+or alter the place of the random generator without you realizing it,
+so carefully confirm exactly how your code runs before finalizing it.
+To confirm that a randomization has worked correctly before finalizing its results,
+save the outputs of the process in a temporary location,
+re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure
+nothing has changed. It is also advisable to let someone else reproduce your
+randomization results on their machine to remove any doubt that your results
+are reproducible.
+Once the result of a randomization is used in the field,
+there is no way to correct any mistakes.
+
+\codeexample{reproducible-randomization.do}{./code/reproducible-randomization.do}
+
+Some types of experimental designs require
+that randomized assignment results be revealed in the field.
+It is possible to do this using survey software or live events, such as a live lottery.
+These methods typically do not leave a record of the randomization,
+and as such are never reproducible.
+However, you can often run your randomization in advance
+even when you do not have list of eligible units in advance.
+Let's say you want to, at various health facilities,
+randomly select a sub-sample of patients as they arrive.
+You can then have a pre-generated list
+with a random order of ''in sample'' and ''not in sample''.
+Your field staff would then go through this list in order
+and cross off one randomized result as it is used for a patient.
+
+This is especially beneficial if you are implementing a more complex randomization,
+for example, sample 10\% of the patients, show a video for 50\% of the sample,
+and ask a longer version of the questionnaire to 20\% of both
+the group of patients that watch the video and those that did not.
+The real time randomization is much more likely to be implemented correctly,
+if your field staff simply can follow a list with the randomized categories
+where you are in control fo the pre-determined proportions and the random order.
+This way, you can also control with precision,
+how these categories are evenly distributed across all health facilities.
+
+Finally, if this real-time randomization implementation is done using survey software,
+then the pre-generated list of randomized categories can be preloaded
+into the questionnaire.
+Then the field team can follow a list of respondent IDs
+that are randomized into the appropriate categories,
+and the survey software can show a video and control which version of the questionnaire is asked.
+This way, you reduce the risk of errors in field randomization.
+
+
+%-----------------------------------------------------------------------------------------------
+
+\subsection{Clustering or stratifying a random sample or assignment}
+
+% the cases discussed so far are the most simple, but not the most common
+For a variety of reasons, random sampling and random treatment assignment
+are rarely as straightforward as a uniform-probability draw.
+The most common variants are \textbf{clustering} and \textbf{stratification}.\cite{athey2017econometrics}
+\textbf{Clustering} occurs when your unit of analysis is different
+than the unit of sampling or treatment assignment.\sidenote{
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+For example, a policy may be implemented at the village level,
+or you may only be able to send enumerators to a limited number of villages,
+or the outcomes of interest for the study are measured at the household level.\sidenote{
+	\url{https://dimewiki.worldbank.org/Multi-stage\_(Cluster)\_Sampling}}
+\index{clustered randomization}
+The groups in which units are assigned to treatment are called clusters.
+% what is stratification
+\textbf{Stratification} breaks the full set of observations into subgroups
+before performing randomized assignment within each subgroup.\sidenote{
+	\url{https://dimewiki.worldbank.org/Stratified\_Random\_Sample}}
+\index{stratification}
+The subgroups are called \textbf{strata}.
+This ensures that members of every subgroup
+are included in all groups of the randomized assignment process,
+or that members of all groups are observed in the sample.
+Without stratification, it is possible that the randomization
+would put all the members of a subgroup into just one of the treatment arms,
+or fail to select any of them into the sample.
+For both clustering and stratification,
+implementation is nearly identical in both sampling and randomized assignment.
+
+% How to implement randomization with clusters
+Clustering is procedurally straightforward in Stata,
+although it typically needs to be performed manually.
+To cluster a sampling or randomized assignment,
+randomize on the master dataset for the unit of observation of the cluster,
+and then merge the results to the master dataset for the unit of analysis.
+This is a many-to-one merge and your data map should document
+how those datasets can be merged correctly.
+If you do not have a master dataset yet for the unit of observation of the cluster,
+then you first have to create that and update your data map accordingly.
+When sampling or randomized assignment is conducted using clusters,
+the clustering variable should be clearly identified in the master dataset
+for the unit of analysis
+since it will need to be used in subsequent statistical analysis.
+Namely, standard errors for these types of designs must be clustered
+at the level at which the randomization was clustered.\sidenote{
+	\url{https://blogs.worldbank.org/impactevaluations/when-should-you-cluster-standard-errors-new-wisdom-econometrics-oracle}}
+This accounts for the design covariance within the cluster --
+the information that if one individual was observed or treated there,
+the other members of the clustering group were as well.
+
+% using randtreat for stratified randomized assignment
+By contrast, implementing stratified designs in statistical software is prone to error.
+Even for a typical multi-armed design, the basic method of randomly ordering the observations
+will often create very skewed assignments.\sidenote{\url
+	{https://blogs.worldbank.org/impactevaluations/tools-of-the-trade-doing-stratified-randomization-with-uneven-numbers-in-some-strata}}
+The user-written \texttt{randtreat} command properly implements stratification.\cite{carril2017dealing}
+The options and outputs (including messages) from the command should be carefully reviewed
+so that you understand exactly what has been implemented.
+Notably, it is extremely hard to target precise numbers of observations
+in stratified designs, because exact allocations are rarely round fractions
+and the process of assigning the leftover ``misfit'' observations
+imposes an additional layer of randomization above the specified division.
+Strata variables must also be included in your master datasets.
+
+%-----------------------------------------------------------------------------------------------
+
+\section{Doing power calculations for research design}
+
+% sampling error, randomization noise and the need for power calcs
+Random sampling and treatment assignment are noisy processes:
+it is impossible to predict the result in advance.
+By design, we know that the exact choice of sample or treatment
+will be uncorrelated with our key outcomes,
+but this lack of correlation is only true ``in expectation'' --
+that is, across a large number of randomizations.
+In any \textit{particular} randomization,
+the correlation between the sampling or randomized assignments and the outcome variable
+is guaranteed to be \textit{nonzero}:
+this is called the \textbf{in-sample} or \textbf{finite-sample correlation}.
+
+Since we know that the true correlation
+(over the ``population'' of potential samples or randomized assignments)
+is zero, we think of the observed correlation as an \textbf{error}.
+In sampling, we call this the \textbf{sampling error},
+and it is defined as the difference between a true population parameter
+and the observed mean due to chance selection of units.\sidenote{
+	\url{https://economistjourney.blogspot.com/2018/06/what-is-sampling-noise.html}}
+In randomized assignment, we call this the \textbf{randomization noise},
+and define it as the difference between a true treatment effect
+and the estimated effect due to placing units in groups.
+The intuition for both measures is that from any group,
+you can find some possible subsets that have higher-than-average values of some measure;
+similarly, you can find some that have lower-than-average values.
+Your random sample or treatment assignment will fall in one of these categories,
+and we need to assess the likelihood and magnitude of this occurrence.\sidenote{
+	\url{https://davegiles.blogspot.com/2019/04/what-is-permutation-test.html}}
+\textit{Power calculation} and \textit{randomization inference} are the two key tools to doing so.
+
+% why to do power calculations
+\textbf{Power calculations} report the likelihood that your experimental design
+\index{power calculations}
+will be able to detect the treatment effects you are interested in
+given these sources of noise.\sidenote{
+	\url{https://dimewiki.worldbank.org/Sample\_Size\_and\_Power\_Calculations}}
+This measure of \textbf{power} can be described in various different ways,
+each of which has different practical uses.\sidenote{
+	\url{https://www.stat.columbia.edu/~gelman/stuff\_for\_blog/chap20.pdf}}
+The purpose of power calculations is to identify where the strengths and weaknesses
+of your design are located, so you know the relative tradeoffs you will face
+by changing your randomization scheme for the final design.
+
+The \textbf{minimum detectable effect (MDE)}\sidenote{
+	\url{https://dimewiki.worldbank.org/Minimum\_Detectable\_Effect}}
+is the smallest true effect that a given research design can reliably detect.
+This is useful as a check on whether a study is worthwhile.
+If, in your field, a ``large'' effect is just a few percentage points
+or a small fraction of a standard deviation,
+then it is nonsensical to run a study whose MDE is much larger than that.
+This is because, given the sample size and variation in the population,
+the effect needs to be much larger to possibly be statistically detected,
+so such a study would never be able to say anything about the effect size that is practically relevant.
+Conversely, the \textbf{minimum sample size} pre-specifies expected effect sizes
+and tells you how large a study's sample would need to be to detect that effect,
+which can tell you what resources you would need
+to implement a useful study.
+
+% what is randomization inference
+\textbf{Randomization inference}\sidenote{
+	\url{https://dimewiki.worldbank.org/Randomization\_Inference}}
+is used to analyze the likelihood
+\index{randomization inference}
+that the randomized assignment process, by chance,
+would have created a false treatment effect as large as the one you observed.
+Randomization inference is a generalization of placebo tests,
+because it considers what the estimated results would have been
+from a randomized assignment that did not in fact happen in reality.
+Randomization inference is particularly important
+in quasi-experimental designs and in small samples,
+where the number of possible \textit{randomizations} is itself small.
+Randomization inference can therefore be used proactively during experimental design,
+to examine the potential spurious treatment effects your exact design is able to produce.
+If there is significant heaping at particular result levels,
+or if results seem to depend dramatically on the outcomes for a small number of individuals,
+randomization inference will flag those issues before the experiment is fielded
+and allow adjustments to the design to be made.
