@@ -96,16 +96,34 @@ the raw data contain either missing or duplicate values.\sidenote{
 	This applies to data acquired from partners as well as
 	original data  collected by the research team.
 }
+
 It is also possible for a raw dataset to not include an unique identifier,
-or for the identifier to involve a long string
-that is difficult to work with, such as a person's name.
-In such cases, cleaning begins by either carefully creating a variable
-that uniquely identifies the data,
-or merging the ID variable from the master dataset
+or that the identifier is not a suitable \textbf{project ID}.\sidenote{
+	\textbf{Project ID:} The main ID used in your project to identify
+	observations.
+	You should never have multiple project IDs for the same unit of observation.
+	The project ID must uniquely and fully identify all observations in the project.
+	See \url{https://dimewiki.worldbank.org/ID\_Variable\_Properties} for more details.}
+Suitable project IDs should, for example, not involve long strings
+that are difficult to work with, such as a person's name,
+or be an ID that is known outside the research team.
+In such cases, cleaning begins by 
+adding a project ID to the raw data.
+If a project ID already exists, 
+then you should carefully merge the project ID 
+from the master dataset
+to the raw data 
 using other identifying information.
-Note that while digital survey tools create unique identifiers for each data submission,
-that is not the same as having a unique ID variable for each observation in the sample,
-as there can be multiple submissions for the same observation.
+If a project ID does not exist, 
+then you need to create it,
+add it to the master dataset, 
+and then merge it to the raw data.
+Note that while digital survey tools create 
+unique identifiers for each data submission,
+that is not the same as having a unique ID variable 
+for each observation in the sample,
+as there can be multiple submissions 
+for the same observation.
 
 As discussed in Chapter 3,
 the unique identifier will be used to link observations in this dataset
