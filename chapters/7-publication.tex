@@ -12,10 +12,10 @@ the repetitive and error-prone task of manually resolving
 sets of tracked-changes documents with conflicting edits.
 Furthermore, for most development data projects,
 completing a research output is not the end of the task.
-Academic journals and policy notes are more commonly supported by
+Academic journals and policy notes are commonly supported by
 reproducibility packages which contain the data, code, and supporting materials
 needed to recreate the results.
-Preparation of a reproducibility package is a pre-requisite
+Preparation of a reproducibility package is a prerequisite
 to formal publication at DIME,
 and extensive reproducibility packages are now required at many major academic outlets.
 Replication materials represent an intellectual contribution in their own right,
@@ -63,7 +63,7 @@ As we outlined in the previous chapter,
 \textbf{dynamic documents} are a way to simplify writing workflows:
 updates to code outputs that appear in these documents, such as tables and figures,
 can be passed in to the final research output in a single click,
-rather than copy-and-pasted or otherwise handled individually.
+rather than copy-and-pasted or otherwise handled individually.\index{dynamic documents}
 Managing the writing process in this way
 improves organization and reduces error,
 such that there is no risk of materials being compiled
@@ -85,9 +85,8 @@ As we discussed in Chapter 6, the most widely used software
 for dynamically managing formal manuscripts and policy outputs is {\LaTeX}.
 It is also becoming more popular for shorter documents,
 such as policy briefs,
-with the proliferation of skills and templates for these kinds of products.
-\index{\LaTeX}
-{\LaTeX} uses explicit references to the file path of each input (e.g. tables and figures),
+with the proliferation of skills and templates for these kinds of products.\index{\LaTeX}
+{\LaTeX} uses explicit references to the file path of each input (such as tables and figures),
 which are reloaded from these locations every time the final document is compiled.
 This is not possible by default in, for example, Microsoft Word.
 There, you have to copy and paste each object
@@ -108,13 +107,14 @@ reformatting entire documents in house styles with only a few keystrokes.
 
 % keeping it simple
 To create a {\LaTeX} document,
-you will typically start from a new top-level directory for each research output.
+you will typically start a new directory for each research output
+to hold the files and outputs for that document only.
 For a single output, we recommend putting the core document files
 (such as \texttt{main.tex} and \texttt{bibliography.bib})
 in the top-level folder,
 and then have subfolders for figures, tables, and other inputs.
 Your analysis scripts should be set up such that it is easy to output files
-at the location of your choice by adjusting paths in the master script.
+to this location by adjusting paths in the master script.
 Above all, keep your workflow as simple as possible.
 While {\LaTeX} \textit{can} produce complex formatting,
 this is rarely needed for academic publishing,
@@ -132,9 +132,9 @@ and, last but not least, references and citations.
 % managing references in LaTeX
 One of the most important tools available in {\LaTeX}
 is the BibTeX citation and bibliography manager.\cite{kopka1995guide}
-BibTeX keeps all the references you might use in an auxiliary \texttt{.bib} file,
+BibTeX keeps all the references you might use in a \texttt{.bib} file,
 then references them using a simple command typed directly in the document.
-Specifically, {\LaTeX} inserts references in text using the \texttt{\textbackslash cite\{\}} command.
+Specifically, {\LaTeX} inserts references in text using the \texttt{cite} command.\index{bibliography management}
 Once this is written, {\LaTeX} automatically pulls all the citations into text
 and creates a complete bibliography based on the citations you used whenever you compile the document.
 The system allows you to specify exactly how references should be displayed in text
@@ -206,7 +206,7 @@ and \texttt{atom-latex}\sidenote{
 offer the most flexibility to work with {\LaTeX} in teams.
 
 % cloud-based implementations are a good place to start
-Although ultimately worth it, setting up {\LaTeX} is not always simple,
+Although ultimately worth it, setting up {\LaTeX} environments locally is not always simple,
 particularly if you are new to working with plain text code and file management.
 This is because {\LaTeX} requires that all formatting be done in its special code language,
 and it is not always informative when you do something wrong.
@@ -215,7 +215,8 @@ who simply want to get to writing,
 and staff not used to programming may not easily acquire the necessary knowledge.
 
 Cloud-based implementations of {\LaTeX} can make it easier for your team to use
-{\LaTeX} without all members having to invest in new skills,
+{\LaTeX} without all members having to invest in new skills
+or set up matching software environments,
 and can be particularly useful for first forays into {\LaTeX} writing.
 One example of this is Overleaf.\sidenote{
   \url{https://www.overleaf.com/}}
@@ -269,16 +270,20 @@ both as a citable output and as a necessary transparency measure.
 Fortunately, it is a conceptually simple task to produce
 and catalog the required materials.
 You should be prepared to catalog two separate collections.
-First, you should catalog the unaltered (de-identified) data
+First, you should catalog the corrected and de-identified raw data
 with all variables corresponding directly
 to fields in the original dataset or data collection instrument
-(this may not be necessary if you are working with secondary data that is published elsewhere in this format).
+(this may not be necessary if you are working with secondary data 
+that is published elsewhere in this format).
 If you follow the steps outlined in Chapter 5,
 when you get to the publication stage you will have
 a cleaned data set and supporting documentation ready.
+
 Second, you should separately catalog
 the analysis dataset used for the research output you are publishing.
-This is typically included in the replication package.
+This is typically included in the replication package for the research output,
+and should assume that another researcher is starting work
+with only the published raw data in hand.
 The package should also include the data construction scripts
 that create transformed and derived indicators,
 project-specific information
@@ -306,7 +311,7 @@ that an individual can be singled out in the data
 and then linked to public information using combinations of available data.
 For example, seemingly innocuous variables such as US zip code,
 gender, and date of birth uniquely identify
-approximately 87\% of the US population.\cite{Sweeney2000}.
+approximately 87\% of the US population.\cite{Sweeney2000}
 In development data, information such as the size of a household,
 the ages and marital statuses of the household members,
 and the types of work or schooling they engage in
@@ -314,7 +319,7 @@ may be more than enough to identify a person or family
 from a sufficiently small group.
 
 % tools for final de-identification: pii_detection, pii-scan, sdcMicro
-A number of tools have been developed to help researchers de-identify data.
+A number of tools have been developed to help researchers de-identify data.\index{final de-identification}
 At this stage, the World Bank's \texttt{sdcMicro} tool,\sidenote{
 	\url{https://sdcpractice.readthedocs.io}}
 has a useful feature
@@ -324,14 +329,14 @@ the combination of potentially indirectly identifying variables,
 and allows you to apply common information masking algorithms,
 such as binning, top-coding, and jittering data prior to release.
 You should determine how sensitive your results are to these transformations;
-it may be the case that this data cannot be used for your reproducibility package.
+it may be the case that masked data cannot be used for your reproducibility package.
 
 % trade-off between accuracy and privacy
 There will almost always be a trade-off between accuracy and privacy.
 For publicly disclosed data, you should favor privacy.
 Stripping identifying variables from a dataset may not be sufficient to protect respondent privacy,
 due to the risk of re-identification.
-One solution is to add noise to data, as the US Census Bureau has proposed.\cite{abowd2018us}
+One solution is to add noise to data, as the U.S. Census Bureau has proposed.\cite{abowd2018us}
 This makes the trade-off between data accuracy and privacy explicit.
 But there are not, as of yet, established norms for such ``differential privacy'' approaches:
 most approaches fundamentally rely on judging ``how harmful'' information disclosure would be.
@@ -376,11 +381,12 @@ This fosters collaboration and may enable researchers to explore variables and
 questions that you do not have time to focus on otherwise.
 
 % platforms for publishing data
-The first step toward data publication is choosing the platform where you will publish your data.
+The first step toward data publication is choosing the platform 
+where you will publish your data.\index{publishing data}
 A variety of options exist;
 it is important to choose one that allows you to obtain a digital object identifier (DOI)
 for the location of your data (even if its URL changes),
-and a formal citation for your data, so you can reference it in other research outputs.\sidenote{url{https://www.doi.org}}
+and a formal citation for your data, so you can reference it in other research outputs.\sidenote{\url{https://www.doi.org}}
 Two common platforms for development data are the World Bank's Development Data Hub
 and Harvard University's Dataverse.
 The World Bank's Development Data Hub\sidenote{
@@ -393,8 +399,7 @@ where researchers can publish data and documentation for their projects.\sidenot
 \newline
   \url{https://dimewiki.worldbank.org/Checklist:\_Microdata\_Catalog\_submission}}
 The Harvard Dataverse publishes both data and code,
-and its repository
-Datahub for Field Experiments in Economics and Public Policy\sidenote{
+and its Datahub for Field Experiments in Economics and Public Policy\sidenote{
 	\url{https://dataverse.harvard.edu} and
 	\url{https://dataverse.harvard.edu/dataverse/DFEEP}}
 is especially relevant for impact evaluations.
@@ -410,8 +415,8 @@ As mentioned earlier, there are typically two different types of data releases f
 complete (de-identified) original datasets and derivative datasets used for specific research outputs.
 Whether you can publish the original dataset depends on data ownership and licensing agreements.
 If the data was acquired through a survey that was contracted by the research team,
-the data belongs to the research team,
-and therefore the team has full publication rights for both the original and derivative data.
+the data most likely belongs to the research team,
+and therefore the team has publication rights for both the original and derivative data.\index{data ownership}
 If data was acquired from a partner through a licensing agreement,
 the terms of the license will determine publication rights.
 These datasets should match the survey instrument or source documentation as closely as possible,
@@ -425,7 +430,7 @@ and should also be included in the replication package.
 % licensing published data
 When publishing data,
 you will decide how the data may be used and what license you will assign to it.\sidenote{
-  \url{https://dimewiki.worldbank.org/Publishing_Data}}
+  \url{https://dimewiki.worldbank.org/Publishing_Data}}\index{data licensing}
 Make sure you understand the rights associated with any data release
 and communicate them to its future users.
 Material without a license may never be reused.
@@ -441,7 +446,7 @@ to use the data for statistical and scientific research purposes only,
 to cite the data appropriately,
 and not to attempt to identify respondents or data providers
 or link the data to other datasets that could allow for re-identification.
-\textit{Licensed access} data is restricted to bona fide users,
+\textit{Licensed access} data is restricted to users
 who submit a documented application detailing
 how they will use the data and then sign a formal agreement governing data use.
 The user must be acting on behalf of an organization,
@@ -470,7 +475,7 @@ Major journals now often require that you provide both the data and code require
 Some even require being able to reproduce the results themselves
 before they will approve a paper for publication.\cite{vilhuber2020report}
 This set of materials, taken together,
-is often referred to as a \textbf{reproducibility package}.
+is often referred to as a \textbf{reproducibility package}.\index{reproducibility package}
 If you have followed the workflows described in this book,
 preparing the replication package will only require a small amount of extra work.
 If not, creating this package may take some time.
@@ -517,7 +522,7 @@ quarterly peer code review rounds, which allows research assistants to improve t
 rather than revisiting it in a rush near publication time.
 DIME projects are also expected to use Git and GitHub
 to document project work and collaboration,
-and to keep the master branch up-to-date as a working edition.\sidenote{
+and to keep the main branch up-to-date as a working edition.\sidenote{
 	\url{https://github.com/worldbank/dime-standards}}
 
 % ensuring code reproducibility
@@ -525,7 +530,6 @@ Before publicly releasing a reproducibility package,
 it is essential to make sure that the code runs identically
 on your individual setup compared to
 a fresh installation of your software.
-
 To ensure that your code will run completely on a new computer,
 you must install any required user-written commands in the master script
 (for example, in Stata using \texttt{ssc install} or \texttt{net install}
@@ -549,13 +553,13 @@ For example, code outputs should clearly correspond by name to an exhibit in the
 (Supplying a compiling {\LaTeX} document can support this.)
 Code and code outputs which are not used in the final paper should be removed from the final replication package,
 but still archived for transparency.
-One way to do this is keeping them on a separate GitHub branch
 
 \subsection{Releasing a reproducibility package}
 
 % finding a place to publish the package
 Once your replication package is prepared for public release,
-you need to find a place to publish your materials.
+you need to find a place to publish your materials.\sidenote{
+  \url{https://dimewiki.worldbank.org/Reproducible_Research}}
 At the time of writing, there is no consensus on the best solution for publishing code,
 and there are a variety of archives and storage providers
 that cater to different needs.
@@ -572,16 +576,16 @@ and the assignment of a permanent digital object identifier (DOI) link.
 Unlike data, code usually has few external constraints to publication.
 The research team owns the code in almost all cases,
 and code is unlikely to contain identifying information
-(though you must carefully verify that it does not).
+(though you must verify that it does not).
 Publishing code also requires assigning a license to it;
-most code publishers offer extremely permissive licensing options by default (GitHub is a good example).
-Note that if you do not provide a license, no one can use your code.
+most code publishers offer permissive licensing options.\index{licensing code}
+If you do not provide a license, no one can reuse your code.
 It is common to only require attribution and citation for code reuse,
 without putting any barriers or restrictions to accessing the code.
 
 % pros and cons of GitHub
-One option for releasing a reproducibility package is GitHub.
-Making a public GitHub is completely free.
+One option for creating and releasing a reproducibility package is GitHub.
+Making a public GitHub repository is completely free.
 It can hold any file types,
 provide a structured, compressed download of your whole project,
 and allow others to look at alternate versions or histories easily.
@@ -590,7 +594,8 @@ apply a sharing license, and obtain a URL for the whole package.
 There is a strict size restriction of 100MB per file and
 a restriction of 100GB on the size of the repository as a whole,
 so larger projects will need alternative solutions.
-However, GitHub is not the ideal platform on which to release reproducibility packages.
+However, GitHub is not the ideal platform 
+on which to \textit{publish} reproducibility packages.
 It is built to version control code, and to facilitate collaboration on it.
 It is not an archive, meaning that it does not guarantee the permanence
 of uploaded materials or the access URL,
@@ -608,7 +613,7 @@ and ResearchGate.\sidenote{
 Any of these archival services is acceptable --
 the main requirement is that the system can handle
 the structured directory that you are submitting,
-and that it can provide a stable, URL for your project
+and that it can provide a stable URL for your project
 and report exactly what, if any,
 modifications you have made since initial publication.
 You can even combine more than one tool if you prefer,
