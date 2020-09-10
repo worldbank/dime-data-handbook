@@ -4,8 +4,9 @@
 
 % What is data cleaning
 Raw data files may be received in a variety of formats,
-and are often not immediately suited for use with statistical software.
-This chapter describes the workflow of preparing newly-acquired data for analysis.
+and are often not immediately suited for analysis.
+This chapter describes the workflow of preparing newly-acquired data for analysis
+using statistical software.
 The tasks described in this chapter have many different names:
 data cleaning, data munging, data wrangling.
 But they all mean the same thing --
@@ -59,8 +60,8 @@ represents one observation.
 This may seem trivial, but should not be taken for granted.
 Getting to such a format may be harder than expected,
 and the \textbf{unit of observation}\sidenote{\textbf{Unit of observation:}
-	the unit described by the data. In datasets, it is ideally what each row represents. \url{
-		https://dimewiki.worldbank.org/wiki/Unit_of_Observation}}
+	the unit described by the data. In datasets, it is ideally what each row represents.
+  \url{https://dimewiki.worldbank.org/Unit_of_Observation}}
  may be ambiguous in many raw datasets.
 This section will also present what we call a \textit{tidy} data format,
 which is, in our experience, the ideal format to handle tabular data.
@@ -81,10 +82,10 @@ which is, in our experience, the ideal format to handle tabular data.
 An important step before starting to tidy a dataset is
 to understand the \textbf{unit of observation}\sidenote{
 	\textbf{Unit of observation:} the unit described by the data.
-	In a data table, it is ideally what each row represents. \url{
-		https://dimewiki.worldbank.org/wiki/Unit\_of\_Observation}}
-and find out which variable or set of variables is the \textbf{unique identifier}\sidenote{\url{
-		https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
+	In a data table, it is ideally what each row represents.
+  \url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+and find out which variable or set of variables is the \textbf{unique identifier}\sidenote{
+  \url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
 for each observation.
 Ensuring that observations are uniquely and fully identified
 is arguably the most important step in data cleaning.
@@ -109,7 +110,7 @@ as there can be multiple submissions for the same observation.
 As discussed in Chapter 3,
 the unique identifier will be used to link observations in this dataset
 to data in other data sources according to the \textbf{data linkage table},\sidenote{
-	\textcolor{red}{\url{https://dimewiki.worldbank.org/ LINK TO WIKI}}}
+  \url{https://dimewiki.worldbank.org/Data_Linkage_Table}}
 and all observation must be listed in the \textbf{master dataset}.\sidenote{
 	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
 Part of the process of understanding the level of observation in a dataset
@@ -127,7 +128,7 @@ occurrences of duplicated entries in the unique identifier using
 two Stata commands included in the \texttt{iefieldkit}
 package\index{iefieldkit}.\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
 One advantage of using \texttt{ieduplicates}\sidenote{\url{
-		https://dimewiki.worldbank.org/wiki/ieduplicates}}
+		https://dimewiki.worldbank.org/ieduplicates}}
 to correct duplicated entries is that it creates \textit{duplicates reports}
 which records each corrections made and documents the reason for it.
 Even if you are not using this command,
@@ -346,7 +347,7 @@ Data quality checks should be run every time data is received
 to flag irregularities in the aquisition progress, in sample completeness, or in response quality.
 The faster issues are identified, the more likely they are to be solved.
 \texttt{ipacheck}\sidenote{
-	\url{https://github.com/PovertyAction/high-frequency-checks/wiki}}
+	\url{https://github.com/PovertyAction/high-frequency-checks}}
 is a very useful Stata command that automates some of these tasks,
 regardless of the data source.
 
@@ -378,7 +379,8 @@ Reporting errors and duplicate observations in real time allows for efficient co
 	\url{https://dimewiki.worldbank.org/ieduplicates}}
 provides a workflow for resolving duplicate entries with the data provider.
 For surveys, it is also important to track data collection progress to  monitor attrition,
-so that it is clear early on if a change in protocols or additional tracking will be needed.
+so that it is clear early on if a change in protocols or additional tracking will be needed.\sidenote{
+  See \citet{ozler2016combining} for an example.}
 Remember to also check survey completion rates
 and sample compliance by surveyors and survey teams,
 and compare data missingness across administrative regions,
@@ -423,7 +425,8 @@ internet speed, and coding skills of the team preparing the HFC workflows.
 
 % Conducting back-checks
 Careful validation of data is essential for high-quality original data.
-While we cannot control natural measurement error,
+While we cannot control natural measurement error,\sidenote{
+  See \citet{kondylis2015measuring} for an example.}
 which comes from variation in the realization of key outcomes,
 there is often an opportunity to reduce error arising from inaccuracies in the data generation process.
 \textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/Back\_Checks}} and
@@ -446,8 +449,7 @@ this ensures that the validation is correctly apportioned across observations.
 As soon as high frequency checks are complete,
 the validation data can be tested against
 the original data to identify areas of concern in real-time.
-The \texttt{bcstats} command is a useful tool for analyzing back-check data in Stata.\sidenote{
-	\url{https://ideas.repec.org/c/boc/bocode/s458173.html}}
+The \texttt{bcstats} command is a useful tool for analyzing back-check data in Stata.\cite{white2016bcstats}
 Some electronic surveys surveys also provide a unique opportunity
 to do audits through audio recordings of the interview,
 typically short recordings triggered at random throughout the questionnaire.
@@ -481,7 +483,8 @@ Most development data involves human subjects.\sidenote{
 As a researcher, you may have access to personal information about your subjects:
 where they live, how much income they have,
 whether they have committed or been victims of crimes,
-their names, their national identity numbers, and other sensitive data.
+their names, their national identity numbers, and other sensitive data.\sidenote{
+  See \citet{banerjee2019entertainment} for an example.}
 There are strict requirements for safely storing and handling personally-identifying data,
 and it is the responsibility of the research team to satisfy these requirements.\sidenote{
 	\url{https://dimewiki.worldbank.org/Research\_Ethics}}
@@ -489,7 +492,7 @@ Everyone working with human subjects research should participate in an ethics tr
 Protecting Human Research Participants\sidenote{
 	\url{https://phrptraining.com}}
 and the CITI Program;\sidenote{
-	\url{https://about.citiprogram.org/en/series/human-subjects-research-hsr}}
+	\url{https://citiprogram.org}}
 are common options.
 A plan for secure data handling is typically also required for IRB approval.
 
@@ -527,7 +530,7 @@ performed before data is publicly released, involves
 careful consideration of the trade-offs between
 risk of identifying individuals and the utility of the data,
 and typically requires the removal of a further level of indirect identifiers.\sidenote{
-	\url{https://sdcpractice.readthedocs.io/en/latest/SDC\_intro.html\#need-for-sdc}}
+	\url{https://sdcpractice.readthedocs.io}}
 The rest of this section describes how to implement
 both the initial and the final de-identification processes.
 
@@ -545,9 +548,7 @@ the workflow will be the same for all of them.
 During the initial round of de-identification,
 datasets must be stripped of personally identifying information.\sidenote{
 	\url{https://dimewiki.worldbank.org/De-identification}}
-To do so, you will need to identify all variables that contain
-such information.\sidenote{\url{
-		https://www.povertyactionlab.org/sites/default/files/resources/J-PAL-guide-to-deidentifying-data.pdf}}
+To do so, you will need to identify all variables that contain such information.
 For data collection, where the research team designs the survey instrument,
 flagging all potentially identifying variables at questionnaire design stage
 simplifies the initial de-identification process.
@@ -562,11 +563,11 @@ The World Bank's \texttt{sdcMicro}
 lists variables that uniquely identify observations,
 but its more refined method and
 higher processing capacity requirement make it better suited for final de-identification.\sidenote{
-	\url{https://sdctools.github.io/sdcMicro/articles/sdcMicro.html}}
+	\url{https://github.com/sdcTools/sdcMicro}}
 The \texttt{iefieldkit} command \texttt{iecodebook}
 lists all variables in a dataset and exports an Excel sheet
 where you can easily select which variables to keep or drop.\sidenote{
-	\url{https://dimewiki.worldbank.org/Iecodebook}}
+	\url{https://dimewiki.worldbank.org/iecodebook}}
 
 % Initial de-identification in practice
 Once you have a list of variables that contain confidential information,
@@ -733,7 +734,7 @@ categorical variables and open-ended responses are often read as strings.
 However, variables in this format cannot be used for quantitative analysis.
 Therefore, categorical variables must be transformed into other formats,
 such as \texttt{factors} in R and \texttt{labeled integers}\sidenote{\url{
-		https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Value\_Labels}} in Stata.
+		https://dimewiki.worldbank.org/Data\_Cleaning\#Value\_Labels}} in Stata.
 Additionally, open-ended responses stored as strings usually have a high risk of including identifying information,
 so cleaning them requires extra attention.
 The choice names in categorical variables
@@ -767,7 +768,7 @@ it is often the best dictionary one could ask for.
 But even in these cases, going back and forth between files can be inefficient,
 so annotating variables in a dataset is extremely useful.
 In Stata, \textit{variable labels}\sidenote{\url{
-	https://dimewiki.worldbank.org/wiki/Data\_Cleaning\#Variable\_Labels}}
+	https://dimewiki.worldbank.org/Data\_Cleaning\#Variable\_Labels}}
 must always be present in a cleaned dataset.
 They should include a short and clear description of the variable.
 A lengthier description, that may include, for example,
@@ -808,7 +809,8 @@ compose a consistent and useful grammar to perform the same tasks.
 Throughout the data cleaning process,
 you will often need extensive inputs from the people responsible for data collection.
 Sometimes this is your research team, but often it will be someone else.
-It could be a survey team, the government ministry responsible for administrative data systems,
+It could be a survey team, the government ministry responsible for administrative data systems,\sidenote{
+  See \citet{fernandes2015trade} for an example.}
 the technology firm that generated remote sensing data, etc.
 Regardless of who originally collected the data,
 you should acquire and organize all documentation of how the data was generated.\sidenote{

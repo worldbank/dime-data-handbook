@@ -4,134 +4,181 @@
 
 Most academic programs that prepare students for a career
 in the type of work discussed in this book
-spend a disproportionately small amount of time teaching their students coding skills
-in relation to the share of their professional time they will spend writing code
+spend a disproportionately small amount of time 
+teaching their students coding skills
+in relation to the share of their professional time 
+they will spend writing code
 their first years after graduating.
-Recent masters-level graduates that have joined our team
-tended to have very good theoretical knowledge,
-but have required a lot of training in practical skills.
+Recent masters-level graduates joining our team
+have tended to have very good theoretical knowledge,
+but require a lot of training in practical skills.
 To us, this is like an architecture graduate having learned
 how to sketch, describe, and discuss
 the concepts and requirements of a new building very well --
-but without having the technical skills
+but without the technical ability
 to contribute to a blueprint following professional standards
-that can be used and understood by other professionals.
+that can be used and understood by others.
 The reasons for this are a topic for another book,
 but in today's data-driven world,
-people working in quantitative development research must be proficient collaborative programmers,
-and that includes more than being able to compute the correct numbers.
+people working in quantitative development research 
+must be proficient collaborative programmers,
+and that includes more than being able to compute correct numbers.
 
-This appendix begins with a short section containing instructions
-on how to access and use the code examples shared in this book.
-The second section contains the DIME Analytics Stata Style Guide.
-We believe these resources can help anyone write more understandable code,
-no matter how proficient they are in writing Stata code.
+This appendix begins with a section on some general and language-agnostic
+principles on how to write ``good'' code. 
+Good code is code that both generates correct results \textit{and} 
+is easily read and adapted by other professionals.
+The second section in this appendix contains instructions
+on how to access and use the code examples in this book.
+The last section contains the DIME Analytics Stata Style Guide.
 Widely accepted and used style guides are common in most programming languages,
 and we think that using such a style guide greatly improves the quality
 of research projects coded in Stata.
 We hope that this guide can help increase the emphasis
-given to using, improving, sharing, and standardizing code style among the Stata community.
-Style guides are the most important tool in how you, like an architect,
-can draw a blueprint that can be understood and used by everyone in your trade.
+given to using, improving, sharing, and standardizing code style 
+among the Stata community.
+We believe these resources can help anyone write more understandable code,
+and how you, like an architect,
+can create a blueprint that can be understood and used 
+by everyone in your trade.
 
 \end{fullwidth}
 
 %------------------------------------------------
 
-\section{Using the code examples in this book}
+\section{Writing good code}
 
-In the book, code examples are presented like the following:
-
-\codeexample{code.do}{./code/code.do}
-
-We ensure that each code block runs independently, is well-formatted,
-and uses built-in functions as much as possible.
-We will point to user-written functions when they provide important tools.
-In particular, we point to two suites of Stata commands developed by DIME Analytics,
-\texttt{ietoolkit}\sidenote{\url{https://dimewiki.worldbank.org/ietoolkit}} and
-\texttt{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
-which standardize our core data collection, management, and analysis workflows.
-We will comment the code generously (as you should),
-but you should reference Stata help-files by writing \texttt{help [command]}
-whenever you do not understand the command that is being used.
-We hope that these snippets will provide a foundation for your code style.
-Providing some standardization to Stata code style is also a goal of this team.
-
-You can access the raw code used in examples in this book in several ways.
-We use GitHub to version control everything in this book, the code included.
-To see the code on GitHub, go to: \url{https://github.com/worldbank/d4di/tree/master/code}.
-If you are familiar with GitHub you can fork the repository and clone your fork.
-We only use Stata's built-in datasets in our code examples,
-so you do not need to download any data.
-If you have Stata installed on your computer, then you will already have the data files used in the code.
-
-A less technical way to access the code is to click the individual file in the URL above, then click
-the button that says \textbf{Raw}. You will then get to a page that looks like the one at:
-\url{https://raw.githubusercontent.com/worldbank/d4di/master/code/code.do}.
-There, you can copy the code from your browser window to your do-file editor with the formatting intact.
-This method is only practical for a single file at the time.
-If you want to download all code used in this book, you can do that at:
-\url{https://github.com/worldbank/d4di/archive/master.zip}. That link offers a \texttt{.zip} file download
-with all the content used in writing this book, including the \LaTeX{} code used for the book itself. After
-extracting the .zip-file you will find all the code in a folder called \texttt{/code/}.
-
-\subsection{Writing and Understanding Stata code}
-
-``Good'' code has two elements: (1) it is correct, in that it doesn't produce any errors,
-and (2) it is useful and comprehensible to someone who hasn't seen it before
-(or even yourself a few weeks, months or years later).
-Many researchers have been trained to code correctly.
-However, when your code runs on your computer and you get the correct results,
+``Good'' code has two elements: 
+(1) it is correct, in that it doesn't produce any errors
+and its outputs are the objects intended,
+and (2) it is useful and comprehensible 
+to someone who hasn't seen it before
+(or even someone who has, weeks, months, or years later).
+Many researchers have only been trained to code correctly.
+But we believe that when your code runs on your computer 
+and you get the desired results,
 you are only half-done writing \textit{good} code.
-Good code is easy to read and replicate, making it easier to spot mistakes.
+Good code is easy to read and replicate, 
+making it easier to spot mistakes.
 Good code reduces sampling, randomization, and cleaning errors.
-Good code can easily be reviewed by others before it's published and replicated afterwards.
+Good code can easily be reviewed by others 
+before it's published and can be re-used afterwards.
+We always tell people to ``code as if a stranger is reading it''.
 
-You should think of code in terms of three major elements:
+You should think of good code in terms of three major elements:
 \textbf{structure}, \textbf{syntax}, and \textbf{style}.
-We always tell people to ``code as if a stranger would read it''
-(from tomorrow, that stranger could be you!).
-The \textbf{structure} is the environment and file organization your code lives in:
-good structure means that it is easy to find individual pieces of code
+The \textbf{structure} is the environment 
+and file organization your code lives in:
+good structure means that it is easy to find individual pieces of code,
+within and across files,
 that correspond to specific tasks and outputs.
-Good structure also means that functional blocks are sufficiently independent from each other
-that they can be shuffled around, repurposed, and even deleted without damaging other portions.
+Good structure also means that functional code blocks 
+are sufficiently independent from each other
+such that they can be shuffled around, repurposed, 
+and even deleted without affecting the execution of other portions.
 The \textbf{syntax} is the literal language of your code.
 Good syntax means that your code is readable
 in terms of how its mechanics implement ideas --
 it should not require arcane reverse-engineering
 to figure out what a code chunk is trying to do.
-\textbf{Style}, finally, is the way that the non-functional elements of your code convey its purpose.
-Elements like spacing, indentation, and naming conventions (or lack thereof) can make your code much more
-(or much less) accessible to someone who is reading it for the first time
-and needs to understand it quickly and correctly.
+It should use common commands in a generally accepted way
+so others can easily follow and reconstruct your intentions.
+\textbf{Style}, finally, is the way 
+that the non-functional elements of your code convey its purpose.
+Elements like spacing, indentation, 
+and naming conventions (or lack thereof) 
+can make your code much more
+(or much less) accessible to someone 
+who is reading it for the first time
+and needs to understand it quickly and accurately.
 
-Whether you are new to Stata or have used it for decades,
-you will always run into commands that
-you have not seen before or whose function you do not remember.
-(Whether you are new or not, you should frequently revisit the most common commands --
-often you will learn they can do something you never realized.\sidenote{
-  \url{https://www.stata.com/manuals13/u27.pdf}})
-Every time that happens,
-you should always look up the help file for that command.
-We often encounter the conception that help files are only for beginners.
-We could not disagree with that conception more,
-as the only way to get better at Stata is to constantly read help files.
-So if there is a command that you do not understand in any of our code examples,
-for example \texttt{isid}, then write \texttt{help isid},
-and the help file for the command \texttt{isid} will open.
+One key tool for writing good code is using help documentation.
+Whether or not you are new to the programming language you are using 
+-- Stata, R, Python, or one of the many others --
+you should constantly revisit help files for the most common commands.
+Often you will learn they can do something you never realized.
 We cannot emphasize enough how important it is
-that you get into the habit of reading help files.
+that you get into the habit of reading help files,
+especially for commands you are very familiar with.
 Most of us have a help file window open at all times.
+Similarly, you will always run into commands or uses of commands that
+you have not seen before or whose functionality you do not remember.
+Every time that happens,
+you should look up the help file for that command.
+We often encounter the conception that help files are only for beginners.
+We could not disagree with that conception more.
+The only way to get better at the programming language you use
+is to constantly read help files.
 
-Sometimes, you will encounter code that employs user-written commands,
-and you will not be able to read their help files until you have installed the commands.
-Two examples of these in our code are \texttt{randtreat} or \texttt{ieboilstart}.
+\section{Using the code examples in this book}
+
+Providing some standardization for Stata code style
+is also a goal of our team.
+Stata is one of several programming languages used at DIME,
+but since few high-quality resources based on Stata exist
+relative to its importance and frequency of use,
+we decided to use Stata for the examples in this book.
+This book includes several code blocks
+where we demonstrate a good code execution
+of some of the most common tasks in data work.
+We have ensured that each code block runs independently,
+is well-formatted, 
+and uses built-in commands as much as possible.
+We hope that these snippets will provide a foundation for your code style.
+We try to comment code examples generously (as you should),
+and you should reference Stata help files by writing \texttt{help [command]}
+whenever you do not understand the command that is being used.
+For example, if you are not familiar with \texttt{isid},
+ then write \texttt{help isid},
+and the help file for the command \texttt{isid} will open.
+You should do this even if you know \texttt{isid} 
+but has not read the help file for that command in a while,
+as there is always something new to learn.
+
+In the book, code examples are presented like the following:
+
+\codeexample{code.do}{./code/code.do}
+
+You can access the raw code used in examples in this book in several ways.
+We use GitHub to version control all the content of this book,
+including the code examples.
+To see the code examples on GitHub, go to: 
+\url{https://github.com/worldbank/dime-data-handbook/tree/master/code}.
+We only use Stata's built-in datasets in our code examples,
+so you do not need to download any data.
+If you have Stata installed on your computer, 
+then you will already have the data files used in the code.
+
+A less technical way to access the code 
+is to click the individual file in the URL above, then click
+the button that says \textbf{Raw}. 
+You will then get to a page that looks like the one at:
+\url{https://raw.githubusercontent.com/worldbank/dime-data-handbook/master/code/code.do}.
+There, you can copy the code 
+from your browser window to your do-file editor with the formatting intact.
+This method is only practical for a single file at a time.
+If you want to download all code used in this book, you can do that at:
+\url{https://github.com/worldbank/dime-data-handbook/archive/master.zip}. 
+That link downloads a \texttt{.zip} file 
+with all the content used in writing this book, 
+including the \LaTeX{} code used for the book itself. 
+After extracting the .zip-file you will find all the code in a folder called \texttt{/code/}.
+
+While we use built-in commands as much as possible in this book,
+we point to user-written commands when they provide important new functionality.
+In particular, we point to two suites of Stata commands developed by DIME Analytics,
+\texttt{ietoolkit}\sidenote{\url{https://dimewiki.worldbank.org/ietoolkit}} and
+\texttt{iefieldkit},\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
+which DIME Analytics wrote to standardize 
+core data collection, management, and analysis workflows.
+
+When you encounter code that employs user-written commands,
+you will not be able to run them or read their help files 
+until you have installed the commands.
 The most common place to distribute user-written commands for Stata
 is the Boston College Statistical Software Components (SSC) archive.\sidenote{
-\url{https://ideas.repec.org/s/boc/bocode.html}}
-In our code examples, we only use either Stata's built-in commands or commands available from the
-SSC archive.
+	\url{https://ideas.repec.org/s/boc/bocode.html}}
+The user-written commands in our code example are all from the SSC archive.
 So, if your installation of Stata does not recognize a command in our code, for example
 \texttt{randtreat}, then type \texttt{ssc install randtreat} in Stata.
 
@@ -152,14 +199,16 @@ All code with user-written commands, furthermore, is best written when it instal
 at the beginning of the master do-file,
 so that the user does not have to search for packages manually.
 
-\subsection{Why we use a Stata style guide}
+\section{The DIME Analytics Stata Style Guide}
 
-Programming languages used in computer science always have style guides associated with them.
-Sometimes they are official guides that are universally agreed upon, such as PEP8 for
-Python.\sidenote{\url{https://www.python.org/dev/peps/pep-0008}} More commonly, there are well-recognized but
-non-official style guides like the JavaScript Standard Style\sidenote{\url{https://standardjs.com/\#the-rules}} for
-JavaScript or Hadley Wickham's style guide for R.\sidenote{\url{https://style.tidyverse.org/syntax.html}}
-Google, for example, maintains style guides for all languages
+Programming languages used in computer science 
+always have style guides associated with them.
+Sometimes they are official guides that are universally agreed upon, 
+such as PEP8 for Python.\sidenote{\url{https://www.python.org/dev/peps/pep-0008}} 
+More commonly, there are well-recognized but
+non-official style guides like the JavaScript Standard Style\sidenote{\url{https://standardjs.com/\#the-rules}} 
+for JavaScript or Hadley Wickham's style guide for R.\sidenote{\url{https://style.tidyverse.org/syntax.html}}
+Google, for example, maintains is own style guides for all languages
 that are used in its projects.\sidenote{
   \url{https://github.com/google/styleguide}}
 
@@ -177,28 +226,18 @@ Broadly-accepted style conventions make it easier to borrow solutions
 from each other and from examples online
 without causing bugs that might only be found too late.
 Similarly, globally standardized style guides make it easier to solve each others'
-problems and to collaborate or move from project to project, and from team to team.
+problems and to collaborate or move from project to project, 
+and from team to team.
 
 There is room for personal preference in style guides,
 but style guides are first and foremost about quality and standardization --
 especially when collaborating on code.
-We believe that a commonly used Stata style guide would improve the quality of all code written in Stata,
+We believe that a commonly used Stata style guide 
+would improve the quality of all code written in Stata,
 which is why we have begun the one included here.
 You do not necessarily need to follow our style guide precisely.
 We encourage you to write your own style guide if you disagree with us.
 The best style guide would be the one adopted the most widely.
-What is important is that you adopt a style guide and follow it consistently across your projects.
-
-\newpage
-
-\section{The DIME Analytics Stata Style Guide}
-
-While this section is called a \textit{Stata} style guide,
-many of these practices are agnostic to which programming language you are using:
-best practices often relate to concepts that are common across many languages.
-If you are coding in a different language,
-then you might still use many of the guidelines listed in this section,
-but you should use your judgment when doing so.
 All style rules introduced in this section are the way we suggest to code,
 but the most important thing is that the way you style your code is \textit{consistent}.
 This guide allows our team to have a consistent code style.
@@ -257,7 +296,7 @@ The following is a list of accepted abbreviations of common Stata commands:
 	\end{tabular}
 \end{center}
 
-\subsection{Abbreviating variables}
+\subsection{Abbreviating variable names}
 
 Never abbreviate variable names. Instead, write them out completely.
 Your code may change if a variable is later introduced
@@ -365,11 +404,6 @@ Simple prefixes are useful and encouraged such as \texttt{this\_estimate} or \te
 or, using \texttt{camelCase}, \texttt{lastValue}, \texttt{allValues}, or \texttt{nValues}.
 Nested locals (\texttt{\`{}\`{}value\textquotesingle\textquotesingle})
 are also possible for a variety of reasons when looping, and should be indicated in comments.
-If you need a macro to hold a literal macro name,
-it can be done using the backslash escape character;
-this causes the stored macro to be evaluated
-at the usage of the macro rather than at its creation.
-This functionality should be used sparingly and commented extensively.
 
 \codeexample{stata-macros.do}{./code/stata-macros.do}
 
@@ -418,6 +452,12 @@ Stata's do-file editor and other code editors provide a visible guide line.
 Around that length, start a new line using \texttt{///}.
 Using \texttt{///} breaks the line in the code editor,
 while telling Stata that the same line of code continues on the next line.
+Recent versions of the Stata do-file editor --
+and many other code editors --
+automatically wrap code lines that are too long,
+but you should still use \texttt{///} 
+to make sure that the lines breaks are placed 
+where they are the most readable.
 The \texttt{///} breaks do not need to be horizontally aligned in code,
 although you may prefer to if they have comments that read better aligned,
 since indentations should reflect that the command continues to a new line.
