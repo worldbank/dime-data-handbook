@@ -100,16 +100,14 @@ for the treatment group against which outcomes can be directly compared.
   \index{counterfactual}
 There are several resources that provide more or less mathematically intensive
 approaches to understanding how various methods do this.
-\textit{Impact Evaluation in Practice} is a strong general guide to these methods.\sidenote{
-  \url{https://www.worldbank.org/en/programs/sief-trust-fund/publication/impact-evaluation-in-practice}}
-\textit{Causal Inference} and \textit{Causal Inference: The Mixtape}
-provides more detailed mathematical approaches to the tools.\sidenote{
-  \url{https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book}
-  \\ \noindent \url{http://scunning.com/cunningham_mixtape.pdf}}
-\textit{Mostly Harmless Econometrics} and \textit{Mastering Metrics}
-are excellent resources on the statistical principles behind all econometric approaches.\sidenote{
-  \url{https://www.researchgate.net/publication/51992844\_Mostly\_Harmless\_Econometrics\_An\_Empiricist's\_Companion}
-  \\ \noindent \url{https://assets.press.princeton.edu/chapters/s10363.pdf}}
+\textit{Impact Evaluation in Practice} \citep{gertler2016impact} 
+is a strong general guide to these methods.
+\textit{Causal Inference} \citep{hernan2010causal} and 
+\textit{Causal Inference: The Mixtape} \citep{cunningham2018causal}
+provides more detailed mathematical approaches to the tools.
+\textit{Mostly Harmless Econometrics} \citep{angrist2008mostly}
+and \textit{Mastering Metrics} \citep{angrist2014mastering}
+are excellent resources on the statistical principles behind all econometric approaches.
 
 Intuitively, the problem is as follows: we can never observe the same unit
 in both their treated and untreated states simultaneously,
@@ -303,8 +301,7 @@ The main results will usually be a primary regression specification
 and additional specifications with adjustments for non-response, balance, and other potential contamination.
 Robustness checks might include randomization-inference analysis or other placebo regression approaches.
 There are a number of user-written code tools that are also available
-to help with the complete process of data analysis,\sidenote{
-  \url{https://toolkit.povertyactionlab.org/resource/coding-resources-randomized-evaluations}}
+to help with the complete process of data analysis,
 including to analyze balance\sidenote{
   \url{https://dimewiki.worldbank.org/iebaltab}}
 and to visualize treatment effects.\sidenote{
@@ -424,8 +421,7 @@ very similar in analysis to cross-sectional or difference-in-differences designs
 Depending on the data that is available,
 the analytical approach will center on the comparison of individuals
 who are narrowly on the inclusion side of the discontinuity,
-compared against those who are narrowly on the exclusion side.\sidenote{
-  \url{https://cattaneo.princeton.edu/books/Cattaneo-Idrobo-Titiunik_2019\_CUP-Vol1.pdf}}
+compared against those who are narrowly on the exclusion side.\cite{cattaneo2019}
 The regression model will be identical to the matching research designs,
 i.e., contingent on whether data has one or more time periods
 and whether the same units are known to be observed repeatedly.
@@ -438,17 +434,16 @@ often referred to as the choice of \textbf{bandwidth} for the design,
 are the critical parameters for the result.\cite{calonico2019regression}
 Therefore, RD analysis often includes extensive robustness checking
 using a variety of both functional forms and bandwidths,
-as well as placebo testing for non-realized locations of the cutoff.\cite{cattaneo2019}
+as well as placebo testing for non-realized locations of the cutoff.
 
 In the analytical stage, regression discontinuity designs
-often include a large component of visual evidence presentation.\cite{baumer}
+often include a large component of visual evidence presentation.
 These presentations help to suggest both the functional form
 of the underlying relationship and the type of change observed at the discontinuity,
 and help to avoid pitfalls in modeling that are difficult to detect with hypothesis tests.\cite{pischke2018}
 Because these designs are so flexible compared to others,
 there is an extensive set of commands that help assess
-the efficacy and results from these designs under various assumptions.\sidenote{
-  \url{https://sites.google.com/site/rdpackages}}
+the efficacy and results from these designs under various assumptions.\cite{calonico2014robust}
 These packages support the testing and reporting
 of robust plotting and estimation procedures,
 tests for manipulation of the running variable,
@@ -613,4 +608,4 @@ as are the number of counterfactual units available.
 Visualizations are often excellent demonstrations of these results.
 The \texttt{synth} package provides functionality for use in Stata and R,
 although since there are a large number of possible parameters
-and implementations of the design it can be complex to operate.\cite{hainmueller}
+and implementations of the design it can be complex to operate.\cite{abadie2014synth}
