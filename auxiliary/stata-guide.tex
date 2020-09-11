@@ -8,10 +8,10 @@ spend a disproportionately small amount of time
 teaching their students coding skills
 in relation to the share of their professional time 
 they will spend writing code
-their first years after graduating.
+in their first few years after they graduate.
 Recent masters-level graduates joining our team
-have tended to have very good theoretical knowledge,
-but require a lot of training in practical skills.
+have shown very good theoretical knowledge
+while requiring a lot of training in practical skills.
 To us, this is like an architecture graduate having learned
 how to sketch, describe, and discuss
 the concepts and requirements of a new building very well --
@@ -32,7 +32,9 @@ The second section in this appendix contains instructions
 on how to access and use the code examples in this book.
 The last section contains the DIME Analytics Stata Style Guide.
 Widely accepted and used style guides are common in most programming languages,
-and we think that using such a style guide greatly improves the quality
+but we have never found a sufficiently encompassing style guide for Stata.
+We created this style guide having in mind practices that,
+in our experience, greatly improve the quality
 of research projects coded in Stata.
 We hope that this guide can help increase the emphasis
 given to using, improving, sharing, and standardizing code style 
@@ -72,7 +74,7 @@ and file organization your code lives in:
 good structure means that it is easy to find individual pieces of code,
 within and across files,
 that correspond to specific tasks and outputs.
-Good structure also means that functional code blocks 
+It also means that functional code blocks 
 are sufficiently independent from each other
 such that they can be shuffled around, repurposed, 
 and even deleted without affecting the execution of other portions.
@@ -83,7 +85,7 @@ it should not require arcane reverse-engineering
 to figure out what a code chunk is trying to do.
 It should use common commands in a generally accepted way
 so others can easily follow and reconstruct your intentions.
-\textbf{Style}, finally, is the way 
+Finally, \textbf{style} is the way 
 that the non-functional elements of your code convey its purpose.
 Elements like spacing, indentation, 
 and naming conventions (or lack thereof) 
@@ -112,7 +114,12 @@ is to constantly read help files.
 
 \section{Using the code examples in this book}
 
-Providing some standardization to Stata code style is also a goal of our team.
+Providing some standardization for Stata code style
+is also a goal of our team.
+Stata is one of several programming languages used at DIME,
+but since few high-quality resources based on Stata exist
+relative to its importance and frequency of use,
+we decided to use Stata for the examples in this book.
 This book includes several code blocks
 where we demonstrate a good code execution
 of some of the most common tasks in data work.
@@ -315,9 +322,6 @@ loops generally index a real object, and looping commands should name that index
 One-letter indices are acceptable only for general examples;
 for looping through \textbf{iterations} with \texttt{i};
 and for looping across matrices with \texttt{i}, \texttt{j}.
-Other typical index names are \texttt{obs} or \texttt{var} when looping over observations or variables, respectively.
-But since Stata does not have arrays,
-such abstract syntax should not be used in Stata code otherwise.
 Instead, index names should describe what the code is looping over --
 for example household members, crops, or medicines.
 Even counters should be explicitly named.
@@ -358,11 +362,11 @@ Therefore we recommend that indentation be 4 manual spaces instead of a tab.
 \subsection{Writing conditional expressions}
 
 All conditional (true/false) expressions should be within at least one set of parentheses.
-The negation of logical expressions should use bang (\texttt{!}) and not tilde (\texttt{\~}).
-Always use explicit truth checks (\texttt{if \`{}value\textquotesingle==1})
+The negation of logical expressions should use bang (\texttt{!}) and not tilde ($\sim$).
+Always use explicit truth checks (\texttt{if \`{}value\textquotesingle\, == 1})
 rather than implicits (\texttt{if \`{}value\textquotesingle}).
 Always use the \texttt{missing(\`{}var\textquotesingle)} function
-instead of arguments like (\texttt{if \`{}var\textquotesingle<=.}).
+instead of arguments like (\texttt{if \`{}var\textquotesingle\, >= .}).
 Always consider whether missing values will affect the evaluation of conditional expressions.
 
 \codeexample{stata-conditional-expressions1.do}{./code/stata-conditional-expressions1.do}
@@ -379,7 +383,6 @@ It is also less error-prone and easier to update if you want to change the condi
 
 Stata has several types of \textbf{macros} where numbers or text can be stored temporarily,
 but the two most common macros are \textbf{local} and \textbf{global}.
-All macros should be defined using the \texttt{=} operator.
 Never abbreviate the commands for \textbf{local} and \textbf{global}.
 Locals should always be the default type and globals should only
 be used when the information stored is used in a different do-file.
@@ -397,8 +400,6 @@ You can use all lower case (\texttt{mymacro}), underscores (\texttt{my\_macro}),
 or ``camel case'' (\texttt{myMacro}), as long as you are consistent.
 Simple prefixes are useful and encouraged such as \texttt{this\_estimate} or \texttt{current\_var},
 or, using \texttt{camelCase}, \texttt{lastValue}, \texttt{allValues}, or \texttt{nValues}.
-Nested locals (\texttt{\`{}\`{}value\textquotesingle\textquotesingle})
-are also possible for a variety of reasons when looping, and should be indicated in comments.
 
 \codeexample{stata-macros.do}{./code/stata-macros.do}
 
@@ -425,8 +426,10 @@ Do not use \texttt{cd} unless there is a function that requires it.
 When using \texttt{cd}, it is easy to overwrite a file in another project folder.
 Many Stata functions use \texttt{cd} and therefore the current directory may change without warning.
 Relative file paths are common in many other programming languages,
-but there they are always relative to the location of the file running the code.
-Stata does not provide this functionality.
+but unless they are relative to the location of the file running the code,
+this is a risky practice.
+In Stata, relative file paths are relative to the current directory,
+not to the code file being run.
 
 \textbf{Dynamic} file paths use global macros for the location of the root folder.
 These globals should be set in a central master do-file.
@@ -452,12 +455,13 @@ and many other code editors --
 automatically wrap code lines that are too long,
 but you should still use \texttt{///} 
 to make sure that the lines breaks are placed 
-where they are the most readable.
+where they are most readable.
 The \texttt{///} breaks do not need to be horizontally aligned in code,
 although you may prefer to if they have comments that read better aligned,
 since indentations should reflect that the command continues to a new line.
 Break lines where it makes functional sense.
 You can write comments after \texttt{///} just as with \texttt{//}, and that is usually a good thing.
+
 The \texttt{\#delimit} command should only be used for advanced function programming
 and is officially discouraged in analytical code.\cite{cox2005styleguide}
 Never, for any reason, use \texttt{/* */} to wrap a line:
@@ -470,7 +474,7 @@ of the \textbf{option comma} or other functional syntax in Stata commands.
 
 \subsection{Using boilerplate code}
 
-\textbf{Boilerplate} code is a few lines of code that always come at the top of the code file,
+\textbf{Boilerplate} code consists of a few lines of code that always come at the top of the code file,
 and its purpose is to harmonize settings across users
 running the same code to the greatest degree possible.
 There is no way in Stata to guarantee that any two installations
@@ -504,8 +508,8 @@ dropping intermediate variables that are not needed,
 and compressing the dataset to save disk space and network bandwidth.
 
 If there is a unique ID variable or a set of ID variables,
-the code should test that they are uniqueally and
-fully identifying the dataset.\sidenote{
+the code should test that they uniquelly and
+fully identify the dataset.\sidenote{
   \url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}
 ID variables are also perfect variables to sort on,
 and to \texttt{order} first in the dataset.

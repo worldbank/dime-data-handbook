@@ -50,7 +50,7 @@ so that your work is fully reproducible.
 For this chapter, we assume you are starting from
 one or multiple well-documented tidy\cite{hadley2017R} datasets.
 We also assume that these datasets
-have gone through thorough quality checks,
+have gone through thorough quality checks
 and incorporate any corrections needed.
 The next step is to \textbf{construct}\sidenote{
 	\textbf{Data construction}:
@@ -66,18 +66,18 @@ and creating derived variables
 The derived indicators you will construct should be
 planned during research design\index{Research design};
 the pre-analysis plan should serve as your guide
-at this stage.\index{Pre-analysis plan}
+at this stage.\index{pre-analysis plan}
 During construction, data will typically be
 reshaped, merged, and aggregated to change the level of the data points
 from the \textbf{unit of \textit{observation}} in the raw data
 to the \textbf{unit of \textit{analysis}}.\sidenote{\url{
-		https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+		https://dimewiki.worldbank.org/Unit\_of\_Observation}}\index{unit of observation}\index{unit of analysis}
 
 % A project may require multiple purpose-built data sets
 Each analysis dataset is built to answer an analysis question.
 If the sub-samples and units of observation
-vary for different pieces of the analysis
-you may need to create many purpose-built analysis datasets.
+vary for different pieces of the analysis,
+you may need to create many purpose-built analysis datasets.\index{analysis datasets}
 In such cases, it is not good practice
 to try to create a single ``canonical'' analysis dataset.
 For a concrete example of what this means,
@@ -101,7 +101,7 @@ First, this helps to clearly differentiate error corrections
 (necessary for all data uses)
 from creation of analysis indicators
 (necessary only for specific analyses).
-Second, it helps to ensures that variable definitions are
+Second, it helps to ensure that variable definitions are
 consistent across datasets.
 Construction can create many outputs combining many inputs,
 and, unlike in data cleaning,
@@ -158,7 +158,7 @@ Merges are frequent and complex operations,
 which makes them a common source of error.
 Whichever statistical software you are using,
 take the time to read through the help file of merge commands
-and make sure you understand their options and outputs.
+and make sure you understand their options and outputs.\index{merging data}
 
 % How to think about merges
 Chapter 3 discussed how to merge datasets
@@ -215,18 +215,18 @@ and to be extensively documented, separately from other data construction tasks.
 % Main points to keep in mind for new variables
 Once you have assembled variables from different sources into a single working dataset
 with the right raw information and observations,
-it's time to create the derived indicators of interest for analysis.
+it's time to create the derived indicators of interest for analysis.\index{analysis variables}
 Before constructing new indicators,
-you must check and double-check units, scales, and value assignment of each variable that will be used.
+you must check and double-check units, scales, and value assignments of each variable that will be used.
 This is when you will use the knowledge
 of the data and the documentation developed during cleaning the most.
 First, check that all categorical variables have the same value assignment,
 such that labels and levels have the same correspondence across variables that use the same options.
 For example, it's possible that in one question \texttt{0} means ``no'' and \texttt{1} means ``yes'',
-while in another one the same answers were coded as \texttt{1} and \texttt{2}.
+while in another one the same answers were coded as \texttt{1} and \texttt{2}.\index{binary variables}
 (We recommend coding binary questions as either \texttt{1} and \texttt{0} or \texttt{TRUE} and \texttt{FALSE},
 so they can be used numerically as frequencies in means and as dummies in regressions.
-This often implies re-expressing categorical variables like \texttt{gender} to binary variables like \texttt{woman}.)
+This often implies re-expressing categorical variables like \texttt{gender} as binary variables like \texttt{woman}.)
 Second, make sure that any numeric variables you are comparing
 are converted to the same scale or unit of measure:
 you cannot add one hectare and two acres and get a meaningful number.
@@ -238,7 +238,7 @@ Adding notes to each variable will make your dataset more user-friendly.
 At this point, you will also need to decide
 how to handle any outliers or unusual values identified during data cleaning.
 How to treat outliers is a research question.\sidenote{
-	\url{https://dimewiki.worldbank.org/Variable_Construction\#Dealing_with_outliers}}
+	\url{https://dimewiki.worldbank.org/Variable_Construction\#Dealing_with_outliers}}\index{outliers}
 There are multiple possible approaches,
 and the best choice for a particular case
 will depend on the objectives of the analysis.
@@ -264,15 +264,16 @@ Our team created \texttt{iefieldkit}'s \texttt{iecodebook append} subcommand
 % to-do % -----------------------------------------------------------------
 % \sidenote{\url{STATA JORUNAL ARTICLE}}
 % -------------------------------------------------------------------------
-to help you reconcile and append data from cleaned survey rounds.
+to help you reconcile and append data from cleaned survey rounds
+or similar data collected from different contexts.\index{\texttt{iefieldkit}}\index{\texttt{iecodebook}}
 This is done by completing an Excel sheet to indicate what changes in
-names, value assignments and value labels should be made so the data is consistent across rounds or settings.\sidenote{
+names, value assignments, and value labels should be made so the data is consistent across rounds or settings.\sidenote{
   See \citet{daniels2017use} for an example.}
 By doing so, you are also creating helpful documentation about your data work.
 % to-do % --------------------------------------------------------
 % See XXX for an example of a Stata do-file uses iecodebook append
 % ----------------------------------------------------------------
-Once rounds are consistently appended,
+Once data tables are consistently appended,
 adapt your construction script so it can be used on the complete panel dataset.
 In addition to preventing inconsistencies and documenting your work,
 this process will also save you time and give you an opportunity to review your original code.
@@ -306,7 +307,7 @@ add comments explaining in human language what you are doing and why.
 This is a crucial step both to prevent mistakes and to guarantee transparency.
 To make sure that these comments can be more easily navigated,
 it is wise to start writing a variable dictionary as soon as you begin making changes to the data.\sidenote{
-	For an example of what a published data dictionary looks like, see Appendix A in \cite{jones2019factor}}
+	See \citet{jones2019factor} for an example.}
 Carefully record how specific variables have been combined, recoded, and scaled,
 and refer to those records in the code.
 
@@ -339,7 +340,7 @@ We focus on how to structure data analysis code and files, rather than how to co
 \subsection{Organizing analysis code}
 
 % Exploratory vs final data analysis
-The analysis stage usually starts with a process we call \textbf{exploratory data analysis}.
+The analysis stage usually starts with a process we call \textbf{exploratory data analysis}.\index{exploratory data analysis}
 This is when you are first looking for patterns in your data,
 creating descriptive graphs and tables,
 and trying different tests to understand your results.
@@ -355,9 +356,9 @@ and not loading a fresh dataset before each analysis task.
 % Write independent analysis scripts
 To avoid mistakes, it's important to take the time
 to organize the code that you want to keep, that is,
-the final analysis code, in a clean manner.
+the final analysis code, in an organized manner.
 The result is a curated set of polished scripts that
-will be part of a reproducibility package.
+will be part of a reproducibility package.\index{reproducibility package}
 A well-organized analysis script starts with a completely fresh workspace
 and, for each output it creates, explicitly loads data before analyzing it.
 This setup encourages data manipulation to be done earlier in the workflow
@@ -365,9 +366,8 @@ This setup encourages data manipulation to be done earlier in the workflow
 This also prevents the common problem of having analysis scripts
 that depend on other analysis scripts being run before them.
 Such dependencies tend to require manual instructions
-for all necessary chunks of code to be run in the right order,
-which is a nightmare for reproducibility.
-We encourage you to write each task so
+for all necessary chunks of code to be run in the right order.
+We encourage you to code each task so
 it is completely independent of all other code,
 except for the analysis master script.
 You can go as far as coding every output in a separate script.
@@ -409,7 +409,7 @@ as you will constantly re-order them during data analysis.
 
 % Useful resources for data visualization
 \textbf{Data visualization}\sidenote{\url{
-		https://dimewiki.worldbank.org/Data\_visualization}} \index{data visualization}
+		https://dimewiki.worldbank.org/Data\_visualization}}\index{data visualization}
 is increasingly popular,
 and is becoming a field in its own right.\cite{healy2018data,wilke2019fundamentals}
 Whole books have been written on how to create good data visualizations,
@@ -428,7 +428,7 @@ but it is well worth reviewing the graphics manual.\sidenote{\url{
 		https://www.stata.com/manuals/g.pdf}}
 For an easier way around it,
 you can use built-in and user-written graph schemes.\sidenote{
-	\textcolor{red}{add link to the wiki}}
+	\url{https://dimewiki.worldbank.org/Data_visualization}}
 If you are an R user, the \textit{R Graphics Cookbook}
 is a great resource for the its popular visualization package \texttt{ggplot}\sidenote{
 	\url{https://r-graphics.org} and
@@ -441,13 +441,15 @@ and \texttt{plotly} to name a few.\sidenote{
 	\url{https://rstudio.github.io/leaflet} and
 	\url{https://plot.ly/r}}
 We have no intention of creating an exhaustive list,
-but these are good places to start.
+but these are good places to start.\sidenote{
+  \url{https://dimewiki.worldbank.org/Checklist:\_Reviewing\_Graphs}}
 
 % Writing data viz code
 We attribute some of the difficulty of creating good data visualization
 to the difficulty of writing code to create them.
 Making a visually compelling graph would already be hard enough if
-you didn't have to go through many rounds of googling to understand a command.
+you didn't have to go through many rounds of searching and reading help files 
+to understand a command's graphical options syntax.
 The trickiest part of using plotting commands is getting the data into the right format.
 Though both Stata and R have plotting functions that graph summary statistics,
 a good rule of thumb is to ensure that each
@@ -462,8 +464,7 @@ our team has developed a few resources to facilitate this workflow.
 First of all, we maintain a \textbf{Stata Visual Library}\sidenote{
 	\url{https://worldbank.github.io/Stata-IE-Visual-Library}},
 which has examples of graphs created in Stata and curated by us.\sidenote{
-	A similar resource for R is \textit{The R Graph Gallery}.
-	\\ \url{https://www.r-graph-gallery.com}}
+	A similar resource for R is \textit{The R Graph Gallery}: \url{https://www.r-graph-gallery.com}}
 The Stata Visual Library includes example datasets to use with each do-file,
 so you get a good sense of what your data should look like
 before you can start writing code to create a visualization.
@@ -486,7 +487,9 @@ to answer research questions and present answers.
 Though it is best to be transparent about different
 specifications tried and tests performed,
 only a few will ultimately be considered ``main results''.
-These will be exported from the statistical software.
+These will be \textbf{exported}\sidenote{
+  \textbf{Exporting results:} The creation of publication-ready representations of results.}\index{exporting results} 
+from the statistical software.
 That is, they will be saved as tables and figures in format that is easier to interact with.
 For example, saving graphs as images will allow your team to quickly see them,
 as well as to add them as exhibits to other documents.
@@ -524,7 +527,7 @@ which may cause slow down the cloud syncing.
 There may be exceptions to this general rule
 depending on the Git client you are using.
 GitHub Desktop, for example,
-displays changes in common binary image formats such as \texttt{png}
+displays changes in common binary image formats such as PNG files
 in an accessible manner.
 
 % Tracking scripts and their outputs
@@ -554,7 +557,7 @@ as well as all outputs created by that script.
 
 % File formats
 Knowing how your code outputs will be used will help you decide the best format to export them.
-You can typically use the same command to save figures into different formats,
+You can often save figures into different formats,
 such as \texttt{.eps}, \texttt{.png}, \texttt{.pdf} or \texttt{.jpg}.
 However, the decision between using Office Suite software such as Word and Power Point
 versus {\LaTeX} and other plain text formats may influence how you write your code,
@@ -562,7 +565,7 @@ as this choice often implicates in the use of a particular command.
 We strongly recommend that you chose software to create final products
 that can be linked to raw outputs in such a way that they are updated
 in the paper or presentation every time changes are made to them.
-We broadly call files that have this feature \textbf{dynamic documents},
+We broadly call files that have this feature \textbf{dynamic documents},\index{dynamic documents}
 and they will be discussed in more detail in the final section of this chapter.
 
 
@@ -584,9 +587,9 @@ You may think that it's not worth coding a small formatting adjustment,
 but you will inevitably need to make changes to the output,
 and automating them will save you time by the end of the process.
 (However, don't spend much time formatting tables and graphs until
-you have come to a decision about which will be used for your final product.)\sidenote{
+you have come to a decision about which will be used for your final product.\sidenote{
 	For a more detailed discussion on this, including different ways to export tables from Stata,
-	see \url{https://blogs.worldbank.org/impactevaluations/nice-and-fast-tables-stata}}
+	see \url{https://blogs.worldbank.org/impactevaluations/nice-and-fast-tables-stata}})
 Polishing final outputs can be a time-consuming process,
 and you want to do it as few times as possible.
 
@@ -618,15 +621,15 @@ which are created by specifying the desired extension.
 Whichever format you decide to use,
 remember to always specify the file extension explicitly.
 For tables, there are fewer file format options.
-Given our recommendation to use \textbf{dynamic documents},
-which will be discussed in more detail both in the next section and in chapter 7,
+Given our recommendation to use \textbf{dynamic documents},\index{dynamic documents}
+which will be discussed in more detail both in the next section and in Chapter 7,
 exporting tables to \texttt{.tex} is preferred.
 Excel \texttt{.xlsx} and \texttt{.csv} are also commonly used,
-but require the extra step of copying the tables into the final output.
+but often require the extra step of copying the tables into the final output.
 The \texttt{ietoolkit} package includes two commands to export formatted tables,
-automating the creation of common outputs and saving time for research.
+automating the creation of common outputs and saving time for research.\index{\texttt{ietoolkit}}
 \texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/iebaltab}}
-creates and exports balance tables to Excel or {\LaTeX}.
+creates and exports balance tables to Excel or {\LaTeX}.\index{{\LaTeX}}
 \texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/ieddtab}}
 does the same for difference-in-differences regressions.
 
@@ -642,13 +645,15 @@ Make sure labels and notes cover all relevant information
 included in your code and comments that are not otherwise visible in the output.
 Examples of information that should be included in labels and notes include sample,
 unit of observation, unit of measurement, and variable definition.\sidenote{
-	\url{https://dimewiki.worldbank.org/Checklist:\_Reviewing\_Graphs} and
 	\url{https://dimewiki.worldbank.org/Checklist:\_Submit\_Table}}
 
 \section{Preparing dynamic documents}
 
 % Intro: what it is and why to use it
-Dynamic documents are a broad class of tools that enable a streamlined, reproducible workflow.
+\textbf{Dynamic documents}\sidenote{
+  \textbf{Dynamic documents:} File types that include direct references
+  to exported materials and update them in the output automatically.}\index{dynamic documents}
+are a broad class of tools that enable a streamlined, reproducible workflow.
 The term ``dynamic'' can refer to any document-creation technology
 that allows the inclusion of explicitly encoded linkages to raw output files.
 This means that, whenever outputs are updated,
@@ -677,8 +682,8 @@ These types of dynamic document tools are typically best used by the team member
 and can be great for creating exploratory analysis reports as you work on them,
 or paper appendices including large chunks of code and dynamically created graphs and tables.
 RMarkdown\sidenote{\url{https://rmarkdown.rstudio.com}} is the most widely adopted solution in R.
-Stata offers a built-in package for dynamic documents, \texttt{dyndoc}\sidenote{\url{
-		https://www.stata.com/manuals/rptdyndoc.pdf}},
+Stata offers a built-in package for dynamic documents, \texttt{dyndoc},\sidenote{\url{
+		https://www.stata.com/manuals/rptdyndoc.pdf}}
 and user-written commands such as \texttt{markstat},\sidenote{\url{https://data.princeton.edu/stata/markdown}}
 \texttt{webdoc},\sidenote{\url{http://repec.sowi.unibe.ch/stata/webdoc}} and
 \texttt{texdoc}.\sidenote{\url{http://repec.sowi.unibe.ch/stata/texdoc}}
@@ -709,12 +714,12 @@ and are version controlled.
 However, as with other Markdown options, the need to learn a new syntax may
 discourage take up among team members who don't work with GitHub more extensively.
 
-\subsection{Dynamic research outputs: the case for {\LaTeX}}
+\subsection{Using {\LaTeX} for dynamic research outputs}
 
 % What is LaTeX
 Though formatted text software such as Word and PowerPoint are still prevalent,
 researchers are increasingly choosing to prepare final outputs
-like documents and presentations using {\LaTeX}.\index{{\LaTeX}}.
+like documents and presentations using {\LaTeX}.\index{{\LaTeX}}
 {\LaTeX} is a document preparation and typesetting system with a unique code syntax.\sidenote{See
 	\url{https://www.latex-project.org} and \url{https://github.com/worldbank/DIME-LaTeX-Templates}.}
 While {\LaTeX} has a significant learning curve,
@@ -725,7 +730,8 @@ Therefore, we recommend that you learn {\LaTeX} as soon as you are able to.
 
 % Advantages of LaTeX
 The main advantage of using {\LaTeX} is that it updates outputs every time the document is compiled,
-while still allowing for text to be added with a relative simple syntax and user-friendly interface.
+while still allowing for text to be added
+and extensively formatted to publication-quality standards.
 Additionally, because of its popularity in the academic community,
 social scientists are more familiar with it than other dynamic documents tools,
 so the cost of entry for a team is often relatively low.
@@ -735,8 +741,6 @@ Creating documents in {\LaTeX} using an integrated writing environment such as T
 is great for outputs that focus mainly on text
 and include figures and tables that may be updated.
 It is good for adding small chunks of code into an output.
-This book, for example, was written in {\LaTeX} and managed on GitHub.\sidenote{\url{
-		https://github.com/worldbank/d4di}}
 Finally, some journals make {\LaTeX} templates available,
 so papers can be more easily be formatted into their specific layout.
 

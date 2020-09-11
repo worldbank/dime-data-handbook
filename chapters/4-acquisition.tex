@@ -3,8 +3,6 @@
 \begin{fullwidth}
 High-quality data is essential to most modern development research.
 Many research questions require the team to collect original data,
-because no source of publicly available data measures the
-Many research questions require novel data,
 because no source of publicly available data addresses the
 inputs or outcomes of interest for the relevant population.
 Data acquisition can take many forms, including:
@@ -12,7 +10,7 @@ primary data generated through surveys;
 private sector partnerships granting access to new data sources, such as administrative and sensor data;
 digitization of paper records, including administrative data; web scraping;
 primary data capture by unmanned aerial vehicles or other types of remote sensing;
-or novel integration of various types of datasets, e.g. combining survey and sensor data.
+or novel integration of various types of datasets, such as combining survey and sensor data.
 Much of the recent push toward credibility in the social sciences has focused on analytical practices.
 However, credible development research often depends, first and foremost, on the quality of the raw data.
 For data work to be reproducible,
@@ -43,12 +41,12 @@ ethical agreements that allow  access to personal information for research purpo
 
 \end{fullwidth}
 
-\section{Acquiring data}
+\section{Acquiring data from research partners}
+
 Clearly establishing and documenting data access is critical for reproducible research.
 This section provides guidelines for receiving data from development partners,
 establishing data ownership,
 and documenting the research team's right to use the data.
-
 It is the researchers' responsibility to respect the rights
 of people who own the data and the people who are described by it;
 but also to make sure that information is as available and accessible as possible.
@@ -72,16 +70,17 @@ in some cases require a stricter level of security than initially proposed by th
 
 At this stage, it is very important to assess
 documentation and cataloging of the data and associated metadata.
-It is not always clear what pieces of information will jointly constitute a ``dataset'',
+It is not always clear what pieces of information will jointly constitute a research dataset,
 and many of the datasets you receive will not be organized for research.
 You should always retain the original data exactly as received
 alongside a copy of the corresponding ownership agreement or license.
-You should make a simple ``readme'' document noting the date of receipt,
+You should make a simple \texttt{README} document noting the date of receipt,\index{\texttt{README}}
 the source and recipient of the data,
 and a brief description of each file received.
 All too often data will be provided as vaguely-named spreadsheets,
 or digital files with non-specific titles,
 and documentation will be critical for future access and reproducibility.
+
 Eventually, you will want to make sure that you are creating a set of documents
 that can be properly submitted to a data catalog and given a reference and citation.
 The metadata -- documentation about the data -- is critical for future use of the data.
@@ -96,7 +95,7 @@ World Bank's Microdata Catalog.\sidenote{\url{https://microdata.worldbank.org}}
 
 As soon as the desired pieces of information are stored together,
 think about which ones are the components of what you would call a dataset.
-Often, when you are recieving ``data'' from a partner,
+Often, when you are recieving data from a partner,
 even highly-structured materials such as registers or records
 are not, as recieved, equivalent to a research dataset,
 and require initial cleaning, restructuring, or recombination
@@ -107,7 +106,7 @@ but you also want to information granular as much as possible,
 particularly when there are varying units of observation.
 There usually won't be a single correct way to answer this question,
 and the research team will need to decide how the materials recieved.
-Soon, you will begin to build datasets from this set of information,
+Soon, you will begin to build research datasets from this set of information,
 and these will become your original raw data,
 which will be the material published, released, and cited as your raw dataset.
 These first datasets created from the recieved materials
@@ -119,7 +118,7 @@ while you are in close contact with them.
 \subsection{Data ownership}
 Except in the case of primary surveys funded by the research team,
 the data is typically not owned by the research team.
-Rather, they must enter into data licensing agreements
+Rather, they must enter into data licensing agreements\index{data licensing}
 to access the data and publish research outputs based on it.
 These agreements should make clear from the outset whether the
 research team can make the original data, any portion thereof, or derivatives\sidenote{
@@ -127,7 +126,8 @@ research team can make the original data, any portion thereof, or derivatives\si
 	visualizations etc. created from the original data.}
 of the data, public.
 
-Data ownership\sidenote{need to add DIME Wiki page} can sometimes be challenging to establish,
+Data ownership\sidenote{\url{https://dimewiki.worldbank.org/Data_Ownership}}\index{data ownership}
+can sometimes be challenging to establish,
 as various jurisdictions have differing laws regarding data and information,
 and the research team may have their own information regulations.
 In some, data is implicitly owned by the people who it is about.
@@ -149,6 +149,7 @@ If the research team is not collecting the data directly --
 for example, if a government, private company, or research partner is doing the data collection --
 make sure that you have an explicit agreement
 about who owns the resulting data.
+
 The contract for data collection should include specific terms
 as to the rights and responsibilities of each stakeholder.
 It must clearly stipulate which party owns the data produced,
@@ -166,23 +167,27 @@ Institutional Review Board (IRB)\sidenote{
 or applicable local authority.
 Finally, it should include policies on reuse, storage, and retention or destruction of data.
 
-Research teams that generate their own data must also consider data ownership downstream,
-the terms they will use to release that data to other researchers or to the general public.
-Will the team publicly release the data in full (removing personal identifiers)?
-Would the team be okay with it being stored on servers anywhere in the world,
-even ones that are owned by corporations or governments in other countries?
-Would the team prefer to decide permission on a case-by-case basis, dependent on specific proposed uses?
-Would the team expect that users of your data cite you or give you credit,
-or require users in turn to release
-their derivative datasets or publications under similar licenses?
-Whatever your answers are to these questions,
-make sure the agreement or contract
-you use to acquire the data
-and the license you issue to accompany its release
-specifically details those requirements.
+Research teams that acquire original data must also consider data ownership downstream,
+through the terms they will use to release that data to other researchers or to the general public.
+The team should consider whether they can publish the data in full after removing personal identifiers.
+For example, the team must consider whether it would be acceptable for
+their data to be copied and stored on servers anywhere in the world,
+whether they would prefer to manage permissions on a case-by-case basis,
+and whether they expect that data users would cite or credit them.
+Similarly, the team can require users in turn to release
+their derivative datasets or publications under similar licenses,
+or offer use without restriction.
+There are simple license templates for offering many of these permissions,
+but, at the planning stage, the team should make sure
+that all licensing agreements, data collection contracts,
+and informed consent processes
+used to acquire the data specifically detail those future uses.
 
 \subsection{Data licensing}
-Data licensing is the formal act of the dataset owner
+
+Data licensing\sidenote{
+  \url{https://dimewiki.worldbank.org/Data_License_Agreement}}
+is the formal act of the dataset owner
 giving some data rights to a specific user,
 while retaining ownership of the dataset.
 If you are not the owner of the dataset you want to analyze,
@@ -193,7 +198,7 @@ and what terms-of-use you require.
 
 If the research team requires access to existing data for novel research,
 terms of use should be agreed on with the data owner,
-typically through a data licensing agreement\sidenote{need to add a DIME wiki page}.
+typically through a data licensing agreement.
 Keep in mind that the data owner is likely not highly familiar
 with the research process, and therefore may be surprised
 at some of the things you want to do if you are not clear up front.
@@ -206,30 +211,30 @@ Make sure that the license you obtain from the data owner allows these uses,
 and that you consult with the owner
 if you foresee exceptions with specific portions of the data.
 
-The World Bank has a template Data License Agreement which DIME follows.\sidenote{
-  \url{https://dimewiki.worldbank.org/Data_License_Agreement}}
+The World Bank has a template Data License Agreement which DIME follows.
 The template specifies the specific objectives of the data sharing,
-and whether the data can be used only for the established purpose or for other objectives
-consistent with the mandates of the signatory organizations.
-It establishes classifies the data into four access categories, depending on who can access it, and whether case-by-case authorization is needed.
-The data provider may impose similar restrictions to sharing derivative works and any or all of the metadata.
+and whether the data can be used only for the established purpose
+or for other objectives after it is obtained.
+It classifies the data into one of four access categories,
+depending on who can access the data by default
+and whether case-by-case authorization for access is needed.
+The data provider may impose similar restrictions
+to sharing derivative data and any or all of the associated metadata.
 The template also specifies the required citation for the data.
-While you do not need to use the World Bank's template or its categories if you do not work on a World Bank project,
+While you do not need to use the World Bank's template
+or its access categories if you do not work on a World Bank project,
 we still think it is important that you use this information in two ways.
-First, while you do not have to use the World Bank's template,
-make sure to base your Data License Agreement using some template.
-Second, we strongly recommend you to categorize using the categories above,
-or some variation of it.
-Then you should have different procedures for each category,
-or use one procedure appropriate for the strictest category for all your data.
-In addition to what we are suggesting here,
-the data provider you work with may impose similar restrictions to sharing derivative works
-and any or all of the metadata.
+First, make sure to base your Data License Agreement on some template.
+Hand-written agreements can leave many legal ambiguities or gaps
+where the permissions given to the research team are unclear or incomplete.
+Second, we strongly recommend you to categorize data using some variation of this system.
+Then you should have different standard procedures for each category,
+so that the intended processes for handling the data are clear.
 
 %------------------------------------------------
-\section{Collecting data using electronic surveys}
+\section{Collecting original data using electronic surveys}
 In this section, we detail specific considerations
-for acquiring high-quality data through surveys.
+for acquiring high-quality data through direct surveys of study subjects.
 There are many survey software options available to researchers,
 and the market is rapidly evolving.
 There are also many excellent resources on questionnaire design and field supervision,
@@ -291,17 +296,19 @@ on paper and electronic survey instruments.
 Finally, a readable paper questionnaire is a necessary component of data documentation,
 since it is difficult to work backwards from the survey program to the intended concepts.
 
-The workflow for designing a questionnaire will feel much like writing an essay, or writing pseudocode:
+The workflow for designing a questionnaire will feel much like writing an essay:
 begin from broad concepts and slowly flesh out the specifics.\sidenote{
-  \url{https://dimewiki.worldbank.org/wiki/Questionnaire_Design}}
+  \url{https://dimewiki.worldbank.org/Questionnaire_Design}}\index{questionnaire design}
 It is essential to start with a clear understanding of the
 \textbf{theory of change}\sidenote{
-  \url{https://dimewiki.worldbank.org/Theory\_of\_Change}}
-and \textbf{research design} for your project.
+  \url{https://dimewiki.worldbank.org/Theory\_of\_Change}}\index{theory of change}
+and \textbf{research design}\sidenote{
+  \url{https://dimewiki.worldbank.org/Research_Design}}\index{research design}
+  for your project.
 The first step of questionnaire design is to list key outcomes of interest,
 as well as the main covariates to control for and any variables needed for the specific research design.
 The ideal starting point for this is a \textbf{pre-analysis plan}.\sidenote{
-  \url{https://dimewiki.worldbank.org/Pre-Analysis\_Plan}}
+  \url{https://dimewiki.worldbank.org/Pre-Analysis\_Plan}}\index{pre-analysis plan}
 
 Use the list of key outcomes to create an outline of questionnaire \textit{modules}.
 Do not number the modules; instead use a short prefix
@@ -319,45 +326,48 @@ might be repeated for each crop the household cultivated.
 Each module should then be expanded
 into specific indicators to observe in the field.\sidenote{
   \url{https://dimewiki.worldbank.org/Literature\_Review\_for\_Questionnaire}}
-At this point, it is useful to do a  \textbf{content-focused pilot}\sidenote{
-  \url{https://dimewiki.worldbank.org/Piloting\_Survey\_Content}}
-of the questionnaire.
-Doing this pilot with a pen-and-paper questionnaire encourages more significant revisions,
-as there is no need to factor in time costs of re-programming,
-and as a result improves the overall quality of the survey instrument.
-Questionnaires must also include ways to document the reasons for \textbf{attrition} and
+Questionnaires for impact evaluation
+must also include ways to document the reasons for \textbf{attrition} and
 treatment \textbf{contamination}.\index{attrition}\index{contamination}
 These are essential data components for completing CONSORT records,
 a standardized system for reporting enrollment, intervention allocation, follow-up,
 and data analysis through the phases of a randomized trial.\cite{begg1996improving}
 
+
+At this point, it is useful to do a \textbf{survey pilot}\sidenote{
+ \url{https://dimewiki.worldbank.org/Piloting\_Survey\_Content}}\index{survey pilot}
+of the questionnaire.
 A comprehensive survey pilot is a critical stage in survey design.\sidenote{
-	\url{https://dimewiki.worldbank.org/Survey\_Pilot}} 
+	\url{https://dimewiki.worldbank.org/Survey\_Pilot}}
 The pilot must be done out-of-sample,
 but in a context as similar as possible to the study sample.
-The survey pilot includes three steps: 
+The survey pilot includes three steps:
 a \textbf{pre-pilot}, a \textbf{content-focused pilot}, and a \textbf{data-focused pilot}.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Structuring\_a\_Survey\_Pilot}} 
-The first step is a pre-pilot. 
+	\url{https://dimewiki.worldbank.org/Structuring\_a\_Survey\_Pilot}}
+The first step is a \textbf{pre-pilot}.
 The pre-pilot is a qualitative exercise, done early in the questionnaire design process.
 The objective is to answer broad questions about how to measure key outcome variables,
-and gather qualitative information relevant to any of the planned survey modules.  
+and gather qualitative information relevant to any of the planned survey modules.
 A pre-pilot is particularly important when designing new survey instruments.
-The second step is a content-focused pilot\sidenote{
+
+The second step is a \textbf{content-focused pilot}\sidenote{
   \url{https://dimewiki.worldbank.org/Piloting\_Survey\_Content}}.
 The objectives at this stage are to improve the structure and length of the questionnaire,
 refine the phrasing and translation of specific questions,
 and confirm coded response options are exhaustive.\sidenote{
 	\url{https://dimewiki.worldbank.org/index.php?title=Checklist:\_Refine\_the\_Questionnaire\_(Content)}}
 In addition, it is an opportunity to test and refine all survey protocols,\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Piloting\_Survey_Protocols}}
+	\url{https://dimewiki.worldbank.org/Piloting\_Survey_Protocols}}
 such as how units will be sampled or pre-selected units identified.
 The content-focused pilot is best done on pen and paper, before the questionnaire is programmed,
 because changes at this point may be deep and structural,
 which are hard to adjust in code.
-The final stage is a data-focused pilot.
-The objective at this stage is to refine the questionnaire programming; this is discussed in more detail in the following section.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Timeline\_of\_Survey\_Pilot}}
+After testing the content, proceed to program a draft version
+of the electronic survey instrument.
+The final stage is a \textbf{data-focused pilot}.
+The objective at this stage is to refine the questionnaire programming;
+this is discussed in more detail in the following section.\sidenote{
+	\url{https://dimewiki.worldbank.org/Timeline\_of\_Survey\_Pilot}}
 
 
 \subsection{Designing surveys for electronic deployment}
@@ -365,13 +375,13 @@ Once the team is satisfied with the content and structure of the survey,
 it is time to move on to implementing it electronically.
 Electronic data collection has great potential
 to simplify survey implementation and improve data quality.
-Electronic questionnaires are typically created
-in a spreadsheet (e.g. Excel or Google Sheets)
+Electronic questionnaires are typically developed
+in a spreadsheet (usually using Excel or Google Sheets)
 or a software-specific form builder,
 all of which are accessible even to novice users.\sidenote{
   \url{https://dimewiki.worldbank.org/Questionnaire\_Programming}}
 We will not address software-specific form design in this book;
-rather, we focus on coding conventions that are important to follow
+rather, we focus on coding and design conventions that are important to follow
 for electronic surveys regardless of software choice.\sidenote{
   \url{https://dimewiki.worldbank.org/SurveyCTO\_Coding\_Practices}}
 Survey software tools provide a wide range of features
@@ -384,8 +394,12 @@ to take advantage of electronic survey features
 and ensure that the exported data
 is compatible with your statistical software.
 
-From a data perspective, questions with pre-coded response options
-are always preferable to open-ended questions.
+From a data perspective, questions with \textbf{coded response options}\sidenote{
+  \textbf{Coded response options:} Responses to questions which require respondents
+  to select from a list of choices, corresponding to underlying numerical response codes.}\index{coded response options}
+are always preferable to \textbf{open-ended questions}.\sidenote{
+  \textbf{Open-ended questions:} Responses to questions which do not
+  impose any structure on the response, typically recorded as free-flowing text.}\index{open-ended questions}
 The content-based pilot is an excellent time to ask open-ended questions
 and refine fixed responses for the final version of the questionnaire --
 do not count on coding up lots of free text after a full survey.
@@ -393,17 +407,18 @@ Coding responses helps to ensure that the data
 will be useful for quantitative analysis.
 Two examples help illustrate the point.
 First, instead of asking ``How do you feel about the proposed policy change?'',
-use techniques like \textbf{Likert scales}\sidenote{
-  \textbf{Likert scale:} an ordered selection of choices indicating the respondent's level of agreement or disagreement with a proposed statement.}.
-Second, if collecting data on medication use or supplies, you could collect:
-the brand name of the product; the generic name of the product; the coded compound of the product;
-or the broad category to which each product belongs (antibiotic, etc.).\sidenote{
+use techniques like \textbf{Likert scales}.\sidenote{
+  \textbf{Likert scale:} an ordered selection of choices indicating the respondent's level of agreement or disagreement with a proposed statement.}
+Second, if collecting data on things like medication use or food supplies, you could collect:
+the brand name of the product; the generic name of the product; a coded identifier for the item;
+or the broad category to which each product belongs
+(``antibiotics'' or ``staple foods'', for example).\sidenote{
   See \citet{wafula2017examining} for an example.}
 All four may be useful for different reasons,
 but the latter two are likely to be the most useful for rapid data analysis.
-The coded compound requires providing a translation dictionary to field staff,
+The coded identifiers require providing a translation dictionary to field staff,
 but enables automated rapid recoding for analysis with no loss of information.
-The generic class requires agreement on the broad categories of interest,
+The broad category requires agreement on the groups of interest,
 but allows for much more comprehensible top-line statistics and data quality checks.
 Rigorous field testing is required to ensure that answer categories are comprehensive;
 however, it is best practice to include an \textit{other, specify} option.
@@ -426,7 +441,7 @@ formats like \texttt{hq\_1} are hard to remember and unpleasant to reorder,
 but formats like \texttt{hq\_asked\_about\_loans} quickly become cumbersome.
 We recommend using descriptive names with clear prefixes so that variables
 within a module stay together when sorted alphabetically.\sidenote{
-  \url{https://dimewiki.worldbank.org/Variable_Names}}
+  \url{https://dimewiki.worldbank.org/Variable_Names}}\index{variable naming}
 Variable names should never include spaces or mixed cases
 (we prefer all-lowercase naming).
 Take special care with the length: very long names will be cut off in some softwares,
@@ -438,26 +453,7 @@ In the case of follow-up surveys, numbering can quickly become convoluted,
 too often resulting in uninformative variables names like
 \texttt{ag\_15a}, \texttt{ag\_15\_new}, \texttt{ag\_15\_fup2}, and so on.
 
-\subsection{Programming electronic questionnaires}
-
-The starting point for questionnaire programming
-is a complete paper version of the questionnaire,
-piloted for content and translated where needed.
-Doing so reduces version control issues
-that arise from making significant changes
-to concurrent paper and electronic survey instruments.
-Changing structural components of the survey
-after programming has been started
-often requires the coder to substantially re-work the entire code.
-This is because the more efficient way to code surveys is non-linear.
-When programming, we do not start with the first question and proceed through to the last question.
-Instead, we code from high level to small detail,
-following the same questionnaire outline established at design phase.
-The outline provides the basis for survey pseudocode,
-allowing you to start with high level structure and work down to the level of individual questions.
-This will save time and reduce errors,
-particularly where sections or fields
-are interdependent or repeated in complex ways.
+\subsection{Using electronic survey features}
 
 Electronic surveys are more than simply
 a paper questionnaire displayed on a mobile device or web browser.
@@ -489,8 +485,8 @@ the survey instruments will successfully compile.
 This is not sufficient, however, to ensure that the resulting dataset
 will load without errors in your data analysis software of choice.
 DIME Analytics developed the \texttt{ietestform} command,\sidenote{
-  \url{https://dimewiki.worldbank.org/ietestform}}
-part of the Stata package \texttt{iefieldkit},
+  \url{https://dimewiki.worldbank.org/ietestform}}\index{\texttt{ietestform}}
+part of the Stata package \texttt{iefieldkit},\index{\texttt{iefieldkit}}
 to implement a form-checking routine for \textbf{SurveyCTO},
 a proprietary implementation of the open source \textbf{Open Data Kit (ODK)} software.
 Intended for use during questionnaire programming and before field work,
@@ -516,137 +512,155 @@ so that any debugging or other revisions to the electronic survey instrument
 can be made at the end of each day and tested the following, until no further field errors arise.
 The data-focused pilot should be done in advance of enumerator training.
 
-\subsection{Finalizing data collection}
-
-When all data collection is complete,
-the survey team should prepare a final field report,
-which should report reasons for any deviations between the original sample and the data collected.
-Identification and reporting of \textbf{missing data} and \textbf{attrition}
-is critical to the interpretation of survey data.
-It is important to structure this reporting in a way that not only
-groups broad rationales into specific categories
-but also collects all the detailed, open-ended responses
-to questions the field team can provide for any observations that they were unable to complete.
-This reporting should be validated and saved alongside the final raw data, and treated the same way.
-This information should be stored as a dataset in its own right
--- a \textbf{tracking dataset} -- that records all events in which survey substitutions
-and attrition occurred in the field and how they were implemented and resolved.\sidenote{
-  See \citet{kondylis2020demand} for an example.}
-
 
 %------------------------------------------------
 \section{Handling data securely}
 
 All confidential data must be handled in such a way that only people specifically
 approved by an Institutional Review Board (IRB)
-are able to access the data.
-Data can be confidential for multiple reasons; two 
+are able to access the data.\index{Institutional Review Board (IRB)}
+Data can be confidential for multiple reasons; two
 very common reasons are that the data contains personally identifiable information (PII)\sidenote{
   \url{https://dimewiki.worldbank.org/Personally\_Identifiable\_Information\_(PII)}}
 or that the data owner has specified restricted access.
 
+\subsection{Basic principles of data encryption}
 
-\subsection{Encryption}
-
-\index{encryption}\textbf{Data encryption} is a group of methods that ensure that files are unreadable
+\textbf{Data encryption} is a group of tools and methods
+to ensure that confidential files are unreadable and unusable
 even if laptops are stolen, servers are hacked,
 or unauthorized access to the data is obtained in any other way.\sidenote{
-  \url{https://dimewiki.worldbank.org/Encryption}}
-Proper encryption is central to secure data handling, and can rarely be condensed into a single method,
+  \url{https://dimewiki.worldbank.org/Encryption}}\index{encryption}
+Proper encryption is central to secure data handling,
+and can rarely be condensed into a single tool or method,
 as the data will travel through many servers, devices, and computers
 from the source of the data to the final analysis.
 Encryption should be seen as a system
 that is only as secure as its weakest link.
-This section recommends a streamlined workflow,
+This section recommends a streamlined encryption workflow,
 so that it is easy as possible to make sure
-the weakest link is still sufficiently secure.
+the entire chain is easy to manage and is sufficiently secure.\sidenote{
+  For more details on the topics that follow,
+  including specific instructions for our recommended software,
+  see Pillar 4 of the DIME Standards repository: 
+  \url{https://github.com/worldbank/dime-standards/}}
 
-Data that has been encrypted is made readable again using decryption,
-and decryption requires a password or a key.
-Encryption make data files completely unusable to anyone without the specific decryption key,
-which is a higher level of security than password-protection.
-It is never secure to share passwords or keys by email,
-WhatsApp or other insecure modes of communication;
-instead, use a secure password manager.\sidenote{
-	\url{https://lastpass.com} or \url{https://bitwarden.com}
-	among many other. See the DIME Analytics guide to password managers
-  on the DIME Standards site: \url{https://github.com/worldbank/dime-standards/}}
-In addition to providing a way to securely share passwords,
-password managers also provide a secure location
-for long term storage of passwords and keys,
-whether they are shared or not.
-Make sure you store your keys with descriptive names,
-as they will be needed over the lifetime of a project.
+All encryption relies on a password or encryption key
+for both encrypting and decrypting information.
+Encryption makes data files completely unusable
+to anyone who obtains them if they do not have the specific decryption key.
+This is a higher level of security than most password-protection,
+because password-protected information is often readable
+if the password is bypassed or the storage server is compromised.
+You will need to share and store these keys carefully;
+if you lose them or cannot match them to encrypted information,
+the information is permanently lost.
+Therefore, you should treat access to encryption keys
+as equivalent to access to the confidential information.
+It is never secure to share these passwords or keys by email,
+WhatsApp or other common modes of communication;
+instead, use a secure password manager built for this purpose.
+
+There are two contexts for encryption you should be aware of.
+\textbf{Encryption-in-transit}\sidenote{
+	\url{https://dimewiki.worldbank.org/Encryption\#Encryption\_in\_Transit}}
+protects your data when it is sent over the internet.
+This is a standard, passive protection that almost all internet-based services use;
+you only need to worry about it if you are creating a custom transfer solution.
+\textbf{Encryption-at-rest}\sidenote{
+	\url{https://dimewiki.worldbank.org/Encryption\#Encryption\_at\_Rest}}.
+protects your data when it is stored on a server, computer, or drive.
 
 There are two main types of encryption algorithms and they are called
 \textbf{symmetric encryption}\sidenote{
 	\url{https://dimewiki.worldbank.org/Encryption\#Symmetric\_Encryption}}
 and \textbf{asymmetric encryption}\sidenote{
 	\url{https://dimewiki.worldbank.org/Encryption\#Asymmetric\_Encryption}}.
-The only difference you need to know is that the same key is used to both
-encrypt and decrypt the data in symmetric encryption,
-while in asymmetric encryption,
-one key in a key pair is used to encrypt the data,
-and the other key in the same pair is used to decrypt it.
-We will show how this difference can be utilized for different use cases common in research.
+In symmetric encryption,
+the same key is used to both encrypt and decrypt the data.
+In asymmetric encryption, one key is used to encrypt data,
+and another key from the same ``pair'' is used to decrypt it.
+You, as a user, need to keep track of these keys.
+While encryption keys for asymmetric encryption are often
+automatically provided to the devices recording or inputting information,
+only people listed on your IRB should have access to decryption keys
+or symmetric-encryption keys.
 
-
-Additionally, there are two contexts for encryption you should be aware of;
-\textbf{encryption-in-transit}\sidenote{
-	\url{https://dimewiki.worldbank.org/Encryption\#Encryption\_in\_Transit}}
-and \textbf{encryption-at-rest}\sidenote{
-	\url{https://dimewiki.worldbank.org/Encryption\#Encryption\_at\_Rest}}.
-Encryption-in-transit protects your data when in transit over the internet.
-It is easy to implement encryption-in-transit such that no input from the user is required,
-since the server and browser can keep track of the key for the short duration of the connection.
-All well-established data transfer services have this implemented and you rarely have to worry about it.
-However, if you are setting up a custom solution,
-it is important that you verify that it use encryption-in-transit,
-as without it, your data and credentials are very vulnerable.
-Encryption-at-rest protects your data when it is stored somewhere,
-for example on a server or on your computer.
-In contrast to encryption-in-transit,
-you as a user, need to keep track of the key.
-Only people listed on your IRB should be allowed to have access to this file.
-
-Many data-sharing and data-storage software providers will promote their services
-by advertising on-the-fly encryption and decryption.
-However, this is often only encryption-in-transit and not encryption-at-rest.
-Sometimes on-the-fly encryption involves encryption-at-rest,
-but then you have to verify how the encryption key is handled
-as individuals who are not approved by your IRB,
-such as tech support personnel,
-server administrators, and other third-party staff
-are not allowed to have access to the key.
-It is possible, in some enterprise versions of data sharing software,
-to set up appropriately secure on-the-fly encryption.
-However, that setup is advanced, and you should never trust it
+Typically, unless you have access to an approved
+enterprise version of data sharing software,
+you will need to set up encryption at rest for your data
+in two locations --
+server or web storage during data acquisition and local storage afterwards.
+You should never trust that this is automatically implemented
 unless a cybersecurity expert within your organization
-has specified what it can be used for.
+has specified that a specific service is appropriate to your use case.
 In all other cases you should follow the steps laid out in this section,
 where you set up your own encryption
 where you are in full control of who has access to the key.
 
+\subsection{Collecting and storing data securely}
 
-\subsection{Storing data securely}
+Most data collection software will automatically encrypt
+all data in transit (i.e., upload from field or download from server).
+However, it is necessary to ensure that confidential data
+are protected when stored on a server
+owned by the data collection software provider
+or which can be accessed by people not on your research team
+(including your local IT or system administrators).
+In most data collection platforms,
+encryption-at-rest needs to be explicitly enabled and operated by the user.
+When collecting data, the tablets or the browsers used for data collection
+should encrypt all information before submitting it to the server,
+and you should decrypt it only after downloading to your local machine.
+
+This is a perfect use case for \textbf{asymmetric encryption}
+where there are two keys, forming a ``public/private key pair''.
+The public key can safely be sent to all tablets or browsers
+so it can be used for encrypting the data before it is submitted to the server.
+Only the private key in the same key pair can then be used to decrypt that data
+so it can be accessed after it has been received.
+The private key should be kept secret and
+should not be shared with anyone not listed on the IRB.
+Again, you must store the key pair in a secure location,
+such as a secure note in a password manager,
+as there is no way to access your data if the private key is lost.
+If your data collection service allows you to browse data in the browser,
+then the encryption is only implemented correctly if you are asked for the key each time.
+
+The data security standards that apply
+when receiving confidential data from the field
+also apply when transferring confidential data to the field,
+such as sampling or enumeration lists containing PII.\index{data transfer}
+In some survey software,
+you can use the same encryption that allows you to receive data securely
+from the field, to also send confidential data,
+such as an identifying list of respondents, to the field.
+Otherwise, you will need to create a securely stored file,
+transfer it to the field team using an insecure tool,
+and have them decrypt the information locally
+using a key that is transferred using a secure password manager.
+This process will be more similar to that for securely \textit{storing} data,
+which we discuss next.
+
 % doesn't cover 'big' data
-The first thing you need to do before planning how to securely receive data,
-is to plan how to securely store data after you have received it.
+The first thing you need to do before planning how to securely send or receive data,
+is to plan how to securely store data after it has been transferred.
 Typically, you want to store your data so that you can decrypt and access it,
-interact with it and then decrypt it again.
+interact with it and then encrypt it again.
+(Usually, you will not want to \textit{edit} this data,
+but only extract non-sensitive pieces of it to an insecure location.)
 That is a perfect use case for \textbf{symmetric encryption}
-where the same key is used to both encrypt and decrypt your files.
-Think of this as a physical safe where you have one key
-used to both add content and access content.
+where the same key is used to both encrypt and decrypt your files.\index{symmetric encryption}
+Think of this type of encryption similarly to a physical safe,
+where you have one key which is used to both add and access contents.
 
-The equivalent to a safe in secure data storage is an encrypted folder,
-which you can set up using, for example, VeraCrypt.\sidenote{
-	\url{https://www.veracrypt.fr} described at
-	\url{https://github.com/worldbank/dime-standards}}
-You can interact with files in an encrypted folder, and modify themlike any unencrypted file,
-as long as you have the key.
+The equivalent to the safe in secure data storage is an encrypted folder,
+which you can set up using, for example, VeraCrypt.
+You can interact with files in an encrypted folder,
+and modify them like any unencrypted file,
+if and only if you have the key.
 This is an implementation of encryption-at-rest.
-There is absolutely no way to restore your data if you were to lose your key,
+There is absolutely no way to restore the data if you lose your key,
 so we cannot stress enough the importance of using a password manager,
 or equally secure solution, to store these encryption keys.
 
@@ -661,101 +675,14 @@ if you were to download a sample of the data --
 for example to develop your code on --
 then you need to remember to encrypt the data when stored on your computer.
 
-\subsection{Collecting data securely in the field}
-
-All common data collection software will automatically encrypt
-all data in transit (i.e., upload from field or download from server).
-However, it is also necessary to ensure that confidential data
-are protected when stored on a server owned by the data collection software provider.
-You should not assume that your data is encrypted-at-rest by default.
-In most data collection platforms,
-encryption-at-rest needs to be explicitly enabled and operated by the user.
-
-When collecting data you want the tablets or the browsers used for data collection
-to be able to encrypt all information before submitting it to the server.
-At the same time you do not want those devices to have any way of decrypting already submitted data.
-This is a perfect use case for \textbf{asymmetric encryption}
-where there are two keys, forming a public/private key pair.
-The public key can safely be sent to all tablets or browsers so it can be used for encrypting the data before it is submitted to a server.
-Only the private key in the same key pair can then be used to decrypt that data
-so it can be accessed after it has been received.
-The private key should be kept secret and should not be shared with anyone not listed on the IRB.
-Again, you must store the key pair in a secure location,
-such as a secure note in a password manager,
-as there is no way to access your data if the private key is lost.\sidenote{
-  DIME guidelines for encryption in SurveyCTO/ODK are part of the DIME Standards:
-  \url{https://github.com/worldbank/dime-standards/}}
-
-Data encrypted this way can securely pass
-through a server accessible by the data collection software provider
-or by your local IT team,
-and you should never decrypt it until it is downloaded on your computer.
-If your data collection service allows you to browse data in the browser,
-then the encryption is only implemented correctly if you are asked for the key each time.
-
-Finally, the data security standards that apply
-when receiving confidential data from the field
-also apply when transferring confidential data to the field.
-In some survey software,
-you can use the same encryption that allows you to receive data securely
-from the field, to also send confidential data,
-such as an identifying list of respondents, to the field.
-
-\subsection{Receiving or sharing data securely}
-
-If you receive confidential data from a partner organization
-or share confidential data with your research team over the internet,
-it must always be encrypted.
-The best practice is to reduce the amount of confidential data
-that is shared or transfer.
-If you do not need the confidential information, you will simplify your workflow
-by acquiring or sharing data without any confidential information in the first place.
-Removing confidential information, for example through de-identifying the data
-(which we will discuss in detail in Chapter 5), should always be your first preference.
-
-Usually we need to deal with confidential data at some point in the project,
-and then the second best practice is create two versions of your data.
-One version of your data will still have the confidential information,
-and it will need to be encrypted at all times.
-This version should only be used when the confidential information is actually needed.
-In the second version of your data all confidential data should be removed.
-This version does not have to be encrypted
-and should be what you use on a day-to-day basis.
-
-The most common reason data is confidential is that it includes personal identifiers.
-Removing identifying information is called de-identification,
-and we will discuss how to do that in the next chapter.
-De-identifying the data at the earliest possible opportunity
-will simplify the workflow without compromising data security,
-as de-identified data no longer needs to be encrypted.
-Another method to protect confidential data is to aggregate the data,
-meaning that sums and averages of group of observations are calculated
-and only those numbers are reported.
-Any of these techniques can be used either before the data is shared with the research team,
-or when creating the second non-confidential version of the data set to be used in the analysis.
-If confidential information is directly required for the analysis,
-it will be necessary to keep at least a subset of the data encrypted through the data analysis process.
-
-There are multiple options for sharing encrypted data.
-If you need to collaborate on a confidential data set
-then you can create an encrypted folder, for example using VeraCrypt (as described above).
-An encrypted folder can safely be shared using insecure modes of communication
-such as email or third-party syncing services,
-as long as you only share the key
-using a secure service like a password manager.
-Anyone who has access to both the encrypted folder \textit{and} the encryption key
-can read and collaborate on the encrypted file.
-If you only need a one-time transfer of confidential information,
-such as to receive a data set from a partner organization,
-then setting up a permanent encrypted folder may be unnecessary.
-Instead, for one-time transfers we recommend sending data over password-protected
-end-to-end encrypted file sharing services.\sidenote{
-	One such service at the time of writing is \url{https://send.firefox.com/}}
-
 \subsection{Backing up original data}
-In addition to encrypting your data, you must protect it 
+In addition to encrypting your data, you must protect it
 from being accidentally overwritten or deleted.
-This is done through a back-up protocol.
+This is done through a back-up protocol,
+which creates additional copies of your original data,
+exactly as recieved and finalized,
+in secure locations that will remain permanently available
+but are not intended for frequent access.
 Here is an example of such a protocol:
 
 \begin{enumerate}
@@ -791,10 +718,9 @@ Here is an example of such a protocol:
 	it exists only for recovery purposes.
 \end{enumerate}
 
-\noindent This handling satisfies the \textbf{3-2-1 rule} described in Chapter 2:
+\noindent This handling satisfies the \textbf{3-2-1 rule}:
 there are two on-site copies of the data and one off-site copy,
 so the data can never be lost in case of hardware failure.
-%needs wiki page
 If you remain lucky, you will never have to access your ``master'' or ``golden master'' copies --
 you just want to know it is there, safe, if you one day end up needing it.
 
