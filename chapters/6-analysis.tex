@@ -147,13 +147,19 @@ Doing all variable construction and data transformation
 in a unified script, separate from the analysis code, helps
 avoid this and ensures consistency across different outputs.
 
-\subsection{Integrating different data sources}
+\subsection{Combining different data sources}
 
 % When merging is necessary and how to start thinking about it
 To create the analysis dataset,
-it is typically necessary to combine or merge information
-from different data sources.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data_Integration}}
+it is typically necessary to combine information
+from different data sources.
+As discussed in Chapter 3, 
+this process should be documented and 
+communicated about using \textbf{data flowcharts},\sidenote{
+	\url{https://dimewiki.worldbank.org/Data\_Flow\_Charts}}
+and different data sources should only be combined
+in accordance with the data linkage table.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Data\_Linkage\_Table}}
 For example, you may merge administrative data with survey data
 in order to include demographic information in your analysis,
 or you may want to integrate geographic information
@@ -171,10 +177,9 @@ take the time to read through the help file of merge commands
 and make sure you understand their options and outputs.
 
 % How to think about merges
-Chapter 3 discussed how to merge datasets
-based on their units of observation and identifying variables.
 When writing the code to implement merge operations,
-a few steps can help avoid mistakes.
+a few steps can help avoid mistakes.\sidenote{\url{
+		https://dimewiki.worldbank.org/Data\_Integration}}
 First, before writing code to combine the datasets,
 write pseudocode to understand which observations you expect to be
 matched or not, and why.
