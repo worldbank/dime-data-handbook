@@ -104,6 +104,17 @@
 {}% before the title body
 []% after the title body
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Making figures full-widths
+% https://tex.stackexchange.com/questions/262952/tufte-book-captions-under-figure
+ 
+ \makeatletter
+ \renewenvironment{figure}[1][htbp]{%
+ 	\@tufte@orig@float{figure}[#1]%
+ }{%
+ 	\@tufte@orig@endfloat
+ }
+
 %----------------------------------------------------------------------------------------
 %	BOOK META-INFORMATION
 %----------------------------------------------------------------------------------------
