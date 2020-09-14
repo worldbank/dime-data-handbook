@@ -94,7 +94,7 @@ As discussed in Chapter 3,
 the unique identifier will be used to link observations in this dataset
 to data in other data sources according to the \textbf{data linkage table},\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Linkage\_Table}}\index{data linkage table}
-and the unique identifier for all observations 
+and the unique identifier for all observations
 must be listed in the \textbf{master dataset}.\sidenote{
 	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}\index{master dataset}
 Ensuring that observations are uniquely and fully identified
@@ -120,23 +120,26 @@ or that the identifier is not a suitable \textbf{project ID}.\sidenote{
 Suitable project IDs should, for example, not involve long strings
 that are difficult to work with, such as a person's name,
 or be an ID that is known outside the research team.
-In such cases, cleaning begins by 
+In such cases, cleaning begins by
 adding a project ID to the raw data.
-If a project ID already exists, 
+If a project ID already exists,
 for this unit of observation,
-then you should carefully merge it 
+then you should carefully merge it
 from the master dataset
-to the raw data 
-using other identifying information.
-If a project ID does not exist, 
+to the raw data
+using other identifying information.\sidenote{Such
+	operations are commonly called ``merges'' in Stata, and
+	``joins'' in R's \texttt{tidyverse} dialect.
+	We will use the term \textit{merge} in this book.}
+If a project ID does not exist,
 then you need to generate one,
-add it to the master dataset, 
+add it to the master dataset,
 and then merge it back into the raw data.
-Note that while digital survey tools create 
+Note that while digital survey tools create
 unique identifiers for each data submission,
-that is not the same as having a unique ID variable 
+that is not the same as having a unique ID variable
 for each observation in the sample,
-as there can be multiple submissions 
+as there can be multiple submissions
 for the same observation.
 
 DIME Analytics created an automated workflow to identify, correct and document
@@ -499,7 +502,7 @@ their names, their national identity numbers, and other sensitive data.\sidenote
 There are strict requirements for safely storing and handling personally-identifying data,
 and it is the responsibility of the research team to satisfy these requirements.\sidenote{
 	\url{https://dimewiki.worldbank.org/Research\_Ethics}}
-Everyone working with human subjects research should 
+Everyone working with human subjects research should
 have completed an ethics certification course.\sidenote{
   Protecting Human Research Participants (\url{https://phrptraining.com})
   and the CITI Program (\url{https://citiprogram.org})
