@@ -1,6 +1,6 @@
 # Data for Development Impact
 
-Welcome to Data for Development Impact: The DIME Analytics Resource Guide.
+Development Research in Practice: The DIME Analytics Data Handbook.
 This book is intended to serve as an introduction to the primary tasks
 required in development research, from experimental design
 to data collection to data analysis to publication.
