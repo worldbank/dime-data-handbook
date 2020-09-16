@@ -79,7 +79,7 @@ If the sub-samples and units of observation
 vary for different pieces of the analysis,
 you may need to create many purpose-built analysis datasets.\index{analysis datasets}
 In such cases, it is not good practice
-to try to create a single ``canonical'' analysis dataset.
+to try to create a single ``one-size-fits-all'' analysis dataset.
 For a concrete example of what this means,
 think of an agricultural intervention
 that was randomized across villages
@@ -141,16 +141,20 @@ avoid this and ensures consistency across different outputs.
 
 % When merging is necessary and how to start thinking about it
 To create the analysis dataset,
-it is typically necessary to combine or merge information
-from different data sources.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data_Integration}}
+it is typically necessary to combine information
+from different data sources.\sidenote{\url{
+		https://dimewiki.worldbank.org/Data\_Integration}}
+As discussed in Chapter 3,
+this process should be documented
+using \textbf{data flowcharts},\sidenote{
+	\url{https://dimewiki.worldbank.org/Data\_Flow\_Charts}}
+and different data sources should only be combined
+in accordance with the data linkage table.\sidenote{
+	\url{https://dimewiki.worldbank.org/wiki/Data\_Linkage\_Table}}
 For example, you may merge administrative data with survey data
 in order to include demographic information in your analysis,
 or you may want to integrate geographic information
-in order to include location-specific controls.\sidenote{Such
-	operations are commonly called ``merges'' in Stata, and
-	``joins'' in R's \texttt{tidyverse} dialect.
-	We will use the first term on the next few paragraphs.}
+in order to include location-specific controls.
 To understand how to perform such operations,
 you will need to consider the unit of observation for each dataset,
 and their respective identifying variables.
@@ -161,8 +165,6 @@ take the time to read through the help file of merge commands
 and make sure you understand their options and outputs.\index{merging data}
 
 % How to think about merges
-Chapter 3 discussed how to merge datasets
-based on their units of observation and identifying variables.
 When writing the code to implement merge operations,
 a few steps can help avoid mistakes.
 First, before writing code to combine the datasets,
@@ -170,6 +172,8 @@ write pseudocode to understand which observations you expect to be
 matched or not, and why.
 When possible, determine exactly which and how many
 matched and unmatched observations should result from the merge.
+The best tool you have to understand this is
+the three components of the data map discussed in chapter 3.
 Second, think carefully about whether you want to keep matched and unmatched observations,
 or only specific matching outcomes (e.g. to create a balanced panel),
 and add that to the pseudocode as well.
@@ -448,7 +452,7 @@ but these are good places to start.\sidenote{
 We attribute some of the difficulty of creating good data visualization
 to the difficulty of writing code to create them.
 Making a visually compelling graph would already be hard enough if
-you didn't have to go through many rounds of searching and reading help files 
+you didn't have to go through many rounds of searching and reading help files
 to understand a command's graphical options syntax.
 The trickiest part of using plotting commands is getting the data into the right format.
 Though both Stata and R have plotting functions that graph summary statistics,
@@ -488,7 +492,7 @@ Though it is best to be transparent about different
 specifications tried and tests performed,
 only a few will ultimately be considered ``main results''.
 These will be \textbf{exported}\sidenote{
-  \textbf{Exporting results:} The creation of publication-ready representations of results.}\index{exporting results} 
+  \textbf{Exporting results:} The creation of publication-ready representations of results.}\index{exporting results}
 from the statistical software.
 That is, they will be saved as tables and figures in format that is easier to interact with.
 For example, saving graphs as images will allow your team to quickly see them,
