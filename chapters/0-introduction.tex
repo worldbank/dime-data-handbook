@@ -5,22 +5,27 @@ how to handle data effectively, efficiently, and ethically.
 An empirical revolution has changed the face of development research rapidly over the last decade.
 Increasingly, researchers are working not just with complex data,
 but with \textit{original} data:
-datasets either collected by the research team themselves
+datasets collected by the research team themselves
 or acquired through a unique agreement with a project partner.
-Original data, especially if collected or assembled by the team themselves,
-requires that the team carefully document how the data was created, handled, and analyzed.
+Research teams must carefully document how original data is created, handled, and analyzed.
 These tasks now contribute as much weight to the quality of the evidence
 as the research design and the statistical approaches do.
 At the same time, the scope and scale of empirical research projects is expanding:
 more people are working on the same data over longer timeframes.
 For that reason, the central premise of this book is that data work is a ``social process''.
-The many different people on a team need to have the same ideas
+This means that the many different people on a team need to have the same ideas
 about what is to be done, and when and where and by whom,
 so that they can collaborate effectively on a large, long-term research project.
 
-\textit{Development Research in Practice} covers the full data workflow for a complex research project using original data.
-It shares the lessons, tools, and processes developed based on DIME's diverse research experience,
-and compiles them into a single narrative of best practices for data work.
+Despite the growing importance, little practical guidance is available for practitioners
+(with the notable exception of a recent handbook on reproducibility\cite{christensen2019transparent}).
+There are few guides to the conventions, standards, and best practices
+that are fast becoming a necessity for empirical research.
+\textit{Development Research in Practice} aims to fill that gap.
+It covers the full data workflow for a complex research project using original data.
+In this book, we share the lessons, tools, and processes 
+developed based on DIME's diverse research experience,
+and compile them into a single narrative of best practices for data work.
 This book is not sector-specific;
 it will not teach you econometrics,
 or how to design an impact evaluation.
@@ -73,7 +78,7 @@ Resources developed and tested in DIME are converted into public goods
 for the global research community, through open-access trainings and open-source tools.
 The DIME Analytics Resources Appendix provides an introduction to public materials.
 
-The Analytics team has invested many hours over many years
+DIME Analytics has invested many hours over the past years
 learning from data work across DIME's portfolio,
 identifying inefficiencies and barriers to success,
 developing tools and trainings, and standardizing best-practice workflows adopted in DIME projects.
@@ -207,50 +212,18 @@ but typically reserved very little space for detailed descriptions
 of how data was actually collected and handled.
 It is almost impossible to assess the quality of the data in such a paper,
 and whether the results could be reproduced.
-In the past decade, this has started to change.\cite{swanson2020research}
-There is new focus on reproducibility practices,
+In the past decade, this has started to change,\cite{swanson2020research}
 in part due to increasing requirements by publishers and funders to release code and data.
-However, little practical guidance on effective and reproducible data workflows are available for practitioners,
-with the exception of a recent handbook on reproducibility.\cite{christensen2019transparent}
-There are few guides to the conventions, standards, and best practices
-that are fast becoming a necessity for empirical research.
-This book aims to fill that gap,
-covering data workflows at all stages of the research process,
-from design to data acquisition and analysis.
-
-Data handling and documentation is a key skill for researchers and research staff,
-whether data is collected through surveys, shared by partner organizations,
-or acquired from ``big'' data sources like sensors, satellites, or call data records.
+Data handling and documentation is a key skill for researchers and research staff.
 Standard processes and documentation practices
 are important throughout the research process to accurately convey
 and implement the intended research design.\cite{vilhuber_lars_2020_3911311}
-For example, statistical code is typically an essential part of
-research design components such as sampling, randomization, and power analysis.
-As data is obtained, its quality must be validated,
-linkages between datasets must be organized and managed,
-and errors must be identified and corrected.
-Once raw data is in hand, researchers must create and analyze the
-outcome measures of interest for the research study;
-then they must conduct the actual analyses.
-When these are done in an ad-hoc or project-specific manner,
+When data work is done in an ad-hoc manner,
 it is very difficult for others to understand what is being done --
-in that case, a reader has to simply trust that the author did these things right.
-Standardizing and documenting these processes
-makes it possible to evaluate and understand
-the exact details of each step of this work
-alongside any final research outputs.
-
-Researchers therefore need to maintain records of the handling and processing of all their data,
-which involves managing and collating different types of information,
-often at different levels of analysis and different stages in time.
-The tight linkages between documentation, data quality, and policy decisions
-have long been recognized by research entities such as government statistical agencies,\cite{jepdataquality}
-and must now be imported into the practice of researchers who collect original data
-rather than relying on data that comes from, for example, highly-experienced statistical agencies.
-
-A breakdown in any part of this data pipeline
-means that the results that are acquired become unreliable.\cite{mccullough2008economics}
-If that happens, the results cannot be faithfully interpreted
+a reader has to simply trust that the researchers did these things right.
+Most importantly, if any part of the data pipeline breaks down,
+research results become unreliable\cite{mccullough2008economics}
+and cannot be faithfully interpreted
 as being an accurate picture of the intended research design.\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/more-replication-economics}}
 Because we almost never have ``laboratory'' settings\sidenote{
@@ -260,15 +233,15 @@ such a failure has a very high cost:
 we will have wasted the investments that were made into knowledge generation,
 and the research opportunity itself,
 where we intended to conduct the study.\cite{camerer2016evaluating}
-Hence accurate and reproducible data management and analysis
+
+Accurate and reproducible data management and analysis
 is essential to the success and credibility of modern research.
-
-\section{Documenting data work with standardized code}
-
-One method of solving this problem in the social context
-is what we refer to as \textbf{process standardization}.\sidenote{
-  \textbf{Process standardization:} Agreement within a research team
-  about how all tasks of a specific type will be approached.}\index{process standardization}
+Standardizing and documenting data handling processes is essential
+to be able to evaluate and understand
+the data work alongside any final research outputs.
+An important component of this is \textbf{process standardization}.\sidenote{
+	\textbf{Process standardization:} Agreement within a research team
+	about how all tasks of a specific type will be approached.}\index{process standardization}
 Process standardization means that there is
 little ambiguity about how something ought to be done,
 and therefore the tools to do it can be set in advance.
@@ -278,12 +251,15 @@ Process standardization and documentation should allow readers of your code to:
 (1) quickly understand what a particular process or output is supposed to be doing;
 (2) evaluate whether or not it does that thing correctly; and
 (3) modify it either to test alternative hypotheses or to adapt into their own work.
-Though this book will discuss specific standards recommended by DIME Analytics,
-we are more interested in convincing the reader
+This book will discuss specific standards recommended by DIME Analytics,
+but we are more interested in convincing the reader
 to discuss the adoption of \textit{a} standard within research teams
-than to use \textit{the} particular standards that we recommend.
+than to necessarily use \textit{the} particular standards that we recommend.
 
-Modern quantitative research already relies heavily
+
+\section{Documenting data work with standardized code}
+
+Modern quantitative research relies heavily
 on standardized statistical software tools,
 written with various coding languages, to standardize analytical work.
 Outputs like regression tables and data visualizations
@@ -366,6 +342,7 @@ Stata has relatively few resources of this type available,
 which is why we have created and included one here that
 we hope will be an asset to all Stata users.
 
+\section{Looking forward}
 While adopting the workflows and mindsets described in this book requires an up-front cost,
 it will save you (and your collaborators) a lot of time and hassle very quickly.
 In part this is because you will learn how to implement essential practices directly;
