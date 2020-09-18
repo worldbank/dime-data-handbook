@@ -3,39 +3,38 @@
 \begin{fullwidth}
 
 % What is data cleaning
-Raw data files may be received in a variety of formats,
-and are often not immediately suited for analysis.
-This chapter describes the workflow of preparing newly-acquired data for analysis
-using statistical software.
-The tasks described in this chapter have many different names:
+Original data comes in a variety of formats,
+most of which are not immediately suited for analysis.
+The process of preparing data for analysis has many different names:
 data cleaning, data munging, data wrangling.
 But they all mean the same thing --
 transforming raw data into a convenient format for your intended use.
 This is the most time-consuming step of a project's data work,
 particularly when primary data is involved;
 it is also essential for data quality.
-This chapter outlines the workflow our team developed to make the process efficient and transparent.
+A structured workflow for preparing newly-acquired data for analysis
+is essential for efficient, transparent, and reproducible data work. 
 One key point of this chapter is that no changes are made to the contents of data at this point.
 We consider creating new variables, imputing values and correcting outliers
 to be research decisions, and will discuss those in the next chapter.
 Therefore, the clean dataset,
 which is the main output from the workflow discussed in this chapter,
-contains almost exactly the same information as the raw data,
+contains the same information as the raw data,
 but in a format that is ready for use with statistical software.
 
 % Chapter overview
 This chapter describes the various tasks involved in making newly-acquired data ready for analysis.
-The first section will show how to make your data \textit{tidy}.
+The first section teaches you how to make your data \textit{tidy}.
 This means adjusting how the dataset is organized
-until the relationship between its rows and columns is well-defined.
+until the relationship between rows and columns is well-defined.
 The second section describes quality assurance checks,
-which are necessary to verify the accuracy of your data.
-After that, identifying information is typically no longer needed;
-therefore the third section outlines steps to remove direct identifiers.
-Finally, the last section discusses how to examine each variable in your dataset and
+which are necessary to verify data accuracy.
+The third section covers de-identification,
+as removing direct identifiers early in the data handling process helps to ensure privacy.
+The final section discusses how to examine each variable in your dataset and
 make sure that it is as well documented and as easy to use as possible.
-One important thing to take note is that all these tasks are implemented through code,
-and resulting datasets are saved in new files that can be reproduced by running this code.
+Each of these tasks is implemented through code,
+and resulting datasets can be reproduced exactly by running this code.
 The raw data files are kept exactly as they were acquired,
 and no changes are made directly to them.
 
