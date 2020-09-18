@@ -5,10 +5,9 @@ how to handle data effectively, efficiently, and ethically.
 An empirical revolution has changed the face of development research rapidly over the last decade.
 Increasingly, researchers are working not just with complex data,
 but with \textit{original} data:
-datasets either collected by the research team themselves
+datasets collected by the research team themselves
 or acquired through a unique agreement with a project partner.
-Original data, especially if collected or assembled by the team themselves,
-requires that the team carefully document how the data was created, handled, and analyzed.
+Research teams must carefully document how original data is created, handled, and analyzed.
 These tasks now contribute as much weight to the quality of the evidence
 as the research design and the statistical approaches do.
 At the same time, the scope and scale of empirical research projects is expanding:
@@ -17,18 +16,31 @@ For that reason, the central premise of this book is that data work is a ``socia
 This means that the many different people on a team need to have the same ideas
 about what is to be done, and when and where and by whom,
 so that they can collaborate effectively on a large, long-term research project.
-This book contains our ideas on how to perform the main tasks
-of a complex research project using original data.
+
+Despite the growing importance of managing data work, 
+little practical guidance is available for practitioners
+(with the notable exception of a recent handbook on reproducibility\cite{christensen2019transparent}).
+There are few guides to the conventions, standards, and best practices
+that are fast becoming a necessity for empirical research.
+\textit{Development Research in Practice} aims to fill that gap.
+It covers the full data workflow for a complex research project using original data.
+In this book, we share the lessons, tools, and processes 
+developed based on DIME's diverse research experience,
+and compile them into a single narrative of best practices for data work.
+This book is not sector-specific;
+it will not teach you econometrics,
+or how to design an impact evaluation.
+There are many excellent existing resources on those topics.
+Instead, it will teach you how to think about all aspects of your research from a data perspective,
+how to structure research projects to ensure data quality,
+and how to institute transparent and reproducible workflows.
+
 
 \end{fullwidth}
 
 %------------------------------------------------
 
-\section{Who is the team behind this book?}
-
-\textit{Development Research in Practice} shares the lessons, tools,
-and processes developed based on DIME's diverse research experience,
-and compiles them into a single narrative of best practices for data work.
+\section{The team behind this book}
 DIME is the Development Impact Evaluations department of the World Bank.\sidenote{
   \url{https://www.worldbank.org/en/research/dime}}
 Its mission is to generate high-quality and operationally relevant data and research
@@ -38,8 +50,8 @@ and recommend specific policy pathways to maximize impact.
 The department conduct research in 60 countries with 200 agencies, leveraging a
 US\$180 million research budget to shape the design and implementation of
 US\$18 billion in development finance.
-DIME also provides advisory services to 30 multilateral and bilateral development agencies.
-The DIME team includes four primary topic pillars:
+DIME also provides advisory services to 30 multilateral and bilateral development agencies.\cite{legovini2019}
+DIME research is organized into four primary topic pillars:
 Economic Transformation and Growth;
 Gender, Economic Opportunity, and Fragility;
 Governance and Institution Building;
@@ -47,7 +59,7 @@ and Infrastructure and Climate Change.
 Over the years, DIME has employed dozens of research economists,
 and hundreds of full-time research assistants, field coordinators, and other staff.
 The team has conducted over 325 impact evaluations.
-This book exists to take advantage of that concentration and scale of research,
+\textit{Development Research in Practice} exists to take advantage of that concentration and scale of research,
 to synthesize many resources for data collection and research,
 and to make DIME tools available to the larger community of development researchers.
 
@@ -65,165 +77,9 @@ delivers hands-on support when new tasks or challenges arise,
 and then develops and integrates lessons from those engagements to bring to the full team.
 Resources developed and tested in DIME are converted into public goods
 for the global research community, through open-access trainings and open-source tools.
-See the DIME Analytics Resources Appendix for an introduction to our materials.
+The DIME Analytics Resource Directory appendix provides an introduction to public materials.
 
-\textit{Development Research in Practice} is not sector-specific;
-it will not teach you econometrics,
-or how to design an impact evaluation.
-There are many excellent existing resources on those topics.
-Instead, this book will teach you how to think about all aspects of your research from a data perspective,
-how to structure research projects to ensure data quality,
-and how to institute transparent and reproducible workflows.
-
-
-
-%------------------------------------------------
-
-\begin{fullwidth}
-	\begin{figure}
-		\centering
-		\includegraphics[width=1.5\linewidth]{diagrams/Introduction}
-		\label{fig:intro}
-	\end{figure}
-\end{fullwidth}
-
-\section{How to read this book}
-
-This book aims to be a highly practical resource so the reader can
-immediately begin to collaborate more effectively
-on large, long-term research projects
-that use the methods and tools discussed in it.
-This introduction will outline the basic philosophies
-that motivate this book and our approach to research data.
-Before you begin reading the main chapters,
-you should be aware of our mindset
-that research data work is primarily about
-communicating within a team
-and that standardization and simplification of data tasks
-is a major enabler of effective collaboration.
-The rest of the book will walk you through data work at each stage
-of an empirical research project, from design to publication.
-Each chapter focuses on a single stage in the data work process.
-The figure in this introduction illustrates
-a summary of the hands-on data tasks 
-comprising  research data work.
-These are described in Chapters 3 to 7.
-Chapters 1 and 2, on the other hand,
-will contextualize why each of them are important,
-and what you should plan before data work starts.
-
-\textbf{Chapter 1} outlines a set of practices and ideals that help to ensure that
-research consumers can be confident in the conclusions reached,
-and research work can be assumed and verified to be reliable.
-It begins with ethical principles to guide empirical research,
-focusing on research reproducibility, transparency, and credibility.
-It also introduces tools that are used to document
-the aims and methods of a research project,
-ensuring that meta-information about your research is available
-and that you approach data work with an eye towards the future.
-
-\textbf{Chapter 2} will teach you to structure your data work for collaborative research,
-while ensuring the privacy and security of research participants.
-It discusses the importance of planning the tools that will be used;
-lays the groundwork to structure the research project at its outset --
-long before any data is acquired --
-and provides suggestions for collaborative workflows and tools.
-It also describes essential ethical practices around data,
-as well as common pitfalls in legal and practical management of data
-that respect the rights of research participants.
-
-\textbf{Chapter 3} turns to the measurement framework,
-a special set of information that describes the data in your project
-and how you plan to use it.
-Setting up a measurement framework means translating a research design to a data work plan,
-including master datasets that are appropriate to the design,
-tracking and monitoring field work across time,
-and implementing and evaluating experimental designs in a rigorous manner.
-
-\textbf{Chapter 4} covers data acquisition. It starts with
-the legal and institutional frameworks for data ownership and licensing,
-to ensure that you are aware of the rights and responsibilities
-of using data collected by yourself or by others.
-It provides a deep dive on collecting high-quality primary electronic survey data,
-including developing and deployting survey instruments.
-Finally, it discusses secure data handling during transfer, sharing, and storage,
-which is essential in protecting the privacy of respondents in any data.
-
-\textbf{Chapter 5} describes workflows for data processing.
-It details how to construct ``tidy'' data at the appropriate units of analysis,
-how to ensure uniquely identified datasets, and
-how to routinely incorporate data quality checks into the workflow.
-It also provides guidance on de-identification and cleaning of personally-identified data,
-focusing on how to understand and structure data
-so that it is ready for indicator construction and analytical work.
-
-\textbf{Chapter 6} discusses data analysis.
-It begins with data construction, or the creation of new variables
-from the raw data acquired or collected in the field.
-It introduces core principles for writing analytical code
-and creating, exporting, and storing research outputs
-such as figures and tables reproducibily using dynamic documents.
-
-\textbf{Chapter 7} outlines the publication of research outputs,
-including manuscripts, code, and data.
-This chapter discusses
-how to effectively collaborate on technical writing
-using {\LaTeX} as a document preparation system.
-It covers how and why to release or publish datasets
-in an accessible, citable, and safe fashion.
-Finally, it provides guidelines for preparing
-functional and informative reproducibility packages
-that contain all the code, data, and meta-information needed
-for others to evaluate and reproduce your work.
-
-After reading each chapter, you should understand
-what tasks your team will be performing,
-where in the data workflow each task falls,
-and how to implement them according to best practices.
-You should also understand how the various stages tie together,
-and what inputs and outputs are required from each.
-Then, the references and links contained in each chapter
-will lead you to detailed descriptions of individual
-ideas, tools, and processes when you need to implement the tasks yourself.
-In particular, highly specific implementation details
-will often be found on the \textbf{DIME Wiki}.\sidenote{
-	\url{https://dimewiki.worldbank.org}}
-
-The DIME Wiki is one of DIME Analytics' flagship products,
-a free online collection of our resources and best practices.
-This book complements the DIME Wiki by providing a structured narrative
-of the data workflow for a typical research project.
-The Wiki, by contrast, provides unstructured but detailed and up-to-date information
-on how to complete each task, and links to further practical resources.
-For some implementation portions where precise code is particularly important,
-we provide minimal code examples either in the book or on the DIME Wiki.
-All code guidance is software-agnostic, but code examples are provided in Stata.
-
-%------------------------------------------------
-\section{Handling original data is a core research task}
-
-In the past, data work was often treated as a ``black box'' in research.
-A published manuscript might exhaustively detail
-research designs, estimation strategies, and theoretical frameworks,
-but would typically reserve very little space for detailed descriptions
-of how data was actually collected and handled.
-Not only is it almost impossible to assess the quality of the data in such a paper,
-it is very hard for research teams -- particularly new staff --
-to understand and learn the skills and tools needed to do this well.
-There are few guides to the conventions, standards, and best practices
-that are fast becoming a necessity for empirical research.
-
-Despite the fact that instructional resources for these skills are few and far between,
-the skills themselves are rapidly becoming essential to do this work effectively.
-Since 2010, reproducibility practices in development have been widely adopted,\cite{swanson2020research}
-in part due to increasing requirements by publishers and funders to release code and data.
-However, little practical guidance on complete data handling workflows are available for practitioners,
-aside from one relatively recent handbook on reproducibility.\cite{christensen2019transparent}
-This book aims to fill that gap,
-covering data workflows at all stages of the research process,
-from design to data acquisition and analysis.
-
-The Analytics team has invested many hours over many years
+DIME Analytics has invested many hours over the past years
 learning from data work across DIME's portfolio,
 identifying inefficiencies and barriers to success,
 developing tools and trainings, and standardizing best-practice workflows adopted in DIME projects.
@@ -244,39 +100,131 @@ from where 50\% of submitted papers in 2018
 required significant revision to pass
 to where 64\% of papers passed in 2019 without revision required.
 
-Data handling and documentation is a key skill for researchers and research staff,
-whether data is collected through surveys, shared by partner organizations,
-or acquired from ``big'' data sources like sensors, satellites, or call data records.
+
+%------------------------------------------------
+
+\begin{fullwidth}
+	\begin{figure}
+		\centering
+		\includegraphics[width=1.5\linewidth]{diagrams/Introduction}
+		\label{fig:intro}
+	\end{figure}
+\end{fullwidth}
+
+\section{How to read this book}
+This book aims to be a highly practical resource so the reader can
+immediately begin to collaborate more effectively
+on large, long-term research projects
+that use the methods and tools discussed.
+This introduction outlines the basic philosophies
+that motivate this book and our approach to research data.
+We want all readers to understand at the outset our mindset
+that research data work is primarily about
+communicating effectively within a team
+and that standardization and simplification of data tasks
+is a major enabler of effective collaboration.
+The main chapters of this book will walk you through the data workflow at each stage
+of an empirical research project, from design to publication.
+The figure in this introduction visualizes the data workflow.
+Chapters 1 and 2 contextualize the workflow, 
+and set the stage for the hands-on data tasks 
+which are described in detail in Chapters 3 to 7.
+
+\textbf{Chapter 1} outlines a set of practices and ideals to ensure that
+research consumers can be confident in the conclusions reached,
+and that the reliability of research work can be verified.
+It begins with ethical principles to guide empirical research,
+focusing on research reproducibility, transparency, and credibility.
+It then introduces tools to document
+the aims and methods of a research project,
+ensuring that meta-information about your research is available
+and that you approach data work with an eye towards the future.
+
+\textbf{Chapter 2} teaches you to structure your data work for collaborative research,
+while ensuring the privacy and security of research participants.
+It discusses the importance of planning datawork and associated tools in advance,
+long before any data is acquired.
+It also describes ethical concerns common to development data,
+common pitfalls in legal and practical management of data,
+and how to respect the rights of research participants at all stages of data work.
+
+\textbf{Chapter 3} turns to the measurement framework, 
+and how to translate research design to a data work plan.
+It details DIME's data map template, a set of tools to communicate the project's data requirements
+both across the team and across time.
+It also discusses how to implement random sampling and random assignment 
+in a reproducible and credible manner.
+
+\textbf{Chapter 4} covers data acquisition. It starts with
+the legal and institutional frameworks for data ownership and licensing,
+to ensure that you are aware of the rights and responsibilities
+of using data collected by the research team or by others.
+It provides a deep dive on collecting high-quality primary electronic survey data,
+including developing and deploying survey instruments.
+Finally, it discusses secure data handling during transfer, sharing, and storage,
+which is essential in protecting the privacy of respondents in any data.
+
+\textbf{Chapter 5} describes data processing tasks.
+It details how to construct ``tidy'' data at the appropriate units of analysis,
+how to ensure uniquely identified datasets, and
+how to routinely incorporate data quality checks into the workflow.
+It also provides guidance on de-identification and cleaning of personally-identified data,
+focusing on how to understand and structure data
+so that it is ready for indicator construction and analytical work.
+
+\textbf{Chapter 6} discusses data analysis tasks.
+It begins with data construction, or the creation of new variables
+from the raw data acquired or collected in the field.
+It introduces core principles for writing analytical code
+and creating, exporting, and storing research outputs
+such as figures and tables reproducibly using dynamic documents.
+
+\textbf{Chapter 7} outlines the publication of research outputs,
+including manuscripts, code, and data.
+This chapter discusses
+how to effectively collaborate on technical writing
+using dynamic documents.
+It also covers how and why to publish datasets
+in an accessible, citable, and safe fashion.
+Finally, it provides guidelines for preparing
+functional and informative reproducibility packages
+that contain all the code, data, and meta-information needed
+for others to evaluate and reproduce your work.
+
+After reading each chapter, you should understand
+what tasks will be performed at every stage of the workflow,
+and how to implement them according to best practices.
+You should also understand how the various stages of the workflow tie together,
+and what inputs and outputs are required and produced from each.
+The references and links contained in each chapter
+will lead you to detailed descriptions of individual
+ideas, tools, and processes to refer to when you need to implement the tasks yourself.
+Specific implementation details and links to further practical resources
+will often be found on the linked pages in the \textbf{DIME Wiki}.\sidenote{
+The DIME Wiki is a free online collection of impact evaluation resources and best practices.\url{https://dimewiki.worldbank.org}}
+
+%------------------------------------------------
+\section{Handling original data is a core research task}
+
+In the past, data work was often treated as a ``black box'' in research.
+A published manuscript might exhaustively detail
+research designs, estimation strategies, and theoretical frameworks,
+but typically reserved very little space for detailed descriptions
+of how data was actually collected and handled.
+It is almost impossible to assess the quality of the data in such a paper,
+and whether the results could be reproduced.
+In the past decade, this has started to change,\cite{swanson2020research}
+in part due to increasing requirements by publishers and funders to release code and data.
+Data handling and documentation is a key skill for researchers and research staff.
 Standard processes and documentation practices
 are important throughout the research process to accurately convey
 and implement the intended research design.\cite{vilhuber_lars_2020_3911311}
-For example, statistical code is typically an essential part of
-research design components such as sampling, randomization, and power analysis.
-As data is obtained, its quality must be validated,
-linkages between datasets must be organized and managed,
-and errors must be identified and corrected.
-Once raw data is in hand, researchers must create and analyze the
-outcome measures of interest for the research study;
-then they must conduct the actual analyses.
-When these are done in an ad-hoc or project-specific manner,
+When data work is done in an ad-hoc manner,
 it is very difficult for others to understand what is being done --
-in that case, a reader has to simply trust that the author did these things right.
-Standardizing and documenting these processes
-makes it possible to evaluate and understand
-the exact details of each step of this work
-alongside any final research outputs.
-
-Researchers therefore need to maintain records of the handling and processing of all their data,
-which involves managing and collating different types of information,
-often at different levels of analysis and different stages in time.
-The tight linkages between documentation, data quality, and policy decisions
-have long been recognized by research entities such as government statistical agencies,\cite{jepdataquality}
-and must now be imported into the practice of researchers who collect original data
-rather than relying on data that comes from, for example, highly-experienced statistical agencies.
-
-A breakdown in any part of this data pipeline
-means that the results that are acquired become unreliable.\cite{mccullough2008economics}
-If that happens, the results cannot be faithfully interpreted
+a reader has to simply trust that the researchers did these things right.
+Most importantly, if any part of the data pipeline breaks down,
+research results become unreliable\cite{mccullough2008economics}
+and cannot be faithfully interpreted
 as being an accurate picture of the intended research design.\sidenote{
   \url{https://blogs.worldbank.org/impactevaluations/more-replication-economics}}
 Because we almost never have ``laboratory'' settings\sidenote{
@@ -286,15 +234,15 @@ such a failure has a very high cost:
 we will have wasted the investments that were made into knowledge generation,
 and the research opportunity itself,
 where we intended to conduct the study.\cite{camerer2016evaluating}
-Hence accurate and reproducible data management and analysis
+
+Accurate and reproducible data management and analysis
 is essential to the success and credibility of modern research.
-
-\section{Documenting data work with standardized code}
-
-One method of solving this problem in the social context
-is what we refer to as \textbf{process standardization}.\sidenote{
-  \textbf{Process standardization:} Agreement within a research team
-  about how all tasks of a specific type will be approached.}\index{process standardization}
+Standardizing and documenting data handling processes is essential
+to be able to evaluate and understand
+the data work alongside any final research outputs.
+An important component of this is \textbf{process standardization}.\sidenote{
+	\textbf{Process standardization:} Agreement within a research team
+	about how all tasks of a specific type will be approached.}\index{process standardization}
 Process standardization means that there is
 little ambiguity about how something ought to be done,
 and therefore the tools to do it can be set in advance.
@@ -304,12 +252,15 @@ Process standardization and documentation should allow readers of your code to:
 (1) quickly understand what a particular process or output is supposed to be doing;
 (2) evaluate whether or not it does that thing correctly; and
 (3) modify it either to test alternative hypotheses or to adapt into their own work.
-Though this book will discuss specific standards recommended by DIME Analytics,
-we are more interested in convincing the reader
+This book will discuss specific standards recommended by DIME Analytics,
+but we are more interested in convincing the reader
 to discuss the adoption of \textit{a} standard within research teams
-than to use \textit{the} particular standards that we recommend.
+than to necessarily use \textit{the} particular standards that we recommend.
 
-Modern quantitative research already relies heavily
+
+\section{Documenting data work with standardized code}
+
+Modern quantitative research relies heavily
 on standardized statistical software tools,
 written with various coding languages, to standardize analytical work.
 Outputs like regression tables and data visualizations
@@ -392,6 +343,7 @@ Stata has relatively few resources of this type available,
 which is why we have created and included one here that
 we hope will be an asset to all Stata users.
 
+\section{Looking forward}
 While adopting the workflows and mindsets described in this book requires an up-front cost,
 it will save you (and your collaborators) a lot of time and hassle very quickly.
 In part this is because you will learn how to implement essential practices directly;
