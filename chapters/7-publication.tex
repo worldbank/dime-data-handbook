@@ -95,23 +95,13 @@ It also allows publishers to apply global styles and templates to already-writte
 reformatting entire documents in house styles with only a few keystrokes.
 
 % keeping it simple
-To create a {\LaTeX} document,
-you will typically start a new directory for each research output
-to hold the files and outputs for that document only.
-For a single output, we recommend putting the core document files
-(such as \texttt{main.tex} and \texttt{bibliography.bib})
-in the top-level folder,
-and then have subfolders for figures, tables, and other inputs.
-Your analysis scripts should be set up such that it is easy to output files
-to this location by adjusting paths in the master script.
-Above all, keep your workflow as simple as possible.
 While {\LaTeX} \textit{can} produce complex formatting,
 this is rarely needed for academic publishing,
 as academic manuscripts will usually be reformatted
 based on the style of the publisher.
 (By contrast, policy and other self-produced documents may desire
 extensive typesetting and investments in custom templates and formatting.)
-So, in academia at least,
+In academia at least,
 it's rarely worth the investment to go beyond basic {\LaTeX} tools:
 the title page, sections and subsections,
 figures and tables, mathematical equations,
@@ -134,26 +124,6 @@ The same principles that apply to figures and tables are therefore applied here:
 You can make changes to the references in one place (the \texttt{.bib} file),
 and then everywhere they are used they are updated correctly with one process.
 BibTeX is so widely used that it is natively integrated in Google Scholar.
-To obtain a reference in the \texttt{.bib} format for any paper you find,
-click ``BibTeX'' at the bottom of the Cite window (below the preformatted options).
-Then, copy the code directly into your \texttt{.bib} file.
-They will look like the following:
-
-\codeexample{sample.bib}{./code/sample.bib}
-
-\noindent BibTeX citations are then used as follows:
-
-\codeexample{citation.tex}{./code/citation.tex}
-
-With this tool, you can ensure that references are handled
-in a format you can manage and control.\cite{flom2005latex}
-By changing some settings in the document itself,
-you can change the style of inline citations and bibliographical references.
-You can, for example, use superscripts or author names inline,
-and order the bibiliography either by order of appearance or alphabetically.
-All the formatting and numbering will be handled automatically.
-You can also choose to display only the references which are cited in the text,
-or to include every reference in the \texttt{.bib} file.
 Since different publishers have different requirements,
 it is quite useful to be able to adapt this and other formatting very quickly,
 including through using publisher-supplied templates where available.
@@ -384,9 +354,7 @@ includes a Microdata Catalog\sidenote{
   \url{https://microdata.worldbank.org}}
 and a Geospatial Catalog,
 where researchers can publish data and documentation for their projects.\sidenote{
-  \url{https://dimewiki.worldbank.org/Microdata\_Catalog}
-\newline
-  \url{https://dimewiki.worldbank.org/Checklist:\_Microdata\_Catalog\_submission}}
+  \url{https://dimewiki.worldbank.org/Microdata\_Catalog}}
 The Harvard Dataverse publishes both data and code,
 and its Datahub for Field Experiments in Economics and Public Policy\sidenote{
 	\url{https://dataverse.harvard.edu} and
@@ -412,8 +380,7 @@ These datasets should match the survey instrument or source documentation as clo
 and should not include indicators constructed by the research team.
 Even if you do not have rights to publish the original data,
 you can typically publish derivative datasets prepared by the research team.
-These datasets usually contain only the constructed indicators and associated documentation,\sidenote{
-  \url{https://guide-for-data-archivists.readthedocs.io}}
+These datasets usually contain only the constructed indicators and associated documentation,\cite{dupriez2007}
 and should also be included in the replication package.
 
 % licensing published data
@@ -511,8 +478,7 @@ quarterly peer code review rounds, which allows research assistants to improve t
 rather than revisiting it in a rush near publication time.
 DIME projects are also expected to use Git and GitHub
 to document project work and collaboration,
-and to keep the main branch up-to-date as a working edition.\sidenote{
-	\url{https://github.com/worldbank/dime-standards}}
+and to keep the main branch up-to-date as a working edition.
 
 % ensuring code reproducibility
 Before publicly releasing a reproducibility package,
@@ -626,8 +592,7 @@ before its formal publication date, although,
 in most development research fields,
 the release of working papers is a fairly common practice.
 This can be done on a number of preprint websites,
-many of which are topic-specific.\sidenote{
-  \url{https://arxiv.org/}}
+many of which are topic-specific.
 You can also use GitHub or OSF and link to the PDF file directly
 through your personal website or whatever medium you are sharing the preprint.
 We recommend against using file sharing services such as
