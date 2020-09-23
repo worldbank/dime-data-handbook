@@ -11,9 +11,9 @@ While our preference is to receive feedback through GitHub you are always welcom
 
 ## Feedback through GitHub
 If you notice any errors in text or if you need further clarification for any sentence/concept/section that you think is not
-exhaustively dealt within the book, you can do so by creating an *issue*. You can read issues submitted by other users or create a new issue [here](https://github.com/worldbank/d4di/issues). 
+exhaustively dealt within the book, you can do so by creating an *issue*. You can read issues submitted by other users or create a new issue [here](https://github.com/worldbank/dime-data-handbook/issues).
 
-For example, if you think the example the authors have used to explain a particular research design is too convoluted to understand, 
+For example, if you think the example the authors have used to explain a particular research design is too convoluted to understand,
 creating an issue is useful for you to provide us the feedback that we should use a **simpler example** to explain the research design.
 Please read already existing issues to check whether someone else has made the same suggestion or reported the same error 
 before creating a new issue.
@@ -21,7 +21,7 @@ before creating a new issue.
 ### GitHub Issue Submission Format
 For us to be able to search through the feedback we will organize all issues in a specific format. **If you do not know how to follow all steps in the bullet point below, then please feel free to post the issue anyways, but we will edit the issue so that it follows our format**.
 
-1. Go to [the issues tab](https://github.com/worldbank/d4di/issues) on the D4DI repository.
+1. Go to [the issues tab](https://github.com/worldbank/dime-data-handbook/issues) on the D4DI repository.
 1. Search the already posted issues to see if the feedback you are about to give is already posted,
 1. If your feedback has not already been brought up, please press the green *New Issue* button to post a new issue.
 1. Write your title on the format **`Ch #: description`** where _#_ is the chapter number and _description_ is a **short** description of the issue, and apply the corresponding chapter label
