@@ -19,7 +19,7 @@
         if _rc == 111 ssc install `command'
     }
 
-	*Harmonize settings accross users as much as possible
+	*Harmonize settings across users as much as possible
     ieboilstart, v(13.1)
     `r(version)'
 
