@@ -58,6 +58,8 @@ but your whole research team is unlikely to have the same understanding,
 at all times, of all the datasets required.
 The only way to make sure that the full team shares the same understanding
 is to create a \textbf{data map}\index{data map}.\sidenote{
+  More details and links to related topics with examples
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Data\_Map}}
 DIME's data map template has three components:
 one \textit{data linkage table},
@@ -69,21 +71,29 @@ that you create for your project
 will contribute to understanding
 what the data is about and how to use it.
 First, you will create a \textbf{data linkage table}\sidenote{
+  More details and an example
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Data\_Linkage\_Table}}
 listing all the raw datasets that will be used in the project,
 what data sources they are created from,
 and how they relate to each other.
 Second, for each \textbf{unit of observation}\sidenote{
+  More details on the concept of unit of observations
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 in the data linkage table,
 as well for each unit of analysis you plan to use,
 you will maintain a \textbf{master dataset}\sidenote{
+  More details and an example
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}
 listing all observations of that unit relevant to the project.
 These datasets will be the authoritative sources for all research data
 including unique identifiers, sample statuses, and treatment assignments.
 Finally, using these two resources
 you will continuously create \textbf{data flowcharts},\sidenote{
+  More details and an example
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Data\_Flow\_Chart}}
 describing how the raw datasets and master datasets
 are to be combined and manipulated to create analysis datasets.
@@ -342,6 +352,9 @@ which is often referred to as achieving
 DIME Analytics maintains a Stata command to
 standardize and automate the creation of well-formatted balance tables:
 \texttt{iebaltab}.\sidenote{
+  Read more about how \texttt{iebaltab}
+  simplifies balance tables in Stata,
+  and how to install this command on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/iebaltab}}
 Each research design has a different method for
 identifying and balancing the counterfactual group.
@@ -360,6 +373,8 @@ if you created a data linkage table.
 
 In \textbf{experimental research designs},
 such as \textbf{randomized control trials (RCTs)},\sidenote{
+  More details on RCTs and links to even more extensive resources
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Randomized\_Control\_Trials}}
   \index{randomized control trials}\index{experimental research designs}
 the research team determines which members
@@ -381,6 +396,9 @@ before being merged to other datasets.
 %%%%% Quasi-experimental design
 
 \textbf{Quasi-experimental research designs},\sidenote{
+  More details on quasi-experimental research designs
+  and links to even more extensive resources
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Quasi-Experimental\_Methods}}
 \index{quasi-experimental research designs}
 by contrast, are based on events not controlled by the research team.
@@ -405,6 +423,9 @@ No matter the design type, you should be very clear about
 which data points you observe or collect are research variables.
 For example,
 \textbf{regression discontinuity (RD)}\sidenote{
+  More details on RD designs
+  and links to even more extensive resources
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Regression\_Discontinuity}}
   \index{regression discontinuity}
 designs exploit sharp breaks or limits
@@ -413,6 +434,9 @@ in policy designs.\sidenote{
 The cutoff determinant, or running variable,
 should be saved in your master dataset.
 In \textbf{instrumental variables (IV)}\sidenote{
+  More details on IV designs
+  and links to even more extensive resources
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Instrumental\_Variables}}
   \index{instrumental variables}
 designs, the \textbf{instruments} influence the \textit{probability} of treatment.\sidenote{
@@ -429,6 +453,9 @@ and this should be clearly documented in your master dataset.
 
 In \textbf{matching} designs, observations are often grouped
 by a strata, grouping, index, or propensity score.\sidenote{
+  More details on matching methods
+  and links to even more extensive resources
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Matching}}
 Like all research variables, the matching results
 should be stored in the master dataset.
@@ -584,6 +611,8 @@ and have implications for feasibility, planning, and budgeting.
 from a list of individuals to create a representative or statistically similar sub-sample.\index{sampling}
 This process can be used, for example, to select a subset from all eligible units
 to be included in data collection when the cost of collecting data on everyone is prohibitive.\sidenote{
+  More details on this and links to even more extensive resources
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Sample\_Size\_and\_Power\_Calculations}}
 But it can also be used to select a sub-sample of your observations to test a computationally heavy process
 before running it on the full data.
@@ -669,6 +698,9 @@ Stata, like most statistical software, uses a \textbf{pseudo-random number gener
   which exhibits no statistical relationships between the position or value of any set of those numbers.}
 which, in ordinary research use,
 produces sequences of number that are as good as random.\sidenote{
+  More details on randomization in Stata
+  and the three important steps that needs to be followed
+  to make it reproducible can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Randomization\_in\_Stata}}
 However, for \textit{reproducible} randomization, we need two additional properties:
 we need to be able to fix the sequence of numbers generated and
@@ -686,8 +718,13 @@ In Stata, the \texttt{version} command ensures that the list of random numbers i
 	At the time of writing, we recommend using \texttt{version 13.1} for backward compatibility;
 	the algorithm used to create this list of random numbers was changed after Stata 14 but the improvements do not matter in practice.}
 The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
+  Read more about how \texttt{ieboilstart} can help you
+  harmonize settings such as version across users,
+  and how to install and use this command on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/ieboilstart}}
 We recommend you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
+  More details and description of each section of our template master do-file
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Master\_Do-files}}
 However, testing your do-files without running them
 via the master do-file may produce different results,
@@ -794,6 +831,8 @@ than the unit of sampling or treatment assignment.
 For example, a policy may be implemented at the village level,
 or you may only be able to send enumerators to a limited number of villages,
 or the outcomes of interest for the study are measured at the household level.\sidenote{
+  More details on clustered sampling and
+  links to additional resources can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Multi-stage\_(Cluster)\_Sampling}}
 \index{clustered randomization}
 The groups in which units are assigned to treatment are called clusters.\sidenote{
@@ -802,6 +841,8 @@ The groups in which units are assigned to treatment are called clusters.\sidenot
 % what is stratification
 \textbf{Stratification} breaks the full set of observations into subgroups
 before performing randomized assignment within each subgroup.\sidenote{
+  More details on stratified sampling and
+  links to additional resources can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Stratified\_Random\_Sample}}
 \index{stratification}
 The subgroups are called \textbf{strata}.
@@ -871,6 +912,8 @@ is zero, we think of the observed correlation as an \textbf{error}.
 In sampling, we call this the \textbf{sampling error},
 and it is defined as the difference between a true population parameter
 and the observed mean due to chance selection of units.\sidenote{
+  More details on sampling and
+  links to additional resources can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Sampling}}
 In randomized assignment, we call this the \textbf{randomization noise},
 and define it as the difference between a true treatment effect
@@ -894,6 +937,8 @@ of your design are located, so you know the relative tradeoffs you will face
 by changing your randomization scheme for the final design.
 
 The \textbf{minimum detectable effect (MDE)}\sidenote{
+  More details on minimum detectable effect and
+  links to additional resources can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Minimum\_Detectable\_Effect}}
 is the smallest true effect that a given research design can reliably detect.
 This is useful as a check on whether a study is worthwhile.
@@ -910,6 +955,8 @@ to implement a useful study.
 
 % what is randomization inference
 \textbf{Randomization inference}\sidenote{
+  More details on randomization inference and
+  links to additional resources can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Randomization\_Inference}}
 is used to analyze the likelihood
 \index{randomization inference}
