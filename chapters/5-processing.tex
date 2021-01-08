@@ -324,6 +324,10 @@ such as typos and inconsistent values.
 Data quality assurance requires a combination of real-time data checks
 and back-checks or validation audits, which often means tracking down
 the people whose information is included in the dataset.
+Whether your team is conducting a survey or 
+you are receiving data from a partner,
+the key aspects to have in mind are 
+data completeness, consistency and distribution.
 
 \subsection{Implementing high-frequency quality checks}
 
@@ -347,8 +351,11 @@ High-frequency checks should carefully inspect key treatment and outcome variabl
 to ensure that the data quality of core study variables is uniformly high,
 and that additional effort is centered where it is most important.
 Data quality checks should be run every time data is received
-to flag irregularities in the aquisition progress, in sample completeness, or in response quality.
+to flag irregularities in the acquisition progress, in sample completeness, or in response quality.
 The faster issues are identified, the more likely they are to be solved.
+Once the field team has left a survey area,
+or high-frequency data has been deleted from a server,
+it may be impossible to verify whether data points are correct or not.
 \texttt{ipacheck}\sidenote{
 	\url{https://github.com/PovertyAction/high-frequency-checks}}
 is a very useful Stata command that automates some of these tasks,
@@ -401,6 +408,13 @@ Response consistency should be checked across all datasets, as this is much hard
 Consistency checks are project specific, so it is difficult to provide general guidance.
 A detailed knowledge of the variables in the dataset and a careful examination of the analysis plan
 is the best way to prepare.
+
+% Distribution
+Finally, no amount of pre-programmed checks can replace actually looking at the data.
+Of course that doesn't mean eye checking each data point,
+but rather plotting and tabulating distributions for your main variables of interest.
+This will help you identify outliers and 
+other potentially problematic patterns that you had not foreseen.
 Analysis of metadata and paradata can also useful in assessing data quality.
 For example, electronic survey software generates
 automatically collected timestamps and trace histories,
@@ -417,12 +431,12 @@ what's most important is to find a way to create actionable information for your
 these can be sent directly to the data collection teams.
 Many teams choose other formats to display results,
 such as online dashboards created by custom scripts.
-It is also possible to automate communication of errors to the field team
+It is also possible to automate communication of errors to data providers
 by adding scripts to link the HFCs with a messaging platform.
 Any of these solutions are possible:
 what works best for your team will depend on such factors as
-cellular networks in field work areas, whether field supervisors have access to laptops,
-internet speed, and coding skills of the team preparing the HFC workflows.
+connectivity (particularly for survey teams)
+and coding skills of the team preparing the HFC workflows.
 
 \subsection{Conducting back-checks and data validation}
 
