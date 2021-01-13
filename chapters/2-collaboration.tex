@@ -69,6 +69,10 @@ so make sure it's set up for success.
 The operating system should be fully updated,
 it should be in good working order,
 and you should have a \textbf{password-protected} login.\index{password protection}
+However, password-protection is not sufficient protection 
+if your computer store data that is not public.
+You would need to use encryption for sufficient protection,
+which will be covered later in this chapter.
 Make sure your computer is backed up to prevent information loss.\index{data backup}
 Follow the \textbf{3-2-1 rule}: maintain 3 copies of all original or irreplaceable data,
 on at least 2 different hardware devices you have access to,
@@ -695,42 +699,69 @@ all accounts -- including personal accounts like computer logins and email.\inde
 This means that all your passwords should be long,
 not use common words and should not be reused for multiple accounts.
 The only way to make that practically feasible is to use a password manager.
-Most password managers also allows you to securely share passwords
+Most password managers also allow you to securely share passwords
 for shared accounts with your colleagues.
 
-Second, all machines that stores confidential data
-should have \textbf{hard disk encryption} enabled,
-if available in the operative system used.\sidenote{
-	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked,
-  or any other type of unauthorized access is obtained.
-	\url{https://dimewiki.worldbank.org/Encryption}}
-\index{encryption}
-Most hard disk encryption use your computer login password to
-prevent your files from ever being read by anyone but you.
-It is important to note that password-protection alone is not sufficient.
-Password protection makes it more difficult for someone else to gain access to your files,
-but only encryption properly protects your data if someone manages to access your files anyway.
-Hard disk encryption ensures that all your local files are protected,
-but it may only be supported in enterprise versions of operating systems,
-most notably Microsoft Windows.
-To properly secure your data you should have the habit of
-signing out from your computer when you leave it,
-no matter how briefly.
+Second, machines that stores confidential data
+should not be connected to insecure physical or wireless networks, 
+and when it is necessary to do so, 
+they should use a VPN to connect to the internet.
+Furthermore, USB drives and other devices connecting over USB cables
+should not be connected to machines storing confidential data
+unless you know where the USB device came from 
+and who has used it before you.
+Machines with confidential data should also 
+be stored in a secure location when not in use.
 
-Third, you must make sure that data including confidential information
-remains encrypted at all times during data collection, storage, and transfer.\index{data transfer}\index{data storage}
+Third, all confidential data must be encrypted at all times.\sidenote{
+	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked,
+	or any other type of unauthorized access is obtained.
+	\url{https://dimewiki.worldbank.org/Encryption}}\index{encryption}\index{data storage}
 When files are properly encrypted,
 the information they contain will be completely unreadable and unusable
 even if they were to be intercepted by a malicious ``intruder''
 (an information-security term for any unauthorized information access)
 or accidentally made public.
-We will discuss implementations of encryption
+We will discuss implementations of encryption in more detail
 specific to different stages of data work in Chapter 4,
 but when setting up a software environment for you and your team,
-make sure that you have a solution for creating encrypted folders on your computers.
+make sure that you have a solution for 
+all parts of your workflow on all team members computers.
+You can either encrypt your data on disk level,
+called \textbf{full disk encryption}, or on file level,
+called \textbf{file system encryption}.
+Whenever full disk encryption is available in your operative system
+it should always be enabled. 
+
+Most full disk encryption use your computer login password to
+prevent your files from ever being read by anyone but you.
+It is important to note that password-protection alone is not sufficient.
+Password protection makes it more difficult for someone else to gain access to your files,
+but only encryption properly protects your data if someone manages to access your files anyway.
+However, full disk encryption is currently only available in 
+Windows Enterprise, MacOS and most Linux distributions,
+but not in commonly used non-enterprise editions of Windows.
+It is possible to install software 
+where full disk encryption can be set up manually,
+but since most full disk encryption decrypts all your data
+each time you log in on your computer,
+and it cannot be used when sharing data over insecure channels like DropBox and email,
+we recommend teams to use for file system encryption instead.
+
+When using file system encryption, you create encrypted folders 
+in which you can securely store confidential data.
+These encrypted folders can be used to protects your data 
+both when they are stored on your computer 
+and when you share data over insecure channels like DropBox and email.\index{data transfer}
 DIME uses Veracrypt for encrypted folders,
 our protocols are available as part of the DIME Research Standards.\sidenote{
-  \url{https://github.com/worldbank/dime-standards}}
+	\url{https://github.com/worldbank/dime-standards}}
+Regardless if you use full disk encryption or file system encryption,
+your data is exposed to anyone that gains access to your computer 
+when your data is decrypted. 
+Therefore, you should always log out from your computer when you are not using it,
+and only keep folders with confidential data decrypted when you need exactly those files.
+The latter is only possible when you are using file system encryption.
 
 Handling confidential data properly will always add to your workload.
 The easiest way to reduce that work load is to
