@@ -698,9 +698,17 @@ since Stata's \texttt{version} setting expires after each time you run your do-f
 Because random numbers are assigned to each observation row-by-row starting from
 the top row,
 changing their order will change the result of the process.
-In Stata, the only way to guarantee a unique sorting order is to use
-\texttt{isid [id\_variable], sort}.
-(The \texttt{sort, stable} command is insufficient.)
+In Stata, we recommend using \texttt{isid [id\_variable], sort} 
+to guarantee a unique sorting order.
+This command does two things.
+First it tests that all observations have unique values in the sort variable,
+as duplicates would cause an ambiguous sort order.
+If all values are unique, 
+then the command sorts on this variable guaranteeing a unique sort order.
+It is a common misconception that the \texttt{sort, stable} command
+may also be used, 
+but by itself it cannot guarantee an ambiguous sort order 
+and is therefore not appropriate for this purpose. 
 Since the exact order must be unchanged,
 the underlying data itself must be unchanged as well between runs.
 This means that if you expect the number of observations to change
