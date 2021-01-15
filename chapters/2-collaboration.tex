@@ -69,7 +69,7 @@ so make sure it's set up for success.
 The operating system should be fully updated,
 it should be in good working order,
 and you should have a \textbf{password-protected} login.\index{password protection}
-However, password-protection is not sufficient protection 
+However, password-protection is not sufficient protection
 if your computer store data that is not public.
 You would need to use encryption for sufficient protection,
 which will be covered later in this chapter.
@@ -275,12 +275,12 @@ and simultaneous work with other types of files, without leaving the editor.
 Using an external editor can also be preferable since your editor will not crash
 if the execution of your code causes your statistical software to crash.
 Finally, you can often use the same editor for all programming languages you use,
-so any customization you do in your code editor of choice, 
+so any customization you do in your code editor of choice,
 will improve your productivity across all your coding work.
 
 % ----------------------------------------------------------------------------------------------
 % ----------------------------------------------------------------------------------------------
-\section{Organizing code and data}
+\section{Organizing code and data for replicable research}
 
 We assume you are going to do your analytical work through code,
 and that you want all your processes to be documented and replicable.
@@ -381,7 +381,7 @@ be stored in a synced folder that is shared with other people.
 Combining these two types of collaboration tools
 almost always creates undesired functionalities.
 
-\subsection{Connecting tasks through files}
+\subsection{Simplifying work across file formats}
 Each task in the research workflow has specific inputs and outputs
 which feed into one another.
 It is common, particularly when different tasks are performed by different people inside a team,
@@ -476,8 +476,8 @@ As you are writing code, you are making a series of decisions that
 These are often highly specialized and may exploit a functionality
 that is not obvious or has not been seen by others before.
 Well commented code is in itself a great way to document your data work
-which someone can follow to understand anything from 
-data cleaning decision that make the published data differ from the original data 
+which someone can follow to understand anything from
+data cleaning decision that make the published data differ from the original data
 to decision on how indicators are constructed.
 Even you will probably not remember the exact choices that were made in a couple of weeks.
 Therefore, you must document your precise processes in your code.
@@ -708,25 +708,25 @@ not use common words and should not be reused for multiple accounts.
 The only way to make that practically feasible is to use a password manager.
 Most password managers also allow you to securely share passwords
 for shared accounts with your colleagues.
-Multi-factor authentication (sometimes called 2-step verification) 
+Multi-factor authentication (sometimes called 2-step verification)
 is a secure alternative to passwords when available.
 
 Second, machines that stores confidential data
-should not be connected to insecure physical or wireless networks, 
-and when it is necessary to do so, 
+should not be connected to insecure physical or wireless networks,
+and when it is necessary to do so,
 they should use a VPN\sidenote{
-	\textbf{Virtual Private Network (VPN):} 
-	Allows you to securely connect to a network you trust over an insecure network. 
-	With the VPN you can securely communicate 
-	with other devices on the trusted network and 
-	make your traffic to the internet inaccessible 
+	\textbf{Virtual Private Network (VPN):}
+	Allows you to securely connect to a network you trust over an insecure network.
+	With the VPN you can securely communicate
+	with other devices on the trusted network and
+	make your traffic to the internet inaccessible
 	to the host of the insecure network.}
 to connect to the internet.
 Furthermore, USB drives and other devices connecting over USB cables
 should not be connected to machines storing confidential data
-unless you know where the USB device came from 
+unless you know where the USB device came from
 and who has used it before you.
-Machines with confidential data should also 
+Machines with confidential data should also
 be stored in a secure location when not in use.
 
 Third, all confidential data must be encrypted at all times.\sidenote{
@@ -741,14 +741,14 @@ or accidentally made public.
 We will discuss implementations of encryption in more detail
 specific to different stages of data work in Chapter 4,
 but when setting up a software environment for you and your team,
-make sure that you have a solution for 
+make sure that you have a solution for
 all parts of your workflow on all team members computers.
 You can encrypt your data on disk (hard drive) level,
 called \textbf{full disk encryption} (FDE), or on file level,
 called \textbf{file system encryption} (FSE).
-When possible both should be applied, 
-but our recommendation is that 
-project teams set up data protection protocols 
+When possible both should be applied,
+but our recommendation is that
+project teams set up data protection protocols
 using file system encryption as the main type of protection,
 and require all members that handles confidential data to use it.
 
@@ -759,36 +759,36 @@ Password protection makes it more difficult for someone else to gain access to y
 but only encryption properly protects your data if someone manages to access your files anyway.
 Whenever FDE is available in your operative system
 it should always be enabled.
-FDE protects your data when encrypted just as well as FSE, 
+FDE protects your data when encrypted just as well as FSE,
 but we recommend FSE due to the following disadvantages of FDE.
 First, FDE is implemented differently in different operative systems
-making it difficult to create useful instructions 
+making it difficult to create useful instructions
 for all computer set-ups team members may use.
-Second, when FDE decrypts your disk, 
-then all data on that disk is decrypted even 
+Second, when FDE decrypts your disk,
+then all data on that disk is decrypted even
 files you do not need to use at that time.
 Since most FDE automatically decrypt your full disk each time you log in,
 a malicious intruders that have gained access to your computer would have access to all your files.
-Third and perhaps most important, 
-FDE cannot be used when sharing confidential data 
+Third and perhaps most important,
+FDE cannot be used when sharing confidential data
 over insecure channels like DropBox or email.
-So FDE would anyways have to be complimented with 
+So FDE would anyways have to be complimented with
 some other type of protection during collaboration.
 
 When using FSE, instead of encrypting a full disk or drive,
-you create encrypted folders 
+you create encrypted folders
 in which you can securely store confidential data.
-These encrypted folders protects your data 
-when they are stored on your computer 
-but can also be used to securely transfer data over 
+These encrypted folders protects your data
+when they are stored on your computer
+but can also be used to securely transfer data over
 insecure channels like DropBox and email.\index{data transfer}
-Encrypted folders in FSE are only decrypted 
-when you need that specific folder to be decrypted. 
-That means that a malicious intruder 
-that have gained access to your computer 
-only gains access to the folders you have decrypted 
-while your computer was compromised. 
-Folders you rarely or never decrypt therefor 
+Encrypted folders in FSE are only decrypted
+when you need that specific folder to be decrypted.
+That means that a malicious intruder
+that have gained access to your computer
+only gains access to the folders you have decrypted
+while your computer was compromised.
+Folders you rarely or never decrypt therefor
 remains protected even if someone gain access to your computer.
 DIME uses VeraCrypt for encrypted folders,
 our protocols are available as part of the DIME Research Standards.\sidenote{
@@ -798,7 +798,7 @@ While some details are different across platforms,
 the encryption will be implemented the same way for all team members.
 
 Regardless if you use full disk encryption or file system encryption,
-it is important to remember that encryption provides no protection 
+it is important to remember that encryption provides no protection
 when your data is decrypted.
 Therefore, you should always log out from your computer when you are not using it,
 and only keep folders with confidential data decrypted when you need exactly those files.
