@@ -23,20 +23,20 @@ both across the team and across time.
 We will discuss two types of variables:
 variables that tie your research design
 to the observations in the data
-which we call \textit{research variables};
+which we call \textit{research design variables};
 and variables that correspond to observations of the real world,
 which we call \textit{measurement variables}.
 
 The second section discusses how to assess data needs
 based on your project's research design,
-We will briefly cover the most commonly used 
-research designs in impact evaluation. 
-This book will not cover these designs in detail 
-as other publications have already done that better then we ever could. 
-Instead, we will give examples on the specific data needs they have, 
+We will briefly cover the most commonly used
+research designs in impact evaluation.
+This book will not cover these designs in detail
+as other publications have already done that better then we ever could.
+Instead, we will give examples on the specific data needs they have,
 and how to document those in our data map template.
 
-The third section of the chapter covers how to reproducibly generate research variables,
+The third section of the chapter covers how to reproducibly generate research design variables,
 specifically through random sampling and random assignment.
 It also discusses power calculations and randomization inference,
 which are tools for assessing the measurement ability of
@@ -111,6 +111,46 @@ each component will need to be updated
 and maintained as the project evolves
 and new data sources, observations, and research questions arise.
 
+We have introduced a framework of classifying data
+as either \textbf{research design variables} or \textbf{measurement variables}
+to better explain where in the data map different types of data should be tracked.
+Research design variables are data that maps observations of your research subjects to the
+questions that are asked in your research design.
+They can either be variables that often has no meaning outside your research project,
+for example ID variables and treatment status,
+or they can be observations from the real world 
+that determines how each specific research subject 
+should be handled during the analysis, 
+for example treatment uptake and eligibility status.
+Measurement variables are data that
+measures attributes or records responses of research subjects.
+Measurement variables are not controlled by the research team.
+Examples include characteristics of the research subject,
+outcome variables, and control variables among many others.
+
+Research questions can often be expressed in this framework 
+by asking how research design variables correlates with measurement variables.
+This is not identical to dependent and independent variables in a regression.
+For example, research design variables such as treatment status are often not 
+as uncorrelated with real world attributes 
+as the assumptions in our statistical models say that they have to be. 
+One common mitigation of that is to add control variables 
+as additional independent variables in the regressions.
+This helps isolate the relationship between the treatment status and the outcome variable studied. 
+In this example, both the outcome variable (dependent variable) and 
+most control variables (independent variables) 
+are measurement variables that are not direct expressions of research design.
+It is this direct linkage between your theoretical research design 
+to real world characteristics that is the definition of a research variable.
+If you are a PhD economist with several years of experience 
+then this distinction might seem unnecessary to you 
+as this relation is very intuitive for you. 
+However, your research project is likely to depend on contributions 
+from someone to whom this is not as intuitive.
+We believe this distinction is helpful for them, 
+and to maintain this distinction they are handled differently in the data map.
+
+
 \subsection{Data linkage table}
 
 To create a data map according to DIME's template,\index{data linkage table}
@@ -167,30 +207,22 @@ for each unit of observation that will be used in any research activity.
 Examples of such activities are data collection, data analysis,
 random sampling, and treatment assignment.\index{master dataset}
 The master dataset should be the authoritative source of
-all \textbf{research variables}\sidenote{
-	\textbf{Research variables:} Research data that identifies observations
-	and maps research design information to those observations.
-	Research variables are time-invariant and
-	often, but not always, controlled by the research team.
-	Examples include
-	ID variables, sampling status, treatment status, and treatment uptake.}\index{research variables}
-but not include any \textbf{measurement variables}.\sidenote{
-	\textbf{Measurement variables:} Data that
-	measures attributes or records responses of research subjects.
-	Measurement variables are not controlled by the research team
-	and often vary over time.
-	Examples include characteristics of the research subject,
-	outcome variables, and control variables among many others.}\index{measurement variables}
-Research variables and measurement variables
+all research design variables\index{research design variables}
+but not include any measurement variables.\index{measurement variables}
+Research design variables and measurement variables
 often come from the same source,
 but should not be stored in the same way.
 For example, if you acquire administrative data that both includes
-information on eligibility for the study (research variable)
-and data on the topic of your study (measurement variable)
-you should first decide which variables are research variables,
+information on eligibility for the study (research design variables)
+and data on the topic of your study (measurement variables)
+you should first decide which variables are research design variables,
 and store them in the master dataset,
 while storing the measurement variables in a cleaned dataset
 as described in Chapter 5.
+This distinction is made as variables that 
+describes your research design applies across your project,
+but measurement variables is a snapshot 
+that describe the point of time they were collected in.
 It is common that you will have to update
 your master datasets throughout your project.
 
@@ -213,11 +245,11 @@ and the linkage to direct identifiers
 should only be known to people listed on the IRB.
 If you receive a dataset with an alternative ID,
 you should immediately replace it with your project ID.
-The alternative ID should be stored in your master dataset 
+The alternative ID should be stored in your master dataset
 so it may be linked back to your data using the project ID if ever needed.
 Since you are not in control over who knows the identity behind alternative IDs
 they should be dropped as a part of your de-identification (see Chapter 5 and Chapter 7).
-Any dataset that needs to retain an alternative ID for any reason 
+Any dataset that needs to retain an alternative ID for any reason
 should be treated as confidential data.
 Your master dataset serves as the linkage between
 all other identifying information and your project ID.
@@ -250,7 +282,7 @@ Sometimes you will encounter different spellings in identifiers
 and identifiers such as addresses may become outdated.
 
 Since the master dataset is the authoritative source
-of the project ID and all research variables
+of the project ID and all research design variables
 for the corresponding unit of observation,
 it serves as an unambiguous method of mapping
 the observations in your study to your research design.
@@ -271,15 +303,15 @@ The operations used to combine the data could include:
 appending, one-to-one merging,
 many-to-one or one-to-many merging, collapsing, or a broad variety of others.
 The same information that goes into the data flowcharts can be expressed in text,
-but our experience is that the most efficient way 
-to communicate this information across a team is to use a diagram.
+but our experience is that the most efficient way
+to communicate this information succinctly across a team is to use a diagram.
 
 You must list which variable or set of variables
 should be used in each operation,
 and note whether the operation creates a new variable or combination of variables
 to identify the newly linked data.
 These variables should be project IDs when possible.
-Examples of exception are time variables in longitudinal data,
+Examples of exceptions are time variables in longitudinal data,
 and sub-units like farm plots that belong to farmers with project IDs.
 Once you have acquired the datasets listed in the flowchart,
 you can add to the data flowcharts the number of observations that
@@ -295,7 +327,7 @@ A data flowchart can be created in a flowchart drawing tool
 by using shapes in Microsoft PowerPoint.
 You can also do this simply by drawing on a piece of paper and taking a photo,
 but we recommend a digital tool
-so that flowcharts can easily be updated over time.
+so that flowcharts can easily be updated over time if needed.
 Similarly to the data linkage table,
 you should include here both technical information
 as well as plain-language interpretations
@@ -305,25 +337,24 @@ that often result from merges and appends,
 such as panel datasets like ``person-year'' structures
 and multi-level data like ``district-school-teacher-student'' structures.
 
-\section{Expressing research design in data maps}
+\section{Research designs and data map needs}
 
 After you have made the first draft of your data map,
 you need to carefully think about your research design
-and decide which research variables you will need in the data analysis
+and decide which research design variables you will need in the data analysis
 to infer the relation between differences in measurement variables
 and your research design.
-It is very likely that you will have to make several modifications
-to your data map as you go over the data needs in your research design. 
-But this is the exact reason why you should do these steps 
-before you start acquiring any data,
-so you can best plan your data acquisition according to your research needs.
+It is likely that you will have to make modifications
+to your data map as you go over the data needs in your research design,
+but this is the exact reason why you should do these steps
+before you start acquiring any data.
 We assume you have a working familiarity
 with the research designs mentioned here.
 You should reference our \textbf{Research Design Appendix},
 where you will find more details
 and specific references for common impact evaluation designs.
 
-\subsection{Defining research variables related to your research design}
+\subsection{Defining research design variables related to your research design}
 
 As DIME primarily works on impact evaluations,
 we focus our discussion here on research designs
@@ -367,11 +398,11 @@ identifying and balancing the counterfactual group.
 The rest of this section covers how research data requirements
 differ between those different methods.
 What does not differ, however,
-is that these data requirements are all research variables.
-And that the research variables discussed below
+is that these data requirements are all research design variables.
+And that the research design variables discussed below
 should always be included in the master dataset.
 You will often have to merge
-the research variables to other datasets,
+the research design variables to other datasets,
 but that is an easy task
 if you created a data linkage table.
 
@@ -418,10 +449,10 @@ including administrative data or other classes of routinely-collected informatio
 and it is important that your data linkage table documents
 how this data can be linked to the rest of the data in your project.
 
-%%%%% Research variables
+%%%%% Research design variables
 
 No matter the design type, you should be very clear about
-which data points you observe or collect are research variables.
+which data points you observe or collect are research design variables.
 For example,
 \textbf{regression discontinuity (RD)}\sidenote{
 	\url{https://dimewiki.worldbank.org/Regression\_Discontinuity}}
@@ -436,11 +467,11 @@ In \textbf{instrumental variables (IV)}\sidenote{
   \index{instrumental variables}
 designs, the \textbf{instruments} influence the \textit{probability} of treatment.\sidenote{
   See \citet{calderon2017opportunity} for an example.}
-These research variables should be collected
+These research design variables should be collected
 and stored in the master dataset.
 Both the running variable in RD designs
 and the instruments in IV designs,
-are among the rare examples of research variables
+are among the rare examples of research design variables
 that may vary over time.
 In such cases your research design should
 ex-ante clearly indicate what point of time they will be recorded,
@@ -449,7 +480,7 @@ and this should be clearly documented in your master dataset.
 In \textbf{matching} designs, observations are often grouped
 by a strata, grouping, index, or propensity score.\sidenote{
 	\url{https://dimewiki.worldbank.org/Matching}}
-Like all research variables, the matching results
+Like all research design variables, the matching results
 should be stored in the master dataset.
 This is best done by assigning a matching ID
 to each matched pair or group,
@@ -531,13 +562,12 @@ Therefore, you must acquire monitoring data that
 tells you how well the treatment assignment in the field
 corresponds to your intended treatment assignment,
 for nearly all experimental research designs.
-Monitoring data can be collected by sending someone to the field to record observations, 
-but it is more and more common that you can collect monitor data remotely. 
+While monitoring data has traditionally been collected by sending someone to the field ,
+it is more and more common that you can collect monitor data remotely.
 For example by scraping social media platforms
 or by applying image recognition to satellite images.
-Development practitioners are still in an early stage 
-of exploring how to use new types of data to 
-monitor the implementation of our research 
+Development researchers are still in an early stage
+of exploring how to acquire monitor data
 without anyone having to leave their desk.
 While it is always better to monitor all activities,
 it might be too costly.
@@ -548,10 +578,9 @@ estimate the validity of your research design assumptions.
 
 Monitoring data is particularly prone to errors
 when linking it with the rest of the data in your project.
-Often monitoring activities are done by
-sending a team to simply record the name of all people attending a training,
-or by a partner organization sharing their administrative data,
-which is rarely maintained in the same format or structure as your research data.\sidenote{
+When sending a team to simply record the name of all people attending a training,
+or when a partner organization sharing their administrative data for monitoring purposes,
+it is rarely received in the same format or structure as your research data.\sidenote{
   See \citet{goldstein2015formalizing} for an example.}
 In both those cases it can be difficult to make sure that
 the project ID or any other unambiguous identifiers in our master datasets
@@ -564,11 +593,11 @@ a result of a fuzzy link between monitoring data and the rest of your data.
 
 %-----------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------
-\section{Creating research variables by randomization}
+\section{Creating research design variables by randomization}
 
 Random sampling and random treatment assignment
 are two core research design activities
-that generate new research variables.
+that generate new research design variables.
 Random sampling and random treatment assignment directly determine
 the set of individuals who are going to be observed
 and what their status will be for the purpose of effect estimation.
@@ -725,17 +754,17 @@ since Stata's \texttt{version} setting expires after each time you run your do-f
 Because random numbers are assigned to each observation row-by-row starting from
 the top row,
 changing their order will change the result of the process.
-In Stata, we recommend using \texttt{isid [id\_variable], sort} 
+In Stata, we recommend using \texttt{isid [id\_variable], sort}
 to guarantee a unique sorting order.
 This command does two things.
 First it tests that all observations have unique values in the sort variable,
 as duplicates would cause an ambiguous sort order.
-If all values are unique, 
+If all values are unique,
 then the command sorts on this variable guaranteeing a unique sort order.
 It is a common misconception that the \texttt{sort, stable} command
-may also be used, 
-but by itself it cannot guarantee an ambiguous sort order 
-and is therefore not appropriate for this purpose. 
+may also be used,
+but by itself it cannot guarantee an ambiguous sort order
+and is therefore not appropriate for this purpose.
 Since the exact order must be unchanged,
 the underlying data itself must be unchanged as well between runs.
 This means that if you expect the number of observations to change
@@ -969,7 +998,7 @@ and allow adjustments to the design to be made.
 This chapter provided a framework for you to
 develop a data map that documents your data acquisition plan and
 how each component relates to the design of your study.
-The data map contains research variables and the instructions
+The data map contains research design variables and the instructions
 for using them in combination with measurement variables, which together
 will form the dataset for your analytical work.
 It also provided ways for you to use this planning data
