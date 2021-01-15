@@ -693,7 +693,7 @@ you should not have any issues complying with these regulations.
 \subsection{Ensuring privacy and security in research data}
 
 In order to safeguard PII data and protect respondent privacy,
-you must set up a secure data system from the outset of a project.
+you must set up a data protection protocol from the outset of a project.
 Secure data storage and transfer are ultimately your personal responsibility.\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Security}}
 Later chapters will discuss how to properly protect your data depending on
@@ -708,11 +708,14 @@ not use common words and should not be reused for multiple accounts.
 The only way to make that practically feasible is to use a password manager.
 Most password managers also allow you to securely share passwords
 for shared accounts with your colleagues.
+Multi-factor authentication (sometimes called 2-step verification) 
+is a very secure alternative to passwords when available.
 
 Second, machines that stores confidential data
 should not be connected to insecure physical or wireless networks, 
 and when it is necessary to do so, 
-they should use a VPN to connect to the internet.
+they should use a VPN\sidenote{\textbf{Virtual Private Network (VPN):} Allows you to securely connect to a network you trust over an insecure connection. With the VPN you can securely communicate with other devices on the trusted network and make your traffic to the internet inaccessible to the host of the insecure connection.}
+to connect to the internet.
 Furthermore, USB drives and other devices connecting over USB cables
 should not be connected to machines storing confidential data
 unless you know where the USB device came from 
@@ -734,41 +737,66 @@ specific to different stages of data work in Chapter 4,
 but when setting up a software environment for you and your team,
 make sure that you have a solution for 
 all parts of your workflow on all team members computers.
-You can either encrypt your data on disk level,
-called \textbf{full disk encryption}, or on file level,
-called \textbf{file system encryption}.
-Whenever full disk encryption is available in your operative system
-it should always be enabled. 
+You can encrypt your data on disk (hard drive) level,
+called \textbf{full disk encryption} (FDE), or on file level,
+called \textbf{file system encryption} (FSE).
+When possible both should be applied, 
+but our recommendation is that 
+project teams set up data protection protocols 
+using file system encryption as the main type of protection,
+and require all members that handles confidential data to use it.
 
-Most full disk encryption use your computer login password to
+Most implementation of FDE use your computer login password to
 prevent your files from ever being read by anyone but you.
 It is important to note that password-protection alone is not sufficient.
 Password protection makes it more difficult for someone else to gain access to your files,
 but only encryption properly protects your data if someone manages to access your files anyway.
-However, full disk encryption is currently only available in 
-Windows Enterprise, MacOS and most Linux distributions,
-but not in commonly used non-enterprise editions of Windows.
-It is possible to install software 
-where full disk encryption can be set up manually,
-but since most full disk encryption decrypts all your data
-each time you log in on your computer,
-and it cannot be used when sharing data over insecure channels like DropBox and email,
-we recommend teams to use for file system encryption instead.
+Whenever FDE is available in your operative system
+it should always be enabled.
+FDE protects your data when encrypted just as well as FSE, 
+but we recommend FSE due to the following disadvantages of FDE.
+First, FDE is implemented differently in different operative systems
+making it difficult to create useful instructions 
+for all computer set-ups team members may use.
+Second, when FDE decrypts your disk, 
+then all data on that disk is decrypted even 
+files you do not need to use at that time.
+Since most FDE automatically decrypt your full disk each time you log in,
+a malicious intruders that have gained access to your computer would have access to all your files.
+Third and perhaps most important, 
+FDE cannot be used when sharing confidential data 
+over insecure channels like DropBox or email.
+So FDE would anyways have to be complimented with 
+some other type of protection during collaboration.
 
-When using file system encryption, you create encrypted folders 
+When using FSE, instead of encrypting a full disk or drive,
+you create encrypted folders 
 in which you can securely store confidential data.
-These encrypted folders can be used to protects your data 
-both when they are stored on your computer 
-and when you share data over insecure channels like DropBox and email.\index{data transfer}
-DIME uses Veracrypt for encrypted folders,
+These encrypted folders protects your data 
+when they are stored on your computer 
+but can also be used to securely transfer data over 
+insecure channels like DropBox and email.\index{data transfer}
+Encrypted folders in FSE are only decrypted 
+when you need that specific folder to be decrypted. 
+That means that a malicious intruder 
+that have gained access to your computer 
+only gains access to the folders you have decrypted 
+while your computer was compromised. 
+Folders you rarely or never decrypt therefor 
+remains protected even if someone gain access to your computer.
+DIME uses VeraCrypt for encrypted folders,
 our protocols are available as part of the DIME Research Standards.\sidenote{
 	\url{https://github.com/worldbank/dime-standards}}
+VeraCrypt is free of charge and available for Windows, MacOS and Linux.
+While some details are different across platforms,
+the encryption will be implemented the same way for all team members.
+
 Regardless if you use full disk encryption or file system encryption,
-your data is exposed to anyone that gains access to your computer 
-when your data is decrypted. 
+it is important to remember that encryption provides no protection 
+when your data is decrypted.
 Therefore, you should always log out from your computer when you are not using it,
 and only keep folders with confidential data decrypted when you need exactly those files.
-The latter is only possible when you are using file system encryption.
+The latter is only possible when you are using FSE.
 
 Handling confidential data properly will always add to your workload.
 The easiest way to reduce that work load is to
