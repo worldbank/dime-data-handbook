@@ -698,22 +698,22 @@ We again use Stata in our examples,
 but the same principles translate to all other programming languages.
 
 % rule 1: versioning
-\textbf{Versioning} means using the same version of the software each time you run the random process.
+\textbf{Rule 1: Versioning} requires using the same version of the software each time you run the random process.
 If anything is different, the underlying list of random numbers may have changed,
 and it may be impossible to recover the original result.
 In Stata, the \texttt{version} command ensures that the list of random numbers is fixed.\sidenote{
 	At the time of writing, we recommend using \texttt{version 13.1} for backward compatibility;
 	the algorithm used to create this list of random numbers was changed after Stata 14 but the improvements do not matter in practice.}
 The \texttt{ieboilstart} command in \texttt{ietoolkit} provides functionality to support this requirement.\sidenote{
-	\url{https://dimewiki.worldbank.org/ieboilstart}}
+	To learn more about the ieboilstart command, go to \url{https://dimewiki.worldbank.org/ieboilstart}}
 We recommend you use \texttt{ieboilstart} at the beginning of your master do-file.\sidenote{
-	\url{https://dimewiki.worldbank.org/Master\_Do-files}}
-However, testing your do-files without running them
+	To learn more about how to set up a master do-file, go to \url{https://dimewiki.worldbank.org/Master\_Do-files}}
+Note that testing your do-files without running them
 via the master do-file may produce different results,
 since Stata's \texttt{version} setting expires after each time you run your do-files.
 
 % rule 2: sorting
-\textbf{Sorting} means that the actual data that the random process is run on is fixed.
+\textbf{Rule 2: Sorting} requires that the order of the actual data that the random process is run on is fixed.
 Because random numbers are assigned to each observation row-by-row starting from
 the top row,
 changing their order will change the result of the process.
@@ -726,7 +726,7 @@ If all values are unique,
 then the command sorts on this variable guaranteeing a unique sort order.
 It is a common misconception that the \texttt{sort, stable} command
 may also be used,
-but by itself it cannot guarantee an ambiguous sort order
+but by itself it cannot guarantee an unambiguous sort order
 and is therefore not appropriate for this purpose.
 Since the exact order must be unchanged,
 the underlying data itself must be unchanged as well between runs.
@@ -739,7 +739,7 @@ those smaller datasets after your randomization.
 
 
 % rule 3: seeding
-\textbf{Seeding} means manually setting the start point in the list of pseudo-random numbers.
+\textbf{Rule 3: Seeding} requires manually setting the start point in the list of pseudo-random numbers.
 A seed is just a single number that specifies one of the possible start points.
 It should be at least six digits long and you should use exactly
 one unique, different, and randomly created seed per randomization process.\sidenote{
@@ -756,10 +756,10 @@ so do not use shortcuts such as the current date or a seed you have used before.
 You should also describe in your code how the seed was selected.
 
 % testing randomization reproducibility
-Other commands may induce randomness in the data,
+You must carefully confirm exactly how your code runs before finalizing it,
+as other commands may induce randomness in the data,
 change the sorting order,
-or alter the place of the random generator without you realizing it,
-so carefully confirm exactly how your code runs before finalizing it.
+or alter the place of the random generator without you realizing it.
 To confirm that a randomization has worked correctly before finalizing its results,
 save the outputs of the process in a temporary location,
 re-run the code, and use \texttt{cf} or \texttt{datasignature} to ensure
@@ -768,13 +768,15 @@ randomization results on their machine to remove any doubt that your results
 are reproducible.
 Once the result of a randomization is used in the field,
 there is no way to correct any mistakes.
+The code below provides an example of a fully reproducible randomization. 
 
 \codeexample{reproducible-randomization.do}{./code/reproducible-randomization.do}
 
-Some types of experimental designs require
-that randomized assignment results be revealed in the field.
-It is possible to do this using survey software or live events, such as a live lottery.
-These methods typically do not leave a record of the randomization,
+As discussed above, at times it will not be possible to use a master dataset for 
+randomized sampling or treatment assignment
+(examples were sampling patients on arrival or live lotteries).
+In addition to presenting challenges with matching,
+these methods typically do not leave a record of the randomization,
 and as such are never reproducible.
 However, you can often run your randomization in advance
 even when you do not have list of eligible units in advance.
