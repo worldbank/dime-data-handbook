@@ -173,10 +173,13 @@ The second step in creating a data map is to create one \textbf{master dataset}
 for each unit of observation that will be used in any research activity.
 Examples of such activities are data collection, data analysis,
 sampling, and treatment assignment.\index{master dataset}
-The master dataset should be the authoritative source of
-all research design variables\index{research design variables}
-including unique identifiers, sample statuses, and treatment assignments.
-It should not include any measurement variables.
+The master dataset is the authoritative source
+of the project ID and all research design variables\index{research design variables}
+for the corresponding unit of observation, 
+such as sample status and treatment assignment.
+Therefore, the master dataset serves as an unambiguous method of mapping
+the observations in the data to the research design.
+A master dataset should not include any measurement variables.
 Research design variables and measurement variables
 may come from the same source,
 but should not be stored in the same way.
@@ -186,12 +189,9 @@ and data on the topic of your study (measurement variables),
 the data should be processed such that research design variables are stored in the master dataset,
 while measurement variables should be stored separately and prepared for analysis
 as described in Chapter 5.
-It is common that you will have to update
-your master datasets throughout your project.
 
-The most important function of each master dataset
-is to be the authoritative source
-for how all observations at that unit of analysis are identified.
+Each master dataset is to be the authoritative source
+for how all observations at that unit of analysis are identified. 
 This means that the master datasets should include
 identifying information such as names, contact information,
 and the project ID.
@@ -205,18 +205,18 @@ who can re-identify data.
 The project ID must be created by the project team,
 and the linkage to direct identifiers
 should only be known to people listed on the IRB.
-If you receive a dataset with an alternative ID,
-you should immediately replace it with your project ID.
-The alternative ID should be stored in your master dataset
-so it may be linked back to your data using the project ID if ever needed.
-Since you are not in control over who knows the identity behind alternative IDs
-they should be dropped as a part of your de-identification (see Chapter 5 and Chapter 7).
-Any dataset that needs to retain an alternative ID for any reason
-should be treated as confidential data.
 Your master dataset serves as the linkage between
 all other identifying information and your project ID.
 Since your master dataset is full of identifying information,
 it must always be encrypted.
+If you receive a dataset with an alternative ID,
+you should replace it with your project ID as a part of de-identification 
+(see Chapter 5 and Chapter 7 for more on de-identification).
+The alternative ID should be stored in your master dataset
+so it may be linked back to your data using the project ID if ever needed.
+Any dataset that needs to retain an alternative ID for any reason
+should be treated as confidential data; 
+it should always be encrypted and never published.
 
 The starting point for the master dataset is typically a sampling frame
 (more on sampling frames later in this chapter).
@@ -233,9 +233,8 @@ the more information you have the fewer errors you are likely to make.
 If you ever need to do a fuzzy match,
 you should always do that between the master dataset
 and the dataset without an unambiguous identifier.\sidenote{
-  See \citet{benhassine2018does} for an example.}
-You should not do anything with that dataset until
-you have successfully merged
+  See \cite{benhassine2018does} for an example.}
+You should not begin data cleaning or analysis until you have successfully merged
 the project IDs from the master dataset.
 When adding new observations to the master datasets,
 always convince yourself beyond reasonable doubt
@@ -243,11 +242,7 @@ that the new observation is indeed a new observation.
 Sometimes you will encounter different spellings in identifiers
 and identifiers such as addresses may become outdated.
 
-Since the master dataset is the authoritative source
-of the project ID and all research design variables
-for the corresponding unit of observation,
-it serves as an unambiguous method of mapping
-the observations in your study to your research design.
+
 
 \subsection{Data flowcharts}
 
