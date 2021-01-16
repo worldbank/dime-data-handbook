@@ -820,11 +820,13 @@ are rarely as straightforward as a uniform-probability draw.
 The most common variants are \textbf{clustering} and \textbf{stratification}.\sidenote{\citet{athey2017econometrics}}
 \textbf{Clustering} occurs when your unit of analysis is different
 than the unit of sampling or treatment assignment.\sidenote{
-	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+	For a discussion of the difference between these units of analysis and observation,
+	 go to \url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
 For example, a policy may be implemented at the village level,
 or you may only be able to send enumerators to a limited number of villages,
 or the outcomes of interest for the study are measured at the household level.\sidenote{
-	\url{https://dimewiki.worldbank.org/Multi-stage\_(Cluster)\_Sampling}}
+	To learn more about clustered sampling, and see example code, 
+	go to \url{https://dimewiki.worldbank.org/Multi-stage\_(Cluster)\_Sampling}}
 \index{clustered randomization}
 The groups in which units are assigned to treatment are called clusters.\sidenote{
   See \citet{keating2011evaluating} for an example.}
@@ -832,7 +834,9 @@ The groups in which units are assigned to treatment are called clusters.\sidenot
 % what is stratification
 \textbf{Stratification} breaks the full set of observations into subgroups
 before performing randomized assignment within each subgroup.\sidenote{
-	\url{https://dimewiki.worldbank.org/Stratified\_Random\_Sample}}
+	For more details on why and how to stratify, 
+	and how to handle `misfits',
+	go to \url{https://dimewiki.worldbank.org/Stratified\_Random\_Sample}}
 \index{stratification}
 The subgroups are called \textbf{strata}.
 This ensures that members of every subgroup
@@ -866,7 +870,8 @@ the information that if one individual was observed or treated there,
 the other members of the clustering group were as well.
 
 % using randtreat for stratified randomized assignment
-By contrast, implementing stratified designs in statistical software is prone to error.
+Although procedurally straightforward, 
+implementing stratified designs in statistical software is prone to error.
 Even for a simple multi-armed design,
 the basic method of randomly ordering the observations
 will often create very skewed assignments.\sidenote{
