@@ -376,8 +376,8 @@ is randomly assigned to receive the treatment
 The intuition is that if everyone in the eligible population
 is assigned at random to either the treatment or control group,
 then the two groups will, on average, be statistically indistinguishable.
-The treatment will therefore not be correlated with anything
-but the impact of that treatment.\sidenote{\citet{duflo2007using}}
+Randomization makes it possible to obtain an unbiased estimate of 
+the effects that can be attributed to a specific program or intervention.\sidenote{\citet{duflo2007using}, {JPAL\_RCT}}
 The randomized assignment should be done
 using data from the master dataset,
 and the result should be saved back to the master dataset,
@@ -894,7 +894,7 @@ it is impossible to predict the result in advance.
 By design, we know that the exact choice of sample or treatment
 will be uncorrelated with our key outcomes,
 but this lack of correlation is only true ``in expectation'' --
-that is, across a large number of randomizations.
+that is, the correlation goes to zero as the sample size goes to inifinity.
 In any \textit{particular} randomization,
 the correlation between the sampling or randomized assignments and the outcome variable
 is guaranteed to be \textit{nonzero}:
@@ -929,6 +929,10 @@ each of which has different practical uses.
 The purpose of power calculations is to identify where the strengths and weaknesses
 of your design are located, so you know the relative tradeoffs you will face
 by changing your randomization scheme for the final design.
+It is important to consider take-up rates and attrition when doing power calculations;
+incomplete take-up will significantly reduce power, 
+understanding what minimum level of take-up is required can help guide field operations
+(for this reason, monitoring take-up in real-time is often critical).
 
 The \textbf{minimum detectable effect (MDE)}\sidenote{
 	\url{https://dimewiki.worldbank.org/Minimum\_Detectable\_Effect}}
