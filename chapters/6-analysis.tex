@@ -255,6 +255,34 @@ All these points also apply to imputation of missing values and other distributi
 As a general rule, never overwrite or delete original data during the construction process.
 Always create derived indicators with new names.
 
+% Dealing with different levels of observation
+Two features of data create additional complexities when constructing indicators:
+repeated observations over time, and
+research designs comprising different units of observation and analysis.
+Let's start by the latter.
+When your research involves different units of observation,
+creating analysis datasets will probably mean combining variables measured at these different levels.
+If you followed our recommendations from chapter 5,
+this means combining variables that are included in different tidy datasets.
+To make sure constructed variables are consistent across datasets,
+we recommend that each indicator be constructed in the dataset corresponding to its unit of observation.
+Once we have indicators at each unit of observation,
+they may be aggregated and/or merged to different units of analysis.
+Take the example of a project that acquired data at both the student and teacher levels.
+You may want to analyze the performance of students on a test
+while controlling for teacher characteristics.
+This can be done by assigning the teacher-level indicators to all the students in the corresponding class.
+Conversely, you may want to include average student test scores
+in the analysis dataset containing teacher-level variables.
+To do so, you will start from the constructed dataset at student level;
+average the test scores of all students taught by the same teacher;
+and merge this aggregate measure to the teacher-level dataset.
+You should be mindful of two aspects while performing such operations:
+the first is the correspondence between identifying variables at different levels, 
+that should be documented in the \textbf{data linkage table};
+the second is that they will necessarily involve merges,
+so all the steps outlined in the previous section should be applied.
+
 % Maintaining indicator definition across rounds
 Finally, creating a panel with survey data involves additional timing complexities.
 It is common to construct indicators soon after receiving data from a new survey round.
