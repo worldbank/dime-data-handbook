@@ -579,7 +579,7 @@ that are ready to be included in a paper or report.
 No manual edits, including formatting,
 should be necessary after exporting final outputs.
 Manual edits are difficult to reproduce;
-the less you make, the more reproducible your output is.
+the you need them, the more reproducible your output is.
 You may think that it's not worth coding a small formatting adjustment,
 but you will inevitably need to make changes to the output,
 and automating them will save you time by the end of the process.
@@ -604,10 +604,12 @@ and so do the chances of having the wrong version of a result in a paper or repo
 There are numerous commands to export outputs from both R and Stata.
 Some examples are \texttt{estout},\sidenote{\citet{estout05}, \citet{estout07}}
 \texttt{outreg2},\sidenote{\citet{wada2014outreg2}}
-and \texttt{outwrite}\sidenote{\citet{daniels2019outwrite}} in Stata,
-and \texttt{stargazer}\sidenote{\citet{hlavac2015stargazer}}
+and \texttt{outwrite}\sidenote{\citet{daniels2019outwrite}} in Stata;
+and \texttt{stargazer}\sidenote{\citet{hlavac2015stargazer}},
+\texttt{huxtable},
 and \texttt{ggplot2}'s \texttt{ggsave}\sidenote{\citet{ggplot2}} in R.
-They allow for a wide variety of output formats. We recommend using formats that are accessible and, whenever possible, lightweight.
+They allow for a wide variety of output formats. 
+We recommend using formats that are accessible and, whenever possible, lightweight.
 Accessible means that it's easy for other people to open them.
 In Stata, that would mean always using \texttt{graph export} to save images as
 \texttt{.jpg}, \texttt{.png}, \texttt{.pdf}, etc.,
@@ -711,6 +713,24 @@ Markdown files on GitHub can also provide similar functionality through the brow
 and are version controlled.
 However, as with other Markdown options, the need to learn a new syntax may
 discourage take up among team members who don't work with GitHub more extensively.
+
+% Third best
+Whatever software you are using,
+what matters is that you make sure to implement a self-updating process for table and figures.
+We have given a few recommendations as to what we believe to be best practices,
+but you will need to find out what works for your team.
+If your team has decided to use Microsoft Office, for example,
+there are still a few options to avoid problems with copy-pasting.
+The easiest solution may be for the less code-savvy members of the team
+to develop the text of the final output pointing to exhibits that are not included inline.
+If all figures and tables are presented at the end of the file,
+whoever is developing the code can export them into a Word document using Markdown,
+so at least this file can be updated when the code changes.
+Finally, you can export tables to csv files,
+and have a separate Excel file containing the formatting that is linked to the csv.
+In our experience, this setup is very unstable,
+and requires a point person in the team to be checking it continuously,
+but it is a step in the right direction compared to simply copying and pasting.
 
 \subsection{Using {\LaTeX} for dynamic research outputs}
 
