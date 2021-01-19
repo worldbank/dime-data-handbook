@@ -351,12 +351,9 @@ you can use it to list all variables in the dataset in an Excel sheet.
 You can then add the variable definitions to that file to create a concise metadata document.
 Take this opportunity to review your notes and make sure that your code
 is implementing exactly what is described in the documentation.
-% to-do % --------------------------------------------------------
-% See XXX for an example of a Stata do-file uses iecodebook append
-% ----------------------------------------------------------------
+
 
 %------------------------------------------------
-
 \section{Writing data analysis code}
 
 % Intro: this section focuses on data analysis CODE
@@ -376,8 +373,8 @@ The analysis stage usually starts with a process we call \textbf{exploratory dat
 This is when you are first looking for patterns in your data,
 creating descriptive graphs and tables,
 and trying different tests to understand your results.
-It progresses into \textbf{final analysis} when your team starts to decide which are the ``main results'', or
-those that will make it into a research output.
+It progresses into \textbf{final analysis} when your team starts to decide which are the ``main results'', 
+or those that will make it into a research output.
 The way you deal with code and code outputs for exploratory and final analysis is different.
 During the exploratory stage,
 you will be tempted to write lots of analysis into one big, impressive, start-to-finish script.
@@ -395,14 +392,16 @@ A well-organized analysis script starts with a completely fresh workspace
 and, for each output it creates, explicitly loads data before analyzing it.
 This setup encourages data manipulation to be done earlier in the workflow
 (that is, in separate cleaning and construction scripts).
-This also prevents the common problem of having analysis scripts
+It also prevents the common problem of having analysis scripts
 that depend on other analysis scripts being run before them.
 Such dependencies tend to require manual instructions
 for all necessary chunks of code to be run in the right order.
 We encourage you to code each task so
 it is completely independent of all other code,
-except for the analysis master script.
-You can go as far as coding every output in a separate script.
+except for the master script.
+You can go as far as coding every output in a separate script,
+but the key is making sure you know which datasets are used for each output,
+and which code chunks implement each piece of analysis.
 
 % Writing easy to read analysis code
 There is nothing wrong with code files being short and simple.
@@ -412,7 +411,7 @@ Research questions and statistical decisions should be incorporated explicitly i
 and their implementation should be easy to detect from the way the code is written.
 This includes clustering, sampling, and controlling for different variables, to name a few.
 If you have multiple analysis datasets,
-each of them should have a descriptive name about its sample and unit of observation.
+each of their names should be descriptive of the sample and unit of observation they contain.
 As your team comes to a decision about model specification,
 you can create functions and globals (or objects) in the master script to use across scripts.
 This is a good way to make sure specifications are consistent throughout the analysis.
@@ -420,12 +419,9 @@ It also makes your code more dynamic,
 as it's easy to update specifications and results
 through a master file without changing every script.
 
-% to-do % ------------------------------------------------------------------------
-% Add example of how to automatize research decisions through globals or functions
-% --------------------------------------------------------------------------------
-
 % Naming analysis code
-To accomplish this, you will need to make sure that you have an effective data management system,
+To create this setup, 
+you will need to make sure that you have an effective data management system,
 including file naming, organization, and version control.
 Just as for the analysis datasets,
 you should name each of the individual analysis files descriptively.
