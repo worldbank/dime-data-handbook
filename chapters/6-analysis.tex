@@ -121,25 +121,29 @@ variable construction precedes data analysis,
 as derivative variables need to be created before they are analyzed.
 In practice, however, as you analyze the data,
 it is often useful to revisit construction,
-and explore different subsets of the same and other transformations of the data.
+and explore different subsets and transformations of the data.
 Even if construction and analysis are done concurrently,
-you should always do the two in separate scripts.
+you should always code them in separate scripts.
 If every script that creates a table starts by loading a dataset,
 subsetting it, and manipulating variables,
 any edits to construction need to be replicated in all scripts.
 This increases the chances that at least one of them
 will have a different sample or variable definition.
-Doing all variable construction and data transformation
-in a unified script, separate from the analysis code, helps
-avoid this and ensures consistency across different outputs.
+Coding all variable construction and data transformation
+in a unified script, separate from the analysis code,
+prevents such problem and ensures consistency across different outputs.
 
 \subsection{Integrating different data sources}
 
 % When merging is necessary and how to start thinking about it
 To create the analysis dataset,
 it is typically necessary to combine information
-from different data sources.\sidenote{\url{
+from different data sources\sidenote{\url{
 		https://dimewiki.worldbank.org/Data\_Integration}}
+or different datasets with a common source.
+For the next few paragraphs, 
+we call such operations ``merges'',
+but they are also commonly referred to as ``data joins''.
 As discussed in Chapter 3,
 this process should be documented
 using \textbf{data flowcharts},\sidenote{
@@ -174,23 +178,23 @@ Second, think carefully about whether you want to keep matched and unmatched obs
 or only specific matching outcomes (e.g. to create a balanced panel),
 and add that to the pseudocode as well.
 Finally, run the code to merge the datasets,
-and compare outcome to your expectations.
+and compare the outcome to your expectations.
 Add comments to explain any exceptions,
 and make it so the code will return an error in case unexpected results show up in future runs.
 
 % Common mistakes
 To avoid unintentional changes to your data,
 pay close attention to merge results.
-Two issues to pay extra attention to are missing values and dropped observations.
+Two that require careful scrutiny are missing values and dropped observations.
 Make sure to read about how each command treats missing observations:
 are unmatched observations dropped, or are they kept with missing values?
 Whenever possible, add automated checks in the script that throw an error message
 if the result is different than what you expect,
-or you may not changes in the outcome running large portions of code.
-Document changes in the number of observations in your comments,
+or you may not notice changes in the outcome after running large chunks of code.
+Document changes to the number of observations in your comments,
 and explain why they are happening.
 If your are subsetting your data by keeping only matched observations,
-write down the reason why the observation differ across datasets,
+write down the reason why the observations differ across datasets,
 as well as why you are only interested in those that matched.
 The same applies when you are adding new observations from the merged dataset.
 
