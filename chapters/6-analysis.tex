@@ -66,8 +66,12 @@ at this stage.\index{pre-analysis plan}
 During construction, data will typically be
 reshaped, merged, and aggregated to change the level of the data points
 from the \textbf{unit of \textit{observation}} in the raw data
-to the \textbf{unit of \textit{analysis}}.\sidenote{\url{
-		https://dimewiki.worldbank.org/Unit\_of\_Observation}}\index{unit of observation}\index{unit of analysis}
+to the \textbf{unit of \textit{analysis}}.\sidenote{
+	More details on the concepts of unit of observations
+	and unit of analysis
+	can be found on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+\index{unit of observation}\index{unit of analysis}
 
 % A project may require multiple purpose-built data sets
 Each analysis dataset is built to answer an analysis question.
@@ -138,15 +142,18 @@ avoid this and ensures consistency across different outputs.
 % When merging is necessary and how to start thinking about it
 To create the analysis dataset,
 it is typically necessary to combine information
-from different data sources.\sidenote{\url{
-		https://dimewiki.worldbank.org/Data\_Integration}}
+from different data sources.
 As discussed in Chapter 3,
 this process should be documented
 using \textbf{data flowcharts},\sidenote{
+	More details on DIME's data flow chart template
+	and an example can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Data\_Flow\_Charts}}
 and different data sources should only be combined
 in accordance with the data linkage table.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Data\_Linkage\_Table}}
+	More details on DIME's data linkage table template
+	and an example can be found on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Data\_Linkage\_Table}}
 For example, you may merge administrative data with survey data
 in order to include demographic information in your analysis,
 or you may want to integrate geographic information
@@ -431,15 +438,22 @@ First of all, we maintain easily-searchable data visualization libraries for bot
 	\url{https://worldbank.github.io/r-econ-visual-library/}}
 These libraries feature curated data visualization examples, along with source code and example datasets,
 so you get a good sense of what your data should look like
-before you can start writing code to create a visualization.
+before you can start writing code to create a visualization.\sidenote{
+	More tools and links to other resources for creating good data visualizations
+	can be found on the DIME Wiki:
+  \url{https://dimewiki.worldbank.org/Data\_visualization}}\index{data visualization}
 The \texttt{ietoolkit} package also contains two commands to automate
 common impact evaluation graphs:
-\texttt{iegraph} plots the values of coefficients for treatment dummies,
+\texttt{iegraph}\sidenote{
+  Read more about how to install and use \texttt{iegraph} and
+	how the command can be used to easily create graphs
+	for two very common impact evaluation regressions
+	on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Iegraph}}
+plots the values of coefficients for treatment dummies,
 and \texttt{iekdensity} displays the distribution of an outcome variable
 across groups and adds the treatment effect as a note.
-The DIME Wiki provides a list of other recommended resources and tools
-for creating good data visualizations.\sidenote{\url{
-		https://dimewiki.worldbank.org/Data\_visualization}}\index{data visualization}
+
 
 
 %-------------------------------------------------------------------------
@@ -595,10 +609,15 @@ Excel \texttt{.xlsx} and \texttt{.csv} are also commonly used,
 but often require the extra step of copying the tables into the final output.
 The \texttt{ietoolkit} package includes two commands to export formatted tables,
 automating the creation of common outputs and saving time for research.\index{ietoolkit}
-\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/iebaltab}}
-creates and exports balance tables to Excel or {\LaTeX}.\index{LaTeX}
-\texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/ieddtab}}
-does the same for difference-in-differences regressions.
+\texttt{iebaltab} creates and exports balance tables to Excel or {\LaTeX}.\sidenote{
+	Read more about how to install and use \texttt{iebaltab}
+	and how it simplifies balance tables in Stata on the DIME Wiki:
+  \url{https://dimewiki.worldbank.org/iebaltab}}\index{LaTeX}
+\texttt{ieddtab} does the same for difference-in-differences regressions.\sidenote{
+	Read more about how to install and use \texttt{ieddtab}
+	and how it simplifies generating tables for difference-in-differences regressions
+  in Stata on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/ieddtab}}
 
 % Last touches: formatting tables and including meta data
 If you need to create a table with a very specific format
@@ -612,6 +631,9 @@ Make sure labels and notes cover all relevant information
 included in your code and comments that are not otherwise visible in the output.
 Examples of information that should be included in labels and notes include sample,
 unit of observation, unit of measurement, and variable definition.\sidenote{
+	A checklist with best practices important to remember
+	to generate informative and easy to read tables
+	can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Checklist:\_Submit\_Table}}
 
 \section{Preparing dynamic documents}
