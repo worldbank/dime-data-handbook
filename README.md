@@ -1,4 +1,4 @@
-# The DIME Analytics Data Handbook
+# Development Research in Practice
 
 Development Research in Practice: The DIME Analytics Data Handbook.
 This book is intended to serve as an introduction to the primary tasks

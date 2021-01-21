@@ -21,9 +21,9 @@ is essential not only for research quality and transparency,
 but also for the smooth implementation of a project.
 
 % Chapter overview
-In this chapter, we discuss the necessary step to transform
+In this chapter, we discuss the necessary steps to transform
 cleaned raw data into informative analysis outputs such as tables and figures.
-The suggested workflow starts, thus, where the last chapter ended:
+The suggested workflow starts where the last chapter ended:
 with the outputs of data cleaning.
 The first section covers variable construction:
 transforming the raw data into economically meaningful indicators.
@@ -131,7 +131,7 @@ This increases the chances that at least one of them
 will have a different sample or variable definition.
 Coding all variable construction and data transformation
 in a unified script, separate from the analysis code,
-prevents such problem and ensures consistency across different outputs.
+prevents such problems and ensures consistency across different outputs.
 
 \subsection{Integrating different data sources}
 
@@ -257,12 +257,11 @@ Always create derived indicators with new names.
 
 % Dealing with different levels of observation
 Two features of data create additional complexities when constructing indicators:
-repeated observations over time, and
-research designs comprising different units of observation and analysis.
-Let's start by the latter.
+research designs comprising multiple units of observation and analysis,
+and designs with repeated observations of the same units over time.
 When your research involves different units of observation,
 creating analysis datasets will probably mean combining variables measured at these different levels.
-If you followed our recommendations from chapter 5,
+If you followed our recommendations from Chapter 5,
 this means combining variables that are included in different tidy datasets.
 To make sure constructed variables are consistent across datasets,
 we recommend that each indicator be constructed in the dataset corresponding to its unit of observation.
@@ -274,12 +273,13 @@ while controlling for teacher characteristics.
 This can be done by assigning the teacher-level indicators to all the students in the corresponding class.
 Conversely, you may want to include average student test scores
 in the analysis dataset containing teacher-level variables.
-To do so, you will start from the constructed dataset at student level;
-average the test scores of all students taught by the same teacher;
-and merge this aggregate measure to the teacher-level dataset.
+To do so, you would start from the constructed dataset at student level,
+average (using commands like \texttt{collapse} in Stata and \textttt{summarise} in R) 
+the test scores of all students taught by the same teacher,
+and merge this teacher-level aggregate measure onto the original teacher dataset.
 You should be mindful of two aspects while performing such operations:
 the first is the correspondence between identifying variables at different levels, 
-that should be documented in the \textbf{data linkage table};
+which should be documented in the \textbf{data linkage table};
 the second is that they will necessarily involve merges,
 so all the steps outlined in the previous section should be applied.
 
@@ -447,7 +447,7 @@ Making a visually compelling graph would already be hard enough if
 you didn't have to go through many rounds of searching and reading help files
 to understand a command's graphical options syntax.
 Although getting each specific element of a graph to look exactly the way you want can be hard,
-the solution to such problems is usually a single well-written google search away,
+the solution to such problems is usually a single well-written search away,
 and we recommend you leave these details as the very last adjustments to make.
 In our experience, the trickiest part of using plotting commands is getting the data into the right format.
 Though both Stata and R have plotting functions that graph summary statistics,
@@ -579,7 +579,7 @@ that are ready to be included in a paper or report.
 No manual edits, including formatting,
 should be necessary after exporting final outputs.
 Manual edits are difficult to reproduce;
-the you need them, the more reproducible your output is.
+the less you need them, the more reproducible your output is.
 You may think that it's not worth coding a small formatting adjustment,
 but you will inevitably need to make changes to the output,
 and automating them will save you time by the end of the process.
@@ -725,7 +725,7 @@ The easiest solution may be for the less code-savvy members of the team
 to develop the text of the final output pointing to exhibits that are not included inline.
 If all figures and tables are presented at the end of the file,
 whoever is developing the code can export them into a Word document using Markdown,
-so at least this file can be updated when the code changes.
+so at least this part of the file can be quickly updated when the results change.
 Finally, you can export tables to csv files,
 and have a separate Excel file containing the formatting that is linked to the csv.
 In our experience, this setup is very unstable,
