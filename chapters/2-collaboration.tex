@@ -69,6 +69,10 @@ so make sure it's set up for success.
 The operating system should be fully updated,
 it should be in good working order,
 and you should have a \textbf{password-protected} login.\index{password protection}
+However, password-protection is not sufficient
+if your computer stores data that is not public.
+You would need to use encryption for sufficient protection,
+which will be covered later in this chapter.
 Make sure your computer is backed up to prevent information loss.\index{data backup}
 Follow the \textbf{3-2-1 rule}: maintain 3 copies of all original or irreplaceable data,
 on at least 2 different hardware devices you have access to,
@@ -79,10 +83,26 @@ with 1 offsite storage method.\sidenote{
 Chapter 4 provides a protocol for implementing this.
 
 Ensure you know how to get the \textbf{absolute file path} for any given file.\index{absolute file paths}
-Using the absolute file path, starting from the filesystem root,
-means that the computer will never accidentally load the wrong file.
-On MacOS this will be something like \path{/users/username/git/project/...},
-and on Windows, \path{C:/users/username/git/project/...}.
+On MacOS this will be something like ``\path{/users/username/git/project/...}''
+and ``\path{C:/users/username/git/project/...}'' on Windows.
+Absolute file paths will be an obstacle to collaboration
+unless they are \textbf{dynamic absolute file paths}.
+In a dynamic absolute file path the relative project path,
+``\path{/git/project/...}'' in the examples above, is added
+to the user-specific root path for each user,
+``\path{/users/username}'' or ``\path{C:/users/username}'' in the examples above,
+generating an absolute file path unique to each user.
+Master scripts introduced later in this chapter will show
+how this can be seamlessly implemented.
+Dynamic absolute file paths, starting from the file system root,
+is the best way to ensure that files are read and written correctly
+when multiple users work on the same project
+across many different platforms, operative systems and devices.
+There are contexts, for example some cloud environments,
+where relative file paths must be used,
+but in all other contexts we recommend you
+to always use dynamic absolute file paths.
+
 Use forward slashes (\texttt{/}) in file paths for folders,
 and whenever possible use only the 26 English characters, numbers,
 dashes (\texttt{-}), and underscores (\texttt{\_}) in folder names and filenames.\sidenote{
@@ -106,7 +126,7 @@ The exact services you use will depend on your tasks,
 but in general, there are several approaches to file sharing,
 and the three discussed here are the most common.
 \textbf{File syncing} is the most familiar method,
-and is implemented by software like Dropbox.
+and is implemented by software like OneDrive, Dropbox, or Box.
 Sync forces everyone to have the same version of every file at the same time,
 which makes simultaneous editing difficult but other tasks easier.
 \textbf{Distributed version control} is another method,
@@ -136,7 +156,7 @@ or vice versa, without setting up complex workarounds,
 and you cannot shift files between them without losing historical information.
 Therefore, choosing the correct sharing service for each of your team's needs at the outset is essential.
 At DIME we typically use file syncing for all project administrative files and data,
-version control in git for code,
+version control in Git for code,
 and server storage for backup and/or large scale computations when needed.
 
 % ----------------------------------------------------------------------------------------------
@@ -260,10 +280,13 @@ such as folder management, Git integration,
 and simultaneous work with other types of files, without leaving the editor.
 Using an external editor can also be preferable since your editor will not crash
 if the execution of your code causes your statistical software to crash.
+Finally, you can often use the same editor for all programming languages you use,
+so any customization you do in your code editor of choice
+will improve your productivity across all your coding work.
 
 % ----------------------------------------------------------------------------------------------
 % ----------------------------------------------------------------------------------------------
-\section{Organizing code and data}
+\section{Organizing code and data for replicable research}
 
 We assume you are going to do your analytical work through code,
 and that you want all your processes to be documented and replicable.
@@ -372,7 +395,7 @@ be stored in a synced folder that is shared with other people.
 Combining these two types of collaboration tools
 almost always creates undesired functionalities.
 
-\subsection{Connecting tasks through files}
+\subsection{Simplifying work across file formats}
 Each task in the research workflow has specific inputs and outputs
 which feed into one another.
 It is common, particularly when different tasks are performed by different people inside a team,
@@ -454,18 +477,22 @@ While there are other ways to document decisions related to creating code,
 the information that is relevant to understand the code should always be written in the code file.
 
 Two types of comments should be included in the script itself.
-The first type of comment describes what is being done.
+The first type of comment describes \textit{what} is being done.
 This might be easy to understand from the code itself
 if you know the language well enough and the code is clear,
 but often it is still a great deal of work to reverse-engineer the code's intent.
 Describing the task in plain English (or whichever language you use to communicate with your team)
 will make it easier for everyone to read and understand the code's purpose.
 It can also help you organize your own work and ensure you are following logical steps.
-The second type of comment explains why the code is performing a task in a particular way.
+The second type of comment explains \textit{why} the code is performing a task in a particular way.
 As you are writing code, you are making a series of decisions that
 (hopefully) make perfect sense to you at the time.
 These are often highly specialized and may exploit a functionality
 that is not obvious or has not been seen by others before.
+Well-commented code is in itself a great way to document your data work
+which someone can follow to understand anything from
+data cleaning decisions that make the published data differ from the original data
+to decisions on how indicators are constructed.
 Even you will probably not remember the exact choices that were made in a couple of weeks.
 Therefore, you must document your precise processes in your code.
 
@@ -478,7 +505,7 @@ it does not rely on a complex program state
 created by other code chunks that are not obvious from the immediate context.
 One way to do this is by creating sections in your script to identify where a specific task is completed.
 For example, if you want to find the line in your code where the directory is set,
-you can go straight to \texttt{PART 2: Prepare folder paths and define programs},
+you can go straight to ``\texttt{PART 2: Prepare folder paths and define programs}'',
 instead of reading line by line through the entire code.
 
 RStudio makes it very easy to create sections,
@@ -700,7 +727,7 @@ you should not have any issues complying with these regulations.
 \subsection{Ensuring privacy and security in research data}
 
 In order to safeguard PII data and protect respondent privacy,
-you must set up a secure data system from the outset of a project.
+you must set up a data protection protocol from the outset of a project.
 Secure data storage and transfer are ultimately your personal responsibility.\sidenote{
   Read more about data security and the options you have to protect your data
   either on the DIME Wiki:
@@ -720,45 +747,108 @@ The only way to make that practically feasible is to use a password manager.\sid
   Read our step-by-step guide for how to get started with password managers
   under Pillar 4 in the DIME Research Standards:
   \url{https://github.com/worldbank/dime-standards}}
-Most password managers also allows you to securely share passwords
+Most password managers also allow you to securely share passwords
 for shared accounts with your colleagues.
+Multi-factor authentication (sometimes called 2-step verification)
+is a secure alternative to passwords when available.
 
-Second, all machines that stores confidential data
-should have \textbf{hard disk encryption} enabled,
-if available in the operative system used.\sidenote{
-	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked,
+Second, machines that stores confidential data
+should not be connected to insecure physical or wireless networks,
+and when it is necessary to do so,
+they should use a VPN\sidenote{
+	\textbf{Virtual Private Network (VPN):}
+	Allows you to securely connect to a network you trust over an insecure network.
+	With the VPN you can securely communicate
+	with other devices on the trusted network and
+	make your traffic to the internet inaccessible
+	to the host of the insecure network.}
+to connect to the internet.
+Furthermore, USB drives and other devices connecting over USB cables
+should not be connected to machines storing confidential data
+unless you know where the USB device came from
+and who has used it before you.
+Machines with confidential data should also
+be stored in a secure location when not in use.
+
+Third, all confidential data must be encrypted at all times.\sidenote{
+	\textbf{Encryption:} Methods which ensure that files are unreadable 
+  even if laptops are stolen, databases are hacked,
   or any other type of unauthorized access is obtained.
   Read more about these methods on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Encryption}}
-\index{encryption}
-Most hard disk encryption use your computer login password to
-prevent your files from ever being read by anyone but you.
-It is important to note that password-protection alone is not sufficient.
-Password protection makes it more difficult for someone else to gain access to your files,
-but only encryption properly protects your data if someone manages to access your files anyway.
-Hard disk encryption ensures that all your local files are protected,
-but it may only be supported in enterprise versions of operating systems,
-most notably Microsoft Windows.
-To properly secure your data you should have the habit of
-signing out from your computer when you leave it,
-no matter how briefly.
-
-Third, you must make sure that data including confidential information
-remains encrypted at all times during data collection, storage, and transfer.\index{data transfer}\index{data storage}
+\index{encryption}\index{data transfer}\index{data storage}
 When files are properly encrypted,
 the information they contain will be completely unreadable and unusable
 even if they were to be intercepted by a malicious ``intruder''
 (an information-security term for any unauthorized information access)
 or accidentally made public.
-We will discuss implementations of encryption
+We will discuss implementations of encryption in more detail
 specific to different stages of data work in Chapter 4,
 but when setting up a software environment for you and your team,
-make sure that you have a solution for creating encrypted folders on your computers.
-DIME uses Veracrypt for encrypted folders,
+make sure that you have a solution for
+all parts of your workflow on all team members computers.
+You can encrypt your data at the disk (hard drive) level,
+called \textbf{full disk encryption} (FDE), or at the individual file or folder level,
+called \textbf{file system encryption} (FSE).
+When possible both should be applied,
+but our recommendation is that
+project teams set up data protection protocols
+using file system encryption as the main type of protection,
+and require all members that handle confidential data to use it.
+
+Most implementations of FDE use your computer login password to
+prevent your files from ever being read by anyone but you.
+It is important to note that password protection alone is not sufficient.
+Password protection makes it more difficult for someone else to gain access to your files,
+but only encryption properly protects your data if someone manages to access your files anyway.
+Whenever FDE is available in your operating system
+it should always be enabled.
+FDE protects your data when encrypted just as well as FSE,
+but we recommend FSE due to the following disadvantages of FDE.
+First, FDE is implemented differently in different operating systems
+making it difficult to create useful instructions
+for all computer set-ups team members may use.
+Second, when FDE decrypts your disk,
+then all data on that disk is decrypted, even
+files you do not need to use at that time.
+Since most FDE systems automatically decrypt your full disk each time you log in,
+a malicious intruder that has gained access to your computer would have access to all your files.
+Third and perhaps most important,
+FDE cannot be used when sharing confidential data
+over insecure channels like file syncing services or email.
+So FDE would anyways have to be complimented with
+some other type of protection during collaboration.
+
+When using FSE, instead of encrypting a full disk or drive,
+you create encrypted folders
+in which you can securely store confidential data.
+These encrypted folders protect your data
+when they are stored on your computer
+but can also be used to securely transfer data over
+insecure channels like file syncing services and email.\index{data transfer}
+Encrypted folders in FSE are only decrypted
+when you need that specific folder to be decrypted.
+That means that a malicious intruder
+that has gained access to your computer
+only gains access to the folders you have decrypted
+while your computer was compromised.
+Folders you rarely or never decrypt therefore
+remain protected even if someone gains access to your computer.
+DIME uses VeraCrypt for FSE, and
 our protocols are available as part of the DIME Research Standards.\sidenote{
   Read our step-by-step guide for how to get started with Veracrypt
   under Pillar 4 in the DIME Research Standards:
   \url{https://github.com/worldbank/dime-standards}}
+VeraCrypt is free of charge and available for Windows, MacOS, and Linux.
+While some details are different across platforms,
+the encryption will be implemented the same way for all team members.
+
+Regardless of whether you use full disk encryption or file system encryption,
+it is important to remember that encryption provides no protection
+when your data is decrypted.
+Therefore, you should always log out from your computer when you are not using it,
+and only keep folders with confidential data decrypted when you need exactly those files.
+The latter is only possible when you are using FSE.
 
 Handling confidential data properly will always add to your workload.
 The easiest way to reduce that work load is to
