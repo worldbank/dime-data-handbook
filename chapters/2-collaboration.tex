@@ -77,6 +77,8 @@ Make sure your computer is backed up to prevent information loss.\index{data bac
 Follow the \textbf{3-2-1 rule}: maintain 3 copies of all original or irreplaceable data,
 on at least 2 different hardware devices you have access to,
 with 1 offsite storage method.\sidenote{
+  Read more details about back up strategies
+  and other aspects of data storage on the DIME Wiki:
   \url{https://dimewiki.worldbank.org/Data_Storage}}
 Chapter 4 provides a protocol for implementing this.
 
@@ -104,6 +106,8 @@ to always use dynamic absolute file paths.
 Use forward slashes (\texttt{/}) in file paths for folders,
 and whenever possible use only the 26 English characters, numbers,
 dashes (\texttt{-}), and underscores (\texttt{\_}) in folder names and filenames.\sidenote{
+  More naming conventions and links to more resources
+  can be found on the DIME Wiki:
   \url{https://dimewiki.worldbank.org/Naming_Conventions}}\index{filenames}
 For emphasis: \textit{always} use forward slashes (\texttt{/})
 in file paths in code, just like in internet addresses.
@@ -116,9 +120,8 @@ since otherwise you will not be able to reliably transfer the instructions
 for replicating or carrying out your analytical work.
 
 When you are working with others, you will most likely be using
-some kind of \textbf{file sharing} software.\sidenote{
-  \url{https://dimewiki.worldbank.org/Collaboration_Tools}}
-  \index{file sharing}
+some kind of \textbf{file sharing} software.
+\index{file sharing}\index{collaboration tools}
 The exact services you use will depend on your tasks,
 but in general, there are several approaches to file sharing,
 and the three discussed here are the most common.
@@ -173,9 +176,7 @@ It is therefore easy to miss or lose communications from the past when they have
 Everything with future relevance that is communicated over email or any other instant medium
 -- such as, for example, decisions about research design --
 should immediately be recorded in a system that is designed to keep permanent records.
-We call these systems collaboration tools, and there are several that are very useful.\sidenote{
-  \url{https://dimewiki.worldbank.org/Collaboration_Tools}}
-  \index{collaboration tools}
+We call these systems collaboration tools, and there are several that are very useful.
 
 Good collaboration tools are workflow-oriented systems
 that allow the team to create and assign tasks,
@@ -247,6 +248,9 @@ or change your results.
   \index{software versions}
 DIME Analytics developed the command \texttt{ieboilstart} in the \texttt{ietoolkit} package
 to support version and settings stability in Stata.\sidenote{
+  Read more about how to install and use \texttt{ieboilstart}
+  and how it can help you harmonize settings across users
+  as much as possible in Stata on the DIME Wiki:
   \url{https://dimewiki.worldbank.org/ieboilstart}}
 If your project requires more than one programming language,
 for example if you analyze your data in one language but visualize your results in another,
@@ -266,6 +270,8 @@ If you are working in R, \textbf{RStudio} is the typical choice.\sidenote{
   \url{https://www.rstudio.com}}
 For Stata, the built-in do-file editor is the most widely adopted code editor.
 You might also consider using an external editor for your R or Stata code.\sidenote{
+  More details on the benefits of external code editors and
+  links to popular code editors can be found on the DIME Wiki:
   \url{https://dimewiki.worldbank.org/Code_Editors}}
 These editors offer great accessibility and quality features.
 For example, they can access an entire directory -- rather than a single file --
@@ -327,17 +333,22 @@ so it's important to organize your data work
 and follow best practices from the beginning.
 You should agree with your team on a specific directory structure,
 and set it up at the beginning of the project.
-You should also agree on a file naming convention.\sidenote{
-	\url{https://dimewiki.worldbank.org/Naming_Conventions}}
+You should also agree on a file naming convention.
 This will help you to easily find project files and
 ensure that all team members can easily run the same code.
 
 To support consistent folder organization at DIME,
-DIME Analytics created \texttt{iefolder}\sidenote{
-  \url{https://dimewiki.worldbank.org/iefolder}}
-as a part of our \texttt{ietoolkit} package.\index{iefolder}\index{ietoolkit}
+DIME Analytics created \texttt{iefolder}
+as a part of our \texttt{ietoolkit} package.\sidenote{
+  Read more about how to install and use \texttt{iefolder},
+  as well as find links to resources explaining
+  the best practices this command build upon on the DIME Wiki:
+  \url{https://dimewiki.worldbank.org/iefolder}}\index{iefolder}\index{ietoolkit}
 This Stata command sets up a pre-standardized folder structure
 for what we call the \texttt{DataWork} folder.\sidenote{
+  More details on DIME's suggested data work folder structure
+  and explanations of the best practices it is based on
+  can be found on the DIME Wiki:
   \url{https://dimewiki.worldbank.org/DataWork_Folder}}
 The \texttt{DataWork} folder includes folders for all the steps of a typical project.
   \index{DataWork folder}
@@ -364,7 +375,10 @@ your folder structure can be shared using Git.\sidenote{
 	Git only tracks files, so empty folders
 	-- which most folders are in the beginning of a project --
 	are ignored if placeholder files are not used,
-	leading to only parts of the folder structure being shared across the team.}
+	leading to only parts of the folder structure being shared across the team.
+  Read more about how to install and use \texttt{iegitaddmd}
+  and how it can help you track empty folder in Git on the DIME Wiki:
+  \url{https://dimewiki.worldbank.org/Iegitaddmd}}
 Since these placeholder files are written in a plaintext language called \textbf{Markdown},
 they also provide an easy way to document the contents of every folder in the structure.
   \index{Markdown}
@@ -514,7 +528,9 @@ it seems to be ``enough but not too much'' for most purposes.
 
 \subsection{Working with a master script}
 To bring all these smaller code files together, you must maintain a master script.\sidenote{
-	\url{https://dimewiki.worldbank.org/Master\_Do-files}}
+  More details and description of each section of our template master do-file
+  can be found on the DIME Wiki:
+  \url{https://dimewiki.worldbank.org/Master\_Do-files}}
   \index{master script}
 A master script is the map of all your project's data work
 which serves as a table of contents for the instructions that you code.
@@ -589,8 +605,11 @@ or for release of the code to the general public.
 Anytime you are working with original data in a development research project,
 you are almost certainly handling data that include
 \textbf{personally-identifying information (PII)}.\index{personally-identifying information (PII)}\sidenote{
-	\textbf{Personally-identifying information:} any piece or set of information
-	that can be used to identify an individual research subject.
+  \textbf{Personally-identifying information:} any piece or set of information
+  that can be used to identify an individual research subject.
+  Read more about what extra consideration
+  you must take into account when
+  working with PII data on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Protecting_Human_Research_Subjects}}
 PII is information which can, without any transformation or linkage,
 be used to identify individual people, households, firms,
@@ -609,7 +628,11 @@ and sometimes you will prefer to remove or mask PII
 before transferring or working with data.
 There is no one-size-fits-all solution to determine what is PII,
 research teams have to use careful judgment in each case to avoid statistical disclosure.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data_Release}}\index{statistical disclosure}\index{data release}
+  More details on statistical disclosure and
+  links to best practices related to data publication,
+  can be found on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Publishing_Data}}
+\index{statistical disclosure}\index{data release}
 It is important to keep in mind that data privacy principles apply
 not only for the respondent giving you the information
 but also for their household members or other individuals who are included in the data.
@@ -631,16 +654,22 @@ the core principles and practices you need to consider will always be similar.
 \subsection{Obtaining ethical approval and consent}
 
 Most of the field research done in development involves human subjects.\sidenote{
-	\url{https://dimewiki.worldbank.org/Human\_Subjects\_Approval}}
+  Read more about what extra consideration
+  you must take into account when
+  working with human subjects on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Protecting_Human_Research_Subjects}}
 \index{human subjects}
 As a researcher, you are asking people to trust you with personal information about themselves:
 where they live, how rich they are, whether they have committed or been victims of crimes,
 their names, their national identity numbers, and all sorts of other data.
 PII data carries strict expectations about data storage and handling,
 and it is the responsibility of the research team to satisfy these expectations.\sidenote{
-	\url{https://dimewiki.worldbank.org/Research\_Ethics}}
-Your donor or employer will most likely require you to hold a certification from a respected source.\sidenote{
-	\url{https://dimewiki.worldbank.org/Protecting\_Human\_Research\_Subjects}}
+  More details on research ethics as well as links to tools and
+  other resources related can be found on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Research\_Ethics}.
+  More details can also be found under Pillar 1 in the DIME Research Standards:
+  \url{https://github.com/worldbank/dime-standards}}
+Your donor or employer will most likely require you to hold a certification from a respected source.
 
 For almost all such data collection and research activities,
 you will be required to complete some form of \textbf{Institutional Review Board (IRB)} process.\sidenote{
@@ -648,6 +677,8 @@ you will be required to complete some form of \textbf{Institutional Review Board
 \index{institutional review board (IRB)}
 Most commonly this consists of a formal application for approval of a specific
 protocol for consent, data collection, and data handling.\sidenote{
+  More details and best practices for how to submit a project for an IRB approval
+  can be found on the DIME Wiki:
   \url{https://dimewiki.worldbank.org/IRB\_Approval}}
 Which IRB has authority over your project is not always apparent,
 particularly if some institutions do not have their own.
@@ -673,6 +704,9 @@ Research participants must be informed of the purpose of the research,
 what their participation will entail in terms of duration and any procedures,
 any foreseeable benefits or risks,
 and how their identity will be protected.\sidenote{
+  More details on best practices when obtaining informed consent
+  and links to additional resources
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Informed_Consent}}
 There are special additional protections in place for vulnerable populations,
 such as minors, prisoners, and people with disabilities,
@@ -695,7 +729,11 @@ you should not have any issues complying with these regulations.
 In order to safeguard PII data and protect respondent privacy,
 you must set up a data protection protocol from the outset of a project.
 Secure data storage and transfer are ultimately your personal responsibility.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data\_Security}}
+  Read more about data security and the options you have to protect your data
+  either on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Data\_Security},
+  or under Pillar 4 in the DIME Research Standards
+  \url{https://github.com/worldbank/dime-standards}}
 Later chapters will discuss how to properly protect your data depending on
 which method you are using to acquire, store or share data.
 This section will only cover the computer setup you will need for any project.
@@ -705,7 +743,10 @@ First, you need a system for managing strong and unique passwords for
 all accounts -- including personal accounts like computer logins and email.\index{password management}
 This means that all your passwords should be long,
 not use common words and should not be reused for multiple accounts.
-The only way to make that practically feasible is to use a password manager.
+The only way to make that practically feasible is to use a password manager.\sidenote{
+  Read our step-by-step guide for how to get started with password managers
+  under Pillar 4 in the DIME Research Standards:
+  \url{https://github.com/worldbank/dime-standards}}
 Most password managers also allow you to securely share passwords
 for shared accounts with your colleagues.
 Multi-factor authentication (sometimes called 2-step verification)
@@ -730,9 +771,12 @@ Machines with confidential data should also
 be stored in a secure location when not in use.
 
 Third, all confidential data must be encrypted at all times.\sidenote{
-	\textbf{Encryption:} Methods which ensure that files are unreadable even if laptops are stolen, databases are hacked,
-	or any other type of unauthorized access is obtained.
-	\url{https://dimewiki.worldbank.org/Encryption}}\index{encryption}\index{data storage}
+	\textbf{Encryption:} Methods which ensure that files are unreadable 
+  even if laptops are stolen, databases are hacked,
+  or any other type of unauthorized access is obtained.
+  Read more about these methods on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Encryption}}
+\index{encryption}\index{data transfer}\index{data storage}
 When files are properly encrypted,
 the information they contain will be completely unreadable and unusable
 even if they were to be intercepted by a malicious ``intruder''
@@ -792,7 +836,9 @@ Folders you rarely or never decrypt therefore
 remain protected even if someone gains access to your computer.
 DIME uses VeraCrypt for FSE, and
 our protocols are available as part of the DIME Research Standards.\sidenote{
-	\url{https://github.com/worldbank/dime-standards}}
+  Read our step-by-step guide for how to get started with Veracrypt
+  under Pillar 4 in the DIME Research Standards:
+  \url{https://github.com/worldbank/dime-standards}}
 VeraCrypt is free of charge and available for Windows, MacOS, and Linux.
 While some details are different across platforms,
 the encryption will be implemented the same way for all team members.
@@ -835,9 +881,14 @@ The \textbf{final de-identification} process involves
 making a decision about the trade-off between
 risk of disclosure and utility of the data
 before publicly releasing a dataset.\sidenote{
+  More details and best practices related to de-identification
+  as well as tools that can help you assess disclosure risks
+  can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/De-identification}}
 
 Finally, it is essential to have an end-of-life plan for data even before it is acquired.\sidenote{
+  Read more details about end-of-life plans for data
+  and other aspects of data storage on the DIME Wiki:
   \url{https://dimewiki.worldbank.org/Data_Storage}}
 This includes plans for how to transfer access and control to a new person joining the team,
 and how to revoke that access when someone is leaving the team.
