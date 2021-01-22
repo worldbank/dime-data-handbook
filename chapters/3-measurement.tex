@@ -8,26 +8,26 @@ Setting up the measurement framework involves more than
 simply listing the key outcome variables.
 You also need to understand how to structure original data,
 to determine how different data sources connect together,
-and to create tools to document these decisions and 
+and to create tools to document these decisions and
 communicate them to the full research team.
 In this chapter we will show how to develop this framework,
 and hope to convince you that planning in advance both
 saves time and increases research quality.
 
-The first section of this chapter 
+The first section of this chapter
 introduces the \textit{DIME Data Map Template}.
 The template includes a data linkage table,
 master datasets, and data flowcharts.
 These tools are used to communicate the project's data requirements
 across the team and over time.
-The second section discusses how to 
+The second section discusses how to
 translate your project's research design into data needs.
-It provides examples on the specific data required by 
+It provides examples on the specific data required by
 common impact evaluation research designs,
-and how to document the linkage between 
+and how to document the linkage between
 research design and data sources in our data map template.
-The final section links the measurement framework to the 
-reproducibility and credibility pillars introduced in Chapter 1. 
+The final section links the measurement framework to the
+reproducibility and credibility pillars introduced in Chapter 1.
 It covers how to reproducibly generate research design variables
 and how to user power calculations and randomization inference
 to assess credibility.
@@ -48,7 +48,7 @@ or complex combinations of these and other sources.\sidenote{
   See \citet{kondylis2018speed} for an example of a project using an innovative combination of administrative and survey data.}
 However your study data is structured,
 you need to know how to link data from all sources
-and analyze the relationships between units 
+and analyze the relationships between units
 to answer your research questions.
 You might think that you are able to keep all the relevant details in your head,
 but the whole research team is unlikely to have the same understanding,
@@ -60,7 +60,7 @@ The purpose of the data map is to make sure that
 you have all data that you need
 to answer the research questions in your research design,
 well before starting the analysis process described in Chapter 6.
-It is also useful documentation for the project. 
+It is also useful documentation for the project.
 The process of drafting the data map is a useful
 opportunity for principal investigators
 to communicate their vision of the data structure and requirements,
@@ -94,7 +94,7 @@ you will create \textbf{data flowcharts},\sidenote{
 	\url{https://dimewiki.worldbank.org/Data\_Flow\_Chart}}
 describing how the raw datasets and master datasets
 are to be combined and manipulated to create analysis datasets.
-Each component will be discussed in more detail below. 
+Each component will be discussed in more detail below.
 
 In order to map measurement frameworks into data needs,
 we find it helpful to distinguish between two types of variables:
@@ -108,8 +108,8 @@ about your research subjects to the research design.
 Often, these variables have no meaning outside the research project,
 for example ID variables and treatment status.
 Others will be observations from the real world,
-but only those that determines how each specific research unit 
-should be handled during the analysis, 
+but only those that determines how each specific research unit
+should be handled during the analysis,
 for example treatment uptake and eligibility status.
 \textit{Measurement variables}, on the other hand,
 are real world measures that are not determined by the research team.
@@ -175,7 +175,7 @@ Examples of such activities are data collection, data analysis,
 sampling, and treatment assignment.\index{master dataset}
 The master dataset is the authoritative source
 of the project ID and all research design variables\index{research design variables}
-for the corresponding unit of observation, 
+for the corresponding unit of observation,
 such as sample status and treatment assignment.
 Therefore, the master dataset serves as an unambiguous method of mapping
 the observations in the data to the research design.
@@ -191,7 +191,7 @@ while measurement variables should be stored separately and prepared for analysi
 as described in Chapter 5.
 
 Each master dataset is to be the authoritative source
-for how all observations at that unit of analysis are identified. 
+for how all observations at that unit of analysis are identified.
 This means that the master datasets should include
 identifying information such as names, contact information,
 and the project ID.
@@ -210,12 +210,12 @@ all other identifying information and your project ID.
 Since your master dataset is full of identifying information,
 it must always be encrypted.
 If you receive a dataset with an alternative ID,
-you should replace it with your project ID as a part of de-identification 
+you should replace it with your project ID as a part of de-identification
 (see Chapter 5 and Chapter 7 for more on de-identification).
 The alternative ID should be stored in your master dataset
 so it may be linked back to your data using the project ID if ever needed.
 Any dataset that needs to retain an alternative ID for any reason
-should be treated as confidential data; 
+should be treated as confidential data;
 it should always be encrypted and never published.
 
 The starting point for the master dataset is typically a sampling frame
@@ -294,7 +294,7 @@ and multi-level data like ``district-school-teacher-student'' structures.
 
 \section{Research designs and data map needs}
 
-An important step in translating the research design to specific data 
+An important step in translating the research design to specific data
 structure is to determine which research design variables you will need in the data analysis
 to infer what differences in measurement variables
 are attributable to your research design.\index{research design variables}
@@ -380,9 +380,9 @@ is randomly assigned to receive the treatment
 The intuition is that if everyone in the eligible population
 is assigned at random to either the treatment or control group,
 then the two groups will, on average, be statistically indistinguishable.
-Randomization makes it generally possible to obtain unbiased estimates of 
+Randomization makes it generally possible to obtain unbiased estimates of
 the effects that can be attributed to a specific program or intervention:
-in a randomized trial, the expected spurious correlation between treatment and outcomes 
+in a randomized trial, the expected spurious correlation between treatment and outcomes
 will approach zero as the sample size increases.\sidenote{\citet{duflo2007using}, \citet{JPALRCT}}
 The randomized assignment should be done
 using data from the master dataset,
@@ -526,7 +526,7 @@ corresponds to your intended treatment assignment,
 for nearly all experimental research designs.
 While monitoring data has traditionally been collected by sending someone to the field ,
 it is increasingly common to collect monitoring data remotely.
-Some examples of remote monitoring include: 
+Some examples of remote monitoring include:
 local collaborators uploading geotagged images for visible interventions (such as physical infrastructure),
 installing sensors to broadcast measurements (such as air pollution or waterflow),
 distributing wearable devices to track location or physical activity (such as fitbits),
@@ -557,7 +557,7 @@ or ensuring that there is a consistent identifier that is directly linkable to t
 If monitoring data is not handled carefully, you risk ending up with poor correlation
 between treatment uptake and treatment assignment,
 without a way to tell if the poor correlation is just
-a result of poor matching of the monitoring data or a meaningful implementation problem. 
+a result of poor matching of the monitoring data or a meaningful implementation problem.
 
 %-----------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------
@@ -623,13 +623,13 @@ as a treatment observation or used as a counterfactual.
 The list of units to sample or assign from may be called a \textbf{sampling universe},
 a \textbf{listing frame}, or something similar.
 The starting point for randomized sampling or assignment
-should be your \textbf{master dataset} in almost all cases,
+should be a \textbf{master dataset} in almost all cases,
 and the result of the randomized process should always be saved in the master dataset
 before it is merged to any other data.
-One example of an exceptions
-when this cannot start from the master datasets are:
+Example of exceptions
+when this cannot start from a master dataset are:
 sampling done in real time, such as randomly sampling patients
-as they arrive at a health facility, and 
+as they arrive at a health facility, and
 treatment assignment done through an in-person lottery.
 In those cases,
 it is important that you collect enough data
@@ -774,11 +774,11 @@ randomization results on their machine to remove any doubt that your results
 are reproducible.
 Once the result of a randomization is used in the field,
 there is no way to correct any mistakes.
-The code below provides an example of a fully reproducible randomization. 
+The code below provides an example of a fully reproducible randomization.
 
 \codeexample{reproducible-randomization.do}{./code/reproducible-randomization.do}
 
-As discussed above, at times it will not be possible to use a master dataset for 
+As discussed above, at times it will not be possible to use a master dataset for
 randomized sampling or treatment assignment
 (examples were sampling patients on arrival or live lotteries).
 In addition to presenting challenges with matching,
@@ -831,7 +831,7 @@ than the unit of sampling or treatment assignment.\sidenote{
 For example, a policy may be implemented at the village level,
 or you may only be able to send enumerators to a limited number of villages,
 or the outcomes of interest for the study are measured at the household level.\sidenote{
-	To learn more about clustered sampling, and see example code, 
+	To learn more about clustered sampling, and see example code,
 	go to \url{https://dimewiki.worldbank.org/Multi-stage\_(Cluster)\_Sampling}}
 \index{clustered randomization}
 The groups in which units are assigned to treatment are called clusters.\sidenote{
@@ -840,7 +840,7 @@ The groups in which units are assigned to treatment are called clusters.\sidenot
 % what is stratification
 \textbf{Stratification} breaks the full set of observations into subgroups
 before performing randomized assignment within each subgroup.\sidenote{
-	For more details on why and how to stratify, 
+	For more details on why and how to stratify,
 	and how to handle `misfits',
 	go to \url{https://dimewiki.worldbank.org/Stratified\_Random\_Sample}}
 \index{stratification}
@@ -876,7 +876,7 @@ the information that if one individual was observed or treated there,
 the other members of the clustering group were as well.
 
 % using randtreat for stratified randomized assignment
-Although procedurally straightforward, 
+Although procedurally straightforward,
 implementing stratified designs in statistical software is prone to error.
 Even for a simple multi-armed design,
 the basic method of randomly ordering the observations
@@ -900,7 +900,7 @@ it is impossible to predict the result in advance.
 By design, we know that the exact choice of sample or treatment
 will be uncorrelated with our key outcomes,
 but this lack of correlation is only true ``in expectation'' --
-that is, the noise component of the correlation between randomization and outcome 
+that is, the noise component of the correlation between randomization and outcome
 will only be zero on average across a large number of randomized trials.
 In any \textit{particular} randomization,
 the correlation between the sampling or randomized assignments and the outcome variable
@@ -937,7 +937,7 @@ The purpose of power calculations is to identify where the strengths and weaknes
 of your design are located, so you know the relative tradeoffs you will face
 by changing your randomization scheme for the final design.
 It is important to consider take-up rates and attrition when doing power calculations;
-incomplete take-up will significantly reduce power, 
+incomplete take-up will significantly reduce power,
 understanding what minimum level of take-up is required can help guide field operations
 (for this reason, monitoring take-up in real-time is often critical).
 
