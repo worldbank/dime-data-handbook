@@ -319,41 +319,34 @@ it is important to make sure that data faithfully reflects ground realities.
 You should carefully examine and clean any data you are about to use.
 When reviewing raw data, you will inevitably encounter data entry mistakes,
 such as typos and inconsistent values.
-Data quality assurance requires a combination of real-time data checks
-and back-checks or validation audits, which often means tracking down
-the people whose information is included in the dataset.
 Whether your team is conducting a survey or 
 you are receiving administrative data from a partner,
 the key aspects to have in mind are 
 data completeness, consistency and distribution.
+Data quality assurance checks should be performed as soon as the data is acquired.
+When data is being collected and transferred to the team in real-time,
+this means conducting high-frequency checks.
+Primary data require extra attention to quality checks, 
+as data entry by humans is more susceptible to errors,
+and the research team will be the only line of defense between
+data issues and the data analysis.
+Survey-specific quality monitoring protocols are discussed in Chaper 4.
 
-\subsection{Implementing high-frequency quality checks}
-
-% What are HFCs
-A key advantage of continuous electronic data ingestion methods,
-as compared to traditional paper surveys and one-time data dumps,
-is the ability to access and analyze the data acquisition process is ongoing.
-Data issues can then be identified and resolved in real-time.
-Designing systematic data checks and running them routinely throughout data intake
-simplifies monitoring and improves data quality.
-To prepare for data acquisition,
-the research team should develop a \textbf{data quality assurance plan}.\sidenote{
-	\url{https://dimewiki.worldbank.org/Data\_Quality\_Assurance\_Plan}}
-While data is being acquired,
-a research assistant should work closely with the field team or data licensing partner
-to ensure that the data is flowing as expected,
-and to set up and perform \textbf{high-frequency checks (HFCs)} with the incoming data.
+\subsection{Implementing data quality checks}
 
 % Why they should be made in real-time
-High-frequency checks should carefully inspect key treatment and outcome variables
+Data quality checks should carefully inspect key treatment and outcome variables
 to ensure that the data quality of core study variables is uniformly high,
 and that additional effort is centered where it is most important.
-Data quality checks should be run every time data is received
+They should be run every time data is received
 to flag irregularities in the acquisition progress, in sample completeness, or in response quality.
 The faster issues are identified, the more likely they are to be solved.
 Once the field team has left a survey area,
 or high-frequency data has been deleted from a server,
 it may be impossible to verify whether data points are correct or not.
+Even if the research team is not receiving data in real-time,
+the data owners may not be as knowledgeable about the data,
+or even as responsive to the research team queries, as time goes by.
 \texttt{ipacheck}\sidenote{
 	\url{https://github.com/PovertyAction/high-frequency-checks}}
 is a very useful Stata command that automates some of these tasks,
@@ -418,61 +411,6 @@ For example, electronic survey software generates
 automatically collected timestamps and trace histories,
 showing when data was submitted, how long enumerators spent on each question,
 and how many times answers were changed before or after the data was submitted.
-
-% Following up on flagged issues
-High-frequency checks will only improve data quality
-if the issues they catch are communicated to the data provider
-and corrections are documented and applied to the data.
-There are lots of ways to do this;
-what's most important is to find a way to create actionable information for your team.
-\texttt{ipacheck}, for example, generates a spreadsheet with flagged errors;
-these can be sent directly to the data collection teams.
-Many teams choose other formats to display results,
-such as online dashboards created by custom scripts.
-It is also possible to automate communication of errors to data providers
-by adding scripts to link the HFCs with a messaging platform.
-Any of these solutions are possible:
-what works best for your team will depend on such factors as
-connectivity (particularly for survey teams)
-and coding skills of the team preparing the HFC workflows.
-
-\subsection{Conducting back-checks and data validation}
-
-% Conducting back-checks
-Careful validation of data is essential for high-quality original data.
-While we cannot control natural measurement error,\sidenote{
-  See \citet{kondylis2015measuring} for an example.}
-which comes from variation in the realization of key outcomes,
-there is often an opportunity to reduce error arising from inaccuracies in the data generation process.
-\textbf{Back-checks}\sidenote{\url{https://dimewiki.worldbank.org/Back\_Checks}} and
-other validation audits help ensure that data is not falsified, incomplete, or otherwise suspect.
-For survey data, this can also be a means to ensure that all field protocols are followed.
-For back-checks and validation audits, a random subset of observations is selected,
-and a subset of information from the full survey is
-verified through a brief targeted survey with the original respondent
-or a cross-referenced dataset from another source (if the original data is not a field survey).
-Design of the back-checks or validations follows the same survey design
-principles discussed above: you should use the analysis plan
-or list of key outcomes to establish which subset of variables to prioritize,
-and similarly focus on errors that would be major flags for poor quality data.
-
-% How to implement back-checks
-Real-time access to the data massively increases the potential utility of validation,
-and both simplifies and improves the rigor of the associated workflows.
-You can use the raw data to draw the back-check or validation sample;
-this ensures that the validation is correctly apportioned across observations.
-As soon as high frequency checks are complete,
-the validation data can be tested against
-the original data to identify areas of concern in real-time.
-The \texttt{bcstats} command is a useful tool for analyzing back-check data in Stata.\sidenote{\citet{white2016bcstats}}
-Some electronic surveys surveys also provide a unique opportunity
-to do audits through audio recordings of the interview,
-typically short recordings triggered at random throughout the questionnaire.
-\textbf{Audio audits}\sidenote{\url{https://dimewiki.worldbank.org/Random\_Audio\_Audits}}
-are a useful means to assess whether enumerators are conducting interviews as expected.
-Do note, however, that audio audits must be included in the informed consent for the respondents,
-and the recordings will need to be assessed by specially trained staff.
-
 
 \section{De-identifying research data}
 
