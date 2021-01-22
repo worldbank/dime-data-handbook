@@ -388,17 +388,24 @@ and compare data missingness across administrative regions,
 to identify any clusters that may be providing data of suspect quality.
 
 % Consistency
-High frequency checks should also include checks of response quality and consistency.
-For example, whether the values for each variable fall within the expected range and
-the answers provided by the same household are consistent across all survey modules.\sidenote{
+Quality checks should also include checks of response quality and consistency.
+For example, whether the values for each variable fall within the expected range,
+and related variables do not contradict each other.\sidenote{
 	\url{https://dimewiki.worldbank.org/Monitoring_Data_Quality}}
-Electronic survey and data entry software often incorporate many quality control features,
+Electronic data collection systems often incorporate many quality control features,
 such as range restrictions and logical flows.
 Data received from systems that do not include such controls should be checked more carefully.
-Response consistency should be checked across all datasets, as this is much harder to automate.
 Consistency checks are project specific, so it is difficult to provide general guidance.
 A detailed knowledge of the variables in the dataset and a careful examination of the analysis plan
 is the best way to prepare.
+Examples of inconsistencies in survey data would include cases where 
+a household reports having cultivated a plot in one module,
+but does not list any cultivated crops in another.
+Response consistency should be checked across all datasets, as this is much harder to automate.
+For example, if two sets of administrative records are received,
+one with hospital level information and one with data on each medical staff,
+the number of entries in the second set of entries should match 
+the number of employed personnel in the first one.
 
 % Distribution
 Finally, no amount of pre-programmed checks can replace actually looking at the data.
@@ -406,6 +413,13 @@ Of course that doesn't mean eye checking each data point,
 but rather plotting and tabulating distributions for your main variables of interest.
 This will help you identify outliers and 
 other potentially problematic patterns that you had not foreseen.
+A common source of outliers values in survey data are typos,
+but they can also occur in admin data if, for example,
+the unit reported changed over time, 
+but the data was stored with the same variable name.
+Identifying unforeseen patterns in the distribution will also help you gather relevant information,
+for example whether there was no harvest data because of a particular pest in the community
+or if the unusual call records in a particular area caused by temporary downtime of a tower.
 Analysis of metadata and paradata can also useful in assessing data quality.
 For example, electronic survey software generates
 automatically collected timestamps and trace histories,
