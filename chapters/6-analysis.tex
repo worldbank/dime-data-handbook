@@ -10,29 +10,30 @@ The process of data analysis is typically
 a back-and-forth discussion between people
 with differing skill sets.
 To effectively do this in a team environment,
-data, code and outputs must be well-organized,
+data, code and outputs must be well-organized and documented,
 with a clear system for version control,
 analysis scripts that can be run by all team members,
 and creation of research outputs fully automated.
 Putting in time upfront to structure the data analysis workflow
-in this way pays substantial dividends throughout the process.
-Transparently documenting research decisions made during data analysis
-is essential for reproducible research.
+in a reproducible manner pays substantial dividends throughout the process.
+Similarly, documenting research decisions made during data analysis 
+is essential not only for research quality and transparency,
+but also for the smooth implementation of a project.
 
 % Chapter overview
-In this chapter, we discuss the process of transforming
-cleaned raw data into the final analysis dataset(s).
-The suggested workflow starts from clean raw data
-(the output of data cleaning, discussed in the previous chapter).
+In this chapter, we discuss the necessary steps to transform
+cleaned raw data into informative analysis outputs such as tables and figures.
+The suggested workflow starts where the last chapter ended:
+with the outputs of data cleaning.
 The first section covers variable construction:
 transforming the raw data into economically meaningful indicators.
-The second section discusses the analysis itself.
+The second section discusses the analysis code itself.
 We do not offer instructions on how to conduct specific analyses,
 as that is determined by research design,
 and there are many excellent existing guides.
-Rather, we discuss how to structure analysis code
-so that it is easy to follow and understand,
-for both the full research team members and a public audience.
+Rather, we discuss how to structure and document data analysis
+that is easy to follow and understand,
+for both the full research team members and research consumers.
 The final section discusses ways to automate common outputs
 so that your work is fully reproducible.
 
@@ -47,33 +48,39 @@ For this chapter, we assume you are starting from
 one or multiple well-documented tidy\sidenote{\citet{hadley2017R}} datasets.
 We also assume that these datasets
 have gone through thorough quality checks
-and incorporate any corrections needed.
+and incorporate any corrections needed.\sidenote{
+	See \autoref{ch:5} 5 for discussions on how to 
+	tidy data, monitor data quality and document corrections.
+}
 The next step is to \textbf{construct}\sidenote{
 	\textbf{Data construction}:
 	The process of transforming cleaned data into analysis data by
 	creating the derived indicators that will be analyzed.}
 the variables that you will use for analysis;
 that is, to transform the cleaned data into analysis-ready data.
-It's possible the acquired data is ready for analysis,
+It's possible the data is ready for analysis as acquired,
 but in most cases it needs to be prepared by integrating different datasets
 and creating derived variables
 (dummies, indices, and interactions, to name a few\sidenote{
   See \citet{adjognon2019reducing} for an example.}).
 The derived indicators you will construct should be
-planned during research design\index{research design};
-the pre-analysis plan should serve as your guide
-at this stage.\index{pre-analysis plan}
+planned during research design\index{research design},
+with the pre-analysis plan serving as a guide.\index{pre-analysis plan}
 During construction, data will typically be
 reshaped, merged, and aggregated to change the level of the data points
 from the \textbf{unit of \textit{observation}} in the raw data
-to the \textbf{unit of \textit{analysis}}.\sidenote{\url{
-		https://dimewiki.worldbank.org/Unit\_of\_Observation}}\index{unit of observation}\index{unit of analysis}
+to the \textbf{unit of \textit{analysis}}.\sidenote{
+	More details on the concepts of unit of observations
+	and unit of analysis
+	can be found on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}
+\index{unit of observation}\index{unit of analysis}
 
 % A project may require multiple purpose-built data sets
 Each analysis dataset is built to answer an analysis question.
 If the sub-samples and units of observation
 vary for different pieces of the analysis,
-you may need to create many purpose-built analysis datasets.\index{analysis datasets}
+you will probably need to create many purpose-built analysis datasets.\index{analysis datasets}
 In such cases, it is not good practice
 to try to create a single ``one-size-fits-all'' analysis dataset.
 For a concrete example of what this means,
@@ -99,9 +106,6 @@ from creation of analysis indicators
 (necessary only for specific analyses).
 Second, it helps to ensure that variable definitions are
 consistent across datasets.
-Construction can create many outputs combining many inputs,
-and, unlike in data cleaning,
-resulting datasets should be concise rather than exhaustive.
 For example, take a project that has a baseline and an endline survey.
 Unless the two data collection instruments are exactly the same,
 which is preferable but often not the case,
@@ -121,32 +125,40 @@ variable construction precedes data analysis,
 as derivative variables need to be created before they are analyzed.
 In practice, however, as you analyze the data,
 it is often useful to revisit construction,
-and explore different subsets of the same and other transformations of the data.
+and explore different subsets and transformations of the data.
 Even if construction and analysis are done concurrently,
-you should always do the two in separate scripts.
+you should always code them in separate scripts.
 If every script that creates a table starts by loading a dataset,
 subsetting it, and manipulating variables,
 any edits to construction need to be replicated in all scripts.
 This increases the chances that at least one of them
 will have a different sample or variable definition.
-Doing all variable construction and data transformation
-in a unified script, separate from the analysis code, helps
-avoid this and ensures consistency across different outputs.
+Coding all variable construction and data transformation
+in a unified script, separate from the analysis code,
+prevents such problems and ensures consistency across different outputs.
 
 \subsection{Integrating different data sources}
 
 % When merging is necessary and how to start thinking about it
 To create the analysis dataset,
 it is typically necessary to combine information
-from different data sources.\sidenote{\url{
+from different data sources\sidenote{\url{
 		https://dimewiki.worldbank.org/Data\_Integration}}
+or different datasets with a common source.
+For the next few paragraphs, 
+we call such operations ``merges'',
+but they are also commonly referred to as ``data joins''.
 As discussed in Chapter 3,
 this process should be documented
 using \textbf{data flowcharts},\sidenote{
+	More details on DIME's data flow chart template
+	and an example can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Data\_Flow\_Charts}}
 and different data sources should only be combined
 in accordance with the data linkage table.\sidenote{
-	\url{https://dimewiki.worldbank.org/wiki/Data\_Linkage\_Table}}
+	More details on DIME's data linkage table template
+	and an example can be found on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Data\_Linkage\_Table}}
 For example, you may merge administrative data with survey data
 in order to include demographic information in your analysis,
 or you may want to integrate geographic information
@@ -174,23 +186,23 @@ Second, think carefully about whether you want to keep matched and unmatched obs
 or only specific matching outcomes (e.g. to create a balanced panel),
 and add that to the pseudocode as well.
 Finally, run the code to merge the datasets,
-and compare outcome to your expectations.
+and compare the outcome to your expectations.
 Add comments to explain any exceptions,
 and make it so the code will return an error in case unexpected results show up in future runs.
 
 % Common mistakes
 To avoid unintentional changes to your data,
 pay close attention to merge results.
-Two issues to pay extra attention to are missing values and dropped observations.
+Two that require careful scrutiny are missing values and dropped observations.
 Make sure to read about how each command treats missing observations:
 are unmatched observations dropped, or are they kept with missing values?
 Whenever possible, add automated checks in the script that throw an error message
 if the result is different than what you expect,
-or you may not changes in the outcome running large portions of code.
-Document changes in the number of observations in your comments,
+or you may not notice changes in the outcome after running large chunks of code.
+Document changes to the number of observations in your comments,
 and explain why they are happening.
 If your are subsetting your data by keeping only matched observations,
-write down the reason why the observation differ across datasets,
+write down the reason why the observations differ across datasets,
 as well as why you are only interested in those that matched.
 The same applies when you are adding new observations from the merged dataset.
 
@@ -251,6 +263,34 @@ All these points also apply to imputation of missing values and other distributi
 As a general rule, never overwrite or delete original data during the construction process.
 Always create derived indicators with new names.
 
+% Dealing with different levels of observation
+Two features of data create additional complexities when constructing indicators:
+research designs comprising multiple units of observation and analysis,
+and designs with repeated observations of the same units over time.
+When your research involves different units of observation,
+creating analysis datasets will probably mean combining variables measured at these different levels.
+If you followed our recommendations from Chapter 5,
+this means combining variables that are included in different tidy datasets.
+To make sure constructed variables are consistent across datasets,
+we recommend that each indicator be constructed in the dataset corresponding to its unit of observation.
+Once we have indicators at each unit of observation,
+they may be aggregated and/or merged to different units of analysis.
+Take the example of a project that acquired data at both the student and teacher levels.
+You may want to analyze the performance of students on a test
+while controlling for teacher characteristics.
+This can be done by assigning the teacher-level indicators to all the students in the corresponding class.
+Conversely, you may want to include average student test scores
+in the analysis dataset containing teacher-level variables.
+To do so, you would start from the constructed dataset at student level,
+average (using commands like \texttt{collapse} in Stata and \textttt{summarise} in R) 
+the test scores of all students taught by the same teacher,
+and merge this teacher-level aggregate measure onto the original teacher dataset.
+You should be mindful of two aspects while performing such operations:
+the first is the correspondence between identifying variables at different levels, 
+which should be documented in the \textbf{data linkage table};
+the second is that they will necessarily involve merges,
+so all the steps outlined in the previous section should be applied.
+
 % Maintaining indicator definition across rounds
 Finally, creating a panel with survey data involves additional timing complexities.
 It is common to construct indicators soon after receiving data from a new survey round.
@@ -261,18 +301,14 @@ Say you constructed some analysis variables after baseline, and are now receivin
 Then the first thing you should do is create a cleaned panel dataset,
 ignoring the previous constructed version of the baseline data.
 Our team created \texttt{iefieldkit}'s \texttt{iecodebook append} subcommand
-% to-do % -----------------------------------------------------------------
-% \sidenote{\url{STATA JORUNAL ARTICLE}}
-% -------------------------------------------------------------------------
 to help you reconcile and append data from cleaned survey rounds
-or similar data collected from different contexts.\index{iefieldkit}\index{iecodebook}
+or similar data collected from different contexts.\index{iefieldkit}\index{iecodebook}\sidenote{
+	\citet{bjarkefur2020iefieldkit}
+}
 This is done by completing an Excel sheet to indicate what changes in
 names, value assignments, and value labels should be made so the data is consistent across rounds or settings.\sidenote{
   See \citet{daniels2017use} for an example.}
 By doing so, you are also creating helpful documentation about your data work.
-% to-do % --------------------------------------------------------
-% See XXX for an example of a Stata do-file uses iecodebook append
-% ----------------------------------------------------------------
 Once data tables are consistently appended,
 adapt your construction script so it can be used on the complete panel dataset.
 In addition to preventing inconsistencies and documenting your work,
@@ -308,8 +344,12 @@ This is a crucial step both to prevent mistakes and to guarantee transparency.
 To make sure that these comments can be more easily navigated,
 it is wise to start writing a variable dictionary as soon as you begin making changes to the data.\sidenote{
 	See \citet{jones2019factor} for an example.}
-Carefully record how specific variables have been combined, recoded, and scaled,
-and refer to those records in the code.
+The variable dictionary can be saved in an Excel spreadsheet,
+a Word document, or even a plain text file.
+Whatever format it takes,
+it should carefully record how specific variables have been combined, recoded, and scaled.
+Whenever relevant, the code should point to these files to indicate
+where the definition are being implemented.
 
 % iecodebook export
 The \texttt{iecodebook export} subcommand is
@@ -319,12 +359,9 @@ you can use it to list all variables in the dataset in an Excel sheet.
 You can then add the variable definitions to that file to create a concise metadata document.
 Take this opportunity to review your notes and make sure that your code
 is implementing exactly what is described in the documentation.
-% to-do % --------------------------------------------------------
-% See XXX for an example of a Stata do-file uses iecodebook append
-% ----------------------------------------------------------------
+
 
 %------------------------------------------------
-
 \section{Writing data analysis code}
 
 % Intro: this section focuses on data analysis CODE
@@ -344,8 +381,8 @@ The analysis stage usually starts with a process we call \textbf{exploratory dat
 This is when you are first looking for patterns in your data,
 creating descriptive graphs and tables,
 and trying different tests to understand your results.
-It progresses into \textbf{final analysis} when your team starts to decide which are the ``main results'', or
-those that will make it into a research output.
+It progresses into \textbf{final analysis} when your team starts to decide which are the ``main results'', 
+or those that will make it into a research output.
 The way you deal with code and code outputs for exploratory and final analysis is different.
 During the exploratory stage,
 you will be tempted to write lots of analysis into one big, impressive, start-to-finish script.
@@ -363,14 +400,16 @@ A well-organized analysis script starts with a completely fresh workspace
 and, for each output it creates, explicitly loads data before analyzing it.
 This setup encourages data manipulation to be done earlier in the workflow
 (that is, in separate cleaning and construction scripts).
-This also prevents the common problem of having analysis scripts
+It also prevents the common problem of having analysis scripts
 that depend on other analysis scripts being run before them.
 Such dependencies tend to require manual instructions
 for all necessary chunks of code to be run in the right order.
 We encourage you to code each task so
 it is completely independent of all other code,
-except for the analysis master script.
-You can go as far as coding every output in a separate script.
+except for the master script.
+You can go as far as coding every output in a separate script,
+but the key is making sure you know which datasets are used for each output,
+and which code chunks implement each piece of analysis.
 
 % Writing easy to read analysis code
 There is nothing wrong with code files being short and simple.
@@ -380,7 +419,7 @@ Research questions and statistical decisions should be incorporated explicitly i
 and their implementation should be easy to detect from the way the code is written.
 This includes clustering, sampling, and controlling for different variables, to name a few.
 If you have multiple analysis datasets,
-each of them should have a descriptive name about its sample and unit of observation.
+each of their names should be descriptive of the sample and unit of observation they contain.
 As your team comes to a decision about model specification,
 you can create functions and globals (or objects) in the master script to use across scripts.
 This is a good way to make sure specifications are consistent throughout the analysis.
@@ -388,12 +427,9 @@ It also makes your code more dynamic,
 as it's easy to update specifications and results
 through a master file without changing every script.
 
-% to-do % ------------------------------------------------------------------------
-% Add example of how to automatize research decisions through globals or functions
-% --------------------------------------------------------------------------------
-
 % Naming analysis code
-To accomplish this, you will need to make sure that you have an effective data management system,
+To create this setup, 
+you will need to make sure that you have an effective data management system,
 including file naming, organization, and version control.
 Just as for the analysis datasets,
 you should name each of the individual analysis files descriptively.
@@ -410,12 +446,18 @@ as you will constantly re-order them during data analysis.
 % Useful resources for data visualization
 \textbf{Data visualization} is increasingly popular,
 and is becoming a field in its own right.\sidenote{\citet{healy2018data,wilke2019fundamentals}}
+Although the same principles for coding exploratory and final data analysis apply to visualizations,
+creating them is usually more difficult than running a regression and exporting its results into a table.
 We attribute some of the difficulty of creating good data visualization
 to the difficulty of writing code to create them.
+The amount of customization necessary to create a nice graph can lead the relevant commands to become quite intricate.	
 Making a visually compelling graph would already be hard enough if
 you didn't have to go through many rounds of searching and reading help files
 to understand a command's graphical options syntax.
-The trickiest part of using plotting commands is getting the data into the right format.
+Although getting each specific element of a graph to look exactly the way you want can be hard,
+the solution to such problems is usually a single well-written search away,
+and we recommend you leave these details as the very last adjustments to make.
+In our experience, the trickiest part of using plotting commands is getting the data into the right format.
 Though both Stata and R have plotting functions that graph summary statistics,
 a good rule of thumb is to ensure that each
 observation in your dataset corresponds to one data point in your desired visualization.
@@ -431,15 +473,22 @@ First of all, we maintain easily-searchable data visualization libraries for bot
 	\url{https://worldbank.github.io/r-econ-visual-library/}}
 These libraries feature curated data visualization examples, along with source code and example datasets,
 so you get a good sense of what your data should look like
-before you can start writing code to create a visualization.
+before you can start writing code to create a visualization.\sidenote{
+	More tools and links to other resources for creating good data visualizations
+	can be found on the DIME Wiki:
+  \url{https://dimewiki.worldbank.org/Data\_visualization}}\index{data visualization}
 The \texttt{ietoolkit} package also contains two commands to automate
 common impact evaluation graphs:
-\texttt{iegraph} plots the values of coefficients for treatment dummies,
+\texttt{iegraph}\sidenote{
+  Read more about how to install and use \texttt{iegraph} and
+	how the command can be used to easily create graphs
+	for two very common impact evaluation regressions
+	on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Iegraph}}
+plots the values of coefficients for treatment dummies,
 and \texttt{iekdensity} displays the distribution of an outcome variable
 across groups and adds the treatment effect as a note.
-The DIME Wiki provides a list of other recommended resources and tools
-for creating good data visualizations.\sidenote{\url{
-		https://dimewiki.worldbank.org/Data\_visualization}}\index{data visualization}
+
 
 
 %-------------------------------------------------------------------------
@@ -518,10 +567,6 @@ there are a few lines of comments listing
 datasets and functions that are necessary for it to run,
 as well as all outputs created by that script.
 
-% to-do % ----------------------
-% Add an example analysis master
-% ------------------------------
-
 % File formats
 Knowing how your code outputs will be used will help you decide the best format to export them.
 You can often save figures into different formats,
@@ -549,7 +594,7 @@ that are ready to be included in a paper or report.
 No manual edits, including formatting,
 should be necessary after exporting final outputs.
 Manual edits are difficult to reproduce;
-the less you make, the more reproducible your output is.
+the less you need them, the more reproducible your output is.
 You may think that it's not worth coding a small formatting adjustment,
 but you will inevitably need to make changes to the output,
 and automating them will save you time by the end of the process.
@@ -574,10 +619,12 @@ and so do the chances of having the wrong version of a result in a paper or repo
 There are numerous commands to export outputs from both R and Stata.
 Some examples are \texttt{estout},\sidenote{\citet{estout05}, \citet{estout07}}
 \texttt{outreg2},\sidenote{\citet{wada2014outreg2}}
-and \texttt{outwrite}\sidenote{\citet{daniels2019outwrite}} in Stata,
-and \texttt{stargazer}\sidenote{\citet{hlavac2015stargazer}}
+and \texttt{outwrite}\sidenote{\citet{daniels2019outwrite}} in Stata;
+and \texttt{stargazer}\sidenote{\citet{hlavac2015stargazer}},
+\texttt{huxtable},
 and \texttt{ggplot2}'s \texttt{ggsave}\sidenote{\citet{ggplot2}} in R.
-They allow for a wide variety of output formats. We recommend using formats that are accessible and, whenever possible, lightweight.
+They allow for a wide variety of output formats. 
+We recommend using formats that are accessible and, whenever possible, lightweight.
 Accessible means that it's easy for other people to open them.
 In Stata, that would mean always using \texttt{graph export} to save images as
 \texttt{.jpg}, \texttt{.png}, \texttt{.pdf}, etc.,
@@ -595,10 +642,15 @@ Excel \texttt{.xlsx} and \texttt{.csv} are also commonly used,
 but often require the extra step of copying the tables into the final output.
 The \texttt{ietoolkit} package includes two commands to export formatted tables,
 automating the creation of common outputs and saving time for research.\index{ietoolkit}
-\texttt{iebaltab}\sidenote{\url{https://dimewiki.worldbank.org/iebaltab}}
-creates and exports balance tables to Excel or {\LaTeX}.\index{LaTeX}
-\texttt{ieddtab}\sidenote{\url{https://dimewiki.worldbank.org/ieddtab}}
-does the same for difference-in-differences regressions.
+\texttt{iebaltab} creates and exports balance tables to Excel or {\LaTeX}.\sidenote{
+	Read more about how to install and use \texttt{iebaltab}
+	and how it simplifies balance tables in Stata on the DIME Wiki:
+  \url{https://dimewiki.worldbank.org/iebaltab}}\index{LaTeX}
+\texttt{ieddtab} does the same for difference-in-differences regressions.\sidenote{
+	Read more about how to install and use \texttt{ieddtab}
+	and how it simplifies generating tables for difference-in-differences regressions
+  in Stata on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/ieddtab}}
 
 % Last touches: formatting tables and including meta data
 If you need to create a table with a very specific format
@@ -612,6 +664,9 @@ Make sure labels and notes cover all relevant information
 included in your code and comments that are not otherwise visible in the output.
 Examples of information that should be included in labels and notes include sample,
 unit of observation, unit of measurement, and variable definition.\sidenote{
+	A checklist with best practices important to remember
+	to generate informative and easy to read tables
+	can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Checklist:\_Submit\_Table}}
 
 \section{Preparing dynamic documents}
@@ -681,6 +736,24 @@ Markdown files on GitHub can also provide similar functionality through the brow
 and are version controlled.
 However, as with other Markdown options, the need to learn a new syntax may
 discourage take up among team members who don't work with GitHub more extensively.
+
+% Third best
+Whatever software you are using,
+what matters is that you make sure to implement a self-updating process for table and figures.
+We have given a few recommendations as to what we believe to be best practices,
+but you will need to find out what works for your team.
+If your team has decided to use Microsoft Office, for example,
+there are still a few options to avoid problems with copy-pasting.
+The easiest solution may be for the less code-savvy members of the team
+to develop the text of the final output pointing to exhibits that are not included inline.
+If all figures and tables are presented at the end of the file,
+whoever is developing the code can export them into a Word document using Markdown,
+so at least this part of the file can be quickly updated when the results change.
+Finally, statistical programming languages can now often directly export to these formats,
+such as using the \texttt{putexcel} and \texttt{putdocx} commands in Stata, which can update or respect formatting in Office documents.\sidenote{
+  See more details at 
+  \url{https://www.stata.com/manuals/rptputexcel.pdf} 
+  and \url{https://www.stata.com/stata-news/news32-3/spotlight-putdocx/}.}
 
 \subsection{Using {\LaTeX} for dynamic research outputs}
 

@@ -9,5 +9,5 @@ and is produced by [DIME Analytics](https://www.worldbank.org/en/research/dime/d
 
 
 ### Download the Book in PDF Format
-[Download from Github](https://github.com/worldbank/dime-data-handbook/raw/gh-pages/bookpdf/development-research-in-practice)
+[Download from Github](https://github.com/worldbank/dime-data-handbook/raw/gh-pages/bookpdf/development-research-in-practice.pdf)
 <iframe src="https://docs.google.com/gview?url=https://github.com/worldbank/dime-data-handbook/raw/gh-pages/bookpdf/development-research-in-practice.pdf&amp;embedded=true" style="width:100%; height:1000px;"></iframe>
