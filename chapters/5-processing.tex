@@ -59,7 +59,9 @@ represents one observation.
 Getting to such a format may be harder than expected,
 and the \textbf{unit of observation}\sidenote{\textbf{Unit of observation:}
 	the unit described by the data. In datasets, it is ideally what each row represents.
-  \url{https://dimewiki.worldbank.org/Unit_of_Observation}}
+	More details on the concept of unit of observations
+	can be found on the DIME Wiki:
+  \url{https://dimewiki.worldbank.org/Unit_of_Observation}}\index{unit of observation}
  may be ambiguous in many raw datasets.
 This section will present what we call a \textit{tidy} data format,
 which is, in our experience, the ideal format to handle tabular data.
@@ -73,19 +75,23 @@ when it is guaranteed that each observation is uniquely identified.
 
 % Uniquely and fully identifying variable
 An important step before starting to tidy a dataset is
-to understand the \textbf{unit of observation}\sidenote{
-	\textbf{Unit of observation:} the unit described by the data.
-	In a data table, it is what each row represents.
-  \url{https://dimewiki.worldbank.org/Unit\_of\_Observation}}\index{unit of observation}
-and find out which variable or set of variables is the \textbf{unique identifier}\sidenote{
+to understand the \textbf{unit of observation}
+and find out which variable or set of variables
+is the \textbf{unique identifier} for each observation.\sidenote{
+	More details on the properties required for variables
+	that uniquely identifies each observation
+	can be found on the DIME Wiki:
   \url{https://dimewiki.worldbank.org/ID\_Variable\_Properties}}\index{unique identifier}
-for each observation.
 As discussed in Chapter 3,
 the unique identifier will be used to link observations in this dataset
 to data in other data sources according to the \textbf{data linkage table},\sidenote{
+	More details on DIME's data linkage table template
+	and an example can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Data\_Linkage\_Table}}\index{data linkage table}
 and the unique identifier for all observations
 must be listed in the \textbf{master dataset}.\sidenote{
+	More details on DIME's master dataset template
+	and an example can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Master\_Data\_Set}}\index{master dataset}
 Ensuring that observations are uniquely and fully identified
 is arguably the most important step in data cleaning.
@@ -103,7 +109,7 @@ the raw data contain either missing or duplicate values.\sidenote{
 
 It is also possible for a raw dataset to not include an unique identifier,
 or that the identifier is not a suitable \textbf{project ID}.\sidenote{
-	\url{https://dimewiki.worldbank.org/Project\_ID}}
+	\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties\#Project_ID}}
 Suitable project IDs should, for example, not involve long strings
 that are difficult to work with, such as a name,
 or be an ID that is known outside the research team.
@@ -133,9 +139,12 @@ DIME Analytics created an automated workflow to identify, correct and document
 occurrences of duplicated entries in the unique identifier using
 \texttt{ieduplicates} and \texttt{iecompdup},\index{ieduplicates}\index{iecompdup}
 two Stata commands included in the \texttt{iefieldkit}\index{iefieldkit}
-package\index{iefieldkit}.\sidenote{\url{https://dimewiki.worldbank.org/iefieldkit}}
-One advantage of using \texttt{ieduplicates}\sidenote{\url{
-		https://dimewiki.worldbank.org/ieduplicates}}
+package\index{iefieldkit}.
+One advantage of using \texttt{ieduplicates}\sidenote{
+	Read more about how to install and use \texttt{ieduplicates} and
+	how the command can help you efficiently deal with duplicates
+	on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/ieduplicates}}
 to correct duplicated entries is that it creates \textit{duplicates reports}
 which records each corrections made and documents the reason for it.
 Even if you are not using this command,
@@ -333,7 +342,6 @@ data issues and the data analysis.
 Survey-specific quality monitoring protocols are discussed in Chaper 4.
 
 \subsection{Implementing data quality checks}
-
 % Why they should be made in real-time
 Data quality checks should carefully inspect key treatment and outcome variables
 to ensure that the data quality of core study variables is uniformly high,
@@ -362,6 +370,9 @@ In these cases, cross-referencing with other data sources can help to ensure com
 It is often the case that raw data includes duplicate or missing entries,
 which may occur due to typos, failed submissions to data servers,
 or other mistakes.\sidenote{
+  More details on how to deal with duplicates during surveys
+	and how to track completion
+	can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Duplicates_and_Survey_Logs}}
 Issues with data transmission often result in missing observations,
 particularly when large datasets are being transferred,
@@ -375,9 +386,11 @@ Once data completeness is confirmed,
 observed units must be validated against the expected sample:
 this is as straightforward as merging the sample list
 with the data received and checking for mismatches.
-Reporting errors and duplicate observations in real time allows for efficient corrections.
-\texttt{ieduplicates}\sidenote{
-	\url{https://dimewiki.worldbank.org/ieduplicates}}
+Reporting errors and duplicate observations in real time allows for efficient corrections.\sidenote{
+	Read more about how to install and use \texttt{ieduplicates} and
+	how the command can help you efficiently deal with duplicates
+	on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/ieduplicates}}\texttt{ieduplicates}
 provides a workflow for resolving duplicate entries with the data provider.
 For surveys, it is also important to track data collection progress to  monitor attrition,
 so that it is clear early on if a change in protocols or additional tracking will be needed.\sidenote{
@@ -391,7 +404,7 @@ to identify any clusters that may be providing data of suspect quality.
 Quality checks should also include checks of response quality and consistency.
 For example, whether the values for each variable fall within the expected range,
 and related variables do not contradict each other.\sidenote{
-	\url{https://dimewiki.worldbank.org/Monitoring_Data_Quality}}
+  \url{https://dimewiki.worldbank.org/Monitoring_Data_Quality}}
 Electronic data collection systems often incorporate many quality control features,
 such as range restrictions and logical flows.
 Data received from systems that do not include such controls should be checked more carefully.
@@ -445,7 +458,10 @@ This section describes how to de-identify data in order to share it with a wider
 
 % Dealing with human subjects
 Most development data involves human subjects.\sidenote{
-	\url{https://dimewiki.worldbank.org/Human\_Subjects\_Approval}}
+    Read more about what extra consideration
+	you must take into account when
+	working with human subjects on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Protecting_Human_Research_Subjects}}
 \index{human subjects}
 As a researcher, you may have access to personal information about your subjects:
 where they live, how much income they have,
@@ -454,7 +470,11 @@ their names, their national identity numbers, and other sensitive data.\sidenote
   See \citet{banerjee2019entertainment} for an example.}
 There are strict requirements for safely storing and handling personally-identifying data,
 and it is the responsibility of the research team to satisfy these requirements.\sidenote{
-	\url{https://dimewiki.worldbank.org/Research\_Ethics}}
+  More details on research ethics as well as links to tools and
+  other resources related can be found on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Research\_Ethics}.
+  It can also be found under Pillar 1 in the DIME Research Standards:
+  \url{https://github.com/worldbank/dime-standards}}
 Everyone working with human subjects research should
 have completed an ethics certification course.\sidenote{
   Protecting Human Research Participants (\url{https://phrptraining.com})
@@ -479,6 +499,9 @@ such as treatment statuses and weights, then removing unmasked identifiers.
 Once data is acquired and the data quality checks described above are completed,
 the next task is typically to \textbf{de-identify} the data,
 by removing or masking all personally-identifying variables.\sidenote{
+	More details and best practices related to de-identification
+	as well as tools that can help you assess disclosure risks
+	can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/De-identification}}
 \index{de-identification}
 Note that it is in practice impossible to \textbf{anonymize} data.
@@ -510,8 +533,7 @@ each will need to be de-identified separately, but
 the workflow will be the same for all of them.
 
 During the initial round of de-identification,
-datasets must be stripped of personally identifying information.\sidenote{
-	\url{https://dimewiki.worldbank.org/De-identification}}
+datasets must be stripped of personally identifying information.
 To do so, you will need to identify all variables that contain such information.
 For data collection, where the research team designs the survey instrument,
 flagging all potentially identifying variables at questionnaire design stage
@@ -532,6 +554,9 @@ better suited for final de-identification.\sidenote{\citet{benschop2019statistic
 The \texttt{iefieldkit} command \texttt{iecodebook}
 lists all variables in a dataset and exports an Excel sheet
 where you can easily select which variables to keep or drop.\sidenote{
+  Read more about how to install and use \texttt{iecodebook} and
+	how the command can help in de-identification and other cleaning tasks
+	on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/iecodebook}}
 
 % Initial de-identification in practice
@@ -710,8 +735,11 @@ The most common example is string (text) variables:
 categorical variables and open-ended responses are often read as strings.
 However, variables in this format cannot be used for quantitative analysis.
 Therefore, categorical variables must be transformed into other formats,
-such as \texttt{factors} in R and \texttt{labeled integers}\sidenote{\url{
-		https://dimewiki.worldbank.org/Data\_Cleaning\#Value\_Labels}} in Stata.
+such as \texttt{factors} in R and \texttt{labeled integers} in Stata.\sidenote{
+  More details on value labels in Stata
+	and best practices on how to work with them
+	can be found on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Value\_Labels}}
 Additionally, open-ended responses stored as strings usually have a high risk of including identifying information,
 so cleaning them requires extra attention.
 The choice names in categorical variables
@@ -731,6 +759,9 @@ They need to be turned into \textit{missing values}.
 However, the fact that a respondent didn't know how to answer a question is also useful information
 that would be lost by simply omitting all information.
 In Stata, this information can be elegantly conserved using extended missing values.\sidenote{
+	More details on survey codes
+	and how they relate to best practices when working with missing values in Stata
+	can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Survey\_Codes\_and\_Missing\_Values}}
 
 % Labeling variables
@@ -744,8 +775,11 @@ When a data collection instrument (for example a questionnaire) is available,
 it is often the best dictionary one could ask for.
 But even in these cases, going back and forth between files can be inefficient,
 so annotating variables in a dataset is extremely useful.
-In Stata, \textit{variable labels}\sidenote{\url{
-	https://dimewiki.worldbank.org/Data\_Cleaning\#Variable\_Labels}}
+In Stata, \textit{variable labels}\sidenote{
+	More details on variable labels in Stata
+	and best practices on how to work with them
+	can be found on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/Data\_Cleaning\#Variable\_Labels}}
 must always be present in a cleaned dataset.
 They should include a short and clear description of the variable.
 A lengthier description, that may include, for example,
@@ -772,7 +806,11 @@ Although all these tasks are key to making the data easy to use,
 implementing them can be quite repetitive and create convoluted scripts.
 The \texttt{iecodebook} command suite, part of the \texttt{iefieldkit} Stata package,
 is designed to make some of the most tedious components of this process more efficient.\sidenote{
-	\url{https://dimewiki.worldbank.org/iecodebook}}\index{iecodebook}\index{iefieldkit}
+  Read more about how to install and use \texttt{iecodebook} and
+	how the command can help making cleaning tasks more efficient
+	on the DIME Wiki:
+	\url{https://dimewiki.worldbank.org/iecodebook}}
+\index{iecodebook}\index{iefieldkit}
 It also creates a self-documenting workflow,
 so your data cleaning documentation is created alongside that code,
 with no extra steps.
@@ -791,6 +829,8 @@ It could be a survey team, the government ministry responsible for administrativ
 the technology firm that generated remote sensing data, etc.
 Regardless of who originally collected the data,
 you should acquire and organize all documentation of how the data was generated.\sidenote{
+  More details on how to best document your data and
+	links to additional resources on this topic can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/Data\_Documentation}}\index{documentation}
 What type of documentation that is available depends on how the data was collected.
 For original data collection, this should include

@@ -23,8 +23,8 @@ There are few guides to the conventions, standards, and best practices
 that are fast becoming a necessity for empirical research.
 \textit{Development Research in Practice} aims to fill that gap.
 It covers the full data workflow for a complex research project using original data.
-In this book, we share the lessons, tools, and processes
-developed based on DIME's diverse research experience,
+We share the lessons, tools, and processes
+developed within the World Bank's Development Impact Evaluation (DIME) department,
 and compile them into a single narrative of best practices for data work.
 This book is not sector-specific;
 it will not teach you econometrics,
@@ -33,82 +33,14 @@ There are many excellent existing resources on those topics.
 Instead, it will teach you how to think about all aspects of your research from a data perspective,
 how to structure research projects to ensure data quality,
 and how to institute transparent and reproducible workflows.
+We realize that adopting these workflows may have significant upfront learning costs, 
+but we are convinced that these investments pay off quickly, 
+as you will both save time and improve the quality of your research going forward.
 
 
 \end{fullwidth}
 
 %------------------------------------------------
-
-\section{The team behind this book}
-DIME is the Development Impact Evaluation department of the World Bank.\sidenote{
-  \url{https://www.worldbank.org/en/research/dime}}
-Its mission is to generate high-quality and operationally relevant data and research
-to transform development policy, help reduce extreme poverty, and secure shared prosperity.\sidenote{\citet{legovini2015impact}}
-DIME develops customized data and evidence ecosystems to produce actionable information
-and recommend specific policy pathways to maximize impact.
-The department conduct research in 60 countries with 200 agencies, leveraging a
-US\$180 million research budget to shape the design and implementation of
-US\$18 billion in development finance.
-DIME also provides advisory services to 30 multilateral and bilateral development agencies.\sidenote{\citet{legovini2019}}
-DIME research is organized into four primary topic pillars:
-Economic Transformation and Growth;
-Gender, Economic Opportunity, and Fragility;
-Governance and Institution Building;
-and Infrastructure and Climate Change.
-Over the years, DIME has employed dozens of research economists,
-and hundreds of full-time research assistants, field coordinators, and other staff.
-The team has conducted over 325 impact evaluations.
-\textit{Development Research in Practice} exists to take advantage of that concentration and scale of research,
-to synthesize many resources for data collection and research,
-and to make DIME tools available to the larger community of development researchers.
-
-As part of its broader mission, DIME invests in public goods
-to improve the quality and reproducibility of development research around the world.
-One key early innovation at DIME was the creation of DIME Analytics,
-the team responsible for writing and maintaining this book.\sidenote{
-  \url{https://www.worldbank.org/en/research/dime/data-and-analytics}}
-DIME Analytics is a centralized unit that develops and ensures adoption
-of high quality research practices across the department's portfolio.
-This is done through an intensive, collaborative innovation cycle:
-DIME Analytics onboards and supports research assistants and field coordinators,
-provides standard tools and workflows to all teams,
-delivers hands-on support when new tasks or challenges arise,
-and then develops and integrates lessons from those engagements to bring to the full team.
-Resources developed and tested in DIME are converted into public goods
-for the global research community, through open-access trainings and open-source tools.
-The DIME Analytics Resource Directory appendix provides an introduction to public materials.
-
-DIME Analytics has invested many hours over the past years
-learning from data work across DIME's portfolio,
-identifying inefficiencies and barriers to success,
-developing tools and trainings, and standardizing best-practice workflows adopted in DIME projects.
-It has also invested significant energy in the language and materials
-used to teach these workflows to new team members,
-and, in many cases, in software tools that support these workflows explicitly.
-DIME team members often work on diverse portfolios of projects
-with a wide range of teammates, and we have found
-that standardizing core processes across all projects
-results in higher-quality work with fewer opportunities to make mistakes.
-In that way, the Analytics team is DIME's method of institutionalizing
-tools and practices, developed and refined over time,
-that give the department a common base of knowledge and practice.
-In 2018, for example, DIME adopted universal reproducibility checks
-conducted by the Analytics team;
-the lessons from this practice helped move the DIME team
-from where 50\% of submitted papers in 2018
-required significant revision to pass
-to where 64\% of papers passed in 2019 without revision required.
-
-
-%------------------------------------------------
-
-\begin{fullwidth}
-	\begin{figure}
-		\centering
-		\includegraphics[width=1.5\linewidth]{diagrams/Introduction}
-		\label{fig:intro}
-	\end{figure}
-\end{fullwidth}
 
 \section{How to read this book}
 This book aims to be a highly practical resource so the reader can
@@ -190,6 +122,9 @@ functional and informative reproducibility packages
 that contain all the code, data, and meta-information needed
 for others to evaluate and reproduce your work.
 
+Each chapter starts with a box which provides a summary of the most important points,
+takeaways for different types of readers, 
+and a list of key tools and resources for implementing the recommended practices.
 After reading each chapter, you should understand
 what tasks will be performed at every stage of the workflow,
 and how to implement them according to best practices.
@@ -198,12 +133,33 @@ and what inputs and outputs are required and produced from each.
 The references and links contained in each chapter
 will lead you to detailed descriptions of individual
 ideas, tools, and processes to refer to when you need to implement the tasks yourself.
-Specific implementation details and links to further practical resources
-will often be found on the linked pages in the \textbf{DIME Wiki}.\sidenote{
-The DIME Wiki is a free online collection of impact evaluation resources and best practices. \url{https://dimewiki.worldbank.org}}.
+
+\subsection{The DIME Wiki: A complementary resource}
+Throughout the book, you will find many references to the DIME Wiki.\sidenote{\url{https://dimewiki.worldbank.org}}
+The DIME Wiki is a free online collection of impact evaluation resources and best practices. 
+This handbook and the DIME Wiki are meant to go hand-in-hand: 
+the handbook provides the narrative structure and workflow, 
+and the Wiki dives into specific implementation details,
+offers detailed code examples, and 
+provides a more exhaustive set of references for each topic. 
+Importantly, the DIME Wiki is a living resources that is 
+continuously updated and improved,
+by the authors of this book and external contributors.
+We welcome all readers to register as Wiki users and contribute directly.\sidenote{\url{https://dimewiki.worldbank.org/New_Users}} 
 
 %------------------------------------------------
-\section{Handling original data is a core research task}
+
+\begin{fullwidth}
+	\begin{figure}
+		\centering
+		\includegraphics[width=1.5\linewidth]{diagrams/Introduction}
+		\label{fig:intro}
+	\end{figure}
+\end{fullwidth}
+
+%------------------------------------------------
+
+\section{Data handling and documentation}
 
 In the past, data work was often treated as a ``black box'' in research.
 A published manuscript might exhaustively detail
@@ -214,10 +170,14 @@ It is almost impossible to assess the quality of the data in such a paper,
 and whether the results could be reproduced.
 In the past decade, this has started to change,\sidenote{\citet{swanson2020research}}
 in part due to increasing requirements by publishers and funders to release code and data.
+
 Data handling and documentation is a key skill for researchers and research staff.
 Standard processes and documentation practices
 are important throughout the research process to accurately convey
-and implement the intended research design.\sidenote{\citet{vilhuber_lars_2020_3911311}}
+and implement the intended research design,\sidenote{\citet{vilhuber_lars_2020_3911311}}
+and to minimizes security risks: 
+better protocols and processes lower the probability of data leakages, 
+security breaches, and loss of personal information.
 When data work is done in an ad-hoc manner,
 it is very difficult for others to understand what is being done --
 a reader has to simply trust that the researchers did these things right.
@@ -257,7 +217,7 @@ to discuss the adoption of \textit{a} standard within research teams
 than to necessarily use \textit{the} particular standards that we recommend.
 
 
-\section{Documenting data work with standardized code}
+\section{Standardizing code}
 
 Modern quantitative research relies heavily
 on standardized statistical software tools,
@@ -320,8 +280,7 @@ we reference free and open-source tools wherever possible,
 and point to more detailed instructions when relevant.
 \textbf{Stata},\sidenote{\citet{statacorp2019stata}}
 as a proprietary software, is the notable exception here
-due to its persistent popularity in development economics and econometrics.\sidenote{
-	\url{https://dimewiki.worldbank.org/Software_Tools}}
+due to its persistent popularity in development economics and econometrics.
 This book also includes, in an appendix,
 the \textbf{DIME Analytics Coding Guide}
 which includes instructions for how to write good code,
@@ -342,16 +301,90 @@ Stata has relatively few resources of this type available,
 which is why we have created and included one here that
 we hope will be an asset to all Stata users.
 
-\section{Looking forward}
+\section{The team behind this book}
+DIME is the Development Impact Evaluation department of the World Bank.\sidenote{
+	\url{https://www.worldbank.org/en/research/dime}}
+Its mission is to generate high-quality and operationally relevant data and research
+to transform development policy, help reduce extreme poverty, and secure shared prosperity.\sidenote{\citet{legovini2015impact}}
+DIME develops customized data and evidence ecosystems to produce actionable information
+and recommend specific policy pathways to maximize impact.
+The department conduct research in 60 countries with 200 agencies, leveraging a
+US\$180 million research budget to shape the design and implementation of
+US\$18 billion in development finance.
+DIME also provides advisory services to 30 multilateral and bilateral development agencies.\sidenote{\citet{legovini2019}}
+DIME research is organized into four primary topic pillars:
+Economic Transformation and Growth;
+Gender, Economic Opportunity, and Fragility;
+Governance and Institution Building;
+and Infrastructure and Climate Change.
+Over the years, DIME has employed dozens of research economists,
+and hundreds of full-time research assistants, field coordinators, and other staff.
+The team has conducted over 325 impact evaluations.
+\textit{Development Research in Practice} exists to take advantage of that concentration and scale of research,
+to synthesize many resources for data collection and research,
+and to make DIME tools available to the larger community of development researchers.
+
+As part of its broader mission, DIME invests in public goods
+to improve the quality and reproducibility of development research around the world.
+One key early innovation at DIME was the creation of DIME Analytics,
+the team responsible for writing and maintaining this book.\sidenote{
+	\url{https://www.worldbank.org/en/research/dime/data-and-analytics}}
+DIME Analytics is a centralized unit that develops and ensures adoption
+of high quality research practices across the department's portfolio.
+This is done through an intensive, collaborative innovation cycle:
+DIME Analytics onboards and supports research assistants and field coordinators,
+provides standard tools and workflows to all teams,
+delivers hands-on support when new tasks or challenges arise,
+and then develops and integrates lessons from those engagements to bring to the full team.
+Resources developed and tested in DIME are converted into public goods
+for the global research community, through open-access trainings and open-source tools.
+The DIME Analytics Resource Directory appendix provides an introduction to public materials.
+
+DIME Analytics has invested many hours over the past years
+learning from data work across DIME's portfolio,
+identifying inefficiencies and barriers to success,
+developing tools and trainings, and standardizing best-practice workflows adopted in DIME projects.
+It has also invested significant energy in the language and materials
+used to teach these workflows to new team members,
+and, in many cases, in software tools that support these workflows explicitly.
+DIME team members often work on diverse portfolios of projects
+with a wide range of teammates, and we have found
+that standardizing core processes across all projects
+results in higher-quality work with fewer opportunities to make mistakes.
+In that way, the Analytics team is DIME's method of institutionalizing
+tools and practices, developed and refined over time,
+that give the department a common base of knowledge and practice.
+In 2018, for example, DIME adopted universal reproducibility checks
+conducted by the Analytics team;
+the lessons from this practice helped move the DIME team
+from where 50\% of submitted papers in 2018
+required significant revision to pass
+to where 64\% of papers passed in 2019 without revision required.
+
+
+\section{Looking ahead}
 While adopting the workflows and mindsets described in this book requires an up-front cost,
 it will save you (and your collaborators) a lot of time and hassle very quickly.
 In part this is because you will learn how to implement essential practices directly;
 in part because you will find tools for the more advanced practices;
 and most importantly because you will acquire the mindset of doing research with a high-quality data focus.
-We hope you will find this book helpful for accomplishing all of the above,
-and that mastery of data helps you make an impact.
+
+For some readers, the amount of new tools and practices recommended in this book may seem daunting.
+We know from experience at DIME that full-scale adoption is possible;
+in the last few years, the full DIME portfolio has transitioned to 
+transparent and reproducible workflows, with a fair share of hiccups along the way.
+The authors of this book supported that at-scale transition,
+and we hope that by sharing our lessons learned and resources, 
+the learning curve for readers will be less steep. 
+In the summary boxes at the beginning of each chapter, 
+we provide a list of the key tools and resources to help readers prioritize.
+We will also offer ``second-best'' practices in many cases, 
+suggesting easy-to-implement suggestions to increase transparency and reproducibility,
+in cases where full-scale adoption of the recommended workflows is not immediately feasible.
+In fact, we encourage teams to adopt one new practice at a time 
+rather than rebuild their whole workflow from scratch right away.
 We hope that by the end of the book,
-you will have learned how to handle data more efficiently, effectively and ethically
+all readers will have learned how to handle data more efficiently, effectively and ethically
 at all stages of the research process.
 
 \mainmatter
