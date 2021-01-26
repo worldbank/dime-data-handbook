@@ -65,7 +65,7 @@ and the \textbf{unit of observation}\sidenote{\textbf{Unit of observation:}
  may be ambiguous in many raw datasets.
 This section will present what we call a \textit{tidy} data format,
 which is, in our experience, the ideal format to handle tabular data.
-We will treat tidying data as the first step in data cleaning even though, in practice, 
+We will treat tidying data as the first step in data cleaning even though, in practice,
 both tidying and quality monitoring should be done simultaneously as data is received.
 This is because quality assurance can only be finalized using tidied data,
 when it is guaranteed that each observation is uniquely identified.
@@ -109,8 +109,8 @@ the raw data contain either missing or duplicate values.\sidenote{
 
 It is also possible for a raw dataset to not include an unique identifier,
 or that the identifier is not a suitable \textbf{project ID}.\sidenote{
-	More details on what makes a ID variable 
-	a suitable Project ID variable 
+	More details on what makes a ID variable
+	a suitable Project ID variable
 	can be found on the DIME Wiki:
 	\url{https://dimewiki.worldbank.org/ID\_Variable\_Properties\#Project\_ID}}
 Suitable project IDs should, for example, not involve long strings
@@ -141,8 +141,7 @@ for the same observation.
 DIME Analytics created an automated workflow to identify, correct and document
 occurrences of duplicated entries in the unique identifier using
 \texttt{ieduplicates} and \texttt{iecompdup},\index{ieduplicates}\index{iecompdup}
-two Stata commands included in the \texttt{iefieldkit}\index{iefieldkit}
-package\index{iefieldkit}.
+two Stata commands included in the \texttt{iefieldkit} package\index{iefieldkit}.
 One advantage of using \texttt{ieduplicates}\sidenote{
 	Read more about how to install and use \texttt{ieduplicates} and
 	how the command can help you efficiently deal with duplicates
@@ -331,14 +330,14 @@ it is important to make sure that data faithfully reflects ground realities.
 You should carefully examine and clean any data you are about to use.
 When reviewing raw data, you will inevitably encounter data entry mistakes,
 such as typos and inconsistent values.
-Whether your team is conducting a survey or 
+Whether your team is conducting a survey or
 you are receiving administrative data from a partner,
-the key aspects to have in mind are 
+the key aspects to have in mind are
 data completeness, consistency and distribution.
 Data quality assurance checks should be performed as soon as the data is acquired.
 When data is being collected and transferred to the team in real-time,
 this means conducting high-frequency checks.
-Primary data require extra attention to quality checks, 
+Primary data require extra attention to quality checks,
 as data entry by humans is more susceptible to errors,
 and the research team will be the only line of defense between
 data issues and the data analysis.
@@ -417,24 +416,24 @@ Data received from systems that do not include such controls should be checked m
 Consistency checks are project specific, so it is difficult to provide general guidance.
 A detailed knowledge of the variables in the dataset and a careful examination of the analysis plan
 is the best way to prepare.
-Examples of inconsistencies in survey data would include cases where 
+Examples of inconsistencies in survey data would include cases where
 a household reports having cultivated a plot in one module,
 but does not list any cultivated crops in another.
 Response consistency should be checked across all datasets, as this is much harder to automate.
 For example, if two sets of administrative records are received,
 one with hospital level information and one with data on each medical staff,
-the number of entries in the second set of entries should match 
+the number of entries in the second set of entries should match
 the number of employed personnel in the first one.
 
 % Distribution
 Finally, no amount of pre-programmed checks can replace actually looking at the data.
 Of course that doesn't mean eye checking each data point,
 but rather plotting and tabulating distributions for your main variables of interest.
-This will help you identify outliers and 
+This will help you identify outliers and
 other potentially problematic patterns that you had not foreseen.
 A common source of outliers values in survey data are typos,
 but they can also occur in admin data if, for example,
-the unit reported changed over time, 
+the unit reported changed over time,
 but the data was stored with the same variable name.
 Identifying unforeseen patterns in the distribution will also help you gather relevant information,
 for example whether there was no harvest data because of a particular pest in the community
@@ -593,8 +592,8 @@ after constructing and verifying numeric identifiers in
 a social network module, drop all names.
 If confidential information is strictly required for the analysis and cannot be
 masked or encoded,
-then at least the confidential part of the data is required 
-to remain encrypted 
+then at least the confidential part of the data is required
+to remain encrypted
 and only be decrypted when used during in the data analysis process.
 Using confidential data in the analysis process
 does \textit{not} justify storing or sharing it in an insecure way.
