@@ -16,7 +16,7 @@ analysis scripts that can be run by all team members,
 and creation of research outputs fully automated.
 Putting in time upfront to structure the data analysis workflow
 in a reproducible manner pays substantial dividends throughout the process.
-Similarly, documenting research decisions made during data analysis 
+Similarly, documenting research decisions made during data analysis
 is essential not only for research quality and transparency,
 but also for the smooth implementation of a project.
 
@@ -49,7 +49,7 @@ one or multiple well-documented tidy\sidenote{\citet{hadley2017R}} datasets.
 We also assume that these datasets
 have gone through thorough quality checks
 and incorporate any corrections needed.\sidenote{
-	See \autoref{ch:5} 5 for discussions on how to 
+	See \autoref{ch:5} 5 for discussions on how to
 	tidy data, monitor data quality and document corrections.
 }
 The next step is to \textbf{construct}\sidenote{
@@ -144,7 +144,7 @@ To create the analysis dataset,
 it is typically necessary to combine information
 from different data sources
 or different datasets with a common source.
-For the next few paragraphs, 
+For the next few paragraphs,
 we call such operations ``merges'',
 but they are also commonly referred to as ``data joins''.
 As discussed in Chapter 3,
@@ -283,11 +283,11 @@ This can be done by assigning the teacher-level indicators to all the students i
 Conversely, you may want to include average student test scores
 in the analysis dataset containing teacher-level variables.
 To do so, you would start from the constructed dataset at student level,
-average (using commands like \texttt{collapse} in Stata and \texttt{summarise} in R) 
+average (using commands like \texttt{collapse} in Stata and \texttt{summarise} in R)
 the test scores of all students taught by the same teacher,
 and merge this teacher-level aggregate measure onto the original teacher dataset.
 You should be mindful of two aspects while performing such operations:
-the first is the correspondence between identifying variables at different levels, 
+the first is the correspondence between identifying variables at different levels,
 which should be documented in the \textbf{data linkage table};
 the second is that they will necessarily involve merges,
 so all the steps outlined in the previous section should be applied.
@@ -303,9 +303,12 @@ Then the first thing you should do is create a cleaned panel dataset,
 ignoring the previous constructed version of the baseline data.
 Our team created \texttt{iefieldkit}'s \texttt{iecodebook append} subcommand
 to help you reconcile and append data from cleaned survey rounds
-or similar data collected from different contexts.\index{iefieldkit}\index{iecodebook}\sidenote{
-	\citet{bjarkefur2020iefieldkit}
-}
+or similar data collected from different contexts.\sidenote{
+Read more about how to install and use \texttt{iecodebook} and
+how the command can help appending data more efficiently
+on the DIME Wiki:
+\url{https://dimewiki.worldbank.org/iecodebook}}
+\index{iefieldkit}\index{iecodebook}
 This is done by completing an Excel sheet to indicate what changes in
 names, value assignments, and value labels should be made so the data is consistent across rounds or settings.\sidenote{
   See \citet{daniels2017use} for an example.}
@@ -382,7 +385,7 @@ The analysis stage usually starts with a process we call \textbf{exploratory dat
 This is when you are first looking for patterns in your data,
 creating descriptive graphs and tables,
 and trying different tests to understand your results.
-It progresses into \textbf{final analysis} when your team starts to decide which are the ``main results'', 
+It progresses into \textbf{final analysis} when your team starts to decide which are the ``main results'',
 or those that will make it into a research output.
 The way you deal with code and code outputs for exploratory and final analysis is different.
 During the exploratory stage,
@@ -429,7 +432,7 @@ as it's easy to update specifications and results
 through a master file without changing every script.
 
 % Naming analysis code
-To create this setup, 
+To create this setup,
 you will need to make sure that you have an effective data management system,
 including file naming, organization, and version control.
 Just as for the analysis datasets,
@@ -451,7 +454,7 @@ Although the same principles for coding exploratory and final data analysis appl
 creating them is usually more difficult than running a regression and exporting its results into a table.
 We attribute some of the difficulty of creating good data visualization
 to the difficulty of writing code to create them.
-The amount of customization necessary to create a nice graph can lead the relevant commands to become quite intricate.	
+The amount of customization necessary to create a nice graph can lead the relevant commands to become quite intricate.
 Making a visually compelling graph would already be hard enough if
 you didn't have to go through many rounds of searching and reading help files
 to understand a command's graphical options syntax.
@@ -624,7 +627,7 @@ and \texttt{outwrite}\sidenote{\citet{daniels2019outwrite}} in Stata;
 and \texttt{stargazer}\sidenote{\citet{hlavac2015stargazer}},
 \texttt{huxtable},
 and \texttt{ggplot2}'s \texttt{ggsave}\sidenote{\citet{ggplot2}} in R.
-They allow for a wide variety of output formats. 
+They allow for a wide variety of output formats.
 We recommend using formats that are accessible and, whenever possible, lightweight.
 Accessible means that it's easy for other people to open them.
 In Stata, that would mean always using \texttt{graph export} to save images as
@@ -752,8 +755,8 @@ whoever is developing the code can export them into a Word document using Markdo
 so at least this part of the file can be quickly updated when the results change.
 Finally, statistical programming languages can now often directly export to these formats,
 such as using the \texttt{putexcel} and \texttt{putdocx} commands in Stata, which can update or respect formatting in Office documents.\sidenote{
-  See more details at 
-  \url{https://www.stata.com/manuals/rptputexcel.pdf} 
+  See more details at
+  \url{https://www.stata.com/manuals/rptputexcel.pdf}
   and \url{https://www.stata.com/stata-news/news32-3/spotlight-putdocx/}.}
 
 \subsection{Using {\LaTeX} for dynamic research outputs}
