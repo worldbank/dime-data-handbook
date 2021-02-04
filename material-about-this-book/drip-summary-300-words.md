@@ -3,7 +3,7 @@ how to handle data effectively, efficiently, and ethically.
 The Handbook leads the reader through a complete empirical research project,
 providing links to continuously-updated resources on the DIME Wiki
 as well as illustrative examples from the Demand for Safe Spaces study conducted in Rio de Janeiro.
-The premise is that standardizing and simplifying data tasks
+Its premise is that standardizing and simplifying data tasks
 improves research quality and enables more effective collaboration.
 The first chapter introduces principles for conducting reproducible,
 transparent, and credible development research.
