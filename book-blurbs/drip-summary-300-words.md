@@ -20,7 +20,7 @@ writing data analysis code, and creating reproducible research outputs.
 The seventh chapter addresses research publication, 
 including the preparation of reproducibility packages and publishing data. 
 The practical approach and narrative structure of these chapters are designed
-for both newcomers to empirical researchas well as experienced professionals. 
+for both newcomers to empirical research as well as experienced professionals. 
 The Development Research in Practice handbook is therefore a quintessential desk reference 
 for anyone who handles data as part of a research team, policymakers and managers who oversee such endeavors, 
 and students in any discipline who plan to enter the modern research workforce.
