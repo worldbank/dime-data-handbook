@@ -1,4 +1,4 @@
-_Development Research in Practic_e is intended to teach all users of development data 
+_Development Research in Practice_ is intended to teach all users of development data 
 how to handle data effectively, efficiently, and ethically. 
 The Handbook leads the reader through a complete empirical research project,
 providing links to continuously-updated resources on the DIME Wiki
