@@ -1,6 +1,6 @@
 /*******************************************************************************
-*    Demand for "Safe Spaces": Avoiding Harassment and Stigma		           *
-*    MASTER DO-FILE                                                        *
+*    Demand for "Safe Spaces": Avoiding Harassment and Stigma                  *
+*    MASTER DO-FILE                                                            *
 ********************************************************************************
   PART 0:  User inputs
   PART 1:  Prepare folder paths
@@ -31,7 +31,7 @@
 * Section omitted - see full code on https://github.com/worldbank/rio-safe-space
 
 ********************************************************************************
-*    PART 1:  Prepare folder paths
+*    PART 1:  Prepare folder paths                                             *
 ********************************************************************************
 
   * Confidential folders
@@ -63,7 +63,7 @@
 * Section omitted - see full code on https://github.com/worldbank/rio-safe-space
 
 ********************************************************************************
-*   PART 3: Run selected code     						   *
+*   PART 3: Run selected code                                                  *
 ********************************************************************************
 
   if `cleaning'     do "${do}/rider-audits/MASTER_rider_audits_data_prep.do"

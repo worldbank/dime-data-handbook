@@ -1,5 +1,5 @@
 ********************************************************************************
-*    PART 1:  Clean-up                                                           *
+*    PART 1:  Clean-up                                                         *
 ********************************************************************************
 
   * Drop lines that only work after 8 PM - not rides data is collected outside of rush hour
