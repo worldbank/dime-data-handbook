@@ -11,7 +11,6 @@
   global col_aux_light  gs12
   global col_highlight  cranberry
   global col_box        gs15
-  global paper_plotops
   global plot_options   graphregion(color(white))   ///
                         bgcolor(white)              ///
                         ylab(, glcolor(${col_box})) ///
