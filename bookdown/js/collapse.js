@@ -79,7 +79,7 @@
     var complete = function () {
       this.$element
         .removeClass('collapsing')
-        .addClass('collapse in')[dimension]('')
+        .addClass('collapse in')[dimension](")
       this.transitioning = 0
       this.$element
         .trigger('shown.bs.collapse')
@@ -158,7 +158,7 @@
   function getTargetFromTrigger($trigger) {
     var href
     var target = $trigger.attr('data-target')
-      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, ") // strip for ie7
 
     return $(target)
   }
