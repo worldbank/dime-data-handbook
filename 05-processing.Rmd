@@ -1,5 +1,4 @@
-# Cleaning and processing research data 
-
+# Cleaning and processing research data {#processing}
 
 <!-- What is data cleaning -->
 Original data comes in a variety of formats,
@@ -36,6 +35,56 @@ Each of these tasks is implemented through code,
 and resulting datasets can be reproduced exactly by running this code.
 The raw data files are kept exactly as they were acquired,
 and no changes are made directly to them.
+
+```{block2, type = 'summary'}
+### Summary: Cleaning and processing research data {-}
+
+After data is acquired, it must be structured for analysis in accordance with the research design, as laid out in the data linkage tables and the data flowcharts discussed in Chapter \@ref(measurement). Data processing requires first transforming the unprocessed materials from partners or data collection into the appropriate tables and units of observation, then producing clean data sets that match the ground truth observations. To do this, you will:
+
+**1. Tidy the data.** Many raw datasets as received will not have an unambiguous identifier, and the rows in the dataset often will not match the units of observation specified by the research plan and data linkage table. To prepare the data for analysis, you must:
+  
+- Determine the *unique identifier* for each unit of observation that you require.
+- Transform the raw data so that the desired *unit of observation* uniquely identifies rows in each dataset.
+
+**2.	Validate data quality.** Data completeness and quality should be validated upon receipt to ensure the data is an accurate representation of the characteristics and individuals it is supposed to contain. This includes:
+
+- Checking that the data is *complete*, that is, that all the expected observations were received and validated them against the sample.
+- Making sure data points are *consistent* across variables and datasets.
+- Exploring the *distributions* of key variables to identify outliers and other unexpected patterns.
+
+**3.	De-identify, clean, and prepare the data.** You should archive and/or publish the raw data after processing and de-identifying. Before publication, you should ensure that the processed version is highly accurate and appropriately protects the privacy of individuals, by doing the following:
+  
+- *De-identifying the data*, in accordance with best practices and relevant privacy regulations.
+- *Correcting data points* which are identified as being in error compared to ground reality.
+- *Recoding, documenting, and annotating datasets* so that all dataset contents are fully interpretable by future users, whether or not they were involved in the acquisition process.
+
+#### Takeaways{-}
+
+**TTLs/PIs will:**
+  
+- Indicate the units of observation that are needed for experimental design and supervise development of appropriate unique identifiers
+- Indicate priorities for quality checks, including key indicators and reference values
+- Provide guidance on how to resolve all issues identified in data processing, cleaning and preparation
+- Publish and/or archive the prepared dataset
+
+**RAs will: **
+  
+- Develop code, data, and documentation linking datasets with data map and study design, and tidy all datasets to correspond to the required units of observation
+- Manage data quality checks, clearly communicate issues to TTL/PI, data producers, and/or field teams 
+- Implement data cleaning processes; generate and maintain detailed documentation
+- Prepare dataset for publication by de-identifying, correcting field errors, and preparing documentation 
+
+#### Key Resources {-}
+- **iefieldkit stata package**: suite of commands to enable reproducible data cleaning and processing.
+  - Explanation: https://dimewiki.worldbank.org/Iefieldkit. 
+  - Code: https://github.com/worldbank/iefieldkit.
+- **ietoolkit stata package**: suite of commands to enable reproducible data management and analysis.
+  - Explanation:  https://dimewiki.worldbank.org/Ietoolkit. 
+  - Code: https://github.com/worldbank/ietoolkit. 
+- ***DIME Analytics Continuing Education Session on Tidying Data**: https://osf.io/p4e8u/ 
+- **De-identification article on DIME Wiki**: https://dimewiki.worldbank.org/De-identification 
+
+```
 
 <!-- ------------------------------------------------ -->
 
@@ -84,7 +133,7 @@ is the **unique identifier** for each observation.^[
 	can be found on the DIME Wiki:
   https://dimewiki.worldbank.org/ID_Variable_Properties.
 ]\index{unique identifier}
-As discussed in Chapter 3,
+As discussed in Chapter \@ref(measurement),
 the unique identifier will be used to link observations in this dataset
 to data in other data sources according to the **data linkage table**,^[
 	More details on DIME's data linkage table template
@@ -155,6 +204,21 @@ Even if you are not using this command,
 it is important to keep a record of all cases of duplicated IDs encountered
  and how they were resolved.
 
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Establishing a Unique Identifier
+
+All datasets have a "unit of observation", and the first columns of each dataset should uniquely identify which unit is being observed. In the *Demand for Safe Spaces* project, as in all projects, the first few lines of code that import each raw dataset immediately ensure that this is true and apply any corrections from the field needed to fix errors with uniqueness. 
+
+The code segment below imports the crowdsourced ride data and uses the `ieduplicates` command to remove duplicate values of the uniquely identifying variable in the dataset. The corresponding filled `ieduplicates` form included below shows how the command generates information documenting and resolving duplicated IDs in data collection. After applying the corrections, the code confirms that the data is uniquely identified by riders and ride IDs and saves it in an optimized format.
+
+![](examples/ch5-establishing-a-unique-identifier.png)
+
+![](examples/duplicates-report-filled.PNG)
+
+> The complete do-file can be found at https://git.io/Jtgml.
+
+```
+
 <!-- ------------------------------------------------------------------------------- -->
 
 ### Tidying raw data {-}
@@ -215,7 +279,7 @@ and then merge the result to the household-level data tables.
 Tidy data tables are also easier to clean,
 as each attribute only needs to be checked once,
 and each column corresponds directly to one question in the questionnaire.
-Finally, as you will see in Chapter 6,
+Finally, as you will see in Chapter \@ref(analysis),
 summary statistics and distributions are much simpler
 to generate from tidy data tables.
 
@@ -324,6 +388,25 @@ between questions in the questionnaire and columns in the data.
 Preparing the data for analysis, the last task in this chapter,
 is much simpler when that is the case.
 
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Tidying Raw Data
+
+The unit of observations in a raw dataset does not always match the relevant unit of analysis for a study. One of the first steps required is creating datasets at the levels of analysis desired for analytical work. In the case of the crowdsourced ride data used in *Demand for Safe Spaces*, the raw datasets show one *task* per row. Remember that in each metro ride, study participants were asked to complete three tasks: one before boarding the train, one during the ride, and one after leaving the train. So the relevant unit of analysis, one metro *trip*, was broken into three rows in this dataset. To create a dataset at this level, the research team took two steps, outlined in the data flowchart (see box Creating Data Flowcharts in Chapter \@ref(measurement)). First, three separate datasets were created, one for each task, containing only the variables created during that task. Then the ride level dataset was created by combining the variables in each task dataset for each individual ride (identified by the session variable).
+ 
+The code below shows the example of the ride task script. It keeps only the ride task rows and columns from the raw dataset. 
+
+![](examples/ch5-tidying-raw-data.png) 
+
+The script proceeds to encode categorical variables and then saves a tidy ride task dataset:
+
+![](examples/ch5-tidying-raw-data2.png)  
+  
+The same procedure is repeated for the check-in and check-out tasks. Note that each of these tidy datasets is saved with a very descriptive name, indicating the wave of data collection and the task included in the dataset.
+
+> The complete script can be found at https://git.io/Jtgqj.
+
+```
+
 <!-- ------------------------------------------------ -->
 
 ## Assuring data quality {-}
@@ -346,6 +429,31 @@ as data entry by humans is more susceptible to errors,
 and the research team will be the only line of defense between
 data issues and the data analysis.
 Survey-specific quality monitoring protocols are discussed in Chaper 4.
+
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Assuring Data Quality
+
+The *Demand for Safe Spaces* team adopted three categories of data quality assurance checks for the crowdsourced ride data. The first – *completeness* – made sure that each data point made technical sense in that it contained the right elements, and the data as a whole covered all the expected spaces. The second – *consistency* – made sure that real-world details were right: stations were on the right line, payments matched the value of a task, and so on. The third – *distribution* – produced visual descriptions of the key variables of interest to make sure that any unexpected patterns observed were further investigated. Examples of the specific checks implemented are listed below:
+
+**Completeness**
+
+- Each ride must include three tasks: check-in, ride, and check-out.
+- Plot the number of observations per day of the week and per half-hour time-bin to make sure there are no gaps in data delivery.
+- Plot all observations received from each line and station combination to visualize data coverage. 
+
+**Consistency**
+
+- Ensure correspondence between stations and lines. This led to the identification of mismatches that were caused by submission of lines outside the research sample. These observations were excluded from the corrected data.
+- Check correspondence between task and premium for riding in the women-only car. This led to the identification of a bug in the app that caused some riders to be offered the wrong premium for some tasks. These observations were excluded from the corrected data.
+- Check task times to make sure they were applied in the right order. The task to be completed before boarding the train comes first, then the one corresponding to the trip, and finally the one corresponding to leaving the station.
+
+**Distribution**
+
+- Compare platform observations data and rider reports of crowding and male presence to ensure general data agreement.
+- Visualize distribution of rides per task per day and week to ensure consistency.
+- Visualize patterns of presence of men in the women-only car throughout the network.
+
+```
 
 ### Implementing data quality checks {-}
 
@@ -525,7 +633,7 @@ The **initial de-identification** process,
 performed as soon as data is acquired, strips the data of direct identifiers,
 to create a working de-identified dataset that
 can be shared *within the research team* without the need for encryption.
-The **final de-identification* process,
+The **final de-identification** process,
 performed before data is publicly released, involves
 careful consideration of the trade-offs between
 risk of identifying individuals and the utility of the data,
@@ -620,8 +728,20 @@ This will allow other researchers to conduct additional analysis and to reproduc
 Before that can be done, however,
 you should further consider whether your data can be re-identified,
 in a process we call **final de-identification**,
-which will be discussed in more detail in Chapter 7.
+which will be discussed in more detail in Chapter \@ref(publication).
 
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Implementing De-Identification
+
+The *Demand for Safe Spaces* team used the `iecodebook` command to quickly drop all identifying information from the datasets as they were imported. Additionally, before publishing the datasets, the labels indicating line and station names were removed from the dataset, leaving only the underlying category number. This was done so that it would not be possible to directly reconstruct commuting habits from the public data.
+
+The code fragment below shows an example of the initial de-identification when the data is imported. Note that the full dataset is saved in the folder for confidential data (World Bank OneDrive), and only a short codebook listing variable names, but not their content, is saved elsewhere. `iecodebook` is then used with the `drop` option to remove confidential information from the dataset before it is saved in a shared Dropbox folder. The specific variables removed in this operation contained information on the data collection team that was not needed after quality checks were implemented (`deviceid`, `subscriberid`, `simid`, `devicephonenum`, `username`, `enumerator`, `enumeratorname`) and the phone number of survey respondents (`phone_number`).
+
+![](examples/ch5-implementing-de-identification.png)
+
+> The complete data import do-file can be found at https://git.io/JtgmU, and the corresponding iecodebook form at https://git.io/JtgmY.
+
+```
 
 ## Cleaning and preparing data for analysis {-}
 
@@ -692,7 +812,7 @@ This material will also be valuable during exploratory data analysis.
 
 ### Correcting data points {-}
 
-% Correct or not correct
+<!-- to correct or not to correct -->
 As mentioned earlier,
 corrections to issues identified during data quality monitoring are
 the only changes done to individual data points during the data cleaning stage.
@@ -729,9 +849,30 @@ Finally, remember not to make changes directly to the raw data.
 Instead, any corrections must be done as part of data cleaning,
 applied through code, and saved to a new intermediate dataset.
 
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Correcting Data Points
+
+Most of the issues the *Demand for Safe Spaces* team identified in the raw crowdsourced data during data quality assurance were related to incorrect station and line IDs. Two steps were needed to address this issue. The first was correcting data points. The second was documenting the corrections made. 
+
+The correct values for the line and station IDs, as well as notes on how they were identified, were saved in a dataset called `station_correction.dta`. The team used the command merge to replace the values in the raw data in memory (called the "master data" in `merge`) with the `station_correction.dta` data (called the "using data" in `merge`).
+
+The following options were used for the following reasons:
+  
+- `update replace` – updates values in "master data" with values from the same variable in the "using data"
+- `keepusing(user_station)` – only consider this one variable from the "using data"
+- `assert(master match_update)` – confirms that all observation are either only in "master data" or was in both "master data" and "using data" and that the values were updated with the values in the "using data". This is an important quality assurance check to make sure that data was merged as expected 
+
+To document the final contents of the original data, the team published Supplemental Materials on GitHub as well as on the World Bank Microdata Catalog.
+
+![](examples/ch5-correcting-data-points.png)
+
+> See the full script at https://git.io/Jt2ZC
+
+```
+
 ### Recoding and annotating data {-}
 
-% Why recoding and annotating data are important
+<!-- Why recoding and annotating data are important -->
 The cleaned dataset is the starting point of data analysis.
 It will be extensively manipulated to construct analysis indicators,
 so it is important for it to be easily processed by statistical software.
@@ -740,7 +881,7 @@ anyone opening this dataset for the first time should have all the information n
 even if they were not involved in the acquisition or cleaning process.
 This will save them time going back and forth between the dataset and its accompanying documentation.
 
-% Encoding variables
+<!-- Encoding variables -->
 Often times, datasets are not imported into statistical software in the most efficient format.
 The most common example is string (text) variables:
 categorical variables and open-ended responses are often read as strings.
@@ -750,7 +891,8 @@ such as *factors* in R and *labeled integers* in Stata.^[
   More details on value labels in Stata
 	and best practices on how to work with them
 	can be found on the DIME Wiki:
-	https://dimewiki.worldbank.org/Data_Cleaning#Value_Labels]
+	https://dimewiki.worldbank.org/Data_Cleaning#Value_Labels
+]
 Additionally, open-ended responses stored as strings usually have a high risk of including identifying information,
 so cleaning them requires extra attention.
 The choice names in categorical variables
@@ -761,7 +903,7 @@ Adding choice names to categorical variables
 makes it easier to understand your data as you explore it,
 and thus reduces the risk of small errors making their way through into the analysis stage.
 
-% Recoding missing values
+<!-- Recoding missing values -->
 In survey data, it is common for non-responses such as "Don't know" and "Declined to answer"
 to be represented by arbitrary survey codes.
 The presence of these values could bias your analysis,
@@ -773,9 +915,10 @@ In Stata, this information can be elegantly conserved using extended missing val
 	More details on survey codes
 	and how they relate to best practices when working with missing values in Stata
 	can be found on the DIME Wiki:
-	https://dimewiki.worldbank.org/Data_Cleaning#Survey_Codes_and_Missing_Values]
+	https://dimewiki.worldbank.org/Data_Cleaning#Survey_Codes_and_Missing_Values
+]
 
-% Labeling variables
+<!-- Labeling variables -->
 We recommend that the cleaned dataset be kept as similar to the raw data as possible.
 This is particularly important regarding variable names:
 keeping them consistent with the raw data makes data processing and construction more transparent.
@@ -786,11 +929,12 @@ When a data collection instrument (for example a questionnaire) is available,
 it is often the best dictionary one could ask for.
 But even in these cases, going back and forth between files can be inefficient,
 so annotating variables in a dataset is extremely useful.
-In Stata, `variable labels}^[
+In Stata, `variable labels`^[
 	More details on variable labels in Stata
 	and best practices on how to work with them
 	can be found on the DIME Wiki:
-	https://dimewiki.worldbank.org/Data_Cleaning#Variable_Labels]
+	https://dimewiki.worldbank.org/Data_Cleaning#Variable_Labels
+]
 must always be present in a cleaned dataset.
 They should include a short and clear description of the variable.
 A lengthier description, that may include, for example,
@@ -812,7 +956,7 @@ To ensure the cleaned dataset file doesn't get too big to be handled,
 use commands such as `compress` in Stata so the data
 is always stored in the most efficient format.
 
-% Cleaning tools: iecodebook, tidyverse
+<!-- Cleaning tools: iecodebook, tidyverse -->
 Although all these tasks are key to making the data easy to use,
 implementing them can be quite repetitive and create convoluted scripts.
 The `iecodebook` command suite, part of the `iefieldkit` Stata package,
@@ -820,7 +964,8 @@ is designed to make some of the most tedious components of this process more eff
   Read more about how to install and use `iecodebook` and
 	how the command can help making cleaning tasks more efficient
 	on the DIME Wiki:
-	https://dimewiki.worldbank.org/iecodebook]
+	https://dimewiki.worldbank.org/iecodebook
+]
 \index{iecodebook}\index{iefieldkit}
 It also creates a self-documenting workflow,
 so your data cleaning documentation is created alongside that code,
@@ -828,6 +973,23 @@ with no extra steps.
 As far as we know, currently there are no similar resources in R.
 However, the *tidyverse*^[https://www.tidyverse.org/] packages
 compose a consistent and useful grammar to perform the same tasks.
+
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Recoding and Annotating Data 
+
+The *Demand for Safe Spaces* team relied mostly on the `iecodebook` command for this part of the data cleaning process. The image below shows the `iecodebook` form used to clean the crowdsourced ride data. This process was carried out for each task.
+
+![](examples/iecodebook.png) 
+
+Column B contains the corrected variable labels, column D indicates the value labels to be used for categorical variables, and column I recodes the underlying numbers in those variables. The differences between columns E and A indicate changes to variable names. Typically, it is strongly recommended not to rename variables at the cleaning stage, as it is important to maintain correspondence to the raw data. However, that was not possible in this case, as the same question had inconsistent variable names across multiple transfers of the data from the technology firm that managed the mobile application. In fact, this is one of the two cleaning tasks that could not be performed through `iecodebook` directly (the other was transformation of string variables to categorical format for increased efficiency). The code below shows a few examples of how these cleaning tasks were carried out directly in the script.
+
+![](examples/ch5-recording-and-annotating-data.png)
+
+To document the contents of the original data, the team published Supplemental Materials on GitHub, including the tasks description shown in the app. All the codebooks and Excel sheets used by the code to clean and correct are also included in the `documentation` folder of the Reproducibility Package.
+
+> The complete script for cleaning the ride task can be found at https://git.io/Jtgqj, and the corresponding codebook is available at https://git.io/JtgNS.
+
+```
 
 <!-- -------------------------------------------------------------- -->
  
@@ -837,13 +999,15 @@ Throughout the data cleaning process,
 you will often need extensive inputs from the people responsible for data collection.
 Sometimes this is your research team, but often it will be someone else.
 It could be a survey team, the government ministry responsible for administrative data systems,^[
-  See @fernandes2015trade for an example.]
+  See @fernandes2015trade for an example.
+]
 the technology firm that generated remote sensing data, etc.
 Regardless of who originally collected the data,
 you should acquire and organize all documentation of how the data was generated.^[
   More details on how to best document your data and
 	links to additional resources on this topic can be found on the DIME Wiki:
-	https://dimewiki.worldbank.org/Data_Documentation]\index{documentation}
+	https://dimewiki.worldbank.org/Data_Documentation
+]\index{documentation}
 What type of documentation that is available depends on how the data was collected.
 For original data collection, this should include
 field protocols, data collection manuals, survey instruments,

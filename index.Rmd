@@ -1,5 +1,5 @@
 --- 
-title: "Development Research in Practice"
+title: "Development Research in Practice <br> The DIME Analytics Data Handbook"
 author: "Kristoffer Bjarkefur, Luiza Cardoso de Andrade, Benjamin Daniels, Maria Ruth Jones"
 site: bookdown::bookdown_site
 documentclass: book
@@ -9,4 +9,97 @@ link-citations: yes
 description: "The DIME Analytics Data Handbook"
 ---
 
-# oi {-}
+> Dedicated to all the research assistants who have wrangled data without being taught how, hustled to get projects done on time, wondered if they really should get their PhD after all, and in doing so made this knowledge necessary and possible.
+
+# Acknowledgments {-}
+
+We want to thank all the people who helped us get here, especially Arianna Legovini, for her leadership at DIME, unending support of our work, and detailed comments on this book; and Florence Kondylis, for her leadership in founding and growing DIME Analytics and supporting this project from the very first. 
+We also thank the following members of DIME Analytics for their contributions to the ideas in this book and their help organizing them: Roshni Khincha, Avnish Singh, Patricia Paskov, Radhika Kaul, Mizuhiro Suzuki, Yifan Powers, and Maria Arnal Canudo. This work has been financially supported by the United Kingdom Foreign, Commonwealth & Development Office (FCDO) through the DIME i2i Umbrella Facility for Impact Evaluation at the World Bank. 
+
+Our graditude to the many people who read and offered feedback as the book took shape: 
+<!-- Alphabetical by last name -->
+Stephanie Annijas, 
+Maria Camila Ayala Guerrero, 
+Kaustubh Chahande, 
+Thomas Escande, 
+Aram Gassama, 
+Steven Glover, 
+Nausheen Khan, 
+Robert Norling, 
+Michael Orevba, 
+Caio Piza, 
+Francesco Raffaelli, 
+Daniel Rogger, 
+Ankriti Singh, 
+Ravi Somani, and 
+Leonardo Viotti. 
+Although they number far too many to name individually, we also thank all the members of DIME and its teams across all the years for the innovative work they have done, the lessons learned, and the team spirit that makes our work so fruitful and rewarding. 
+
+This published version of the book has been revised repeatedly since its internal release in June 2019, with extensive feedback from readers and experts. We would additionally like to thank Vincenzo di Maro (Manager, DIME3) for his support throughout this process, as well as peer reviewers David McKenzie (Lead Economist, DECFP), Holly Krambeck (Program Manager, DECAT), Alaka Holla (Program Manager, HEDGE), Jim Shen (Senior Manager, Abdul Latif Jameel Poverty Action Lab), Federica di Battista (Trialling Lead, UK FCDO), and Gabriel Vicente, Rajee Kanagavel, and Maksim Pecherskiy from the Development Data Partnership team.
+
+This book is a living product that is written and maintained publicly. The code and edit history can be found at https://github.com/worldbank/dime-data-handbook, and you can find online and PDF copies at https://worldbank.github.com/dime-data-handbook. The website includes updated instructions for providing feedback, as well as notes on updates to the content. Whether you work with DIME, the World Bank, or another organization or university, we ask that you read the contents of this book critically. We welcome feedback and corrections to improve the book. Please visit https://worldbank.github.com/dime-data-handbook/feedback to provide feedback. You can also email us at dimeanalytics@worldbank.org, and we will be very thankful. We hope you enjoy *Development Research in Practice*!
+
+# About the authors {-}
+
+---
+
+:::: {}
+
+::: {style="width: 41%; padding-right: 10px; float: left;"}
+
+![](author-bios/maria-pic.jpg)
+
+:::
+
+::: {}
+**Maria Ruth Jones** co-founded and now leads DIME Analytics, an initiative to improve the quality, transparency, and reproducibility of empirical research. Her research interests center on survey methods, innovations in measurement, and technology adoption. She created and manages public goods to benefit the global research community, such as Development Research in Practice, the DIME Wiki, and the Manage Successful Impact Evaluations course. Maria joined the World Bank in 2009. Previous roles include coordination of the Global Agriculture and Food Security Program impact evaluation portfolio (2012–16) and a program of impact evaluations with the government of Malawi (2009–11).
+:::
+
+::::
+
+---
+
+:::: {}
+
+::: {style="width: 45%; float: right; padding-left: 10px;"}
+
+![](author-bios/kristoffer-pic.jpg)
+
+:::
+
+::: {}
+**Kristoffer Bjärkefur** is a Data Scientist Consultant with the Development Impact Evaluation department (DIME) at the World Bank Group. As a member of the DIME Analytics team, Kristoffer works to improve the reproducibility, transparency, and credibility of development research. He combines his backgrounds in development economics research and computer programming to make tools and best practices from the world of computer science more easily available to practitioners in development data. He supports teams in all stages in the life cycle of data and particularly enjoy planning data workflows. In DIME Analytics, he leads the work on data security and privacy.
+:::
+
+::::
+
+---
+
+:::: {}
+
+::: {style="width: 44%; padding-right: 10px; float: left;"}
+![](author-bios/luiza-pic.jpg)
+:::
+
+::: {}
+**Luíza Cardoso de Andrade** is a Junior Data Scientist with the Development Impact Evaluation department (DIME) at the World Bank Group. Her work on the DIME Analytics team focuses on promoting research transparency and reproducibility practices through trainings and code review. She also works across DIME's portfolio of impact evaluations to incorporate non-traditional data sources such as high-frequency crowdsourced and web-scraped data. Luíza has also developed original software tools for research, including web-based data interfaces and the ietoolkit and iefieldkit Stata packages. Her research work has focused on agriculture, gender and environmental policy.
+:::
+
+::::
+
+---
+
+:::: {}
+
+::: {style="width: 47%; float: right; padding-left: 10px;"}
+
+![](author-bios/ben-pic.jpg)
+
+:::
+
+::: {}
+**Benjamin Daniels** is a Fellow at the Georgetown University Initiative on Innovation, Development and Evaluation. His research focuses on the delivery of quality primary health care in developing contexts. His work has highlighted the importance of direct measurement of provider knowledge, effort, and practice. He has supported some of the largest research studies to date using clinical vignettes, provider observation, and standardized patients. Benjamin works with DIME Analytics to improve the transparency and credibility of development research. This work comprises research training and resources like the DIME Wiki and software products like iefieldkit and ietoolkit, among other Stata code tools.
+:::
+
+::::
+

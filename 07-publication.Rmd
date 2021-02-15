@@ -1,4 +1,4 @@
-# Publishing reproducible research outputs 
+# Publishing reproducible research outputs {#publication}
 
 Publication typically involves many iterations of
 data, code, and code output files, with inputs from multiple collaborators.
@@ -38,9 +38,60 @@ In all cases, we note that technology is rapidly evolving
 and that specific tools noted here may not remain cutting-edge,
 but the core principles involved in publication and transparency will endure.
 
+```{block2, type = 'summary'}
+### Summary: Publishing Reproducible Research Outputs {-}
+
+Whether you are writing a policy brief or academic article, or producing some other kind of research product, you should create **three final, polished outputs** that are ready for public release (or internal archiving if not public).
+
+**1.	The data publication package.** If you collected or obtained data that you have the right to redistribute, you should make it available to the public as soon as feasible. This release should:
+
+- Contain all non-identifying variables and observations *originally collected* in a widely accessible format, with a *data codebook* describing all variables and values
+- Contain *original documentation* about the collection of the data, such as a survey questionnaire, API script, or data use agreement
+- Be *modified or masked only to correct errors* or protect the privacy of people represented in the data
+- Be appropriately *archived and licensed* with clear terms of use
+
+**2.	The research replication package.** You or your organization will typically have the rights to distribute the analytical code, even if data access is restricted. This package should:
+
+- Contain all code required to *derive analysis data* from the published data 
+- Contain all code required to *reproduce research outputs* from analysis data
+- Contain *README documentation* on the use and structure of the code
+- Be appropriately *archived and licensed* with clear terms of use
+
+**3.	The written research product(s).** These should be:
+
+- Written and maintained as a *dynamic document*, such as a LaTeX file
+- *Linked* to the locations of all code outputs in the code directory
+- *Re-compiled* with all final figures, tables, and other code outputs before release
+- Authored, *licensed, and published* in accordance with the policies of your organization and/or publisher
+
+#### Takeaways {-}
+
+**TTLs/PIs will:**
+  
+- Oversee the production of outputs and know where to obtain legal or technical support if needed
+- Have original legal documentation available for all data
+- Understand the team’s rights and responsibilities regarding data, code, and research publication
+- Decide among potential publication locations and processes for code, data, and written materials. 
+- Verify that replication material runs and replicates the outputs in the written research product(s) exactly 
+
+**RAs will:**
+  
+- Rework code, data, and documentation to meet specific technical requirements of archives or publishers
+- Manage the production process for collaborative documents, including technical administration 
+- Integrate comments or feedback and support proofreading, translation, typesetting, and other tasks 
+
+#### Key Resources {-}
+
+- View published datasets in the **DIME Microdata Catalog**: https://microdata.worldbank.org/index.php/catalog/dime/about 
+- Access our **LaTeX resources and exercises**: https://github.com/worldbank/DIME-LaTeX-Templates 
+- Read the **DIME Research Reproducibility Standards**: https://github.com/worldbank/dime-standards
+- Download the Social Science Data Editors **template README**: https://doi.org/10.5281/zenodo.4319999 
+
+```
+
 ## Publishing research papers and reports {-}
 
-% collaborating is easier with dynamic documents
+<!-- collaborating is easier with dynamic documents -->
 Development research is increasingly a collaborative effort.
 This reflects changes in the economics discipline overall:
 the number of sole-authored research outputs is decreasing,
@@ -56,7 +107,7 @@ that enable version control and simultaneous contributions.
 This book, for example, was written in LaTeX and managed on GitHub.^[
 	https://github.com/worldbank/dime-data-handbook
 ]
-As we outlined in the previous chapter,
+As we outlined in chapter \@ref(analysis),
 **dynamic documents** are a way to simplify writing workflows:
 updates to code outputs that appear in these documents, such as tables and figures,
 can be passed in to the final research output in a single click,
@@ -69,7 +120,7 @@ with out-of-date results, or of completed work being lost or redundant.
 ### Using LaTeX for written documents {-}
 
 <!-- what exactly is a dynamic document -->
-As we discussed in Chapter 6, the most widely used software
+As we discussed in Chapter \@ref(analysis), the most widely used software
 for dynamically managing formal manuscripts and policy outputs is LaTeX.
 It is also becoming more popular for shorter documents,
 such as policy briefs,
@@ -231,6 +282,21 @@ Some teams adopt cloud-based tools as a permanent solution,
 though our recommendation is to eventually shift to
 local editing and compiling using tools such as TexStudio and code editors like Atom.
 
+```{block2, type = 'ex'}
+
+### Demand for Safe Spaces Case Study: Publishing Research Papers and Reports
+
+The *Demand for Safe Spaces* project, among other outputs, produced both a policy brief and a working paper. The policy brief was produced in accordance with DIME communications protocols. For its production, the graphs exported by R and Stata were saved in EPS format and shared with a designer that adapted them to fit DIME’s visual identity. The research paper was written in LaTeX through the overleaf platform, and published on the World Bank Policy Research Working Paper Series under ID 9296. 
+
+![Working paper](examples/WPS.png){width=62%}
+![Policy brief](examples/brief.png){width=37%}
+  
+> The policy brief can be viewed at http://pubdocs.worldbank.org/en/223691574448705973/Policy-Brief-Demand-for-Safe-Spaces.pdf. 
+
+> The working paper can be viewed at https://openknowledge.worldbank.org/handle/10986/33853.
+
+```
+
 <!-- ---------------------------------------------------- -->
 
 ## Preparing research data for publication {-}
@@ -250,7 +316,7 @@ to fields in the original dataset or data collection instrument
 (this will not be necessary if you are working with secondary data
 that was not produced by your team,
 but you will still need to carefully explain the process of acquiring this data).
-If you follow the steps outlined in Chapter 5,
+If you follow the steps outlined in Chapter \@ref(processing),
 when you get to the publication stage you will have
 a cleaned data set and supporting documentation ready.
 
@@ -267,7 +333,7 @@ that create transformed and derived indicators,
 project-specific information
 such as treatment assignment and other indicators
 generated directly by the research team (another example is constructed record linkages).
-If you followed the workflow recommended in Chapter 6,
+If you followed the workflow recommended in Chapter \@ref(analysis),
 by the time you reach publication stage you will already have all necessary
 files and documentation at hand.
 
@@ -279,7 +345,7 @@ you should carefully perform a **final de-identification**.
 The objective of de-identification is to reduce the risk of disclosing confidential information in the published dataset.
 If you are following the workflow outlined in this book,
 you should have already removed direct identifiers as a first step after acquiring the data
-(see the discussion of initial de-identification in Chapter 5).
+(see the discussion of initial de-identification in Chapter \@ref(processing)).
 For the final de-identification, you should additionally remove
 indirect identifiers, and assess the statistical disclosure risk of your data.^[
 	**Disclosure risk:** the likelihood that a released data record can be associated with an individual or
@@ -462,6 +528,19 @@ that constructs any derived measures
 from the clean dataset,
 so that others can learn from your work and adapt it as they like.
 
+```{block, type = 'ex'}
+###  Demand for Safe Spaces Case Study: Publishing Research Datasets
+
+The *Demand for Safe Spaces* team published the de-identified analysis dataset for the project using the World Bank Microdata Catalog under the Survey ID Number BRA_2015-2016_DSS_v01_M, as required by World Bank policy. The deposit includes each of the original data collection instruments, data, and data dictionaries used in the project. The deposit record has all the relevant metadata, access, and citation information. 
+
+The *Demand for Safe Spaces* reproducibility package, posted on GitHub, includes instructions for accessing, downloading, and using the microdata to recreate the published results of the study. The data folder in this package includes only the metadata, because World Bank policy does not allow the posting of complete microdata in GitHub. The metadata files – codebooks – are used to ensure the correct directory structure for the whole project is maintained in the repository and track changes to the datasets. 
+
+> The Microdata Catalog entry can be accessed at https://microdata.worldbank.org/index.php/catalog/3745. 
+
+> The data folder in the reproducibility package can be viewed at https://git.io/JtgOL.
+
+```
+
 ## Publishing a reproducible research package {-}
 
 Major journals now often require that you provide both the data and code required to recreate your results.
@@ -544,8 +623,7 @@ and in R adding code that gives users the option to install packages,
 including selecting a specific version of the package if necessary^[
 	The `renv` package helps you maintain reproducibility by tracking versions of packages used:
 	https://rstudio.github.io/renv/articles/renv.html
-]
-).
+]).
 In many cases you can even directly provide the underlying code
 for any user-installed packages that are needed to ensure forward-compatibility.
 Make sure system settings like software version and memory settings are defined.
@@ -691,6 +769,21 @@ a consortium of social science data editors.^[
 	https://doi.org/10.5281/zenodo.4319999
 ]
 
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Releasing a Reproducibility Package
+
+The *Demand for Safe Spaces* reproducibility package, released on the World Bank’s GitHub organization, contains all the materials necessary for another researcher to access raw materials and reproduce all the results include with the paper. The Reproducibility Package folder contains a README file with all the instructions for executing the code. Among other things, it provides licensing information for the materials, software and hardware requirements including time needed to run, and instructions for accessing and placing the raw data before running the code (which must be downloaded separately). Finally, it has a detailed list of the code files that will run, their data inputs, and the outputs of each process.
+  
+![](examples/README.png)
+
+![*Demand for Safe Spaces* GitHub landing page](examples/home.png){width=46%}
+![*Demand for Safe Spaces* reproducibility package](examples/github.png){width=53%}
+ 
+> The GitHub repository can be accessed at https://github.com/worldbank/rio-safe-space.
+
+
+```
+
 ## Looking ahead {-}
 
 This chapter described the culmination of all the efforts in data acquisition, cleaning, processing, and analyzing --
@@ -708,4 +801,4 @@ since all your research materials are
 continuously organized, shareable, secure, documented, and readable,
 they are both valuable to you and others and easy to provide access to.
 
-![](diagrams/Publication.png)
+![Data publication tasks and outputs](diagrams/Publication.png)

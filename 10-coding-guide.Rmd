@@ -1,0 +1,201 @@
+# The DIME Analytics Coding Guide {#coding}
+
+Most academic programs that prepare students for a career
+in the type of work discussed in this book
+spend a disproportionately small amount of time
+teaching their students coding skills
+in relation to the share of their professional time
+they will spend writing code
+in their first few years after they graduate.
+Recent masters-level graduates joining our team
+have shown very good theoretical knowledge
+while requiring a lot of training in practical skills.
+To us, this is like an architecture graduate having learned
+how to sketch, describe, and discuss
+the concepts and requirements of a new building very well --
+  but without the technical ability
+to contribute to a blueprint following professional standards
+that can be used and understood by others.
+The reasons for this are a topic for another book,
+but in today's data-driven world,
+people working in quantitative development research
+must be proficient collaborative programmers,
+and that includes more than being able to compute correct numbers.
+
+This appendix begins with a section on some general and language-agnostic
+principles on how to write "good" code.
+Good code is code that both generates correct results *and*
+is easily read and adapted by other professionals.
+The second section in this appendix contains instructions
+on how to access and use the code examples in this book.
+The last section contains the DIME Analytics Stata Style Guide.
+Widely accepted and used style guides are common in most programming languages,
+but we have never found a sufficiently encompassing style guide for Stata.
+We created this style guide having in mind practices that,
+in our experience, greatly improve the quality
+of research projects coded in Stata.
+We hope that this guide can help increase the emphasis
+given to using, improving, sharing, and standardizing code style
+among the Stata community.
+We believe these resources can help anyone write more understandable code,
+and how you, like an architect,
+can create a blueprint that can be understood and used
+by everyone in your trade.
+
+## Writing good code {-}
+
+"Good" code has two elements:
+(1) it is correct, in that it doesn't produce any errors
+and its outputs are the objects intended,
+and (2) it is useful and comprehensible
+to someone who hasn't seen it before
+(or even someone who has, weeks, months, or years later).
+Many researchers have only been trained to code correctly.
+But we believe that when your code runs on your computer
+and you get the desired results,
+you are only half-done writing *good* code.
+Good code is easy to read and replicate,
+making it easier to spot mistakes.
+Good code reduces sampling, randomization, and cleaning errors.
+Good code can easily be reviewed by others
+before it's published and can be re-used afterwards.
+We always tell people to "code as if a stranger is reading it".
+
+You should think of good code in terms of three major elements:
+  **structure**, **syntax**, and **style**.
+The **structure** is the environment
+and file organization your code lives in:
+  good structure means that it is easy to find individual pieces of code,
+within and across files,
+that correspond to specific tasks and outputs.
+It also means that functional code blocks
+are sufficiently independent from each other
+such that they can be shuffled around, repurposed,
+and even deleted without affecting the execution of other portions.
+The **syntax** is the literal language of your code.
+Good syntax means that your code is readable
+in terms of how its mechanics implement ideas --
+  it should not require arcane reverse-engineering
+to figure out what a code chunk is trying to do.
+It should use common commands in a generally accepted way
+so others can easily follow and reconstruct your intentions.
+Finally, **style** is the way
+that the non-functional elements of your code convey its purpose.
+Elements like spacing, indentation,
+and naming conventions (or lack thereof)
+can make your code much more
+(or much less) accessible to someone
+who is reading it for the first time
+and needs to understand it quickly and accurately.
+
+One key tool for writing good code is using help documentation.
+Whether or not you are new to the programming language you are using
+-- Stata, R, Python, or one of the many others --
+  you should constantly revisit help files for the most common commands.
+Often you will learn they can do something you never realized.
+We cannot emphasize enough how important it is
+that you get into the habit of reading help files,
+especially for commands you are very familiar with.
+Most of us have a help file window open at all times.
+Similarly, you will always run into commands or uses of commands that
+you have not seen before or whose functionality you do not remember.
+Every time that happens,
+you should look up the help file for that command.
+We often encounter the conception that help files are only for beginners.
+We could not disagree with that conception more.
+The only way to get better at the programming language you use
+is to constantly read help files.
+
+## Using the code examples in this book {-}
+
+Providing some standardization for Stata code style
+is also a goal of our team.
+Stata is one of several programming languages used at DIME,
+but since few high-quality resources based on Stata exist
+relative to its importance and frequency of use,
+we decided to use Stata for the examples in this book.
+This book includes several code blocks
+where we demonstrate a good code execution
+of some of the most common tasks in data work.
+We have ensured that each code block runs independently,
+is well-formatted,
+and uses built-in commands as much as possible.
+We hope that these snippets will provide a foundation for your code style.
+We try to comment code examples generously (as you should),
+and you should reference Stata help files by writing `help [command]`
+whenever you do not understand the command that is being used.
+For example, if you are not familiar with `isid`,
+then write `help isid`,
+and the help file for the command `isid` will open.
+You should do this even if you know `isid`
+but has not read the help file for that command in a while,
+as there is always something new to learn.
+
+In the book, code examples are presented like the following:
+
+```{stata, eval = F, code = readLines("code/code.do"), attr.source='.numberLines'}
+```
+You can access the raw code used in examples in this book in several ways.
+We use GitHub to version control all the content of this book,
+including the code examples.
+To see the code examples on GitHub, go to
+  https://github.com/worldbank/dime-data-handbook/tree/master/code.
+We only use Stata's built-in datasets in our code examples,
+so you do not need to download any data.
+If you have Stata installed on your computer,
+then you will already have the data files used in the code.
+
+A less technical way to access the code
+is to click the individual file in the URL above, then click
+the button that says **Raw**.
+You will then get to a page that looks like the one at
+https://raw.githubusercontent.com/worldbank/dime-data-handbook/master/code/code.do.
+There, you can copy the code
+from your browser window to your do-file editor with the formatting intact.
+This method is only practical for a single file at a time.
+If you want to download all code used in this book, you can do that at
+https://github.com/worldbank/dime-data-handbook/archive/master.zip.
+That link downloads a `.zip` file
+with all the content used in writing this book,
+including the LaTeX code used for the book itself.
+After extracting the .zip-file you will find all the code in a folder called `/code/`.
+
+While we use built-in commands as much as possible in this book,
+we point to user-written commands when they provide important new functionality.
+In particular, we point to two suites of Stata commands developed by DIME Analytics,
+`ietoolkit`^[
+  https://dimewiki.worldbank.org/ietoolkit
+]
+and `iefieldkit`,^[
+  https://dimewiki.worldbank.org/iefieldkit
+]
+which DIME Analytics wrote to standardize
+core data collection, management, and analysis workflows.
+
+When you encounter code that employs user-written commands,
+you will not be able to run them or read their help files
+until you have installed the commands.
+The most common place to distribute user-written commands for Stata
+is the Boston College Statistical Software Components (SSC) archive.^[
+	https://ideas.repec.org/s/boc/bocode.html
+]
+The user-written commands in our code example are all from the SSC archive.
+So, if your installation of Stata does not recognize a command in our code, for example
+`randtreat`, then type `ssc install randtreat` in Stata.
+
+Some commands on SSC are distributed in packages.
+This is the case, for example, of `ieboilstart`.
+That means that you will not be able to install it using `ssc install ieboilstart`.
+If you do, Stata will suggest that you instead use `findit ieboilstart`,
+which will search SSC (among other places) and see if there is a
+package that contains a command called `ieboilstart`.
+Stata will find `ieboilstart` in the package `ietoolkit`,
+so to use this command you will type `ssc install ietoolkit` in Stata instead.
+
+We understand that it can be confusing to work with packages for first time,
+but this is the best way to set up your Stata installation to benefit from other
+people's work that has been made publicly available.
+Once you get used to installing commands like this it will not be confusing at all.
+All code with user-written commands, furthermore, is best written when it installs such commands
+at the beginning of the master do-file,
+so that the user does not have to search for packages manually.

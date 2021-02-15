@@ -1,4 +1,4 @@
-# Constructing and analyzing research data
+# Constructing and analyzing research data {#analysis}
 
  <!-- Motivation -->
 The process of data analysis is typically
@@ -32,6 +32,58 @@ for both the full research team members and research consumers.
 The final section discusses ways to automate common outputs
 so that your work is fully reproducible.
 
+```{block2, type = 'summary'}
+### Summary: Constructing and analyzing research data {-}
+
+To move from raw development data to the final datasets used for analysis, you will almost certainly need to combine and transform variables into the relevant indicators and indices. These constructed variables will then be used to create analytical outputs, ideally using a dynamic document workflow. Construction and analysis involves:
+
+**1.	Constructing variables and purpose-built datasets.** Transforming pure observed data points into abstract or aggregate variables, and analyzing them properly, requires guidance from theory and is unique to each type of study. However, it should always involve the following:
+  
+- Maintaining *separate construction and analysis scripts*, and putting the appropriate code in the corresponding script even if they are simultaneously edited and executed by the master script
+- *Merging or otherwise combining data* from different sources or units of observation
+- Creating *purpose-built analytical datasets*, naming and saving them appropriately, and using them for the corresponding analytical tasks, rather than building a single analytical dataset
+- *Carefully documenting* each of these steps in plain and clear language, so that the rationale behind each research decision Is clear for any research consumer
+
+**2.	Generating and exporting exploratory and final outputs.** Tables and figures are the most common types of analytical outputs. All outputs must be well-organized and fully replicable. When creating outputs, always:
+  
+- Name *exploratory outputs* descriptively, and store them in easily-viewed formats
+- Store *final outputs* separately from exploratory outputs, and export using production-quality formats 
+- *Version-control all code* required to produce all outputs from analysis data
+- *Archive code* when analyses or outputs are not likely to be used, with documentation for later recovery
+
+**3.	Set up an efficient workflow for outputs.** This means that:
+  
+- Exploratory analyses are *immediately accessible*, ideally created with dynamic documents, and can be re-generated with a single script execution
+- *Code and outputs are version-controlled* so it is easy to track where changes are coming from
+- Final figures, tables, and other code outputs are exported from the statistical software *fully formatted* and the *final document is updated in an automated manner*, so that no manual workflow is needed to recreate documents when changes are made
+
+#### Takeaways {-}
+
+**TTLs/PIs will:**
+  
+- Provide the theoretical framework for the analysis and supervise production of analytical datasets and outputs, reviewing statistical calculations and code functionality
+- Approve the final list of analytical datasets and their accompanying documentation
+- Provide rapid review and feedback for exploratory analyses 
+- Advise on file format and design requirements for final outputs, including dynamic document structures 
+
+**RAs will: **
+  
+- Implement variable construction and analytical processes through code
+- Manage and document datasets in such a way that they are easily understood by other team members
+- Flag ambiguities, concerns, or gaps in translation from theoretical framework to code
+- Draft and organize exploratory outputs for rapid review by management
+- Maintain release-ready code and output organization with version control, so current versions of outputs are always accessible and final outputs are easily extracted from unused materials
+
+#### Key Resources {-}
+
+- DIME's **Research Assistant Onboarding Course** includes technical sessions on best practices for data construction ( https://osf.io/k4tr6/) and analysis (https://osf.io/82t5e/)
+- **Visual libraries**: nice-looking, reproducible graphs in an easily browsable format. 
+  - Stata visual library: https://worldbank.github.io/stata-visual-library. 
+  - R econ visual library: https://worldbank.github.io/r-econ-visual-library
+- The blogpost **Nice and fast tables in Stata?** discusses best practices and links to code demonstrations of how to export tables from Stata https://blogs.worldbank.org/impactevaluations/nice-and-fast-tables-stata 
+
+```
+
 <!-- ------------------------------------------------ -->
 
 ## Creating analysis datasets {-}
@@ -42,7 +94,7 @@ one or multiple well-documented tidy^[@hadley2017R] datasets.
 We also assume that these datasets
 have gone through thorough quality checks
 and incorporate any corrections needed.^[
-	See chapter 5 for discussions on how to
+	See Chapter \@ref(processing) for discussions on how to
 	tidy data, monitor data quality and document corrections.
 ]
 The next step is to **construct**^[
@@ -144,7 +196,7 @@ or different datasets with a common source.
 For the next few paragraphs,
 we call such operations "merges",
 but they are also commonly referred to as "data joins".
-As discussed in Chapter 3,
+As discussed in Chapter \@ref(measurement),
 this process should be documented
 using **data flowcharts**,^[
 	More details on DIME's data flow chart template
@@ -179,7 +231,7 @@ matched or not, and why.
 When possible, determine exactly which and how many
 matched and unmatched observations should result from the merge.
 The best tool you have to understand this is
-the three components of the data map discussed in chapter 3.
+the three components of the data map discussed in Chapter \@ref(measurement).
 Second, think carefully about whether you want to keep matched and unmatched observations,
 or only specific matching outcomes (e.g. to create a balanced panel),
 and add that to the pseudocode as well.
@@ -218,6 +270,23 @@ Since the conceptual constructs that link observations from the two data sources
 are important and can take many possible forms,
 it is especially important for the data integration to not be treated mechanically,
 and to be extensively documented, separately from other data construction tasks.
+
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case study: Integrating Multiple Data Sources
+
+The raw crowsourced data acquired for the *Demand for Safe Spaces* study was received by the research team in a different level of observation than the one relevant for analysis. The unit of analysis is a ride, and each ride was represented in the raw data by three rows, one for questions answered before boarding the train, one for those answered during the trip and one for those answered after leaving the train. The *Tidying raw data* example explains how the team created three different intermediate datasets for each of these tasks. To create the complete ride-level dataset, the team combined the individual task datasets. The code below shows how the team assured that all observations had merged as expected. Two different approaches depending on what you expect are shown.
+
+The first code chunk shows the quality assurance protocol for when the team expected that all observations would exist in all datasets so that each merge would have only matched observations. To test that this was the case the team used the option `assert(3)`. When two dataset are merged in Stata each observations get the code 1, 2 or 3. 1 means that the observation only existed in the dataset in memory (called the "master data"), 2 means that the observation existed only in the other dataset (called the “using data”) and 3 means that they existed in both. `assert(3)` tests that all observation existed in both dataset and was coded as 3.
+
+![](examples/ch6-integrating-multiple-data-sources.png)
+
+When merging observations that do not match perfectly, the quality assurance protocol requires that the RA document the reasons. The 1, 2, 3 merge result code explained above is saved in a variable named `_merge`. The *Demand for Safe Space* team used this variable to count the number of user IDs in each group and used the command assert to throw an error if the number of observations in any of the categories was changing, ensuring that the outcome is stable when the code is run multiple times.
+
+![](examples/ch6-integrating-multiple-data-sources2.png)
+
+> See the full script at https://git.io/JtgYf 
+
+```
 
 ### Creating analysis variables {-}
 
@@ -269,7 +338,7 @@ research designs comprising multiple units of observation and analysis,
 and designs with repeated observations of the same units over time.
 When your research involves different units of observation,
 creating analysis datasets will probably mean combining variables measured at these different levels.
-If you followed our recommendations from Chapter 5,
+If you followed our recommendations from Chapter \@ref(processing),
 this means combining variables that are included in different tidy datasets.
 To make sure constructed variables are consistent across datasets,
 we recommend that each indicator be constructed in the dataset corresponding to its unit of observation.
@@ -319,13 +388,24 @@ adapt your construction script so it can be used on the complete panel dataset.
 In addition to preventing inconsistencies and documenting your work,
 this process will also save you time and give you an opportunity to review your original code.
 
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Creating Analysis Variables
+
+The header of the script that creates analysis variables for the crowdsourced data in the *Demand for Safe Spaces* study is shown below. Note that it starts from a pooled dataset that combines all waves of data collection. It is important that the variable construction is done after all waves have been pooled to make sure that all variables are constructed identically across all waves.
+ 
+![](examples/ch6-creating-analysis-variables.png)
+
+> See the full construction script here https://git.io/JtgY5 and the script where data from all waves are pooled here: https://git.io/JtgYA.
+
+```
+
 ### Documenting variable construction {-}
 
 <!-- Why documentation is important: transparency and reproducibility -->
 Because data construction involves translating concrete observed data points
 to measures of abstract concepts,
 it is important to document exactly how each variable is derived or calculated.
-Careful documentation is closely linked to the research principles discussed in the first chapter.
+Careful documentation is closely linked to the research principles discussed in Chapter \@ref(reproducibility).
 It makes research decisions transparent,
 as anyone can read about how you defined each variable in your analysis,
 and what was the reasoning behind these decisions.
@@ -365,6 +445,18 @@ You can then add the variable definitions to that file to create a concise metad
 Take this opportunity to review your notes and make sure that your code
 is implementing exactly what is described in the documentation.
 
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Documenting Variable Construction
+
+The *Demand for Safe Spaces* team documented the definition of every variable used to produce the outputs presented in the paper in an Appendix to the Working Paper. Appendix B includes a set of tables with variable definitions in non-technical language. The tables include variables collected through surveys, variables constructed for analysis, and research variables assigned by random processes.
+
+![](examples/dictionary.png) 
+ 
+> The full set of tables can be found on Appendix B of the Working Paper: https://openknowledge.worldbank.org/handle/10986/33853
+
+
+```
+
 <!-- ------------------------------------------------ -->
 
 ## Writing analysis code {-}
@@ -373,11 +465,30 @@ is implementing exactly what is described in the documentation.
 After data is cleaned and indicators are constructed, you are ready to start analyzing the data.
 \index{data analysis}
 There are many existing resources for data analysis and statistical methods, such as
-*R for Data Science*;^[@hadley2017R]
-*A Practical Introduction to Stata*;^[@RePEc:gdm:wpaper:9412]
-*Mostly Harmless Econometrics*;^[@angrist2008mostly]
-and *Causal Inference: The Mixtape*.^[@cunningham2018causal]
+*R for Data Science*;^[
+  @hadley2017R
+] 
+*A Practical Introduction to Stata*;^[
+  @RePEc:gdm:wpaper:9412
+] 
+*Mostly Harmless Econometrics*;^[
+  @angrist2008mostly
+] 
+and *Causal Inference: The Mixtape*.^[
+  @cunningham2018causal
+] 
 We focus on how to structure data analysis code and files, rather than how to conduct specific analyses.
+
+```{block2, type = 'ex'}
+###  Demand for Safe Spaces Case Study: Writing Data Analysis Code
+
+The *Demand for Safe Spaces* team's analysis scripts are split into one script per output and the constructed data is re-loaded before each output. This ensures that final exhibit can be independently generated from the constructed data. No variable construction is done in the analysis scripts: the only data transformations performed are sub-setting the data or aggregating to a higher unit of observation. This guarantees that the same data is used across all analysis scripts. For an example of a short analysis do-file, see the code chunk below. 
+
+![](examples/ch6-writing-data-analysis-code.png)
+
+> See this script and how the regression results were exported to a table at https://git.io/JtgOk.
+
+```
 
 ### Organizing analysis code {-}
 
@@ -446,6 +557,17 @@ to correspond to exhibits as they appear in a paper or report,
 leave this to near publication time,
 as you will constantly re-order them during data analysis.
 
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Cse Study: Organizing Analysis Code
+
+The *Demand for Safe Spaces* team defined the control variables in globals in the master analysis script. This guaranteed that control variables were used consistently across regressions. It also provided an easy way to update control variables consistently across all regressions when needed. In an analysis script a regression that includes all demographic controls would then be expressed as `regress x y ${demographics}`.
+ 
+![](examples/ch6-organizing-analysis-code.png)
+
+> The above code is excerpted from the full master script, which you can find at https://git.io/JtgeT.
+
+``` 
+
 ### Visualizing data {-}
 
 <!-- Useful resources for data visualization -->
@@ -498,6 +620,19 @@ plots the values of coefficients for treatment dummies,
 and `iekdensity` displays the distribution of an outcome variable
 across groups and adds the treatment effect as a note.
 
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Visualizing Data
+
+The Demand for Safe Spaces team defined the settings for graphs in globals in the master analysis script. This is a simple way to create a uniform visual style for all graphs produced by the project. These globals can then be used across the project when creating graphs like this:
+  
+`twoway  (bar cum x, color(${col_aux_light})) (lpoly y x, color(${col_1})) (lpoly z x, color(${col_2})),   ${plot_options}`
+
+![](examples/ch6-visualizing-data.png)
+ 
+> The complete script is available at https://git.io/JtgeT.
+
+```
+
 <!-- ------------------------------------------------------------------------- -->
 
 ## Creating reproducible tables and graphs {-}
@@ -535,7 +670,7 @@ Decisions about storage of outputs are limited by technical constraints,
 and dependent on file format.
 Plain text formats like `.tex` and `.csv`
 and should be managed through version control systems like Git,
-as discussed in Chapter 2.
+as discussed in Chapter \@ref(collaboration).
 Binary outputs like Excel files, PDFs, PowerPoints, or Word documents,
 on the other hand, should be kept in a synced folder.
 Exporting all raw outputs as plain text files,
@@ -587,6 +722,23 @@ that can be linked to raw outputs in such a way that they are updated
 in the paper or presentation every time changes are made to them.
 We broadly call files that have this feature **dynamic documents**,\index{dynamic documents}
 and they will be discussed in more detail in the final section of this chapter.
+
+```{block2, type = 'ex'}
+### Demand for Safe Spaces Case Study: Managing Outputs
+
+It is important to document which datasets are required as inputs in each script, and what datasets or files are created by each script. The *Demand for Safe Spaces* team documented this both in the header of each script but also in a comment in the master do-file where the script was called.
+
+This is a header of an analysis script called response.do that requires the file `platform_survey_constructed.dta` and generates the file `response.tex`. Having  this information on the header allows people reading the code to check that they have access to all the necessary files before trying to run a script.
+
+![](examples/ch6-managing-outputs.png)
+
+To provide the people who are interacting with the code with an overview of what are the different subscript involved in a project, this information was copied into the master do-file where the script above is called, and the same is done for all the script called from that master, as shown below. 
+
+![](examples/ch6-managing-outputs2.png)
+
+> You can find this analysis script at https://git.io/JtgYB and the master do-file at https://git.io/JtgY6.
+
+```
 
 ### Exporting analysis outputs {-}
 
@@ -656,7 +808,7 @@ Whichever format you decide to use,
 remember to always specify the file extension explicitly.
 For tables, there are fewer file format options.
 Given our recommendation to use **dynamic documents**,\index{dynamic documents}
-which will be discussed in more detail both in the next section and in Chapter 7,
+which will be discussed in more detail both in the next section and in Chapter \@ref(publication),
 exporting tables to `.tex` is preferred.
 Excel `.xlsx` and `.csv` are also commonly used,
 but often require the extra step of copying the tables into the final output.
@@ -723,8 +875,7 @@ built-in dynamic document engines are a good option for exploratory analysis.
 With these tools,
 you can write both text (often in Markdown^[
   https://www.markdownguide.org/
-]
-) and code in the script,
+]) and code in the script,
 and the result will usually be a PDF or HTML file including code, text, and outputs.
 In our experience, many researchers find the entry cost to learning how to use these tools to be high.
 These types of dynamic document tools are typically best used by the team members working most closely with code,
@@ -739,17 +890,16 @@ Stata offers a built-in package for dynamic documents, `dyndoc`,^[
 ]
 and user-written commands such as `markstat`,^[
   @pr0067
-]
+] 
 `markdoc`,^[
   @pr0064
-],
+]  
 `webdoc`,^[
   @pr0065
-]
-and
-`texdoc`.^[
+] 
+and `texdoc`.^[
   @pr0062
-]
+] 
 The advantage of these tools in comparison with LaTeX is that
 they create full documents from within your scripts,
 so running the code and compiling the document is reduced to a single step.
@@ -758,8 +908,7 @@ so running the code and compiling the document is reduced to a single step.
 Documents called "notebooks"
 (such as Jupyter Notebook^[
   https://jupyter.org
-]
-)
+])
 work similarly,
 as they also use the underlying code that create the document.
 These tools are usually appropriate for short or informal documents

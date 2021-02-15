@@ -1,15 +1,3 @@
-# Acknowledgments and notes {-}
-
-We want to thank all the people who helped us get here, especially Arianna Legovini, for her leadership at DIME, unending support of our work, and detailed comments on this book; and Florence Kondylis, for her leadership in founding and growing DIME Analytics and supporting this project from the very first. 
-We also thank the following members of DIME Analytics for their contributions to the ideas in this book and their help organizing them: Roshni Khincha, Avnish Singh, Patricia Paskov, Radhika Kaul, Mizuhiro Suzuki, Yifan Powers, and Maria Arnal Canudo. This work has been financially supported by the United Kingdom Foreign, Commonwealth & Development Office (FCDO) through the DIME i2i Umbrella Facility for Impact Evaluation at the World Bank. 
-
-Our graditude to the many people who read and offered feedback as the book took shape: Stephanie Annijas, Maria Camila 
-Ayala Guerrero, Kaustubh Chahande, Thomas Escande, Aram Gassama, Steven Glover, Nausheen Khan, Robert Norling, Michael Orevba, Caio Piza, Francesco Raffaelli, Daniel Rogger, Ankriti Singh, Ravi Somani, and Leonardo Viotti. Although they number far too many to name individually, we also thank all the members of DIME and its teams across all the years for the innovative work they have done, the lessons learned, and the team spirit that makes our work so fruitful and rewarding. 
-
-This published version of the book has been revised repeatedly since its internal release in June 2019, with extensive feedback from readers and experts. We would additionally like to thank Vincenzo di Maro (Manager, DIME3) for his support throughout this process, as well as peer reviewers David McKenzie (Lead Economist, DECFP), Holly Krambeck (Program Manager, DECAT), Alaka Holla (Program Manager, HEDGE), Jim Shen (Senior Manager, Abdul Latif Jameel Poverty Action Lab), Federica di Battista (Trialling Lead, UK FCDO), and Gabriel Vicente, Rajee Kanagavel, and Maksim Pecherskiy from the Development Data Partnership team.
-
-This book is a living product that is written and maintained publicly. The code and edit history are at: [](https://github.com/worldbank/dime-data-handbook). You can get a PDF copy at: [](https://worldbank.github.com/dime-data-handbook). The website includes updated instructions for providing feedback, as well as notes on updates to the content. Whether you work with DIME, the World Bank, or another organization or university, we ask that you read the contents of this book critically. We welcome feedback and corrections to improve the book. Please visit [](https://worldbank.github.com/dime-data-handbook/feedback) to provide feedback. You can also email us at dimeanalytics@worldbank.org, and we will be very thankful. We hope you enjoy *Development Research in Practice*!
-
 # Abbreviations {-}
 
 **2SLS** – Two-Stage Least Squares
@@ -34,6 +22,8 @@ This book is a living product that is written and maintained publicly. The code 
 
 **FSE** - Full System Encryption
 
+**GB** – Gigabyte
+
 **GDPR** – Global Data Protection Regulation
 
 **HFC** – High-Frequency Checks
@@ -46,7 +36,9 @@ This book is a living product that is written and maintained publicly. The code 
 
 **J-PAL** – The Abdul Latif Jameel Poverty Action Lab 
 
-**MD** – Minimum Detectable Effect
+**MB** – Megabyte
+
+**MDE** – Minimum Detectable Effect
 
 **NGO** – Non-Governmental Organization
 
@@ -54,7 +46,7 @@ This book is a living product that is written and maintained publicly. The code 
 
 **OLS** – Ordinary Least Squares
 
-**OSF** – Open Science Foundation
+**OSF** – Open Science Framework
 
 **PI** – Principal Investigator
 
@@ -68,6 +60,8 @@ This book is a living product that is written and maintained publicly. The code 
 
 **SSC** – Statistical Software Components 
 
+**URL** - Uniform Resource Locator
+
 **VPN** - Virtual Private Network
 
 # Preface {-}
@@ -76,25 +70,23 @@ Welcome to *Development Research in Practice: The DIME Analytics Data Handbook*.
 
 Despite the growing importance of managing data work, little practical guidance is available for practitioners. There are few guides to the conventions, standards, and best practices that are fast becoming a necessity for empirical research. *Development Research in Practice* aims to fill that gap. It covers the full data workflow for a complex research project using original data. We share the lessons, tools, and processes developed within the World Bank’s Development Impact Evaluation (DIME) department, and compile them into a single narrative of best practices for data work. This book is not sector-specific; it will not teach you econometrics, or how to design an impact evaluation. There are many excellent existing resources on those topics. Instead, it will teach you how to think about all aspects of your research from a data perspective, how to structure research projects to ensure data quality, and how to institute transparent and reproducible workflows. We realize that adopting these workflows may have significant upfront learning costs, but we are convinced that these investments pay off quickly, as you will both save time and improve the quality of your research going forward.
 
-<!-- --------------------------------------------- -->
-
 ## How to read this book  {-}
 
-This book aims to be a highly practical resource so the reader can immediately begin to collaborate more effectively on large, long-term research projects that use the methods and tools discussed. This introduction outlines the basic philosophies that motivate this book and our approach to research data. We want all readers to understand at the outset our mindset that research data work is primarily about communicating effectively within a team and that standardization and simplification of data tasks is a major enabler of effective collaboration. The main chapters of this book will walk you through the data workflow at each stage of an empirical research project, from design to publication. The figure in this introduction visualizes the data workflow. Chapters 1 and 2 contextualize the workflow, and set the stage for the hands-on data tasks which are described in detail in Chapters 3 to 7.
+This book aims to be a highly practical resource so the reader can immediately begin to collaborate more effectively on large, long-term research projects that use the methods and tools discussed. This introduction outlines the basic philosophies that motivate this book and our approach to research data. We want all readers to understand at the outset our mindset that research data work is primarily about communicating effectively within a team and that standardization and simplification of data tasks is a major enabler of effective collaboration. The main chapters of this book will walk you through the data workflow at each stage of an empirical research project, from design to publication. The figure in this introduction visualizes the data workflow. Chapters \@ref(reproducibility) and \@ref(collaboration) contextualize the workflow, and set the stage for the hands-on data tasks which are described in detail in Chapters \@ref(measurement) to \@ref(publication).
 
-**Chapter 1** This book aims to be a highly practical resource so the reader can immediately begin to collaborate more effectively on large, long-term research projects that use the methods and tools discussed. This introduction outlines the basic philosophies that motivate this book and our approach to research data. We want all readers to understand at the outset our mindset that research data work is primarily about communicating effectively within a team and that standardization and simplification of data tasks is a major enabler of effective collaboration. The main chapters of this book will walk you through the data workflow at each stage of an empirical research project, from design to publication. The figure in this introduction visualizes the data workflow. Chapters 1 and 2 contextualize the workflow, and set the stage for the hands-on data tasks which are described in detail in Chapters 3 to 7.
+**Chapter \@ref(reproducibility)** This book aims to be a highly practical resource so the reader can immediately begin to collaborate more effectively on large, long-term research projects that use the methods and tools discussed. This introduction outlines the basic philosophies that motivate this book and our approach to research data. We want all readers to understand at the outset our mindset that research data work is primarily about communicating effectively within a team and that standardization and simplification of data tasks is a major enabler of effective collaboration. The main chapters of this book will walk you through the data workflow at each stage of an empirical research project, from design to publication. The figure in this introduction visualizes the data workflow. Chapters 1 and 2 contextualize the workflow, and set the stage for the hands-on data tasks which are described in detail in Chapters 3 to 7.
 
-**Chapter 2** teaches you to structure your data work for collaborative research, while ensuring the privacy and security of research participants. It discusses the importance of planning data work and associated tools in advance, long before any data is acquired. It also describes ethical concerns common to development data, common pitfalls in legal and practical management of data, and how to respect the rights of research participants at all stages of data work
+**Chapter \@ref(collaboration)** teaches you to structure your data work for collaborative research, while ensuring the privacy and security of research participants. It discusses the importance of planning data work and associated tools in advance, long before any data is acquired. It also describes ethical concerns common to development data, common pitfalls in legal and practical management of data, and how to respect the rights of research participants at all stages of data work
 
-**Chapter 3** turns to the measurement framework, and how to translate research design to a data work plan. It details DIME’s data map template, a set of tools to communicate the project’s data requirements both across the team and across time. It also discusses how to implement random sampling and random assignment in a reproducible and credible manner.
+**Chapter \@ref(measurement)** turns to the measurement framework, and how to translate research design to a data work plan. It details DIME’s data map template, a set of tools to communicate the project’s data requirements both across the team and across time. It also discusses how to implement random sampling and random assignment in a reproducible and credible manner.
 
-**Chapter 4** covers data acquisition. It starts with the legal and institutional frameworks for data ownership and licensing, to ensure that you are aware of the rights and responsibilities of using data collected by the research team or by others. It provides a deep dive on collecting high-quality primary electronic survey data, including developing and deploying survey instruments. Finally, it discusses secure data handling during transfer, sharing, and storage, which is essential in protecting the privacy of respondents in any data.
+**Chapter \@ref(acquisition)** covers data acquisition. It starts with the legal and institutional frameworks for data ownership and licensing, to ensure that you are aware of the rights and responsibilities of using data collected by the research team or by others. It provides a deep dive on collecting high-quality primary electronic survey data, including developing and deploying survey instruments. Finally, it discusses secure data handling during transfer, sharing, and storage, which is essential in protecting the privacy of respondents in any data.
 
-**Chapter 5** describes data processing tasks. It details how to construct "tidy" data at the appropriate units of analysis, how to ensure uniquely identified datasets, and how to routinely incorporate data quality checks into the workflow. It also provides guidance on de-identification and cleaning of personally-identified data, focusing on how to understand and structure data so that it is ready for indicator construction and analytical work.
+**Chapter \@ref(processing)** describes data processing tasks. It details how to construct "tidy" data at the appropriate units of analysis, how to ensure uniquely identified datasets, and how to routinely incorporate data quality checks into the workflow. It also provides guidance on de-identification and cleaning of personally-identified data, focusing on how to understand and structure data so that it is ready for indicator construction and analytical work.
 
-**Chapter 6** discusses data analysis tasks. It begins with data construction, or the creation of new variables from the raw data acquired or collected in the field. It introduces core principles for writing analytical code and creating, exporting, and storing research outputs such as figures and tables reproducibly using dynamic documents.
+**Chapter \@ref(analysis)** discusses data analysis tasks. It begins with data construction, or the creation of new variables from the raw data acquired or collected in the field. It introduces core principles for writing analytical code and creating, exporting, and storing research outputs such as figures and tables reproducibly using dynamic documents.
 
-**Chapter 7** outlines the publication of research outputs, including manuscripts, code, and data. This chapter discusses how to effectively collaborate on technical writing using dynamic documents. It also covers how and why to publish datasets in an accessible, citable, and safe fashion. Finally, it provides guidelines for preparing functional and informative reproducibility packages that contain all the code, data, and meta-information needed for others to evaluate and reproduce your work.
+**Chapter \@ref(publication)** outlines the publication of research outputs, including manuscripts, code, and data. This chapter discusses how to effectively collaborate on technical writing using dynamic documents. It also covers how and why to publish datasets in an accessible, citable, and safe fashion. Finally, it provides guidelines for preparing functional and informative reproducibility packages that contain all the code, data, and meta-information needed for others to evaluate and reproduce your work.
 
 Each chapter starts with a box which provides a summary of the most important points, takeaways for different types of readers, and a list of key tools and resources for implementing the recommended practices. After reading each chapter, you should understand what tasks will be performed at every stage of the workflow, and how to implement them according to best practices. You should also understand how the various stages of the workflow tie together, and what inputs and outputs are required and produced from each. The references and links contained in each chapter will lead you to detailed descriptions of individual ideas, tools, and processes to refer to when you need to implement the tasks yourself.
   
@@ -244,7 +236,7 @@ and point to more detailed instructions when relevant.
 **Stata**,^[@statacorp2019stata]
 as a proprietary software, is the notable exception here
 due to its persistent popularity in development economics and econometrics.
-This book also includes, in an appendix,
+This book also includes, in Appendix \@ref(coding),
 the **DIME Analytics Coding Guide**
 which includes instructions for how to write good code,
 instructions on how to use the code examples in this book,
@@ -301,7 +293,7 @@ delivers hands-on support when new tasks or challenges arise,
 and then develops and integrates lessons from those engagements to bring to the full team.
 Resources developed and tested in DIME are converted into public goods
 for the global research community, through open-access trainings and open-source tools.
-The DIME Analytics Resource Directory appendix provides an introduction to public materials.
+Appendix \@ref(resources), the **DIME Analytics Resource Directory**, provides an introduction to public materials.
 
 DIME Analytics has invested many hours over the past years
 learning from data work across DIME's portfolio,

@@ -1,4 +1,4 @@
-# Setting the stage for effective and efficient collaboration
+# Setting the stage for effective and efficient collaboration {#collaboration}
 
 In order to do effective data work in a team environment,
 you need to structure your workflow in advance.
@@ -32,21 +32,21 @@ The technical environment for your data work needs to be established at the star
   
 **1. Technical collaboration environment.** No matter the hardware and software your team plans to use, you should ensure now that it is standardized or interoperable across the team. This includes:
   
-- Secure all **physical computing hardware** through encryption and password-protection. If specialized or more powerful hardware is required, initiate access requests, purchase orders, or other processes now
-- Agree on tools for **collaboration** and documentation, such that key conversations and decisions are archived and organized outside of instant-message and email conversation
-- Decide the **programming languages and environments** the team will use. Take time to set up a comfortable and modern digital work environment
+- Secure all *physical computing hardware* through encryption and password-protection. If specialized or more powerful hardware is required, initiate access requests, purchase orders, or other processes now
+- Agree on tools for *collaboration* and documentation, such that key conversations and decisions are archived and organized outside of instant-message and email conversation
+- Decide the *programming languages and environments* the team will use. Take time to set up a comfortable and modern digital work environment
 
 **2. Organization of code and data**. The team should agree on where and how code files and databases will be stored, down to the level of the folder structure. This involves setting up:
   
-- A standardized and scalable **folder structure** so all documents have an unambiguous location, and the location and naming of files describes their purpose and function and is intuitive to all team members
-- A **backup and version control system** appropriate for each file type, to ensure information cannot be lost and that all team members understand how to interoperate and collaborate
-- **Master script files** that will structure and execute the code base of the 
+- A standardized and scalable *folder structure* so all documents have an unambiguous location, and the location and naming of files describes their purpose and function and is intuitive to all team members
+- A *backup and version control system* appropriate for each file type, to ensure information cannot be lost and that all team members understand how to interoperate and collaborate
+- *Master script files* that will structure and execute the code base of the 
 
 **3. Information security measures and ethical frameworks**. These include:
   
-- Formally **request and obtain approval** from legal entities governing research in all relevant jurisdictions
-- Understand **how to respect the rights and dignity of research subjects** and plan for how to establish **informed consent** from individuals or groups participating in the research
-- Adopt standardized **digital security practices** including proper encryption of all confidential information, at rest and in transit, both among your team and with external partners
+- Formally *request and obtain approval* from legal entities governing research in all relevant jurisdictions
+- Understand *how to respect the rights and dignity of research subjects* and plan for how to establish *informed consent* from individuals or groups participating in the research
+- Adopt standardized *digital security practices* including proper encryption of all confidential information, at rest and in transit, both among your team and with external partners
 
 #### Takeaways {-}
 
@@ -132,7 +132,7 @@ with 1 offsite storage method.^[
   Read more details about back up strategies
   and other aspects of data storage on the DIME Wiki:
     https://dimewiki.worldbank.org/Data_Storage.]
-Chapter 4 provides a protocol for implementing this.
+Chapter \@ref(acquistion) provides a protocol for implementing this.
 
 Ensure you know how to get the **absolute file path** for any given file.\index{absolute file paths}
 On MacOS this will be something like "`/users/username/git/project/...`"
@@ -563,7 +563,7 @@ it does not rely on a complex program state
 created by other code chunks that are not obvious from the immediate context.
 One way to do this is by creating sections in your script to identify where a specific task is completed.
 For example, if you want to find the line in your code where the directory is set,
-you can go straight to "`PART 2: Prepare folder paths and define programs`",
+you can go straight to `PART 2: Prepare folder paths and define programs`,
 instead of reading line by line through the entire code.
 
 RStudio makes it very easy to create sections,
@@ -589,7 +589,7 @@ it seems to be "enough but not too much" for most purposes.
 
 To ensure that all team members were able to easily read and understand data work, *Demand for Safe Spaces* code files were extensively commented. Comments typically took the form of "what – why": what is this section of code doing, and why is it necessary. The below snippet from a do-file cleaning one of the raw data files illustrates the use of comments:
   
-![](examples/code-read.png)
+![](examples/ch2-writing-code-that-others-can-read.png)
   
 > The full code file is available at https://git.io/Jtgev 
 
@@ -612,83 +612,7 @@ By follow, we mean someone external to the project who has the master script and
 The master script is also where all the settings are established,
 such as versions, folder paths, functions, and constants used throughout the project.
 
-```{stata, eval = F, attr.source='.numberLines'}
-/*******************************************************************************
-*                           TEMPLATE MASTER DO-FILE                            *
-********************************************************************************
-*                                                                              *
-*   PURPOSE:     Reproduce all data work, map inputs and outputs,              *
-*                facilitate collaboration                                      *
-*                                                                              *
-*   OUTLINE:     PART 1:  Set standard settings and install packages           *
-*                PART 2:  Prepare folder paths and define programs             *
-*                PART 3:  Run do-files                                         *
-*                                                                              *
-********************************************************************************
-  PART 1:  Install user-written packages and harmonize settings
-********************************************************************************/
-
-    local user_commands ietoolkit iefieldkit //Add required user-written commands
-    foreach command of local user_commands {
-        cap which `command'
-        if _rc == 111 ssc install `command'
-    }
-
-	*Harmonize settings across users as much as possible
-    ieboilstart, v(13.1)
-    `r(version)'
-
-/*******************************************************************************
-  PART 2:  Prepare folder paths and define programs
-*******************************************************************************/
-
-    * Research Assistant folder paths
-    if "`c(username)'" == "ResearchAssistant" {
-        global github      "C:/Users/RA/Documents/GitHub/d4di/DataWork"
-        global dropbox     "C:/Users/RA/Dropbox/d4di/DataWork"
-        global encrypted   "M:/DataWork/EncryptedData"
-    }
-
-    * Baseline folder globals
-    global bl_encrypt       "${encrypted}/Round Baseline Encrypted"
-    global bl_dt            "${dropbox}/Baseline/DataSets"
-    global bl_doc           "${dropbox}/Baseline/Documentation"
-    global bl_do            "${github}/Baseline/Dofiles"
-    global bl_out           "${github}/Baseline/Output"
-
-/*******************************************************************************
-  PART 3: Run do-files
-*******************************************************************************/
-
-/*------------------------------------------------------------------------------
-    PART 3.1:  De-identify baseline data
-    REQUIRES:   ${bl_encrypt}/Raw Identified Data/D4DI_baseline_raw_identified.dta
-    CREATES:    ${bl_dt}/Raw Deidentified/D4DI_baseline_raw_deidentified.dta
-    IDS VAR:    hhid
------------------------------------------------------------------------------ */
-    *Change the 0 to 1 to run the baseline de-identification dofile
-    if (0) do "${bl_do}/Cleaning/deidentify.do"
-
-/*------------------------------------------------------------------------------
-    PART 3.2:  Clean baseline data
-    REQUIRES:   ${bl_dt}/Raw Deidentified/D4DI_baseline_raw_deidentified.dta
-    CREATES:    ${bl_dt}/Final/D4DI_baseline_clean.dta
-                ${bl_doc}/Codebook baseline.xlsx
-    IDS VAR:    hhid
------------------------------------------------------------------------------ */
-    *Change the 0 to 1 to run the baseline cleaning dofile
-    if (0) do "${bl_do}/Cleaning/cleaning.do"
-
-/*-----------------------------------------------------------------------------
-    PART 3.3:  Construct income indicators
-    REQUIRES:   ${bl_dt}/Final/D4DI_baseline_clean.dta
-    CREATES:    ${bl_out}/Raw/D4DI_baseline_income_distribution.png
-                ${bl_dt}/Intermediate/D4DI_baseline_constructed_income.dta
-    IDS VAR:    hhid
------------------------------------------------------------------------------ */
-    *Change the 0 to 1 to run the baseline variable construction dofile
-    if (0) do "${bl_do}/Construct/construct_income.do"
-
+```{stata, eval = F, code = readLines("code/stata-master-dofile.do"), attr.source='.numberLines'}
 ```
 
 Try to create the habit of running your code from the master script.
@@ -750,7 +674,7 @@ or for release of the code to the general public.
 
 All code for the *Demand for Safe Spaces* study was organized to run from two master scripts, one Stata Master and one R Master. The master scripts were written such that any team member could run all project code by simply changing the top-level directory. Below is a snippet of the Stata Master:
  
-![](examples/master.png)
+![](examples/ch2-writing-code-that-others-can-run.png)
   
 > The complete Stata master script can be found at https://git.io/JtgeT, and the R master at https://git.io/JtgeY.
 
@@ -970,7 +894,7 @@ even if they were to be intercepted by a malicious "intruder"
 (an information-security term for any unauthorized information access)
 or accidentally made public.
 We will discuss implementations of encryption in more detail
-specific to different stages of data work in Chapter 4,
+specific to different stages of data work in Chapter \@ref(acquisition),
 but when setting up a software environment for you and your team,
 make sure that you have a solution for
 all parts of your workflow on all team members computers.
