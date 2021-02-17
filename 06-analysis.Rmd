@@ -351,7 +351,7 @@ while controlling for teacher characteristics.
 This can be done by assigning the teacher-level indicators to all the students in the corresponding class.
 Conversely, you may want to include average student test scores
 in the analysis dataset containing teacher-level variables.
-To do so, you would start from the constructed dataset at student level,
+To do so, you would start from the analysis dataset at student level,
 average (using commands like `collapse` in Stata and `summarise` in R)
 the test scores of all students taught by the same teacher,
 and merge this teacher-level aggregate measure onto the original teacher dataset.
@@ -483,7 +483,7 @@ We focus on how to structure data analysis code and files, rather than how to co
 ```{block2, type = 'ex'}
 ###  Demand for Safe Spaces Case Study: Writing Data Analysis Code
 
-The *Demand for Safe Spaces* team's analysis scripts are split into one script per output and the constructed data is re-loaded before each output. This ensures that final exhibit can be independently generated from the constructed data. No variable construction is done in the analysis scripts: the only data transformations performed are sub-setting the data or aggregating to a higher unit of observation. This guarantees that the same data is used across all analysis scripts. For an example of a short analysis do-file, see the code chunk below. 
+The *Demand for Safe Spaces* team's analysis scripts are split into one script per output and the analysis data is re-loaded before each output. This ensures that final exhibit can be independently generated from the analysis data. No variable construction is done in the analysis scripts: the only data transformations performed are sub-setting the data or aggregating to a higher unit of observation. This guarantees that the same data is used across all analysis scripts. For an example of a short analysis do-file, see the code chunk below. 
 
 ![](examples/ch6-writing-data-analysis-code.png)
 
