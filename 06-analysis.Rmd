@@ -8,7 +8,7 @@ To effectively do this in a team environment,
 data, code and outputs must be well-organized and documented,
 with a clear system for version control,
 analysis scripts that can be run by all team members,
-and creation of research outputs fully automated.
+and fully automated output creation.
 Putting in time upfront to structure the data analysis workflow
 in a reproducible manner pays substantial dividends throughout the process.
 Similarly, documenting research decisions made during data analysis
@@ -251,7 +251,7 @@ if the result is different than what you expect,
 or you may not notice changes in the outcome after running large chunks of code.
 Document changes to the number of observations in your comments,
 and explain why they are happening.
-If your are subsetting your data by keeping only matched observations,
+If you are subsetting your data by keeping only matched observations,
 write down the reason why the observations differ across datasets,
 as well as why you are only interested in those that matched.
 The same applies when you are adding new observations from the merged dataset.
@@ -318,16 +318,17 @@ how to handle any outliers or unusual values identified during data cleaning.
 How to treat outliers is a research question.^[
   For more details on how to deal with outliers
   see the DIME Wiki:
-  https://dimewiki.worldbank.org/Variable_Construction\#Dealing_with_outliers
+  https://dimewiki.worldbank.org/Variable_Construction#Dealing_with_outliers
 ]\index{outliers}
 There are multiple possible approaches,
 and the best choice for a particular case
 will depend on the objectives of the analysis.
 Whatever your team decides, make sure to explicitly note
 what the decision was and how it was made.
-Results can be sensitive to the treatment of outliers,
-so keeping the original variable in the dataset
-will allow you to test how much it affects your outputs.
+Results can be sensitive to the treatment of outliers; 
+keeping both the original and derived (e.g. winsorized) 
+values for the variable in the dataset will allow you 
+to test how much the modification affects your outputs.
 All these points also apply to imputation of missing values and other distributional patterns.
 As a general rule, never overwrite or delete original data during the construction process.
 Always create derived indicators with new names.
