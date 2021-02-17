@@ -17,11 +17,11 @@ but also for the smooth implementation of a project.
 
  <!-- Chapter overview -->
 In this chapter, we discuss the necessary steps to transform
-cleaned raw data into informative analysis outputs such as tables and figures.
+cleaned data into informative analysis outputs such as tables and figures.
 The suggested workflow starts where the last chapter ended:
 with the outputs of data cleaning.
 The first section covers variable construction:
-transforming the raw data into economically meaningful indicators.
+transforming the cleaned data into economically meaningful indicators.
 The second section discusses the analysis code itself.
 We do not offer instructions on how to conduct specific analyses,
 as that is determined by research design,
@@ -116,7 +116,7 @@ planned during research design\index{research design},
 with the pre-analysis plan serving as a guide.\index{pre-analysis plan}
 During construction, data will typically be
 reshaped, merged, and aggregated to change the level of the data points
-from the **unit of *observation* ** in the raw data
+from the **unit of *observation* ** in the original dataset
 to the **unit of *analysis* **.^[
 	More details on the concepts of unit of observations
 	and unit of analysis
@@ -274,7 +274,7 @@ and to be extensively documented, separately from other data construction tasks.
 ```{block2, type = 'ex'}
 ### Demand for Safe Spaces Case study: Integrating Multiple Data Sources
 
-The raw crowsourced data acquired for the *Demand for Safe Spaces* study was received by the research team in a different level of observation than the one relevant for analysis. The unit of analysis is a ride, and each ride was represented in the raw data by three rows, one for questions answered before boarding the train, one for those answered during the trip and one for those answered after leaving the train. The *Tidying raw data* example explains how the team created three different intermediate datasets for each of these tasks. To create the complete ride-level dataset, the team combined the individual task datasets. The code below shows how the team assured that all observations had merged as expected. Two different approaches depending on what you expect are shown.
+The raw crowsourced data acquired for the *Demand for Safe Spaces* study was received by the research team in a different level of observation than the one relevant for analysis. The unit of analysis is a ride, and each ride was represented in the original dataset by three rows, one for questions answered before boarding the train, one for those answered during the trip and one for those answered after leaving the train. The *Tidying data* example explains how the team created three different intermediate datasets for each of these tasks. To create the complete ride-level dataset, the team combined the individual task datasets. The code below shows how the team assured that all observations had merged as expected. Two different approaches depending on what you expect are shown.
 
 The first code chunk shows the quality assurance protocol for when the team expected that all observations would exist in all datasets so that each merge would have only matched observations. To test that this was the case the team used the option `assert(3)`. When two dataset are merged in Stata each observations get the code 1, 2 or 3. 1 means that the observation only existed in the dataset in memory (called the "master data"), 2 means that the observation existed only in the other dataset (called the “using data”) and 3 means that they existed in both. `assert(3)` tests that all observation existed in both dataset and was coded as 3.
 
