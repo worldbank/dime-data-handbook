@@ -1,4 +1,4 @@
-* Set up reproducible randmomization - VERSIONING, SORTING and SEEDING
+* Set up reproducible randomization - VERSIONING, SORTING and SEEDING
     ieboilstart , v(13.1)    // Version
     `r(version)'             // Version
     sysuse bpwide.dta, clear // Load data
