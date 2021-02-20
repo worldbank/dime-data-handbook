@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Conducting reproducible, transparent, and credible research | Development Research in Practice   The DIME Analytics Data Handbook</title>
+  <meta name="description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Conducting reproducible, transparent, and credible research | Development Research in Practice   The DIME Analytics Data Handbook" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://worldbank.github.io/dime-data-handbook/" />
+  <meta property="og:image" content="https://worldbank.github.io/dime-data-handbook//img/cover.png" />
+  <meta property="og:description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
+  <meta name="github-repo" content="worldbank/dime-data-handbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Conducting reproducible, transparent, and credible research | Development Research in Practice   The DIME Analytics Data Handbook" />
+  
+  <meta name="twitter:description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
+  <meta name="twitter:image" content="https://worldbank.github.io/dime-data-handbook//img/cover.png" />
+
+<meta name="author" content="Kristoffer Bjarkefur, Luiza Cardoso de Andrade, Benjamin Daniels, Maria Ruth Jones" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="collaboration.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Development Research in Practice <br> The DIME Analytics Data Handbook</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li><a href="index.html#published-by-dime-analytics">Published by <br> <span>DIME Analytics</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the authors</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html"><i class="fa fa-check"></i>Feedback</a><ul>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html#how-to-contribute"><i class="fa fa-check"></i>How to contribute</a></li>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html#already-addressed-errata"><i class="fa fa-check"></i>Already addressed errata</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="abbreviations.html"><a href="abbreviations.html"><i class="fa fa-check"></i>Abbreviations</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#how-to-read-this-book"><i class="fa fa-check"></i>How to read this book</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#the-dime-wiki-a-complementary-resource"><i class="fa fa-check"></i>The DIME Wiki: A complementary resource</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#standardizing-data-work"><i class="fa fa-check"></i>Standardizing data work</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#standardizing-coding-practices"><i class="fa fa-check"></i>Standardizing coding practices</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#the-team-behind-this-book"><i class="fa fa-check"></i>The team behind this book</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#looking-ahead"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>1</b> Conducting reproducible, transparent, and credible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#developing-a-credible-research-project"><i class="fa fa-check"></i>Developing a credible research project</a><ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#registering-research-studies"><i class="fa fa-check"></i>Registering research studies</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#writing-pre-analysis-plans"><i class="fa fa-check"></i>Writing pre-analysis plans</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#publishing-registered-reports"><i class="fa fa-check"></i>Publishing registered reports</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#conducting-research-transparently"><i class="fa fa-check"></i>Conducting research transparently</a><ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#documenting-data-acquisition-and-analysis"><i class="fa fa-check"></i>Documenting data acquisition and analysis</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#cataloging-and-archiving-data"><i class="fa fa-check"></i>Cataloging and archiving data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#analyzing-data-reproducibly"><i class="fa fa-check"></i>Analyzing data reproducibly</a><ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#preparing-a-reproducibility-package"><i class="fa fa-check"></i>Preparing a reproducibility package</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#looking-ahead-1"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>2</b> Setting the stage for effective and efficient collaboration</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-a-collaborative-work-environment"><i class="fa fa-check"></i>Preparing a collaborative work environment</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#setting-up-your-computer"><i class="fa fa-check"></i>Setting up your computer</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#establishing-effective-documentation-practices"><i class="fa fa-check"></i>Establishing effective documentation practices</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#setting-up-your-code-environment"><i class="fa fa-check"></i>Setting up your code environment</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-code-and-data-for-replicable-research"><i class="fa fa-check"></i>Organizing code and data for replicable research</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-files-and-folders"><i class="fa fa-check"></i>Organizing files and folders</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#establishing-common-file-formats"><i class="fa fa-check"></i>Establishing common file formats</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#using-version-control"><i class="fa fa-check"></i>Using version control</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#writing-code-that-others-can-read"><i class="fa fa-check"></i>Writing code that others can read</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#writing-code-that-others-can-run"><i class="fa fa-check"></i>Writing code that others can run</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-to-handle-confidential-data-ethically"><i class="fa fa-check"></i>Preparing to handle confidential data ethically</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#seeking-ethical-approval"><i class="fa fa-check"></i>Seeking ethical approval</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#obtaining-informed-consent"><i class="fa fa-check"></i>Obtaining informed consent</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#ensuring-research-subject-privacy"><i class="fa fa-check"></i>Ensuring research subject privacy</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#looking-ahead-2"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>3</b> Establishing a measurement framework</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#documenting-data-needs"><i class="fa fa-check"></i>Documenting data needs</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#developing-a-data-linkage-table"><i class="fa fa-check"></i>Developing a data linkage table</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructing-master-datasets"><i class="fa fa-check"></i>Constructing master datasets</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-data-flowcharts"><i class="fa fa-check"></i>Creating data flowcharts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#translating-research-design-to-data-needs"><i class="fa fa-check"></i>Translating research design to data needs</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#applying-common-research-designs-to-data"><i class="fa fa-check"></i>Applying common research designs to data</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#including-multiple-time-periods"><i class="fa fa-check"></i>Including multiple time periods</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#incorporating-monitoring-data"><i class="fa fa-check"></i>Incorporating monitoring data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-research-design-variables-by-randomization"><i class="fa fa-check"></i>Creating research design variables by randomization</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#randomizing-sampling-and-treatment-assignment"><i class="fa fa-check"></i>Randomizing sampling and treatment assignment</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#programming-reproducible-random-processes"><i class="fa fa-check"></i>Programming reproducible random processes</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#implementing-clustered-or-stratified-designs"><i class="fa fa-check"></i>Implementing clustered or stratified designs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#performing-power-calculations"><i class="fa fa-check"></i>Performing power calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#looking-ahead-3"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i><b>4</b> Acquiring development data</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#acquiring-data-ethically-and-reproducibly"><i class="fa fa-check"></i>Acquiring data ethically and reproducibly</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#determining-data-ownership"><i class="fa fa-check"></i>Determining data ownership</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#obtaining-data-licenses"><i class="fa fa-check"></i>Obtaining data licenses</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#documenting-data-received-from-partners"><i class="fa fa-check"></i>Documenting data received from partners</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-high-quality-data-using-electronic-surveys"><i class="fa fa-check"></i>Collecting high-quality data using electronic surveys</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#designing-survey-instruments"><i class="fa fa-check"></i>Designing survey instruments</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#piloting-survey-instruments"><i class="fa fa-check"></i>Piloting survey instruments</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#programming-electronic-survey-instruments"><i class="fa fa-check"></i>Programming electronic survey instruments</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#using-electronic-survey-features-to-enhance-data-quality"><i class="fa fa-check"></i>Using electronic survey features to enhance data quality</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#training-enumerators"><i class="fa fa-check"></i>Training enumerators</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#checking-data-quality-in-real-time"><i class="fa fa-check"></i>Checking data quality in real time</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#handling-data-securely"><i class="fa fa-check"></i>Handling data securely</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#encrypting-data"><i class="fa fa-check"></i>Encrypting data</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-and-storing-data-securely"><i class="fa fa-check"></i>Collecting and storing data securely</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#backing-up-original-data"><i class="fa fa-check"></i>Backing up original data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#looking-ahead-4"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="processing.html"><a href="processing.html"><i class="fa fa-check"></i><b>5</b> Cleaning and processing research data</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#making-data-tidy"><i class="fa fa-check"></i>Making data “tidy”</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#establishing-a-unique-identifier"><i class="fa fa-check"></i>Establishing a unique identifier</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#tidying-data"><i class="fa fa-check"></i>Tidying data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#assuring-data-quality"><i class="fa fa-check"></i>Assuring data quality</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-data-quality-checks"><i class="fa fa-check"></i>Implementing data quality checks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#processing-confidential-data"><i class="fa fa-check"></i>Processing confidential data</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#protecting-research-subject-privacy"><i class="fa fa-check"></i>Protecting research subject privacy</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-de-identification"><i class="fa fa-check"></i>Implementing de-identification</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#cleaning-and-preparing-data-for-analysis"><i class="fa fa-check"></i>Cleaning and preparing data for analysis</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#exploring-the-data"><i class="fa fa-check"></i>Exploring the data</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#correcting-data-points"><i class="fa fa-check"></i>Correcting data points</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#recoding-and-annotating-data"><i class="fa fa-check"></i>Recoding and annotating data</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#documenting-data-cleaning"><i class="fa fa-check"></i>Documenting data cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#looking-ahead-5"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>6</b> Constructing and analyzing research data</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-datasets"><i class="fa fa-check"></i>Creating analysis datasets</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#organizing-data-analysis-workflows"><i class="fa fa-check"></i>Organizing data analysis workflows</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#integrating-multiple-data-sources"><i class="fa fa-check"></i>Integrating multiple data sources</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-variables"><i class="fa fa-check"></i>Creating analysis variables</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#documenting-variable-construction"><i class="fa fa-check"></i>Documenting variable construction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#writing-analysis-code"><i class="fa fa-check"></i>Writing analysis code</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#organizing-analysis-code"><i class="fa fa-check"></i>Organizing analysis code</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-reproducible-tables-and-graphs"><i class="fa fa-check"></i>Creating reproducible tables and graphs</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#managing-outputs"><i class="fa fa-check"></i>Managing outputs</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#exporting-analysis-outputs"><i class="fa fa-check"></i>Exporting analysis outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#increasing-efficiency-of-analysis-with-dynamic-documents"><i class="fa fa-check"></i>Increasing efficiency of analysis with dynamic documents</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#conducting-dynamic-exploratory-analysis"><i class="fa fa-check"></i>Conducting dynamic exploratory analysis</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#using-latex-for-dynamic-research-outputs"><i class="fa fa-check"></i>Using LaTeX for dynamic research outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#looking-ahead-6"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="publication.html"><a href="publication.html"><i class="fa fa-check"></i><b>7</b> Publishing reproducible research outputs</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-papers-and-reports"><i class="fa fa-check"></i>Publishing research papers and reports</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#using-latex-for-written-documents"><i class="fa fa-check"></i>Using LaTeX for written documents</a></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#getting-started-with-latex-as-a-team"><i class="fa fa-check"></i>Getting started with LaTeX as a team</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#preparing-research-data-for-publication"><i class="fa fa-check"></i>Preparing research data for publication</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#de-identifying-data-for-publication"><i class="fa fa-check"></i>De-identifying data for publication</a></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-datasets"><i class="fa fa-check"></i>Publishing research datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-a-reproducible-research-package"><i class="fa fa-check"></i>Publishing a reproducible research package</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#organizing-code-for-reproducibility"><i class="fa fa-check"></i>Organizing code for reproducibility</a></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#releasing-a-reproducibility-package"><i class="fa fa-check"></i>Releasing a reproducibility package</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#looking-ahead-7"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bringing-it-all-together.html"><a href="bringing-it-all-together.html"><i class="fa fa-check"></i>Bringing it all together</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="coding.html"><a href="coding.html"><i class="fa fa-check"></i><b>A</b> The DIME Analytics Coding Guide</a><ul>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-good-code"><i class="fa fa-check"></i>Writing good code</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-the-code-examples-in-this-book"><i class="fa fa-check"></i>Using the code examples in this book</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#the-dime-analytics-stata-style-guide"><i class="fa fa-check"></i>The DIME Analytics Stata Style Guide</a><ul>
+<li class="chapter" data-level="A.0.1" data-path="coding.html"><a href="coding.html#commenting-code"><i class="fa fa-check"></i><b>A.0.1</b> Commenting code</a></li>
+<li class="chapter" data-level="A.0.2" data-path="coding.html"><a href="coding.html#abbreviating-commands"><i class="fa fa-check"></i><b>A.0.2</b> Abbreviating commands</a></li>
+<li class="chapter" data-level="A.0.3" data-path="coding.html"><a href="coding.html#abbreviating-variable-names"><i class="fa fa-check"></i><b>A.0.3</b> Abbreviating variable names</a></li>
+<li class="chapter" data-level="A.0.4" data-path="coding.html"><a href="coding.html#writing-loops"><i class="fa fa-check"></i><b>A.0.4</b> Writing loops</a></li>
+<li class="chapter" data-level="A.0.5" data-path="coding.html"><a href="coding.html#using-whitespace"><i class="fa fa-check"></i><b>A.0.5</b> Using whitespace</a></li>
+<li class="chapter" data-level="A.0.6" data-path="coding.html"><a href="coding.html#writing-conditional-expressions"><i class="fa fa-check"></i><b>A.0.6</b> Writing conditional expressions</a></li>
+<li class="chapter" data-level="A.0.7" data-path="coding.html"><a href="coding.html#writing-file-paths"><i class="fa fa-check"></i><b>A.0.7</b> Writing file paths</a></li>
+<li class="chapter" data-level="A.0.8" data-path="coding.html"><a href="coding.html#line-breaks"><i class="fa fa-check"></i><b>A.0.8</b> Line breaks</a></li>
+<li class="chapter" data-level="A.0.9" data-path="coding.html"><a href="coding.html#using-boilerplate-code"><i class="fa fa-check"></i><b>A.0.9</b> Using boilerplate code</a></li>
+<li class="chapter" data-level="A.0.10" data-path="coding.html"><a href="coding.html#miscellaneous-notes"><i class="fa fa-check"></i><b>A.0.10</b> Miscellaneous notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>B</b> DIME Analytics Resource Directory</a><ul>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#public-resources-and-tools"><i class="fa fa-check"></i>Public resources and tools</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#flagship-training-courses"><i class="fa fa-check"></i>Flagship training courses</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#software-tools-and-trainings"><i class="fa fa-check"></i>Software tools and trainings</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="design.html"><a href="design.html"><i class="fa fa-check"></i><b>C</b> Research design for impact evaluation</a><ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#understanding-causality-inference-and-identification"><i class="fa fa-check"></i>Understanding causality, inference, and identification</a><ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#estimating-treatment-effects-using-control-groups"><i class="fa fa-check"></i>Estimating treatment effects using control groups</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#designing-experimental-and-quasi-experimental-research"><i class="fa fa-check"></i>Designing experimental and quasi-experimental research</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#obtaining-treatment-effects-from-specific-research-designs"><i class="fa fa-check"></i>Obtaining treatment effects from specific research designs</a><ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#cross-sectional-designs"><i class="fa fa-check"></i>Cross-sectional designs</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#difference-in-differences"><i class="fa fa-check"></i>Difference-in-differences</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#regression-discontinuity"><i class="fa fa-check"></i>Regression discontinuity</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#instrumental-variables"><i class="fa fa-check"></i>Instrumental variables</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#matching"><i class="fa fa-check"></i>Matching</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#synthetic-control"><i class="fa fa-check"></i>Synthetic control</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Development Research in Practice <br> The DIME Analytics Data Handbook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="reproducibility" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Conducting reproducible, transparent, and credible research</h1>
+<p>Policy decisions are made every day using the results of development research,
+and these have wide-reaching effects on the lives of millions.
+As the emphasis on evidence-based policy grows,
+so too does the scrutiny under which research methods and results are placed.
+Three major components make up this scrutiny:
+credibility, transparency, and reproducibility.
+These three components contribute to one simple idea:
+research should be high quality and well-documented.
+Research consumers, including the policy makers who will use the evidence to make decisions,
+should be able to easily examine and recreate such evidence.
+In this framework, it is useful to think of research as a public service
+that requires researchers as a group to be accountable for their methods.
+This means acting to collectively protect the credibility of development research
+by following modern practices for research planning and documentation.
+Across the social sciences, the open science movement has been fueled
+by concerns about the proliferation of low-quality research practices,
+data and code that are inaccessible to the public,
+analytical errors in major research papers,
+and in some cases even outright fraud.
+While the development research community has not yet
+experienced major scandals,
+it has become clear that there are necessary improvements to make
+in the way that code and data are handled as part of research.
+Moreover, having common standards and practices
+for creating and sharing materials, code, and data with others
+will improve the value of the work we do.</p>
+<p>In this chapter, we outline principles and practices that help to ensure
+research consumers can be confident in the conclusions reached.
+We discuss each of the three components –
+credibility, transparency, and reproducibility – in turn.
+The first section covers research credibility.
+It presents three popular methods to commit to particular research questions or methods,
+and avoid potential criticisms of cherry-picking results:
+registration, pre-analysis plans, and registered reports.
+The second section discusses how to apply principles of transparency to all research processes,
+which allows research teams to be more efficient, and
+research consumers to fully understand and evaluate research quality.
+The final section provides guidance on how to make your research fully reproducible,
+and explains why publishing replication materials is an important research contribution in its own right.</p>
+
+<div class="summary">
+<h3 id="summary-conducting-reproducible-transparent-and-credible-research" class="unnumbered">Summary: Conducting reproducible, transparent, and credible research</h3>
+<p>This chapter describes three pillars of a high-quality empirical research project: credibility, transparency and reproducibility. These steps and outputs discussed in this chapter should be prepared at the beginning of a project and revisited through the publication process.</p>
+<p><strong>1. Credibility:</strong> to enhance credibility, you should pre-commit research decisions as much as feasible</p>
+<ul>
+<li><em>Register</em> research studies to provide a record of every project, so all evidence about a topic can be maintained; <em>pre-register</em> studies to protect design choices from later criticism.</li>
+<li>Write <em>pre-analysis plans</em> to both strengthen the conclusions drawn from those analyses and increase efficiency by creating a road map for project data work.</li>
+<li>Publish a <em>registered report</em> to combine the benefits of the two steps above with a formal peer review process and a conditional acceptance of the final results of the specified research.</li>
+</ul>
+<p><strong>2. Transparency:</strong> you should document all data acquisition and analysis decisions during the project lifecycle, with a clear understanding of what will be released publicly and plan for how those will be published</p>
+<ul>
+<li>Develop and publish comprehensive <em>project documentation</em>, especially instruments for data collection or acquisition that may be needed to prove ownership rights and facilitate re-use of the data.</li>
+<li>Retain all <em>original data</em> in an unaltered form and archive it appropriately, in preparation for it to be de-identified and published at the appropriate time.</li>
+<li>Write all data processing and analysis <em>code</em> with public release in mind.</li>
+</ul>
+<p><strong>3. Reproducibility:</strong> Prepare analytical work that can be verified and reproduced by others. This means</p>
+<ul>
+<li>Understanding what <em>archives and repositories</em> are appropriate for your various materials</li>
+<li>Preparing for <em>legal documentation and licensing</em> of data, code, and research products</li>
+<li>Initiating <em>reproducible workflows</em> that will easily transfer within and outside of your research team and the necessary documentation for others to understand and use your materials</li>
+</ul>
+<h4 id="takeaways" class="unnumbered">Takeaways</h4>
+<p><strong>TTLs/PIs will:</strong></p>
+<ul>
+<li>Develop and document the research design and the corresponding data required to execute it</li>
+<li>Guide the research team in structuring and completing project registration</li>
+<li>Understand the team’s future rights and responsibilities regarding data, code, and research publication</li>
+<li>Determine what methods of pre-commitment are appropriate and lead the team in preparing them</li>
+</ul>
+<p><strong>RAs will:</strong></p>
+<ul>
+<li>Rework outputs and documentation to meet specific technical requirements of registries, funders, publishers, or other governing bodies</li>
+<li>Inform the team leadership whenever methodologies, data strategies, or their planned executions are not sufficiently clear or are not appropriately documented or communicated</li>
+<li>Familiarize themselves with best practices for carrying out reproducible and transparent research, and initiate those practices within the research team</li>
+</ul>
+<h4 id="key-resources" class="unnumbered">Key Resources</h4>
+<ul>
+<li>Register your research study: <a href="https://dimewiki.worldbank.org/Study_Registration" class="uri">https://dimewiki.worldbank.org/Study_Registration</a></li>
+<li>Create a pre-analysis plan: <a href="https://dimewiki.worldbank.org/Pre-Analysis_Plan" class="uri">https://dimewiki.worldbank.org/Pre-Analysis_Plan</a></li>
+<li>Prepare to document research decisions: <a href="https://dimewiki.worldbank.org/Data_Documentation" class="uri">https://dimewiki.worldbank.org/Data_Documentation</a></li>
+<li>Publish data in a trusted repository: <a href="https://dimewiki.worldbank.org/Publishing_Data" class="uri">https://dimewiki.worldbank.org/Publishing_Data</a></li>
+<li>Prepare and publish a reproducibility package: <a href="https://dimewiki.worldbank.org/Reproducible_Research" class="uri">https://dimewiki.worldbank.org/Reproducible_Research</a></li>
+</ul>
+</div>
+
+<div id="developing-a-credible-research-project" class="section level2 unnumbered">
+<h2>Developing a credible research project</h2>
+<!-- Why development researchers should care about transparency -->
+<p>The evidentiary value of research is traditionally a function of design choices,<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>
+such as powered through sampling and randomization,
+and robustness to alternative specifications and definitions.
+One frequent target for critics of such research<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>
+is the fact that most researchers have a lot of leeway
+in selecting their projects, results, or outcomes
+<em>after</em> already having had the experience of implementing a project
+or collecting data in the field,
+which increases the likelihood of finding “false positive”
+results that are not true outside carefully-selected data.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>
+Credible research design methods are key to maintaining credibility
+in these choices and avoiding serious errors.
+This is especially relevant for research that relies on original data sources,
+from innovative big data sources to unique surveys.
+Development researchers should take these concerns seriously.
+Such flexibility can be a significant issue for the quality of evidence overall,
+particularly if researchers believe that certain types of results
+are substantially better for their careers or their publication chances.</p>
+<p>This section presents three popular methods
+for researchers to commit to particular research questions or methods,
+and to avoid potential criticisms of cherry-picking results for publication:
+registration, pre-analysis plans, and registered reports.
+Each of these methods involves documenting specific research design components,
+ideally before carrying out the analytical component or extensively exploring the data.
+Study registration provides formal notice that a study is being attempted
+and creates a hub for materials and updates about the study results.
+Pre-analysis plans are a more formal commitment
+to use specific methods on particular questions.
+Writing and releasing a pre-analysis plan
+in advance of working with data is used to protect the credibility
+of approaches that have a high likelihood of producing false results.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>
+Finally, registered reports allow researchers to approach research planning itself
+as a process at the level of a full peer review.
+Registered reports enable close scrutiny of a research design,
+a feedback and improvement process,
+and a commitment from a publisher to publish the study
+based on the credibility of the design, rather than the specific results.</p>
+<div id="registering-research-studies" class="section level3 unnumbered">
+<h3>Registering research studies</h3>
+<!-- Pre-registration -->
+<p>Registration of research studies is an increasingly common practice,
+and more journals are beginning to require
+the registration of studies they publish.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>
+Study registration intended to ensure that a complete record of research inquiry is easily available.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>
+Registering research studies ensures that future scholars can quickly
+find out what work has been carried out on a given question,
+even if some or all of the work done never results in formal publication.
+Registration of studies is increasingly required by publishers
+and can be done before, during, or after the study
+with essential information about the study purpose.
+Some currently popular registries are operated by the
+<strong>AEA</strong>,<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>
+<strong>3ie</strong>,<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>
+<strong>eGAP</strong>,<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>
+and <strong>OSF</strong><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>.
+They all have different target audiences and features,
+so select one that is appropriate to your work.
+Study registration should be feasible for all projects,
+as registries are typically free to access and can be initially submitted with minimal information about the project.
+A generally-acceptable practice will be to gradually revise and expand the level of detail in a registration over time,
+adding more information as the planning for the project progresses.
+</p>
+<p>Pre-registering studies before they begin is an extension of this principle.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>
+Registration of a study before it goes to implementation or data acquisition,
+particularly when specific hypotheses are included in the registration,
+provides a simple and low-effort way for researchers
+to conclusively demonstrate that a particular line of inquiry
+was not generated by the process of data collection or analysis itself.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a>
+Pre-registrations need not provide exhaustive details about how
+a particular hypothesis will be approached; only that it will be.
+Pre-registering specific individual elements of research design or analysis
+can be highly valuable for the credibility of the research
+and requires only minor time investment or administrative effort.
+For this reason, the DIME team requires pre-registration of all studies
+in a public database with at least some primary hypotheses prespecified,
+prior to providing funding for impact evaluation research.</p>
+
+<div class="ex">
+<h3 id="demand-for-safe-spaces-case-study-registering-research-studies">Demand for Safe Spaces Case Study: Registering Research Studies</h3>
+<p>The experimental component of the <em>Demand for Safe Spaces</em> study was registered at the Registry for International Development Impact Evaluations (RIDIE) under ID 5a125fecae423.</p>
+<p>Highlights from the Registry:</p>
+<ul>
+<li><em>Indicated evaluation method:</em> both primary method (randomized control trial) and additional methods (difference-in-difference/fixed effects).</li>
+<li><em>Listed key outcome variables:</em> take-up of rides in women-only car (binary), occurrence of harassment or crime during ride (binary), self-reported well-being after each ride, overall subjective well-being, Implicit Association Test D-Score.</li>
+<li><em>Specified primary hypotheses to be tested:</em> The women-only car reduces harassment experienced by women who ride it; Riding the women’s-only car improves psychological well-being of those who ride it; Women are willing to forego income to ride the women’s-only car.</li>
+<li><em>Specified secondary research question and methods:</em> supplementary research methods (implicit association test and platform survey) to help address an additional hypothesis: The women’s-only car is associated with a social norm that assigns responsibility to women for avoiding harassment.</li>
+<li><em>Provided sample size for each study arm:</em> number of individual participants, number of baseline rides, number of rides during price experiment, number of car-assigned rides, number of expected participants in implicit association test.</li>
+<li><em>Described data sources:</em> the study relied on data previously collected (through the mobile app) and data to-be-collected (through platform surveys and implicit association tests).</li>
+<li><em>Registration status:</em> categorized as a non-prospective registry, as the crowdsourced data had already been received and processed. It was important to the team to ensure the credibility of additional data collection and secondary research questions by registering the study.</li>
+</ul>
+<blockquote>
+<p>The RIDIE registry can be accessed at <a href="https://ridie.3ieimpact.org/index.php?r=search/detailView&amp;id=588" class="uri">https://ridie.3ieimpact.org/index.php?r=search/detailView&amp;id=588</a></p>
+</blockquote>
+</div>
+
+</div>
+<div id="writing-pre-analysis-plans" class="section level3 unnumbered">
+<h3>Writing pre-analysis plans</h3>
+<!-- Pre-analysis plans -->
+<p>If a research team has a large amount of flexibility
+to define how they approach a particular hypothesis,
+study registration may not be sufficient to avoid the criticism of
+“hypothesizing after the results are known”, or HARKing.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a>
+Examples of such flexibility include a broad range
+of concrete measures that could be argued to measure to an abstract concept;
+future choices about sample inclusion or exclusion;
+or decisions about how to construct derived indicators.
+There are a variety of templates and checklists of details to include.<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>
+When the researcher is collecting a large amount of information
+and has leverage over even a moderate number of these options,
+it is almost guaranteed that they can come up with any result they like.<a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a></p>
+<p>Pre-analysis plans (PAPs) can be used to assuage these concerns
+by specifying some set of analyses the researchers intend to conduct.<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a>
+The pre-analysis plan should be written up in detail
+for areas that are known to provide a large amount of leeway
+for researchers to make later decisions,
+particularly for things like interaction effects or subgroup analysis.<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a>
+Pre-analysis plans shoud not, however, be viewed as binding the researcher’s hands.<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a>
+Depending on what is known about the study at the time of writing,
+pre-analysis plans can vary widely in the amount of detail they should include.<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>
+The core function of a PAP is to carefully and explicitly describe
+one or more specific data-driven inquiries,
+as specific formulations are often very hard to justify in retrospect
+with data or projects that potentially provide many avenues to approach
+a single theoretical question.<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>
+Anything outside the original plan is just as interesting and valuable
+as it would have been if the plan was never published;
+but having pre-committed to the details of a particular inquiry makes its results
+immune to a wide range of criticisms of specification searching or multiple testing.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a></p>
+
+<div class="ex">
+<h3 id="demand-for-safe-spaces-case-study-writing-pre-analysis-plans">Demand for Safe Spaces Case Study: Writing Pre-Analysis Plans</h3>
+<p>Although the <em>Demand for Safe Spaces</em> study did not publish a formal pre-analysis plan, the team published a concept note in 2015, which includes much of the same information as a typical pre-analysis plan. The Concept Note was updated in May 2017 to include new secondary research questions. The Concept Note, prepared before fieldwork began, was subject to review and approval within the World Bank and from a technical committee including blinded feedback from external academics. The Concept Note specified the planned study along the following dimensions:</p>
+<ul>
+<li><em>Theory of change:</em> the main elements of the intervention, and the hypothesized causal chain from inputs, through activities and outputs, to outcomes.</li>
+<li><em>Hypotheses</em> derived from the theory of change</li>
+<li><em>Main evaluation question(s)</em> to be addressed by the study</li>
+<li><em>List of main outcomes of interest,</em> including outcome name, definition, level of measurement</li>
+<li><em>Evaluation design,</em> including a precise description of the identification strategy for each research questions and description of treatment and control groups</li>
+<li><em>Sampling strategy and sample size calculation,</em> detailing the assumptions made</li>
+<li><em>Description of all quantitative data collection instruments</em></li>
+<li><em>Data processing and analysis:</em> the statistical methods to be used, the exact specification(s) to be run, including clustering of standard errors; key groups for heterogeneity analysis; adjustments for multiple hypothesis testing; strategy to test (and correct) for bias.</li>
+</ul>
+<blockquote>
+<p>A version of the study’s Concept Note is available at <a href="https://github.com/worldbank/rio-safe-space/blob/master/Online%20Appendices/Supplemental%20Material/Project%20Concept%20Note.pdf" class="uri">https://github.com/worldbank/rio-safe-space/blob/master/Online%20Appendices/Supplemental%20Material/Project%20Concept%20Note.pdf</a></p>
+</blockquote>
+</div>
+
+</div>
+<div id="publishing-registered-reports" class="section level3 unnumbered">
+<h3>Publishing registered reports</h3>
+<!-- Registered reports -->
+<p><strong>Registered reports</strong> take the process of pre-specifying a complex research design
+to the level of a formal publication.<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>
+In a registered report, a journal or other publisher
+will peer review and conditionally accept a specific study for publication,
+typically then guaranteeing the acceptance of a later publication
+that carries out the analysis described in the registered report.
+While far stricter and more complex to carry out than
+ordinary study registration or pre-analysis planning,
+the registered report has the added benefit
+of peer review and expert feedback
+on the design and structure of the proposed study.<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a>
+Registered reports are never required,
+but they are designed to reward researchers
+who are able to provide a large amount of advance detail for their projects,
+researchers who want to secure publication interest regardless of results,
+or researchers who want to use methods that may be novel or unusual.</p>
+<p>This process is in part meant to combat the “file-drawer problem”<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a>
+and ensure that researchers are transparent in the sense that
+all promised results obtained from registered-report studies are actually published.
+This approach has the advantage of pre-specifying in great detail
+a complete research and analytical design,
+and securing a commitment for publication regardless of the outcome.
+This may be of special interest for researchers
+studying events or programs where either there is a substantial risk
+that they would either not be able to publish a null or negative result,<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a>
+or where they may wish to avoid any pressure toward finding a particular result,
+for example when the program or event is the subject of substantial social or political pressures.
+As with pre-registration and pre-analysis,
+nothing in a registered report should be understood
+to prevent a researcher from pursuing additional avenues of inquiry
+once the study is complete, either in the same or separate research outputs.</p>
+</div>
+</div>
+<div id="conducting-research-transparently" class="section level2 unnumbered">
+<h2>Conducting research transparently</h2>
+<p>Transparent research exposes not only the code,
+but all research processes involved in developing the analytical approach.
+This means that readers are able to judge for themselves whether the research was done well
+and the decision-making process was sound.
+If the research is well-structured, and all of the relevant documentation<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>
+is shared, it is easy for the reader to understand the analysis fully.
+Researchers that expect process transparency also have an incentive to make better decisions,
+be skeptical and thorough about their assumptions,
+and save themselves time,
+because transparent research methods are labor-saving over the complete course of a project.</p>
+<p>Clearly documenting research work is necessary
+to allow others to evaluate exactly what data was acquired and how it was used
+to obtain a particular result.
+Many development research projects are purpose-built
+to address specific questions,
+and often use unique data, novel methods, or small samples.
+These approaches can yield new insights into essential academic questions,
+but need to be transparently documented so they can be reviewed
+or replicated by others in the future.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a>
+Unlike disciplines where data is more standardized
+or where research is more oriented around secondary data,
+the exact data used in a development project
+has often not been observed by anyone else in the past
+and may not be able to be re-collected by others in the future.
+Regardless of the novelty of study data,
+transparent documentation methods help ensure
+that data was collected and handled appropriately
+and that studies and interventions were implemented correctly.
+As with study registrations, project and data documentation
+should be released on external <strong>archival repositories</strong><a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>
+so they can always be accessed and verified.</p>
+<div id="documenting-data-acquisition-and-analysis" class="section level3 unnumbered">
+<h3>Documenting data acquisition and analysis</h3>
+<!-- Documenting a project carefully makes it more transparent -->
+<p>Documenting a project in detail greatly increases transparency.
+Many disciplines have a tradition of keeping a “lab notebook”,
+and adapting and expanding this process to create a
+lab-style workflow in the development field is a
+critical step towards more transparent practices.
+This means explicitly noting decisions as they are made,
+and explaining the process behind the decision-making.
+Careful documentation will also save the research team a lot of time during a project,
+as it prevents you from having the same discussion twice (or more!),
+since you have a record of why something was done in a particular way.
+There are a number of available tools
+that will contribute to producing documentation,
+but project documentation should always be an active and ongoing process,
+not a one-time requirement or retrospective task.
+New decisions are always being made as the plan begins contact with reality,
+and there is nothing wrong with sensible adaptation so long as it is recorded and disclosed.</p>
+<!-- Tools for transparency: GitHub, OSF -->
+<p>Email, however, is <em>not</em> a documentation service, because communications are rarely well-ordered,
+can be easily deleted, and are not available for future team members.
+At the very least, emails and other decision-making communications
+need to be archived and preserved (as, say, PDFs)
+in an organized manner so that they can be easily accessed and read by others in the future.
+There are also various software solutions for building proper documentation over time.
+Some work better for field records such as implementation decisions,
+research design, and survey development;
+others work better for recording data work and code development.
+The <strong>Open Science Framework</strong><a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a> provides one such solution,
+with integrated file storage, version histories, and collaborative wiki pages.
+<strong>GitHub</strong><a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a> provides a transparent documentation system
+through commit messages, issues, <code>README</code> files, and pull requests,<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a>
+in addition to version histories and wiki pages.
+Such services offer multiple different ways
+to record the decision process leading to changes and additions,
+track and register discussions, and manage tasks.
+These are flexible tools that can be adapted to different team and project dynamics.
+Services that log your research process can show things like modifications made in response to referee comments,
+by having tagged version histories at each major revision.
+They also allow you to use issue trackers
+to document the research paths and questions you may have tried to answer
+as a resource to others who have similar questions.
+Each project has specific requirements for data, code, and documentation management,
+and the exact transparency tools to use will depend on the team’s needs,
+but they should be agreed upon prior to project launch.
+This way, you can start building a project’s documentation as soon as you start making decisions.</p>
+</div>
+<div id="cataloging-and-archiving-data" class="section level3 unnumbered">
+<h3>Cataloging and archiving data</h3>
+<!-- Documenting survey instrument and survey code -->
+<p>Data and data collection methods should be fully cataloged, archived, and documented,
+whether you are collecting data yourself or receiving it from an outside partner.
+In some cases this is as simple as uploading
+a survey instrument or an index of datasets and a codebook to an archive.
+In other cases this will be more complex.
+Proper documentation of data collection will often require
+a detailed description of the overall sampling procedure.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>
+For example, settings with many overlapping strata,
+treatment arms, excluded observations, or resampling protocols
+might require extensive additional field work documentation.
+This documentation should be continuously updated
+and kept with the other study materials;
+it is often necessary to collate these materials
+for an appendix for publication in any case.</p>
+<!-- Preparing an initial catalog and release of data -->
+<p>When data is received from partners or collected in the field,
+the <strong>original data</strong> (including corrections)<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>
+should be immediately placed in a secure permanent storage system.
+Before analytical work begins, you should create a “for-publication”
+copy of the acquired dataset by removing potentially identifying information.
+This will become the original data, and must be
+placed in an archival repository where it can be cited.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>
+This can initially be done under embargo or with limited release,
+in order to protect your data and future work.
+This type of data depositing or archiving
+precedes publishing or releasing any data:
+data at this stage may still need to be embargoed
+or have other, potentially permanent, access restrictions,
+so you can instruct the archive to formally release the data later.
+If your planned analysis requires the use of unpublishable data,
+that data should always remain encrypted and be stored separately
+so it is clear what portions of the code will work with and without
+obtaining a license to the needed restricted-access data.</p>
+<p>Some project funders
+provide specific repositories in which they require the deposit of data they funded,<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>
+and you should take advantage of these when possible.
+If this is not provided, you must be aware of privacy issues
+with directly identifying data and questions of data ownership
+before uploading original data to any third-party server, whether public or not;
+this is a legal question for your home organization.
+If data that is required for analysis must be placed under restricted use or restricted access,
+including data that can never be distributed directly by you to third parties,
+develop a plan for storing that data separately from publishable information.
+This will allow you to maximize transparency by having a clear release package
+as well as providing instructions or developing a protocol for allowing access in the future
+for replicators or reviewers under appropriate access agreements.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>
+Regardless of these consideration, all data repositories,
+such as DIME’s standard, the World Bank Microdata Library<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a>
+and the World Bank Data Catalog,<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a>
+should create a record of the data’s existence
+and provide instructions on how access might be obtained by another researcher.
+For more on the steps required to prepare and publish a de-identified dataset,
+you can refer to chapters <a href="analysis.html#analysis">6</a> and <a href="publication.html#publication">7</a> of this book.
+Data publication should create a data citation and a <strong>digital object identifier (DOI)</strong>,<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a>
+or some other persistent index that you can use in your future work
+to unambiguously indicate the location of your data.
+This data publication should also include the methodological documentation
+as well as complete human-readable codebooks for all the variables there.</p>
+</div>
+</div>
+<div id="analyzing-data-reproducibly" class="section level2 unnumbered">
+<h2>Analyzing data reproducibly</h2>
+<!-- What is reproducibility -->
+<p>Reproducible research makes it easy
+for others to apply your techniques to new data
+or to implement a similar research design in a different context.
+Development research is rapidly moving in the direction of requiring adherence
+to specific reproducibility guidelines.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a>
+Major publishers and funders, most notably the American Economic Association,
+have taken steps to require that code and data
+are accurately reported, cited, and preserved as research outputs
+that can be accessed and verified by others.
+Making research reproducible in this way is a public good.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a>
+It enables other researchers to re-use code and processes
+to do their own work more easily and effectively in the future.
+Regardless of what is formally required,
+your code should be written neatly with clear instructions.
+It should be easy to read and understand.
+The corresponding analysis data should also be made accessible
+to the greatest legal and ethical extent that it can be.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a></p>
+<p>Common research standards from journals and funders feature both
+regulation and verification policies.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>
+Regulation policies require that authors
+provide reproducibility packages before publication
+which are then reviewed by the journal for completeness.<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a>
+Verification policies require that authors
+make certain materials available to the public,
+but their completeness is not a precondition for publication.
+Other journals have adopted guidance that offer checklists
+for reporting on whether and how various practices were implemented,
+without specifically requiring any.<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a>
+If you are personally or professionally motivated by citations,
+producing these kinds of resources can lead to that as well.
+Even if privacy considerations mean
+you will not be publishing some or all data or results,
+these practices are still valuable for project organization.</p>
+<p>Our recommendation, regardless of external requirements,
+is that your should prepare to release all data that can be published
+When data cannot be published, you should try to publish as much metadata as allowed,
+including information on how the data was obtained,
+what fields the data contains and aggregations or descriptive statistics.
+Even if the data cannot be published,
+it is rare for code files to contain restricted information,
+so the code should still be made available with clear instructions for obtaining usable data.
+Additionally, we recommend that reproducibility efforts be considered
+when designing the IRB and data licensing agreement for sensitive data,
+to establish acceptable conditions (such as a secure transfer or cold room)
+under which representatives from journals or other academics could access data
+may access the data for the purpose of independently reproducing results.</p>
+<div id="preparing-a-reproducibility-package" class="section level3 unnumbered">
+<h3>Preparing a reproducibility package</h3>
+<!-- What is transparency and how it makes research better -->
+<p>At DIME, all research outputs are required to satisfy <strong>computational reproducibility</strong>,<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a>
+which is an increasingly common requirement for publication.<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a>
+Before releasing a working paper,
+the research team submits a <strong>reproducibility package</strong> with de-identified data,
+and DIME Analytics verifies that the package produces
+exactly the same results that appear in the paper.<a href="#fn63" class="footnote-ref" id="fnref63"><sup>63</sup></a>
+The team also comments on whether the package includes sufficient documentation.
+The Analytics team organizes frequent peer code review for works in progress,
+and our general recommendation is to ensure that projects
+are <em>always</em> externally reproducible
+instead of waiting until the final stages to prepare this material.
+Once the computational reproducibility check is complete,
+the team receives a completed reproducibility certificate
+that also lists any publicly available materials to accompany the package,
+for use as an appendix to the publication.
+The team also organizes regular peer code review for works in progress,
+and our general recommendation is to ensure that projects
+are <em>always</em> externally reproducible
+instead of waiting until the final stages to prepare this material.
+In this way, code is continuously maintained with clear documentation,
+and should be easy to read and understand in terms of structure, style, and syntax.</p>
+<!-- Open data is necessary for reproducibility -->
+<p>For research to be reproducible,
+all code files for data cleaning, construction and analysis
+should be public, unless they contain confidential information.
+Nobody should have to guess what exactly comprises a given index,
+or what controls are included in your main regression,
+or whether or not you clustered standard errors correctly.
+That is, as a purely technical matter, nobody should have to “just trust you”,
+nor should they have to bother you to find out what would happen
+if any or all of these things were to be done slightly differently.<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a>
+Letting people play around with your data and code
+is a great way to have new questions asked and answered
+based on the valuable work you have already done.<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p>
+<p>A reproducibility package should include the complete materials needed
+to exactly re-create your final analysis,
+and be accessible and well-documented so that others can identify
+and adjust potential decision points that they are interested in.
+They should be able to easily identify:
+what data was used and how that data can be accessed;
+what code generates each table, figure and in-text number;
+how key outcomes are constructed;
+and how all project results can be reproduced.
+This is important to plan ahead for,
+so that you can make sure you obtain the proper
+documentations and permissions
+for all data, code, and materials you use throughout the project.
+A well-organized reproducibility package usually takes the form
+of a complete directory structure, including documentation and a master script,
+that leads the reader through the process and rationale
+for the code behind each of the outputs
+when considered in combination with the corresponding publication.</p>
+
+<div class="ex">
+<h3 id="demand-for-safe-spaces-case-study-preparing-a-reproducibility-package">Demand for Safe Spaces Case Study: Preparing a Reproducibility Package</h3>
+<p>The <em>Demand for Safe Spaces</em> team published all final study materials to a repository on the World Bank’s GitHub account. The repository holds the abstract of the paper, ungated access to the most recent version of the full paper, an online appendix including robustness checks and supplemental material, and the project’s reproducibility package.</p>
+<p>The data for this project is published in the Microdata Catalog, under the survey ID number BRA_2015-2016_DSS_v01_M. The Microdata catalog entry includes metadata on the study, documentation such as survey instruments and technical reports, terms of use for the data, and access to downloadable data files. Both the crowdsourced data and the platform survey data are accessible through the Microdata Catalog.</p>
+<p>The “Reproducibility Package” folder on GitHub contains all the instructions for executing the code. Among other things, it provides licensing information for the materials, software and hardware requirements including time needed to run, and instructions for replicators (which are included below). Finally, it has a detailed list of the code files that will run, their data inputs, and the outputs of each process.</p>
+<p><img src="examples/rep-package.png" /></p>
+<blockquote>
+<p>The Demand for Safe Space GitHub repository can be viewed at : <a href="https://github.com/worldbank/rio-safe-space" class="uri">https://github.com/worldbank/rio-safe-space</a></p>
+</blockquote>
+<blockquote>
+<p>The Microdata Catalog entry for the study is available at <a href="https://microdata.worldbank.org/index.php/catalog/3745" class="uri">https://microdata.worldbank.org/index.php/catalog/3745</a></p>
+</blockquote>
+</div>
+
+</div>
+</div>
+<div id="looking-ahead-1" class="section level2 unnumbered">
+<h2>Looking ahead</h2>
+<p>With the ongoing rise of empirical research and increased public scrutiny of scientific evidence,
+making analysis code and data available
+is necessary but not sufficient to guarantee that findings will be credible.
+Even if your methods are highly precise,
+your evidence is only as good as your data –
+and there are plenty of mistakes that can be made between
+establishing a design and generating final results that would compromise its conclusions.
+That is why transparency is key for research credibility.
+It allows other researchers, and research consumers,
+to verify the steps to a conclusion by themselves,
+and decide whether their standards for accepting a finding as evidence are met.
+Every investment you make in documentation and transparency up front
+protects your project down the line, particularly as these standards continue to tighten.
+With these principles in mind,
+the approach we take to the development, structure,
+and documentation of data work
+provides a system to implementing these ideas in everyday work.
+In the next chapter, we will discuss the workspace you need
+in order to work reproducibly in an efficient, organized, and secure manner.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="16">
+<li id="fn16"><p>
+<span class="citation">Angrist and Pischke (<a href="bibliography.html#ref-angrist2010credibility" role="doc-biblioref">2010</a>)</span>, <span class="citation">Ioannidis (<a href="bibliography.html#ref-ioannidis2005most" role="doc-biblioref">2005</a>)</span><a href="reproducibility.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<li id="fn17"><p><span class="citation">Ioannidis, Stanley, and Doucouliagos (<a href="bibliography.html#ref-ioannidis2017power" role="doc-biblioref">2017</a>)</span><a href="reproducibility.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p><span class="citation">Simmons, Nelson, and Simonsohn (<a href="bibliography.html#ref-simmons2011false" role="doc-biblioref">2011</a>)</span><a href="reproducibility.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p><span class="citation">Wicherts et al. (<a href="bibliography.html#ref-wicherts2016degrees" role="doc-biblioref">2016</a>)</span><a href="reproducibility.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p><span class="citation">Vilhuber, Turrito, and Welch (<a href="bibliography.html#ref-vilhuber2020report" role="doc-biblioref">2020</a>)</span><a href="reproducibility.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>
+More details on study registrations and
+links to additional resources can be found on the DIME Wiki:
+<a href="https://dimewiki.worldbank.org/Study_Registration" class="uri">https://dimewiki.worldbank.org/Study_Registration</a><a href="reproducibility.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>
+<a href="https://www.socialscienceregistry.org" class="uri">https://www.socialscienceregistry.org</a><a href="reproducibility.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p>
+<a href="https://ridie.3ieimpact.org" class="uri">https://ridie.3ieimpact.org</a><a href="reproducibility.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn24"><p>
+<a href="https://egap.org/content/registration" class="uri">https://egap.org/content/registration</a><a href="reproducibility.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p>
+<a href="https://osf.io/registries" class="uri">https://osf.io/registries</a><a href="reproducibility.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p><span class="citation">Nosek et al. (<a href="bibliography.html#ref-nosek2018preregistration" role="doc-biblioref">2018</a>)</span><a href="reproducibility.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<li id="fn27"><p>
+More details on how to pre-register your study
+and links to other resources can be found on the DIME Wiki:
+<a href="https://dimewiki.worldbank.org/Pre-Registration" class="uri">https://dimewiki.worldbank.org/Pre-Registration</a><a href="reproducibility.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<li id="fn28"><p><span class="citation">Kerr (<a href="bibliography.html#ref-kerr1998harking" role="doc-biblioref">1998</a>)</span><a href="reproducibility.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<li id="fn29"><p>
+We recommend this checklist:
+<a href="https://blogs.worldbank.org/impactevaluations/a-pre-analysis-plan-checklist" class="uri">https://blogs.worldbank.org/impactevaluations/a-pre-analysis-plan-checklist</a><a href="reproducibility.html#fnref29" class="footnote-back">↩︎</a></p></li>
+<li id="fn30"><p><span class="citation">Gelman and Loken (<a href="bibliography.html#ref-gelman2013garden" role="doc-biblioref">2013</a>)</span><a href="reproducibility.html#fnref30" class="footnote-back">↩︎</a></p></li>
+<li id="fn31"><p>
+More details on how to prepare a pre-analysis plans
+and links to additional resources
+can be found on the DIME Wiki:
+<a href="https://dimewiki.worldbank.org/Pre-Analysis_Plan" class="uri">https://dimewiki.worldbank.org/Pre-Analysis_Plan</a><a href="reproducibility.html#fnref31" class="footnote-back">↩︎</a></p></li>
+<li id="fn32"><p>
+See <span class="citation">Cusolito, Dautovic, and McKenzie (<a href="bibliography.html#ref-cusolito2018can" role="doc-biblioref">2018</a>)</span> for an example.<a href="reproducibility.html#fnref32" class="footnote-back">↩︎</a></p></li>
+<li id="fn33"><p><span class="citation">Olken (<a href="bibliography.html#ref-olken2015promises" role="doc-biblioref">2015</a>)</span><a href="reproducibility.html#fnref33" class="footnote-back">↩︎</a></p></li>
+<li id="fn34"><p>
+<a href="https://blogs.worldbank.org/impactevaluations/pre-analysis-plans-and-registered-reports-what-new-opinion-piece-does-and-doesnt" class="uri">https://blogs.worldbank.org/impactevaluations/pre-analysis-plans-and-registered-reports-what-new-opinion-piece-does-and-doesnt</a><a href="reproducibility.html#fnref34" class="footnote-back">↩︎</a></p></li>
+<li id="fn35"><p>
+See <span class="citation">Bedoya et al. (<a href="bibliography.html#ref-bedoya2019no" role="doc-biblioref">2019</a>)</span> for an example.<a href="reproducibility.html#fnref35" class="footnote-back">↩︎</a></p></li>
+<li id="fn36"><p><span class="citation">Duflo et al. (<a href="bibliography.html#ref-duflo2020praise" role="doc-biblioref">2020</a>)</span><a href="reproducibility.html#fnref36" class="footnote-back">↩︎</a></p></li>
+<li id="fn37"><p>
+More details on registered reports and
+links to additional resources can be found on the DIME Wiki:
+<a href="https://dimewiki.worldbank.org/Registered_Reports" class="uri">https://dimewiki.worldbank.org/Registered_Reports</a><a href="reproducibility.html#fnref37" class="footnote-back">↩︎</a></p></li>
+<li id="fn38"><p>
+<a href="https://blogs.worldbank.org/impactevaluations/registered-reports-piloting-pre-results-review-process-journal-development-economics" class="uri">https://blogs.worldbank.org/impactevaluations/registered-reports-piloting-pre-results-review-process-journal-development-economics</a><a href="reproducibility.html#fnref38" class="footnote-back">↩︎</a></p></li>
+<li id="fn39"><p><span class="citation">Simonsohn, Nelson, and Simmons (<a href="bibliography.html#ref-simonsohn2014p" role="doc-biblioref">2014</a>)</span><a href="reproducibility.html#fnref39" class="footnote-back">↩︎</a></p></li>
+<li id="fn40"><p>
+See <span class="citation">Coville et al. (<a href="bibliography.html#ref-coville2019nollywood" role="doc-biblioref">2019</a>)</span> for an example.<a href="reproducibility.html#fnref40" class="footnote-back">↩︎</a></p></li>
+<li id="fn41"><p>
+More details on research documentation and
+links to additional resources can be found on the DIME Wiki:
+<a href="https://dimewiki.worldbank.org/Research_Documentation" class="uri">https://dimewiki.worldbank.org/Research_Documentation</a><a href="reproducibility.html#fnref41" class="footnote-back">↩︎</a></p></li>
+<li id="fn42"><p><span class="citation">Duvendack, Palmer-Jones, and Reed (<a href="bibliography.html#ref-duvendack2017meant" role="doc-biblioref">2017</a>)</span><a href="reproducibility.html#fnref42" class="footnote-back">↩︎</a></p></li>
+<li id="fn43"><p>
+<strong>Archival repository:</strong> A third-party service for information storage
+that guarantees the permanent availability of current and prior versions of materials.<a href="reproducibility.html#fnref43" class="footnote-back">↩︎</a></p></li>
+<li id="fn44"><p><a href="https://osf.io" class="uri">https://osf.io</a><a href="reproducibility.html#fnref44" class="footnote-back">↩︎</a></p></li>
+<li id="fn45"><p><a href="https://github.com" class="uri">https://github.com</a><a href="reproducibility.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn46"><p>
+More details on how to use Git and GitHub and links to all DIME Analytics
+resources on best practices and how to get started can be found on the DIME Wiki:
+<a href="https://dimewiki.worldbank.org/Getting_started_with_GitHub" class="uri">https://dimewiki.worldbank.org/Getting_started_with_GitHub</a><a href="reproducibility.html#fnref46" class="footnote-back">↩︎</a></p></li>
+<li id="fn47"><p>
+See <span class="citation">Yishay et al. (<a href="bibliography.html#ref-yishay2016gender" role="doc-biblioref">2016</a>)</span> for an example.<a href="reproducibility.html#fnref47" class="footnote-back">↩︎</a></p></li>
+<li id="fn48"><p>
+<strong>Original data:</strong> A new dataset, as obtained and corrected,
+that becomes the functional basis for research work.<a href="reproducibility.html#fnref48" class="footnote-back">↩︎</a></p></li>
+<li id="fn49"><p><span class="citation">Vilhuber, Turrito, and Welch (<a href="bibliography.html#ref-vilhuber2020report" role="doc-biblioref">2020</a>)</span><a href="reproducibility.html#fnref49" class="footnote-back">↩︎</a></p></li>
+<li id="fn50"><p>
+For example, <a href="https://data.usaid.gov" class="uri">https://data.usaid.gov</a><a href="reproducibility.html#fnref50" class="footnote-back">↩︎</a></p></li>
+<li id="fn51"><p>
+Details on how to document this type of material can be found at
+<a href="https://doi.org/10.5281/zenodo.4319999" class="uri">https://doi.org/10.5281/zenodo.4319999</a>.<a href="reproducibility.html#fnref51" class="footnote-back">↩︎</a></p></li>
+<li id="fn52"><p>
+<a href="https://microdata.worldbank.org" class="uri">https://microdata.worldbank.org</a><a href="reproducibility.html#fnref52" class="footnote-back">↩︎</a></p></li>
+<li id="fn53"><p>
+<a href="https:/datacatalog.worldbank.org" class="uri">https:/datacatalog.worldbank.org</a><a href="reproducibility.html#fnref53" class="footnote-back">↩︎</a></p></li>
+<li id="fn54"><p>
+<strong>Digital object identifier (DOI):</strong> A permanent reference for electronic information
+that persistently updates to a new URL or other locations if the information is relocated.<a href="reproducibility.html#fnref54" class="footnote-back">↩︎</a></p></li>
+<li id="fn55"><p><span class="citation">Christensen and Miguel (<a href="bibliography.html#ref-christensen2018transparency" role="doc-biblioref">2018</a>)</span><a href="reproducibility.html#fnref55" class="footnote-back">↩︎</a></p></li>
+<li id="fn56"><p>
+More details and links to additional resources on
+how to make your research reproducible and prepare a reproducibility package
+can be found on the DIME Wiki:
+<a href="https://dimewiki.worldbank.org/Reproducible_Research" class="uri">https://dimewiki.worldbank.org/Reproducible_Research</a>.
+More details can also be found under Pillar 3 in the DIME Research Standards:
+<a href="https://github.com/worldbank/dime-standards" class="uri">https://github.com/worldbank/dime-standards</a>.<a href="reproducibility.html#fnref56" class="footnote-back">↩︎</a></p></li>
+<li id="fn57"><p>
+More details and links to best practices on topics related to data publication,
+such as de-identification and how to license published data,
+can be found on the DIME Wiki:
+<a href="https://dimewiki.worldbank.org/Publishing_Data" class="uri">https://dimewiki.worldbank.org/Publishing_Data</a>.
+More details can also be found under Pillar 5 in the DIME Research Standards:
+<a href="https://github.com/worldbank/dime-standards" class="uri">https://github.com/worldbank/dime-standards</a><a href="reproducibility.html#fnref57" class="footnote-back">↩︎</a></p></li>
+<li id="fn58"><p><span class="citation">Stodden, Guo, and Ma (<a href="bibliography.html#ref-stodden2013toward" role="doc-biblioref">2013</a>)</span><a href="reproducibility.html#fnref58" class="footnote-back">↩︎</a></p></li>
+<li id="fn59"><p>
+The DIME Analytics reproducibility checklist can be found in Pillar 3 of
+the DIME Research Standards at <a href="https://github.com/worldbank/dime-standards" class="uri">https://github.com/worldbank/dime-standards</a>.<a href="reproducibility.html#fnref59" class="footnote-back">↩︎</a></p></li>
+<li id="fn60"><p><span class="citation">Nosek et al. (<a href="bibliography.html#ref-nosek2015promoting" role="doc-biblioref">2015</a>)</span><a href="reproducibility.html#fnref60" class="footnote-back">↩︎</a></p></li>
+<li id="fn61"><p>
+<strong>Computational reproducibility:</strong> The ability of another individual
+to reuse the same code and data and obtain the exact same results as yours.<a href="reproducibility.html#fnref61" class="footnote-back">↩︎</a></p></li>
+<li id="fn62"><p>
+More details and links to additional resources on
+how to make your research reproducible and prepare a reproducibility package
+can be found on the DIME Wiki:
+<a href="https://dimewiki.worldbank.org/Reproducible_Research" class="uri">https://dimewiki.worldbank.org/Reproducible_Research</a>.
+More details can also be found under Pillar 3 in the DIME Research Standards:
+<a href="https://github.com/worldbank/dime-standards" class="uri">https://github.com/worldbank/dime-standards</a>.<a href="reproducibility.html#fnref62" class="footnote-back">↩︎</a></p></li>
+<li id="fn63"><p>
+<a href="https://blogs.worldbank.org/impactevaluations/what-development-economists-talk-about-when-they-talk-about-reproducibility" class="uri">https://blogs.worldbank.org/impactevaluations/what-development-economists-talk-about-when-they-talk-about-reproducibility</a><a href="reproducibility.html#fnref63" class="footnote-back">↩︎</a></p></li>
+<li id="fn64"><p><span class="citation">Simonsohn, Simmons, and Nelson (<a href="bibliography.html#ref-simonsohn2015specification" role="doc-biblioref">2015</a>)</span><a href="reproducibility.html#fnref64" class="footnote-back">↩︎</a></p></li>
+<li id="fn65"><p>
+<a href="https://blogs.worldbank.org/opendata/making-analytics-reusable" class="uri">https://blogs.worldbank.org/opendata/making-analytics-reusable</a><a href="reproducibility.html#fnref65" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="collaboration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["drip.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

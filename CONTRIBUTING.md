@@ -29,5 +29,5 @@ For us to be able to search through the feedback we will organize all issues in 
 
 ### Pull Request Process
 1. Fork this repository if you want to make your contributions directly in the files.
-2. Make your edits in the `develop` branch in your fork and then create your pull request towards the `worldbank/d4di`:`develop` branch. We do not accept pull requests towards the `master` branch
-3. The Repo Maintainer for `worldbank/d4di` will review the pull request and provide comments if necessary.
+2. Make your edits in the `develop` branch in your fork and then create your pull request towards the `worldbank/dime-data-handbook`:`develop` branch. We do not accept pull requests towards the `master` branch
+3. The Repo Maintainer for `worldbank/dime-data-handbook` will review the pull request and provide comments if necessary.
