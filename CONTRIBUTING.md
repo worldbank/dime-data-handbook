@@ -62,3 +62,7 @@ In the same window as your "Environment" window, select the "Build" tab.
 In the menu below these tabs click "Build Book" to compile the book.
 This can take up to ten minutes,
 especially if it is the first time you compile the book.
+
+## Part 3 - Updating the e-book on the GitHub page
+
+This step will only be done by the authors. Instructions to come.
