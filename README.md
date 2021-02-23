@@ -31,7 +31,8 @@ A direct edit to the file is best suited if you see a typo
 or something similar that has an obvious solution.
 If the solution to your feedback is not straightforward,
 then please open a GitHub issue instead where we can discuss the most appropriate action.
-See the CONTRIBUTING file for instructions on how to make a direct edit.
+See the [CONTRIBUTING](https://github.com/worldbank/dime-data-handbook/blob/bookdown-contribution/CONTRIBUTING.md)
+file for instructions on how to make a direct edit.
 
 ### Feedback through a GitHub "issue"
 
