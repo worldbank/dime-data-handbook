@@ -27,3 +27,38 @@ We do not require that you compile the book before submitting a PR,
 but we very much appreciate if you do so
 to test that there is no _bookdown_ bugs.
 This will speed up the processing of us accepting your suggested edit.
+
+## Part 2 - Compiling the _bookdown_ files into the e-book
+
+#### Bookdown step 1 - Clone this repository
+
+To compile this e-book,
+you must start by cloning this `dime-data-handbook` repository.
+
+#### Bookdown step 2 - Install R and RStuido
+
+You need to install both R and RStudio.
+Both software can be self-installed on World Bank computers
+using the "Software Center" (search the Windows menu).
+If you do are not using a World Bank computer,
+then you can install R Studio Desktop
+[here](https://rstudio.com/products/rstudio/download/)
+(these instructions covers how to install both R and RStudio).
+
+#### Bookdown step 3 - Install `bookdown` package
+Open RStudio and in the console window install _bookdown_ using `install.packages("bookdown")`
+
+#### Bookdown step 4 - Open DRiP R project
+
+In the `dime-data-handbook` there is a file called `drip.Rproj`.
+Use RStudio to open this file.
+You open the R project file in RStuido in the "File" menu
+and then select "open project".
+Navigate to and open the `drip.Rproj` file.
+
+#### Bookdown step 4 - Compiling the book
+
+In the same window as your "Environment" window, select the "Build" tab.
+In the menu below these tabs click "Build Book" to compile the book.
+This can take up to ten minutes,
+especially if it is the first time you compile the book.
