@@ -10,7 +10,7 @@
   CREATES:   ${dt_final}/pooled_rider_audit_constructed_full.dta
              ${dt_final}/pooled_rider_audit_constructed.dta
 
-  WRITEN BY: Luiza Andrade, Kate Vyborny, Astrid Zwager
+  WRITTEN BY: Luiza Andrade, Kate Vyborny, Astrid Zwager
 
   OVERVIEW:  1 Load and merge data
              2 Construct new variables
