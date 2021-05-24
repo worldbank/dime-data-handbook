@@ -6,7 +6,7 @@
             PART 3: Export table
   REQUIRES: ${dt_final}/platform_survey_constructed.dta
   CREATES:  ${out_tables}/priming.tex
-  WRITEN BY:  Luiza Andrade [lcardosodeandrad@worldbank.org]
+  WRITTEN BY:  Luiza Andrade [lcardosodeandrad@worldbank.org]
 
 ********************************************************************************
     PART 1: Load data

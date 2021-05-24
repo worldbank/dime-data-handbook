@@ -51,7 +51,7 @@
     CREATES:    ${bl_dt}/Raw Deidentified/D4DI_baseline_raw_deidentified.dta
     IDS VAR:    hhid
 ----------------------------------------------------------------------------- */
-    *Change the 0 to 1 to run the baseline de-identification dofile
+    *Change the 0 to 1 to run the baseline de-identification do-file
     if (0) do "${bl_do}/Cleaning/deidentify.do"
 
 /*------------------------------------------------------------------------------
@@ -61,7 +61,7 @@
                 ${bl_doc}/Codebook baseline.xlsx
     IDS VAR:    hhid
 ----------------------------------------------------------------------------- */
-    *Change the 0 to 1 to run the baseline cleaning dofile
+    *Change the 0 to 1 to run the baseline cleaning do-file
     if (0) do "${bl_do}/Cleaning/cleaning.do"
 
 /*-----------------------------------------------------------------------------
@@ -71,5 +71,5 @@
                 ${bl_dt}/Intermediate/D4DI_baseline_constructed_income.dta
     IDS VAR:    hhid
 ----------------------------------------------------------------------------- */
-    *Change the 0 to 1 to run the baseline variable construction dofile
+    *Change the 0 to 1 to run the baseline variable construction do-file
     if (0) do "${bl_do}/Construct/construct_income.do"
