@@ -1,16 +1,16 @@
 /*******************************************************************************
-*    Demand for "Safe Spaces": Avoiding Harassment and Stigma                  *
-*    MASTER DO-FILE                                                            *
+*   Demand for "Safe Spaces": Avoiding Harassment and Stigma                   *
+*   MASTER DO-FILE                                                             *
 ********************************************************************************
-  PART 0:  User inputs
-  PART 1:  Prepare folder paths
-  PART 2:  Load necessary packages
-  PART 3:  Run selected code
+    PART 0:  User inputs
+    PART 1:  Prepare folder paths
+    PART 2:  Load necessary packages
+    PART 3:  Run selected code
 ********************************************************************************
-    PART 0: USER INPUTS
+*   PART 0: USER INPUTS
 *******************************************************************************/
 
-  ieboilstart, v(14.0)  matsize(10000)
+  ieboilstart, v(14.0) matsize(10000)
   `r(version)'
 
 //  Set folder paths -----------------------------------------------------------
@@ -31,14 +31,14 @@
 * Section omitted - see full code on https://github.com/worldbank/rio-safe-space
 
 ********************************************************************************
-*    PART 1:  Prepare folder paths                                             *
+*   PART 1:  Prepare folder paths                                              *
 ********************************************************************************
 
   * Confidential folders
   global encrypt        "${onedrive}/data/raw-identified"
   global encode         "${onedrive}/dofiles/ado"
 
-  * Do files
+  * Do-files
   global do             "${github}/dofiles"
   global do_analysis    "${do}/analysis"
   global do_tables      "${do_analysis}/paper/tables"
