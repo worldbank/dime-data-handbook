@@ -2,7 +2,7 @@
 *   Set control variables
 ********************************************************************************/
 
-  global star               star	(* .1 ** .05 *** .01)
+  global star               star (* .1 ** .05 *** .01)
   global demographics       d_lowed d_young d_single d_employed d_highses
   global interactionvars    pink_highcompliance mixed_highcompliance         ///
                             pink_lowcompliance mixed_lowcompliance
