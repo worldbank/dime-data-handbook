@@ -1,12 +1,12 @@
-********************************************************************************
+/*******************************************************************************
 *   Set plot options
 *******************************************************************************/
 
   set scheme s2color
 
   global grlabsize      4
-  global col_mixedcar   `" "18 148 144" "' // teal
-  global col_womencar   purple //`" "102 51 153" "'
+  global col_mixedcar   `" "18 148 144" "'
+  global col_womencar   purple
   global col_aux_bold   gs6
   global col_aux_light  gs12
   global col_highlight  cranberry
