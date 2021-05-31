@@ -1,7 +1,7 @@
 // Import to Stata format ======================================================
 
   import delimited using "${encrypt}/Baseline/07112016/Contributions 07112016", ///
-    delim (",")        ///
+    delim(",")         ///
     bindquotes(strict) ///
     varnames(1)        ///
     clear
@@ -14,11 +14,9 @@
     uniquevars(v1) ///
     keepvars(created submitted started)
 
-  * Save in Stata format
+  * Verify unique identifier, sort, optimize storage, and save in Stata format
   isid user_uuid obs_uid, sort
-
   compress
   dropmiss, force
-
   save             "${encrypt}/baseline_raw.dta", replace
   iemetasave using "${dt_raw}/baseline_raw.txt",  replace short
