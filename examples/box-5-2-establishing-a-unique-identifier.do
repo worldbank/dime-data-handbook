@@ -14,7 +14,8 @@
     uniquevars(v1) ///
     keepvars(created submitted started)
 
-  * Verify unique identifier, sort, optimize storage, and save in Stata format
+  * Verify unique identifier, sort, optimize storage, 
+  * remove blank entries and save data
   isid user_uuid obs_uid, sort
   compress
   dropmiss, force
