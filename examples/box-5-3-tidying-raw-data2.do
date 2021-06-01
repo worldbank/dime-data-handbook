@@ -9,4 +9,3 @@
     * Optimize memory and save data
     compress
     save             "${dt_int}/baseline_ride.dta", replace
-    iemetasave using "${dt_int}/baseline_ride.txt", replace

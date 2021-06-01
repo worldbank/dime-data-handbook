@@ -20,4 +20,3 @@
   compress
   dropmiss, force
   save             "${encrypt}/baseline_raw.dta", replace
-  iemetasave using "${dt_raw}/baseline_raw.txt",  replace short
