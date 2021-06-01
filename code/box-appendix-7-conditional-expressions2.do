@@ -1,4 +1,4 @@
-GOOD:
+** GOOD:
 
     if (`sampleSize' <= 100) {
         * do something
@@ -7,7 +7,7 @@ GOOD:
         * do something else
     }
 
-BAD:
+** BAD:
 
     if (`sampleSize' <= 100) {
         * do something

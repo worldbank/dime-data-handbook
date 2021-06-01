@@ -1,9 +1,9 @@
-GOOD:
+** GOOD:
 
     ieboilstart, version(13.1)
     `r(version)'
 
-OK:
+** OK:
 
     set more off , perm
     clear all

@@ -1,4 +1,4 @@
-ACCEPTABLE:
+** ACCEPTABLE:
 
     * Create dummy for being employed
     gen employed = 1
@@ -7,7 +7,7 @@ ACCEPTABLE:
     lab def yesno 1 "Yes" 0 "No"
     lab val employed yesno
 
-BETTER:
+** GOOD:
 
     * Create dummy for being employed
     gen      employed = 1
