@@ -8,4 +8,4 @@
   
     * Optimize memory and save data
     compress
-    save             "${dt_int}/baseline_ride.dta", replace
+    save "${dt_int}/baseline_ride.dta", replace
