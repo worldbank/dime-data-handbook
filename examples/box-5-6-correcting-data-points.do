@@ -2,9 +2,9 @@
 * This fixes it:
 * --------------------------------------------------------------------
 
-  merge 1:1 obs_uuid                                               ///
-    using "${doc_rider}/compliance-pilot/station_corrections.dta", ///
-    update replace                                                 ///
-    keepusing(user_station)                                        ///
-    assert(master match_update)                                    ///
-    nogen
+    merge 1:1 obs_uuid                                               ///
+      using "${doc_rider}/compliance-pilot/station_corrections.dta", ///
+      update replace                                                 ///
+      keepusing(user_station)                                        ///
+      assert(master match_update)                                    ///
+      nogen

@@ -10,7 +10,7 @@
 *                PART 3:  Run do-files                                         *
 *                                                                              *
 ********************************************************************************
-  PART 1:  Install user-written packages and harmonize settings
+    PART 1:  Install user-written packages and harmonize settings
 ********************************************************************************/
 
     local user_commands ietoolkit iefieldkit //Add required user-written commands
@@ -24,7 +24,7 @@
     `r(version)'
 
 /*******************************************************************************
-  PART 2:  Prepare folder paths and define programs
+    PART 2:  Prepare folder paths and define programs
 *******************************************************************************/
 
     * Research Assistant folder paths
@@ -42,7 +42,7 @@
     global bl_out           "${github}/Baseline/Output"
 
 /*******************************************************************************
-  PART 3: Run do-files
+    PART 3: Run do-files
 *******************************************************************************/
 
 /*------------------------------------------------------------------------------
