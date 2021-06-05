@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Merge demographic survey
+*   Merge demographic survey                                                   *
 *******************************************************************************/
 
     merge m:1  user_uuid  using "${dt_int}/compliance_pilot_demographic.dta"

@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   Demand for "Safe Spaces": Avoiding Harassment and Stigma                  *
+*   Demand for "Safe Spaces": Avoiding Harassment and Stigma                   *
 ********************************************************************************
     OUTLINE:  PART 1: Load data
               PART 2: Run regressions
