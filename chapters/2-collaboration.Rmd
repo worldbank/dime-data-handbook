@@ -8,9 +8,7 @@ In order to conduct effective data work in a team environment, researchers need 
 
 |       This chapter provides guidance on setting up an effective environment for collaborative data work, structuring data work to be well organized and clearly documented, and setting up processes to handle confidential data securely. The first section outlines how to set up a working environment to collaborate effectively with others on technical tasks and how to document tasks and decisions. The second section discusses how to organize code and data so that others will be able to understand and interact with them easily. The third section provides guidelines for ensuring privacy and security when working with confidential data. Box 2.1 summarizes the most important points, lists the responsibilities of different members of the research team, and provides a list of key tools and resources for implementing the recommended practices.
 
-
-
-```{block2, type = 'summary'}
+::: {.summary}
 #### BOX 2.1 SUMMARY: SETTING THE STAGE FOR EFFECTIVE AND EFFICIENT COLLABORATION {-}
 
 The technical environment for data work needs to be established at the start of a research project. Agreeing on software choices, code standards and data structure, and data security protocols will prepare the team to implement technical tasks successfully, safely, and efficiently throughout the project life cycle. Consider the following.
@@ -53,8 +51,7 @@ management, documentation, or materials storage, if they arise.
 - DIME GitHub resources at https://github.com/worldbank/dime-github-trainings
 - Data security in pillar 4 of the DIME Research Standards, at https://github.com/worldbank/dime-standards
 - Publication guidelines in pillar 5 of the DIME Research Standards, at https://github.com/worldbank/dime-standards
-
-```
+:::
 
 ## Preparing a collaborative work environment  {-}
 
@@ -70,7 +67,7 @@ projects.
 |       Teams often develop workflows in an ad hoc fashion, solving new challenges as they arise. Adaptation is good, of course, but some tasks exist on every project, and it is more efficient to agree on the corresponding workflow in advance. For example, every project requires research documentation, a file-naming convention, directory organization, coding standards, version control, and code review. These tasks are common to almost every project, and their solutions translate well between projects. Therefore, thinking in advance about the best way to perform these tasks brings greater efficiencies than throwing together a solution when the task arises. Box 2.2 provides an example of these types of decisions made for the Demand for Safe Spaces project. This section outlines the main points to discuss within the team and suggests best-practice solutions for them.
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 2.2 PREPARING A COLLABORATIVE WORK ENVIRONMENT: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The following are a few highlights demonstrating how the Demand for Safe Spaces team organized the work environment for effective collaboration:
@@ -83,8 +80,7 @@ principal investigators for the study, who did not participate directly in codin
 - Team members shared a synchronized folder (using Dropbox), which included the
 de-identified data and project documentation such as survey instruments and enumerator
 training manuals.
-
-```
+:::
 
 ### Setting up a computer for data work  {-}
 
@@ -162,9 +158,7 @@ team members can easily run the same code.
 
 |   To support consistent folder organization, DIME Analytics created $\color{purple}{\text{iefolder}}$ ^[**iefolder** is a Stata command to set up a standardized folder structure for all research team members. It is part of the ietoolkit package. Formore details, see the DIME Wiki at https://dimewiki.worldbank.org/iefolder.] as a part of the $\color{purple}{\text{ietoolkit}}$ package. Box 2.3 describes the folder structure of the Demand for Safe Spaces data work. This Stata command sets up a prestandardized folder structure for what is called the *DataWork folder*. ^[The **DataWork folder** is the root of DIME’s recommended folder structure. For more details, see the DIME Wiki at https://dimewiki.worldbank.org/DataWork_Folder.] The DataWork folder includes folders for all of the steps in a typical project. Because each project will always have unique needs, the structure is easy to adapt. Having a universally standardized folder structure across the entire portfolio of projects means that everyone can move easily between projects without having to spend time understanding a new organization of files and folders.
 
-
-
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 2.3 ORGANIZING FILES AND FOLDERS: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 Figure B2.3.1 illustrates the folder structure of the Demand for Safe Spaces data work.
@@ -183,10 +177,7 @@ and plain-text documentation were stored in GitHub. All of the data sets, $\colo
 documentation in Word and Excel were stored in Dropbox. When data processing was completed,
 binary files in the “Documentation” folder that were accessed by the code, such as $\color{purple}{\text{iecodebook}}$ and $\color{purple}{\text{ieduplicates}}$ spreadsheets, were moved to GitHub to ensure that the repository was complete from
 a reproducibility perspective.
-
-```
-
-
+:::
 
 |   In the absence of a standard file structure across projects, $\color{purple}{\text{iefolder}}$ is an easy template from which to start. The command creates a “DataWork” folder at the project level and, within that folder, creates a standardized directory structure for each data source or survey round. Within each subdirectory, $\color{purple}{\text{iefolder}}$ creates folders for raw encrypted data, raw de-identified data, cleaned data, final data, outputs, and documentation. It creates a parallel folder structure for the code files that move data through this progression and for the final analytical outputs. The $\color{purple}{\text{ietoolkit}}$ package also includes the $\color{purple}{\text{iegitaddmd}}$ ^[**iegitaddmd** is a Stata command that automatically generates placeholder files to allow sharing folder structures with empty folders, because Git does not track or share empty folders. It is part of the ietoolkit package. For more details, see the DIME Wiki at https://dimewiki.worldbank.org/iegitaddmd.] command, which places $\color{purple}{\text{README.md}}$ placeholder files in folders. Because these placeholder files are written in a plain-text language called Markdown, they also provide an easy way to document the contents of every folder in the structure.
 
@@ -240,7 +231,7 @@ required.
 |   Two types of comments should be included in the script itself. The first type of comment describes what is being done. Someone familiar with the language might find this information easy to understand from the code itself, if the code is clear, but reverse-engineering the code’s intent often requires a great deal of work. Describing the task in plain English (or whatever language the team uses to communicate) will make it easier for everyone to read and understand the code’s purpose. It can also help researchers to organize their own work and ensure that they are following logical steps. The second type of comment explains why the code is performing a task in a particular way. Writing code requires making a series of decisions that (it is hoped) make perfect sense at the time. These decisions are often highly specialized and may exploit a functionality that is not obvious or that others have not seen before. Well-commented code is, in and of itself, a great way to document the data work that someone can follow to understand everything from data-cleaning decisions that make the published data different from the original data to decisions on how indicators are constructed. In a couple of weeks, even the code writer probably will not remember the exact choices that were made. Documenting the precise processes in code is essential. See box 2.5 for examples of how comments can be used.
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 2.5 WRITING CODE THAT OTHERS CAN READ: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 To ensure that all team members were able to read and understand data work easily, Demand for Safe
@@ -252,7 +243,7 @@ for one of the original data sets illustrates the use of comments:
   
 For the complete do-file, visit the GitHub repository at https://git.io/Jtgev.
 
-```
+:::
 
 
 |   Code files should be stored in an easy-to-find location and named in a meaningful way. Breaking code into independently readable “chunks” is good practice for code organization. Each functional element should be written as a chunk that can run completely on its own. This step ensures that each component of code is independent and does not rely on a complex program state created by other chunks of code that are not obvious from the immediate context. One way to achieve this independence is by creating sections in the script to identify where a specific task is completed. RStudio makes it very easy to create sections and compiles them into an interactive script index.
@@ -281,7 +272,7 @@ used for reproducibility no matter the programming language used.
 
 |   This organization is reflected in the master script in such a way that the only change necessary to run the entire code for a new team member is to change the path to the project root folders to reflect the file system and username; refer to lines 30–35 of the template master do-file. The code in the template master file shows how folder structure is reflected in a master do-file. Because writing and maintaining a master script can be challenging as a project grows, an important feature of iefolder is to write submaster do-files and add to them whenever new subfolders are created in the DataWork folder. See box 2.6 for an example of the master do-file for the Demand for Safe Spaces project, which was based on the DIME Analytics template and applied the best practices discussed in this section.
 
-```{block2, type = 'ex'}
+::: {.ex}
 ### BOX 2.6 WRITING CODE THAT OTHERS CAN RUN: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 All code for the Demand for Safe Spaces study was organized to run from two master scripts, one
@@ -294,7 +285,7 @@ snippet of the Stata master do-file:
 For the complete Stata master script, visit the GitHub repository at https://git.io/JtgeT. For the
 R master script, visit the GitHub repository at https://git.io/JtgeY.
 
-```
+:::
 
 
 |   In order to maintain well-documented and well-organized code, everyone on the team has to agree on a plan to review code as it is written. Researchers benefit from improving their own skills as they read other people’s code and from allowing others to read their code to catch errors and ambiguities. It is normal (and common) to make mistakes while writing code. Reading code again to organize and provide comments while preparing it to be reviewed will help to identify those mistakes. It is best to schedule a code review at regular intervals or when a single task is completed. Waiting a long time to review the code means that the code becomes too complex, and preparation and code review require more time and work, which is a common reason why this step is often skipped. Another important advantage of code review is that making sure that the code is running properly on other machines and that other people can read and understand the code are the easiest ways to prepare in advance for a smooth project handover or for release of the code to the general public.
@@ -327,7 +318,7 @@ likely require researchers to hold a certification from a respected source.
 
 |   IRB approval should be obtained well before any data are acquired (see the example of an IRB process in box 2.7). IRBs may have infrequent meeting schedules or require several rounds of review for an application to be approved. If there are any deviations from an approved plan or expected adjustments, these deviations should be reported as early as possible so that the protocol can be updated or revised. IRBs have the authority to deny retroactively the right to use data not acquired in accordance with an approved plan. This situation is extremely rare but shows the seriousness of these considerations because the institution itself may face legal penalties if its IRB is unable to enforce its protocols. As always, researchers who work in good faith should not have any problem complying with these regulations.
 
-```{block2, type = 'ex'}
+::: {.ex}
 ### BOX 2.7 SEEKING ETHICAL APPROVAL: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The Duke University institutional review board (IRB) reviewed and approved the protocol for all
@@ -369,8 +360,7 @@ Rio area.
 
 Appendix C in @kondylis2020demand discusses the ethical aspects of the study, including
 participant recruitment, informed consent, and how reports of harassment were addressed.
-
-```
+:::
 
 
 ### Obtaining informed consent {-}
@@ -389,7 +379,7 @@ consent to be obtained.
 |   The development of appropriate consent processes is of primary importance. All survey instruments must include a module in which the sampled respondent grants *informed consent* ^[**Informed consent** is the right of potential research participants to decide whether to participate in research programs or data collection activities, free of any obligation or coercion, and while fully informed of any potential risks or benefits of participation. For more details, see the DIME Wiki at https://dimewiki.worldbank.org/Informed_Consent.] to participate. Research participants must be informed of the purpose of the research, what their participation will entail in terms of duration and procedures, any ­foreseeable benefits or risks, and how their identity will be protected (see the example in box 2.8). Additional protections are in place for vulnerable populations, such as minors, prisoners, pregnant women, and people with disabilities, and these protections should be confirmed with relevant authorities if the research includes these groups.
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 ### BOX 2.8 OBTAINING INFORMED CONSENT: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 Participation in both the study intervention (assignments to take a specific Supervia ride) and the
@@ -412,8 +402,7 @@ for this task, however, you have to finish the task."
 The sentence in italics was removed for the portion of the data collection in which
 participants were assigned to ride in a particular type of car; the rest of the consent statement
 applied to all tasks.
-
-```
+:::
 
 ### Ensuring research subject privacy {-}
 
@@ -441,7 +430,7 @@ components.
 
 |   In practice it is rarely, if ever, possible to *anonymize* data. There is always some statistical chance that an individual’s identity will be relinked to the data collected about that person—even if all directly identifying information has been removed—by using some other data that become identifying when analyzed together. For this reason, a two-stage process of *de-identification* ^[**De-identification** is the process of removing or masking PII to reduce the risk that subjects’ identities can be connected with the data. For more details, see the DIME Wiki at https://dimewiki.worldbank.org/De-identification.] is recommended. The *initial de-identification* strips the data of direct identifiers as early in the process as possible, to create a working de-identified data set that can be shared within the *research team* without the need for encryption. This data set should always be used when possible. The *final de-identification* involves making a decision about the trade-off between risk of disclosure and utility of the data before publicly releasing a data set. See box 2.9 for an example of the data privacy protocol used in the Demand for Safe Spaces project.
 
-```{block2, type = 'ex'}
+::: {.ex}
 ### BOX 2.9 ENSURING THE PRIVACY OF RESEARCH SUBJECTS: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The Demand for Safe Spaces team adopted the following data security protocols:
@@ -455,8 +444,7 @@ working on the data cleaning.
 the full research team (in this case, using Dropbox).
 - Indirect identifiers such as demographic variables and labels for train lines and stations were
 removed before the data were published to the Microdata Catalog.
-
-```
+:::
 
 
 |   Finally, it is essential to have an end-of-life plan even before data are acquired. This plan includes plans for how to transfer access and control to a new person joining the team and how to revoke that access when someone is leaving the team. It should also include a plan for how the PII will be deleted. Every project should have a clear data retention and destruction plan. After a project is completed and its de-identified data have been made available, research teams should not retain confidential data indefinitely.
