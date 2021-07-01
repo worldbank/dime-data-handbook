@@ -239,12 +239,12 @@ shown repeatedly, so the “ID var” field is blank for these data sets.
 | Data source	| Raw dataset name | Unit of observation <br> (ID var) |	Parent unit <br> (ID var) |
 |-------------|------------------|---------------------------------|--------------------------|
 | Platform survey	| platform_survey_raw_deidentified.dta	| respondent (id)	 | |
-| Gender-career <br> implicit association test	| career_stimuli.dta	| stimulus	| respondent (id) <br> question block (block) |
-| Car choice-safety concerns <br> implicit association test	| security_stimuli.dta	| stimulus	| respondent (id) <br> question block (block)| 
-| Car choice-openness to advances <br> implicit association test	| reputation_stimuli.dta |	stimulus	| respondent (id) <br> question block (block) |
-| Gender-career <br> implicit association test |	career_score.dta |	respondent (id)	 ||
-| Car choice-safety <br> concerns implicit association test |	security_score.dta	| respondent (id)	 ||
-| Car choice-openness to advances <br> implicit association test |	reputation_score.dta	| respondent (id)	 ||
+| Gender-career implicit association test	| career_stimuli.dta	| stimulus	| respondent (id) question block (block) |
+| Car choice-safety concerns implicit association test	| security_stimuli.dta	| stimulus	| respondent (id) question block (block)| 
+| Car choice-openness to advances implicit association test	| reputation_stimuli.dta |	stimulus	| respondent (id) question block (block) |
+| Gender-career implicit association test |	career_score.dta |	respondent (id)	 ||
+| Car choice-safety concerns implicit association test |	security_score.dta	| respondent (id)	 ||
+| Car choice-openness to advances implicit association test |	reputation_score.dta	| respondent (id)	 ||
 
 The complete project data map is available at https://git.io/Jtg3J.
 
@@ -367,7 +367,8 @@ variable in the data set is indicated in the format (ID: `variable_name`).
 ![](examples/data-flow-chart.png)
  
 *Source:* For the complete project data map, visit the GitHub repository at
-<https://git.io/Jtg3J> *Note:* IAT = implicit association test; ID = identifying
+<https://git.io/Jtg3J> <br>
+*Note:* IAT = implicit association test; ID = identifying
 variable.
 
 ```
@@ -770,7 +771,7 @@ principles translate to all other programming languages.
 
 
 How the code was run needs to be confirmed carefully before finalizing it,
-because other commands may induce randomness in the data, change the ­sorting
+because other commands may induce randomness in the data, change the sorting
 order, or alter the place of the pseudo-random number generator. The process for
 confirming that randomization has worked correctly before finalizing its results
 is to save the outputs of the process in a temporary location, rerun the code,
@@ -890,8 +891,7 @@ correlation is only true “in expectation”—that is, the correlation between
 randomization and other variables will only be zero on average across a large
 number of randomizations. In any particular randomization, the correlation
 between the sampling or randomized assignments and the outcome variable is
-guaranteed to be nonzero: this is called *in-sample* or *finite-sample
-correlation*.
+guaranteed to be nonzero: this is called *in-sample* or *finite-sample correlation*.
 
 Because the true correlation (over the “population” of potential samples or
 assignments) is zero, the observed correlation is considered an error. In
