@@ -165,7 +165,7 @@ design to observations in the data, which are called research design variables,
 and variables that correspond to observations of the real world, which are
 called measurement variables. Research design variables map information about
 the research subjects onto the research design. Often, these variables have no
-meaning outside of the research project— for example, identification variables
+meaning outside of the research project—for example, identification variables
 and treatment status. Others are observations from the real world, but only
 those that determine how each specific research unit should be handled during
 the analysis—for example, treatment uptake and eligibility status. Measurement
@@ -229,7 +229,7 @@ to sexual advances.
 
 As a result, the original data for the platform survey component of the project
 consisted of seven data sets: one for the platform survey and six for the
-IAT—three with IAT scores (one for each instru- ment) and three with detailed
+IAT—three with IAT scores (one for each instrument) and three with detailed
 stimuli data (one for each instrument). All seven data sets were stored in the
 same raw data folder. The data linkage table listed their filenames and
 indicated how their ID variables are connected. In the table below, the raw
@@ -612,9 +612,9 @@ into the estimates of effect sizes. Choosing one random sample from all of the
 possibilities produces some probability of choosing a group of units that are
 not, in fact, representative. Similarly, choosing one random assignment produces
 some probability of creating groups that are not good counterfactuals for each
-other. *Power calculation and randomization inference* are the main methods by
+other. *Power calculation* and *randomization inference* are the main methods by
 which these probabilities of error are assessed. These analyses are particularly
-important in the initial phases of development research— typically conducted
+important in the initial phases of development research—typically conducted
 before any data acquisition or field work occur—and have implications for
 feasibility, planning, and budgeting.
 
@@ -737,12 +737,12 @@ principles translate to all other programming languages.
   - *Rule 2: Sorting* requires using a fixed order of the actual data on which
     the random process is run. Because random numbers are assigned to each
     observation row by row starting from the top row, changing their order will
-    change the result of the process. In Stata, using `isid [id_variable]`,
-    `sort` is recommended to guarantee a unique sorting order. This command does
+    change the result of the process. In Stata, using `isid [id_variable], sort` 
+    is recommended to guarantee a unique sorting order. This command does
     two things. First, it tests that all observations have unique values in the
     sorting variable, because duplicates would cause an ambiguous sort order. If
     all values are unique, then the command sorts on this variable, guaranteeing
-    a unique sort order. It is a common misconception that the `sort`, `stable`
+    a unique sort order. It is a common misconception that the `sort, stable`
     command may also be used; however, by itself, this command cannot guarantee
     an unambiguous sort order and therefore is not appropriate for this purpose.
     Because the exact order must remain unchanged, the underlying data must
@@ -911,7 +911,7 @@ randomization inference are the two key tools for doing so.
 able to detect the treatment effects of interest given these sources of noise.
 This measure of power can be described in various ways, each of which has
 different practical uses. The purpose of power calculations is to identify where
-the strengths and weaknesses are located and to under- stand the relative
+the strengths and weaknesses are located and to understand the relative
 trade-offs that the project will face if the randomization scheme is changed for
 the final design. It is important to consider take-up rates and attrition when
 doing power calculations. Incomplete take-up will significantly reduce power,
