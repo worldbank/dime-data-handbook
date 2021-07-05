@@ -1,259 +1,215 @@
 # The DIME Analytics Coding Guide {#coding}
 
-Most academic programs that prepare students for a career
-in the type of work discussed in this book
-spend a disproportionately small amount of time
-teaching their students coding skills
-in relation to the share of their professional time
-they will spend writing code
-in their first few years after they graduate.
-Recent masters-level graduates joining our team
-have shown very good theoretical knowledge
-while requiring a lot of training in practical skills.
-To us, this is like an architecture graduate having learned
-how to sketch, describe, and discuss
-the concepts and requirements of a new building very well --
-  but without the technical ability
-to contribute to a blueprint following professional standards
-that can be used and understood by others.
-The reasons for this are a topic for another book,
-but in today's data-driven world,
-people working in quantitative development research
-must be proficient collaborative programmers,
-and that includes more than being able to compute correct numbers.
+Most academic programs that prepare students for a career in the type of work
+discussed in this book spend a disproportionately small amount of time teaching
+students coding skills in relation to the share of professional time those
+students will spend writing code in their first few years after graduation.
+Recent masters-level graduates joining the DIME team have demonstrated very good
+theoretical knowledge but require a lot of training in practical skills. This is
+like an architecture graduate having learned how to sketch, describe, and
+discuss the concepts and requirements of a new building very well, but lacking
+the technical ability to contribute to a blueprint following professional
+standards that others can use and understand. The reasons for this disconnect
+are a topic for another book, but, in today’s data-driven world, people working
+in quantitative development research must be proficient collaborative
+programmers, which requires more than being able to compute correct numbers.
 
-This appendix begins with a section on some general and language-agnostic
-principles on how to write "good" code.
-Good code is code that both generates correct results *and*
-is easily read and adapted by other professionals.
-The second section in this appendix contains instructions
-on how to access and use the code examples in this book.
-The last section contains the DIME Analytics Stata Style Guide.
-Widely accepted and used style guides are common in most programming languages,
-but we have never found a sufficiently encompassing style guide for Stata.
-We created this style guide having in mind practices that,
-in our experience, greatly improve the quality
-of research projects coded in Stata.
-We hope that this guide can help increase the emphasis
-given to using, improving, sharing, and standardizing code style
-among the Stata community.
-We believe these resources can help anyone write more understandable code,
-and how you, like an architect,
-can create a blueprint that can be understood and used
-by everyone in your trade.
+This appendix starts by offering general and language-agnostic principles on how
+to write “good” code. Good code not only generates correct results *but also* is
+easily read and adapted by other professionals. The second section contains
+instructions on how to access and use the code examples provided in this book.
+The last section presents the DIME Analytics Stata Style Guide. Widely accepted
+and used style guides are common in most programming languages, but, as yet,
+there is no sufficiently encompassing style guide for Stata. The DIME
+Analytics Stata Style Guide is intended to increase the emphasis given to using,
+improving, sharing, and standardizing code style among the Stata community. It
+shares practices that greatly improve the quality of research projects coded in
+Stata. By applying the guidance provided in this appendix, readers will learn to
+write code that, like an architect’s blueprint, can be understood and used by
+everyone in the trade.
+
+
 
 ## Writing good code {-}
 
-"Good" code has two elements:
-(1) it is correct, in that it doesn't produce any errors
-and its outputs are the objects intended,
-and (2) it is useful and comprehensible
-to someone who hasn't seen it before
-(or even someone who has, weeks, months, or years later).
-Many researchers have only been trained to code correctly.
-But we believe that when your code runs on your computer
-and you get the desired results,
-you are only half-done writing *good* code.
-Good code is easy to read and replicate,
-making it easier to spot mistakes.
-Good code reduces sampling, randomization, and cleaning errors.
-Good code can easily be reviewed by others
-before it's published and can be re-used afterwards.
-We always tell people to "code as if a stranger is reading it".
+Good code has two elements: (1) it is correct, in that it does not produce any
+errors and its outputs are the objects intended, and (2) it is useful and
+comprehensible to someone who has not seen it before (or even someone who sees
+it again weeks, months, or years later). Many researchers have only been trained
+to code correctly. However, when code runs on a computer and obtains the desired
+results, the job of writing *good* code is only half done. Good code is easy to
+read and replicate, making it easier to spot mistakes. Good code reduces
+sampling, randomization, and cleaning errors. Good code can be reviewed easily
+by others before it is published and can be reused afterward. The best code is
+written as if a stranger will be reading it.
 
-You should think of good code in terms of three major elements:
-  **structure**, **syntax**, and **style**.
-The **structure** is the environment
-and file organization your code lives in:
-  good structure means that it is easy to find individual pieces of code,
-within and across files,
-that correspond to specific tasks and outputs.
-It also means that functional code blocks
-are sufficiently independent from each other
-such that they can be shuffled around, repurposed,
-and even deleted without affecting the execution of other portions.
-The **syntax** is the literal language of your code.
-Good syntax means that your code is readable
-in terms of how its mechanics implement ideas --
-  it should not require arcane reverse-engineering
-to figure out what a code chunk is trying to do.
-It should use common commands in a generally accepted way
-so others can easily follow and reconstruct your intentions.
-Finally, **style** is the way
-that the non-functional elements of your code convey its purpose.
-Elements like spacing, indentation,
-and naming conventions (or lack thereof)
-can make your code much more
-(or much less) accessible to someone
-who is reading it for the first time
-and needs to understand it quickly and accurately.
+Good code has three major elements: structure, syntax, and style. The *structure*
+is the environment and file organization in which the code lives: good structure
+means that it is easy to find individual pieces of code, within and across
+files, that correspond to specific tasks and outputs. It also means that
+functional code blocks are sufficiently independent from each other such that
+they can be shuffled around, repurposed, and even deleted without affecting the
+execution of other portions. The *syntax* is the literal language of code. Good
+syntax means that the code is readable in terms of how its mechanics implement
+ideas; it should not require arcane reverse-engineering to figure out what a
+code chunk is trying to do. It should use common commands in a generally
+accepted way so that others can easily follow and reconstruct the researcher’s
+intentions. Finally, *style* is the way that the nonfunctional elements of code
+convey its purpose. Elements like spacing, indentation, and naming conventions
+(or lack thereof) can make code much more (or much less) accessible to someone
+who is reading it for the first time and needs to understand it quickly and
+accurately.
 
-One key tool for writing good code is using help documentation.
-Whether or not you are new to the programming language you are using
--- Stata, R, Python, or one of the many others --
-  you should constantly revisit help files for the most common commands.
-Often you will learn they can do something you never realized.
-We cannot emphasize enough how important it is
-that you get into the habit of reading help files,
-especially for commands you are very familiar with.
-Most of us have a help file window open at all times.
-Similarly, you will always run into commands or uses of commands that
-you have not seen before or whose functionality you do not remember.
-Every time that happens,
-you should look up the help file for that command.
-We often encounter the conception that help files are only for beginners.
-We could not disagree with that conception more.
-The only way to get better at the programming language you use
-is to constantly read help files.
+One key tool for writing good code is using help documentation. Regardless of
+how much experience a person has with a particular programming language—Stata,
+R, Python, or one of the many others—it is helpful to revisit help files
+frequently. It is impossible to overemphasize how important it is to get into
+the habit of reading help files. Even for the most common commands, there is
+always something new to learn. A help file window should be open at all times,
+making it easy to look up commands or uses of commands that are unfamiliar or
+whose functionality has been forgotten. The belief that help files are only for
+beginners could not be further from the truth. The only way to get better at a
+programming language is to read help files often. Stata help files can be
+accessed by writing `help [command]` whenever necessary. For example, to learn
+about `isid`, writing `help isid` will open the help file for that command.
+
 
 ## Using the code examples in this book {-}
 
-Providing some standardization for Stata code style
-is also a goal of our team.
-Stata is one of several programming languages used at DIME,
-but since few high-quality resources based on Stata exist
-relative to its importance and frequency of use,
-we decided to use Stata for the examples in this book.
-This book includes several code blocks
-where we demonstrate a good code execution
-of some of the most common tasks in data work.
-We have ensured that each code block runs independently,
-is well-formatted,
-and uses built-in commands as much as possible.
-We hope that these snippets will provide a foundation for your code style.
-We try to comment code examples generously (as you should),
-and you should reference Stata help files by writing `help [command]`
-whenever you do not understand the command that is being used.
-For example, if you are not familiar with `isid`,
-then write `help isid`,
-and the help file for the command `isid` will open.
-You should do this even if you know `isid`
-but has not read the help file for that command in a while,
-as there is always something new to learn.
+This book provides code boxes throughout the chapters that offer examples of
+good code execution of some of the most common tasks in quantitative development
+research. Stata is one of several programming languages used at DIME, but this
+book focuses on Stata for the code boxes because few high-quality resources
+exist relative to Stata’s frequency of use in development research. The code
+examples in each of the code boxes and most of the code in this appendix rely on
+preinstalled data sets as often as possible, so that they will run independently
+of any other materials. (By contrast, the Demand for Safe Spaces case study code
+examples can only be run together with the rest of the reproducibility package).
+The code boxes also demonstrate best-practice coding style for researchers, such
+as the generous use of comments. In the book, code examples are presented like
+the following:
 
-In the book, code examples are presented like the following:
 
 ```{stata, eval = F, code = readLines("code/code.do"), attr.source='.numberLines'}
+
+>To access this code in do-file format, visit the GitHub repository at
+><https://github.com/worldbank/dime-data-handbook/tree/main/code>.
+
 ```
-You can access the raw code used in examples in this book in several ways.
-We use GitHub to version control all the content of this book,
-including the code examples.
-To see the code examples on GitHub, go to
-  https://github.com/worldbank/dime-data-handbook/tree/master/code.
-We only use Stata's built-in datasets in our code examples,
-so you do not need to download any data.
-If you have Stata installed on your computer,
-then you will already have the data files used in the code.
 
-A less technical way to access the code
-is to click the individual file in the URL above, then click
-the button that says **Raw**.
-You will then get to a page that looks like the one at
-https://raw.githubusercontent.com/worldbank/dime-data-handbook/master/code/code.do.
-There, you can copy the code
-from your browser window to your do-file editor with the formatting intact.
-This method is only practical for a single file at a time.
-If you want to download all code used in this book, you can do that at
-https://github.com/worldbank/dime-data-handbook/archive/master.zip.
-That link downloads a `.zip` file
-with all the content used in writing this book,
-including the LaTeX code used for the book itself.
-After extracting the .zip-file you will find all the code in a folder called `/code/`.
 
-While we use built-in commands as much as possible in this book,
-we point to user-written commands when they provide important new functionality.
-In particular, we point to two suites of Stata commands developed by DIME Analytics,
-`ietoolkit`^[
-  https://dimewiki.worldbank.org/ietoolkit
-]
-and `iefieldkit`,^[
-  https://dimewiki.worldbank.org/iefieldkit
-]
-which DIME Analytics wrote to standardize
+The raw code used in examples in this book can be accessed in several ways. DIME
+uses GitHub to version-control all of the content of this book, including the
+code boxes. To see the examples from the code boxes, go to
+<https://github.com/worldbank/dime-data-handbook/tree> /master/code. There is no
+need to download any data, because the examples use Stata’s built-in data sets.
+If Stata is installed on the computer, then it already has the data files used
+in the code.
+
+For readers not familiar with GitHub, the simplest way to access the code is to
+click the individual file in the GitHub link provided previously and then click
+the button labeled “Raw.” Doing so will load a page that looks like the one at
+<https://raw.githubusercontent.com/worldbank/dime-data-handbook/master/code/code.do>.
+There, the code can be copied from the browser window into the do-file editor
+with the formatting intact. This method is practical for only a single file at a
+time. To download all code used in this book, instead go to
+<https://github.com/worldbank/dime-data-handbook/archive/main.zip>. That link
+downloads a `.zip` file with all of the content used in writing this book,
+including the plain-text files used for the book itself. After extracting the
+`.zip` file, all of the code will be in a folder called `/code/`.
+
+The code boxes use built-in commands as much as possible, but user-written
+commands are also used when they provide important new functionality. In
+particular, the book points to two suites of Stata commands developed by DIME
+Analytics, `ietoolkit`^[**ietoolkit** is a Stata package containing several
+commands to routinize tasks in impact evaluation. It can be installed through
+the Boston College Statistical Software Components (SSC) archive
+(https://ideas.repec.org/c/boc/bocode/s458137 .html), and the code is available
+at https://github.com/worldbank/ietoolkit. To learn more, see the DIME Wiki at
+https://dimewiki.worldbank.org/ietoolkit.] and `iefieldkit`^[**iefieldkit** is
+a Stata package containing several commands to routinize tasks related to
+primary data collection. It can be installed through SSC
+(https://ideas.repec.org/c/boc/bocode /s458600.html), and the code is available
+at https://github.com/worldbank/iefieldkit. To learn more, see the DIME Wiki at
+https://dimewiki.worldbank.org/iefieldkit.], which were written to standardize
 core data collection, management, and analysis workflows.
 
-When you encounter code that employs user-written commands,
-you will not be able to run them or read their help files
-until you have installed the commands.
-The most common place to distribute user-written commands for Stata
-is the Boston College Statistical Software Components (SSC) archive.^[
-	https://ideas.repec.org/s/boc/bocode.html
-]
-The user-written commands in our code example are all from the SSC archive.
-So, if your installation of Stata does not recognize a command in our code, for example
-`randtreat`, then type `ssc install randtreat` in Stata.
+To run the code box examples that include user-written commands, it is necessary
+to install the commands first. The most common place to distribute user-written
+commands for Stata is the Boston College Statistical Software Components (SSC)
+archive (<https://ideas.repec.org/s/boc> /bocode.html). The user-written
+commands in this book are all available from the SSC archive. Installation of
+commands from the SSC archive is straightforward, simply type `ssc install
+randtreat`.
 
-Some commands on SSC are distributed in packages.
-This is the case, for example, of `ieboilstart`.
-That means that you will not be able to install it using `ssc install ieboilstart`.
-If you do, Stata will suggest that you instead use `findit ieboilstart`,
-which will search SSC (among other places) and see if there is a
-package that contains a command called `ieboilstart`.
-Stata will find `ieboilstart` in the package `ietoolkit`,
-so to use this command you will type `ssc install ietoolkit` in Stata instead.
+Some commands on SSC are distributed in packages, in which case it is necessary
+to download the whole package to access the included commands. This is the case,
+for example, of `ieboilstart`, which is part of the `ietoolkit` package.
+Commands that are distributed in packages cannot be installed on their own; it
+will not work to type `ssc install ieboilstart`. Instead, Stata will suggest
+using `findit ieboilstart`, which will search SSC (among other places) for a
+package containing a command called `ieboilstart.` Stata will find `ieboilstart`
+in the package `ietoolkit` and suggest installing it by typing ssc install
+`ietoolkit` in Stata instead.
 
-We understand that it can be confusing to work with packages for first time,
-but this is the best way to set up your Stata installation to benefit from other
-people's work that has been made publicly available.
-Once you get used to installing commands like this it will not be confusing at all.
-All code with user-written commands, furthermore, is best written when it installs such commands
-at the beginning of the master do-file,
-so that the user does not have to search for packages manually.
+Although it can be confusing to work with packages for the first time, doing so
+is the best way to set up a Stata installation and to benefit from the publicly
+available work of others. After learning how to install commands like this, it
+will not be confusing at all. When writing code that relies on user-written
+commands, it is best practice to install such commands at the beginning of the
+master do-file, so that the user does not have to search for packages manually.
+
 
 ## The DIME Analytics Stata Style Guide {-}
 
+The programming languages used in computer science always have associated style
+guides. Sometimes they are official, universally agreedupon style guides, such
+as PEP8 for Python (van Rossum, Warsaw, and Coghlan 2013). More commonly, they
+are well-recognized but unofficial style guides like Hadley Wickham’s *Tidyverse
+Style Guide* for R (Wickham, n.d.) or the JavaScript Standard Style for
+JavaScript (<https://standardjs.com/#the-rules>). It is also common for large
+software companies to maintain their own style guides for all languages used in
+their projects. However, these are not always made public.
 
-Programming languages used in computer science
-always have style guides associated with them.
-Sometimes they are official guides that are universally agreed upon,
-such as [PEP8](https://www.python.org/dev/peps/pep-0008) for Python.
-More commonly, there are well-recognized but
-non-official style guides like the [JavaScript Standard Style](https://standardjs.com/\#the-rules)
-for JavaScript or [Hadley Wickham's style guide for R](https://style.tidyverse.org/syntax.html).
-Google, for example, maintains [its own style guides]((https://github.com/google/styleguide)) for all languages
-that are used in its projects.
+Aesthetics are an important part of style guides, but not the main reason for
+their existence. Rather, style guides allow programmers who are likely to work
+together to share conventions and understandings of how to execute various
+common intentions using mutually understandable code language. They also help to
+improve the quality of the code produced by all programmers using that language.
+By using a shared style, newer programmers can learn from more experienced
+programmers how certain coding practices are more or less prone to errors.
 
-Aesthetics is an important part of style guides, but not the main point.
-Neither is telling you which commands to use:
-there are plenty of guides to Stata's extensive functionality.
-The important function is to allow programmers who are likely to work together
-to share conventions and understandings of what the code is doing.
-Style guides therefore help improve the quality of the code
-in that language that is produced by all programmers in a community.
-It is through a shared style that newer programmers can learn from more experienced programmers
-how certain coding practices are more or less error-prone.
-Broadly-accepted style conventions make it easier to borrow solutions
-from each other and from examples online
-without causing bugs that might only be found too late.
-Similarly, globally standardized style guides make it easier to solve each others'
-problems and to collaborate or move from project to project,
-and from team to team.
+The best style guide is the one that is adopted the most widely. Broadly
+accepted style conventions make it easier for coders to borrow solutions from
+each other and from examples online without causing bugs that might be found too
+late. Similarly, globally standardized style guides make it easier for
+programmers to collaborate on each other’s problems and to move from project to
+project and from team to team.
 
-There is room for personal preference in style guides,
-but style guides are first and foremost about quality and standardization --
-especially when collaborating on code.
-We believe that a commonly used Stata style guide
-would improve the quality of all code written in Stata,
-which is why we have begun the one included here.
-You do not necessarily need to follow our style guide precisely.
-We encourage you to write your own style guide if you disagree with us.
-The best style guide would be the one adopted the most widely.
-All style rules introduced in this section are the way we suggest to code,
-but the most important thing is that the way you style your code is *consistent*.
-This guide allows our team to have a consistent code style.
+There is room for personal preference when using style guides, but style guides
+are first and foremost about quality and standardization, especially when
+collaborating on code. DIME Analytics created this Stata style guide to improve
+the quality of all code written in Stata. It is not necessary to follow the
+style guide precisely. All style rules introduced in this section follow the
+DIME Analytics suggestion for how to code, but the most important recommendation
+is to make sure that the style used for code is *consistent*. This guide allows
+the DIME team to have a consistent code style.
+
 
 ### Commenting code {-}
 
-Comments do not change the output of code, but without them,
-your code will not be accessible to your colleagues.
-It will also take you a much longer time to edit code you wrote in the past if you did not comment it well.
-So, comment a lot: do not only write *what* your code is doing
-but also *why* you wrote it like the way you did.
-In general, try to write simpler code that needs less explanation,
-even if you could use an elegant and complex method in less space,
-unless the advanced method is a widely accepted one.
 
-There are three types of comments in Stata and they have different purposes:
+Comments do not change the output of code or how it runs, but without them code
+will not be accessible to other readers. It will also take much longer to update
+or edit code written in the past if it does not have adequate comments
+explaining its intent and functionality. It is important to comment a lot: not
+only about *what* the code is doing but also about *why* it was written the way
+it was. In general, writing simpler code that needs less explanation is
+preferrable to using an elegant and complex method in less space, unless the
+advanced method is widely accepted.
+
+There are three types of comments in Stata, and they have different purposes.
+
 
 #### Commenting multiple lines {-}
 
@@ -283,20 +239,22 @@ There are three types of comments in Stata and they have different purposes:
 
 ### Abbreviating commands {-}
 
-Stata commands can often be abbreviated in the code.
-You can tell if a command can be abbreviated if the help file indicates
-an abbreviation by underlining part of the name in the syntax section at the top.
-Only built-in commands can be abbreviated; user-written commands cannot.
-(Many commands additionally allow abbreviations of options:
-these are always acceptable at the shortest allowed abbreviation.)
-Although Stata allows some commands to be abbreviated to one or two characters,
-this can be confusing -- two-letter abbreviations can rarely be "pronounced"
-in an obvious way that connects them to the functionality of the full command.
-Therefore, command abbreviations in code should not be shorter than three characters,
-with the exception of `tw` for `twoway` and `di` for `display`,
-and abbreviations should only be used when widely a accepted abbreviation exists.
-We do not abbreviate `local`, `global`, `save`, `merge`, `append`, or `sort`.
-The following is a list of accepted abbreviations of common Stata commands:
+
+Stata commands can often be abbreviated in the code. A command can be
+abbreviated if the help file indicates an abbreviation by underlining part of
+the name in the syntax section at the top. Only built-in commands can be
+abbreviated; user-written commands cannot. Although Stata allows some commands
+to be abbreviated to one or two characters, doing so can be confusing—two-letter
+abbreviations can rarely be “pronounced” in an obvious way that connects them to
+the functionality of the full command. Therefore, command abbreviations in
+code should not be shorter than three characters, with the exception of `tw` for
+`twoway` and `di` for `display`, and abbreviations should be used only when a
+widely accepted abbreviation exists. (Many commands also allow options to be
+abbreviated: these abbreviations are always acceptable at the shortest allowed
+abbreviation.) The frequently used commands `local`, `global`, `save`, `merge`,
+`append`, or `sort` should never be abbreviated. The table below lists accepted
+abbreviations of common Stata commands.
+
 
 | Abbreviation | Command |
 |--------------|---------|
@@ -318,33 +276,30 @@ The following is a list of accepted abbreviations of common Stata commands:
 
 ### Abbreviating variable names {-}
 
-Never abbreviate variable names. Instead, write them out completely.
-Your code may change if a variable is later introduced
-that has a name exactly as in the abbreviation.
-`ieboilstart` executes the command `set varabbrev off` by default,
-and will therefore break any code using variable abbreviations.
 
-Using wildcards and lists in Stata for variable lists
-(`*`, `?`, and `-`) is also discouraged,
-because the functionality of the code may change
-if the dataset is changed or even simply reordered.
-If you intend explicitly to capture all variables of a certain type,
-prefer `unab` or `lookfor` to build that list in a local macro,
-which can then be checked to have the right variables in the right order.
+Variable names should never be abbreviated; they should be written out
+completely. Code may change if a variable is introduced later that makes the
+abbreviation no longer unique. `ieboilstart` executes the command `set varabbrev
+off` by default and will therefore break any code using variable abbreviations.
+Using wildcards and lists in Stata for variable lists (`*`, `?`, and `-`) is
+also discouraged, because the functionality of the code may change if the data
+set is changed or even simply reordered. To capture all variables of a certain
+type, it is better to use `unab` or `lookfor` to build that list in a local
+macro, which can then be checked so that the right variables are in the right
+order.
+
 
 ### Writing loops {-}
 
-In Stata examples and other code languages, it is common for the name of the local
-generated by `foreach` or `forvalues`
-to be something as simple as `i` or `j`. In Stata, however,
-loops generally index a real object, and looping commands should name that index descriptively.
-One-letter indices are acceptable only for general examples;
-for looping through **iterations** with `i`;
-and for looping across matrices with `i`, `j`.
-Instead, index names should describe what the code is looping over --
-  for example household members, crops, or medicines.
-Even counters should be explicitly named.
-This makes code much more readable, particularly in nested loops.
+In example code in Stata and other languages, it is common for the name of the
+local generated by `foreach` or `forvalues` to be something as simple as `i`
+or `j`. It is preferable, however, to name that index descriptively. One-letter
+indexes are acceptable only for general examples, for looping through
+*iterations* with `i`, and for looping across matrices with `i` and `j`. Best
+practice is for index names to describe what the code is looping over—for
+example, household members, crops, or medicines. Even counters should be named
+explicitly. Doing so makes code much more readable, particularly in nested
+loops.
 
 **GOOD:**
 ```{stata, eval = FALSE}
@@ -372,21 +327,24 @@ local crops potato cassava maize
 foreach i in potato cassava maize {
    * do something to `i'
 }
+
+To access this code in do-file format, visit the GitHub repository at https://github.com/worldbank/dime-data-handbook/tree/main/code.
 ```
 
 ### Using whitespace {-}
 
-In Stata, adding one or many spaces does not make a difference to code execution,
-and this can be used to make the code much more readable.
-We are all very well trained in using whitespace in software like PowerPoint and Excel:
-we would never present a PowerPoint presentation where the text does not align
-or submit an Excel table with unstructured rows and columns.
-The same principles apply to coding.
-In the example below the exact same code is written twice,
-but in the better example whitespace is used to signal to the reader
-that the central object of this segment of code is the variable `employed`.
-Organizing the code like this makes it much quicker to read,
-and small typos stand out more, making them easier to spot.
+
+In Stata, adding one or many spaces does not change the execution of code and
+can make the code much more readable. Most researchers are well trained in using
+white space in software like PowerPoint and Excel: a PowerPoint presentation
+would not have text that does not align, and an Excel table would not have
+unstructured rows and columns. The same principles apply to coding. In the
+example below, the exact same code is written twice, but in the better example
+white space is used to signal that the central object of this segment of code is
+the variable `employed`. Organizing the code in this way makes it much quicker
+to read, and small typos stand out more, making them easier to spot.
+
+
 
 **ACCEPTABLE:**
 ```{stata, eval = FALSE}
@@ -408,17 +366,20 @@ lab def           yesno 1 "Yes" 0 "No"
 lab val  employed yesno
 ```
 
-Indentation is another type of whitespace that makes code more readable.
-Any segment of code that is repeated in a loop or conditional on an
-`if`-statement should have indentation of 4 spaces relative
-to both the loop or conditional statement as well as the closing curly brace.
-Similarly, continuing lines of code should be indented under the initial command.
-If a segment is in a loop inside a loop, then it should be indented another 4 spaces,
-making it 8 spaces more indented than the main code.
-In some code editors this indentation can be achieved by using the tab button.
-However, the type of tab used in the Stata do-file editor does not always display the same across platforms,
-such as when publishing the code on GitHub.
-Therefore we recommend that indentation be 4 manual spaces instead of a tab.
+
+Indentation is another type of white space that makes code more readable. Any
+segment of code that is repeated in a loop or conditional on an `if`-statement
+should be indented four spaces relative to either the loop or the condition as
+well as the closing curly brace. Similarly, continuing lines of code should be
+indented under the initial command. If a segment is in a loop inside a loop,
+then it should be indented another four spaces, making it eight spaces more
+indented than the main code. In some code editors, this indentation can be
+achieved by using the tab button. However, the type of tab used in the Stata
+do-file editor does not always display the same across platforms, such as when
+publishing code on GitHub. Therefore, inserting four spaces manually is
+recommended instead of using a tab.
+
+
 
 **GOOD:**
 ```{stata, eval = FALSE}
@@ -463,15 +424,19 @@ gen use_sample = 1
 }
 ```
 
+
+
 ### Writing conditional expressions {-}
 
-All conditional (true/false) expressions should be within at least one set of parentheses.
-The negation of logical expressions should use bang (`!`) and not tilde (`~`).
-Always use explicit truth checks (``if `value' == 1``)
-rather than implicits (``if `value'``).
-Always use the ``missing(`var')`` function
-instead of arguments like (``if `var' >= .``).
-Always consider whether missing values will affect the evaluation of conditional expressions.
+
+All conditional (true/false) expressions should be within at least one set of
+parentheses. The negation of logical expressions should use bang (`!`) and not
+tilde (`~`). Explicit truth checks should be used (`if 'value' == 1`) rather
+than implicit ones (`if 'value'`). The `missing('var')` function should be used
+instead of arguments like (`if 'var' >= .`). It is important always to consider
+whether missing values will affect the evaluation of conditional expressions and
+modify them appropriately.
+
 
 **GOOD:**
 ```{stata, eval = FALSE}
@@ -479,17 +444,21 @@ replace gender_string = "Woman" if (gender == 1)
 replace gender_string = "Man"   if ((gender != 1) & !missing(gender))
 ```
 
+
 **BAD:**
 ```{stata, eval = FALSE}
 replace gender_string = "Woman" if gender == 1
 replace gender_string = "Man"   if (gender ~= 1)
 ```
 
-Use `if-else` statements when applicable
-even if you can express the same thing with two separate `if` statements.
-When using `if-else` statements you are communicating to anyone reading your code
-that the two cases are mutually exclusive, which makes your code more readable.
-It is also less error-prone and easier to update if you want to change the condition.
+
+
+When applicable, `if-else` statements should be used even if the same thing can be
+expressed with two separate if statements. The use of `if-else` statements
+communicates that the two cases are mutually exclusive, which makes code more
+readable. It is also less error-prone and easier to update if the conditional
+statement needs to be modified.
+
 
 **GOOD:**
 ```{stata, eval = FALSE}
@@ -511,41 +480,43 @@ if (`sampleSize' > 100) {
 }
 ```
 
+
+
 ### Writing file paths {-}
 
-All file paths should always be enclosed in double quotes,
-and should always use forward slashes for folder hierarchies (`/`).
-File names should be written in lower case with dashes (`my-file.dta`).
-Mac and Linux computers cannot read file paths with backslashes,
-and backslashes cannot easily be removed with find-and-replace
-because the character has other functional uses in code.
-File paths should always include the file extension
-(`.dta`, `.do`, `.csv`, etc.).
-Omitting the extension causes ambiguity
-if another file with the same name is created
-(even if there is a default file type).
 
-File paths should also be absolute and dynamic.
-**Absolute** means that all
-file paths start at the root folder of the computer,
-often `C:/` on a PC or `/Users/` on a Mac.
-This ensures that you always get the correct file in the correct folder.
-Do not use `cd` unless there is a function that requires it.
-When using `cd`, it is easy to overwrite a file in another project folder.
-Many Stata functions use `cd` and therefore the current directory may change without warning.
-Relative file paths are common in many other programming languages,
-but unless they are relative to the location of the file running the code,
-this is a risky practice.
-In Stata, relative file paths are relative to the current directory,
-not to the code file being run.
+All file paths should always be enclosed in double quotes and should always use
+forward slashes for folder hierarchies (`/`). Mac and Linux computers cannot
+read file paths with back slashes, and back slashes cannot be removed easily
+with find-and-replace because the character has other functional uses in code.
+File names should be written in lowercase with dashes (`my-file.dta`). File
+paths should always include the file extension (`.dta`, `.do`, `.csv`, and so
+forth). Omitting the extension causes ambiguity if another file with the same
+name is created, even if there is a default file type.
 
-**Dynamic** file paths use global macros for the location of the root folder.
-These globals should be set in a central master do-file.
-This makes it possible to write file paths that work very similarly to relative paths.
-It also achieves the functionality that setting `cd` is often intended to:
-  executing the code on a new system only requires updating file path globals in one location.
-If global names are unique, there is no risk that files are saved in the incorrect project folder.
-You can create multiple folder globals as needed and this is encouraged.
+
+File paths should also be absolute and dynamic. *Absolute* means that all file
+paths start at the root folder of the computer, often `C:/` in Windows or `/Users/`
+in macOS. Doing so ensures that the correct file is always in the correct
+folder. The cd command should not be used unless a command specifically requires
+it. When using `cd`, it is easy to overwrite a file in another project folder,
+because many Stata commands implicitly use `cd`, and therefore the working
+directory in Stata often changes without warning. Relative file paths are common
+in many other programming languages, but, unless they are relative to the
+location of the file running the code, using them is a risky practice. In Stata,
+relative file paths are relative to the working directory, not to the code file
+being run.
+
+*Dynamic* file paths use global macros for the location of the root folder.
+These globals should be set in a central master do-file. Using the root folder
+path stored in a global makes it possible to write file paths in Stata that work
+very similarly to relative paths. It also achieves the functionality that
+setting `cd` is often intended to achieve: executing the code on a new system only
+requires updating file path globals in one location. If global names are unique,
+there is no risk that files will be saved in the incorrect project folder.
+Multiple folder globals can be created as needed, and this practice is
+encouraged.
+
 
 **GOOD:**
 ```{stata, eval = FALSE}
@@ -567,36 +538,35 @@ use MyDataset.dta
 use "C:/Users/username/Documents/MyProject/MyDataset.dta"
 ```
 
+
+
 ### Line breaks {-}
 
-Long lines of code are difficult to read if you have to scroll left and right to see the full line of code.
-When your line of code is wider than text on a regular paper, you should introduce a line break.
-A common line breaking length is around 80 characters.
-Stata's do-file editor and other code editors provide a visible guide line.
-Around that length, start a new line using `///`.
-Using `///` breaks the line in the code editor,
-while telling Stata that the same line of code continues on the next line.
-Recent versions of the Stata do-file editor --
-and many other code editors --
-automatically wrap code lines that are too long,
-but you should still use `///`
-to make sure that the lines breaks are placed
-where they are most readable.
-The `///` breaks do not need to be horizontally aligned in code,
-although you may prefer to if they have comments that read better aligned,
-since indentations should reflect that the command continues to a new line.
-Break lines where it makes functional sense.
-You can write comments after `///` just as with `//`, and that is usually a good thing.
 
-The `#delimit` command should only be used for advanced function programming
-and is officially discouraged in analytical code.^[
-  @cox2005styleguide
-]
-Never, for any reason, use `/* */` to wrap a line:
-it is distracting and difficult to follow compared to the use
-of those characters to write regular comments.
-Line breaks and indentations may be used to highlight the placement
-of the **option comma** or other functional syntax in Stata commands.
+Long lines of code are difficult to read, making it necessary to scroll left and
+right to see the full line of code. When a line of code is wider than text on a
+regular paper, a line break is needed. A common line-breaking length is
+around 80 characters. Stata’s do-file editor and other code editors provide a
+visible guideline. Around that length, using `///` breaks the line in the code
+editor, while telling Stata that the same line of code continues on the next
+line. Recent versions of the Stata do-file editor—and many other code
+editors—automatically wrap code lines that are too long. We do not recommend
+relying on this functionality; instead, actively using `///` to wrap lines is
+recommended to ensure that line breaks are placed such that the code remains the
+most readable. The /// breaks do not need to be aligned vertically in code,
+although doing so may help to align comments and improve readability, because
+indentations should reflect that the command continues to a new line. Lines
+should be broken where it makes functional sense. Writing comments after `///`
+just as with `//` usually is a good idea, especially if it is being used to
+separate functional parts of a single command for clarity.
+
+The `#delimit` command should be used only for advanced function programming and
+is officially discouraged in analytical code (@cox2005styleguide). Typing `/*
+*/` should never be used to wrap a line: it is distracting and difficult to
+follow, and those characters should be used only to write regular comments. Line
+breaks and indentations may be used to highlight the placement of the option
+comma or other functional syntax in Stata commands.
+
 
 **GOOD:**
 ```{stata, eval = FALSE}
@@ -625,31 +595,30 @@ graph hbar /*
 */    invil if (priv == 1)
 ```
 
+
+
 ### Using boilerplate code {-}
 
-**Boilerplate** code consists of a few lines of code that always come at the top of the code file,
-and its purpose is to harmonize settings across users
-running the same code to the greatest degree possible.
-There is no way in Stata to guarantee that any two installations
-will always run code in exactly the same way.
-In the vast majority of cases it does, but not always,
-and boilerplate code can mitigate that risk.
-We have developed the `ieboilstart` command
-to implement many commonly-used boilerplate settings
-that are optimized given your installation of Stata.
-It requires two lines of code to execute the `version`
-setting, which avoids differences in results due to different versions of Stata.
-Among other things, it turns the `more` flag off
-so code never hangs while waiting to display more output;
-it turns `varabbrev` off so abbrevated variable names are rejected;
-and it maximizes the allowed memory usage and matrix size
-so that code is not rejected on other machines for violating system limits.
-(For example, Stata/SE and Stata/IC, allow for different maximum numbers of variables,
-and the same happens with Stata 14 and Stata 15,
-so it may not be able to run code written in one of these version using another.)
-Finally, it clears all stored information in Stata memory,
-such as non-installed programs and globals,
-getting as close as possible to opening Stata fresh.
+
+*Boilerplate* code consists of a few lines of code that always appear at the top
+of the code file, and its purpose is to harmonize settings across users running
+the same code to the greatest degree possible. There is no way in Stata to
+guarantee that any two installations will always run code in exactly the same
+way. In the vast majority of cases, they do, but not always, and boilerplate
+code can mitigate that risk. DIME Analytics developed the `ieboilstart` command to
+implement many commonly used boilerplate settings that are optimized given a
+particular installation of Stata. It requires two lines of code to execute the
+`version` setting, which avoids differences in results due to different versions
+of Stata. Among other things, it turns the `more` flag off so that code never
+hangs while waiting to display more output; it turns `varabbrev` off so that
+abbreviated variable names are rejected; and it maximizes the allowed memory
+usage and matrix size so that other machines do not reject code for violating
+system limits. (For example, Stata/SE and Stata/IC allow for different maximum
+numbers of variables, and the same happens with Stata 14 and Stata 15, so code
+written in one of these versions may not be able to run in another.) Finally, it
+clears all stored information in Stata memory, such as noninstalled programs and
+globals, getting as close as possible to opening a fresh Stata session.
+
 
 **GOOD:**
 ```{stata, eval = FALSE}
@@ -665,17 +634,17 @@ set maxvar 10000
 version 13.1
 ```
 
+
 ### Miscellaneous notes {-}
 
-Write multiple graphs as `tw (xx)(xx)(xx)`, not `tw xx||xx||xx`.
+Multiple graphs should be written as `tw (xx)(xx)(xx)`, not `tw xx||xx||xx`. In
+simple expressions, spaces are needed around each binary operator except `^`,
+writing `gen z = x + y` and `gen z = x^2`. When the order of operations applies,
+spacing and parentheses may be adjusted: write `hours + (minutes/60) + (seconds/3600)`,
+not `hours + minutes / 60 + seconds / 3600`. For long
+expressions, `+` and `-` operators should start the new line, but `*` and `/`
+should be used inline. For example:
 
-In simple expressions, put spaces around each binary operator except `^`.
-Therefore write `gen z = x + y`` and `x^2`.
-
-When order of operations applies, you may adjust spacing and parentheses: write
-`hours + (minutes/60) + (seconds/3600)`, not `hours + minutes / 60 + seconds / 3600`.
-For long expressions, `+` and `-` operators should start the new line,
-but `*` and `/` should be used inline. For example:
 
 ```{stata, eval = FALSE}
 gen newvar = x ///
@@ -683,10 +652,12 @@ gen newvar = x ///
              + a * (b - c)
 ```
 
-Make sure your code doesn't print very much to the results window as this is slow.
-This can be accomplished by using `run file.do` rather than `do file.do`.
-Interactive commands like `sum` or `tab` should be used sparingly in do-files,
-unless they are for the purpose of getting `r()`-statistics.
-In that case, consider using the `qui` prefix to prevent printing output.
-It is also faster to get outputs from commands like `reg` using the `qui` prefix.
+
+Instead of printing code to the results window, which is slow, it is better to
+use `qui` whenever possible and to use `run file.do` rather than `do file.do` in
+master scripts. To minimize output printed to the command window, commands like
+`sum` and `tab` should be used sparingly in do-files, unless they are for the
+purpose of storing r-class statistics. In that case, using the `qui` prefix will
+prevent printing output. It is also faster to get outputs from commands like `reg`
+using the `qui` prefix.
 
