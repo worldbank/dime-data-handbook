@@ -23,7 +23,7 @@ fashion that is easy to follow and understand, both for members of the research
 team and for consumers of research. The third section discusses ways to automate
 common outputs so that the work is fully reproducible, and the final section
 discusses tools for incorporating these outputs into fully dynamic documents.
-Box 6.1summarizes the main points, lists the responsibilities of different
+Box 6.1 summarizes the main points, lists the responsibilities of different
 members of the research team, and supplies a list of key tools and resources for
 implementing the recommended practices.
 
@@ -97,7 +97,7 @@ following:
   - Manage and document data sets so that other team members can understand them
     easily.
   - Flag ambiguities, concerns, or gaps in translation from theoretical
-    framework to code anddata.
+    framework to code and data.
   - Draft and organize exploratory outputs for rapid review by management.
   - Maintain release-ready code and organize output with version control so that
     current versionsof outputs are always accessible and final outputs are
@@ -416,7 +416,7 @@ variables will need to be constructed for a subsequent round. When a new round
 of data is received, best practice is first to create a cleaned panel data set,
 ignoring the previous constructed version of the initial round, and then to
 construct the derived indicators using the panel as input. The DIME Analytics
-team created the `iecodebook` `append` subcommand in the Stata package
+team created the `iecodebook append` subcommand in the Stata package
 `iefieldkit` to make it easier to reconcile and append data into this type of
 cleaned panel data set, and the command also works well for similar data
 collected in different contexts (for instructions and details, see the DIME Wiki
@@ -425,7 +425,7 @@ at <https://dimewiki.worldbank.org/iecodebook>).
 This harmonization and appending process is done by completing an Excel
 spreadsheet codebook to indicate which changes in names, value assignments, and
 value labels should be made so the data are consistent across rounds or settings
-(@daniels2017use). Doing so creates helpful documentation about the appending
+(@bjarkefur2020iefieldkit). Doing so creates helpful documentation about the appending
 process. Once the data sets have been harmonized and appended, it is necessary
 to adapt the construction script so that it can be used on the appended data
 set. In addition to preventing inconsistencies and documenting the work, this
@@ -483,7 +483,7 @@ combined, recoded, or rescaled. Whenever relevant, the documentation should
 point to specific scripts to indicate where the definitions are being
 implemented in code.
 
-The `iecodebook` `export` subcommand is a good way to ensure that the project
+The `iecodebook export` subcommand is a good way to ensure that the project
 has easy-to-read documentation. When all final indicators have been created, it
 can be used to list all variables in the data set in an Excel sheet. The
 variable definitions can be added to that file to create a concise metadata
@@ -677,9 +677,9 @@ example of this process from the Demand for Safe Spaces project).
 The Demand for Safe Spaces team defined the settings for graphs in globals in
 the master analysis script. Using globals created a uniform visual style for all
 graphs produced by the project. These globals were then used across the project
-when creating graphs like the following: `twoway (bar cum x,`
-`color(${col_aux_light})) (lpoly y x, color(${col_mixedcar})) (lpoly z x,`
-`color(${col_womencar})), ${plot_options}`.
+when creating graphs like the following: 
+`twoway (bar cum x, color(${col_aux_light})) (lpoly y x, color(${col_mixedcar})) 
+ (lpoly z x, color(${col_womencar})), ${plot_options}`
 
 ![](examples/ch6-visualizing-data.png)
  
@@ -807,11 +807,11 @@ or report.
 
 Numerous commands are available for exporting outputs from both R and Stata. For
 exporting tables, Stata 17 includes more advanced built-in capabilities. Some
-currently popular user-written commands are `estout`(@estout05, @estout07), 
+currently popular user-written commands are `estout` (@estout05), 
 `outreg2` (@wada2014outreg2)
 , and `outwrite` (@daniels2019outwrite). In R, popular tools include
 `stargazer` (@hlavac2015stargazer), `huxtable` (Hugh-Jones 2021), and `ggsave` (part of
-`ggplot2`; (@ggplot2)). They allow for a wide variety of output formats. Using
+`ggplot2`; @ggplot2). They allow for a wide variety of output formats. Using
 formats that are accessible and, whenever possible, lightweight is recommended.
 Accessible means that other people can open them easily. For figures in Stata,
 accessibility means always using `graph export` to save images as `.jpg`,
@@ -857,11 +857,15 @@ DIME Wiki at <https://dimewiki.worldbank.org/Checklist:_Submit_Table>.
 It is strongly recommended to create final products using a software that allows
 for direct linkage to raw outputs. In this way, final products will be updated
 in the paper or presentation every time changes are made to the raw outputs.
-Files that have this feature are called dynamic documents. Dynamic documents are
-a broad class of tools that enable a streamlined, reproducible workflow. The
-term “dynamic” can refer to any document-creation technology that allows the
-inclusion of explicitly encoded links to output files. Whenever outputs are
-updated, and a dynamic document is reloaded or recompiled, it will automatically
+Files that have this feature are called *dynamic documents*^[**Dynamic documents** 
+are files that include direct references to exported materials and
+update them automatically in the output. For more details, 
+see the DIME Wiki at https://dimewiki.worldbank.org/Dynamic_documents.].
+Dynamic documents are a broad class of tools that enable a streamlined, 
+reproducible workflow. The term “dynamic” can refer to any 
+document-creation technology that allows the inclusion of explicitly encoded links
+to output files. Whenever outputs are updated, and a dynamic document is 
+reloaded or recompiled, it will automatically
 include all changes made to all outputs without any additional intervention from
 the user. This is not possible in tools like Microsoft Office, although tools
 and add-ons can produce similar functionality. In Word, by default, each object
@@ -948,7 +952,7 @@ writing environment such as TeXstudio, TeXmaker, or LyX is great for outputs
 that focus mainly on text but also include figures and tables that may be
 updated. It is good for adding small chunks of code into an output. Finally,
 some publishers make custom LaTeX templates available or accept manuscripts as
-raw .tex files, so research outputs can be formatted more easily into custom
+raw `.tex` files, so research outputs can be formatted more easily into custom
 layouts.
 
 
