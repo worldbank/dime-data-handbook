@@ -4,20 +4,20 @@ bibliography: bibliography.bib
 
 # Setting the stage for effective and efficient collaboration {#collaboration}
 
-In order to conduct effective data work in a team environment, researchers need 
-to determine the structure of the workflow in advance. Preparation for 
-collaborative data work begins long before data are acquired. It involves 
-planning both software tools and collaboration platforms for the team and 
-knowing what types of data will be acquired, whether the data will require 
+In order to conduct effective data work in a team environment, researchers need
+to determine the structure of the workflow in advance. Preparation for
+collaborative data work begins long before data are acquired. It involves
+planning both software tools and collaboration platforms for the team and
+knowing what types of data will be acquired, whether the data will require
 special handling because of size or privacy considerations, which data sets and
-outputs will be needed at the end of the process, and how all data files and 
-versions will stay organized throughout. It is important to plan data workflows 
-in advance because changing software or protocols halfway through a project is 
-costly and time-consuming. Seemingly small decisions such as file-sharing 
-services, folder structures, and filenames can be extremely painful to alter 
+outputs will be needed at the end of the process, and how all data files and
+versions will stay organized throughout. It is important to plan data workflows
+in advance because changing software or protocols halfway through a project is
+costly and time-consuming. Seemingly small decisions such as file-sharing
+services, folder structures, and filenames can be extremely painful to alter
 down the line.
 
-|       This chapter provides guidance on setting up an effective environment for
+This chapter provides guidance on setting up an effective environment for
 collaborative data work, structuring data work to be well organized and clearly
 documented, and setting up processes to handle confidential data securely. The
 first section outlines how to set up a working environment to collaborate
@@ -29,10 +29,8 @@ confidential data. Box 2.1 summarizes the most important points, lists the
 responsibilities of different members of the research team, and provides a list
 of key tools and resources for implementing the recommended practices.
 
-
-
-```{block2, type = 'summary'}
-#### SUMMARY: SETTING THE STAGE FOR EFFECTIVE AND EFFICIENT COLLABORATION {-}
+::: {.summary}
+#### BOX 2.1 SUMMARY: SETTING THE STAGE FOR EFFECTIVE AND EFFICIENT COLLABORATION {-}
 
 The technical environment for data work needs to be established at the start of
 a research project. Agreeing on software choices, code standards and data
@@ -83,10 +81,9 @@ life cycle. Consider the following.
 
 #### Key responsibilities for task team leaders and principal investigators {-}
 
--Support the acquisition and maintenance of required computing hardware and
-software, coordinating with procurement, information security, and information
-technology teams as necessary.
-
+  - Support the acquisition and maintenance of required computing hardware and
+    software, coordinating with procurement, information security, and
+    information technology teams as necessary.
   - Make final decisions regarding code languages and environments.
   - Discuss and agree upon an appropriate project-wide digital organization
     strategy.
@@ -105,25 +102,27 @@ technology teams as necessary.
 
 #### Key Resources {-}
 
-- Research ethics in pillar 1 of the DIME Research Standards, at https://github.com/worldbank/dime-standards 
-- DIME GitHub resources at https://github.com/worldbank/dime-github-trainings
-- Data security in pillar 4 of the DIME Research Standards, at https://github.com/worldbank/dime-standards
-- Publication guidelines in pillar 5 of the DIME Research Standards, at https://github.com/worldbank/dime-standards
-
-```
+  - Research ethics in pillar 1 of the DIME Research Standards, at
+    <https://github.com/worldbank/dime-standards>
+  - DIME GitHub resources at
+    <https://github.com/worldbank/dime-github-trainings>
+  - Data security in pillar 4 of the DIME Research Standards, at
+    <https://github.com/worldbank/dime-standards>
+  - Publication guidelines in pillar 5 of the DIME Research Standards, at
+    <https://github.com/worldbank/dime-standards> 
+:::
 
 ## Preparing a collaborative work environment  {-}
 
-This section introduces core concepts and tools for organizing data
-work in an efficient, collaborative, and reproducible manner. Some of
-these skills may seem elementary, but thinking about simple details
-from a workflow perspective can make marginal daily improvements
-that add up to substantial gains over the course of multiple years and
-projects. Together, these processes form a collaborative workflow that
-will greatly accelerate the team’s ability to complete tasks on all of its
-projects.
+This section introduces core concepts and tools for organizing data work in an
+efficient, collaborative, and reproducible manner. Some of these skills may seem
+elementary, but thinking about simple details from a workflow perspective can
+make marginal daily improvements that add up to substantial gains over the
+course of multiple years and projects. Together, these processes form a
+collaborative workflow that will greatly accelerate the team's ability to
+complete tasks on all of its projects.
 
-| Teams often develop workflows in an ad hoc fashion, solving new challenges as
+Teams often develop workflows in an ad hoc fashion, solving new challenges as
 they arise. Adaptation is good, of course, but some tasks exist on every
 project, and it is more efficient to agree on the corresponding workflow in
 advance. For example, every project requires research documentation, a
@@ -137,8 +136,8 @@ section outlines the main points to discuss within the team and suggests
 best-practice solutions for them.
 
 
-```{block2, type = 'ex'}
-#### PREPARING A COLLABORATIVE WORK ENVIRONMENT: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
+::: {.ex}
+#### BOX 2.2 PREPARING A COLLABORATIVE WORK ENVIRONMENT: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The following are a few highlights demonstrating how the Demand for Safe Spaces
 team organized the work environment for effective collaboration:
@@ -159,8 +158,7 @@ team organized the work environment for effective collaboration:
   - Team members shared a synchronized folder (using Dropbox), which included
     the de-identified data and project documentation such as survey instruments
     and enumerator training manuals.
-
-```
+:::
 
 ### Setting up a computer for data work  {-}
 
@@ -169,21 +167,18 @@ to be set up for success. The operating system should be fully updated, be in
 good working order, and use a password-protected login. However, password
 protection is not sufficient if the computer stores data that are not public.
 Encryption is essential for sufficient protection and is covered later in this
-chapter. The computer has to be *backed up* to prevent information loss (
-<https://dimewiki.worldbank.org/Data_Storage> ). The 3-2-1 rule is highly
+chapter. The computer has to be *backed up* to prevent information loss
+(<https://dimewiki.worldbank.org/Data_Storage>). The 3-2-1 rule is highly
 recommended: maintain three copies of all original or irreplaceable data, with
 data stored on at least two onsite hardware devices and in one offsite location.
 Chapter 4 provides a protocol for implementing this rule. It is important to
 know how to get the *absolute file path* for any given file. On macOS the file
-path will be something like
-$\\color{purple}{\\text{/users/username/git/project/...}}$ ; on Windows it will
-be $\\color{purple}{\\text{C:/users/username/git/project/...}}$ . Absolute file
-paths are an obstacle to collaboration unless they are *dynamic absolute file
-paths*. In a dynamic absolute file path, the relative project path,
-$\\color{purple}{\\text{/git/project/...}}$ in the examples above, is added to
-the user-specific root path for each user,
-$\\color{purple}{\\text{/users/username}}$ or
-$\\color{purple}{\\text{C:/users/username}}$, generating an absolute file path
+path will be something like `/users/username/git/project/...`; on Windows it
+will be `C:/users/username/git/project/...`. Absolute file paths are an obstacle
+to collaboration unless they are *dynamic absolute file paths*. In a dynamic
+absolute file path, the relative project path, `/git/project/...` in the
+examples above, is added to the user-specific root path for each user,
+`/users/username` or `C:/users/username`, generating an absolute file path
 unique to each user. Master scripts, which are introduced later in this chapter,
 implement this process seamlessly. Dynamic absolute file paths, starting from
 the file system root, are the best way to ensure that files are read and written
@@ -192,36 +187,35 @@ platforms, operating systems, and devices. In some contexts—for example, some
 cloud environments—relative file paths must be used, but in all other contexts
 dynamic absolute file paths are recommended.
 
-| It is recommended to follow standardized *naming conventions* ^[**Naming
-conventions** are a set of specific rules governing names and structures of
+It is recommended to follow standardized *naming conventions* ^[**Naming conventions**
+are a set of specific rules governing names and structures of
 files and folders. These conventions ensure that people will know where to
 place, how to name, and how to find specific pieces of information easily. For
 details, see the DIME Wiki at
 https://dimewiki.worldbank.org/Naming_Conventions.] in folder names and
-filenames. Whenever possible, use only the 26 English letters, numbers, dashes (
-- ), and underscores ( _ ). Give preference to lowercase letters and avoid
-spaces, which can cause problems when transferred to others. Forward slashes ( /
-) must always be used in file paths to represent folder or directory structures
-when typed in code, just like in internet addresses. It is good practice to do
-this even when using a Windows machine, where both forward and backward slashes
-are allowed; using a backward slash will break the code if anyone tries to run
-it on a macOS or Linux machine. Making the structure and naming of directories a
-core part of the workflow is very important, because otherwise it will be
-impossible to transfer reliable instructions for replicating or carrying out the
-analytical work.
+filenames. Whenever possible, use only the 26 English letters, numbers, dashes
+(`-`), and underscores (`_`). Give preference to lowercase letters and avoid
+spaces, which can cause problems when transferred to others. Forward slashes
+(`/`) must always be used in file paths to represent folder or directory
+structures when typed in code, just like in internet addresses. It is good
+practice to do this even when using a Windows machine, where both forward and
+backward slashes are allowed; using a backward slash will break the code if
+anyone tries to run it on a macOS or Linux machine. Making the structure and
+naming of directories a core part of the workflow is very important, because
+otherwise it will be impossible to transfer reliable instructions for
+replicating or carrying out the analytical work.
 
-
-| Most teams use some kind of file-sharing software. The exact services used
-will depend on the tasks, but in general there are several approaches to file
+Most teams use some kind of file-sharing software. The exact services used will
+depend on the tasks, but in general there are several approaches to file
 sharing; the three discussed here are the most common. *File syncing* is the
 most familiar method and is implemented by software like OneDrive, Dropbox, or
 Box. Syncing software forces everyone to have the same version of every file at
 the same time, which makes simultaneous editing difficult but other tasks
 easier. *Distributed version control* is another method, commonly implemented
-through systems like GitHub, GitLab, and Bitbucket that interact with *Git.*
-^[**Git** is a distributed version-control system for collaborating on and
-tracking changes to code as it is written.] Distributed version control allows
-everyone to access different versions of a file at the same time. It is
+through systems like GitHub, GitLab, and Bitbucket that interact with
+*Git.*^[**Git** is a distributed version-control system for collaborating on
+and tracking changes to code as it is written.] Distributed version control
+allows everyone to access different versions of a file at the same time. It is
 optimized only for specific types of files (for example, any type of code file).
 Finally, *server storage* is the least-common method, because there is only one
 version of the materials and simultaneous access must be regulated carefully.
@@ -229,7 +223,7 @@ Server storage ensures that everyone has access to exactly the same files and
 environment, and it also enables high-powered computing processes for large,
 complex data.
 
-| All three file-sharing methods are used for collaborative workflows, and it is
+All three file-sharing methods are used for collaborative workflows, and it is
 important to review the types of data work that will be done and to plan which
 types of files will live in which types of sharing services. These services are,
 in general, not interoperable, meaning that version-controlled files cannot
@@ -247,7 +241,7 @@ how the team is going to communicate. The first habit that many teams need to
 break is using instant communication for management and documentation. Email is,
 simply put, not a system. It is not a system for anything. Neither are instant
 messaging apps like WhatsApp. Instant messaging tools are developed for
-communicating “now,” and they do it well. They are not structured to manage
+communicating "now," and they do it well. They are not structured to manage
 group membership, to present the same information across a group of people, or
 to remind individuals when old information becomes relevant. They are not
 structured to allow people to collaborate over a long period of time or to
@@ -258,7 +252,7 @@ example, decisions about research design—should immediately be recorded in a
 system designed to keep permanent records. These systems are called
 collaboration tools, and several are very useful.
 
-| Good collaboration tools are workflow-oriented systems that allow the team to
+Good collaboration tools are workflow-oriented systems that allow the team to
 create and assign tasks, carry out discussions related to single tasks, track
 progress across time, and quickly see the overall status of the project. They
 are web-based so that everyone on the team can access them simultaneously and
@@ -271,7 +265,7 @@ it, so that decisions, discussions, and tasks are easily reviewable long after
 they are completed.
 
 
-| GitHub and Dropbox Paper are popular, free collaboration tools that meet these
+GitHub and Dropbox Paper are popular, free collaboration tools that meet these
 criteria, and DIME Analytics has used both of them. However, any specific list
 of software will quickly become outdated. Different collaboration tools can be
 used for different types of tasks. DIME Analytics, for example, uses GitHub for
@@ -292,7 +286,7 @@ programming language and all other software that the code requires will run
 smoothly on all of the hardware used. It also gives the team a productive way to
 interact with code and gives the code a seamless method for accessing the data.
 
-| It is difficult and costly to switch programming languages halfway through a
+It is difficult and costly to switch programming languages halfway through a
 project, so it is important to consider early on the various types of software
 that the team will use, taking into account the technical abilities of team
 members, what type of internet access the software will need, the type of data
@@ -303,7 +297,7 @@ the tools also are considerations. Few software choices are strictly right or
 wrong; what is important is to plan in advance and to understand how the chosen
 tools will interact with the workflow.
 
-| One option is to hold the code environment constant over the life cycle of a
+One option is to hold the code environment constant over the life cycle of a
 single project. However, this means that different projects will inevitably have
 different code environments and researchers working on multiple projects are
 likely to have to work in several slightly different code environments. Each
@@ -314,36 +308,35 @@ as possible. The specific version number of the programming languages and the
 individual packages used should be referenced or maintained so that they can be
 reproduced going forward, even if different releases contain changes that would
 break the code or change the results. DIME Analytics developed the command
-$\\color{purple}{\\text{ieboilstart}}$ ^[**ieboilstart** is a Stata command to
-standardize version, memory, and other Stata settings across all users for a
-project. It is part of the ietoolkit package. For more details, see the DIME
-Wiki at https://dimewiki.worldbank.org/ieboilstart.] in the
-$\\color{purple}{\\text{ietoolkit}}$ package to support version and settings
-stability in Stata. If a project requires more than one programming language—for
-example, if data are analyzed in one language but the results are visualized in
-another—then the division between the two should be as clear as possible. All
-tasks done in one language need to be completed before the tasks in the other
-language are completed. Frequently swapping back and forth between languages is
-a reproducibility nightmare.
+`ieboilstart`^[**`ieboilstart`** is a Stata command to standardize version,
+memory, and other Stata settings across all users for a project. It is part of
+the ietoolkit package. For more details, see the DIME Wiki at
+https://dimewiki.worldbank.org/ieboilstart.] in the `ietoolkit` package to
+support version and settings stability in Stata. If a project requires more than
+one programming language—for example, if data are analyzed in one language but
+the results are visualized in another—then the division between the two should
+be as clear as possible. All tasks done in one language need to be completed
+before the tasks in the other language are completed. Frequently swapping back
+and forth between languages is a reproducibility nightmare.
 
-| Next, it is important to think about how and where code is written and
-executed. This book is intended to be agnostic to the size or origin of the
-data, but it assumes broadly that researchers are using one of the two most
-popular statistical software packages: R or Stata. (If using another language,
-like Python, many of the same principles apply, but the specifics will be
-different.) Most of the code work will be done in a code editor. For working in
-R, RStudio ( <https://www.rstudio.com> ) is the typical choice. For Stata, the
-built-in do-file editor is the most widely adopted code editor. However, it
-might be useful to consider using an external editor for R or Stata code. These
-editors offer great accessibility and quality features. For example, they can
-access an entire directory—rather than a single file— which provides
-directory-level views and file management actions, such as folder management,
-Git integration, and simultaneous work with other types of files, without
-leaving the editor. Using an external editor can also be preferable because an
-external editor will not crash if execution of the code causes the statistical
-software to crash. Finally, it is often possible to use the same external editor
-for all programming languages used, so any customization done in the code editor
-of choice will improve productivity across all of the coding work.
+Next, it is important to think about how and where code is written and executed.
+This book is intended to be agnostic to the size or origin of the data, but it
+assumes broadly that researchers are using one of the two most popular
+statistical software packages: R or Stata. (If using another language, like
+Python, many of the same principles apply, but the specifics will be different.)
+Most of the code work will be done in a code editor. For working in R, RStudio (
+<https://www.rstudio.com> ) is the typical choice. For Stata, the built-in
+do-file editor is the most widely adopted code editor. However, it might be
+useful to consider using an external editor for R or Stata code. These editors
+offer great accessibility and quality features. For example, they can access an
+entire directory—rather than a single file— which provides directory-level views
+and file management actions, such as folder management, Git integration, and
+simultaneous work with other types of files, without leaving the editor. Using
+an external editor can also be preferable because an external editor will not
+crash if execution of the code causes the statistical software to crash.
+Finally, it is often possible to use the same external editor for all
+programming languages used, so any customization done in the code editor of
+choice will improve productivity across all of the coding work.
 
 ## Organizing code and data for replicable research {-}
 
@@ -362,10 +355,10 @@ one person rarely comes naturally to another, and searching for files and
 folders is the least favorite task of most researchers. This section provides
 basic tips on managing the folders that store a project’s data work.
 
-| Maintaining an organized file structure for data work is the best way to
-ensure that the entire team and others are able to edit and replicate the work
-easily in the future. It also ensures that automated processes from code and
-scripting tools are able to interact well, regardless of who created them. File
+Maintaining an organized file structure for data work is the best way to ensure
+that the entire team and others are able to edit and replicate the work easily
+in the future. It also ensures that automated processes from code and scripting
+tools are able to interact well, regardless of who created them. File
 organization makes data work easier as well as more transparent and facilitates
 integration with tools like version-control systems that aim to cut down on the
 number of repeated tasks that have to be performed. It is worth thinking in
@@ -375,84 +368,73 @@ everyone has the same expectations.
 
 ### Organizing files and folders {-}
 
-Once a research project begins, the number of scripts, data sets, and
-outputs that need to be managed will grow very quickly. This situation
-can get out of hand just as quickly, so it is important to organize the
-data work and follow best practices from the beginning. It is necessary
-for the team to agree on a specific directory structure and to set it up at
-the beginning of the project. It also is necessary to agree on a file-naming
-convention, which will facilitate finding project files and ensure that all
-team members can easily run the same code.
+Once a research project begins, the number of scripts, data sets, and outputs
+that need to be managed will grow very quickly. This situation can get out of
+hand just as quickly, so it is important to organize the data work and follow
+best practices from the beginning. It is necessary for the team to agree on a
+specific directory structure and to set it up at the beginning of the project.
+It also is necessary to agree on a file-naming convention, which will facilitate
+finding project files and ensure that all team members can easily run the same
+code.
 
-| To support consistent folder organization, DIME Analytics created
-$\\color{purple}{\\text{iefolder}}$ ^[**iefolder** is a Stata command to set up
-a standardized folder structure for all research team members. It is part of the
-ietoolkit package. Formore details, see the DIME Wiki at
-https://dimewiki.worldbank.org/iefolder.] as a part of the
-$\\color{purple}{\\text{ietoolkit}}$ package. Box 2.3 describes the folder
-structure of the Demand for Safe Spaces data work. This Stata command sets up a
-prestandardized folder structure for what is called the *DataWork folder*.
-^[The **DataWork folder** is the root of DIME’s recommended folder structure.
-For more details, see the DIME Wiki at
-https://dimewiki.worldbank.org/DataWork_Folder.] The DataWork folder includes
-folders for all of the steps in a typical project. Because each project will
-always have unique needs, the structure is easy to adapt. Having a universally
-standardized folder structure across the entire portfolio of projects means that
-everyone can move easily between projects without having to spend time
-understanding a new organization of files and folders.
+To support consistent folder organization, DIME Analytics created
+`iefolder`^[**`iefolder`** is a Stata command to set up a standardized folder
+structure for all research team members. It is part of the ietoolkit package.
+Formore details, see the DIME Wiki at https://dimewiki.worldbank.org/iefolder.]
+as a part of the `ietoolkit` package. Box 2.3 describes the folder structure of
+the Demand for Safe Spaces data work. This Stata command sets up a
+prestandardized folder structure for what is called the *DataWork folder*.^[The
+**DataWork folder** is the root of DIME’s recommended folder structure. For more
+details, see the DIME Wiki at https://dimewiki.worldbank.org/DataWork_Folder.]
+The DataWork folder includes folders for all of the steps in a typical project.
+Because each project will always have unique needs, the structure is easy to
+adapt. Having a universally standardized folder structure across the entire
+portfolio of projects means that everyone can move easily between projects
+without having to spend time understanding a new organization of files and
+folders.
 
-
-
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 2.3 ORGANIZING FILES AND FOLDERS: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 Figure B2.3.1 illustrates the folder structure of the Demand for Safe Spaces
-data work. This project started before the $\\color{purple}{\\text{iefolder}}$
-structure was created and so differs from the current guidelines. Changing
-folder organization midway through a project is never recommended. Folder
-organization requires planning ahead and agreeing with the whole team on the
-best structure to follow.
+data work. This project started before the `iefolder` structure was created and
+so differs from the current guidelines. Changing folder organization midway
+through a project is never recommended. Folder organization requires planning
+ahead and agreeing with the whole team on the best structure to follow.
 
 ![](examples/folder-structure.png)
 
 The root folder for the study’s data work included two master scripts (one for
-Stata and one R, which can be run independently), a
-$\\color{purple}{\\text{README.md }}$ file, and four subfolders: data, code,
-documentation, and outputs. The folder structure was identical in GitHub and
-Dropbox, but the files present in each of them differed. All of the code, raw
-outputs (such as $\\color{purple}{\\text{.tex}}$ table fragments and
-$\\color{purple}{\\text{.png}}$ images), and plain-text documentation were
-stored in GitHub. All of the data sets, $\\color{purple}{\\text{.pdf}}$ outputs,
-and documentation in Word and Excel were stored in Dropbox. When data processing
-was completed, binary files in the “Documentation” folder that were accessed by
-the code, such as $\\color{purple}{\\text{iecodebook}}$ and
-$\\color{purple}{\\text{ieduplicates}}$ spreadsheets, were moved to GitHub to
-ensure that the repository was complete from a reproducibility perspective.
+Stata and one R, which can be run independently), a `README.md` file, and four
+subfolders: data, code, documentation, and outputs. The folder structure was
+identical in GitHub and Dropbox, but the files present in each of them differed.
+All of the code, raw outputs (such as `.tex` table fragments and `.png` images),
+and plain-text documentation were stored in GitHub. All of the data sets, `.pdf`
+outputs, and documentation in Word and Excel were stored in Dropbox. When data
+processing was completed, binary files in the "Documentation" folder that were
+accessed by the code, such as `iecodebook` and `ieduplicates` spreadsheets, were
+moved to GitHub to ensure that the repository was complete from a
+reproducibility perspective.
+:::
 
-```
+In the absence of a standard file structure across projects, `iefolder` is an
+easy template from which to start. The command creates a "DataWork" folder at
+the project level and, within that folder, creates a standardized directory
+structure for each data source or survey round. Within each subdirectory,
+`iefolder` creates folders for raw encrypted data, raw de-identified data,
+cleaned data, final data, outputs, and documentation. It creates a parallel
+folder structure for the code files that move data through this progression and
+for the final analytical outputs. The `ietoolkit` package also includes the
+`iegitaddmd`^[**`iegitaddmd`** is a Stata command that automatically generates
+placeholder files to allow sharing folder structures with empty folders, because
+Git does not track or share empty folders. It is part of the ietoolkit package.
+For more details, see the DIME Wiki at
+https://dimewiki.worldbank.org/iegitaddmd.] command, which places `README.md`
+placeholder files in folders. Because these placeholder files are written in a
+plain-text language called Markdown, they also provide an easy way to document
+the contents of every folder in the structure.
 
-
-
-| In the absence of a standard file structure across projects,
-$\\color{purple}{\\text{iefolder}}$ is an easy template from which to start. The
-command creates a “DataWork” folder at the project level and, within that
-folder, creates a standardized directory structure for each data source or
-survey round. Within each subdirectory, $\\color{purple}{\\text{iefolder}}$
-creates folders for raw encrypted data, raw de-identified data, cleaned data,
-final data, outputs, and documentation. It creates a parallel folder structure
-for the code files that move data through this progression and for the final
-analytical outputs. The $\\color{purple}{\\text{ietoolkit}}$ package also
-includes the $\\color{purple}{\\text{iegitaddmd}}$ ^[**iegitaddmd** is a Stata
-command that automatically generates placeholder files to allow sharing folder
-structures with empty folders, because Git does not track or share empty
-folders. It is part of the ietoolkit package. For more details, see the DIME
-Wiki at https://dimewiki.worldbank.org/iegitaddmd.] command, which places
-$\\color{purple}{\\text{README.md}}$ placeholder files in folders. Because these
-placeholder files are written in a plain-text language called Markdown, they
-also provide an easy way to document the contents of every folder in the
-structure.
-
-| The DataWork folder may be created either inside an existing project folder or
+The DataWork folder may be created either inside an existing project folder or
 as a separate root folder. It is advisable to keep project management materials
 (such as contracts, terms of reference, briefs, and other administrative or
 management work) separate from the DataWork folder structure. Project management
@@ -468,21 +450,21 @@ Each task in the research workflow has specific inputs and outputs that feed
 into one another. It is common to create incompatibilities, particularly when
 different people in a team perform different tasks. For example, if the
 principal investigators are writing a paper using LaTeX, exporting tables from
-statistical software into a $\\color{purple}{\\text{.csv}}$ format will break
-the workflow. Therefore, it is important for the team to agree on what tools
-will be used for what tasks and where inputs and outputs will be stored, before
-creating them. Taking into account ease of use for different team members and
-keeping in mind that learning how to use a new tool may require some up-front
-investment of time will pay off as the project advances.
+statistical software into a `.csv` format will break the workflow. Therefore, it
+is important for the team to agree on what tools will be used for what tasks and
+where inputs and outputs will be stored, before creating them. Taking into
+account ease of use for different team members and keeping in mind that learning
+how to use a new tool may require some up-front investment of time will pay off
+as the project advances.
 
-| Knowing how code outputs will be used will help to determine the best format
-for exporting them. It is typically possible to use the same software to save
-figures into various formats, such as $\\color{purple}{\\text{.eps , .png , .pdf
-,}}$ and $\\color{purple}{\\text{.jpg}}$ . However, the decision to use Office
-suite software such as Word and PowerPoint (or free alternatives) instead of
-LaTeX or another plain-text format will influence how the code should be
-written, because this choice often implies the use of a particular format. This
-decision will also affect which version-control systems the team can use.
+Knowing how code outputs will be used will help to determine the best format for
+exporting them. It is typically possible to use the same software to save
+figures into various formats, such as `.eps`, `.png`, `.pdf` and `.jpg`.
+However, the decision to use Office suite software such as Word and PowerPoint
+(or free alternatives) instead of LaTeX or another plain-text format will
+influence how the code should be written, because this choice often implies the
+use of a particular format. This decision will also affect which version-control
+systems the team can use.
 
 
 ### Using version control {-}
@@ -493,20 +475,19 @@ protocol for avoiding conflicting versions. Version control is important, for
 example, if the team needs to find the exact version of a presentation that was
 delivered to a donor or to understand why the significance level of estimates
 has changed. Everyone who has ever encountered a file named something like
-$\\color{purple}{\\text{final_report_v5_LJK_KLE_jun15.docx}}$ can
-appreciate how useful such a system can be.
+`final_report_v5_LJK_KLE_jun15.docx` can appreciate how useful such a system can
+be.
 
-| Most syncing services offer some kind of rudimentary version control; these
+Most syncing services offer some kind of rudimentary version control; these
 services are usually able to manage changes to *binary files* ^[**Binary
 files** are types of computer data that store information and metadata, such as
-Office suite documents, media files, .pdf files, and others. **Plain text
+Office suite documents, media files, `.pdf` files, and others. **Plain text
 files** are types of computer data that store only simple text, such as Stata or
-R code as well as $\\color{purple}{\\text{.txt, .html,}}$ and
-$\\color{purple}{\\text{.md}}$ files.] without needing to rely on dreaded
-filename-based versioning conventions. For code files, however, a more detailed
-version-control system is usually desirable. Git is the recommended
+R code as well as `.txt`, `.html` and `.md` files.] without needing to rely on
+dreaded filename-based versioning conventions. For code files, however, a more
+detailed version-control system is usually desirable. Git is the recommended
 version-control system for all data work. Git documents the changes made to all
-files, but works best with plain-text files. Plain-text files include all code
+files, but works best with *plain-text files*. Plain-text files include all code
 files, most raw outputs, and written outputs that use code languages, such as
 LaTeX files and many dynamic documents. Git tracks all of the changes made to
 each plain-text file and makes it possible to return to previous versions
@@ -532,7 +513,7 @@ in Stata, illustrating the code elements, organization, and structure required.
 ```{stata, eval = F, code = readLines("code/stata-master-dofile.do"), attr.source='.numberLines'}
 ```
 
-| To be readable, code must be well documented. This process begins by adding a
+To be readable, code must be well documented. This process begins by adding a
 code header to every file. A code header is a long *comment* ^[**Comments** are
 components of code that have no function for the computer. They describe in
 plain language what the code is intended to do and how it is attempting to do
@@ -549,15 +530,15 @@ very helpful. Although there are other ways to document decisions related to
 creating code, the information relevant to understanding the code should always
 be written in the code file.
 
-| Two types of comments should be included in the script itself. The first type
-of comment describes what is being done. Someone familiar with the language
-might find this information easy to understand from the code itself, if the code
-is clear, but reverse-engineering the code’s intent often requires a great deal
-of work. Describing the task in plain English (or whatever language the team
-uses to communicate) will make it easier for everyone to read and understand the
+Two types of comments should be included in the script itself. The first type of
+comment describes *what* is being done. Someone familiar with the language might
+find this information easy to understand from the code itself, if the code is
+clear, but reverse-engineering the code’s intent often requires a great deal of
+work. Describing the task in plain English (or whatever language the team uses
+to communicate) will make it easier for everyone to read and understand the
 code’s purpose. It can also help researchers to organize their own work and
 ensure that they are following logical steps. The second type of comment
-explains why the code is performing a task in a particular way. Writing code
+explains *why* the code is performing a task in a particular way. Writing code
 requires making a series of decisions that (it is hoped) make perfect sense at
 the time. These decisions are often highly specialized and may exploit a
 functionality that is not obvious or that others have not seen before.
@@ -570,7 +551,7 @@ precise processes in code is essential. See box 2.5 for examples of how comments
 can be used.
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 2.5 WRITING CODE THAT OTHERS CAN READ: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 To ensure that all team members were able to read and understand data work
@@ -581,13 +562,12 @@ of the original data sets illustrates the use of comments:
   
 ![](examples/ch2-writing-code-that-others-can-read.png)
   
-> For the complete do-file, visit the GitHub repository at
-> <https://git.io/Jtgev>.
+For the complete do-file, visit the GitHub repository at https://git.io/Jtgev.
 
-```
+:::
 
 
-| Code files should be stored in an easy-to-find location and named in a
+Code files should be stored in an easy-to-find location and named in a
 meaningful way. Breaking code into independently readable “chunks” is good
 practice for code organization. Each functional element should be written as a
 chunk that can run completely on its own. This step ensures that each component
@@ -597,58 +577,57 @@ achieve this independence is by creating sections in the script to identify
 where a specific task is completed. RStudio makes it very easy to create
 sections and compiles them into an interactive script index.
 
-| In Stata, comments can be used to create section headers, but they are only
+In Stata, comments can be used to create section headers, but they are only
 intended to make the reading easier and do not have any functionality. For
 example, to find the line in the code where the directory is set, it is easier
-to go straight to $\\color{purple}{\\text{PART 2: Prepare folder paths and
-define programs}}$ than to read line by line through the entire code (see
-line 27 in the template master do-file in box 2.4). Since an index is not
-automated like in RStudio, it must be created manually in the code header by
-copying and pasting section titles (see lines 8–10 in the template master
-do-file in box 2.4). It is then possible to add and navigate through the code
-using the search function in the code editor. Stata code is harder to navigate
-because it is necessary to scroll through the document; therefore, it is
-particularly important to avoid writing very long scripts. In Stata at least,
-breaking code tasks into separate do-files is recommended because there is no
-limit on the number of do-files, how detailed their names can be, and no
-advantage to writing longer files. One reasonable rule of thumb is not to write
-do-files that have more than 200 lines. This is an arbitrary limit, just like
-the common practice of limiting code lines to 80 characters: it seems to be
-“enough but not too much” for most purposes.
+to go straight to `PART 2: Prepare folder paths and define programs` than to
+read line by line through the entire code (see line 27 in the template master
+do-file in box 2.4). Since an index is not automated like in RStudio, it must be
+created manually in the code header by copying and pasting section titles (see
+lines 8–10 in the template master do-file in box 2.4). It is then possible to
+add and navigate through the code using the search function in the code editor.
+Stata code is harder to navigate because it is necessary to scroll through the
+document; therefore, it is particularly important to avoid writing very long
+scripts. In Stata at least, breaking code tasks into separate do-files is
+recommended because there is no limit on the number of do-files, how detailed
+their names can be, and no advantage to writing longer files. One reasonable
+rule of thumb is not to write do-files that have more than 200 lines. This is an
+arbitrary limit, just like the common practice of limiting code lines to 80
+characters: it seems to be “enough but not too much” for most purposes.
 
 ### Writing code that others can run {-}
 
 Bringing all of these smaller code files together is another purpose of the
 master script. A master script is the map of all of the project’s data work,
-which serves as a table of contents for the instructions that are coded. Anyone
-should be able to follow and reproduce all of the work from the original data to
-all outputs simply by running this single script. Someone external to the
-project who has the master script and all of the input data can (1) run all of
-the code and recreate all of the outputs, (2) understand generally what is being
-done at every step, and (3) see how code and outputs are related. All settings
-required to reproduce all outcomes should be established in the master script,
-including versions, folder paths, functions, and constants used throughout the
-project. Box 2.4 shows the DIME Analytics template for a Stata master do-file,
-but master scripts should be used for reproducibility no matter the programming
-language used.
+which serves as a table of contents for the instructions that are coded.
+Anyone should be able to follow and reproduce all of the work from the
+original data to all outputs simply by running this single script. Someone
+external to the project who has the master script and all of the input data
+can (1) run all of the code and recreate all of the outputs, (2) understand
+generally what is being done at every step, and (3) see how code and
+outputs are related. All settings required to reproduce all outcomes should
+be established in the master script, including versions, folder paths, func-
+tions, and constants used throughout the project. Box 2.4 shows the DIME
+Analytics template for a Stata master do-file, but master scripts should be
+used for reproducibility no matter the programming language used.
 
-| A good habit is always to run code from the master script. Creating “section
-switches” using macros or objects to run only the codes related to a certain
-task is always preferable to opening different scripts manually and running them
-in a certain order (see the if (0) switches on lines 55, 65, and 75 in the
-template master do-file in box 2.4 for one way to do this). Furthermore, running
-all scripts related to a particular task through the master script whenever one
-of them is edited helps to identify unintended consequences of the changes made.
+A good habit is always to run code from the master script. Creating “section
+switches” using macros or objects to runonly the codes related to a certain task
+is always preferable to opening different scripts manually and running them in a
+certain order (see the `if (0)` switches on lines 55, 65, and 75 in the template
+master do-file in box 2.4 for one way to do this). Furthermore, running all
+scripts related to a particular task through the master script whenever one of
+them is edited helps to identify unintended consequences of the changes made.
 For example, if the name of a variable created in one script changes, this
 change may break another script that refers to this variable. But, unless both
 scripts are run when the change is made, it may take time for the break to
 happen; when it does, it may take time to understand what is causing an error.
 The same applies to changes in data sets and results.
 
-| To link code, data, and outputs, the master script reflects the structure of
-the DataWork folder in code through globals (in Stata) or string scalars (in R);
+To link code, data, and outputs, the master script reflects the structure of the
+DataWork folder in code through globals (in Stata) or string scalars (in R);
 refer to lines 37–42 of the template master do-file in box 2.4. These coding
-shortcuts can refer to subfolders, and those folders can be referenced without
+shortcuts can refer to subfolders, and those folders can be refer- enced without
 repeatedly writing out their absolute file paths. Because the DataWork folder is
 shared by the whole team, its structure is the same in each team member’s
 computer. The only difference between machines is the path to the project root
@@ -658,19 +637,19 @@ there is one Git root folder for the code, one sync software root folder for the
 de-identified data, and a third encryption software folder for the encrypted
 data.
 
-| This organization is reflected in the master script in such a way that the
-only change necessary to run the entire code for a new team member is to change
-the path to the project root folders to reflect the file system and username;
-refer to lines 30–35 of the template master do-file. The code in the template
-master file shows how folder structure is reflected in a master do-file. Because
+This organization is reflected in the master script in such a way that the only
+change necessary to run the entire code for a new team member is to change the
+path to the project root folders to reflect the file system and username; refer
+to lines 30–35 of the template master do-file. The code in the template master
+file shows how folder structure is reflected in a master do-file. Because
 writing and maintaining a master script can be challenging as a project grows,
-an important feature of iefolder is to write submaster do-files and add to them
-whenever new subfolders are created in the DataWork folder. See box 2.6 for an
-example of the master do-file for the Demand for Safe Spaces project, which was
-based on the DIME Analytics template and applied the best practices discussed in
-this section.
+an important feature of `iefolder` is to write submaster do-files and add to
+them whenever new subfolders are created in the DataWork folder. See box 2.6 for
+an example of the master do-file for the Demand for Safe Spaces project, which
+was based on the DIME Analytics template and applied the best practices
+discussed in this section.
 
-```{block2, type = 'ex'}
+::: {.ex}
 ### BOX 2.6 WRITING CODE THAT OTHERS CAN RUN: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 All code for the Demand for Safe Spaces study was organized to run from two
@@ -681,14 +660,13 @@ Stata master do-file:
  
 ![](examples/ch2-writing-code-that-others-can-run.png)
   
-> For the complete Stata master script, visit the GitHub repository at
-> <https://git.io/JtgeT>. For the R master script, visit the GitHub repository
-> at <https://git.io/JtgeY>.
+For the complete Stata master script, visit the GitHub repository at
+<https://git.io/JtgeT>. For the R master script, 
+visit the GitHub repository at <https://git.io/JtgeY>.
 
-```
+:::
 
-
-| In order to maintain well-documented and well-organized code, everyone on the
+In order to maintain well-documented and well-organized code, everyone on the
 team has to agree on a plan to review code as it is written. Researchers benefit
 from improving their own skills as they read other people’s code and from
 allowing others to read their code to catch errors and ambiguities. It is normal
@@ -716,37 +694,37 @@ or population that is small and specific or has extensive linkable data sources
 available to others, information like age and gender may be sufficient to
 disclose a person’s identify, even though those variables are not considered PII
 in general. The remainder of this section addresses the standards for *research
-ethics* ^[**Research ethics** are the guiding principles of decision-making and
+ethics*^[**Research ethics** are the guiding principles of decision-making and
 the norms of behavior with which research must be conducted to be considered
 acceptable in the pursuit of the common good. For more details, see the DIME
 Wiki at https://dimewiki.worldbank.org/Research_Ethics. See also pillar 1 of
 the DIME Research Standards at https://github.com/worldbank/dime-standards.]
 that teams must follow when working with PII.
 
-| PII should be separated from the rest of the data at the earliest opportunity
+PII should be separated from the rest of the data at the earliest opportunity
 and stored in a separate, protected location. This step protects respondent
 privacy and simplifies workflows, because de-identified data sets do not need to
 be encrypted. If the PII is required for analysis, research teams must work with
-encrypted files throughout. There is no one-size-fits-all solution to
+encrypted files through- out. There is no one-size-fits-all solution to
 determine what is PII, and research teams have to use careful judgment in each
 case to avoid *statistical disclosure risk*. Data privacy principles apply not
 only to the respondents providing the information but also to their household
 members or other individuals who are referenced in the data. In all cases
 involving PII, adhering to several core principles is essential. These
 principles include ethical approval, participant consent, data security, and
-participant privacy (for an example, see (@baldwin2017reforming).
-Researchers based in the United States must become familiar with a set of
-governance standards known as “the Common Rule” (@bierer2017revised).
-Researchers interacting with European institutions or persons must also become
-familiar with the General Data Protection Regulation (GDPR; at
-<https://gdpr-info.eu> ), a set of regulations governing data ownership and
-privacy standards. No matter where the researcher is located or what the exact
-legal requirements are, similar core principles and practices will apply.
+participant privacy (for an example, see @baldwin2017reforming). Researchers
+based in the United States must become familiar with a set of governance
+standards known as “the Common Rule” @bierer2017revised. Researchers interacting
+with European institutions or persons must also become familiar with the General
+Data Protection Regulation (GDPR; at <https://gdpr-info.eu>), a set of
+regulations governing data ownership and privacy standards. No matter where the
+researcher is located or what the exact legal requirements are, similar core
+principles and practices will apply.
 
 ### Seeking ethical approval {-}
 
-Most of the field research done in development involves *human subjects*.
-^[**Human subjects** are any living individuals about whom a research team
+Most of the field research done in development involves *human subjects*.^[**Human subjects**
+are any living individuals about whom a research team
 collects data through intervention or interaction with them, as well as any
 living individuals who can be identified readily using research data. For more
 details, see the DIME Wiki at
@@ -759,22 +737,23 @@ handling, and the research team is responsible for satisfying these
 expectations. Donors or employers most likely require researchers to hold a
 certification from a respected source.
 
-| Almost all such data collection and research activities will require the
-completion of some form of *institutional review board* (IRB) process. ^[An
+Almost all such data collection and research activities will require the
+completion of some form of *institutional review board* (IRB)^[An
 **institutional review board** (IRB) is an institutional body formally
 responsible for ensuring that research under its oversight meets minimum ethical
 standards. For more details, see the DIME Wiki at
-https://dimewiki.worldbank.org/IRB_Approval.] Most commonly this process
-consists of a formal application for approval of a specific protocol for
-consent, data collection, and data handling. Which IRB has authority over a
-project is not always apparent, particularly if participating institutions do
+https://dimewiki.worldbank.org/IRB_Approval.] process.
+Most commonly this process consists of a formal application for 
+approval of a specific protocol for consent, data collection, and data handling.
+Which IRB has authority over a project is not always apparent, 
+particularly if participating institutions do
 not have their own IRB. It is customary to obtain approval from a university IRB
 where at least one principal investigator is affiliated; if work is being done
 in an international setting, approval from an appropriate local institution
 subject to the laws of the country where data originate is often required as
 well.
 
-| IRB approval should be obtained well before any data are acquired (see the
+IRB approval should be obtained well before any data are acquired (see the
 example of an IRB process in box 2.7). IRBs may have infrequent meeting
 schedules or require several rounds of review for an application to be approved.
 If there are any deviations from an approved plan or expected adjustments, these
@@ -786,7 +765,7 @@ institution itself may face legal penalties if its IRB is unable to enforce its
 protocols. As always, researchers who work in good faith should not have any
 problem complying with these regulations.
 
-```{block2, type = 'ex'}
+::: {.ex}
 ### BOX 2.7 SEEKING ETHICAL APPROVAL: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The Duke University institutional review board (IRB) reviewed and approved the
@@ -800,7 +779,7 @@ survey. The IRB approval was renewed twice, in 2016 and 2017. The following are
 highlights from the study IRB protocols:
   
   - *Voluntary study participation:* The study intervention was conducted
-    through a smartphone application. Through the app, users were offered
+    through a smart- phone application. Through the app, users were offered
     payment to complete a set of tasks while using the metro. The tasks involved
     answering questions at different moments of the trip (before boarding the
     train, during the ride, and after leaving the train). At the start of each
@@ -834,12 +813,11 @@ highlights from the study IRB protocols:
     she could report the harassment (guards are trained to respond to harassment
     reports) as well as to other resources available in the Rio area.
 
-> Appendix C in Kondylis et al. (2020) discusses the ethical aspects of the
-> study, including participant recruitment, informed consent, and how reports of
-> harassment were addressed.
+Appendix C in @kondylis2020demand discusses the ethical aspects of the study,
+including participant recruitment, informed consent, and how reports of
+harassment were addressed. 
 
-```
-
+:::
 
 ### Obtaining informed consent {-}
 
@@ -853,7 +831,7 @@ must explicitly and affirmatively consent to the collection, storage, and use of
 their information for any purpose, except in cases where IRB regulations allow a
 waiver of informed consent to be obtained.
 
-| The development of appropriate consent processes is of primary importance. All
+The development of appropriate consent processes is of primary importance. All
 survey instruments must include a module in which the sampled respondent grants
 *informed consent* ^[**Informed consent** is the right of potential research
 participants to decide whether to participate in research programs or data
@@ -868,8 +846,8 @@ vulnerable populations, such as minors, prisoners, pregnant women, and people
 with disabilities, and these protections should be confirmed with relevant
 authorities if the research includes these groups.
 
+::: {.ex}
 
-```{block2, type = 'ex'}
 ### BOX 2.8 OBTAINING INFORMED CONSENT: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 Participation in both the study intervention (assignments to take a specific
@@ -881,46 +859,44 @@ completed. Thus, participants could choose to stop participating at any time if
 they felt uncomfortable or for any other reason. Participants were shown the
 following consent statement:
 
->"If you choose to do this task, you will have to go to a Supervia station, ride
-the train, and answer questions about your experience on the train. You will
-have to ride the train for ____ minutes, and answering the questions will
-take about 10 minutes. You will be paid at least ____ reais for the task,
-and possibly more. You will be able to review the payment for each task and
-option before deciding whether to do that task. You can choose during the task
-whether to ride either the women-only or the mixed carriage on the Supervia.
-Your responses to the task will not be identified in any way with you
-personally. The anonymous data will be shared with researchers at Duke
-University in the United States. You can choose to stop the task at any time. To
-get paid for this task, however, you have to finish the task."
+> "If you choose to do this task, you will have to go to a Supervia station,
+> ride the train, and answer questions about your experience on the train. You
+> will have to ride the train for ____ minutes, and answering the questions
+> will take about 10 minutes. You will be paid at least ____ reais for the
+> task, and possibly more. You will be able to review the payment for each task
+> and option before deciding whether to do that task. You can choose during the
+> task whether to ride either the women-only or the mixed carriage on the
+> Supervia. Your responses to the task will not be identified in any way with
+> you personally. The anonymous data will be shared with researchers at Duke
+> University in the United States. You can choose to stop the task at any time.
+> To get paid for this task, however, you have to finish the task."
 
 The sentence in italics was removed for the portion of the data collection in
 which participants were assigned to ride in a particular type of car; the rest
-of the consent statement applied to all tasks.
-
-```
+of the consent statement applied to all tasks. 
+:::
 
 ### Ensuring research subject privacy {-}
 
-In order to safeguard PII data and protect the privacy of respondents,
-a data protection protocol must be set up from the outset of a project.
-Secure data storage and transfer are ultimately the researcher’s respon-
-sibility. Later chapters discuss the proper way to protect data depending
-on the method used to acquire, store, or share data. This section covers
-only the computer setup needed for any project. This setup has several
-components.
+In order to safeguard PII data and protect the privacy of respondents, a data
+protection protocol must be set up from the outset of a project. Secure data
+storage and transfer are ultimately the researcher’s respon- sibility. Later
+chapters discuss the proper way to protect data depending on the method used to
+acquire, store, or share data. This section covers only the computer setup
+needed for any project. This setup has several components.
 
-| First, a system is needed for managing strong and unique passwords for all
+First, a system is needed for managing strong and unique passwords for all
 accounts, including personal accounts like computer logins and email. All
 passwords should be long, not use common words, and not be reused for multiple
 accounts. The only way to make that approach practically feasible is to use a
 password manager (for the DIME step-by-step guide for how to get started with
 password managers, see pillar 4 of the DIME Research Standards at
-<https://github.com/worldbank/dime-standards> ). Most password managers offer
-the ability to securely share passwords for accounts shared with colleagues.
+<https://github.com/worldbank/dime-standards>). Most password managers offer the
+ability to securely share passwords for accounts shared with colleagues.
 Multifactor authentication (sometimes called two-step verification, or 2FA) is a
 secure alternative to passwords when available.
 
-| Second, machines that store confidential data should not be connected to
+Second, machines that store confidential data should not be connected to
 insecure physical or wireless networks; when it is necessary to do so, a
 *virtual private network* ^[A **virtual private network** (VPN) is a networking
 configuration that allows users to connect securely to a trusted network over an
@@ -932,7 +908,7 @@ be connected to machines storing confidential data unless it is known where the
 devices came from and who last used them. Machines with confidential data should
 also be stored in a secure location when not in use.
 
-| Third, all confidential data must be *encrypted* ^[**Encryption** is any
+Third, all confidential data must be *encrypted* ^[**Encryption** is any
 process that systematically scrambles the information contained in digital
 files. This process ensures that file contents are unreadable even if laptops
 are stolen, databases are hacked, or any other type of access is obtained that
@@ -952,7 +928,7 @@ of encryption should be applied, but it is recommended to use file system
 encryption as the main type of protection and to require all members handling
 confidential data to use it.
 
-| Although most implementations of FDE use a computer’s login password to
+Although most implementations of FDE use a computer’s login pass- word to
 prevent files from being read by anyone but the owner, password protection alone
 is not sufficient. Password protection makes it more difficult for someone else
 to gain access to files stored on a computer, but only encryption properly
@@ -969,7 +945,7 @@ and perhaps most important, FDE cannot be used when sharing confidential data
 over insecure channels like file-syncing services or email. So FDE has to be
 complemented with some other type of protection during collaboration.
 
-| With FSE, instead of encrypting a full disk or drive, encrypted folders are
+With FSE, instead of encrypting a full disk or drive, encrypted folders are
 created in which to store confidential data securely. These encrypted folders
 protect data stored on a computer but can also be used to transfer data securely
 over insecure channels like file-syncing services and email. Encrypted folders
@@ -980,18 +956,18 @@ protected even if someone gains access to the computer. DIME uses VeraCrypt for
 FSE, and DIME protocols are available as part of the DIME Research Standards
 (for DIME’s step-by-step guide for how to get started with VeraCrypt, see
 pillar 4 of the DIME Research Standards at
-<https://github.com/worldbank/dime-standards> ). VeraCrypt is free of charge and
+<https://github.com/worldbank/dime-standards>). VeraCrypt is free of charge and
 available for Windows, macOS, and Linux. Although some details are different
 across platforms, the encryption should be implemented in the same way for all
 team members.
 
-| Regardless of whether full disk encryption or file system encryption is used,
-it is important to remember that encryption provides no protection when data are
+Regardless of whether full disk encryption or file system encryption is used, it
+is important to remember that encryption provides no protection when data are
 decrypted. Therefore, it is important to log out of the computer when not using
 it and to decrypt folders with confidential data only when those exact files are
 needed. The latter is possible only when using FSE.
 
-| Handling confidential data properly will always add to the workload, even more
+Handling confidential data properly will always add to the workload, even more
 so when the data contain PII. The easiest way to reduce that workload is to
 handle PII as infrequently as possible. Acquiring personal data that are not
 strictly needed to carry out the research should be avoided. Even when PII is
@@ -1000,24 +976,24 @@ the data that have had the PII removed. Therefore, all projects should plan to
 create a version of the data from which PII has been removed and use this
 version whenever possible.
 
-| In practice it is rarely, if ever, possible to *anonymize* data. There is
-always some statistical chance that an individual’s identity will be relinked to
-the data collected about that person—even if all directly identifying
-information has been removed—by using some other data that become identifying
-when analyzed together. For this reason, a two-stage process of
-*de-identification* ^[**De-identification** is the process of removing or
-masking PII to reduce the risk that subjects’ identities can be connected with
-the data. For more details, see the DIME Wiki at
-https://dimewiki.worldbank.org/De-identification.] is recommended. The *initial
-de-identification* strips the data of direct identifiers as early in the process
-as possible, to create a working de-identified data set that can be shared
-within the *research team* without the need for encryption. This data set should
-always be used when possible. The *final de-identification* involves making a
-decision about the trade-off between risk of disclosure and utility of the data
-before publicly releasing a data set. See box 2.9 for an example of the data
-privacy protocol used in the Demand for Safe Spaces project.
+In practice it is rarely, if ever, possible to *anonymize* data. There is always
+some statistical chance that an individual’s identity will be relinked to the
+data collected about that person—even if all directly identifying information
+has been removed—by using some other data that become identifying when analyzed
+together. For this reason, a two-stage process of *de-identification*
+^[**De-identification** is the process of removing or masking PII to reduce the
+risk that subjects’ identities can be connected with the data. For more details,
+see the DIME Wiki at https://dimewiki.worldbank.org/De-identification.] is
+recommended. The *initial de-identification* strips the data of direct
+identifiers as early in the process as possible, to create a working
+de-identified data set that can be shared within the *research team* without the
+need for encryption. This data set should always be used when possible. The
+*final de-identification* involves making a decision about the trade-off between
+risk of disclosure and utility of the data before publicly releasing a data set.
+See box 2.9 for an example of the data privacy protocol used in the Demand for
+Safe Spaces project.
 
-```{block2, type = 'ex'}
+::: {.ex}
 ### BOX 2.9 ENSURING THE PRIVACY OF RESEARCH SUBJECTS: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The Demand for Safe Spaces team adopted the following data security protocols:
@@ -1032,18 +1008,16 @@ The Demand for Safe Spaces team adopted the following data security protocols:
   - Indirect identifiers such as demographic variables and labels for train
     lines and stations were removed before the data were published to the
     Microdata Catalog.
+    
+:::
 
-```
-
-
-| Finally, it is essential to have an end-of-life plan even before data are
+Finally, it is essential to have an end-of-life plan even before data are
 acquired. This plan includes plans for how to transfer access and control to a
 new person joining the team and how to revoke that access when someone is
 leaving the team. It should also include a plan for how the PII will be deleted.
 Every project should have a clear data retention and destruction plan. After a
 project is completed and its de-identified data have been made available,
 research teams should not retain confidential data indefinitely.
-
 
 ## Looking ahead {-}
 With the computing environment established, it will be clear how the data and
@@ -1058,18 +1032,3 @@ measurement framework to answer the project’s research questions. The next
 chapter outlines how to prepare the essential elements of research data. It
 shows how to map a project’s data needs according to both the research design
 and the planned creation and use of data across the project timeline.
-
-## References {-}
-
-Baldwin, Kate, Shylock Muyengwa, and Eric Mvukiyehe. 2017. “Reforming Village-
-Level Governance via Horizontal Pressure: Evidence from an Experiment in
-Zimbabwe.” Policy Research Working Paper 7941, World Bank, Washington, DC.
-
-Bierer, Barbara E., Mark Barnes, and Holly Fernandez Lynch. 2017. “Revised
-‘Common Rule’ Shapes Protections for Research Participants.” Health Affairs
-36 (5). https://doi.org/10.1377/hlthaff.2017.0307.
-
-Kondylis, Florence, Arianna Legovini, Kate Vyborny, Astrid Zwager, and Luíza
-Andrade. 2020. “Demand for Safe Spaces: Avoiding Harassment and Stigma.”
-Policy Research Working Paper 9269, World Bank, Washington, DC. https://
-openknowledge.worldbank.org/handle/10986/33853.
