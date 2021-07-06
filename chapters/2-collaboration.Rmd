@@ -402,7 +402,11 @@ so differs from the current guidelines. Changing folder organization midway
 through a project is never recommended. Folder organization requires planning
 ahead and agreeing with the whole team on the best structure to follow.
 
+**FIGURE B2.3.1 Folder structure of the Demand for Safe Spaces data work**
+
 ![](examples/folder-structure.png)
+
+*Source: DIME (Development Impact Evaluation), World Bank.*
 
 The root folder for the study’s data work included two master scripts (one for
 Stata and one R, which can be run independently), a `README.md` file, and four
@@ -509,9 +513,17 @@ directory file path in one line of code in the master script. For more details,
 see the DIME Wiki at https://dimewiki.worldbank.org/Master_Do-files.] do-file
 in Stata, illustrating the code elements, organization, and structure required.
 
+::: {.ex}
+
+#### BOX 2.4 DIME MASTER DO-FILE TEMPLATE
 
 ```{stata, eval = F, code = readLines("code/stata-master-dofile.do"), attr.source='.numberLines'}
 ```
+
+To access this code in do-file format, visit the GitHub repository at
+https://github.com/worldbank /dime-data -handbook/tree/main/code.
+
+:::
 
 To be readable, code must be well documented. This process begins by adding a
 code header to every file. A code header is a long *comment* ^[**Comments** are
@@ -560,7 +572,8 @@ typically took the form of “what–why”: what is this section of code doing,
 why is it necessary? The following snippet from a data-cleaning do-file for one
 of the original data sets illustrates the use of comments:
   
-![](examples/ch2-writing-code-that-others-can-read.png)
+```{stata, eval = F, code = readLines("examples/box-2-5-writing-code-that-others-can-read.do"), attr.source='.numberLines'}
+```
   
 For the complete do-file, visit the GitHub repository at https://git.io/Jtgev.
 
@@ -658,7 +671,8 @@ scripts were written such that any team member could run all project codes
 simply by changing the top-level directory. The following is a snippet of the
 Stata master do-file:
  
-![](examples/ch2-writing-code-that-others-can-run.png)
+```{stata, eval = F, code = readLines("examples/box-2-6-writing-code-that-others-can-run.do"), attr.source='.numberLines'}
+```
   
 For the complete Stata master script, visit the GitHub repository at
 <https://git.io/JtgeT>. For the R master script, 
