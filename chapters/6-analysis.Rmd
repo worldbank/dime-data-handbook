@@ -27,7 +27,7 @@ Box 6.1 summarizes the main points, lists the responsibilities of different
 members of the research team, and supplies a list of key tools and resources for
 implementing the recommended practices.
 
-```{block2, type = 'summary'}
+::: {.summary}
 #### BOX 6.1 SUMMARY: CONSTRUCTING AND ANALYZING RESEARCH DATA {-}
 
 Moving from raw data to the final data sets used for analysis almost always
@@ -92,7 +92,7 @@ following:
     dynamic documents.
 
 #### Key responsibilities for research assistants {-}
-  
+
   - Implement variable construction and analytical processes through code.
   - Manage and document data sets so that other team members can understand them
     easily.
@@ -121,7 +121,7 @@ following:
     links tocode demonstrations of how to export tables from Stata, at
     <https://blogs.worldbank.org/impactevaluations/nice-and-fast-tables-stata>
 
-```
+:::
 
 <!-- ------------------------------------------------ -->
 
@@ -291,7 +291,7 @@ important to ensure that the data integration is documented extensively and
 separately from other construction tasks (see box 6.2 for an example of merges
 followed by automated tests from the Demand for Safe Spaces project).
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 6.2 INTEGRATING MULTIPLE DATA SOURCES: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The research team received the raw crowdsourced data acquired for the Demand for
@@ -305,7 +305,8 @@ ride-level data set, the team combined the individual task data sets. The
 following code shows how the team assured that all observations had merged as
 expected, showing two different approaches depending on what was expected.
 
-![](examples/ch6-integrating-multiple-data-sources.png)
+```{stata, eval = F, code = readLines("examples/box-6-2-integrating-multiple-data-sources.do"), attr.source='.numberLines'}
+``` 
 
 The first code chunk shows the quality assurance protocol for when the team
 expected that all observations would exist in all data sets so that each merge
@@ -326,11 +327,12 @@ riders in each group and used the command `assert` to throw an error if the
 number of observations in any of the categories changed, ensuring that the
 outcome remained stable if the code was run multiple times.
 
-![](examples/ch6-integrating-multiple-data-sources2.png)
+```{stata, eval = F, code = readLines("examples/box-6-2-integrating-multiple-data-sources2.do"), attr.source='.numberLines'}
+``` 
 
 For the complete do-file, visit the GitHub repository at https://git.io/JtgYf.
 
-```
+:::
 
 ### Creating analysis variables {-}
 
@@ -435,7 +437,7 @@ combined data set).
 
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 6.3 CREATING ANALYSIS VARIABLES: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The header of the script that created analysis variables for the crowdsourced
@@ -443,13 +445,14 @@ data in the Demand for Safe Spaces study is shown below. It started from a
 pooled data set that combined all waves of data collection. The variable was
 constructed after all waves had been pooled to make sure that all variables were
 constructed identically across all waves.
- 
-![](examples/ch6-creating-analysis-variables.png)
+
+```{stata, eval = F, code = readLines("examples/box-6-3-creating-analysis-variables.do"), attr.source='.numberLines'}
+``` 
 
 See the full construction script here <https://git.io/JtgY5> and the script
 where data from all waves are pooled here: <https://git.io/JtgYA>.
 
-```
+:::
 
 ### Documenting variable construction {-}
 
@@ -493,7 +496,7 @@ documentation (see box 6.4 for an example of variable construction
 documentation).
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 6.4 DOCUMENTING VARIABLE CONSTRUCTION: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 In an appendix to the working paper, the Demand for Safe Spaces team documented
@@ -501,7 +504,7 @@ the definition of every variable used to produce the outputs presented in the
 paper:
 
 ![](examples/dictionary.png)
- 
+
 Appendix B in the working paper presents a set of tables with variable
 definitions in nontechnical language, including variables collected through
 surveys, variables constructed for analysis, and research variables assigned by
@@ -510,9 +513,7 @@ random processes.
 The full set of tables can be found on Appendix B of the Working Paper:
 <https://openknowledge.worldbank.org/handle/10986/33853>
 
-
-```
-
+:::
 
 ## Writing analysis code {-}
 
@@ -555,7 +556,7 @@ script, but the key is to make sure that it is clear which data sets are used
 for each output and which code chunks implement each piece of analysis (see
 box 6.5 for an example of an analysis script structured like this).
 
-```{block2, type = 'ex'}
+::: {.ex}
 ####  BOX 6.5 WRITING ANALYSIS CODE: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The Demand for Safe Spaces team split the analysis scripts into one script per
@@ -566,12 +567,13 @@ performed was to subset the data or aggregate them to a higher unit of
 observation. This transformation guaranteed that the same data were used across
 all analysis scripts. The following is an example of a short analysis do-file:
 
-![](examples/ch6-writing-data-analysis-code.png)
+```{stata, eval = F, code = readLines("examples/box-6-5-writing-data-analysis-code.do"), attr.source='.numberLines'}
+``` 
 
 See this script and how the regression results were exported to a table at
 <https://git.io/JtgOk>.
 
-```
+:::
 
 There is nothing wrong with code files being short and simple. In fact, analysis
 scripts should be as simple as possible, so whoever is reading them can focus on
@@ -590,7 +592,7 @@ script (see box 6.6 for an example of this from the Demand for Safe Spaces
 project).
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 6.6 ORGANIZING ANALYSIS CODE: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The Demand for Safe Spaces team defined the control variables in globals in the
@@ -599,13 +601,14 @@ consistently across regressions. It also provided an easy way to update control
 variables consistently across all regressions when needed. In an analysis
 script, a regression that includes all demographic controls would then be
 expressed as `regress y x ${demographics}`.
- 
-![](examples/ch6-organizing-analysis-code.png)
+
+```{stata, eval = F, code = readLines("examples/box-6-6-organizing-analysis-code.do"), attr.source='.numberLines'}
+``` 
 
 The above code is excerpted from the full master script, which you can find at
 <https://git.io/JtgeT>.
 
-``` 
+:::
 
 Creating this setup entails having an effective data management system,
 including file naming, organization, and version control. Just as for the
@@ -671,21 +674,22 @@ formatting settings in the master script is recommended (see box 6.7 for an
 example of this process from the Demand for Safe Spaces project).
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 6.7 VISUALIZING DATA: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The Demand for Safe Spaces team defined the settings for graphs in globals in
 the master analysis script. Using globals created a uniform visual style for all
 graphs produced by the project. These globals were then used across the project
-when creating graphs like the following: 
-`twoway (bar cum x, color(${col_aux_light})) (lpoly y x, color(${col_mixedcar})) 
+when creating graphs like the following:
+`twoway (bar cum x, color(${col_aux_light})) (lpoly y x, color(${col_mixedcar}))
  (lpoly z x, color(${col_womencar})), ${plot_options}`
 
-![](examples/ch6-visualizing-data.png)
- 
+```{stata, eval = F, code = readLines("examples/box-6-7-visualizing-data.do"), attr.source='.numberLines'}
+``` 
+
 For the complete do-file, visit the GitHub repository at <https://git.io/JtgeT>.
 
-```
+:::
 
 
 
@@ -751,7 +755,7 @@ particular analysis script; these comments list data sets and functions that are
 necessary for the script to run and describe all outputs created by that script
 (see box 6.8 for how this was done in the Demand for Safe Spaces project).
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 6.8 MANAGING OUTPUTS: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 It is important to document which data sets are required as inputs in each
@@ -765,19 +769,21 @@ requires the file `platform_survey_constructed.dta` and generates the file
 code to check that they have access to all of the necessary files before trying
 to run a script.
 
-![](examples/ch6-managing-outputs.png)
+```{stata, eval = F, code = readLines("examples/box-6-8-managing-outputs.do"), attr.source='.numberLines'}
+``` 
 
 To provide an overview of the different subscripts involved in a project, this
 information was copied into the master do-file where the script above is called,
 and the same was done for all of the script called from that master, as follows:
 
-![](examples/ch6-managing-outputs2.png)
+```{stata, eval = F, code = readLines("examples/box-6-8-managing-outputs2.do"), attr.source='.numberLines'}
+``` 
 
 For the complete analysis script, visit the GitHub repository at
 <https://git.io/JtgYB>. For the master do-file, visit the GitHub repository at
 <https://git.io/JtgY6>.
 
-```
+:::
 
 ### Exporting analysis outputs {-}
 
@@ -807,7 +813,7 @@ or report.
 
 Numerous commands are available for exporting outputs from both R and Stata. For
 exporting tables, Stata 17 includes more advanced built-in capabilities. Some
-currently popular user-written commands are `estout` (@estout05), 
+currently popular user-written commands are `estout` (@estout05),
 `outreg2` (@wada2014outreg2)
 , and `outwrite` (@daniels2019outwrite). In R, popular tools include
 `stargazer` (@hlavac2015stargazer), `huxtable` (Hugh-Jones 2021), and `ggsave` (part of
@@ -857,14 +863,14 @@ DIME Wiki at <https://dimewiki.worldbank.org/Checklist:_Submit_Table>.
 It is strongly recommended to create final products using a software that allows
 for direct linkage to raw outputs. In this way, final products will be updated
 in the paper or presentation every time changes are made to the raw outputs.
-Files that have this feature are called *dynamic documents*^[**Dynamic documents** 
+Files that have this feature are called *dynamic documents*^[**Dynamic documents**
 are files that include direct references to exported materials and
-update them automatically in the output. For more details, 
+update them automatically in the output. For more details,
 see the DIME Wiki at https://dimewiki.worldbank.org/Dynamic_documents.].
-Dynamic documents are a broad class of tools that enable a streamlined, 
-reproducible workflow. The term “dynamic” can refer to any 
+Dynamic documents are a broad class of tools that enable a streamlined,
+reproducible workflow. The term “dynamic” can refer to any
 document-creation technology that allows the inclusion of explicitly encoded links
-to output files. Whenever outputs are updated, and a dynamic document is 
+to output files. Whenever outputs are updated, and a dynamic document is
 reloaded or recompiled, it will automatically
 include all changes made to all outputs without any additional intervention from
 the user. This is not possible in tools like Microsoft Office, although tools
@@ -972,13 +978,11 @@ findings into publishable work and describes methods for making data, code,
 documentation, and other research outputs accessible and reusable alongside the
 primary outputs.
 
-
-```{block2, type = "ex"}
+::: {.ex}
 #### FIGURE 6.1 Data analysis tasks and outputs {-}
 
 ![](img/Analysis.png)
 
-*Source:* DIME (Development Impact Evaluation), World Bank. 
+*Source:* DIME (Development Impact Evaluation), World Bank.
 
-```
-
+:::

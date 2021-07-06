@@ -31,7 +31,7 @@ no changes are made directly to them. Box 5.1 summarizes the main points, lists
 the responsibilities of different members of the research team, and supplies a
 list of key tools and resources for implementing the recommended practices.
 
-```{block2, type = 'summary'}
+::: {.summary}
 #### BOX 5.1 SUMMARY: CLEANING AND PROCESSING RESEARCH DATA {-}
 
 After being acquired, data must be structured for analysis in accordance with
@@ -44,7 +44,7 @@ flowcharts discussed in chapter 3. This process entails the following tasks.
 and the rows in the data set often do not match the units of observation
 specified by the research plan and data linkage table. To prepare the data for
 analysis requires two steps:
-  
+
   - Determine the unique identifier for each unit of observation in the data.
   - Transform the data so that the desired unit of observation uniquely
     identifies rows in each data set.
@@ -67,7 +67,7 @@ and de-identified, the information must be archived, published, or both. Before
 publication, it is necessary to ensure that the processed version is highly
 accurate and appropriately protects the privacy of individuals:
 
-  
+
   - De-identify the data in accordance with best practices and relevant privacy
     regulations.
   - Correct data points that are identified as being in error compared to ground
@@ -89,7 +89,7 @@ accurate and appropriately protects the privacy of individuals:
 
 
 #### Key responsibilities for research assistants {-}
-  
+
   - Develop code, data, and documentation linking data sets with the data map
     and study design, and tidy all data sets to correspond to the required units
     of observation.
@@ -98,10 +98,10 @@ accurate and appropriately protects the privacy of individuals:
   - Inspect each variable, recoding and annotating as required. Prepare the data
     set for publication by de-identifying data, correcting field errors, and
     documenting the data.
-    
-    
+
+
 #### Key Resources {-}
-    
+
   - The `iefieldkit` Stata package, a suite of commands to enable reproducible
     data cleaning and processing:.
       - Explanation at <https://dimewiki.worldbank.org/iefieldkit>
@@ -115,7 +115,7 @@ accurate and appropriately protects the privacy of individuals:
   - De-identification article on DIME Wiki at
     <https://dimewiki.worldbank.org/De-identification>
 
-```
+:::
 
 
 ## Making data "tidy" {-}
@@ -127,7 +127,7 @@ row in a *data table*^[**Data tables** are data that are structured into rows
 and columns. They are also called **tabular data sets** or **rectangular data**.
 By contrast, nonrectangular data types include written text, NoSQL files, social
 graph databases, and files such as images or documents.] represents one
-observation. Getting to such a format may be harder than expected, and the 
+observation. Getting to such a format may be harder than expected, and the
 *unit of observation*^[The **unit of observation** is the type of entity that is
 described by a given data set. In tidy data sets, each row should represent a
 distinct entity of that type. For more details, see the DIME Wiki at
@@ -204,7 +204,7 @@ not, it is important to keep a record of all cases of duplicate IDs encountered
 and how they were resolved (see box 5.2 for an explanation of how a unique
 identifier was established for the Demand for Safe Spaces project).
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 5.2 ESTABLISHING A UNIQUE IDENTIFIER: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 All data sets have a unit of observation, and the first columns of each data set
@@ -222,13 +222,14 @@ identifiers in data collection. After applying the corrections, the code
 confirms that the data are uniquely identified by riders and ride identifiers
 and documents the decisions in an optimized format.
 
-![](examples/ch5-establishing-a-unique-identifier.png)
+```{stata, eval = F, code = readLines("examples/box-5-2-establishing-a-unique-identifier.do"), attr.source='.numberLines'}
+```
 
 ![](examples/duplicates-report-filled.PNG)
 
 To access this code in do-file format, visit the GitHub repository at <https://github.com/worldbank/dime-data-handbook/tree/main/code>.
 
-```
+:::
 
 
 ### Tidying data {-}
@@ -253,7 +254,7 @@ set with multiple units of observations stored in the same data table. When the
 rows include multiple nested observational units, then the unique identifier
 does not identify all observations in that row, because more than one unit of
 observation is in the same row. Survey data containing nested units of
-observation are typically imported from survey platforms in 
+observation are typically imported from survey platforms in
 *wide format*^[**Wide format** refers to a data table in which the data points for a
 single variable are stored in multiple columns, one for each subunit. In
 contrast, **long format** refers to a data table in which a subunit is represented
@@ -338,7 +339,7 @@ observation for that data table.
 
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 5.3 TIDYING DATA: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The unit of observation in an original data set does not always match the
@@ -362,20 +363,20 @@ trip (identified by the `session` variable).
 The following code shows an example of the ride task script, which keeps only
 the ride task rows and columns from the raw data set.
 
-
-
-![](examples/ch5-tidying-raw-data.png) 
+```{stata, eval = F, code = readLines("examples/box-5-3-tidying-raw-data.do"), attr.source='.numberLines'}
+```
 
 The script then encodes categorical variables and saves a tidy ride task data set:
-  
-![](examples/ch5-tidying-raw-data2.png)  
-  
+
+```{stata, eval = F, code = readLines("examples/box-5-3-tidying-raw-data2.do"), attr.source='.numberLines'}
+``` 
+
 The same procedure was repeated for the check-in and check-out tasks. Each of
 these tidy data sets was saved with a very descriptive name, indicating the wave
 of data collection and the task included in the data set. For the complete
 script, visit the GitHub repository at <https://git.io/Jtgqj>.
 
-```
+:::
 
 
 In the household data set example, the household-level data table is the main
@@ -404,10 +405,6 @@ because the exact format in which the data will be received is known in advance.
 Preparing the data for analysis, the last task in this chapter, is much simpler
 when tidying has been done.
 
-
-
-
-
 ## Implementing data quality checks {-}
 
 Whether receiving data from a partner or collecting data directly, it is
@@ -423,8 +420,8 @@ in place to detect incorrect data points due to survey programming errors, data
 entry mistakes, misrepresentation, and other issues. For more details, see the
 DIME Wiki at <https://dimewiki.worldbank.org/Monitoring_Data_Quality>.] should
 be performed as soon as the data are acquired. When data are being collected and
-transferred to the team in real time, conducting 
-*high-frequency checks*^[**High-frequency data quality checks** (HFCs) are data 
+transferred to the team in real time, conducting
+*high-frequency checks*^[**High-frequency data quality checks** (HFCs) are data
 quality checks
 run in real time during data collection so that any issues can be addressed
 while the data collection is still ongoing. For more details, see the DIME Wiki
@@ -453,7 +450,7 @@ management features through which sampled units are assigned directly to
 individual enumerators. For data received from partners, such as administrative
 data, this assignment may be harder to validate. In these cases,
 cross-referencing with other data sources can help to ensure completeness. It is
-often the case that the data as originally acquired include 
+often the case that the data as originally acquired include
 *duplicate observations*^[**Duplicate observations** are instances in which two or more
 rows of data are identified by the same value of the ID variable or in which two
 or more rows unintentionally represent the same respondent. They can be created
@@ -475,7 +472,7 @@ and duplicate observations in real time allows for efficient corrections.
 `ieduplicates` provides a workflow for resolving duplicate entries with the data
 provider. For surveys, it is also important to track the progress of data
 collection to monitor attrition, so that it is known early on if a change in
-protocols or additional tracking is needed (for an example, @ozler2016combining). 
+protocols or additional tracking is needed (for an example, @ozler2016combining).
 It is also necessary to check survey completion rates and sample
 compliance by surveyors and survey teams, to compare data missingness across
 administrative regions, and to identify any clusters that may be providing data
@@ -516,7 +513,7 @@ question, and how many times answers were changed before or after the data were
 submitted. See box 5.4 for examples of data quality checks implemented in the
 Demand for Safe Spaces project.
 
-```{block2, type = 'ex'}
+::: {.ex}
 ### BOX 5.4 ASSURING DATA QUALITY: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The Demand for Safe Spaces team adopted three categories of data quality
@@ -528,7 +525,7 @@ on the right line, payments matched the value of a task, and so on. The
 third—*distribution*—produced visual descriptions of the key variables of
 interest to make sure that any unexpected patterns were investigated further.
 The following are examples of the specific checks implemented:
-  
+
 **Completeness**
 
   - Include the following tasks in each trip: check-in, ride, and check-out.
@@ -562,7 +559,7 @@ The following are examples of the specific checks implemented:
   - Visualize patterns of the presence of men in the women-only car throughout
     the network.
 
-```
+:::
 
 ## Processing confidential data {-}
 
@@ -571,7 +568,7 @@ handling confidential data. Effective monitoring of data quality frequently
 requires identifying individual observations in the data set and the people or
 other entities that the data describe. Using identified data enables rapid
 follow-up on and resolution of identified issues. Handling confidential data
-such as *personally identifying information*^[**Personally identifying information** 
+such as *personally identifying information*^[**Personally identifying information**
 (PII) is is any piece or set of information that can be linked to the identity
 of a specific individual. For more details, see the DIME Wiki at
 <https://dimewiki.worldbank.org/Personally_Identifiable_Information_(PII)> and
@@ -662,10 +659,10 @@ set and exports an Excel sheet that makes it easy to select which variables to
 keep or drop.
 
 It is necessary to assess the resulting list of variables that contain PII
-against the analysis plan, asking for each variable, 
-*Will this variable be needed for the analysis?* If not, the variable should be 
-removed from the de-identified data set. It is preferrable to be conservative 
-and remove all identifying information at this stage. It is always possible to 
+against the analysis plan, asking for each variable,
+*Will this variable be needed for the analysis?* If not, the variable should be
+removed from the de-identified data set. It is preferrable to be conservative
+and remove all identifying information at this stage. It is always possible to
 include additional variables from the original data set if deemed necessary later.
 However, it is not possible to go back in time and drop a PII variable that was
 leaked (see box 5.5 for an example of how de-identification was implemented for
@@ -673,7 +670,7 @@ the Demand for Safe Spaces project).
 
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 5.5 IMPLEMENTING DE-IDENTIFICATION: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The Demand for Safe Spaces team used the `iecodebook` command to drop
@@ -695,14 +692,12 @@ data collection team that was not needed after quality checks were implemented
 `enumerator`, `enumeratorname`) and the phone number of survey respondents
 (`phone_number`).
 
-
-![](examples/ch5-implementing-de-identification.png)
+```{stata, eval = F, code = readLines("examples/box-5-5-implementing-de-identification.do"), attr.source='.numberLines'}
+``` 
 
 For the complete data import do-file, visit the GitHub repository at <https://git.io/JtgmU>. For the corresponding iecodebook form, visit the GitHub repository at <https://git.io/JtgmY>.
 
-```
-
-
+:::
 
 For each identifying variable that is needed in the analysis, it is necessary to
 ask, *Is it possible to encode or otherwise construct a variable that masks the*
@@ -735,9 +730,7 @@ reproduce the findings. Before that can be done, however, it is necessary to
 consider whether the data can be reidentified, in a process called final
 de-identification, which is discussed in more detail in chapter 7.
 
-
 ## Preparing data for analysis {-}
-
 
 The last step in the process of data cleaning involves making the data set easy
 to use and understand and carefully examining each variable to document
@@ -822,9 +815,7 @@ corrections must be made as part of data cleaning, applied through code, and
 saved to a new data set (see box 5.6 for a discussion of how data corrections
 were made for the Demand for Safe Spaces project).
 
-
-
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 5.6 CORRECTING DATA POINTS: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 Most of the issues that the Demand for Safe Spaces team identified in the raw
@@ -853,11 +844,12 @@ following reasons:
 To document the final contents of the original data, the team published
 supplemental materials on GitHub as well as on the World Bank Microdata Catalog.
 
-![](examples/ch5-correcting-data-points.png)
+```{stata, eval = F, code = readLines("examples/box-5-6-correcting-data-points.do"), attr.source='.numberLines'}
+``` 
 
 For the complete script, visit the GitHub repository at <https://git.io/Jt2ZC>.
 
-```
+:::
 
 
 ### Recoding and annotating data {-}
@@ -938,7 +930,7 @@ Tidyverse (<https://www.tidyverse.org>) packages provide a consistent and useful
 grammar for performing the same tasks and can be used in a similar workflow.
 
 
-```{block2, type = 'ex'}
+::: {.ex}
 #### BOX 5.7 RECODING AND ANNOTATING DATA: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT {-}
 
 The Demand for Safe Spaces team relied mostly on the `iecodebook` command for this
@@ -946,7 +938,7 @@ part of the data-cleaning process. The screenshot below shows the `iecodebook`
 form used to clean the crowdsourced ride data. This process was carried out
 for each task.
 
-![](examples/iecodebook.png) 
+![](examples/iecodebook.png)
 
 Column B contains the corrected variable labels, column D indicates the value
 labels to be used for categorical variables, and column I recodes the underlying
@@ -962,7 +954,8 @@ variables to a categorical format for increased efficiency). The following code
 shows a few examples of how these cleaning tasks were carried out directly in
 the script:
 
-![](examples/ch5-recording-and-annotating-data.png)
+```{stata, eval = F, code = readLines("examples/box-5-7-recording-and-annotating-data.do"), attr.source='.numberLines'}
+``` 
 
 To document the contents of the original data, the team published supplemental
 materials on GitHub, including the description of tasks shown in the app. All of
@@ -971,9 +964,7 @@ also included in the documentation folder of the reproducibility package.
 
 For the complete do-file for cleaning the ride task, visit the GitHub repository at <https://git.io/Jtgqj>. For the corresponding codebook, visit the GitHub repository at <https://git.io/JtgNS>.
 
-
-```
-
+:::
 
 ### Documenting data cleaning {-}
 
@@ -994,14 +985,14 @@ dictionary and codebooks. These files will probably be needed during analysis,
 and they should be published along with the data, so other researchers may use
 them for their analysis as well.
 
-```{block2, type = "ex"}
+::: {.ex}
 #### FIGURE 5.1 Data-cleaning tasks and outputs {-}
 
 ![](img/Cleaning.png)
 
-*Source:* DIME (Development Impact Evaluation), World Bank. 
+*Source:* DIME (Development Impact Evaluation), World Bank.
 
-```
+:::
 
 
 ## Looking ahead {-}
