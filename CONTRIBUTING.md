@@ -1,33 +1,68 @@
-# How to give feedback
-First off, thank you for considering giving feedback or contributing to **Data for Development Impact**.
-Any and all feedback to refine this book further or to make this text as comprehensive as possible is appreciated. Following these
-guidelines helps communicate any errors we may have overlooked, any concepts that may seem little vague or difficult to comprehend or any topics that we have missed to include.
+# How to make direct contributions to this handbook
 
-If you are familiar with how GitHub works, please feel free to submit issues for any section you don't understand or
-submit a pull request with any additions you want to make.
+This book is written in "_bookdown_" in R.
+You do not need to have R/RStudio and _bookdown_ installed
+to make contributions to the book (see part 1 below),
+but you will need that to compile the book (see part 2 below).
 
-## Feedback through Email
-While our preference is to receive feedback through GitHub you are always welcome to submit your feedback via our email [dimeanalytics@worldbank.org](mailto:dimeanalytics@worldbank.org)
+## Part 1 - Contribute directly to the _bookdown_ files
 
-## Feedback through GitHub
-If you notice any errors in text or if you need further clarification for any sentence/concept/section that you think is not
-exhaustively dealt within the book, you can do so by creating an *issue*. You can read issues submitted by other users or create a new issue [here](https://github.com/worldbank/dime-data-handbook/issues).
+Each chapter is written in R markdown files (`.Rmd`).
+The `.Rmd` files for chapters are stored in the folder `chapter/`
+and the files for appendices etc. are in the folder `auxiliary/`.
+You can find a cheat sheet for `.Rmd` syntax here
+: https://rstudio.com/resources/cheatsheets/
+(but you need to scroll down to find the R Markdown cheat sheet).
 
-For example, if you think the example the authors have used to explain a particular research design is too convoluted to understand,
-creating an issue is useful for you to provide us the feedback that we should use a **simpler example** to explain the research design.
-Please read already existing issues to check whether someone else has made the same suggestion or reported the same error 
-before creating a new issue.
+If you have write access to this repo,
+create a branch from the `develop` branch (not from `master`)
+and make your edits to that branch.
+If you do not have write access,
+then create a fork of this repo and make your edits in your fork.
+Make them either in `develop` in your fork,
+or in a branch that you create from `develop` in your fork.
+You can make your edits in any text editor or on GitHub.com.
 
-### GitHub Issue Submission Format
-For us to be able to search through the feedback we will organize all issues in a specific format. **If you do not know how to follow all steps in the bullet point below, then please feel free to post the issue anyways, but we will edit the issue so that it follows our format**.
+We do not require that you compile the book before submitting a PR,
+but we very much appreciate if you do so
+to test that there is no _bookdown_ bugs.
+This will speed up the processing of us accepting your suggested edit.
 
-1. Go to [the issues tab](https://github.com/worldbank/dime-data-handbook/issues) on the D4DI repository.
-1. Search the already posted issues to see if the feedback you are about to give is already posted,
-1. If your feedback has not already been brought up, please press the green *New Issue* button to post a new issue.
-1. Write your title on the format **`Ch #: description`** where _#_ is the chapter number and _description_ is a **short** description of the issue, and apply the corresponding chapter label
-1. Please link in the issue to the file in the repo you are commenting on. If you are referencing a specific line please either link to the specific line in the repo or just link to the file and specify the row number you are referencing
+## Part 2 - Compiling the _bookdown_ files into the e-book
 
-### Pull Request Process
-1. Fork this repository if you want to make your contributions directly in the files.
-2. Make your edits in the `develop` branch in your fork and then create your pull request towards the `worldbank/d4di`:`develop` branch. We do not accept pull requests towards the `master` branch
-3. The Repo Maintainer for `worldbank/d4di` will review the pull request and provide comments if necessary.
+#### Bookdown step 1 - Clone this repository
+
+To compile this e-book,
+you must start by cloning this `dime-data-handbook` repository.
+
+#### Bookdown step 2 - Install R and RStuido
+
+You need to install both R and RStudio.
+Both software can be self-installed on World Bank computers
+using the "Software Center" (search the Windows menu).
+If you do are not using a World Bank computer,
+then you can install R Studio Desktop
+[here](https://rstudio.com/products/rstudio/download/)
+(these instructions covers how to install both R and RStudio).
+
+#### Bookdown step 3 - Install `bookdown` package
+Open RStudio and in the console window install _bookdown_ using `install.packages("bookdown")`
+
+#### Bookdown step 4 - Open DRiP R project
+
+In the `dime-data-handbook` there is a file called `drip.Rproj`.
+Use RStudio to open this file.
+You open the R project file in RStuido in the "File" menu
+and then select "open project".
+Navigate to and open the `drip.Rproj` file.
+
+#### Bookdown step 4 - Compiling the book
+
+In the same window as your "Environment" window, select the "Build" tab.
+In the menu below these tabs click "Build Book" to compile the book.
+This can take up to ten minutes,
+especially if it is the first time you compile the book.
+
+## Part 3 - Updating the e-book on the GitHub page
+
+This step will only be done by the authors. Instructions to come.
