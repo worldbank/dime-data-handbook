@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A The DIME Analytics Coding Guide | Development Research in Practice   The DIME Analytics Data Handbook</title>
+  <meta name="description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="A The DIME Analytics Coding Guide | Development Research in Practice   The DIME Analytics Data Handbook" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://worldbank.github.io/dime-data-handbook/" />
+  <meta property="og:image" content="https://worldbank.github.io/dime-data-handbook/img/cover.png" />
+  <meta property="og:description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
+  <meta name="github-repo" content="worldbank/dime-data-handbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A The DIME Analytics Coding Guide | Development Research in Practice   The DIME Analytics Data Handbook" />
+  
+  <meta name="twitter:description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
+  <meta name="twitter:image" content="https://worldbank.github.io/dime-data-handbook/img/cover.png" />
+
+<meta name="author" content="Kristoffer Bjarkefur, Luiza Cardoso de Andrade, Benjamin Daniels, Maria Ruth Jones" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="conclusion.html"/>
+<link rel="next" href="resources.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Development Research in Practice <br> The DIME Analytics Data Handbook</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li><a href="index.html#published-by-dime-analytics">Published by <br> <span>DIME Analytics</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the authors</a></li>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html"><i class="fa fa-check"></i>Feedback</a><ul>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html#how-to-contribute"><i class="fa fa-check"></i>How to contribute</a></li>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html#already-addressed-errata"><i class="fa fa-check"></i>Already addressed errata</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="abbreviations.html"><a href="abbreviations.html"><i class="fa fa-check"></i>Abbreviations</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#how-to-read-this-book"><i class="fa fa-check"></i>How to read this book</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#the-dime-wiki-a-complementary-resource"><i class="fa fa-check"></i>The DIME Wiki: A complementary resource</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#standardizing-data-work"><i class="fa fa-check"></i>Standardizing data work</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#standardizing-coding-practices"><i class="fa fa-check"></i>Standardizing coding practices</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#the-team-behind-this-book"><i class="fa fa-check"></i>The team behind this book</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#looking-ahead"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>1</b> Conducting reproducible, transparent, and credible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#developing-a-credible-research-project"><i class="fa fa-check"></i>Developing a credible research project</a><ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#registering-research"><i class="fa fa-check"></i>Registering research</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#writing-preanalysis-plans"><i class="fa fa-check"></i>Writing preanalysis plans</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#publishing-registered-reports"><i class="fa fa-check"></i>Publishing registered reports</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#conducting-research-transparently"><i class="fa fa-check"></i>Conducting research transparently</a><ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#documenting-data-acquisition-and-analysis"><i class="fa fa-check"></i>Documenting data acquisition and analysis</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#cataloging-and-archiving-data"><i class="fa fa-check"></i>Cataloging and archiving data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#analyzing-data-reproducibly-and-preparing-a-reproducibility-package"><i class="fa fa-check"></i>Analyzing data reproducibly and preparing a reproducibility package</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#looking-ahead-1"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>2</b> Setting the stage for effective and efficient collaboration</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-a-collaborative-work-environment"><i class="fa fa-check"></i>Preparing a collaborative work environment</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#setting-up-a-computer-for-data-work"><i class="fa fa-check"></i>Setting up a computer for data work</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#establishing-effective-documentation-practices"><i class="fa fa-check"></i>Establishing effective documentation practices</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#setting-up-a-code-environment"><i class="fa fa-check"></i>Setting up a code environment</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-code-and-data-for-replicable-research"><i class="fa fa-check"></i>Organizing code and data for replicable research</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-files-and-folders"><i class="fa fa-check"></i>Organizing files and folders</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#establishing-common-file-formats"><i class="fa fa-check"></i>Establishing common file formats</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#using-version-control"><i class="fa fa-check"></i>Using version control</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#writing-code-that-others-can-read"><i class="fa fa-check"></i>Writing code that others can read</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#writing-code-that-others-can-run"><i class="fa fa-check"></i>Writing code that others can run</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-to-handle-confidential-data-ethically"><i class="fa fa-check"></i>Preparing to handle confidential data ethically</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#seeking-ethical-approval"><i class="fa fa-check"></i>Seeking ethical approval</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#obtaining-informed-consent"><i class="fa fa-check"></i>Obtaining informed consent</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#ensuring-research-subject-privacy"><i class="fa fa-check"></i>Ensuring research subject privacy</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#looking-ahead-2"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>3</b> Establishing a measurement framework</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#documenting-data-needs"><i class="fa fa-check"></i>Documenting data needs</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#developing-a-data-linkage-table"><i class="fa fa-check"></i>Developing a data linkage table</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructing-master-data-sets"><i class="fa fa-check"></i>Constructing master data sets</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-data-flowcharts"><i class="fa fa-check"></i>Creating data flowcharts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#translating-research-design-to-data-needs"><i class="fa fa-check"></i>Translating research design to data needs</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#applying-common-research-designs-to-data"><i class="fa fa-check"></i>Applying common research designs to data</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#including-multiple-time-periods"><i class="fa fa-check"></i>Including multiple time periods</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#incorporating-monitoring-data"><i class="fa fa-check"></i>Incorporating monitoring data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-research-design-variables-by-randomization"><i class="fa fa-check"></i>Creating research design variables by randomization</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#randomizing-sampling-and-treatment-assignment"><i class="fa fa-check"></i>Randomizing sampling and treatment assignment</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#programming-reproducible-random-processes"><i class="fa fa-check"></i>Programming reproducible random processes</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#implementing-clustered-or-stratified-designs"><i class="fa fa-check"></i>Implementing clustered or stratified designs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#performing-power-calculations"><i class="fa fa-check"></i>Performing power calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#looking-ahead-3"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i><b>4</b> Acquiring development data</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#acquiring-data-ethically-and-reproducibly"><i class="fa fa-check"></i>Acquiring data ethically and reproducibly</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#determining-data-ownership"><i class="fa fa-check"></i>Determining data ownership</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#obtaining-data-licenses"><i class="fa fa-check"></i>Obtaining data licenses</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#documenting-data-received-from-partners"><i class="fa fa-check"></i>Documenting data received from partners</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-high-quality-data-using-electronic-surveys"><i class="fa fa-check"></i>Collecting high-quality data using electronic surveys</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#designing-survey-instruments"><i class="fa fa-check"></i>Designing survey instruments</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#piloting-survey-instruments"><i class="fa fa-check"></i>Piloting survey instruments</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#programming-electronic-survey-instruments"><i class="fa fa-check"></i>Programming electronic survey instruments</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#using-electronic-survey-features-to-enhance-data-quality"><i class="fa fa-check"></i>Using electronic survey features to enhance data quality</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#training-enumerators"><i class="fa fa-check"></i>Training enumerators</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#checking-data-quality-in-real-time"><i class="fa fa-check"></i>Checking data quality in real time</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#handling-data-securely"><i class="fa fa-check"></i>Handling data securely</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#encrypting-data"><i class="fa fa-check"></i>Encrypting data</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-and-storing-data-securely"><i class="fa fa-check"></i>Collecting and storing data securely</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#backing-up-original-data"><i class="fa fa-check"></i>Backing up original data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#looking-ahead-4"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="processing.html"><a href="processing.html"><i class="fa fa-check"></i><b>5</b> Cleaning and processing research data</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#making-data-tidy"><i class="fa fa-check"></i>Making data “tidy”</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#establishing-a-unique-identifier"><i class="fa fa-check"></i>Establishing a unique identifier</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#tidying-data"><i class="fa fa-check"></i>Tidying data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-data-quality-checks"><i class="fa fa-check"></i>Implementing data quality checks</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#processing-confidential-data"><i class="fa fa-check"></i>Processing confidential data</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#protecting-research-subject-privacy"><i class="fa fa-check"></i>Protecting research subject privacy</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-de-identification"><i class="fa fa-check"></i>Implementing de-identification</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#preparing-data-for-analysis"><i class="fa fa-check"></i>Preparing data for analysis</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#exploring-the-data"><i class="fa fa-check"></i>Exploring the data</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#correcting-data-points"><i class="fa fa-check"></i>Correcting data points</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#recoding-and-annotating-data"><i class="fa fa-check"></i>Recoding and annotating data</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#documenting-data-cleaning"><i class="fa fa-check"></i>Documenting data cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#looking-ahead-5"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>6</b> Constructing and analyzing research data</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-data-sets"><i class="fa fa-check"></i>Creating analysis data sets</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#organizing-data-analysis-workflows"><i class="fa fa-check"></i>Organizing data analysis workflows</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#integrating-multiple-data-sources"><i class="fa fa-check"></i>Integrating multiple data sources</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-variables"><i class="fa fa-check"></i>Creating analysis variables</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#documenting-variable-construction"><i class="fa fa-check"></i>Documenting variable construction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#writing-analysis-code"><i class="fa fa-check"></i>Writing analysis code</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#organizing-analysis-code"><i class="fa fa-check"></i>Organizing analysis code</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-reproducible-tables-and-graphs"><i class="fa fa-check"></i>Creating reproducible tables and graphs</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#managing-outputs"><i class="fa fa-check"></i>Managing outputs</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#exporting-analysis-outputs"><i class="fa fa-check"></i>Exporting analysis outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#increasing-efficiency-of-analysis-with-dynamic-documents"><i class="fa fa-check"></i>Increasing efficiency of analysis with dynamic documents</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#conducting-dynamic-exploratory-analysis"><i class="fa fa-check"></i>Conducting dynamic exploratory analysis</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#using-latex-for-dynamic-research-outputs"><i class="fa fa-check"></i>Using LaTeX for dynamic research outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#looking-ahead-6"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="publication.html"><a href="publication.html"><i class="fa fa-check"></i><b>7</b> Publishing reproducible research outputs</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-papers-and-reports"><i class="fa fa-check"></i>Publishing research papers and reports</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#using-latex-for-written-documents"><i class="fa fa-check"></i>Using LaTeX for written documents</a></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#getting-started-with-latex-as-a-team"><i class="fa fa-check"></i>Getting started with LaTeX as a team</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#preparing-research-data-for-publication"><i class="fa fa-check"></i>Preparing research data for publication</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#de-identifying-data-for-publication"><i class="fa fa-check"></i>De-identifying data for publication</a></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-data-sets"><i class="fa fa-check"></i>Publishing research data sets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-a-reproducible-research-package"><i class="fa fa-check"></i>Publishing a reproducible research package</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#organizing-code-for-reproducibility"><i class="fa fa-check"></i>Organizing code for reproducibility</a></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#releasing-a-reproducibility-package"><i class="fa fa-check"></i>Releasing a reproducibility package</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#looking-ahead-7"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a><ul>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html#bringing-it-all-together"><i class="fa fa-check"></i>Bringing it all together</a></li>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html#where-to-go-from-here"><i class="fa fa-check"></i>Where to go from here</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="coding.html"><a href="coding.html"><i class="fa fa-check"></i><b>A</b> The DIME Analytics Coding Guide</a><ul>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-good-code"><i class="fa fa-check"></i>Writing good code</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-the-code-examples-in-this-book"><i class="fa fa-check"></i>Using the code examples in this book</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#the-dime-analytics-stata-style-guide"><i class="fa fa-check"></i>The DIME Analytics Stata Style Guide</a><ul>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#commenting-code"><i class="fa fa-check"></i>Commenting code</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#abbreviating-commands"><i class="fa fa-check"></i>Abbreviating commands</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#abbreviating-variable-names"><i class="fa fa-check"></i>Abbreviating variable names</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-loops"><i class="fa fa-check"></i>Writing loops</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-white-space"><i class="fa fa-check"></i>Using white space</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-conditional-expressions"><i class="fa fa-check"></i>Writing conditional expressions</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-file-paths"><i class="fa fa-check"></i>Writing file paths</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-line-breaks"><i class="fa fa-check"></i>Using line breaks</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-boilerplate-code"><i class="fa fa-check"></i>Using boilerplate code</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#miscellaneous-notes"><i class="fa fa-check"></i>Miscellaneous notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>B</b> DIME Analytics Resource Directory</a><ul>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#public-resources-and-tools"><i class="fa fa-check"></i>Public resources and tools</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#flagship-training-courses"><i class="fa fa-check"></i>Flagship training courses</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#software-tools-and-trainings"><i class="fa fa-check"></i>Software tools and trainings</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="design.html"><a href="design.html"><i class="fa fa-check"></i><b>C</b> Research design for impact evaluation</a><ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#understanding-causality-inference-and-identification"><i class="fa fa-check"></i>Understanding causality, inference, and identification</a><ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#estimating-treatment-effects-using-control-groups"><i class="fa fa-check"></i>Estimating treatment effects using control groups</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#designing-experimental-and-quasi-experimental-research"><i class="fa fa-check"></i>Designing experimental and quasi-experimental research</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#obtaining-treatment-effects-from-specific-research-designs"><i class="fa fa-check"></i>Obtaining treatment effects from specific research designs</a><ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#cross-sectional-designs"><i class="fa fa-check"></i>Cross-sectional designs</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#difference-in-differences"><i class="fa fa-check"></i>Difference-in-differences</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#regression-discontinuity"><i class="fa fa-check"></i>Regression discontinuity</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#instrumental-variables"><i class="fa fa-check"></i>Instrumental variables</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#matching"><i class="fa fa-check"></i>Matching</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#synthetic-control"><i class="fa fa-check"></i>Synthetic control</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Development Research in Practice <br> The DIME Analytics Data Handbook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="coding" class="section level1">
+<h1><span class="header-section-number">A</span> The DIME Analytics Coding Guide</h1>
+<p>Most academic programs that prepare students for a career in the type of work
+discussed in this book spend a disproportionately small amount of time teaching
+students coding skills in relation to the share of professional time those
+students will spend writing code in their first few years after graduation.
+Recent masters-level graduates joining the DIME team have demonstrated very good
+theoretical knowledge but require a lot of training in practical skills. This is
+like an architecture graduate having learned how to sketch, describe, and
+discuss the concepts and requirements of a new building very well, but lacking
+the technical ability to contribute to a blueprint following professional
+standards that others can use and understand. The reasons for this disconnect
+are a topic for another book, but, in today’s data-driven world, people working
+in quantitative development research must be proficient collaborative
+programmers, which requires more than being able to compute correct numbers.</p>
+<p>This appendix starts by offering general and language-agnostic principles on how
+to write “good” code. Good code not only generates correct results <em>but also</em> is
+easily read and adapted by other professionals. The second section contains
+instructions on how to access and use the code examples provided in this book.
+The last section presents the DIME Analytics Stata Style Guide. Widely accepted
+and used style guides are common in most programming languages, but, as yet,
+there is no sufficiently encompassing style guide for Stata. The DIME
+Analytics Stata Style Guide is intended to increase the emphasis given to using,
+improving, sharing, and standardizing code style among the Stata community. It
+shares practices that greatly improve the quality of research projects coded in
+Stata. By applying the guidance provided in this appendix, readers will learn to
+write code that, like an architect’s blueprint, can be understood and used by
+everyone in the trade.</p>
+<div id="writing-good-code" class="section level2 unnumbered">
+<h2>Writing good code</h2>
+<p>Good code has two elements: (1) it is correct, in that it does not produce any
+errors and its outputs are the objects intended, and (2) it is useful and
+comprehensible to someone who has not seen it before (or even someone who sees
+it again weeks, months, or years later). Many researchers have only been trained
+to code correctly. However, when code runs on a computer and obtains the desired
+results, the job of writing <em>good</em> code is only half done. Good code is easy to
+read and replicate, making it easier to spot mistakes. Good code reduces
+sampling, randomization, and cleaning errors. Good code can be reviewed easily
+by others before it is published and can be reused afterward. The best code is
+written as if a stranger will be reading it.</p>
+<p>Good code has three major elements: structure, syntax, and style. The <em>structure</em>
+is the environment and file organization in which the code lives: good structure
+means that it is easy to find individual pieces of code, within and across
+files, that correspond to specific tasks and outputs. It also means that
+functional code blocks are sufficiently independent from each other such that
+they can be shuffled around, repurposed, and even deleted without affecting the
+execution of other portions. The <em>syntax</em> is the literal language of code. Good
+syntax means that the code is readable in terms of how its mechanics implement
+ideas; it should not require arcane reverse-engineering to figure out what a
+code chunk is trying to do. It should use common commands in a generally
+accepted way so that others can easily follow and reconstruct the researcher’s
+intentions. Finally, <em>style</em> is the way that the nonfunctional elements of code
+convey its purpose. Elements like spacing, indentation, and naming conventions
+(or lack thereof) can make code much more (or much less) accessible to someone
+who is reading it for the first time and needs to understand it quickly and
+accurately.</p>
+<p>One key tool for writing good code is using help documentation. Regardless of
+how much experience a person has with a particular programming language—Stata,
+R, Python, or one of the many others—it is helpful to revisit help files
+frequently. It is impossible to overemphasize how important it is to get into
+the habit of reading help files. Even for the most common commands, there is
+always something new to learn. A help file window should be open at all times,
+making it easy to look up commands or uses of commands that are unfamiliar or
+whose functionality has been forgotten. The belief that help files are only for
+beginners could not be further from the truth. The only way to get better at a
+programming language is to read help files often. Stata help files can be
+accessed by writing <code>help [command]</code> whenever necessary. For example, to learn
+about <code>isid</code>, writing <code>help isid</code> will open the help file for that command.</p>
+</div>
+<div id="using-the-code-examples-in-this-book" class="section level2 unnumbered">
+<h2>Using the code examples in this book</h2>
+<p>This book provides code boxes throughout the chapters that offer examples of
+good code execution of some of the most common tasks in quantitative development
+research. Stata is one of several programming languages used at DIME, but this
+book focuses on Stata for the code boxes because few high-quality resources
+exist relative to Stata’s frequency of use in development research. The code
+examples in each of the code boxes and most of the code in this appendix rely on
+preinstalled data sets as often as possible, so that they will run independently
+of any other materials. (By contrast, the Demand for Safe Spaces case study code
+examples can only be run together with the rest of the reproducibility package).
+The code boxes also demonstrate best-practice coding style for researchers, such
+as the generous use of comments. In the book, code examples are presented like
+the following:</p>
+<div class="ex">
+<p><br></p>
+<pre class="stata numberLines"><code>    * Load the auto dataset
+    sysuse auto.dta , clear
+
+    * Run a simple regression
+    reg price mpg rep78 headroom, coefl
+
+    * Transpose and store the output
+    matrix results = r(table)&#39;
+
+    * Load the results into memory
+    clear
+    svmat results, n(col)</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at
+<a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+<p>The raw code used in examples in this book can be accessed in several ways. DIME
+uses GitHub to version-control all of the content of this book, including the
+code boxes. To see the examples from the code boxes, go to
+<a href="https://github.com/worldbank/dime-data-handbook/tree/master/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/master/code</a>. There is no
+need to download any data, because the examples use Stata’s built-in data sets.
+If Stata is installed on the computer, then it already has the data files used
+in the code.</p>
+<p>For readers not familiar with GitHub, the simplest way to access the code is to
+click the individual file in the GitHub link provided previously and then click
+the button labeled “Raw.” Doing so will load a page that looks like the one at
+<a href="https://raw.githubusercontent.com/worldbank/dime-data-handbook/master/code/code.do" class="uri">https://raw.githubusercontent.com/worldbank/dime-data-handbook/master/code/code.do</a>.
+There, the code can be copied from the browser window into the do-file editor
+with the formatting intact. This method is practical for only a single file at a
+time. To download all code used in this book, instead go to
+<a href="https://github.com/worldbank/dime-data-handbook/archive/main.zip" class="uri">https://github.com/worldbank/dime-data-handbook/archive/main.zip</a>. That link
+downloads a <code>.zip</code> file with all of the content used in writing this book,
+including the plain-text files used for the book itself. After extracting the
+<code>.zip</code> file, all of the code will be in a folder called <code>/code/</code>.</p>
+<p>The code boxes use built-in commands as much as possible, but user-written
+commands are also used when they provide important new functionality. In
+particular, the book points to two suites of Stata commands developed by DIME
+Analytics, <code>ietoolkit</code><a href="#fn115" class="footnote-ref" id="fnref115"><sup>115</sup></a> and <code>iefieldkit</code><a href="#fn116" class="footnote-ref" id="fnref116"><sup>116</sup></a>, which were written to standardize
+core data collection, management, and analysis workflows.</p>
+<p>To run the code box examples that include user-written commands, it is necessary
+to install the commands first. The most common place to distribute user-written
+commands for Stata is the Boston College Statistical Software Components (SSC)
+archive (<a href="https://ideas.repec.org/s/boc/bocode.html" class="uri">https://ideas.repec.org/s/boc/bocode.html</a>). The user-written
+commands in this book are all available from the SSC archive. Installation of
+commands from the SSC archive is straightforward, simply type <code>ssc install randtreat</code>.</p>
+<p>Some commands on SSC are distributed in packages, in which case it is necessary
+to download the whole package to access the included commands. This is the case,
+for example, of <code>ieboilstart</code>, which is part of the <code>ietoolkit</code> package.
+Commands that are distributed in packages cannot be installed on their own; it
+will not work to type <code>ssc install ieboilstart</code>. Instead, Stata will suggest
+using <code>findit ieboilstart</code>, which will search SSC (among other places) for a
+package containing a command called <code>ieboilstart.</code> Stata will find <code>ieboilstart</code>
+in the package <code>ietoolkit</code> and suggest installing it by typing ssc install
+<code>ietoolkit</code> in Stata instead.</p>
+<p>Although it can be confusing to work with packages for the first time, doing so
+is the best way to set up a Stata installation and to benefit from the publicly
+available work of others. After learning how to install commands like this, it
+will not be confusing at all. When writing code that relies on user-written
+commands, it is best practice to install such commands at the beginning of the
+master do-file, so that the user does not have to search for packages manually.</p>
+</div>
+<div id="the-dime-analytics-stata-style-guide" class="section level2 unnumbered">
+<h2>The DIME Analytics Stata Style Guide</h2>
+<p>The programming languages used in computer science always have associated style
+guides. Sometimes they are official, universally agreedupon style guides, such
+as PEP8 for Python (van Rossum, Warsaw, and Coghlan 2013). More commonly, they
+are well-recognized but unofficial style guides like Hadley Wickham’s <em>Tidyverse
+Style Guide</em> for R (Wickham, n.d.) or the JavaScript Standard Style for
+JavaScript (<a href="https://standardjs.com/#the-rules" class="uri">https://standardjs.com/#the-rules</a>). It is also common for large
+software companies to maintain their own style guides for all languages used in
+their projects. However, these are not always made public.</p>
+<p>Aesthetics are an important part of style guides, but not the main reason for
+their existence. Rather, style guides allow programmers who are likely to work
+together to share conventions and understandings of how to execute various
+common intentions using mutually understandable code language. They also help to
+improve the quality of the code produced by all programmers using that language.
+By using a shared style, newer programmers can learn from more experienced
+programmers how certain coding practices are more or less prone to errors.</p>
+<p>The best style guide is the one that is adopted the most widely. Broadly
+accepted style conventions make it easier for coders to borrow solutions from
+each other and from examples online without causing bugs that might be found too
+late. Similarly, globally standardized style guides make it easier for
+programmers to collaborate on each other’s problems and to move from project to
+project and from team to team.</p>
+<p>There is room for personal preference when using style guides, but style guides
+are first and foremost about quality and standardization, especially when
+collaborating on code. DIME Analytics created this Stata style guide to improve
+the quality of all code written in Stata. It is not necessary to follow the
+style guide precisely. All style rules introduced in this section follow the
+DIME Analytics suggestion for how to code, but the most important recommendation
+is to make sure that the style used for code is <em>consistent</em>. This guide allows
+the DIME team to have a consistent code style.</p>
+<div id="commenting-code" class="section level3 unnumbered">
+<h3>Commenting code</h3>
+<p>Comments do not change the output of code or how it runs, but without them code
+will not be accessible to other readers. It will also take much longer to update
+or edit code written in the past if it does not have adequate comments
+explaining its intent and functionality. It is important to comment a lot: not
+only about <em>what</em> the code is doing but also about <em>why</em> it was written the way
+it was. In general, writing simpler code that needs less explanation is
+preferrable to using an elegant and complex method in less space, unless the
+advanced method is widely accepted.</p>
+<p>There are three types of comments in Stata, and they have different purposes.</p>
+<div class="ex">
+<h4 id="commenting-multiple-lines" class="unnumbered">Commenting multiple lines</h4>
+<pre class="stata numberLines"><code>/*
+    This is a do-file with examples of comments in Stata. This
+    type of comment is used to document all of the do-file or a large
+    section of it
+*/</code></pre>
+<h4 id="commenting-a-single-line" class="unnumbered">Commenting a single line</h4>
+<pre class="stata numberLines"><code>    * Standardize settings, explicitly set version, and clear memory
+    * (This comment is used to document a task covering at maximum a few lines of code)
+    ieboilstart, version(13.1)
+    `r(version)&#39;</code></pre>
+<h4 id="inline-comments" class="unnumbered">Inline comments</h4>
+<pre class="stata numberLines"><code>    * Open the dataset
+    sysuse auto.dta // Built in dataset (This comment is used to document a single line)</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+</div>
+<div id="abbreviating-commands" class="section level3 unnumbered">
+<h3>Abbreviating commands</h3>
+<p>Stata commands can often be abbreviated in the code. A command can be
+abbreviated if the help file indicates an abbreviation by underlining part of
+the name in the syntax section at the top. Only built-in commands can be
+abbreviated; user-written commands cannot. Although Stata allows some commands
+to be abbreviated to one or two characters, doing so can be confusing—two-letter
+abbreviations can rarely be “pronounced” in an obvious way that connects them to
+the functionality of the full command. Therefore, command abbreviations in
+code should not be shorter than three characters, with the exception of <code>tw</code> for
+<code>twoway</code> and <code>di</code> for <code>display</code>, and abbreviations should be used only when a
+widely accepted abbreviation exists. (Many commands also allow options to be
+abbreviated: these abbreviations are always acceptable at the shortest allowed
+abbreviation.) The frequently used commands <code>local</code>, <code>global</code>, <code>save</code>, <code>merge</code>,
+<code>append</code>, or <code>sort</code> should never be abbreviated. The table below lists accepted
+abbreviations of common Stata commands.</p>
+<div class="ex">
+<h4 id="accepted-abbreviations-of-common-stata-commands" class="unnumbered">Accepted abbreviations of common Stata commands</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Abbreviation</th>
+<th align="center">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>tw</code></td>
+<td align="center"><code>twoway</code></td>
+</tr>
+<tr class="even">
+<td align="center"><code>di</code></td>
+<td align="center"><code>display</code></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>gen</code></td>
+<td align="center"><code>generate</code></td>
+</tr>
+<tr class="even">
+<td align="center"><code>mat</code></td>
+<td align="center"><code>matrix</code></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>reg</code></td>
+<td align="center"><code>regress</code></td>
+</tr>
+<tr class="even">
+<td align="center"><code>lab</code></td>
+<td align="center"><code>label</code></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>sum</code></td>
+<td align="center"><code>summarize</code></td>
+</tr>
+<tr class="even">
+<td align="center"><code>tab</code></td>
+<td align="center"><code>tabulate</code></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>bys</code></td>
+<td align="center"><code>bysort</code></td>
+</tr>
+<tr class="even">
+<td align="center"><code>qui</code></td>
+<td align="center"><code>quietly</code></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>noi</code></td>
+<td align="center"><code>noisily</code></td>
+</tr>
+<tr class="even">
+<td align="center"><code>cap</code></td>
+<td align="center"><code>capture</code></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>forv</code></td>
+<td align="center"><code>forvalues</code></td>
+</tr>
+<tr class="even">
+<td align="center"><code>prog</code></td>
+<td align="center"><code>program</code></td>
+</tr>
+<tr class="odd">
+<td align="center"><code>hist</code></td>
+<td align="center"><code>histogram</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="abbreviating-variable-names" class="section level3 unnumbered">
+<h3>Abbreviating variable names</h3>
+<p>Variable names should never be abbreviated; they should be written out
+completely. Code may change if a variable is introduced later that makes the
+abbreviation no longer unique. <code>ieboilstart</code> executes the command <code>set varabbrev off</code> by default and will therefore break any code using variable abbreviations.
+Using wildcards and lists in Stata for variable lists (<code>*</code>, <code>?</code>, and <code>-</code>) is
+also discouraged, because the functionality of the code may change if the data
+set is changed or even simply reordered. To capture all variables of a certain
+type, it is better to use <code>unab</code> or <code>lookfor</code> to build that list in a local
+macro, which can then be checked so that the right variables are in the right
+order.</p>
+</div>
+<div id="writing-loops" class="section level3 unnumbered">
+<h3>Writing loops</h3>
+<p>In example code in Stata and other languages, it is common for the name of the
+local generated by <code>foreach</code> or <code>forvalues</code> to be something as simple as <code>i</code>
+or <code>j</code>. It is preferable, however, to name that index descriptively. One-letter
+indexes are acceptable only for general examples, for looping through
+<em>iterations</em> with <code>i</code>, and for looping across matrices with <code>i</code> and <code>j</code>. Best
+practice is for index names to describe what the code is looping over—for
+example, household members, crops, or medicines. Even counters should be named
+explicitly. Doing so makes code much more readable, particularly in nested
+loops.</p>
+<div class="ex">
+<h4 id="good">GOOD:</h4>
+<pre class="stata numberLines"><code>    * Loop over crops
+    foreach crop in potato cassava maize {
+        * do something to `crop&#39;
+    }</code></pre>
+<h4 id="good-1">GOOD:</h4>
+<pre class="stata numberLines"><code>    * Loop over crops
+    local crops potato cassava maize
+    foreach crop of local crops {
+        * Loop over plot number
+        forvalues plot_num = 1/10 {
+            * do something to `crop&#39; in `plot_num&#39;
+        } // End plot loop
+    } // End crop loop</code></pre>
+<h4 id="bad">BAD:</h4>
+<pre class="stata numberLines"><code>    * Loop over crops
+    foreach i in potato cassava maize {
+       * do something to `i&#39;
+    }</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at
+<a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+</div>
+<div id="using-white-space" class="section level3 unnumbered">
+<h3>Using white space</h3>
+<p>In Stata, adding one or many spaces does not change the execution of code and
+can make the code much more readable. Most researchers are well trained in using
+white space in software like PowerPoint and Excel: a PowerPoint presentation
+would not have text that does not align, and an Excel table would not have
+unstructured rows and columns. The same principles apply to coding. In the
+example below, the exact same code is written twice, but in the better example
+white space is used to signal that the central object of this segment of code is
+the variable <code>employed</code>. Organizing the code in this way makes it much quicker
+to read, and small typos stand out more, making them easier to spot.</p>
+<div class="ex">
+<h4 id="acceptable">ACCEPTABLE:</h4>
+<pre class="stata numberLines"><code>    * Create dummy for being employed
+    gen employed = 1
+    replace employed = 0 if (_merge == 2)
+    lab var employed &quot;Person exists in employment data&quot;
+    lab def yesno 1 &quot;Yes&quot; 0 &quot;No&quot;
+    lab val employed yesno</code></pre>
+<h4 id="good-2">GOOD:</h4>
+<pre class="stata numberLines"><code>    * Create dummy for being employed
+    gen      employed = 1
+    replace  employed = 0 if (_merge == 2)
+    lab var  employed &quot;Person exists in employment data&quot;
+    lab def           yesno 1 &quot;Yes&quot; 0 &quot;No&quot;
+    lab val  employed yesno</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at
+<a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+<p>Indentation is another type of white space that makes code more readable. Any
+segment of code that is repeated in a loop or conditional on an <code>if</code>-statement
+should be indented four spaces relative to either the loop or the condition as
+well as the closing curly brace. Similarly, continuing lines of code should be
+indented under the initial command. If a segment is in a loop inside a loop,
+then it should be indented another four spaces, making it eight spaces more
+indented than the main code. In some code editors, this indentation can be
+achieved by using the tab button. However, the type of tab used in the Stata
+do-file editor does not always display the same across platforms, such as when
+publishing code on GitHub. Therefore, inserting four spaces manually is
+recommended instead of using a tab.</p>
+<div class="ex">
+<h4 id="good-3">GOOD:</h4>
+<pre class="stata numberLines"><code>    * Loop over crops
+    foreach crop in potato cassava maize {
+        * Loop over plot number
+        forvalues plot_num = 1/10 {
+            gen crop_`crop&#39;_`plot_num&#39; = &quot;`crop&#39;&quot;
+        }
+    }
+
+    * or
+    local sampleSize = `c(N)&#39;
+    if (`sampleSize&#39; &lt;= 100) {
+        gen use_sample = 0
+    }
+    else {
+        gen use_sample = 1
+    }</code></pre>
+<h4 id="bad-1">BAD:</h4>
+<pre class="stata numberLines"><code>* Loop over crops
+foreach crop in potato cassava maize {
+* Loop over plot number
+forvalues plot_num = 1/10 {
+gen crop_`crop&#39;_`plot_num&#39; = &quot;`crop&#39;&quot;
+}
+}
+
+* or
+local sampleSize = `c(N)&#39;
+if (`sampleSize&#39; &lt;= 100) {
+gen use_sample = 0
+}
+else {
+gen use_sample = 1
+}</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at
+<a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+</div>
+<div id="writing-conditional-expressions" class="section level3 unnumbered">
+<h3>Writing conditional expressions</h3>
+<p>All conditional (true/false) expressions should be within at least one set of
+parentheses. The negation of logical expressions should use bang (<code>!</code>) and not
+tilde (<code>~</code>). Explicit truth checks should be used (<code>if 'value' == 1</code>) rather
+than implicit ones (<code>if 'value'</code>). The <code>missing('var')</code> function should be used
+instead of arguments like (<code>if 'var' &gt;= .</code>). It is important always to consider
+whether missing values will affect the evaluation of conditional expressions and
+modify them appropriately.</p>
+<div class="ex">
+<h4 id="good-4">GOOD:</h4>
+<pre class="stata numberLines"><code>    replace gender_string = &quot;Woman&quot; if  gender == 1
+    replace gender_string = &quot;Man&quot;   if (gender ~= 1)</code></pre>
+<h4 id="bad-2">BAD:</h4>
+<pre class="stata numberLines"><code>    replace gender_string = &quot;Woman&quot; if  (gender == 1)
+    replace gender_string = &quot;Man&quot;   if ((gender != 1) &amp; !missing(gender))</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at
+<a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+<p>When applicable, <code>if-else</code> statements should be used even if the same thing can be
+expressed with two separate if statements. The use of <code>if-else</code> statements
+communicates that the two cases are mutually exclusive, which makes code more
+readable. It is also less error-prone and easier to update if the conditional
+statement needs to be modified.</p>
+<div class="ex">
+<h4 id="good-5">GOOD:</h4>
+<pre class="stata numberLines"><code>    if (`sampleSize&#39; &lt;= 100) {
+        * do something
+    }
+    else {
+        * do something else
+    }</code></pre>
+<h4 id="bad-3">BAD:</h4>
+<pre class="stata numberLines"><code>    if (`sampleSize&#39; &lt;= 100) {
+        * do something
+    }
+    if (`sampleSize&#39; &gt; 100) {
+        * do something else
+    }</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at
+<a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+</div>
+<div id="writing-file-paths" class="section level3 unnumbered">
+<h3>Writing file paths</h3>
+<p>All file paths should always be enclosed in double quotes and should always use
+forward slashes for folder hierarchies (<code>/</code>). Mac and Linux computers cannot
+read file paths with back slashes, and back slashes cannot be removed easily
+with find-and-replace because the character has other functional uses in code.
+File names should be written in lowercase with dashes (<code>my-file.dta</code>). File
+paths should always include the file extension (<code>.dta</code>, <code>.do</code>, <code>.csv</code>, and so
+forth). Omitting the extension causes ambiguity if another file with the same
+name is created, even if there is a default file type.</p>
+<p>File paths should also be absolute and dynamic. <em>Absolute</em> means that all file
+paths start at the root folder of the computer, often <code>C:/</code> in Windows or <code>/Users/</code>
+in macOS. Doing so ensures that the correct file is always in the correct
+folder. The cd command should not be used unless a command specifically requires
+it. When using <code>cd</code>, it is easy to overwrite a file in another project folder,
+because many Stata commands implicitly use <code>cd</code>, and therefore the working
+directory in Stata often changes without warning. Relative file paths are common
+in many other programming languages, but, unless they are relative to the
+location of the file running the code, using them is a risky practice. In Stata,
+relative file paths are relative to the working directory, not to the code file
+being run.</p>
+<p><em>Dynamic</em> file paths use global macros for the location of the root folder.
+These globals should be set in a central master do-file. Using the root folder
+path stored in a global makes it possible to write file paths in Stata that work
+very similarly to relative paths. It also achieves the functionality that
+setting <code>cd</code> is often intended to achieve: executing the code on a new system only
+requires updating file path globals in one location. If global names are unique,
+there is no risk that files will be saved in the incorrect project folder.
+Multiple folder globals can be created as needed, and this practice is
+encouraged.</p>
+<div class="ex">
+<h4 id="good-6">GOOD:</h4>
+<pre class="stata numberLines"><code>    global myDocs    = &quot;C:/Users/username/Documents&quot;
+    global myProject = &quot;${myDocs}/MyProject&quot;
+    use &quot;${myProject}/my-dataset.dta&quot;, clear</code></pre>
+<h4 id="bad-relative-paths">BAD: Relative paths</h4>
+<pre class="stata numberLines"><code>    cd &quot;C:/Users/username/Documents/MyProject&quot;
+    use MyDataset.dta</code></pre>
+<h4 id="bad-static-paths">BAD: Static paths</h4>
+<pre class="stata numberLines"><code>    use &quot;C:/Users/username/Documents/MyProject/MyDataset.dta&quot;</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at
+<a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+</div>
+<div id="using-line-breaks" class="section level3 unnumbered">
+<h3>Using line breaks</h3>
+<p>Long lines of code are difficult to read, making it necessary to scroll left and
+right to see the full line of code. When a line of code is wider than text on a
+regular paper, a line break is needed. A common line-breaking length is
+around 80 characters. Stata’s do-file editor and other code editors provide a
+visible guideline. Around that length, using <code>///</code> breaks the line in the code
+editor, while telling Stata that the same line of code continues on the next
+line. Recent versions of the Stata do-file editor—and many other code
+editors—automatically wrap code lines that are too long. We do not recommend
+relying on this functionality; instead, actively using <code>///</code> to wrap lines is
+recommended to ensure that line breaks are placed such that the code remains the
+most readable. The /// breaks do not need to be aligned vertically in code,
+although doing so may help to align comments and improve readability, because
+indentations should reflect that the command continues to a new line. Lines
+should be broken where it makes functional sense. Writing comments after <code>///</code>
+just as with <code>//</code> usually is a good idea, especially if it is being used to
+separate functional parts of a single command for clarity.</p>
+<p>The <code>#delimit</code> command should be used only for advanced function programming and
+is officially discouraged in analytical code (<span class="citation">Cox (<a href="bibliography.html#ref-cox2005styleguide" role="doc-biblioref">2005</a>)</span>). Typing <code>/* */</code> should never be used to wrap a line: it is distracting and difficult to
+follow, and those characters should be used only to write regular comments. Line
+breaks and indentations may be used to highlight the placement of the option
+comma or other functional syntax in Stata commands.</p>
+<div class="ex">
+<h4 id="good-7">GOOD:</h4>
+<pre class="stata numberLines"><code>    graph hbar invil      /// Proportion in village
+         if (priv == 1)   /// Private facilities only
+       , over(statename, sort(1) descending)    /// Order states by values
+         blabel(bar, format(%9.0f))             /// Label the bars
+         ylab(0 &quot;0%&quot; 25 &quot;25%&quot; 50 &quot;50%&quot; 75 &quot;75%&quot; 100 &quot;100%&quot;) ///
+         ytit(&quot;Share of private primary care visits made in own village&quot;)</code></pre>
+<h4 id="bad-4">BAD:</h4>
+<pre class="stata numberLines"><code>    #delimit ;
+    graph hbar
+        invil if (priv == 1)
+      , over(statename, sort(1) descending) blabel(bar, format(%9.0f))
+        ylab(0 &quot;0%&quot; 25 &quot;25%&quot; 50 &quot;50%&quot; 75 &quot;75%&quot; 100 &quot;100%&quot;)
+        ytit(&quot;Share of private primary care visits made in own village&quot;);
+    #delimit cr</code></pre>
+<h4 id="ugly">UGLY:</h4>
+<pre class="stata numberLines"><code>    graph hbar /*
+    */    invil if (priv == 1)</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at
+<a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+</div>
+<div id="using-boilerplate-code" class="section level3 unnumbered">
+<h3>Using boilerplate code</h3>
+<p><em>Boilerplate</em> code consists of a few lines of code that always appear at the top
+of the code file, and its purpose is to harmonize settings across users running
+the same code to the greatest degree possible. There is no way in Stata to
+guarantee that any two installations will always run code in exactly the same
+way. In the vast majority of cases, they do, but not always, and boilerplate
+code can mitigate that risk. DIME Analytics developed the <code>ieboilstart</code> command to
+implement many commonly used boilerplate settings that are optimized given a
+particular installation of Stata. It requires two lines of code to execute the
+<code>version</code> setting, which avoids differences in results due to different versions
+of Stata. Among other things, it turns the <code>more</code> flag off so that code never
+hangs while waiting to display more output; it turns <code>varabbrev</code> off so that
+abbreviated variable names are rejected; and it maximizes the allowed memory
+usage and matrix size so that other machines do not reject code for violating
+system limits. (For example, Stata/SE and Stata/IC allow for different maximum
+numbers of variables, and the same happens with Stata 14 and Stata 15, so code
+written in one of these versions may not be able to run in another.) Finally, it
+clears all stored information in Stata memory, such as noninstalled programs and
+globals, getting as close as possible to opening a fresh Stata session.</p>
+<div class="ex">
+<h4 id="good-8">GOOD:</h4>
+<pre class="stata numberLines"><code>    ieboilstart, version(13.1)
+    `r(version)&#39;</code></pre>
+<h4 id="acceptable-1">ACCEPTABLE:</h4>
+<pre class="stata numberLines"><code>   set more off , perm
+   clear all
+   set maxvar 10000
+   version 13.1</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at
+<a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+</div>
+<div id="miscellaneous-notes" class="section level3 unnumbered">
+<h3>Miscellaneous notes</h3>
+<p>Multiple graphs should be written as <code>tw (xx)(xx)(xx)</code>, not <code>tw xx||xx||xx</code>. In
+simple expressions, spaces are needed around each binary operator except <code>^</code>,
+writing <code>gen z = x + y</code> and <code>gen z = x^2</code>. When the order of operations applies,
+spacing and parentheses may be adjusted: write <code>hours + (minutes/60) + (seconds/3600)</code>,
+not <code>hours + minutes / 60 + seconds / 3600</code>. For long
+expressions, <code>+</code> and <code>-</code> operators should start the new line, but <code>*</code> and <code>/</code>
+should be used inline. For example:</p>
+<div class="ex">
+<p><br></p>
+<pre class="stata numberLines"><code>gen newvar = x ///
+             - (y/2) ///
+             + a * (b - c)</code></pre>
+<p>To access this code in do-file format, visit the GitHub repository at
+<a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
+<p>Instead of printing code to the results window, which is slow, it is better to
+use <code>qui</code> whenever possible and to use <code>run file.do</code> rather than <code>do file.do</code> in
+master scripts. To minimize output printed to the command window, commands like
+<code>sum</code> and <code>tab</code> should be used sparingly in do-files, unless they are for the
+purpose of storing r-class statistics. In that case, using the <code>qui</code> prefix will
+prevent printing output. It is also faster to get outputs from commands like <code>reg</code>
+using the <code>qui</code> prefix.</p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="115">
+<li id="fn115"><p><strong>ietoolkit</strong> is a Stata package containing several
+commands to routinize tasks in impact evaluation. It can be installed through
+the Boston College Statistical Software Components (SSC) archive
+(<a href="https://ideas.repec.org/c/boc/bocode/s458137.html" class="uri">https://ideas.repec.org/c/boc/bocode/s458137.html</a>), and the code is available
+at <a href="https://github.com/worldbank/ietoolkit" class="uri">https://github.com/worldbank/ietoolkit</a>. To learn more, see the DIME Wiki at
+<a href="https://dimewiki.worldbank.org/ietoolkit" class="uri">https://dimewiki.worldbank.org/ietoolkit</a>.<a href="coding.html#fnref115" class="footnote-back">↩︎</a></p></li>
+<li id="fn116"><p><strong>iefieldkit</strong> is
+a Stata package containing several commands to routinize tasks related to
+primary data collection. It can be installed through SSC
+(<a href="https://ideas.repec.org/c/boc/bocode/s458600.html" class="uri">https://ideas.repec.org/c/boc/bocode/s458600.html</a>), and the code is available
+at <a href="https://github.com/worldbank/iefieldkit" class="uri">https://github.com/worldbank/iefieldkit</a>. To learn more, see the DIME Wiki at
+<a href="https://dimewiki.worldbank.org/iefieldkit" class="uri">https://dimewiki.worldbank.org/iefieldkit</a>.<a href="coding.html#fnref116" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="conclusion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["drip.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
