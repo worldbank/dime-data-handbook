@@ -1,4 +1,4 @@
-**# Construct yearly income
+	**# Construct yearly income
 
 	local min_wage 	 12
 	local work_hours 40
