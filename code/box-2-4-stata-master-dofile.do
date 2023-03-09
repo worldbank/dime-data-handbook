@@ -73,3 +73,5 @@
 ----------------------------------------------------------------------------- */
     *Change the 0 to 1 to run the baseline variable construction do-file
     if (0) do "${bl_do}/Construct/construct_income.do"
+
+***************************************************************** End of do-file
