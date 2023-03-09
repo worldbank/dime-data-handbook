@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A The DIME Analytics Coding Guide | Development Research in Practice   The DIME Analytics Data Handbook</title>
   <meta name="description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A The DIME Analytics Coding Guide | Development Research in Practice   The DIME Analytics Data Handbook" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://worldbank.github.io/dime-data-handbook/" />
   <meta property="og:image" content="https://worldbank.github.io/dime-data-handbook/img/cover.png" />
   <meta property="og:description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
   <meta name="github-repo" content="worldbank/dime-data-handbook" />
@@ -32,7 +31,8 @@
   
 <link rel="prev" href="conclusion.html"/>
 <link rel="next" href="resources.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,9 +48,34 @@
 
 
 
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -68,18 +93,21 @@
 <li><a href="./">Development Research in Practice <br> The DIME Analytics Data Handbook</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
-<li><a href="index.html#published-by-dime-analytics">Published by <br> <span>DIME Analytics</span></a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#published-by-dime-analytics"><i class="fa fa-check"></i>Published by <br> DIME Analytics</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the authors</a></li>
-<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html"><i class="fa fa-check"></i>Feedback</a><ul>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html"><i class="fa fa-check"></i>Feedback</a>
+<ul>
 <li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html#how-to-contribute"><i class="fa fa-check"></i>How to contribute</a></li>
 <li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html#already-addressed-errata"><i class="fa fa-check"></i>Already addressed errata</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="abbreviations.html"><a href="abbreviations.html"><i class="fa fa-check"></i>Abbreviations</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#how-to-read-this-book"><i class="fa fa-check"></i>How to read this book</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#the-dime-wiki-a-complementary-resource"><i class="fa fa-check"></i>The DIME Wiki: A complementary resource</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#standardizing-data-work"><i class="fa fa-check"></i>Standardizing data work</a></li>
@@ -87,51 +115,66 @@
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#the-team-behind-this-book"><i class="fa fa-check"></i>The team behind this book</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#looking-ahead"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>1</b> Conducting reproducible, transparent, and credible research</a><ul>
-<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#developing-a-credible-research-project"><i class="fa fa-check"></i>Developing a credible research project</a><ul>
+<li class="chapter" data-level="1" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>1</b> Conducting reproducible, transparent, and credible research</a>
+<ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#developing-a-credible-research-project"><i class="fa fa-check"></i>Developing a credible research project</a>
+<ul>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#registering-research"><i class="fa fa-check"></i>Registering research</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#writing-preanalysis-plans"><i class="fa fa-check"></i>Writing preanalysis plans</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#publishing-registered-reports"><i class="fa fa-check"></i>Publishing registered reports</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#conducting-research-transparently"><i class="fa fa-check"></i>Conducting research transparently</a><ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#conducting-research-transparently"><i class="fa fa-check"></i>Conducting research transparently</a>
+<ul>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#documenting-data-acquisition-and-analysis"><i class="fa fa-check"></i>Documenting data acquisition and analysis</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#cataloging-and-archiving-data"><i class="fa fa-check"></i>Cataloging and archiving data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#analyzing-data-reproducibly-and-preparing-a-reproducibility-package"><i class="fa fa-check"></i>Analyzing data reproducibly and preparing a reproducibility package</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#looking-ahead-1"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>2</b> Setting the stage for effective and efficient collaboration</a><ul>
-<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-a-collaborative-work-environment"><i class="fa fa-check"></i>Preparing a collaborative work environment</a><ul>
+<li class="chapter" data-level="2" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>2</b> Setting the stage for effective and efficient collaboration</a>
+<ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-a-collaborative-work-environment"><i class="fa fa-check"></i>Preparing a collaborative work environment</a>
+<ul>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#setting-up-a-computer-for-data-work"><i class="fa fa-check"></i>Setting up a computer for data work</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#establishing-effective-documentation-practices"><i class="fa fa-check"></i>Establishing effective documentation practices</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#setting-up-a-code-environment"><i class="fa fa-check"></i>Setting up a code environment</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-code-and-data-for-replicable-research"><i class="fa fa-check"></i>Organizing code and data for replicable research</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-code-and-data-for-replicable-research"><i class="fa fa-check"></i>Organizing code and data for replicable research</a>
+<ul>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-files-and-folders"><i class="fa fa-check"></i>Organizing files and folders</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#establishing-common-file-formats"><i class="fa fa-check"></i>Establishing common file formats</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#using-version-control"><i class="fa fa-check"></i>Using version control</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#writing-code-that-others-can-read"><i class="fa fa-check"></i>Writing code that others can read</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#writing-code-that-others-can-run"><i class="fa fa-check"></i>Writing code that others can run</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.6-writing-code-that-others-can-run-a-case-study-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.6 WRITING CODE THAT OTHERS CAN RUN: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-to-handle-confidential-data-ethically"><i class="fa fa-check"></i>Preparing to handle confidential data ethically</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-to-handle-confidential-data-ethically"><i class="fa fa-check"></i>Preparing to handle confidential data ethically</a>
+<ul>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#seeking-ethical-approval"><i class="fa fa-check"></i>Seeking ethical approval</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#obtaining-informed-consent"><i class="fa fa-check"></i>Obtaining informed consent</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.7-seeking-ethical-approval-an-example-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.7 SEEKING ETHICAL APPROVAL: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.8-obtaining-informed-consent-a-case-study-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.8 OBTAINING INFORMED CONSENT: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#ensuring-research-subject-privacy"><i class="fa fa-check"></i>Ensuring research subject privacy</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.9-ensuring-the-privacy-of-research-subjects-an-example-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.9 ENSURING THE PRIVACY OF RESEARCH SUBJECTS: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#looking-ahead-2"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>3</b> Establishing a measurement framework</a><ul>
-<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#documenting-data-needs"><i class="fa fa-check"></i>Documenting data needs</a><ul>
+<li class="chapter" data-level="3" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>3</b> Establishing a measurement framework</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#documenting-data-needs"><i class="fa fa-check"></i>Documenting data needs</a>
+<ul>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#developing-a-data-linkage-table"><i class="fa fa-check"></i>Developing a data linkage table</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructing-master-data-sets"><i class="fa fa-check"></i>Constructing master data sets</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-data-flowcharts"><i class="fa fa-check"></i>Creating data flowcharts</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#translating-research-design-to-data-needs"><i class="fa fa-check"></i>Translating research design to data needs</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#translating-research-design-to-data-needs"><i class="fa fa-check"></i>Translating research design to data needs</a>
+<ul>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#applying-common-research-designs-to-data"><i class="fa fa-check"></i>Applying common research designs to data</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#including-multiple-time-periods"><i class="fa fa-check"></i>Including multiple time periods</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#incorporating-monitoring-data"><i class="fa fa-check"></i>Incorporating monitoring data</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-research-design-variables-by-randomization"><i class="fa fa-check"></i>Creating research design variables by randomization</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-research-design-variables-by-randomization"><i class="fa fa-check"></i>Creating research design variables by randomization</a>
+<ul>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#randomizing-sampling-and-treatment-assignment"><i class="fa fa-check"></i>Randomizing sampling and treatment assignment</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#programming-reproducible-random-processes"><i class="fa fa-check"></i>Programming reproducible random processes</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#implementing-clustered-or-stratified-designs"><i class="fa fa-check"></i>Implementing clustered or stratified designs</a></li>
@@ -139,13 +182,16 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#looking-ahead-3"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i><b>4</b> Acquiring development data</a><ul>
-<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#acquiring-data-ethically-and-reproducibly"><i class="fa fa-check"></i>Acquiring data ethically and reproducibly</a><ul>
+<li class="chapter" data-level="4" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i><b>4</b> Acquiring development data</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#acquiring-data-ethically-and-reproducibly"><i class="fa fa-check"></i>Acquiring data ethically and reproducibly</a>
+<ul>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#determining-data-ownership"><i class="fa fa-check"></i>Determining data ownership</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#obtaining-data-licenses"><i class="fa fa-check"></i>Obtaining data licenses</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#documenting-data-received-from-partners"><i class="fa fa-check"></i>Documenting data received from partners</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-high-quality-data-using-electronic-surveys"><i class="fa fa-check"></i>Collecting high-quality data using electronic surveys</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-high-quality-data-using-electronic-surveys"><i class="fa fa-check"></i>Collecting high-quality data using electronic surveys</a>
+<ul>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#designing-survey-instruments"><i class="fa fa-check"></i>Designing survey instruments</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#piloting-survey-instruments"><i class="fa fa-check"></i>Piloting survey instruments</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#programming-electronic-survey-instruments"><i class="fa fa-check"></i>Programming electronic survey instruments</a></li>
@@ -153,24 +199,32 @@
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#training-enumerators"><i class="fa fa-check"></i>Training enumerators</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#checking-data-quality-in-real-time"><i class="fa fa-check"></i>Checking data quality in real time</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#handling-data-securely"><i class="fa fa-check"></i>Handling data securely</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#handling-data-securely"><i class="fa fa-check"></i>Handling data securely</a>
+<ul>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#encrypting-data"><i class="fa fa-check"></i>Encrypting data</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-and-storing-data-securely"><i class="fa fa-check"></i>Collecting and storing data securely</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#backing-up-original-data"><i class="fa fa-check"></i>Backing up original data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#looking-ahead-4"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="processing.html"><a href="processing.html"><i class="fa fa-check"></i><b>5</b> Cleaning and processing research data</a><ul>
-<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#making-data-tidy"><i class="fa fa-check"></i>Making data “tidy”</a><ul>
+<li class="chapter" data-level="5" data-path="processing.html"><a href="processing.html"><i class="fa fa-check"></i><b>5</b> Cleaning and processing research data</a>
+<ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#making-data-tidy"><i class="fa fa-check"></i>Making data “tidy”</a>
+<ul>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#establishing-a-unique-identifier"><i class="fa fa-check"></i>Establishing a unique identifier</a></li>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#tidying-data"><i class="fa fa-check"></i>Tidying data</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-data-quality-checks"><i class="fa fa-check"></i>Implementing data quality checks</a></li>
-<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#processing-confidential-data"><i class="fa fa-check"></i>Processing confidential data</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-data-quality-checks"><i class="fa fa-check"></i>Implementing data quality checks</a>
+<ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#box-5.4-assuring-data-quality-a-case-study-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 5.4 ASSURING DATA QUALITY: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#processing-confidential-data"><i class="fa fa-check"></i>Processing confidential data</a>
+<ul>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#protecting-research-subject-privacy"><i class="fa fa-check"></i>Protecting research subject privacy</a></li>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-de-identification"><i class="fa fa-check"></i>Implementing de-identification</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#preparing-data-for-analysis"><i class="fa fa-check"></i>Preparing data for analysis</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#preparing-data-for-analysis"><i class="fa fa-check"></i>Preparing data for analysis</a>
+<ul>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#exploring-the-data"><i class="fa fa-check"></i>Exploring the data</a></li>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#correcting-data-points"><i class="fa fa-check"></i>Correcting data points</a></li>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#recoding-and-annotating-data"><i class="fa fa-check"></i>Recoding and annotating data</a></li>
@@ -178,51 +232,63 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#looking-ahead-5"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>6</b> Constructing and analyzing research data</a><ul>
-<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-data-sets"><i class="fa fa-check"></i>Creating analysis data sets</a><ul>
+<li class="chapter" data-level="6" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>6</b> Constructing and analyzing research data</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-data-sets"><i class="fa fa-check"></i>Creating analysis data sets</a>
+<ul>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#organizing-data-analysis-workflows"><i class="fa fa-check"></i>Organizing data analysis workflows</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#integrating-multiple-data-sources"><i class="fa fa-check"></i>Integrating multiple data sources</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-variables"><i class="fa fa-check"></i>Creating analysis variables</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#documenting-variable-construction"><i class="fa fa-check"></i>Documenting variable construction</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#writing-analysis-code"><i class="fa fa-check"></i>Writing analysis code</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#writing-analysis-code"><i class="fa fa-check"></i>Writing analysis code</a>
+<ul>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#organizing-analysis-code"><i class="fa fa-check"></i>Organizing analysis code</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-reproducible-tables-and-graphs"><i class="fa fa-check"></i>Creating reproducible tables and graphs</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-reproducible-tables-and-graphs"><i class="fa fa-check"></i>Creating reproducible tables and graphs</a>
+<ul>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#managing-outputs"><i class="fa fa-check"></i>Managing outputs</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#exporting-analysis-outputs"><i class="fa fa-check"></i>Exporting analysis outputs</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#increasing-efficiency-of-analysis-with-dynamic-documents"><i class="fa fa-check"></i>Increasing efficiency of analysis with dynamic documents</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#increasing-efficiency-of-analysis-with-dynamic-documents"><i class="fa fa-check"></i>Increasing efficiency of analysis with dynamic documents</a>
+<ul>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#conducting-dynamic-exploratory-analysis"><i class="fa fa-check"></i>Conducting dynamic exploratory analysis</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#using-latex-for-dynamic-research-outputs"><i class="fa fa-check"></i>Using LaTeX for dynamic research outputs</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#looking-ahead-6"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="publication.html"><a href="publication.html"><i class="fa fa-check"></i><b>7</b> Publishing reproducible research outputs</a><ul>
-<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-papers-and-reports"><i class="fa fa-check"></i>Publishing research papers and reports</a><ul>
+<li class="chapter" data-level="7" data-path="publication.html"><a href="publication.html"><i class="fa fa-check"></i><b>7</b> Publishing reproducible research outputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-papers-and-reports"><i class="fa fa-check"></i>Publishing research papers and reports</a>
+<ul>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#using-latex-for-written-documents"><i class="fa fa-check"></i>Using LaTeX for written documents</a></li>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#getting-started-with-latex-as-a-team"><i class="fa fa-check"></i>Getting started with LaTeX as a team</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#preparing-research-data-for-publication"><i class="fa fa-check"></i>Preparing research data for publication</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#preparing-research-data-for-publication"><i class="fa fa-check"></i>Preparing research data for publication</a>
+<ul>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#de-identifying-data-for-publication"><i class="fa fa-check"></i>De-identifying data for publication</a></li>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-data-sets"><i class="fa fa-check"></i>Publishing research data sets</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-a-reproducible-research-package"><i class="fa fa-check"></i>Publishing a reproducible research package</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-a-reproducible-research-package"><i class="fa fa-check"></i>Publishing a reproducible research package</a>
+<ul>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#organizing-code-for-reproducibility"><i class="fa fa-check"></i>Organizing code for reproducibility</a></li>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#releasing-a-reproducibility-package"><i class="fa fa-check"></i>Releasing a reproducibility package</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#looking-ahead-7"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a><ul>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a>
+<ul>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html#bringing-it-all-together"><i class="fa fa-check"></i>Bringing it all together</a></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html#where-to-go-from-here"><i class="fa fa-check"></i>Where to go from here</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="coding.html"><a href="coding.html"><i class="fa fa-check"></i><b>A</b> The DIME Analytics Coding Guide</a><ul>
+<li class="chapter" data-level="A" data-path="coding.html"><a href="coding.html"><i class="fa fa-check"></i><b>A</b> The DIME Analytics Coding Guide</a>
+<ul>
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-good-code"><i class="fa fa-check"></i>Writing good code</a></li>
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-the-code-examples-in-this-book"><i class="fa fa-check"></i>Using the code examples in this book</a></li>
-<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#the-dime-analytics-stata-style-guide"><i class="fa fa-check"></i>The DIME Analytics Stata Style Guide</a><ul>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#the-dime-analytics-stata-style-guide"><i class="fa fa-check"></i>The DIME Analytics Stata Style Guide</a>
+<ul>
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#commenting-code"><i class="fa fa-check"></i>Commenting code</a></li>
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#abbreviating-commands"><i class="fa fa-check"></i>Abbreviating commands</a></li>
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#abbreviating-variable-names"><i class="fa fa-check"></i>Abbreviating variable names</a></li>
@@ -235,17 +301,21 @@
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#miscellaneous-notes"><i class="fa fa-check"></i>Miscellaneous notes</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>B</b> DIME Analytics Resource Directory</a><ul>
+<li class="chapter" data-level="B" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>B</b> DIME Analytics Resource Directory</a>
+<ul>
 <li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#public-resources-and-tools"><i class="fa fa-check"></i>Public resources and tools</a></li>
 <li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#flagship-training-courses"><i class="fa fa-check"></i>Flagship training courses</a></li>
 <li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#software-tools-and-trainings"><i class="fa fa-check"></i>Software tools and trainings</a></li>
 </ul></li>
-<li class="chapter" data-level="C" data-path="design.html"><a href="design.html"><i class="fa fa-check"></i><b>C</b> Research design for impact evaluation</a><ul>
-<li class="chapter" data-level="" data-path="design.html"><a href="design.html#understanding-causality-inference-and-identification"><i class="fa fa-check"></i>Understanding causality, inference, and identification</a><ul>
+<li class="chapter" data-level="C" data-path="design.html"><a href="design.html"><i class="fa fa-check"></i><b>C</b> Research design for impact evaluation</a>
+<ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#understanding-causality-inference-and-identification"><i class="fa fa-check"></i>Understanding causality, inference, and identification</a>
+<ul>
 <li class="chapter" data-level="" data-path="design.html"><a href="design.html#estimating-treatment-effects-using-control-groups"><i class="fa fa-check"></i>Estimating treatment effects using control groups</a></li>
 <li class="chapter" data-level="" data-path="design.html"><a href="design.html#designing-experimental-and-quasi-experimental-research"><i class="fa fa-check"></i>Designing experimental and quasi-experimental research</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="design.html"><a href="design.html#obtaining-treatment-effects-from-specific-research-designs"><i class="fa fa-check"></i>Obtaining treatment effects from specific research designs</a><ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#obtaining-treatment-effects-from-specific-research-designs"><i class="fa fa-check"></i>Obtaining treatment effects from specific research designs</a>
+<ul>
 <li class="chapter" data-level="" data-path="design.html"><a href="design.html#cross-sectional-designs"><i class="fa fa-check"></i>Cross-sectional designs</a></li>
 <li class="chapter" data-level="" data-path="design.html"><a href="design.html#difference-in-differences"><i class="fa fa-check"></i>Difference-in-differences</a></li>
 <li class="chapter" data-level="" data-path="design.html"><a href="design.html#regression-discontinuity"><i class="fa fa-check"></i>Regression discontinuity</a></li>
@@ -272,8 +342,8 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="coding" class="section level1">
-<h1><span class="header-section-number">A</span> The DIME Analytics Coding Guide</h1>
+<div id="coding" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">A</span> The DIME Analytics Coding Guide<a href="coding.html#coding" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Most academic programs that prepare students for a career in the type of work
 discussed in this book spend a disproportionately small amount of time teaching
 students coding skills in relation to the share of professional time those
@@ -300,8 +370,8 @@ shares practices that greatly improve the quality of research projects coded in
 Stata. By applying the guidance provided in this appendix, readers will learn to
 write code that, like an architect’s blueprint, can be understood and used by
 everyone in the trade.</p>
-<div id="writing-good-code" class="section level2 unnumbered">
-<h2>Writing good code</h2>
+<div id="writing-good-code" class="section level2 unnumbered hasAnchor">
+<h2>Writing good code<a href="coding.html#writing-good-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Good code has two elements: (1) it is correct, in that it does not produce any
 errors and its outputs are the objects intended, and (2) it is useful and
 comprehensible to someone who has not seen it before (or even someone who sees
@@ -341,8 +411,8 @@ programming language is to read help files often. Stata help files can be
 accessed by writing <code>help [command]</code> whenever necessary. For example, to learn
 about <code>isid</code>, writing <code>help isid</code> will open the help file for that command.</p>
 </div>
-<div id="using-the-code-examples-in-this-book" class="section level2 unnumbered">
-<h2>Using the code examples in this book</h2>
+<div id="using-the-code-examples-in-this-book" class="section level2 unnumbered hasAnchor">
+<h2>Using the code examples in this book<a href="coding.html#using-the-code-examples-in-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This book provides code boxes throughout the chapters that offer examples of
 good code execution of some of the most common tasks in quantitative development
 research. Stata is one of several programming languages used at DIME, but this
@@ -417,8 +487,8 @@ will not be confusing at all. When writing code that relies on user-written
 commands, it is best practice to install such commands at the beginning of the
 master do-file, so that the user does not have to search for packages manually.</p>
 </div>
-<div id="the-dime-analytics-stata-style-guide" class="section level2 unnumbered">
-<h2>The DIME Analytics Stata Style Guide</h2>
+<div id="the-dime-analytics-stata-style-guide" class="section level2 unnumbered hasAnchor">
+<h2>The DIME Analytics Stata Style Guide<a href="coding.html#the-dime-analytics-stata-style-guide" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The programming languages used in computer science always have associated style
 guides. Sometimes they are official, universally agreedupon style guides, such
 as PEP8 for Python (van Rossum, Warsaw, and Coghlan 2013). More commonly, they
@@ -448,8 +518,8 @@ style guide precisely. All style rules introduced in this section follow the
 DIME Analytics suggestion for how to code, but the most important recommendation
 is to make sure that the style used for code is <em>consistent</em>. This guide allows
 the DIME team to have a consistent code style.</p>
-<div id="commenting-code" class="section level3 unnumbered">
-<h3>Commenting code</h3>
+<div id="commenting-code" class="section level3 unnumbered hasAnchor">
+<h3>Commenting code<a href="coding.html#commenting-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Comments do not change the output of code or how it runs, but without them code
 will not be accessible to other readers. It will also take much longer to update
 or edit code written in the past if it does not have adequate comments
@@ -460,25 +530,31 @@ preferrable to using an elegant and complex method in less space, unless the
 advanced method is widely accepted.</p>
 <p>There are three types of comments in Stata, and they have different purposes.</p>
 <div class="ex">
-<h4 id="commenting-multiple-lines" class="unnumbered">Commenting multiple lines</h4>
+<div id="commenting-multiple-lines" class="section level4 unnumbered hasAnchor">
+<h4>Commenting multiple lines<a href="coding.html#commenting-multiple-lines" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>/*
     This is a do-file with examples of comments in Stata. This
     type of comment is used to document all of the do-file or a large
     section of it
 */</code></pre>
-<h4 id="commenting-a-single-line" class="unnumbered">Commenting a single line</h4>
+</div>
+<div id="commenting-a-single-line" class="section level4 unnumbered hasAnchor">
+<h4>Commenting a single line<a href="coding.html#commenting-a-single-line" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    * Standardize settings, explicitly set version, and clear memory
     * (This comment is used to document a task covering at maximum a few lines of code)
     ieboilstart, version(13.1)
     `r(version)&#39;</code></pre>
-<h4 id="inline-comments" class="unnumbered">Inline comments</h4>
+</div>
+<div id="inline-comments" class="section level4 unnumbered hasAnchor">
+<h4>Inline comments<a href="coding.html#inline-comments" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    * Open the dataset
     sysuse auto.dta // Built in dataset (This comment is used to document a single line)</code></pre>
 <p>To access this code in do-file format, visit the GitHub repository at <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
 </div>
 </div>
-<div id="abbreviating-commands" class="section level3 unnumbered">
-<h3>Abbreviating commands</h3>
+</div>
+<div id="abbreviating-commands" class="section level3 unnumbered hasAnchor">
+<h3>Abbreviating commands<a href="coding.html#abbreviating-commands" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Stata commands can often be abbreviated in the code. A command can be
 abbreviated if the help file indicates an abbreviation by underlining part of
 the name in the syntax section at the top. Only built-in commands can be
@@ -493,8 +569,8 @@ abbreviated: these abbreviations are always acceptable at the shortest allowed
 abbreviation.) The frequently used commands <code>local</code>, <code>global</code>, <code>save</code>, <code>merge</code>,
 <code>append</code>, or <code>sort</code> should never be abbreviated. The table below lists accepted
 abbreviations of common Stata commands.</p>
-<div class="ex">
-<h4 id="accepted-abbreviations-of-common-stata-commands" class="unnumbered">Accepted abbreviations of common Stata commands</h4>
+<div id="accepted-abbreviations-of-common-stata-commands" class="section level4 unnumbered hasAnchor ex">
+<h4>Accepted abbreviations of common Stata commands<a href="coding.html#accepted-abbreviations-of-common-stata-commands" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <table>
 <thead>
 <tr class="header">
@@ -567,8 +643,8 @@ abbreviations of common Stata commands.</p>
 </table>
 </div>
 </div>
-<div id="abbreviating-variable-names" class="section level3 unnumbered">
-<h3>Abbreviating variable names</h3>
+<div id="abbreviating-variable-names" class="section level3 unnumbered hasAnchor">
+<h3>Abbreviating variable names<a href="coding.html#abbreviating-variable-names" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Variable names should never be abbreviated; they should be written out
 completely. Code may change if a variable is introduced later that makes the
 abbreviation no longer unique. <code>ieboilstart</code> executes the command <code>set varabbrev off</code> by default and will therefore break any code using variable abbreviations.
@@ -579,8 +655,8 @@ type, it is better to use <code>unab</code> or <code>lookfor</code> to build tha
 macro, which can then be checked so that the right variables are in the right
 order.</p>
 </div>
-<div id="writing-loops" class="section level3 unnumbered">
-<h3>Writing loops</h3>
+<div id="writing-loops" class="section level3 unnumbered hasAnchor">
+<h3>Writing loops<a href="coding.html#writing-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In example code in Stata and other languages, it is common for the name of the
 local generated by <code>foreach</code> or <code>forvalues</code> to be something as simple as <code>i</code>
 or <code>j</code>. It is preferable, however, to name that index descriptively. One-letter
@@ -591,12 +667,15 @@ example, household members, crops, or medicines. Even counters should be named
 explicitly. Doing so makes code much more readable, particularly in nested
 loops.</p>
 <div class="ex">
-<h4 id="good">GOOD:</h4>
+<div id="good" class="section level4 unnumbered hasAnchor">
+<h4>GOOD:<a href="coding.html#good" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    * Loop over crops
     foreach crop in potato cassava maize {
         * do something to `crop&#39;
     }</code></pre>
-<h4 id="good-1">GOOD:</h4>
+</div>
+<div id="good-1" class="section level4 unnumbered hasAnchor">
+<h4>GOOD:<a href="coding.html#good-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    * Loop over crops
     local crops potato cassava maize
     foreach crop of local crops {
@@ -605,7 +684,9 @@ loops.</p>
             * do something to `crop&#39; in `plot_num&#39;
         } // End plot loop
     } // End crop loop</code></pre>
-<h4 id="bad">BAD:</h4>
+</div>
+<div id="bad" class="section level4 unnumbered hasAnchor">
+<h4>BAD:<a href="coding.html#bad" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    * Loop over crops
     foreach i in potato cassava maize {
        * do something to `i&#39;
@@ -614,8 +695,9 @@ loops.</p>
 <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
 </div>
 </div>
-<div id="using-white-space" class="section level3 unnumbered">
-<h3>Using white space</h3>
+</div>
+<div id="using-white-space" class="section level3 unnumbered hasAnchor">
+<h3>Using white space<a href="coding.html#using-white-space" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In Stata, adding one or many spaces does not change the execution of code and
 can make the code much more readable. Most researchers are well trained in using
 white space in software like PowerPoint and Excel: a PowerPoint presentation
@@ -626,14 +708,17 @@ white space is used to signal that the central object of this segment of code is
 the variable <code>employed</code>. Organizing the code in this way makes it much quicker
 to read, and small typos stand out more, making them easier to spot.</p>
 <div class="ex">
-<h4 id="acceptable">ACCEPTABLE:</h4>
+<div id="acceptable" class="section level4 unnumbered hasAnchor">
+<h4>ACCEPTABLE:<a href="coding.html#acceptable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    * Create dummy for being employed
     gen employed = 1
     replace employed = 0 if (_merge == 2)
     lab var employed &quot;Person exists in employment data&quot;
     lab def yesno 1 &quot;Yes&quot; 0 &quot;No&quot;
     lab val employed yesno</code></pre>
-<h4 id="good-2">GOOD:</h4>
+</div>
+<div id="good-2" class="section level4 unnumbered hasAnchor">
+<h4>GOOD:<a href="coding.html#good-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    * Create dummy for being employed
     gen      employed = 1
     replace  employed = 0 if (_merge == 2)
@@ -642,6 +727,7 @@ to read, and small typos stand out more, making them easier to spot.</p>
     lab val  employed yesno</code></pre>
 <p>To access this code in do-file format, visit the GitHub repository at
 <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
 </div>
 <p>Indentation is another type of white space that makes code more readable. Any
 segment of code that is repeated in a loop or conditional on an <code>if</code>-statement
@@ -655,7 +741,8 @@ do-file editor does not always display the same across platforms, such as when
 publishing code on GitHub. Therefore, inserting four spaces manually is
 recommended instead of using a tab.</p>
 <div class="ex">
-<h4 id="good-3">GOOD:</h4>
+<div id="good-3" class="section level4 unnumbered hasAnchor">
+<h4>GOOD:<a href="coding.html#good-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    * Loop over crops
     foreach crop in potato cassava maize {
         * Loop over plot number
@@ -672,7 +759,9 @@ recommended instead of using a tab.</p>
     else {
         gen use_sample = 1
     }</code></pre>
-<h4 id="bad-1">BAD:</h4>
+</div>
+<div id="bad-1" class="section level4 unnumbered hasAnchor">
+<h4>BAD:<a href="coding.html#bad-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>* Loop over crops
 foreach crop in potato cassava maize {
 * Loop over plot number
@@ -693,8 +782,9 @@ gen use_sample = 1
 <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
 </div>
 </div>
-<div id="writing-conditional-expressions" class="section level3 unnumbered">
-<h3>Writing conditional expressions</h3>
+</div>
+<div id="writing-conditional-expressions" class="section level3 unnumbered hasAnchor">
+<h3>Writing conditional expressions<a href="coding.html#writing-conditional-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All conditional (true/false) expressions should be within at least one set of
 parentheses. The negation of logical expressions should use bang (<code>!</code>) and not
 tilde (<code>~</code>). Explicit truth checks should be used (<code>if 'value' == 1</code>) rather
@@ -703,14 +793,18 @@ instead of arguments like (<code>if 'var' &gt;= .</code>). It is important alway
 whether missing values will affect the evaluation of conditional expressions and
 modify them appropriately.</p>
 <div class="ex">
-<h4 id="good-4">GOOD:</h4>
-<pre class="stata numberLines"><code>    replace gender_string = &quot;Woman&quot; if  gender == 1
-    replace gender_string = &quot;Man&quot;   if (gender ~= 1)</code></pre>
-<h4 id="bad-2">BAD:</h4>
+<div id="good-4" class="section level4 unnumbered hasAnchor">
+<h4>GOOD:<a href="coding.html#good-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    replace gender_string = &quot;Woman&quot; if  (gender == 1)
     replace gender_string = &quot;Man&quot;   if ((gender != 1) &amp; !missing(gender))</code></pre>
+</div>
+<div id="bad-2" class="section level4 unnumbered hasAnchor">
+<h4>BAD:<a href="coding.html#bad-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre class="stata numberLines"><code>    replace gender_string = &quot;Woman&quot; if  gender == 1
+    replace gender_string = &quot;Man&quot;   if (gender ~= 1)</code></pre>
 <p>To access this code in do-file format, visit the GitHub repository at
 <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
+</div>
 </div>
 <p>When applicable, <code>if-else</code> statements should be used even if the same thing can be
 expressed with two separate if statements. The use of <code>if-else</code> statements
@@ -718,14 +812,17 @@ communicates that the two cases are mutually exclusive, which makes code more
 readable. It is also less error-prone and easier to update if the conditional
 statement needs to be modified.</p>
 <div class="ex">
-<h4 id="good-5">GOOD:</h4>
+<div id="good-5" class="section level4 unnumbered hasAnchor">
+<h4>GOOD:<a href="coding.html#good-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    if (`sampleSize&#39; &lt;= 100) {
         * do something
     }
     else {
         * do something else
     }</code></pre>
-<h4 id="bad-3">BAD:</h4>
+</div>
+<div id="bad-3" class="section level4 unnumbered hasAnchor">
+<h4>BAD:<a href="coding.html#bad-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    if (`sampleSize&#39; &lt;= 100) {
         * do something
     }
@@ -736,8 +833,9 @@ statement needs to be modified.</p>
 <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
 </div>
 </div>
-<div id="writing-file-paths" class="section level3 unnumbered">
-<h3>Writing file paths</h3>
+</div>
+<div id="writing-file-paths" class="section level3 unnumbered hasAnchor">
+<h3>Writing file paths<a href="coding.html#writing-file-paths" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All file paths should always be enclosed in double quotes and should always use
 forward slashes for folder hierarchies (<code>/</code>). Mac and Linux computers cannot
 read file paths with back slashes, and back slashes cannot be removed easily
@@ -767,21 +865,27 @@ there is no risk that files will be saved in the incorrect project folder.
 Multiple folder globals can be created as needed, and this practice is
 encouraged.</p>
 <div class="ex">
-<h4 id="good-6">GOOD:</h4>
+<div id="good-6" class="section level4 unnumbered hasAnchor">
+<h4>GOOD:<a href="coding.html#good-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    global myDocs    = &quot;C:/Users/username/Documents&quot;
     global myProject = &quot;${myDocs}/MyProject&quot;
     use &quot;${myProject}/my-dataset.dta&quot;, clear</code></pre>
-<h4 id="bad-relative-paths">BAD: Relative paths</h4>
+</div>
+<div id="bad-relative-paths" class="section level4 unnumbered hasAnchor">
+<h4>BAD: Relative paths<a href="coding.html#bad-relative-paths" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    cd &quot;C:/Users/username/Documents/MyProject&quot;
     use MyDataset.dta</code></pre>
-<h4 id="bad-static-paths">BAD: Static paths</h4>
+</div>
+<div id="bad-static-paths" class="section level4 unnumbered hasAnchor">
+<h4>BAD: Static paths<a href="coding.html#bad-static-paths" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    use &quot;C:/Users/username/Documents/MyProject/MyDataset.dta&quot;</code></pre>
 <p>To access this code in do-file format, visit the GitHub repository at
 <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
 </div>
 </div>
-<div id="using-line-breaks" class="section level3 unnumbered">
-<h3>Using line breaks</h3>
+</div>
+<div id="using-line-breaks" class="section level3 unnumbered hasAnchor">
+<h3>Using line breaks<a href="coding.html#using-line-breaks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Long lines of code are difficult to read, making it necessary to scroll left and
 right to see the full line of code. When a line of code is wider than text on a
 regular paper, a line break is needed. A common line-breaking length is
@@ -804,14 +908,17 @@ follow, and those characters should be used only to write regular comments. Line
 breaks and indentations may be used to highlight the placement of the option
 comma or other functional syntax in Stata commands.</p>
 <div class="ex">
-<h4 id="good-7">GOOD:</h4>
+<div id="good-7" class="section level4 unnumbered hasAnchor">
+<h4>GOOD:<a href="coding.html#good-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    graph hbar invil      /// Proportion in village
          if (priv == 1)   /// Private facilities only
        , over(statename, sort(1) descending)    /// Order states by values
          blabel(bar, format(%9.0f))             /// Label the bars
          ylab(0 &quot;0%&quot; 25 &quot;25%&quot; 50 &quot;50%&quot; 75 &quot;75%&quot; 100 &quot;100%&quot;) ///
          ytit(&quot;Share of private primary care visits made in own village&quot;)</code></pre>
-<h4 id="bad-4">BAD:</h4>
+</div>
+<div id="bad-4" class="section level4 unnumbered hasAnchor">
+<h4>BAD:<a href="coding.html#bad-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    #delimit ;
     graph hbar
         invil if (priv == 1)
@@ -819,15 +926,18 @@ comma or other functional syntax in Stata commands.</p>
         ylab(0 &quot;0%&quot; 25 &quot;25%&quot; 50 &quot;50%&quot; 75 &quot;75%&quot; 100 &quot;100%&quot;)
         ytit(&quot;Share of private primary care visits made in own village&quot;);
     #delimit cr</code></pre>
-<h4 id="ugly">UGLY:</h4>
+</div>
+<div id="ugly" class="section level4 unnumbered hasAnchor">
+<h4>UGLY:<a href="coding.html#ugly" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    graph hbar /*
     */    invil if (priv == 1)</code></pre>
 <p>To access this code in do-file format, visit the GitHub repository at
 <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
 </div>
 </div>
-<div id="using-boilerplate-code" class="section level3 unnumbered">
-<h3>Using boilerplate code</h3>
+</div>
+<div id="using-boilerplate-code" class="section level3 unnumbered hasAnchor">
+<h3>Using boilerplate code<a href="coding.html#using-boilerplate-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><em>Boilerplate</em> code consists of a few lines of code that always appear at the top
 of the code file, and its purpose is to harmonize settings across users running
 the same code to the greatest degree possible. There is no way in Stata to
@@ -847,10 +957,13 @@ written in one of these versions may not be able to run in another.) Finally, it
 clears all stored information in Stata memory, such as noninstalled programs and
 globals, getting as close as possible to opening a fresh Stata session.</p>
 <div class="ex">
-<h4 id="good-8">GOOD:</h4>
+<div id="good-8" class="section level4 unnumbered hasAnchor">
+<h4>GOOD:<a href="coding.html#good-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>    ieboilstart, version(13.1)
     `r(version)&#39;</code></pre>
-<h4 id="acceptable-1">ACCEPTABLE:</h4>
+</div>
+<div id="acceptable-1" class="section level4 unnumbered hasAnchor">
+<h4>ACCEPTABLE:<a href="coding.html#acceptable-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>   set more off , perm
    clear all
    set maxvar 10000
@@ -859,8 +972,9 @@ globals, getting as close as possible to opening a fresh Stata session.</p>
 <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
 </div>
 </div>
-<div id="miscellaneous-notes" class="section level3 unnumbered">
-<h3>Miscellaneous notes</h3>
+</div>
+<div id="miscellaneous-notes" class="section level3 unnumbered hasAnchor">
+<h3>Miscellaneous notes<a href="coding.html#miscellaneous-notes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Multiple graphs should be written as <code>tw (xx)(xx)(xx)</code>, not <code>tw xx||xx||xx</code>. In
 simple expressions, spaces are needed around each binary operator except <code>^</code>,
 writing <code>gen z = x + y</code> and <code>gen z = x^2</code>. When the order of operations applies,
@@ -914,7 +1028,6 @@ at <a href="https://github.com/worldbank/iefieldkit" class="uri">https://github.
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -933,6 +1046,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -953,6 +1067,10 @@ gitbook.start({
 "text": null
 },
 "download": ["drip.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

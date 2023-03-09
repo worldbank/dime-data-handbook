@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Establishing a measurement framework | Development Research in Practice   The DIME Analytics Data Handbook</title>
   <meta name="description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Establishing a measurement framework | Development Research in Practice   The DIME Analytics Data Handbook" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://worldbank.github.io/dime-data-handbook/" />
   <meta property="og:image" content="https://worldbank.github.io/dime-data-handbook/img/cover.png" />
   <meta property="og:description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
   <meta name="github-repo" content="worldbank/dime-data-handbook" />
@@ -32,7 +31,8 @@
   
 <link rel="prev" href="collaboration.html"/>
 <link rel="next" href="acquisition.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,9 +48,34 @@
 
 
 
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -68,18 +93,21 @@
 <li><a href="./">Development Research in Practice <br> The DIME Analytics Data Handbook</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
-<li><a href="index.html#published-by-dime-analytics">Published by <br> <span>DIME Analytics</span></a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#published-by-dime-analytics"><i class="fa fa-check"></i>Published by <br> DIME Analytics</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the authors</a></li>
-<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html"><i class="fa fa-check"></i>Feedback</a><ul>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html"><i class="fa fa-check"></i>Feedback</a>
+<ul>
 <li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html#how-to-contribute"><i class="fa fa-check"></i>How to contribute</a></li>
 <li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html#already-addressed-errata"><i class="fa fa-check"></i>Already addressed errata</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="abbreviations.html"><a href="abbreviations.html"><i class="fa fa-check"></i>Abbreviations</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#how-to-read-this-book"><i class="fa fa-check"></i>How to read this book</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#the-dime-wiki-a-complementary-resource"><i class="fa fa-check"></i>The DIME Wiki: A complementary resource</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#standardizing-data-work"><i class="fa fa-check"></i>Standardizing data work</a></li>
@@ -87,51 +115,66 @@
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#the-team-behind-this-book"><i class="fa fa-check"></i>The team behind this book</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#looking-ahead"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>1</b> Conducting reproducible, transparent, and credible research</a><ul>
-<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#developing-a-credible-research-project"><i class="fa fa-check"></i>Developing a credible research project</a><ul>
+<li class="chapter" data-level="1" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>1</b> Conducting reproducible, transparent, and credible research</a>
+<ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#developing-a-credible-research-project"><i class="fa fa-check"></i>Developing a credible research project</a>
+<ul>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#registering-research"><i class="fa fa-check"></i>Registering research</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#writing-preanalysis-plans"><i class="fa fa-check"></i>Writing preanalysis plans</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#publishing-registered-reports"><i class="fa fa-check"></i>Publishing registered reports</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#conducting-research-transparently"><i class="fa fa-check"></i>Conducting research transparently</a><ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#conducting-research-transparently"><i class="fa fa-check"></i>Conducting research transparently</a>
+<ul>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#documenting-data-acquisition-and-analysis"><i class="fa fa-check"></i>Documenting data acquisition and analysis</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#cataloging-and-archiving-data"><i class="fa fa-check"></i>Cataloging and archiving data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#analyzing-data-reproducibly-and-preparing-a-reproducibility-package"><i class="fa fa-check"></i>Analyzing data reproducibly and preparing a reproducibility package</a></li>
 <li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#looking-ahead-1"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>2</b> Setting the stage for effective and efficient collaboration</a><ul>
-<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-a-collaborative-work-environment"><i class="fa fa-check"></i>Preparing a collaborative work environment</a><ul>
+<li class="chapter" data-level="2" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>2</b> Setting the stage for effective and efficient collaboration</a>
+<ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-a-collaborative-work-environment"><i class="fa fa-check"></i>Preparing a collaborative work environment</a>
+<ul>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#setting-up-a-computer-for-data-work"><i class="fa fa-check"></i>Setting up a computer for data work</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#establishing-effective-documentation-practices"><i class="fa fa-check"></i>Establishing effective documentation practices</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#setting-up-a-code-environment"><i class="fa fa-check"></i>Setting up a code environment</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-code-and-data-for-replicable-research"><i class="fa fa-check"></i>Organizing code and data for replicable research</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-code-and-data-for-replicable-research"><i class="fa fa-check"></i>Organizing code and data for replicable research</a>
+<ul>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-files-and-folders"><i class="fa fa-check"></i>Organizing files and folders</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#establishing-common-file-formats"><i class="fa fa-check"></i>Establishing common file formats</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#using-version-control"><i class="fa fa-check"></i>Using version control</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#writing-code-that-others-can-read"><i class="fa fa-check"></i>Writing code that others can read</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#writing-code-that-others-can-run"><i class="fa fa-check"></i>Writing code that others can run</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.6-writing-code-that-others-can-run-a-case-study-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.6 WRITING CODE THAT OTHERS CAN RUN: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-to-handle-confidential-data-ethically"><i class="fa fa-check"></i>Preparing to handle confidential data ethically</a><ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-to-handle-confidential-data-ethically"><i class="fa fa-check"></i>Preparing to handle confidential data ethically</a>
+<ul>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#seeking-ethical-approval"><i class="fa fa-check"></i>Seeking ethical approval</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#obtaining-informed-consent"><i class="fa fa-check"></i>Obtaining informed consent</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.7-seeking-ethical-approval-an-example-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.7 SEEKING ETHICAL APPROVAL: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.8-obtaining-informed-consent-a-case-study-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.8 OBTAINING INFORMED CONSENT: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#ensuring-research-subject-privacy"><i class="fa fa-check"></i>Ensuring research subject privacy</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.9-ensuring-the-privacy-of-research-subjects-an-example-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.9 ENSURING THE PRIVACY OF RESEARCH SUBJECTS: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#looking-ahead-2"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>3</b> Establishing a measurement framework</a><ul>
-<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#documenting-data-needs"><i class="fa fa-check"></i>Documenting data needs</a><ul>
+<li class="chapter" data-level="3" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>3</b> Establishing a measurement framework</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#documenting-data-needs"><i class="fa fa-check"></i>Documenting data needs</a>
+<ul>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#developing-a-data-linkage-table"><i class="fa fa-check"></i>Developing a data linkage table</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructing-master-data-sets"><i class="fa fa-check"></i>Constructing master data sets</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-data-flowcharts"><i class="fa fa-check"></i>Creating data flowcharts</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#translating-research-design-to-data-needs"><i class="fa fa-check"></i>Translating research design to data needs</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#translating-research-design-to-data-needs"><i class="fa fa-check"></i>Translating research design to data needs</a>
+<ul>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#applying-common-research-designs-to-data"><i class="fa fa-check"></i>Applying common research designs to data</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#including-multiple-time-periods"><i class="fa fa-check"></i>Including multiple time periods</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#incorporating-monitoring-data"><i class="fa fa-check"></i>Incorporating monitoring data</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-research-design-variables-by-randomization"><i class="fa fa-check"></i>Creating research design variables by randomization</a><ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-research-design-variables-by-randomization"><i class="fa fa-check"></i>Creating research design variables by randomization</a>
+<ul>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#randomizing-sampling-and-treatment-assignment"><i class="fa fa-check"></i>Randomizing sampling and treatment assignment</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#programming-reproducible-random-processes"><i class="fa fa-check"></i>Programming reproducible random processes</a></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#implementing-clustered-or-stratified-designs"><i class="fa fa-check"></i>Implementing clustered or stratified designs</a></li>
@@ -139,13 +182,16 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#looking-ahead-3"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i><b>4</b> Acquiring development data</a><ul>
-<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#acquiring-data-ethically-and-reproducibly"><i class="fa fa-check"></i>Acquiring data ethically and reproducibly</a><ul>
+<li class="chapter" data-level="4" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i><b>4</b> Acquiring development data</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#acquiring-data-ethically-and-reproducibly"><i class="fa fa-check"></i>Acquiring data ethically and reproducibly</a>
+<ul>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#determining-data-ownership"><i class="fa fa-check"></i>Determining data ownership</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#obtaining-data-licenses"><i class="fa fa-check"></i>Obtaining data licenses</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#documenting-data-received-from-partners"><i class="fa fa-check"></i>Documenting data received from partners</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-high-quality-data-using-electronic-surveys"><i class="fa fa-check"></i>Collecting high-quality data using electronic surveys</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-high-quality-data-using-electronic-surveys"><i class="fa fa-check"></i>Collecting high-quality data using electronic surveys</a>
+<ul>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#designing-survey-instruments"><i class="fa fa-check"></i>Designing survey instruments</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#piloting-survey-instruments"><i class="fa fa-check"></i>Piloting survey instruments</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#programming-electronic-survey-instruments"><i class="fa fa-check"></i>Programming electronic survey instruments</a></li>
@@ -153,24 +199,32 @@
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#training-enumerators"><i class="fa fa-check"></i>Training enumerators</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#checking-data-quality-in-real-time"><i class="fa fa-check"></i>Checking data quality in real time</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#handling-data-securely"><i class="fa fa-check"></i>Handling data securely</a><ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#handling-data-securely"><i class="fa fa-check"></i>Handling data securely</a>
+<ul>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#encrypting-data"><i class="fa fa-check"></i>Encrypting data</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-and-storing-data-securely"><i class="fa fa-check"></i>Collecting and storing data securely</a></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#backing-up-original-data"><i class="fa fa-check"></i>Backing up original data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#looking-ahead-4"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="processing.html"><a href="processing.html"><i class="fa fa-check"></i><b>5</b> Cleaning and processing research data</a><ul>
-<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#making-data-tidy"><i class="fa fa-check"></i>Making data “tidy”</a><ul>
+<li class="chapter" data-level="5" data-path="processing.html"><a href="processing.html"><i class="fa fa-check"></i><b>5</b> Cleaning and processing research data</a>
+<ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#making-data-tidy"><i class="fa fa-check"></i>Making data “tidy”</a>
+<ul>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#establishing-a-unique-identifier"><i class="fa fa-check"></i>Establishing a unique identifier</a></li>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#tidying-data"><i class="fa fa-check"></i>Tidying data</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-data-quality-checks"><i class="fa fa-check"></i>Implementing data quality checks</a></li>
-<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#processing-confidential-data"><i class="fa fa-check"></i>Processing confidential data</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-data-quality-checks"><i class="fa fa-check"></i>Implementing data quality checks</a>
+<ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#box-5.4-assuring-data-quality-a-case-study-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 5.4 ASSURING DATA QUALITY: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#processing-confidential-data"><i class="fa fa-check"></i>Processing confidential data</a>
+<ul>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#protecting-research-subject-privacy"><i class="fa fa-check"></i>Protecting research subject privacy</a></li>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-de-identification"><i class="fa fa-check"></i>Implementing de-identification</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#preparing-data-for-analysis"><i class="fa fa-check"></i>Preparing data for analysis</a><ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#preparing-data-for-analysis"><i class="fa fa-check"></i>Preparing data for analysis</a>
+<ul>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#exploring-the-data"><i class="fa fa-check"></i>Exploring the data</a></li>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#correcting-data-points"><i class="fa fa-check"></i>Correcting data points</a></li>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#recoding-and-annotating-data"><i class="fa fa-check"></i>Recoding and annotating data</a></li>
@@ -178,51 +232,63 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#looking-ahead-5"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>6</b> Constructing and analyzing research data</a><ul>
-<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-data-sets"><i class="fa fa-check"></i>Creating analysis data sets</a><ul>
+<li class="chapter" data-level="6" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>6</b> Constructing and analyzing research data</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-data-sets"><i class="fa fa-check"></i>Creating analysis data sets</a>
+<ul>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#organizing-data-analysis-workflows"><i class="fa fa-check"></i>Organizing data analysis workflows</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#integrating-multiple-data-sources"><i class="fa fa-check"></i>Integrating multiple data sources</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-variables"><i class="fa fa-check"></i>Creating analysis variables</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#documenting-variable-construction"><i class="fa fa-check"></i>Documenting variable construction</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#writing-analysis-code"><i class="fa fa-check"></i>Writing analysis code</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#writing-analysis-code"><i class="fa fa-check"></i>Writing analysis code</a>
+<ul>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#organizing-analysis-code"><i class="fa fa-check"></i>Organizing analysis code</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-reproducible-tables-and-graphs"><i class="fa fa-check"></i>Creating reproducible tables and graphs</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-reproducible-tables-and-graphs"><i class="fa fa-check"></i>Creating reproducible tables and graphs</a>
+<ul>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#managing-outputs"><i class="fa fa-check"></i>Managing outputs</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#exporting-analysis-outputs"><i class="fa fa-check"></i>Exporting analysis outputs</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#increasing-efficiency-of-analysis-with-dynamic-documents"><i class="fa fa-check"></i>Increasing efficiency of analysis with dynamic documents</a><ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#increasing-efficiency-of-analysis-with-dynamic-documents"><i class="fa fa-check"></i>Increasing efficiency of analysis with dynamic documents</a>
+<ul>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#conducting-dynamic-exploratory-analysis"><i class="fa fa-check"></i>Conducting dynamic exploratory analysis</a></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#using-latex-for-dynamic-research-outputs"><i class="fa fa-check"></i>Using LaTeX for dynamic research outputs</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#looking-ahead-6"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="publication.html"><a href="publication.html"><i class="fa fa-check"></i><b>7</b> Publishing reproducible research outputs</a><ul>
-<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-papers-and-reports"><i class="fa fa-check"></i>Publishing research papers and reports</a><ul>
+<li class="chapter" data-level="7" data-path="publication.html"><a href="publication.html"><i class="fa fa-check"></i><b>7</b> Publishing reproducible research outputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-papers-and-reports"><i class="fa fa-check"></i>Publishing research papers and reports</a>
+<ul>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#using-latex-for-written-documents"><i class="fa fa-check"></i>Using LaTeX for written documents</a></li>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#getting-started-with-latex-as-a-team"><i class="fa fa-check"></i>Getting started with LaTeX as a team</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#preparing-research-data-for-publication"><i class="fa fa-check"></i>Preparing research data for publication</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#preparing-research-data-for-publication"><i class="fa fa-check"></i>Preparing research data for publication</a>
+<ul>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#de-identifying-data-for-publication"><i class="fa fa-check"></i>De-identifying data for publication</a></li>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-data-sets"><i class="fa fa-check"></i>Publishing research data sets</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-a-reproducible-research-package"><i class="fa fa-check"></i>Publishing a reproducible research package</a><ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-a-reproducible-research-package"><i class="fa fa-check"></i>Publishing a reproducible research package</a>
+<ul>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#organizing-code-for-reproducibility"><i class="fa fa-check"></i>Organizing code for reproducibility</a></li>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#releasing-a-reproducibility-package"><i class="fa fa-check"></i>Releasing a reproducibility package</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#looking-ahead-7"><i class="fa fa-check"></i>Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a><ul>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a>
+<ul>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html#bringing-it-all-together"><i class="fa fa-check"></i>Bringing it all together</a></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html#where-to-go-from-here"><i class="fa fa-check"></i>Where to go from here</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="coding.html"><a href="coding.html"><i class="fa fa-check"></i><b>A</b> The DIME Analytics Coding Guide</a><ul>
+<li class="chapter" data-level="A" data-path="coding.html"><a href="coding.html"><i class="fa fa-check"></i><b>A</b> The DIME Analytics Coding Guide</a>
+<ul>
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-good-code"><i class="fa fa-check"></i>Writing good code</a></li>
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-the-code-examples-in-this-book"><i class="fa fa-check"></i>Using the code examples in this book</a></li>
-<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#the-dime-analytics-stata-style-guide"><i class="fa fa-check"></i>The DIME Analytics Stata Style Guide</a><ul>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#the-dime-analytics-stata-style-guide"><i class="fa fa-check"></i>The DIME Analytics Stata Style Guide</a>
+<ul>
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#commenting-code"><i class="fa fa-check"></i>Commenting code</a></li>
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#abbreviating-commands"><i class="fa fa-check"></i>Abbreviating commands</a></li>
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#abbreviating-variable-names"><i class="fa fa-check"></i>Abbreviating variable names</a></li>
@@ -235,17 +301,21 @@
 <li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#miscellaneous-notes"><i class="fa fa-check"></i>Miscellaneous notes</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>B</b> DIME Analytics Resource Directory</a><ul>
+<li class="chapter" data-level="B" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>B</b> DIME Analytics Resource Directory</a>
+<ul>
 <li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#public-resources-and-tools"><i class="fa fa-check"></i>Public resources and tools</a></li>
 <li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#flagship-training-courses"><i class="fa fa-check"></i>Flagship training courses</a></li>
 <li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#software-tools-and-trainings"><i class="fa fa-check"></i>Software tools and trainings</a></li>
 </ul></li>
-<li class="chapter" data-level="C" data-path="design.html"><a href="design.html"><i class="fa fa-check"></i><b>C</b> Research design for impact evaluation</a><ul>
-<li class="chapter" data-level="" data-path="design.html"><a href="design.html#understanding-causality-inference-and-identification"><i class="fa fa-check"></i>Understanding causality, inference, and identification</a><ul>
+<li class="chapter" data-level="C" data-path="design.html"><a href="design.html"><i class="fa fa-check"></i><b>C</b> Research design for impact evaluation</a>
+<ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#understanding-causality-inference-and-identification"><i class="fa fa-check"></i>Understanding causality, inference, and identification</a>
+<ul>
 <li class="chapter" data-level="" data-path="design.html"><a href="design.html#estimating-treatment-effects-using-control-groups"><i class="fa fa-check"></i>Estimating treatment effects using control groups</a></li>
 <li class="chapter" data-level="" data-path="design.html"><a href="design.html#designing-experimental-and-quasi-experimental-research"><i class="fa fa-check"></i>Designing experimental and quasi-experimental research</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="design.html"><a href="design.html#obtaining-treatment-effects-from-specific-research-designs"><i class="fa fa-check"></i>Obtaining treatment effects from specific research designs</a><ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#obtaining-treatment-effects-from-specific-research-designs"><i class="fa fa-check"></i>Obtaining treatment effects from specific research designs</a>
+<ul>
 <li class="chapter" data-level="" data-path="design.html"><a href="design.html#cross-sectional-designs"><i class="fa fa-check"></i>Cross-sectional designs</a></li>
 <li class="chapter" data-level="" data-path="design.html"><a href="design.html#difference-in-differences"><i class="fa fa-check"></i>Difference-in-differences</a></li>
 <li class="chapter" data-level="" data-path="design.html"><a href="design.html#regression-discontinuity"><i class="fa fa-check"></i>Regression discontinuity</a></li>
@@ -272,8 +342,8 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="measurement" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Establishing a measurement framework</h1>
+<div id="measurement" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Establishing a measurement framework<a href="measurement.html#measurement" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The first step in the data workflow is to establish a measurement framework,
 which requires understanding a project’s data requirements and how to structure
 the required data to answer the research questions. Setting up the measurement
@@ -298,7 +368,8 @@ summarizes the most important points, lists the responsibilities of different
 members of the research team, and provides a list of key tools and resources for
 implementing the recommended practices.</p>
 <div class="summary">
-<h4 id="box-3.1-summary-establishing-a-measurement-framework" class="unnumbered">BOX 3.1 SUMMARY: ESTABLISHING A MEASUREMENT FRAMEWORK</h4>
+<div id="box-3.1-summary-establishing-a-measurement-framework" class="section level4 unnumbered hasAnchor">
+<h4>BOX 3.1 SUMMARY: ESTABLISHING A MEASUREMENT FRAMEWORK<a href="measurement.html#box-3.1-summary-establishing-a-measurement-framework" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To be useful for research, original data must be mapped to a research design
 through a measurement framework. The measurement framework links each of the
 project’s data sets to the research design and establishes their connections and
@@ -344,7 +415,9 @@ which experimental condition in a randomized trial</li>
 <li>More complex designs, such as clustering or stratification, which require
 special considerations</li>
 </ul>
-<h4 id="key-responsibilities-for-task-team-leaders-and-principal-investigators-2" class="unnumbered">Key responsibilities for task team leaders and principal investigators</h4>
+</div>
+<div id="key-responsibilities-for-task-team-leaders-and-principal-investigators-2" class="section level4 unnumbered hasAnchor">
+<h4>Key responsibilities for task team leaders and principal investigators<a href="measurement.html#key-responsibilities-for-task-team-leaders-and-principal-investigators-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Oversee and provide inputs to the development of data linkage tables, master
 data set(s), and data flowchart(s); and review and approve the complete data
@@ -355,7 +428,9 @@ variables that require data collection.</li>
 <li>Provide detailed guidance on the expected function and structure of random
 processes.</li>
 </ul>
-<h4 id="key-responsibilities-for-research-assistants-2" class="unnumbered">Key responsibilities for research assistants</h4>
+</div>
+<div id="key-responsibilities-for-research-assistants-2" class="section level4 unnumbered hasAnchor">
+<h4>Key responsibilities for research assistants<a href="measurement.html#key-responsibilities-for-research-assistants-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Develop all components of the data map template, and maintain them
 throughout the project life cycle, documenting any changes to the structure
@@ -365,7 +440,9 @@ structure.</li>
 <li>Generate all research design variables transparently and reproducibly,
 taking care to follow the best-practice protocols for random processes.</li>
 </ul>
-<h4 id="key-resources-2" class="unnumbered">Key Resources</h4>
+</div>
+<div id="key-resources-2" class="section level4 unnumbered hasAnchor">
+<h4>Key Resources<a href="measurement.html#key-resources-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The following detailed articles on the DIME Wiki website explain the components
 of the data map:</p>
 <ul>
@@ -377,8 +454,9 @@ of the data map:</p>
 evaluation research designs, targeted to research staff without doctoral-level
 training, such as research assistants and field coordinators.</p>
 </div>
-<div id="documenting-data-needs" class="section level2 unnumbered">
-<h2>Documenting data needs</h2>
+</div>
+<div id="documenting-data-needs" class="section level2 unnumbered hasAnchor">
+<h2>Documenting data needs<a href="measurement.html#documenting-data-needs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Most projects require more than one data source to answer a research question.
 Data could be sourced from multiple survey rounds, acquired from various
 partners (such as administrative data or implementation data), acquired from
@@ -428,8 +506,8 @@ the analysis—for example, treatment uptake and eligibility status. Measurement
 variables, in contrast, are real-world measures that are not determined by the
 research team. Examples include characteristics of the research subject,
 outcomes of interest, and control variables, among many others.</p>
-<div id="developing-a-data-linkage-table" class="section level3 unnumbered">
-<h3>Developing a data linkage table</h3>
+<div id="developing-a-data-linkage-table" class="section level3 unnumbered hasAnchor">
+<h3>Developing a data linkage table<a href="measurement.html#developing-a-data-linkage-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To create a data map according to the DIME template, the first step is to create
 a data linkage table by listing in a spreadsheet all of the data sources that
 will be used and the original data sets that will be created from them. If one
@@ -460,8 +538,8 @@ used—and how—when combining data sets. The data linkage table is also a grea
 place to list other metadata, such as the source of the data, its backup
 locations, the nature of the data license, and so on (see the example in
 box 3.2).</p>
-<div class="ex">
-<h4 id="box-3.2-developing-a-data-linkage-table-an-example-from-the-demand-for-safe-spaces-project" class="unnumbered">BOX 3.2 DEVELOPING A DATA LINKAGE TABLE: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT</h4>
+<div id="box-3.2-developing-a-data-linkage-table-an-example-from-the-demand-for-safe-spaces-project" class="section level4 unnumbered hasAnchor ex">
+<h4>BOX 3.2 DEVELOPING A DATA LINKAGE TABLE: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT<a href="measurement.html#box-3.2-developing-a-data-linkage-table-an-example-from-the-demand-for-safe-spaces-project" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The main unit of observation in the platform survey data sets was the
 respondent, uniquely identified by the variable <code>ID</code>. However, implicit
 association tests (IATs) were collected through a specialized software that
@@ -543,8 +621,8 @@ shown repeatedly, so the “ID var” field is blank for these data sets.</p>
 <p>The complete project data map is available at <a href="https://git.io/Jtg3J" class="uri">https://git.io/Jtg3J</a>.</p>
 </div>
 </div>
-<div id="constructing-master-data-sets" class="section level3 unnumbered">
-<h3>Constructing master data sets</h3>
+<div id="constructing-master-data-sets" class="section level3 unnumbered hasAnchor">
+<h3>Constructing master data sets<a href="measurement.html#constructing-master-data-sets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The second step in creating a data map is to create one master data set for each
 unit of observation that will be used in any research activity. Examples of such
 activities are data collection, data analysis, sampling, and treatment
@@ -601,8 +679,8 @@ data set. For example, it should be checked whether identifiers such as proper
 names have inconsistent spellings or romanizations or whether identifiers such
 as addresses or phone numbers have become outdated.</p>
 </div>
-<div id="creating-data-flowcharts" class="section level3 unnumbered">
-<h3>Creating data flowcharts</h3>
+<div id="creating-data-flowcharts" class="section level3 unnumbered hasAnchor">
+<h3>Creating data flowcharts<a href="measurement.html#creating-data-flowcharts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The third and final step in creating the data map is to create data flowcharts.
 Each analysis data set (see chapter 6 for a discussion on why multiple analysis
 data sets may be needed) should have a data flowchart showing how it was
@@ -642,8 +720,8 @@ the data and how data sets will be combined. Because these changes are the most
 error-prone data-processing tasks, having a high-level plan for how they will be
 executed helps to clarify the process for everyone on the data team, preventing
 future mistakes.</p>
-<div class="ex">
-<h4 id="box-3.3-creating-data-flowcharts-an-example-from-the-demand-for-safe-spaces-project" class="unnumbered">BOX 3.3 CREATING DATA FLOWCHARTS: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT</h4>
+<div id="box-3.3-creating-data-flowcharts-an-example-from-the-demand-for-safe-spaces-project" class="section level4 unnumbered hasAnchor ex">
+<h4>BOX 3.3 CREATING DATA FLOWCHARTS: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT<a href="measurement.html#box-3.3-creating-data-flowcharts-an-example-from-the-demand-for-safe-spaces-project" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The data flowchart indicates how the original data sets were processed and
 combined to create a final respondent-level data set that was used for analysis.
 In figure B3.3.1, the analysis data set resulting from this process is shown in
@@ -658,8 +736,8 @@ variable.</p>
 </div>
 </div>
 </div>
-<div id="translating-research-design-to-data-needs" class="section level2 unnumbered">
-<h2>Translating research design to data needs</h2>
+<div id="translating-research-design-to-data-needs" class="section level2 unnumbered hasAnchor">
+<h2>Translating research design to data needs<a href="measurement.html#translating-research-design-to-data-needs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>An important step in translating the research design into a specific data
 structure is to determine which research design variables are needed to infer
 which differences in measurement variables are attributable to the research
@@ -696,8 +774,8 @@ linkage table.</p>
 <p>This chapter assumes that the reader has a working familiarity with the research
 designs mentioned here. Appendix C provides more details and specific references
 for common types of impact evaluation designs.</p>
-<div id="applying-common-research-designs-to-data" class="section level3 unnumbered">
-<h3>Applying common research designs to data</h3>
+<div id="applying-common-research-designs-to-data" class="section level3 unnumbered hasAnchor">
+<h3>Applying common research designs to data<a href="measurement.html#applying-common-research-designs-to-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When using <em>experimental methods</em><a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a>, such as <em>randomized
 control trials</em><a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a> (RCTs), the
 research team determines which members of the studied population will receive
@@ -750,8 +828,8 @@ master data set. This recording is best done by assigning a matching ID to each
 group and creating a variable in the master data set with the matching ID to
 which each unit belongs (for an example, see <span class="citation">Prennushi and Gupta (<a href="bibliography.html#ref-prennushi2014women" role="doc-biblioref">2014</a>)</span>).</p>
 </div>
-<div id="including-multiple-time-periods" class="section level3 unnumbered">
-<h3>Including multiple time periods</h3>
+<div id="including-multiple-time-periods" class="section level3 unnumbered hasAnchor">
+<h3>Including multiple time periods<a href="measurement.html#including-multiple-time-periods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The data map should also consider whether the project uses data from one time
 period or several. A study that observes data in only one time period is called
 a <em>cross-sectional study</em>. Observations over multiple time periods, referred to
@@ -779,8 +857,8 @@ design variable in the master data set is needed to indicate attrition. A
 balance check using that attrition variable can provide insights about whether
 the lost observations are systematically different from the rest of the sample.</p>
 </div>
-<div id="incorporating-monitoring-data" class="section level3 unnumbered">
-<h3>Incorporating monitoring data</h3>
+<div id="incorporating-monitoring-data" class="section level3 unnumbered hasAnchor">
+<h3>Incorporating monitoring data<a href="measurement.html#incorporating-monitoring-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For any study with an ex ante design, <em>monitoring data</em><a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> are very
 important for understanding whether the research design corresponds to reality.
 The most typical example is to make sure that, in an experimental design, the
@@ -830,8 +908,8 @@ without a way to tell if the lack of correlation is a result of bad matching of
 monitoring data or a meaningful problem of implementation.</p>
 </div>
 </div>
-<div id="creating-research-design-variables-by-randomization" class="section level2 unnumbered">
-<h2>Creating research design variables by randomization</h2>
+<div id="creating-research-design-variables-by-randomization" class="section level2 unnumbered hasAnchor">
+<h2>Creating research design variables by randomization<a href="measurement.html#creating-research-design-variables-by-randomization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Random sampling</em> and <em>random treatment assignment</em> are two core research
 activities that generate important research design variables. These processes
 directly determine the set of units that will be observed and what their status
@@ -856,8 +934,8 @@ which these probabilities of error are assessed. These analyses are particularly
 important in the initial phases of development research—typically conducted
 before any data acquisition or field work occur—and have implications for
 feasibility, planning, and budgeting.</p>
-<div id="randomizing-sampling-and-treatment-assignment" class="section level3 unnumbered">
-<h3>Randomizing sampling and treatment assignment</h3>
+<div id="randomizing-sampling-and-treatment-assignment" class="section level3 unnumbered hasAnchor">
+<h3>Randomizing sampling and treatment assignment<a href="measurement.html#randomizing-sampling-and-treatment-assignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><em>Random sampling</em> is the process of randomly selecting observations from a list
 of units to create a subsample that is representative or that has specific
 statistical properties (such as selecting only from eligible units, oversampling
@@ -899,8 +977,8 @@ uses a Stata built-in data set and is fully reproducible (more on reproducible
 randomization in next section), so anyone who runs this code in any version of
 Stata later than 13.1 (the version set in this code) will get the exact same,
 but still random, results.</p>
-<div class="ex">
-<h4 id="box-3.4-an-example-of-uniform-probability-random-sampling">BOX 3.4 AN EXAMPLE OF UNIFORM-PROBABILITY RANDOM SAMPLING</h4>
+<div id="box-3.4-an-example-of-uniform-probability-random-sampling" class="section level4 unnumbered hasAnchor ex">
+<h4>BOX 3.4 AN EXAMPLE OF UNIFORM-PROBABILITY RANDOM SAMPLING<a href="measurement.html#box-3.4-an-example-of-uniform-probability-random-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>* Set up reproducible randmomization - VERSIONING, SORTING and SEEDING
     ieboilstart, v(13.1)     // Version
     `r(version)&#39;             // Version
@@ -941,8 +1019,8 @@ complexity, and it is doubly important to understand fully the conceptual
 process described in the experimental design and to fill in any gaps before
 implementing it in code. The do-file in box 3.5 provides an example of how to
 implement randomized assignment with multiple treatment arms.</p>
-<div class="ex">
-<h4 id="box-3.5-an-example-of-randomized-assignment-with-multiple-treatment-arms">BOX 3.5 AN EXAMPLE OF RANDOMIZED ASSIGNMENT WITH MULTIPLE TREATMENT ARMS</h4>
+<div id="box-3.5-an-example-of-randomized-assignment-with-multiple-treatment-arms" class="section level4 unnumbered hasAnchor ex">
+<h4>BOX 3.5 AN EXAMPLE OF RANDOMIZED ASSIGNMENT WITH MULTIPLE TREATMENT ARMS<a href="measurement.html#box-3.5-an-example-of-randomized-assignment-with-multiple-treatment-arms" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>* Set up reproducible randomization - VERSIONING, SORTING and SEEDING
     ieboilstart, v(13.1)     // Version
     `r(version)&#39;             // Version
@@ -973,8 +1051,8 @@ implement randomized assignment with multiple treatment arms.</p>
 <a href="https://github.com/worldbank/dime-data-handbook/tree/main/code" class="uri">https://github.com/worldbank/dime-data-handbook/tree/main/code</a>.</p>
 </div>
 </div>
-<div id="programming-reproducible-random-processes" class="section level3 unnumbered">
-<h3>Programming reproducible random processes</h3>
+<div id="programming-reproducible-random-processes" class="section level3 unnumbered hasAnchor">
+<h3>Programming reproducible random processes<a href="measurement.html#programming-reproducible-random-processes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For statistical programming to be reproducible, it is necessary to be able to
 reobtain its exact outputs in the future (<span class="citation">Orozco et al. (<a href="bibliography.html#ref-orozco2018make" role="doc-biblioref">2018</a>)</span>). This section focuses
 on what is needed to produce truly random results and to ensure that those
@@ -1048,8 +1126,8 @@ results on another machine to remove any doubt that the results are
 reproducible. Once the result of a randomization is used in the field, there is
 no way to correct mistakes. The code in box 3.6 provides an example of a fully
 reproducible randomization.</p>
-<div class="ex">
-<h4 id="box-3.6-an-example-of-reproducible-randomization">BOX 3.6 AN EXAMPLE OF REPRODUCIBLE RANDOMIZATION</h4>
+<div id="box-3.6-an-example-of-reproducible-randomization" class="section level4 unnumbered hasAnchor ex">
+<h4>BOX 3.6 AN EXAMPLE OF REPRODUCIBLE RANDOMIZATION<a href="measurement.html#box-3.6-an-example-of-reproducible-randomization" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre class="stata numberLines"><code>* VERSIONING - Set the version
     ieboilstart, v(13.1)
     `r(version)&#39;
@@ -1110,11 +1188,11 @@ that are randomized into the appropriate categories, and the survey software can
 show a video and control which version of the questionnaire is asked. This
 approach can help to reduce the risk of errors in field randomization.</p>
 </div>
-<div id="implementing-clustered-or-stratified-designs" class="section level3 unnumbered">
-<h3>Implementing clustered or stratified designs</h3>
+<div id="implementing-clustered-or-stratified-designs" class="section level3 unnumbered hasAnchor">
+<h3>Implementing clustered or stratified designs<a href="measurement.html#implementing-clustered-or-stratified-designs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For a variety of reasons, random sampling and random treatment assignment are
 rarely as straightforward as a uniform-probability draw. The most common
-variants are clustering and stratification (<span class="citation">Athey and Imbens (<a href="bibliography.html#ref-athey2017econometrics" role="doc-biblioref">2017</a><a href="bibliography.html#ref-athey2017econometrics" role="doc-biblioref">a</a>)</span>).
+variants are clustering and stratification (<span class="citation">Athey and Imbens (<a href="bibliography.html#ref-athey2017econometrics" role="doc-biblioref">2017a</a>)</span>).
 <em>Clustering</em><a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a>
 occurs when the unit of analysis is different from the unit of randomization in
 a research design. For example, a policy may be implemented at the village level
@@ -1160,8 +1238,8 @@ instructions, handles the remaining observations in a consistent fashion.
 Notably, it is extremely hard to target exact numbers of observations in
 stratified designs because exact allocations are rarely round fractions.</p>
 </div>
-<div id="performing-power-calculations" class="section level3 unnumbered">
-<h3>Performing power calculations</h3>
+<div id="performing-power-calculations" class="section level3 unnumbered hasAnchor">
+<h3>Performing power calculations<a href="measurement.html#performing-power-calculations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Random sampling and treatment assignment are noisy processes: it is impossible
 to predict the result in advance. By design, the exact choice of sample or
 treatment will not be correlated with the key outcomes, but this lack of
@@ -1222,8 +1300,8 @@ inference will flag those issues before the study is fielded and allow
 adjustments to the design.</p>
 </div>
 </div>
-<div id="looking-ahead-3" class="section level2 unnumbered">
-<h2>Looking ahead</h2>
+<div id="looking-ahead-3" class="section level2 unnumbered hasAnchor">
+<h2>Looking ahead<a href="measurement.html#looking-ahead-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This chapter introduced the DIME data map template, a toolkit to document a data
 acquisition plan and to describe how each data source relates to the design of a
 study. The data map contains research design variables and the instructions for
@@ -1359,7 +1437,6 @@ arises from randomization itself. For more details, see the DIME Wiki at
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1378,6 +1455,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1398,6 +1476,10 @@ gitbook.start({
 "text": null
 },
 "download": ["drip.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
