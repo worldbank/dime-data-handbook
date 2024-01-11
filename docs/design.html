@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>C Research design for impact evaluation | Development Research in Practice   The DIME Analytics Data Handbook</title>
+  <meta name="description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="C Research design for impact evaluation | Development Research in Practice   The DIME Analytics Data Handbook" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://worldbank.github.io/dime-data-handbook/img/cover.png" />
+  <meta property="og:description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
+  <meta name="github-repo" content="worldbank/dime-data-handbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="C Research design for impact evaluation | Development Research in Practice   The DIME Analytics Data Handbook" />
+  
+  <meta name="twitter:description" content="The Development Research in Practice handbook is the quintessential desk reference for empirical researchers, policymakers, managers, and students. It provides an introduction to modern, transparent, and ethical research practices involving development data. The handbook outlines a complete research project, with links to the DIME Wiki and real-world examples." />
+  <meta name="twitter:image" content="https://worldbank.github.io/dime-data-handbook/img/cover.png" />
+
+<meta name="author" content="Kristoffer Bjarkefur, Luiza Cardoso de Andrade, Benjamin Daniels, Maria Ruth Jones" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="resources.html"/>
+<link rel="next" href="bibliography.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Development Research in Practice <br> The DIME Analytics Data Handbook</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#published-by-dime-analytics"><i class="fa fa-check"></i>Published by <br> DIME Analytics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the authors</a></li>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html"><i class="fa fa-check"></i>Feedback</a>
+<ul>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html#how-to-contribute"><i class="fa fa-check"></i>How to contribute</a></li>
+<li class="chapter" data-level="" data-path="feedback.html"><a href="feedback.html#already-addressed-errata"><i class="fa fa-check"></i>Already addressed errata</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="abbreviations.html"><a href="abbreviations.html"><i class="fa fa-check"></i>Abbreviations</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#how-to-read-this-book"><i class="fa fa-check"></i>How to read this book</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#the-dime-wiki-a-complementary-resource"><i class="fa fa-check"></i>The DIME Wiki: A complementary resource</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#standardizing-data-work"><i class="fa fa-check"></i>Standardizing data work</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#standardizing-coding-practices"><i class="fa fa-check"></i>Standardizing coding practices</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#the-team-behind-this-book"><i class="fa fa-check"></i>The team behind this book</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#looking-ahead"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="reproducibility.html"><a href="reproducibility.html"><i class="fa fa-check"></i><b>1</b> Conducting reproducible, transparent, and credible research</a>
+<ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#developing-a-credible-research-project"><i class="fa fa-check"></i>Developing a credible research project</a>
+<ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#registering-research"><i class="fa fa-check"></i>Registering research</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#writing-preanalysis-plans"><i class="fa fa-check"></i>Writing preanalysis plans</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#publishing-registered-reports"><i class="fa fa-check"></i>Publishing registered reports</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#conducting-research-transparently"><i class="fa fa-check"></i>Conducting research transparently</a>
+<ul>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#documenting-data-acquisition-and-analysis"><i class="fa fa-check"></i>Documenting data acquisition and analysis</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#cataloging-and-archiving-data"><i class="fa fa-check"></i>Cataloging and archiving data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#analyzing-data-reproducibly-and-preparing-a-reproducibility-package"><i class="fa fa-check"></i>Analyzing data reproducibly and preparing a reproducibility package</a></li>
+<li class="chapter" data-level="" data-path="reproducibility.html"><a href="reproducibility.html#looking-ahead-1"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="collaboration.html"><a href="collaboration.html"><i class="fa fa-check"></i><b>2</b> Setting the stage for effective and efficient collaboration</a>
+<ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-a-collaborative-work-environment"><i class="fa fa-check"></i>Preparing a collaborative work environment</a>
+<ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#setting-up-a-computer-for-data-work"><i class="fa fa-check"></i>Setting up a computer for data work</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#establishing-effective-documentation-practices"><i class="fa fa-check"></i>Establishing effective documentation practices</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#setting-up-a-code-environment"><i class="fa fa-check"></i>Setting up a code environment</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-code-and-data-for-replicable-research"><i class="fa fa-check"></i>Organizing code and data for replicable research</a>
+<ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#organizing-files-and-folders"><i class="fa fa-check"></i>Organizing files and folders</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#establishing-common-file-formats"><i class="fa fa-check"></i>Establishing common file formats</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#using-version-control"><i class="fa fa-check"></i>Using version control</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#writing-code-that-others-can-read"><i class="fa fa-check"></i>Writing code that others can read</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#writing-code-that-others-can-run"><i class="fa fa-check"></i>Writing code that others can run</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.6-writing-code-that-others-can-run-a-case-study-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.6 WRITING CODE THAT OTHERS CAN RUN: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#preparing-to-handle-confidential-data-ethically"><i class="fa fa-check"></i>Preparing to handle confidential data ethically</a>
+<ul>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#seeking-ethical-approval"><i class="fa fa-check"></i>Seeking ethical approval</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#obtaining-informed-consent"><i class="fa fa-check"></i>Obtaining informed consent</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.7-seeking-ethical-approval-an-example-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.7 SEEKING ETHICAL APPROVAL: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.8-obtaining-informed-consent-a-case-study-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.8 OBTAINING INFORMED CONSENT: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#ensuring-research-subject-privacy"><i class="fa fa-check"></i>Ensuring research subject privacy</a></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#box-2.9-ensuring-the-privacy-of-research-subjects-an-example-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 2.9 ENSURING THE PRIVACY OF RESEARCH SUBJECTS: AN EXAMPLE FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collaboration.html"><a href="collaboration.html#looking-ahead-2"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>3</b> Establishing a measurement framework</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#documenting-data-needs"><i class="fa fa-check"></i>Documenting data needs</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#developing-a-data-linkage-table"><i class="fa fa-check"></i>Developing a data linkage table</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructing-master-data-sets"><i class="fa fa-check"></i>Constructing master data sets</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-data-flowcharts"><i class="fa fa-check"></i>Creating data flowcharts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#translating-research-design-to-data-needs"><i class="fa fa-check"></i>Translating research design to data needs</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#applying-common-research-designs-to-data"><i class="fa fa-check"></i>Applying common research designs to data</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#including-multiple-time-periods"><i class="fa fa-check"></i>Including multiple time periods</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#incorporating-monitoring-data"><i class="fa fa-check"></i>Incorporating monitoring data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#creating-research-design-variables-by-randomization"><i class="fa fa-check"></i>Creating research design variables by randomization</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#randomizing-sampling-and-treatment-assignment"><i class="fa fa-check"></i>Randomizing sampling and treatment assignment</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#programming-reproducible-random-processes"><i class="fa fa-check"></i>Programming reproducible random processes</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#implementing-clustered-or-stratified-designs"><i class="fa fa-check"></i>Implementing clustered or stratified designs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#performing-power-calculations"><i class="fa fa-check"></i>Performing power calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#looking-ahead-3"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="acquisition.html"><a href="acquisition.html"><i class="fa fa-check"></i><b>4</b> Acquiring development data</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#acquiring-data-ethically-and-reproducibly"><i class="fa fa-check"></i>Acquiring data ethically and reproducibly</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#determining-data-ownership"><i class="fa fa-check"></i>Determining data ownership</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#obtaining-data-licenses"><i class="fa fa-check"></i>Obtaining data licenses</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#documenting-data-received-from-partners"><i class="fa fa-check"></i>Documenting data received from partners</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-high-quality-data-using-electronic-surveys"><i class="fa fa-check"></i>Collecting high-quality data using electronic surveys</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#designing-survey-instruments"><i class="fa fa-check"></i>Designing survey instruments</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#piloting-survey-instruments"><i class="fa fa-check"></i>Piloting survey instruments</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#programming-electronic-survey-instruments"><i class="fa fa-check"></i>Programming electronic survey instruments</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#using-electronic-survey-features-to-enhance-data-quality"><i class="fa fa-check"></i>Using electronic survey features to enhance data quality</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#training-enumerators"><i class="fa fa-check"></i>Training enumerators</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#checking-data-quality-in-real-time"><i class="fa fa-check"></i>Checking data quality in real time</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#handling-data-securely"><i class="fa fa-check"></i>Handling data securely</a>
+<ul>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#encrypting-data"><i class="fa fa-check"></i>Encrypting data</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#collecting-and-storing-data-securely"><i class="fa fa-check"></i>Collecting and storing data securely</a></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#backing-up-original-data"><i class="fa fa-check"></i>Backing up original data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acquisition.html"><a href="acquisition.html#looking-ahead-4"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="processing.html"><a href="processing.html"><i class="fa fa-check"></i><b>5</b> Cleaning and processing research data</a>
+<ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#making-data-tidy"><i class="fa fa-check"></i>Making data “tidy”</a>
+<ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#establishing-a-unique-identifier"><i class="fa fa-check"></i>Establishing a unique identifier</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#tidying-data"><i class="fa fa-check"></i>Tidying data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-data-quality-checks"><i class="fa fa-check"></i>Implementing data quality checks</a>
+<ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#box-5.4-assuring-data-quality-a-case-study-from-the-demand-for-safe-spaces-project"><i class="fa fa-check"></i>BOX 5.4 ASSURING DATA QUALITY: A CASE STUDY FROM THE DEMAND FOR SAFE SPACES PROJECT</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#processing-confidential-data"><i class="fa fa-check"></i>Processing confidential data</a>
+<ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#protecting-research-subject-privacy"><i class="fa fa-check"></i>Protecting research subject privacy</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#implementing-de-identification"><i class="fa fa-check"></i>Implementing de-identification</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#preparing-data-for-analysis"><i class="fa fa-check"></i>Preparing data for analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#exploring-the-data"><i class="fa fa-check"></i>Exploring the data</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#correcting-data-points"><i class="fa fa-check"></i>Correcting data points</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#recoding-and-annotating-data"><i class="fa fa-check"></i>Recoding and annotating data</a></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#documenting-data-cleaning"><i class="fa fa-check"></i>Documenting data cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="processing.html"><a href="processing.html#looking-ahead-5"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>6</b> Constructing and analyzing research data</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-data-sets"><i class="fa fa-check"></i>Creating analysis data sets</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#organizing-data-analysis-workflows"><i class="fa fa-check"></i>Organizing data analysis workflows</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#integrating-multiple-data-sources"><i class="fa fa-check"></i>Integrating multiple data sources</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-analysis-variables"><i class="fa fa-check"></i>Creating analysis variables</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#documenting-variable-construction"><i class="fa fa-check"></i>Documenting variable construction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#writing-analysis-code"><i class="fa fa-check"></i>Writing analysis code</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#organizing-analysis-code"><i class="fa fa-check"></i>Organizing analysis code</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#creating-reproducible-tables-and-graphs"><i class="fa fa-check"></i>Creating reproducible tables and graphs</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#managing-outputs"><i class="fa fa-check"></i>Managing outputs</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#exporting-analysis-outputs"><i class="fa fa-check"></i>Exporting analysis outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#increasing-efficiency-of-analysis-with-dynamic-documents"><i class="fa fa-check"></i>Increasing efficiency of analysis with dynamic documents</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#conducting-dynamic-exploratory-analysis"><i class="fa fa-check"></i>Conducting dynamic exploratory analysis</a></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#using-latex-for-dynamic-research-outputs"><i class="fa fa-check"></i>Using LaTeX for dynamic research outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis.html"><a href="analysis.html#looking-ahead-6"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="publication.html"><a href="publication.html"><i class="fa fa-check"></i><b>7</b> Publishing reproducible research outputs</a>
+<ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-papers-and-reports"><i class="fa fa-check"></i>Publishing research papers and reports</a>
+<ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#using-latex-for-written-documents"><i class="fa fa-check"></i>Using LaTeX for written documents</a></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#getting-started-with-latex-as-a-team"><i class="fa fa-check"></i>Getting started with LaTeX as a team</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#preparing-research-data-for-publication"><i class="fa fa-check"></i>Preparing research data for publication</a>
+<ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#de-identifying-data-for-publication"><i class="fa fa-check"></i>De-identifying data for publication</a></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-research-data-sets"><i class="fa fa-check"></i>Publishing research data sets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#publishing-a-reproducible-research-package"><i class="fa fa-check"></i>Publishing a reproducible research package</a>
+<ul>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#organizing-code-for-reproducibility"><i class="fa fa-check"></i>Organizing code for reproducibility</a></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#releasing-a-reproducibility-package"><i class="fa fa-check"></i>Releasing a reproducibility package</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="publication.html"><a href="publication.html#looking-ahead-7"><i class="fa fa-check"></i>Looking ahead</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a>
+<ul>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html#bringing-it-all-together"><i class="fa fa-check"></i>Bringing it all together</a></li>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html#where-to-go-from-here"><i class="fa fa-check"></i>Where to go from here</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="coding.html"><a href="coding.html"><i class="fa fa-check"></i><b>A</b> The DIME Analytics Coding Guide</a>
+<ul>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-good-code"><i class="fa fa-check"></i>Writing good code</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-the-code-examples-in-this-book"><i class="fa fa-check"></i>Using the code examples in this book</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#the-dime-analytics-stata-style-guide"><i class="fa fa-check"></i>The DIME Analytics Stata Style Guide</a>
+<ul>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#commenting-code"><i class="fa fa-check"></i>Commenting code</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#abbreviating-commands"><i class="fa fa-check"></i>Abbreviating commands</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#abbreviating-variable-names"><i class="fa fa-check"></i>Abbreviating variable names</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-loops"><i class="fa fa-check"></i>Writing loops</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-white-space"><i class="fa fa-check"></i>Using white space</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-conditional-expressions"><i class="fa fa-check"></i>Writing conditional expressions</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#writing-file-paths"><i class="fa fa-check"></i>Writing file paths</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-line-breaks"><i class="fa fa-check"></i>Using line breaks</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#using-boilerplate-code"><i class="fa fa-check"></i>Using boilerplate code</a></li>
+<li class="chapter" data-level="" data-path="coding.html"><a href="coding.html#miscellaneous-notes"><i class="fa fa-check"></i>Miscellaneous notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>B</b> DIME Analytics Resource Directory</a>
+<ul>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#public-resources-and-tools"><i class="fa fa-check"></i>Public resources and tools</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#flagship-training-courses"><i class="fa fa-check"></i>Flagship training courses</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#software-tools-and-trainings"><i class="fa fa-check"></i>Software tools and trainings</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="design.html"><a href="design.html"><i class="fa fa-check"></i><b>C</b> Research design for impact evaluation</a>
+<ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#understanding-causality-inference-and-identification"><i class="fa fa-check"></i>Understanding causality, inference, and identification</a>
+<ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#estimating-treatment-effects-using-control-groups"><i class="fa fa-check"></i>Estimating treatment effects using control groups</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#designing-experimental-and-quasi-experimental-research"><i class="fa fa-check"></i>Designing experimental and quasi-experimental research</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#obtaining-treatment-effects-from-specific-research-designs"><i class="fa fa-check"></i>Obtaining treatment effects from specific research designs</a>
+<ul>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#cross-sectional-designs"><i class="fa fa-check"></i>Cross-sectional designs</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#difference-in-differences"><i class="fa fa-check"></i>Difference-in-differences</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#regression-discontinuity"><i class="fa fa-check"></i>Regression discontinuity</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#instrumental-variables"><i class="fa fa-check"></i>Instrumental variables</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#matching"><i class="fa fa-check"></i>Matching</a></li>
+<li class="chapter" data-level="" data-path="design.html"><a href="design.html#synthetic-control"><i class="fa fa-check"></i>Synthetic control</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Development Research in Practice <br> The DIME Analytics Data Handbook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="design" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">C</span> Research design for impact evaluation<a href="design.html#design" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Development Research in Practice</em> focuses on tools, workflows, and practical
+guidance for implementing research projects. All research team members,
+including field staff and research assistants, also need to understand research
+design and specifically how research design choices affect data work. Without
+going into too much technical detail, because there are many excellent resources
+on how to design impact evaluations, this appendix presents a brief overview of
+the most common methods of causal inference, focusing on their implications for
+data structure and analysis. This appendix is intended to be a reference,
+especially for junior team members, for understanding how treatment and control
+groups are constructed for common methods of causal inference, the data
+structures needed to estimate the corresponding effects, and specific code tools
+designed for each method.</p>
+<p>Research team members who will do the data work need to understand the study
+design for several reasons. First, if team members do not know how to calculate
+the correct estimator for the study, they will not be able to assess the
+statistical power of the research design. This negatively affects their ability
+to make real-time decisions in the field, where trade-offs about allocating
+scarce resources between tasks are inevitable, such as deciding between
+increasing sample size or increasing response rates. Second, understanding how
+data need to be organized to produce meaningful analytics will save time
+throughout a project. Third, being familiar with the various approaches to
+causal inference will make it easier to recognize research opportunities: many
+of the most interesting projects occur because people in the field recognize the
+opportunity to implement one of these methods in response to an unexpected
+event.</p>
+<p>This appendix is divided into two sections. The first covers methods of causal
+inference in experimental and quasi-experimental research designs. The second
+discusses how to measure treatment effects and structure data for specific
+methods, including cross-sectional randomized control trials,
+difference-in-differences designs, regression discontinuity, instrumental
+variables, matching, and synthetic controls.</p>
+<!-- ----------------------------------------------------------------------------------------------- -->
+<div id="understanding-causality-inference-and-identification" class="section level2 unnumbered hasAnchor">
+<h2>Understanding causality, inference, and identification<a href="design.html#understanding-causality-inference-and-identification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The types of inputs that impact evaluations are typically concerned with—
+usually called “treatments”—are also commonly referred to as “programs” or
+“interventions.” Treatments are observed and measured in order to obtain
+estimates of study-specific <em>treatment effects</em>, which are the changes in
+outcomes attributable to the treatment (<span class="citation">Abadie and Cattaneo (<a href="bibliography.html#ref-abadie2018econometric">2018</a>)</span>). The primary
+goal of research design is to establish causal identification for a treatment
+effect. <em>Causal identification</em> means establishing that a change in an input
+directly altered an outcome. When a study is well identified, it is possible to
+say with confidence that the estimate of the treatment effect would, with an
+infinite amount of data, be precise.</p>
+<p>Under this condition, it is possible to draw evidence from the limited samples
+that are actually accessible, using statistical techniques to express the
+uncertainty due to not having infinite data. Without identification, it is not
+possible to say whether the estimate would be accurate, even with unlimited
+data; therefore, changes in outcomes cannot be attributed to the treatment in
+the small samples to which researchers typically have access. Having more data
+is, therefore, not a substitute for having a well-identified experimental
+design, so it is important to understand how a study identifies its estimate of
+treatment effects. This understanding allows estimates to be calculated and
+interpreted appropriately.</p>
+<p>All of the study designs discussed here use the potential outcomes framework
+(<span class="citation">Athey and Imbens (<a href="bibliography.html#ref-athey2017state">2017b</a>)</span>) to compare a group that received some treatment to another,
+counterfactual, group. Each of these approaches can be used in two types of
+designs: experimental designs, in which the research team is directly
+responsible for creating the variation in treatment, and quasi-experimental
+designs, in which the team identifies a “natural” source of variation and uses
+it for identification. Neither type is implicitly better or worse, and both
+types are capable of achieving causal identification in different contexts.</p>
+<!-- ----------------------------------------------------------------------------------------------- -->
+<div id="estimating-treatment-effects-using-control-groups" class="section level3 unnumbered hasAnchor">
+<h3>Estimating treatment effects using control groups<a href="design.html#estimating-treatment-effects-using-control-groups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The key assumption behind estimating treatment effects is that every person,
+facility, village, or whatever the unit of intervention is, has two possible
+states: their outcomes if they do not receive some treatment and their outcomes
+if they do receive that treatment. Each unit’s treatment effect is the
+individual difference between the outcomes that would be realized in the treated
+state and those that would be realized in the untreated state, and the <em>average
+treatment effect</em> (ATE) is the average of these individual differences across
+the potentially treated population. Most research designs attempt to estimate
+this parameter by establishing a counterfactual. A <em>counterfactual</em> is a
+statistical description of what would have happened to specific individuals in
+an alternative scenario—for example, a different treatment assignment outcome.
+Several resources provide more or less mathematically intensive approaches to
+understanding how various methods do this. <em>Impact Evaluation in Practice</em>
+(<span class="citation">Gertler et al. (<a href="bibliography.html#ref-gertler2016impact">2016</a>)</span>) is a strong general guide to these methods. <em>Causal
+Inference</em> (<span class="citation">Hernán and Robins (<a href="bibliography.html#ref-hernan2010causal">2010</a>)</span>) and <em>Causal Inference: The Mixtape</em>
+(Cunningham 2021) provide more detailed approaches to the tools. <em>Mostly
+Harmless Econometrics</em> (<span class="citation">Angrist and Pischke (<a href="bibliography.html#ref-angrist2008mostly">2008</a>)</span>) and <em>Mastering ’Metrics</em>
+(<span class="citation">Angrist and Pischke (<a href="bibliography.html#ref-angrist2014mastering">2014</a>)</span>) are excellent resources on the statistical principles
+behind all econometric approaches.</p>
+<p>Intuitively, the problem of causal inference is as follows: it is not possible
+to observe the same unit in both its treated and untreated states
+simultaneously, so measuring and averaging these effects directly is impossible
+(<span class="citation">Rubin (<a href="bibliography.html#ref-rubin2003basic">2003</a>)</span>). Instead, researchers typically make inferences from samples.
+Causal inference methods are those in which it is possible to identify and
+estimate an average treatment effect (or, in some designs, other types of
+treatment effects) by comparing averages between groups. Every research design
+is based on a way of comparing the outcomes of treated groups against those of
+another set of “control” observations. These designs all serve to establish that
+the outcomes in the control group would have been identical on average to those
+of the treated group in the absence of the treatment. Then, the mathematical
+properties of averages imply that the calculated difference in averages is
+equivalent to the average difference, which is the parameter of interest. In
+this framework, almost all causal inference methods can be described as a series
+of between-group comparisons.</p>
+<p>Most of the methods encountered in impact evaluation research rely on some
+variant of this approach, which is designed to maximize the ability to estimate
+the effect of the treatment to be evaluated. The focus on identifying treatment
+effects, however, means that several essential features of causal identification
+methods are not common in other types of statistical and data science work.
+First, the econometric models and estimating equations used here do not attempt
+to create a predictive or comprehensive model of how outcomes are generated.
+Typically, causal inference designs are not interested in predictive accuracy,
+so the estimates and predictions that they produce are not as good at predicting
+outcomes or fitting the data as those of other data science approaches.</p>
+<p>Second, when control variables or other variables are included in estimating
+equations, there is no guarantee that the parameters obtained for those
+variables are marginal effects in the same way that parameters for the treatment
+effect(s) are. They can be interpreted only as correlative averages, unless
+there are additional sources of identification. The models that will be
+constructed and estimated are intended to do exactly one thing: to express the
+intention of a project’s research design and to estimate accurately the effect
+of the treatment it is evaluating. In other words, these models tell the story
+of the research design in a way that clarifies the exact comparison being made
+between control and treatment groups.</p>
+<!-- ----------------------------------------------------------------------------------------------- -->
+</div>
+<div id="designing-experimental-and-quasi-experimental-research" class="section level3 unnumbered hasAnchor">
+<h3>Designing experimental and quasi-experimental research<a href="design.html#designing-experimental-and-quasi-experimental-research" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Experimental research designs explicitly allow the research team to change the
+condition of the populations being studied, often in the form of government
+programs, nongovernmental organization projects, new regulations, information
+campaigns, and many more types of interventions (<span class="citation">A. V. Banerjee and Duflo (<a href="bibliography.html#ref-banerjee2009experimental">2009</a>)</span>; see
+the DIME Wiki at <a href="https://dimewiki​.worldbank.org/Experimental_Methods" class="uri">https://dimewiki​.worldbank.org/Experimental_Methods</a>). The
+classic experimental causal inference method is the <em>randomized control trial</em>
+(RCT; see the DIME Wiki at
+<a href="https://dimewiki.worldbank.org/Randomized_Control_Trials" class="uri">https://dimewiki.worldbank.org/Randomized_Control_Trials</a> ). In ­RCTs, the
+treatment group is randomized. That is, from an eligible population, a random
+group of units is placed in the treatment state. Another way to think about
+these designs is how they establish the control group: a random subset of units
+is <em>not</em> placed in the treatment state, so that it may serve as a counterfactual
+for the subset that is.</p>
+<p>A randomized control group, intuitively, is meant to measure how things would
+have turned out for the treatment group if its members had not been treated. The
+RCT approach is particularly effective at doing this, as evidenced by its broad
+credibility in fields ranging from clinical medicine to development. As a
+result, RCTs are very popular tools for determining the causal impact of
+specific programs or policy interventions, as evidenced by the awarding of
+the 2019 Nobel Prize in Economics to Abhijit Banerjee, Esther Duflo, and Michael
+Kremer “for their experimental approach to alleviating global poverty”
+(<span class="citation">NobelPrize.org (<a href="bibliography.html#ref-nobel2019">2020</a>)</span>). However, many types of interventions are impractical or unethical
+to approach effectively using an experimental strategy; for this reason, the
+ability to access “big questions” through RCT approaches is sometimes limited
+(<span class="citation">Deaton (<a href="bibliography.html#ref-deaton2009">2009</a>)</span>).</p>
+<p>Randomized designs all share several major statistical concerns. The first is
+the fact that it is always possible to select, by chance, a control group that
+is not in fact very similar to the treatment group. This risk is called
+randomization noise, and all RCTs need to assess how randomization noise affects
+the estimates that are obtained. Second, take-up and implementation fidelity
+(how closely work carried out in the field corresponds to its planning and
+intention) are extremely important because programs will, by definition, have no
+effect if the population intended to be treated does not accept or does not
+receive the treatment (for an example, see <span class="citation">Jung and Hasan (<a href="bibliography.html#ref-jung2016impact">2016</a>)</span>). Loss of statistical
+power occurs quickly and is highly nonlinear: 70 percent take-up or efficacy
+doubles the required sample, and 50 percent quadruples it (McKenzie 2011). Such
+effects are also very hard to correct ex post, because they require strong
+assumptions about the randomness or lack of randomness of take-up and fidelity.
+Therefore, field time and descriptive work must be dedicated to understanding
+how these effects play out in a given study.</p>
+<p><em>Quasi-experimental</em> research designs, by contrast, use causal inference methods
+based on events not controlled by the research team (see the DIME Wiki at
+<a href="https://dimewiki.worldbank.org/Quasi-Experimental​_Methods" class="uri">https://dimewiki.worldbank.org/Quasi-Experimental​_Methods</a>). Instead, they
+rely on “experiments of nature,” in which natural variation can be argued to
+approximate the type of exogenous variation in treatment availability that a
+researcher would attempt to create with an experiment (<span class="citation">DiNardo (<a href="bibliography.html#ref-dinardo2016natural">2016</a>)</span>).
+Unlike carefully planned experimental designs, quasi-experimental designs
+typically require the extra luck of having access to data collected at the right
+times and places to exploit events that occurred in the past or having the
+ability to collect data in a time and place where an event that produces causal
+identification occurred or will occur. Therefore, these methods often use
+secondary data, or they use primary data in a cross-sectional retrospective
+method, including administrative data or other new classes of routinely
+collected information.</p>
+<p>Quasi-experimental designs therefore can sometimes access a much broader range
+of questions than experimental designs, and much less effort is required to
+produce the treatment and control groups. However, these designs require
+in-depth understanding of the precise events the researcher wishes to use in
+order to know what data to acquire and how to model the corresponding
+experimental design. Additionally, because the population exposed to such events
+is limited by the scale of the event, quasi-experimental designs are often
+power-constrained. Because the research team cannot change the population of the
+study or the treatment assignment, statistical power is typically maximized by
+ensuring that sampling for data collection is designed to match the study
+objectives and that attrition from the sampled groups is minimized.</p>
+<!-- ----------------------------------------------------------------------------------------------- -->
+</div>
+</div>
+<div id="obtaining-treatment-effects-from-specific-research-designs" class="section level2 unnumbered hasAnchor">
+<h2>Obtaining treatment effects from specific research designs<a href="design.html#obtaining-treatment-effects-from-specific-research-designs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<!-- ----------------------------------------------------------------------------------------------- -->
+<div id="cross-sectional-designs" class="section level3 unnumbered hasAnchor">
+<h3>Cross-sectional designs<a href="design.html#cross-sectional-designs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <em>cross-sectional</em> research design is any type of study that observes data in
+only one time period and directly compares treatment and control groups. Such
+data are easy to collect and handle because it is not necessary to track units
+across time. If the time period is after a treatment has been fully delivered,
+then the outcome values at that time already reflect the effect of the
+treatment. If the study is experimental, the treatment and control groups are
+randomly constructed from the population eligible to receive each treatment. By
+construction, each unit’s receipt of the treatment is unrelated to any of its
+other characteristics, and the ordinary least squares regression of outcome on
+treatment, without any control variables or adjustments other than for the
+design (such as clustering and stratification), produces an unbiased estimate of
+the ATE.</p>
+<p>Cross-sectional designs can also exploit variations in nonexperimental data to
+argue that observed correlations do in fact represent causal effects. This
+causation can be true unconditionally, which is to say that some random event,
+such as winning the lottery, is a truly random process and can provide
+information about the effect of receiving a large amount of money
+(<span class="citation">Imbens, Rubin, and Sacerdote (<a href="bibliography.html#ref-imbens2001estimating">2001</a>)</span>). It can also be true conditionally, which is to say
+that, once the characteristics that would affect both the likelihood of exposure
+to a treatment and the outcome of interest are controlled for, the process is as
+good as random. For example, a study could argue that, once risk preferences are
+taken into account, exposure to an earthquake is unpredictable (among people
+with the same risk preferences), and any excess differences after the event
+(after accounting for differences caused by risk preferences) are caused by the
+event itself (<span class="citation">Callen (<a href="bibliography.html#ref-callen2015catastrophes">2015</a>)</span>).</p>
+<p>For cross-sectional designs, what must be carefully maintained in data are the
+research design variables describing the treatment randomization process itself
+(whether experimental or not) as well as detailed information about differences
+in data quality and attrition across groups (<span class="citation">Athey and Imbens (<a href="bibliography.html#ref-athey2017econometrics">2017a</a>)</span>). Only
+design controls for the randomization process are needed to construct the
+appropriate estimator. Clustering of the standard errors is required at the
+level at which the treatment is assigned to observations, and variables that
+were used to stratify the treatment must be included as controls in the form of
+strata fixed effects (Barrios 2014). <em>Randomization inference</em> can be used to
+estimate the underlying variability in the randomization process. <em>Balance
+checks</em>—statistical tests of the similarity of treatment and control groups—are
+often reported as evidence of an effective randomization and are particularly
+important when the design is quasi-experimental, because then the randomization
+process cannot be simulated explicitly. However, controls for balance variables
+are usually superfluous in experimental designs, because it is certain that the
+treatment and the balance factors are not correlated in the data-generating
+process (McKenzie 2017).</p>
+<p>Analysis of randomization is typically straightforward and well understood. A
+typical analysis will include a description of the sampling and randomization
+results, with analyses such as summary statistics for the eligible population
+and balance checks for randomization and sample selection. The main results will
+usually be primary regression specifications for outcomes of interest, with
+appropriate adjustments for multiple hypothesis testing (for an example, see
+<span class="citation">Armand et al. (<a href="bibliography.html#ref-armand2017public">2017</a>)</span>). These will be followed by additional specifications with
+adjustments for nonresponse, imbalance, and other potential contaminations.
+Robustness checks might include randomization-inference analysis or other
+placebo regression approaches. Various user-written code tools are available to
+help with the complete process of data analysis, including analyzing balance
+(<code>iebaltab</code>; see the DIME Wiki at <a href="https://dimewiki.worldbank.org/iebaltab" class="uri">https://dimewiki.worldbank.org/iebaltab</a>) and
+visualizing treatment effects (<code>iegraph</code>; see the DIME Wiki at
+<a href="https://dimewiki.worldbank.org/iegraph" class="uri">https://dimewiki.worldbank.org/iegraph</a>). Extensive tools and methods are
+available for analyzing selective nonresponse (Özler 2017).</p>
+<!-- ----------------------------------------------------------------------------------------------- -->
+</div>
+<div id="difference-in-differences" class="section level3 unnumbered hasAnchor">
+<h3>Difference-in-differences<a href="design.html#difference-in-differences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Whereas cross-sectional designs draw their estimates of treatment effects from
+differences in outcome levels in a single measurement,
+<em>difference-in-differences</em> designs (abbreviated as DD, DiD, diff-in-diff, and
+other variants; see the DIME Wiki at <a href="https://dimewiki.worldbank.org/Difference-in-Differences" class="uri">https://dimewiki.worldbank.org/Difference-in-Differences</a>)
+estimate treatment effects from <em>changes</em> in
+outcomes between two or more rounds of measurement. In the simplest form of
+these designs, three control group averages are used to compute effect
+estimates—the baseline level of treatment units, the baseline level of
+nontreatment units, and the endline level of nontreatment units (<span class="citation">Torres-Reyna (<a href="bibliography.html#ref-torres2015">2015</a>)</span>).
+The estimated treatment effect is the excess growth of units that receive the
+treatment in the period they receive it: calculating that value is equivalent to
+taking the difference in means between treatment and nontreatment units at
+endline and subtracting the difference in means at baseline
+(<span class="citation">McKenzie (<a href="bibliography.html#ref-mckenzie2012beyond">2012</a>)</span>). The regression model includes a control variable for
+treatment assignment and a control variable for time period, and the treatment
+effect estimate corresponds to an interaction variable for treatment and time:
+it indicates the group of observations for which the treatment is active.</p>
+<p>This “two-way fixed effects” design depends on the assumption that, in the
+absence of the treatment, the outcome of the two groups would have changed at
+the same rate over time, typically referred to as the <em>parallel trends</em>
+assumption (Friedman 2013). Experimental approaches satisfy this requirement in
+expectation, but a given randomization should still be checked for pretrends as
+an extension of balance checking (McKenzie 2020). More complex designs with
+multiple treatment groups or multiple time periods require correspondingly
+adjusted models (Baker, Larcker, and Wang 2021).</p>
+<p>There are two main types of data structures for <em>difference-in-­differences</em>:
+repeated cross-sectional and panel data. In <em>repeated cross-sectional designs</em>,
+each successive round of data collection contains a random sample of
+observations from the treated and untreated groups; as in cross-sectional
+designs, both the randomization and sampling processes are critically important
+to maintain alongside the data. <em>Panel</em> data structures are used to observe the
+exact same units at different times, so that the same units can be analyzed both
+before and after they have (or have not) received treatment (Jakiela 2019). This
+structure allows each unit’s baseline outcome (the outcome before the
+intervention) to be used as an additional control for its endline outcome, which
+can provide increases in power and robustness (McKenzie 2015). When tracking
+individuals over time for this purpose, maintaining sampling and tracking
+records is especially important because attrition will remove that unit’s
+information from all time periods, not just the one in which they are
+unobserved. Panel-style experiments therefore require more effort in fieldwork
+for studies using original data (<span class="citation">Torres-Reyna (<a href="bibliography.html#ref-torres2007">2007</a>)</span>). Because the baseline and endline
+may be far apart in time, creating careful records during the first round makes
+it possible to follow up with the same subjects and to account properly for
+attrition across rounds (Özler 2017).</p>
+<p>As with cross-sectional designs, difference-in-differences designs are
+widespread. Therefore, many standardized tools are available for analysis.
+DIME’s <code>ietoolkit</code> Stata package includes the <code>ieddtab</code> command, which
+produces standardized tables for reporting results (see
+<a href="https://dimewiki.worldbank.org/ieddtab" class="uri">https://dimewiki.worldbank.org/ieddtab</a>).
+For more complicated versions of the model (and they
+can get quite complicated quite quickly), an online dashboard can be used to
+simulate counterfactual results (Kondylis and Loeser 2019a). As in
+cross-sectional designs, these main specifications will always be accompanied by
+balance checks (using baseline values) as well as by randomization, selection,
+and attrition analysis. In trials of this type, reporting experimental design
+and execution using the CONSORT style is common in many disciplines and is
+useful for tracking data over time (<span class="citation">Schulz, Altman, and Moher (<a href="bibliography.html#ref-schulz2010consort">2010</a>)</span>).</p>
+<!-- ----------------------------------------------------------------------------------------------- -->
+</div>
+<div id="regression-discontinuity" class="section level3 unnumbered hasAnchor">
+<h3>Regression discontinuity<a href="design.html#regression-discontinuity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>Regression discontinuity</em> (RD) designs exploit sharp breaks or limits in policy
+designs to separate a single group of potentially eligible recipients into
+comparable groups of individuals who do and do not receive a treatment (see the
+DIME Wiki at <a href="https://dimewiki.worldbank​.org/Regression_Discontinuity" class="uri">https://dimewiki.worldbank​.org/Regression_Discontinuity</a>). These
+designs differ from cross-sectional and difference-in-differences designs in
+that the group eligible to receive treatment is not defined directly but instead
+is created during the treatment implementation. In an RD design, there is
+typically some program or event that has limited availability because of
+practical considerations or policy choices and is therefore made available only
+to individuals who meet a certain threshold requirement.</p>
+<p>The intuition of this design is that an underlying <em>running variable</em> serves as
+the sole determinant of access to the program, and a strict cutoff determines
+the value of this variable at which eligibility stops (<span class="citation">Imbens and Lemieux (<a href="bibliography.html#ref-imbens2008regression">2008</a>)</span>).
+Common examples are test score thresholds and income thresholds (Evans 2013).
+The intuition is that individuals who are just above the threshold are very
+nearly indistinguishable from those who are just below it, and their outcomes
+after treatment are therefore directly comparable (<span class="citation">Lee and Lemieux (<a href="bibliography.html#ref-lee2010regression">2010</a>)</span>). The key
+assumption here is that the running variable cannot be manipulated directly by
+the potential recipients. If the running variable is time (what is commonly
+called an “event study”), there are special considerations
+(<span class="citation">Hausman and Rapson (<a href="bibliography.html#ref-hausman2018regression">2018</a>)</span>). Similarly, spatial discontinuity designs are handled
+differently because of their multidimensionality (Kondylis and Loeser 2019b).</p>
+<p>RD designs are, once implemented, similar in analysis to cross-sectional or
+difference-in-differences designs. Depending on the available data, the
+analytical approach will compare individuals who are narrowly on the inclusion
+side of the discontinuity with those who are narrowly on the exclusion side
+(<span class="citation">Cattaneo, Idrobo, and Titiunik (<a href="bibliography.html#ref-cattaneo2019">2019</a>)</span>). The regression model will be identical to the corresponding
+research designs—that is, contingent on whether data have one or more time
+periods and whether the same units are known to be observed repeatedly.</p>
+<p>The treatment effect will be identified by the addition of a control for the
+running variable—meaning that the treatment effect estimate will be
+automatically valid only for a subset of observations in a window around the
+cutoff. In many cases, the treatment effects estimated will be “local” rather
+than “average” when they cannot be assumed to hold for the entire sample. In the
+RD model, the functional form of the running variable control and the size of
+that window, often referred to as the choice of <em>bandwidth</em> for the design, are
+the critical parameters for the result (<span class="citation">Calonico et al. (<a href="bibliography.html#ref-calonico2019regression">2019</a>)</span>). Therefore, RD
+analysis often includes extensive robustness checks using a variety of both
+functional forms and bandwidths as well as placebo tests for nonrealized
+locations of the cutoff.</p>
+<p>In the analytical stage, RD designs often include a substantial component of
+visual evidence. These visual presentations help to suggest both the functional
+form of the underlying relationship and the type of change observed at the
+discontinuity; they also help to avoid pitfalls in modeling that are difficult
+to detect with parameterized hypothesis tests (<span class="citation">Pischke (<a href="bibliography.html#ref-pischke2018">2018</a>)</span>). Because these
+designs are more flexible than others, an extensive set of commands helps to
+assess the efficacy and results from these designs under various assumptions
+(<span class="citation">Calonico, Cattaneo, and Titiunik (<a href="bibliography.html#ref-calonico2014robust">2014</a>)</span>). These packages support the testing and reporting of
+robust plotting and estimation procedures, tests for manipulation of the running
+variable, and tests for power, sample size, and randomization inference
+approaches that will complement the main regression approach used for point
+estimates.</p>
+<!-- ----------------------------------------------------------------------------------------------- -->
+</div>
+<div id="instrumental-variables" class="section level3 unnumbered hasAnchor">
+<h3>Instrumental variables<a href="design.html#instrumental-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>Instrumental variables</em> (IV) designs, unlike the previous approaches, begin by
+assuming that the treatment delivered in the study in question is linked to the
+outcome in a pattern such that its effect is not directly identifiable. Instead,
+similar to RD designs, IV designs attempt to focus on a subset of the variation
+in treatment take-up and assess a limited window of variation that can be argued
+to be unrelated to other factors (<span class="citation">Angrist and Krueger (<a href="bibliography.html#ref-angrist2001instrumental">2001</a>)</span>). To do so, the IV
+approach selects an <em>instrument</em> for the treatment status—an otherwise-unrelated
+predictor of exposure to treatment that affects the take-up status of an
+individual (see the DIME Wiki at
+<a href="https://dimewiki.worldbank.org/Instrumental_Variables" class="uri">https://dimewiki.worldbank.org/Instrumental_Variables</a> ). Whereas RD designs
+are “sharp”—treatment status is strictly determined by which side of a cutoff an
+individual is on—IV designs are “fuzzy,” meaning that the values of the
+instrument(s) do not strictly determine the treatment status but instead
+influence the probability of treatment.</p>
+<p>As in RD designs, the fundamental form of the regression is similar to either
+cross-sectional or difference-in-differences designs. However, instead of
+controlling for the instrument directly, the IV approach typically uses the
+<em>two-stage-least-squares</em> estimator (<span class="citation">Bond (<a href="bibliography.html#ref-bond2020">2020</a>)</span>). This estimator first forms a
+prediction of the probability that each unit receives treatment using a
+regression of treatment status against the instrumental variable(s). That
+prediction will, by assumption, be the portion of the actual treatment that is
+due to the instrument and not to any other source; because the instrument is
+unrelated to all other factors, this portion of the treatment variation can be
+used to estimate relevant effect sizes.</p>
+<p>IV estimators are known to have very high variances relative to other methods,
+particularly when the relationship between the instrument and the treatment is
+weak (Andrews, Stock, and Sun 2019). IV designs furthermore rely on strong but
+untestable assumptions about the relationship between the instrument and the
+outcome (<span class="citation">Bound, Jaeger, and Baker (<a href="bibliography.html#ref-bound1995problems">1995</a>)</span>). Therefore, IV designs face scrutiny on the
+strength and exogeneity of the instrument, and tests for sensitivity to
+alternative specifications and samples are usually required. However, the method
+has special experimental cases that are significantly easier to assess: for
+example, a randomized treatment <em>assignment</em> can be used as an instrument for
+the eventual take-up of the treatment itself (for an example, see
+<span class="citation">Iacovone, Maloney, and Mckenzie (<a href="bibliography.html#ref-iacovone2019improving">2019</a>)</span>), especially in cases when take-up is expected to be low
+or in circumstances when the treatment is available to those who are not
+specifically assigned to it (“encouragement designs”).</p>
+<p>In practice, various packages can be used to analyze data and report results
+from IV designs. Although the built-in Stata command <code>ivregress</code> is often used
+to create the final results, the built-in packages are not sufficient on their
+own. The first stage of the design should be tested extensively to demonstrate
+the strength of the relationship between the instrument and the treatment
+variable being instrumented (<span class="citation">Stock and Yogo (<a href="bibliography.html#ref-stock2005weak">2005</a>)</span>). This testing can be done using the
+<code>weakiv</code> and <code>weakivtest</code> commands (<span class="citation">Pflueger and Wang (<a href="bibliography.html#ref-pfluegerwang2015">2015</a>)</span>). Additionally, tests
+should be run that identify and exclude individual observations or clusters that
+have extreme effects on the estimator, using customized bootstrap or
+leave-one-out approaches (Young 2019). Finally, bounds can be constructed
+allowing for imperfections in the exogeneity of the instrument using loosened
+assumptions, particularly when the underlying instrument is not directly
+randomized (<span class="citation">Clarke and Matta (<a href="bibliography.html#ref-clarke2018">2018</a>)</span>).</p>
+<!-- ----------------------------------------------------------------------------------------------- -->
+</div>
+<div id="matching" class="section level3 unnumbered hasAnchor">
+<h3>Matching<a href="design.html#matching" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>Matching</em> methods use observable characteristics of individuals to construct
+treatment and control groups that are as similar as possible to each other,
+either before a randomization process or after the collection of nonrandomized
+data (see the DIME Wiki at <a href="https://dimewiki.worldbank.org/Matching" class="uri">https://dimewiki.worldbank.org/Matching</a>). Matching
+groups of observations within a data set may result in one-to-one matches or the
+creation of mutually matched groups; the result of a matching process is similar
+in concept to the use of randomization strata. In this way, the method can be
+conceptualized as averaging across the results of a large number of
+“micro-experiments” in which the units in each potential treatment group are
+verifiably similar except for their treatment status.</p>
+<p>When matching is performed before a randomization process, it can be done on any
+observable characteristics, including baseline outcomes, if they are available.
+The randomization should record an indicator identifier for each matching set,
+as these sets become equivalent to randomization strata and require controls in
+analysis. This approach reduces the number of potential randomizations
+dramatically from the possible number that would be available if the matching
+was not conducted and therefore reduces the variance caused by the study design.</p>
+<p>When matching is done ex post in order to substitute for randomization, it is
+based on the assertion that, within the matched groups, the assignment of
+treatment is as good as random. However, because many matching models rely on a
+specific linear model, such as <em>propensity score matching</em> (PSM), they are open
+to the criticism of “specification searching,” meaning that researchers can try
+different models of matching until one, by chance, leads to the desired result.
+Analytical approaches have shown that the better the fit of the matching model,
+the more likely it is to have arisen by chance and therefore to be biased
+(<span class="citation">King and Nielsen (<a href="bibliography.html#ref-king2019propensity">2019</a>)</span>). Newer methods, such as <em>coarsened exact matching</em>
+(<span class="citation">Iacus, King, and Porro (<a href="bibliography.html#ref-iacus2012causal">2012</a>)</span>), are designed to remove some of the dependence on functional
+form. In all ex post cases, prespecification of the exact matching model can
+prevent some of the potential criticisms on this front, but ex post matching in
+general is not regarded as a strong identification strategy.</p>
+<p>Analysis of data from matching designs is relatively straightforward; the
+simplest design only requires using controls (indicator variables) for each
+group or, in the case of propensity scoring and similar approaches, weighting
+the data appropriately in order to balance the analytical samples on the
+selected variables. The <code>teffects</code> suite in Stata provides a wide variety of
+estimators and analytical tools for various designs (<span class="citation">Cooperative (<a href="bibliography.html#ref-sscc2015">2015</a>)</span>). The coarsened
+exact matching (<code>cem</code>) package applies the nonparametric approach
+(<span class="citation">Blackwell et al. (<a href="bibliography.html#ref-blackwell2009cem">2009</a>)</span>). The <code>iematch</code> command in the <code>ietoolkit</code> package produces
+matchings based on a single continuous matching variable (see the DIME Wiki at
+<a href="https://dimewiki.worldbank.org/iematch" class="uri">https://dimewiki.worldbank.org/iematch</a>). In any of these cases, detailed
+reporting of the matching model is required, including the resulting effective
+weights of observations, because in some cases the lack of overlapping supports
+for treatment and control means that a large number of observations will be
+weighted near zero and the estimated effect will be generated using a subset of
+the data.</p>
+<!-- ----------------------------------------------------------------------------------------------- -->
+</div>
+<div id="synthetic-control" class="section level3 unnumbered hasAnchor">
+<h3>Synthetic control<a href="design.html#synthetic-control" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>Synthetic control</em> is a relatively new method for the case when appropri- ate
+counterfactual units do not exist for a treatment of interest, and often there
+are very few (or only one) treatment units (<span class="citation">Abadie, Diamond, and Hainmueller (<a href="bibliography.html#ref-abadie2015comparative">2015</a>)</span>). For
+example, finding valid comparators for state- or national-level policy changes
+that can be analyzed only as a single unit is typically very difficult because
+the set of potential comparators is usually small and diverse with no close
+matches for the treated unit. Intuitively, the synthetic control method works by
+constructing a counterfactual version of the treated unit using an average of
+the other units available (<span class="citation">Abadie, Diamond, and Hainmueller (<a href="bibliography.html#ref-abadie2010synthetic">2010</a>)</span>). This approach is particularly
+effective when the lower-level components of the units would be directly
+comparable: people, households, businesses, and so on in the case of states and
+countries or passengers or cargo shipments in the case of transport corridors,
+for example (<span class="citation">Gobillon and Magnac (<a href="bibliography.html#ref-gobillon2016regional">2016</a>)</span>). In those situations, the average of the
+untreated units can be thought of as balancing because it matches the
+composition of the treated unit.</p>
+<p>To construct this estimator, the synthetic control method requires retrospective
+data on the treatment unit and possible comparators, including historical data
+on the outcome of interest for all units (for an example, see
+<span class="citation">Fernandes, Hillberry, and Berg (<a href="bibliography.html#ref-fernandes2016expediting">2016</a>)</span>). The counterfactual blend is chosen by optimizing the
+prediction of past outcomes on the basis of potential input characteristics and
+typically selects a small set of comparators to weight into the final analysis.
+These data sets therefore may not have a large number of variables or
+observations, but the extent of the time series both before and after
+implementation of the treatment are key sources of power for the estimate, as
+are the number of counterfactual units available. Visualizations are often
+excellent demonstrations of these results. The <code>synth</code> package provides
+functionality for use in Stata and R; however, because the number of possible
+parameters and implementations of the design is large, the package can be
+complex to operate (<span class="citation">Abadie, Diamond, and Hainmueller (<a href="bibliography.html#ref-abadie2014synth">2014</a>)</span>).</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="resources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bibliography.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["drip.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
