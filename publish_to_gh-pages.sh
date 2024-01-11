@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# Exit on errors
+set -e
 
 #Make sure to cd into the main repo before running this script
 
