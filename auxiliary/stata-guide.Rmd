@@ -457,11 +457,17 @@ All file paths should always be enclosed in double quotes and should always use
 forward slashes for folder hierarchies (`/`). Mac and Linux computers cannot
 read file paths with back slashes, and back slashes cannot be removed easily
 with find-and-replace because the character has other functional uses in code.
+Furthermore, the back slash is an _escape character_ in Stata.
+This means that if the following character is a special character with some
+functionality, then that character special functionality is "escaped" and
+read as is. Therefore, with back slashed, the file path ``"C:\Users\username\`proj'"``
+will reference a folder called literally `` `proj' `` and not for a folder
+with the name corresponding to the string stored in the local `proj`.
+
 File names should be written in lowercase with dashes (`my-file.dta`). File
 paths should always include the file extension (`.dta`, `.do`, `.csv`, and so
 forth). Omitting the extension causes ambiguity if another file with the same
 name is created, even if there is a default file type.
-
 
 File paths should also be absolute and dynamic. *Absolute* means that all file
 paths start at the root folder of the computer, often `C:/` in Windows or `/Users/`
