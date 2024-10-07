@@ -2,12 +2,12 @@
 
 
 The process of data analysis is typically a back-and-forth discussion between
-people with differing skill sets. For effective collaboration in ateam
+people with differing skill sets. For effective collaboration in a team
 environment, data, code, and outputs must be well organized and well documented,
 with a clear system for version control, analysis scripts that all team members
-can run, and fully automated output creation.Putting in time up front to
+can run, and fully automated output creation. Putting in time up front to
 structure the data analysis workflow in a reproducible manner pays substantial
-dividends throughout the process.Similarly, documenting research decisions made
+dividends throughout the process. Similarly, documenting research decisions made
 during data analysis is essential not only for the quality and transparency of
 research but also for the smooth implementation of a project.
 
@@ -31,37 +31,37 @@ implementing the recommended practices.
 #### BOX 6.1 SUMMARY: CONSTRUCTING AND ANALYZING RESEARCH DATA {-}
 
 Moving from raw data to the final data sets used for analysis almost always
-requires combining andtransforming variables into the relevant indicators and
-indexes. These constructed variables are thenused to create analytical outputs,
-ideally using a dynamic document workflow. Construction andanalysis involve
+requires combining and transforming variables into the relevant indicators and
+indexes. These constructed variables are then used to create analytical outputs,
+ideally using a dynamic document workflow. Construction and analysis involve
 three main steps:
 
 1. *Construct variables and purpose-built data sets.* The process of transforming
-observed datapoints into abstract or aggregate variables and analyzing them
-properly requires guidance fromtheory and is unique to each study. However, it
+observed data points into abstract or aggregate variables and analyzing them
+properly requires guidance from theory and is unique to each study. However, it
 should always follow these protocols:
 
   - Maintain separate construction and analysis scripts, and put the appropriate
-    code in thecorresponding script, even if they are being developed or
+    code in the corresponding script, even if they are being developed or
     executed simultaneously.
   - Merge, append, or otherwise combine data from different sources or units of
-    observation, andtransform data to appropriate levels of observation or
+    observation, and transform data to appropriate levels of observation or
     aggregation.
   - Create purpose-built analytical data sets, name and save them appropriately,
-    and use themfor the corresponding analytical tasks, rather than building a
+    and use them for the corresponding analytical tasks, rather than building a
     single analytical data set.
   - Carefully document each of these steps in plain language so that the
-    rationale behind eachresearch decision is clear for any consumer of
+    rationale behind each research decision is clear for any consumer of
     research.
 
 2. *Generate and export exploratory and final outputs.* Tables and figures are
-the most common typesof analytical outputs. All outputs must be well organized
-and fully replicable. When creatingoutputs, the following tasks are required:
+the most common types of analytical outputs. All outputs must be well organized
+and fully replicable. When creating outputs, the following tasks are required:
 
   - Name exploratory outputs descriptively, and store them in easily viewed
     formats.
   - Store final outputs separately from exploratory outputs, and export them
-    usingpublication-quality formats.
+    using publication-quality formats.
   - Version-control all code required to produce all outputs from analysis data.
   - Archive code when analyses or outputs are not used, with documentation for
     later recovery.
@@ -70,12 +70,12 @@ and fully replicable. When creatingoutputs, the following tasks are required:
 following:
 
   - Exploratory analyses are immediately accessible, ideally created with
-    dynamic documents,and can be reproduced by executing a single script.
+    dynamic documents, and can be reproduced by executing a single script.
   - Code and outputs are version-controlled so it is easy to track where changes
     originated.
   - Final figures, tables, and other code outputs are exported from the
-    statistical software fullyformatted, and the final document is generated in
-    an automated manner, so that no manualworkflow is needed to update documents
+    statistical software fully formatted, and the final document is generated in
+    an automated manner, so that no manual workflow is needed to update documents
     when changes are made to outputs.
 
 
@@ -83,7 +83,7 @@ following:
 #### Key responsibilities for task team leaders and principal investigators {-}
 
   - Provide the theoretical framework for and supervise the production of
-    analytical data setsand outputs, reviewing statistical calculations and code
+    analytical data sets and outputs, reviewing statistical calculations and code
     functionality.
   - Approve the final list of analytical data sets and their accompanying
     documentation.
@@ -100,7 +100,7 @@ following:
     framework to code and data.
   - Draft and organize exploratory outputs for rapid review by management.
   - Maintain release-ready code and organize output with version control so that
-    current versionsof outputs are always accessible and final outputs are
+    current versions of outputs are always accessible and final outputs are
     easily extracted from unused materials.
 
 #### Key resources {-}
@@ -118,7 +118,7 @@ following:
         <https://worldbank.github.io/r-econ-visual-library>
 
   - Andrade, Daniels, and Kondylis (2020), which discusses best practices and
-    links tocode demonstrations of how to export tables from Stata, at
+    links to code demonstrations of how to export tables from Stata, at
     <https://blogs.worldbank.org/impactevaluations/nice-and-fast-tables-stata>
 
 :::
@@ -306,7 +306,7 @@ following code shows how the team assured that all observations had merged as
 expected, showing two different approaches depending on what was expected.
 
 ```{stata, eval = F, code = readLines("examples/box-6-2-integrating-multiple-data-sources.do"), attr.source='.numberLines'}
-``` 
+```
 
 The first code chunk shows the quality assurance protocol for when the team
 expected that all observations would exist in all data sets so that each merge
@@ -328,7 +328,7 @@ number of observations in any of the categories changed, ensuring that the
 outcome remained stable if the code was run multiple times.
 
 ```{stata, eval = F, code = readLines("examples/box-6-2-integrating-multiple-data-sources2.do"), attr.source='.numberLines'}
-``` 
+```
 
 For the complete do-file, visit the GitHub repository at https://git.io/JtgYf.
 
@@ -447,7 +447,7 @@ constructed after all waves had been pooled to make sure that all variables were
 constructed identically across all waves.
 
 ```{stata, eval = F, code = readLines("examples/box-6-3-creating-analysis-variables.do"), attr.source='.numberLines'}
-``` 
+```
 
 See the full construction script here <https://git.io/JtgY5> and the script
 where data from all waves are pooled here: <https://git.io/JtgYA>.
@@ -568,7 +568,7 @@ observation. This transformation guaranteed that the same data were used across
 all analysis scripts. The following is an example of a short analysis do-file:
 
 ```{stata, eval = F, code = readLines("examples/box-6-5-writing-data-analysis-code.do"), attr.source='.numberLines'}
-``` 
+```
 
 See this script and how the regression results were exported to a table at
 <https://git.io/JtgOk>.
@@ -603,7 +603,7 @@ script, a regression that includes all demographic controls would then be
 expressed as `regress y x ${demographics}`.
 
 ```{stata, eval = F, code = readLines("examples/box-6-6-organizing-analysis-code.do"), attr.source='.numberLines'}
-``` 
+```
 
 The above code is excerpted from the full master script, which you can find at
 <https://git.io/JtgeT>.
@@ -685,7 +685,7 @@ when creating graphs like the following:
  (lpoly z x, color(${col_womencar})), ${plot_options}`
 
 ```{stata, eval = F, code = readLines("examples/box-6-7-visualizing-data.do"), attr.source='.numberLines'}
-``` 
+```
 
 For the complete do-file, visit the GitHub repository at <https://git.io/JtgeT>.
 
@@ -770,14 +770,14 @@ code to check that they have access to all of the necessary files before trying
 to run a script.
 
 ```{stata, eval = F, code = readLines("examples/box-6-8-managing-outputs.do"), attr.source='.numberLines'}
-``` 
+```
 
 To provide an overview of the different subscripts involved in a project, this
 information was copied into the master do-file where the script above is called,
 and the same was done for all of the script called from that master, as follows:
 
 ```{stata, eval = F, code = readLines("examples/box-6-8-managing-outputs2.do"), attr.source='.numberLines'}
-``` 
+```
 
 For the complete analysis script, visit the GitHub repository at
 <https://git.io/JtgYB>. For the master do-file, visit the GitHub repository at
