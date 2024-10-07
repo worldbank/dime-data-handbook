@@ -202,13 +202,12 @@ the DIME team to have a consistent code style.
 Comments do not change the output of code or how it runs, but without them code
 will not be accessible to other readers. It will also take much longer to update
 or edit code written in the past if it does not have adequate comments
-explaining its intent and functionality. It is important to comment a lot: not
-only about *what* the code is doing but also about *why* it was written the way
-it was. In general, writing simpler code that needs less explanation is
-preferrable to using an elegant and complex method in less space, unless the
-advanced method is widely accepted.
+explaining its intent and functionality. 
 
-There are three types of comments in Stata, and they have different purposes.
+There are three types of comments in Stata, and they have different purposes. As
+of version 17.0, the Stata do-file editor also has a special type of comment 
+called a "bookmark", which creates anchors in the code which are automatically
+added to a dropdown navigation control.
 
 ::: {.ex}
 #### Commenting multiple lines {-}
@@ -221,6 +220,36 @@ There are three types of comments in Stata, and they have different purposes.
 
 #### Inline comments {-}
 ```{stata, eval = F, code = readLines("code/box-appendix-2-comments-3.do"), attr.source='.numberLines'}
+```
+
+#### Bookmarks {-}
+```{stata, eval = F, code = readLines("code/box-appendix-2-comments-4.do"), attr.source='.numberLines'}
+```
+
+To access this code in do-file format, visit the GitHub repository at https://github.com/worldbank/dime-data-handbook/tree/main/code.
+
+:::
+
+Comments should be used in two ways: to organize your code, indicating *what*
+it is doing, and to explain *why* it was written in a certain way. 
+In general, writing self-documenting code that needs less explanation is 
+preferable.
+
+::: {.ex}
+#### WORST: Cryptic code {-}
+```{stata, eval = F, code = readLines("code/box-appendix-2-comments-5.do"), attr.source='.numberLines'}
+```
+
+#### BAD: Cryptic code explained by *what* comment {-}
+```{stata, eval = F, code = readLines("code/box-appendix-2-comments-6.do"), attr.source='.numberLines'}
+```
+
+#### BETTER: Self-documenting code {-}
+```{stata, eval = F, code = readLines("code/box-appendix-2-comments-7.do"), attr.source='.numberLines'}
+```
+
+#### BEST: Self-documenting code with *why* comment {-}
+```{stata, eval = F, code = readLines("code/box-appendix-2-comments-8.do"), attr.source='.numberLines'}
 ```
 
 To access this code in do-file format, visit the GitHub repository at https://github.com/worldbank/dime-data-handbook/tree/main/code.
@@ -296,15 +325,15 @@ loops.
 
 ::: {.ex}
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-3-loops-1.do"), attr.source='.numberLines'}
 ```
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-3-loops-2.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: {-}
+#### BAD:
 ```{stata, eval = F, code = readLines("code/box-appendix-3-loops-3.do"), attr.source='.numberLines'}
 ```
 
@@ -327,11 +356,11 @@ to read, and small typos stand out more, making them easier to spot.
 
 ::: {.ex}
 
-#### ACCEPTABLE: {-}
+#### ACCEPTABLE:
 ```{stata, eval = F, code = readLines("code/box-appendix-4-whitespace-columns-1.do"), attr.source='.numberLines'}
 ```
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-4-whitespace-columns-2.do"), attr.source='.numberLines'}
 ```
 
@@ -355,11 +384,11 @@ recommended instead of using a tab.
 
 ::: {.ex}
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-5-whitespace-indentation-1.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: {-}
+#### BAD:
 ```{stata, eval = F, code = readLines("code/box-appendix-5-whitespace-indentation-2.do"), attr.source='.numberLines'}
 ```
 
@@ -383,12 +412,12 @@ modify them appropriately.
 
 ::: {.ex}
 
-#### GOOD: {-}
-```{stata, eval = F, code = readLines("code/box-appendix-6-conditional-expressions-1b.do"), attr.source='.numberLines'}
+#### GOOD:
+```{stata, eval = F, code = readLines("code/box-appendix-6-conditional-expressions-1a.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: {-}
-```{stata, eval = F, code = readLines("code/box-appendix-6-conditional-expressions-1a.do"), attr.source='.numberLines'}
+#### BAD:
+```{stata, eval = F, code = readLines("code/box-appendix-6-conditional-expressions-1b.do"), attr.source='.numberLines'}
 ```
 
 To access this code in do-file format, visit the GitHub repository at
@@ -407,11 +436,11 @@ statement needs to be modified.
 
 ::: {.ex}
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-7-conditional-expressions-2a.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: {-}
+#### BAD:
 ```{stata, eval = F, code = readLines("code/box-appendix-7-conditional-expressions-2b.do"), attr.source='.numberLines'}
 ```
 
@@ -458,15 +487,15 @@ Multiple folder globals can be created as needed, and this practice is
 encouraged.
 
 ::: {.ex}
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-8-filepaths-1.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: Relative paths {-}
+#### BAD: Relative paths
 ```{stata, eval = F, code = readLines("code/box-appendix-8-filepaths-2.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: Static paths {-}
+#### BAD: Static paths
 ```{stata, eval = F, code = readLines("code/box-appendix-8-filepaths-3.do"), attr.source='.numberLines'}
 ```
 
@@ -504,15 +533,15 @@ comma or other functional syntax in Stata commands.
 
 ::: {.ex}
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-9-linebreak-1.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: {-}
+#### BAD:
 ```{stata, eval = F, code = readLines("code/box-appendix-9-linebreak-2.do"), attr.source='.numberLines'}
 ```
 
-#### UGLY: {-}
+#### UGLY:
 ```{stata, eval = F, code = readLines("code/box-appendix-9-linebreak-3.do"), attr.source='.numberLines'}
 ```
 
@@ -544,10 +573,10 @@ globals, getting as close as possible to opening a fresh Stata session.
 
 ::: {.ex}
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-10-boilerplate-1.do"), attr.source='.numberLines'}
 ```
-#### ACCEPTABLE: {-}
+#### ACCEPTABLE:
 ```{stata, eval = F, code = readLines("code/box-appendix-10-boilerplate-2.do"), attr.source='.numberLines'}
 ```
 
