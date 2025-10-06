@@ -9,7 +9,7 @@ and is produced by [DIME Analytics](https://www.worldbank.org/en/research/dime/d
 
 ## Free e-version
 
-You can read a free e-version of a the book  [here](https://worldbank.github.io/dime-data-handbook).
+You can read a free e-version of a the book [here](https://worldbank.github.io/dime-data-handbook) or download the published book as PDF here [here](https://hdl.handle.net/10986/35594).
 
 ## Feedback
 
