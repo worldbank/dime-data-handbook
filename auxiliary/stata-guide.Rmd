@@ -142,15 +142,13 @@ commands in this book are all available from the SSC archive. Installation of
 commands from the SSC archive is straightforward, simply type `ssc install
 randtreat`.
 
-Some commands on SSC are distributed in packages, in which case it is necessary
-to download the whole package to access the included commands. This is the case,
-for example, of `ieboilstart`, which is part of the `ietoolkit` package.
-Commands that are distributed in packages cannot be installed on their own; it
-will not work to type `ssc install ieboilstart`. Instead, Stata will suggest
-using `findit ieboilstart`, which will search SSC (among other places) for a
-package containing a command called `ieboilstart.` Stata will find `ieboilstart`
-in the package `ietoolkit` and suggest installing it by typing ssc install
-`ietoolkit` in Stata instead.
+Commands on SSC are distributed in packages where multiple commands can be
+included in a single package. This is the case, for example, of `iebaltab`,
+which is part of the `ietoolkit` package. Therefore, it will not work to type
+`ssc install iebaltab`. Instead, Stata will suggest using `findit iebaltab`,
+which will search SSC (among other places) for a package containing a command
+called `iebaltab.` Stata will find `iebaltab` in the package `ietoolkit` and
+suggest installing it by typing `ssc install ietoolkit` in Stata instead.
 
 Although it can be confusing to work with packages for the first time, doing so
 is the best way to set up a Stata installation and to benefit from the publicly
@@ -163,7 +161,7 @@ master do-file, so that the user does not have to search for packages manually.
 ## The DIME Analytics Stata Style Guide {-}
 
 The programming languages used in computer science always have associated style
-guides. Sometimes they are official, universally agreedupon style guides, such
+guides. Sometimes they are official, universally agreed upon style guides, such
 as PEP8 for Python (van Rossum, Warsaw, and Coghlan 2013). More commonly, they
 are well-recognized but unofficial style guides like Hadley Wickham’s *Tidyverse
 Style Guide* for R (Wickham, n.d.) or the JavaScript Standard Style for
@@ -202,13 +200,12 @@ the DIME team to have a consistent code style.
 Comments do not change the output of code or how it runs, but without them code
 will not be accessible to other readers. It will also take much longer to update
 or edit code written in the past if it does not have adequate comments
-explaining its intent and functionality. It is important to comment a lot: not
-only about *what* the code is doing but also about *why* it was written the way
-it was. In general, writing simpler code that needs less explanation is
-preferrable to using an elegant and complex method in less space, unless the
-advanced method is widely accepted.
+explaining its intent and functionality.
 
-There are three types of comments in Stata, and they have different purposes.
+There are three types of comments in Stata, and they have different purposes. As
+of version 17.0, the Stata do-file editor also has a special type of comment
+called a "bookmark", which creates anchors in the code which are automatically
+added to a dropdown navigation control.
 
 ::: {.ex}
 #### Commenting multiple lines {-}
@@ -223,6 +220,36 @@ There are three types of comments in Stata, and they have different purposes.
 ```{stata, eval = F, code = readLines("code/box-appendix-2-comments-3.do"), attr.source='.numberLines'}
 ```
 
+#### Bookmarks {-}
+```{stata, eval = F, code = readLines("code/box-appendix-2-comments-4.do"), attr.source='.numberLines'}
+```
+
+To access this code in do-file format, visit the GitHub repository at https://github.com/worldbank/dime-data-handbook/tree/main/code.
+
+:::
+
+Comments should be used in two ways: to organize your code, indicating *what*
+it is doing, and to explain *why* it was written in a certain way.
+In general, writing self-documenting code that needs less explanation is
+preferable.
+
+::: {.ex}
+#### WORST: Cryptic code {-}
+```{stata, eval = F, code = readLines("code/box-appendix-2-comments-5.do"), attr.source='.numberLines'}
+```
+
+#### BAD: Cryptic code explained by *what* comment {-}
+```{stata, eval = F, code = readLines("code/box-appendix-2-comments-6.do"), attr.source='.numberLines'}
+```
+
+#### BETTER: Self-documenting code {-}
+```{stata, eval = F, code = readLines("code/box-appendix-2-comments-7.do"), attr.source='.numberLines'}
+```
+
+#### BEST: Self-documenting code with *why* comment {-}
+```{stata, eval = F, code = readLines("code/box-appendix-2-comments-8.do"), attr.source='.numberLines'}
+```
+
 To access this code in do-file format, visit the GitHub repository at https://github.com/worldbank/dime-data-handbook/tree/main/code.
 
 :::
@@ -232,9 +259,10 @@ To access this code in do-file format, visit the GitHub repository at https://gi
 
 Stata commands can often be abbreviated in the code. A command can be
 abbreviated if the help file indicates an abbreviation by underlining part of
-the name in the syntax section at the top. Only built-in commands can be
-abbreviated; user-written commands cannot. Although Stata allows some commands
-to be abbreviated to one or two characters, doing so can be confusing—two-letter
+the name in the syntax section at the top. Typically, only built-in commands have
+support for abbreviations; user-written commands do not. Although Stata allows
+some built-in commands to be abbreviated to one or two characters,
+doing so can be confusing—two-letter
 abbreviations can rarely be “pronounced” in an obvious way that connects them to
 the functionality of the full command. Therefore, command abbreviations in
 code should not be shorter than three characters, with the exception of `tw` for
@@ -296,15 +324,15 @@ loops.
 
 ::: {.ex}
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-3-loops-1.do"), attr.source='.numberLines'}
 ```
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-3-loops-2.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: {-}
+#### BAD:
 ```{stata, eval = F, code = readLines("code/box-appendix-3-loops-3.do"), attr.source='.numberLines'}
 ```
 
@@ -327,11 +355,11 @@ to read, and small typos stand out more, making them easier to spot.
 
 ::: {.ex}
 
-#### ACCEPTABLE: {-}
+#### ACCEPTABLE:
 ```{stata, eval = F, code = readLines("code/box-appendix-4-whitespace-columns-1.do"), attr.source='.numberLines'}
 ```
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-4-whitespace-columns-2.do"), attr.source='.numberLines'}
 ```
 
@@ -355,11 +383,11 @@ recommended instead of using a tab.
 
 ::: {.ex}
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-5-whitespace-indentation-1.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: {-}
+#### BAD:
 ```{stata, eval = F, code = readLines("code/box-appendix-5-whitespace-indentation-2.do"), attr.source='.numberLines'}
 ```
 
@@ -383,12 +411,12 @@ modify them appropriately.
 
 ::: {.ex}
 
-#### GOOD: {-}
-```{stata, eval = F, code = readLines("code/box-appendix-6-conditional-expressions-1b.do"), attr.source='.numberLines'}
+#### GOOD:
+```{stata, eval = F, code = readLines("code/box-appendix-6-conditional-expressions-1a.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: {-}
-```{stata, eval = F, code = readLines("code/box-appendix-6-conditional-expressions-1a.do"), attr.source='.numberLines'}
+#### BAD:
+```{stata, eval = F, code = readLines("code/box-appendix-6-conditional-expressions-1b.do"), attr.source='.numberLines'}
 ```
 
 To access this code in do-file format, visit the GitHub repository at
@@ -407,11 +435,11 @@ statement needs to be modified.
 
 ::: {.ex}
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-7-conditional-expressions-2a.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: {-}
+#### BAD:
 ```{stata, eval = F, code = readLines("code/box-appendix-7-conditional-expressions-2b.do"), attr.source='.numberLines'}
 ```
 
@@ -429,11 +457,17 @@ All file paths should always be enclosed in double quotes and should always use
 forward slashes for folder hierarchies (`/`). Mac and Linux computers cannot
 read file paths with back slashes, and back slashes cannot be removed easily
 with find-and-replace because the character has other functional uses in code.
+Furthermore, the back slash is an _escape character_ in Stata.
+This means that if the following character is a special character with some
+functionality, then that character special functionality is "escaped" and
+read as is. Therefore, with back slashed, the file path ``"C:\Users\username\`proj'"``
+will reference a folder called literally `` `proj' `` and not for a folder
+with the name corresponding to the string stored in the local `proj`.
+
 File names should be written in lowercase with dashes (`my-file.dta`). File
 paths should always include the file extension (`.dta`, `.do`, `.csv`, and so
 forth). Omitting the extension causes ambiguity if another file with the same
 name is created, even if there is a default file type.
-
 
 File paths should also be absolute and dynamic. *Absolute* means that all file
 paths start at the root folder of the computer, often `C:/` in Windows or `/Users/`
@@ -458,15 +492,15 @@ Multiple folder globals can be created as needed, and this practice is
 encouraged.
 
 ::: {.ex}
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-8-filepaths-1.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: Relative paths {-}
+#### BAD: Relative paths
 ```{stata, eval = F, code = readLines("code/box-appendix-8-filepaths-2.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: Static paths {-}
+#### BAD: Static paths
 ```{stata, eval = F, code = readLines("code/box-appendix-8-filepaths-3.do"), attr.source='.numberLines'}
 ```
 
@@ -504,15 +538,15 @@ comma or other functional syntax in Stata commands.
 
 ::: {.ex}
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-9-linebreak-1.do"), attr.source='.numberLines'}
 ```
 
-#### BAD: {-}
+#### BAD:
 ```{stata, eval = F, code = readLines("code/box-appendix-9-linebreak-2.do"), attr.source='.numberLines'}
 ```
 
-#### UGLY: {-}
+#### UGLY:
 ```{stata, eval = F, code = readLines("code/box-appendix-9-linebreak-3.do"), attr.source='.numberLines'}
 ```
 
@@ -539,15 +573,15 @@ usage and matrix size so that other machines do not reject code for violating
 system limits. (For example, Stata/SE and Stata/IC allow for different maximum
 numbers of variables, and the same happens with Stata 14 and Stata 15, so code
 written in one of these versions may not be able to run in another.) Finally, it
-clears all stored information in Stata memory, such as noninstalled programs and
+clears all stored information in Stata memory, such as non-installed programs and
 globals, getting as close as possible to opening a fresh Stata session.
 
 ::: {.ex}
 
-#### GOOD: {-}
+#### GOOD:
 ```{stata, eval = F, code = readLines("code/box-appendix-10-boilerplate-1.do"), attr.source='.numberLines'}
 ```
-#### ACCEPTABLE: {-}
+#### ACCEPTABLE:
 ```{stata, eval = F, code = readLines("code/box-appendix-10-boilerplate-2.do"), attr.source='.numberLines'}
 ```
 
